@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>TBlog</title>
+  
+  
+  <link href="https://no-ten.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://no-ten.github.io/"/>
+  <updated>2021-11-13T05:45:58.309Z</updated>
+  <id>https://no-ten.github.io/</id>
+  
+  <author>
+    <name>Ten</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一个博客引发的事故...</title>
+    <link href="https://no-ten.github.io/%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2%E5%BC%95%E5%8F%91%E7%9A%84%E4%BA%8B%E6%95%85/"/>
+    <id>https://no-ten.github.io/%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2%E5%BC%95%E5%8F%91%E7%9A%84%E4%BA%8B%E6%95%85/</id>
+    <published>2021-11-13T03:10:11.000Z</published>
+    <updated>2021-11-13T05:45:58.309Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;一个博客引发的事故…&quot;&gt;&lt;a href=&quot;#一个博客引发的事故…&quot; class=&quot;headerlink&quot; title=&quot;一个博客引发的事故…&quot;&gt;&lt;/a&gt;一个博客引发的事故…&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="Q&amp;A" scheme="https://no-ten.github.io/categories/Q-A/"/>
+    
+    
+    <category term="Q&amp;A" scheme="https://no-ten.github.io/tags/Q-A/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringMVC</title>
+    <link href="https://no-ten.github.io/SpringMVC/"/>
+    <id>https://no-ten.github.io/SpringMVC/</id>
+    <published>2021-11-12T15:58:14.728Z</published>
+    <updated>2021-11-12T16:33:47.711Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;SpringMVC&quot;&gt;&lt;a href=&quot;#SpringMVC&quot; class=&quot;headerlink&quot; title=&quot;SpringMVC&quot;&gt;&lt;/a&gt;SpringMVC&lt;/h1&gt;&lt;p&gt;ssm: mybatis + Spring + SpringMVC</summary>
+        
+      
+    
+    
+    
+    <category term="framework" scheme="https://no-ten.github.io/categories/framework/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Redis</title>
+    <link href="https://no-ten.github.io/Redis/"/>
+    <id>https://no-ten.github.io/Redis/</id>
+    <published>2021-11-12T15:26:58.000Z</published>
+    <updated>2021-11-12T15:42:30.811Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;Redis笔记&quot;&gt;&lt;a href=&quot;#Redis笔记&quot; class=&quot;headerlink&quot; title=&quot;Redis笔记&quot;&gt;&lt;/a&gt;Redis笔记&lt;/h1&gt;&lt;p&gt;Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。从2010年3月15日起，Redis的开发工作由VMware主持。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Database" scheme="https://no-ten.github.io/categories/Database/"/>
+    
+    
+    <category term="Redis" scheme="https://no-ten.github.io/tags/Redis/"/>
+    
+    <category term="NoSQL" scheme="https://no-ten.github.io/tags/NoSQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux</title>
+    <link href="https://no-ten.github.io/Linux/"/>
+    <id>https://no-ten.github.io/Linux/</id>
+    <published>2021-11-12T14:01:17.000Z</published>
+    <updated>2021-11-12T15:08:47.756Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;Linux笔记&quot;&gt;&lt;a href=&quot;#Linux笔记&quot; class=&quot;headerlink&quot; title=&quot;Linux笔记&quot;&gt;&lt;/a&gt;Linux笔记&lt;/h1&gt;&lt;p&gt;Linux操作系统是基于UNIX操作系统发展而来的一种克隆系统。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="操作系统" scheme="https://no-ten.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+    <category term="Linux" scheme="https://no-ten.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mybatis</title>
+    <link href="https://no-ten.github.io/mybatis/"/>
+    <id>https://no-ten.github.io/mybatis/</id>
+    <published>2021-11-12T09:11:33.000Z</published>
+    <updated>2021-11-12T15:09:14.784Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Mybatis&quot;&gt;&lt;a href=&quot;#Mybatis&quot; class=&quot;headerlink&quot; title=&quot;Mybatis&quot;&gt;&lt;/a&gt;Mybatis&lt;/h1&gt;&lt;p&gt;环境：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;jdk 8 +&lt;/li&gt;
+&lt;li&gt;MySQL</summary>
+        
+      
+    
+    
+    
+    <category term="framework" scheme="https://no-ten.github.io/categories/framework/"/>
+    
+    
+    <category term="mybatis" scheme="https://no-ten.github.io/tags/mybatis/"/>
+    
+  </entry>
+  
+</feed>

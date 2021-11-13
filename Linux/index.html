@@ -1,0 +1,1233 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/myBlog/img/favicon.png">
+  <link rel="icon" href="/myBlog/img/browserTitle.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Linux笔记Linux操作系统是基于UNIX操作系统发展而来的一种克隆系统。">
+  <meta name="author" content="Ten">
+  <meta name="keywords" content="">
+  <meta name="description" content="Linux笔记Linux操作系统是基于UNIX操作系统发展而来的一种克隆系统。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux">
+<meta property="og:url" content="https://no-ten.github.io/Linux/index.html">
+<meta property="og:site_name" content="TBlog">
+<meta property="og:description" content="Linux笔记Linux操作系统是基于UNIX操作系统发展而来的一种克隆系统。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/Linux/image-20211102201829355.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/Linux/image-20211102165244390.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/Linux/image-20211102203952548.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/Linux/image-20211102204306150.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/Linux/image-20211102204619828.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/Linux/image-20211102205944102.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/Linux/image-20211102231332124.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/Linux/image-20211103165822413.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/Linux/image-20211103174249440.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/Linux/image-20211103222647990.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/Linux/image-20211104114435498.png">
+<meta property="article:published_time" content="2021-11-12T14:01:17.000Z">
+<meta property="article:modified_time" content="2021-11-12T15:08:47.756Z">
+<meta property="article:author" content="Ten">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://no-ten.github.io/myBlog/Linux/image-20211102201829355.png">
+  
+  <title>Linux - TBlog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/myBlog/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/myBlog/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"no-ten.github.io","root":"/myBlog/","version":"1.8.12","typing":{"enable":true,"typeSpeed":230,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/myBlog/local-search.xml"};
+  </script>
+  <script  src="/myBlog/js/utils.js" ></script>
+  <script  src="/myBlog/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/myBlog/atom.xml" title="TBlog" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/myBlog/">
+      <strong>TBlog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/myBlog/img/articleImages/linuxIndex.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Linux">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Ten
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-11-12 22:01" pubdate>
+        2021年11月12日晚上10点01分 
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      13k 字
+    </span>
+  
+
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Linux</h1>
+            
+            <div class="markdown-body">
+              <h1 id="Linux笔记"><a href="#Linux笔记" class="headerlink" title="Linux笔记"></a>Linux笔记</h1><p>Linux操作系统是基于UNIX操作系统发展而来的一种克隆系统。</p>
+<span id="more"></span>
+
+<h1 id="目录结构："><a href="#目录结构：" class="headerlink" title="目录结构："></a>目录结构：</h1><p><img src="/myBlog/Linux/image-20211102201829355.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20211102201829355"></p>
+<ul>
+<li><p>/：根目录，所有目录最顶层的目录</p>
+</li>
+<li><p>**~**：当前用户的主目录，如果是root用户就是/root/目录，如果是其他用户就是/home/下用户名的用户，如/home/admin</p>
+</li>
+<li><p>==<strong>/bin</strong>：bin是Binary的缩写, 这个目录存放着最经常使用的命令。==</p>
+</li>
+<li><p><strong>/boot：</strong> 这里存放的是启动Linux时使用的一些核心文件，包括一些连接文件以及镜像文件。</p>
+</li>
+<li><p><strong>/dev ：</strong> dev是Device(设备)的缩写, 存放的是Linux的外部设备，在Linux中访问设备的方式和访问文件的方式是相同的。</p>
+</li>
+<li><p>==<strong>/etc：</strong> 这个目录用来存放所有的系统管理所需要的配置文件和子目录。==</p>
+</li>
+<li><p><strong>/home</strong>：用户的主目录，在Linux中，每个用户都有一个自己的目录，一般该目录名是以用户的账号命名的。</p>
+</li>
+<li><p><strong>/lib</strong>：这个目录里存放着系统最基本的动态连接共享库，其作用类似于Windows里的DLL文件。</p>
+</li>
+<li><p><strong>/lost+found</strong>：这个目录一般情况下是空的，当系统非法关机后，这里就存放了一些文件。</p>
+</li>
+<li><p><strong>/media</strong>：linux系统会自动识别一些设备，例如U盘、光驱等等，当识别后，linux会把识别的设备挂载到这个目录下。</p>
+</li>
+<li><p><strong>/mnt</strong>：系统提供该目录是为了让用户临时挂载别的文件系统的，我们可以将光驱挂载在/mnt/上，然后进入该目录就可以查看光驱里的内容了。</p>
+</li>
+<li><p>==<strong>/opt</strong>：这是给主机额外安装软件所摆放的目录。比如你安装一个ORACLE数据库则就可以放到这个目录下。默认是空的。==</p>
+</li>
+<li><p><strong>/proc</strong>：这个目录是一个虚拟的目录，它是系统内存的映射，我们可以通过直接访问这个目录来获取系统信息。</p>
+</li>
+<li><p><strong>/root</strong>：该目录为系统管理员，也称作超级权限者的用户主目录。</p>
+</li>
+<li><p><strong>/sbin</strong>：s就是Super User的意思，这里存放的是系统管理员使用的系统管理程序。</p>
+</li>
+<li><p><strong>/srv</strong>：该目录存放一些服务启动之后需要提取的数据。</p>
+</li>
+<li><p><strong>/sys</strong>：这是linux2.6内核的一个很大的变化。该目录下安装了2.6内核中新出现的一个文件系统 sysfs 。</p>
+</li>
+<li><p><strong>/tmp</strong>：这个目录是用来存放一些临时文件的。</p>
+</li>
+<li><p>==<strong>/usr</strong>：这是一个非常重要的目录，用户的很多应用程序和文件都放在这个目录下，类似于windows下的program files目录。==</p>
+</li>
+<li><p><strong>/usr/bin：</strong> 系统用户使用的应用程序。</p>
+</li>
+<li><p><strong>/usr/sbin：</strong> 超级用户使用的比较高级的管理程序和系统守护程序。</p>
+</li>
+<li><p><strong>/usr/src：</strong> 内核源代码默认的放置目录。</p>
+</li>
+<li><p><strong>/var</strong>：这个目录中存放着在不断扩充着的东西，我们习惯将那些经常被修改的目录放在这个目录下。包括各种日志文件。</p>
+</li>
+<li><p><strong>/run</strong>：是一个临时文件系统，存储系统启动以来的信息。当系统重启时，这个目录下的文件应该被删掉或清除。</p>
+</li>
+</ul>
+<h1 id="常用命令："><a href="#常用命令：" class="headerlink" title="常用命令："></a>常用命令：</h1><p>sudo -i用不了</p>
+<p>进入vim /etc/sudoers，按照root账户形式，在下面添加一行</p>
+<p>admin ALL =(ALL) ALL</p>
+<h2 id="关机命令："><a href="#关机命令：" class="headerlink" title="关机命令："></a>关机命令：</h2><ul>
+<li><p>sync：将数据保存到硬盘中</p>
+</li>
+<li><p>shutdown -r now：马上重启</p>
+</li>
+<li><p>shutdown -h now：马上关机</p>
+</li>
+<li><p>shutdown：关机</p>
+</li>
+<li><p>init 0：关机</p>
+</li>
+<li><p>reboot：重启 </p>
+</li>
+<li><p>halt：关闭系统，等同于shutdown - h now 和poweroff</p>
+</li>
+</ul>
+<h2 id="目录管理："><a href="#目录管理：" class="headerlink" title="目录管理："></a>目录管理：</h2><ul>
+<li>cd：切换目录</li>
+<li>./：当前目录</li>
+<li>cd.. ：返回上一级目录</li>
+</ul>
+<h3 id="ls：列出目录"><a href="#ls：列出目录" class="headerlink" title="ls：列出目录"></a>ls：列出目录</h3><ul>
+<li>ls -a：all，查看全部的文件，包含隐藏文件</li>
+<li>ls -l： 列出所有的文件，包含文件的属性和权限，没有隐藏文件</li>
+</ul>
+<h3 id="cd命令"><a href="#cd命令" class="headerlink" title="cd命令"></a>cd命令</h3><p>cd ../usr：相对路径进入usr文件</p>
+<p>cd /home/admin: 绝对路径进去admin文件夹</p>
+<p>cd ~：回到当前用户目录下</p>
+<h3 id="pwd命令"><a href="#pwd命令" class="headerlink" title="pwd命令"></a>pwd命令</h3><ul>
+<li>显示当前用户所在的目录</li>
+</ul>
+<h3 id="mkdir创建目录"><a href="#mkdir创建目录" class="headerlink" title="mkdir创建目录"></a>mkdir创建目录</h3><ul>
+<li><p>mkdir test：创建目录</p>
+</li>
+<li><p>mkdir -p test/test1/test2/test3：递归创建多级目录</p>
+</li>
+</ul>
+<h3 id="rmdir-删除目录"><a href="#rmdir-删除目录" class="headerlink" title="rmdir 删除目录"></a>rmdir 删除目录</h3><ul>
+<li><p>rmdir test3：删除一个空的目录</p>
+</li>
+<li><p>rmdir -p test/test1/test2: 递归删除多个目录</p>
+</li>
+</ul>
+<h3 id="cp-复制文件或者目录"><a href="#cp-复制文件或者目录" class="headerlink" title="cp:复制文件或者目录"></a>cp:复制文件或者目录</h3><ul>
+<li><p>cp 原来的地方 新的地方：cp 1.txt test</p>
+</li>
+<li><p>如果当前还有其他目录，需要用到-r进行递归，如：cp -r 1.txt test</p>
+</li>
+</ul>
+<h3 id="rm：异常文件或者目录"><a href="#rm：异常文件或者目录" class="headerlink" title="rm：异常文件或者目录"></a>rm：异常文件或者目录</h3><ul>
+<li><p>rm -f：忽略不存在的文件，不会出现警告，强制删除</p>
+</li>
+<li><p>rm -r：递归删除目录，需要确定是否删除</p>
+</li>
+<li><p>rm -i :互动，询问是否删除</p>
+</li>
+<li><p>rm -rf /*：直接删除系统中所有文件，没有警告，非常危险！！！不建议执行！！！！否则你将会这样</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 此处省略N行。。。</span><br>rm: cannot remove ‘/proc/697/task/713/mem’: Permission denied<br>rm: cannot remove ‘/proc/697/task/713/cwd’: Permission denied<br>rm: cannot remove ‘/proc/697/task/713/root’: Permission denied<br>rm: cannot remove ‘/proc/697/task/713/exe’: Permission denied<br>rm: cannot remove ‘/proc/697/task/713/mounts’: Permission denied<br>rm: cannot remove ‘/proc/697/task/713/mountinfo’^C<br>[root@localhost <span class="hljs-built_in">test</span>]<span class="hljs-comment"># rm: cannot remove ‘test2’: Is a directory</span><br>-bash: /usr/libexec/pk-command-not-found: /lib64/ld-linux-x86-64.so.2: bad ELF interpreter: No such file or directory<br>[root@localhost <span class="hljs-built_in">test</span>]<span class="hljs-comment"># rm: cannot remove ‘test2’: Is a directory</span><br>-bash: /usr/libexec/pk-command-not-found: /lib64/ld-linux-x86-64.so.2: bad ELF interpreter: No such file or directory<br>[root@localhost <span class="hljs-built_in">test</span>]<span class="hljs-comment"># ls</span><br>-bash: /bin/ls: No such file or directory<br>[root@localhost <span class="hljs-built_in">test</span>]<span class="hljs-comment"># cd ../</span><br><span class="hljs-built_in">cd</span>: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory<br>[root@localhost ]<span class="hljs-comment"># pwd</span><br>/home/admin/<span class="hljs-built_in">test</span>/../<br>[root@localhost ]<span class="hljs-comment"># cd /home</span><br>[root@localhost home]<span class="hljs-comment"># ls</span><br>-bash: /bin/ls: No such file or directory<br>[root@localhost home]<span class="hljs-comment"># cd ~</span><br>[root@localhost ~]<span class="hljs-comment"># ls</span><br>-bash: /bin/ls: No such file or directory<br>[root@localhost ~]<span class="hljs-comment"># ls -al</span><br>-bash: /bin/ls: No such file or directory<br>[root@localhost ~]<span class="hljs-comment"># dir</span><br>-bash: /bin/dir: No such file or directory<br>[root@localhost ~]<span class="hljs-comment"># </span><br><br></code></pre></td></tr></table></figure>
+
+<p><img src="/myBlog/Linux/image-20211102165244390.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20211102165244390"></p>
+<h3 id="mv：移动文件或者目录，重命名"><a href="#mv：移动文件或者目录，重命名" class="headerlink" title="mv：移动文件或者目录，重命名"></a>mv：移动文件或者目录，重命名</h3><ul>
+<li>mv -f：强制移动</li>
+<li>mv -u：只替换已经更新过的文件</li>
+<li>mv test test2：将test改名为test2</li>
+<li>mv：移动文件，如将a.txt文件移动到b文件夹下，mv a.txt b</li>
+</ul>
+<ul>
+<li>zxvf：解压文件</li>
+</ul>
+<h2 id="基本属性"><a href="#基本属性" class="headerlink" title="基本属性"></a>基本属性</h2><p><img src="/myBlog/Linux/image-20211102203952548.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20211102203952548"></p>
+<p>实例中，boot文件的第一个属性用”d”表示。”d”在Linux中代表该文件是一个目录文件。</p>
+<p>在Linux中第一个字符代表这个文件是目录、文件或链接文件等等：</p>
+<ul>
+<li>当为[ <strong>d</strong> ]则是目录</li>
+<li>当为[ <strong>-</strong> ]则是文件；</li>
+<li>若是[ <strong>l</strong> ]则表示为链接文档 ( link file )；</li>
+<li>若是[ <strong>b</strong> ]则表示为装置文件里面的可供储存的接口设备 ( 可随机存取装置 )；</li>
+<li>若是[ <strong>c</strong> ]则表示为装置文件里面的串行端口设备，例如键盘、鼠标 ( 一次性读取装置 )。</li>
+</ul>
+<p>接下来的字符中，以三个为一组，且均为【rwx】 的三个参数的组合。</p>
+<ul>
+<li>[ r ]代表可读(read)</li>
+<li>[ w ]代表可写(write)</li>
+<li>[ x ]代表可执行(execute)</li>
+</ul>
+<p>要注意的是，这三个权限的位置不会改变，如果没有权限，就会出现减号[ - ]而已。</p>
+<p><img src="/myBlog/Linux/image-20211102204306150.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20211102204306150"></p>
+<p>从左至右用0-9这些数字来表示。</p>
+<p>第0位确定文件类型，第1-3位确定属主（该文件的所有者）拥有该文件的权限。第4-6位确定属组（所有者的同组用户）拥有该文件的权限，第7-9位确定其他用户拥有该文件的权限。</p>
+<p>1、4、7：读</p>
+<p>2、5、8：写</p>
+<p>3、6、9：操作</p>
+<p><img src="/myBlog/Linux/image-20211102204619828.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20211102204619828"></p>
+<h2 id="更改文件属性"><a href="#更改文件属性" class="headerlink" title="更改文件属性"></a>更改文件属性</h2><h3 id="chgrp：更改文件的属组"><a href="#chgrp：更改文件的属组" class="headerlink" title="chgrp：更改文件的属组"></a>chgrp：更改文件的属组</h3><ul>
+<li>chgrp -R 属组 文件名：如chgrp -R root test，test原本所属组为admin，现在改为root</li>
+<li>-R：递归更改文件属组，就是在更改某个目录文件的属组时，如果加上-R的参数，那么该目录下的所有文件的属组都会更改。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@localhost Ten]<span class="hljs-comment"># ls -l</span><br>total 0<br>drwxrwxr-x. 2 admin admin 6 Nov  2 20:09 <span class="hljs-built_in">test</span><br>drwxrwxr-x. 2 admin admin 6 Nov  2 20:11 test2<br>[root@localhost Ten]<span class="hljs-comment"># chgrp -R root test</span><br>[root@localhost Ten]<span class="hljs-comment"># ls -l</span><br>total 0<br>drwxrwxr-x. 2 admin root  6 Nov  2 20:09 <span class="hljs-built_in">test</span><br>drwxrwxr-x. 2 admin admin 6 Nov  2 20:11 test2<br>[root@localhost Ten]<span class="hljs-comment"># </span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/myBlog/Linux/image-20211102205944102.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20211102205944102"></p>
+<h3 id="chown：更改文件的属主"><a href="#chown：更改文件的属主" class="headerlink" title="chown：更改文件的属主"></a>chown：更改文件的属主</h3><ul>
+<li>chown -R 属主名 文件名：如chown -R root test，将test的属主改为root</li>
+<li>chown -R 属主名:属组名 文件名：如chown -R admin:admin test，将test的所属主名和属组名都改名admin</li>
+</ul>
+<h3 id="chmod：更改文件9个属性"><a href="#chmod：更改文件9个属性" class="headerlink" title="chmod：更改文件9个属性"></a>chmod：更改文件9个属性</h3><ul>
+<li>chmod -R xyz 文件或者目录：如，chmod -R 777 test，将test文件的三个权限都更改rwx。</li>
+</ul>
+<p>Linux文件属性有两种设置方法，一种是数字，一种是符号。</p>
+<p>Linux文件的基本权限就有九个，分别是owner/group/others三种身份各有自己的read/write/execute权限。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">r</span>:<span class="hljs-number">4</span>     w:<span class="hljs-number">2</span>         x:<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<p>每种身份(owner/group/others)各自的三个权限(r/w/x)分数是需要累加的，例如当权限为：[-rwxrwx—] 分数则是：</p>
+<ul>
+<li>owner = rwx = 4+2+1 = 7</li>
+<li>group = rwx = 4+2+1 = 7</li>
+<li>others= — = 0+0+0 = 0</li>
+</ul>
+<h2 id="文件内容查看"><a href="#文件内容查看" class="headerlink" title="文件内容查看"></a>文件内容查看</h2><ul>
+<li><p>ifconfig：查看网络配置</p>
+</li>
+<li><p>==cat：由第一行开始显示文件内容==</p>
+</li>
+<li><p>tac：从最后一行开始显示文件内容，cat和tac是倒过来写的</p>
+</li>
+<li><p>==nl：显示文章行号==</p>
+</li>
+</ul>
+<p><img src="/myBlog/Linux/image-20211102231332124.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20211102231332124"></p>
+<ul>
+<li>==more：一页一页的显示文件内容，空格翻页，enter代表向下一行，:f 查看当前行号，按B可以往上翻==</li>
+<li>==less：与more类似，可以往前翻页，空格翻页，上下键代表翻动页面，q表示退出，查询字符串/要查询的字符串（向下查询），向上查询使用?要查询的字符串，如果还想继续查询可以用n向上查询，N向下==</li>
+<li>head：只看头几行，如head -n 20 csh.login ，查看csh.login文件的前20行</li>
+<li>tail：之后尾几行，如tail -n 20 csh.login，查看csh.login文件的后20行</li>
+</ul>
+<h2 id="拓展：Linux链接的概念（了解即可）"><a href="#拓展：Linux链接的概念（了解即可）" class="headerlink" title="拓展：Linux链接的概念（了解即可）"></a>拓展：Linux链接的概念（了解即可）</h2><p>Linux的链接分为两种：硬链接、软链接</p>
+<p><strong>硬链接：</strong>硬连接指通过索引节点来进行连接。在 Linux 的文件系统中，保存在磁盘分区中的文件不管是什么类型都给它分配一个编号，称为索引节点号(Inode Index)。允许一个文件拥有多个有效路径名，这样用户就可以建立硬连接到重要文件，以防止“误删”的功能，如，B是A的硬链接，当A被删除时，B依旧可以访问，反之亦然。只有当所有的硬链接都删除后，才可以彻底删除文件。</p>
+<p><strong>软链接：</strong>另外一种连接称之为符号连接（Symbolic Link），也叫软连接。软链接文件有类似于 Windows 的快捷方式。它实际上是一个特殊的文件。比如，给A创建一个软链接B，当A被删除时，B就无法访问了。也可以理解为A为源文件，B为快捷键，源文件被删除了，该文件的快捷键当然也是访问不了的。</p>
+<ul>
+<li>touch：创建文件，如touch f1，创建f1文件</li>
+<li>echo：输入字符串，也可以输入到文件中，如echo “Hello” &gt;&gt; f1，往f1中添加”Hello“</li>
+<li>ln：创建一个硬链接，如ln f1 f2，创建一个硬链接，从f1指向f2</li>
+<li>ln -s ：创建一个软链接，如ln -s f1 f3，创建一个软链接，从f1指向f3</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs bash">[admin@localhost Ten]$ touch f1				<span class="hljs-comment"># 创建f1</span><br>[admin@localhost Ten]$ ls<br>f1  <span class="hljs-built_in">test</span>  test2<br>[admin@localhost Ten]$ ln f1 f2				<span class="hljs-comment"># 创建从f1指向f2的硬链接</span><br>[admin@localhost Ten]$ ls<br>f1  f2  <span class="hljs-built_in">test</span>  test2<br>[admin@localhost Ten]$ ln -s f1 f3			<span class="hljs-comment"># 创建从f1指向f3的软链接（符号链接）</span><br>[admin@localhost Ten]$ ls<br>f1  f2  f3  <span class="hljs-built_in">test</span>  test2<br>[admin@localhost Ten]$ ls -l<br>total 0<br>-rw-rw-r--. 2 admin admin 0 Nov  3 11:37 f1<br>-rw-rw-r--. 2 admin admin 0 Nov  3 11:37 f2<br>lrwxrwxrwx. 1 admin admin 2 Nov  3 11:37 f3 -&gt; f1<br>drwxrwxr-x. 2 admin admin 6 Nov  2 20:09 <span class="hljs-built_in">test</span><br>drwxrwxr-x. 2 admin admin 6 Nov  2 20:11 test2<br>[admin@localhost Ten]$ <br>[admin@localhost Ten]$ <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Hello&quot;</span> &gt;&gt; <span class="hljs-string">&quot;f1&quot;</span>	<span class="hljs-comment"># 往f1中写入内容</span><br>[admin@localhost Ten]$ cat f1				<span class="hljs-comment"># f1正常读</span><br>Hello<br>[admin@localhost Ten]$ cat f2				<span class="hljs-comment"># f2正常读</span><br>Hello<br>[admin@localhost Ten]$ cat f3				<span class="hljs-comment"># f3正常读</span><br>Hello<br>[admin@localhost Ten]$ <br></code></pre></td></tr></table></figure>
+
+
+
+<p>删除</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">[admin@localhost Ten]$ ls<br>f1  f2  f3  <span class="hljs-built_in">test</span>  test2<br>[admin@localhost Ten]$ rm -rf f1		<span class="hljs-comment"># 删除f1</span><br>[admin@localhost Ten]$ ls <br>f2  f3  <span class="hljs-built_in">test</span>  test2<br>[admin@localhost Ten]$ cat f2			<span class="hljs-comment"># f2是硬链接，没有影响，依旧可以访问</span><br>I am Ten<br>[admin@localhost Ten]$ cat f3			<span class="hljs-comment"># f3是软链接，已经失效</span><br>cat: f3: No such file or directory<br>[admin@localhost Ten]$ ^C<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>ls -li：显示索引节点号（Inode Index）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">[admin@localhost Ten]$ ls -li<br>total 8<br> 5194981 -rw-rw-r--. 2 admin admin 6 Nov  3 11:38 f1<br> 5194981 -rw-rw-r--. 2 admin admin 6 Nov  3 11:38 f2<br> 5195004 lrwxrwxrwx. 1 admin admin 2 Nov  3 11:37 f3 -&gt; f1<br>13209000 drwxrwxr-x. 2 admin admin 6 Nov  2 20:09 <span class="hljs-built_in">test</span><br>   77723 drwxrwxr-x. 2 admin admin 6 Nov  2 20:11 test2<br>[admin@localhost Ten]$ <br><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="Vim编辑器"><a href="#Vim编辑器" class="headerlink" title="Vim编辑器"></a>Vim编辑器</h2><p>基本上 vi/vim 共分为三种模式，分别是<strong>命令模式（Command mode）</strong>，<strong>输入模式（Insert mode）</strong>和<strong>底线命令模式（Last line mode）</strong>。这三种模式的作用分别是：</p>
+<ul>
+<li>Vim Study：创建或编辑一个Study的文件，如果存入Study就编辑，如果不存在就会新建</li>
+</ul>
+<p><strong>命令模式：</strong></p>
+<ul>
+<li><strong>i</strong> 切换到输入模式，以输入字符。</li>
+<li><strong>x</strong> 删除当前光标所在处的字符。</li>
+<li><strong>:</strong> 切换到底线命令模式，以在最底一行输入命令。</li>
+</ul>
+<p><strong>输入模式：</strong></p>
+<ul>
+<li><strong>字符按键以及Shift组合</strong>，输入字符</li>
+<li><strong>ENTER</strong>，回车键，换行</li>
+<li><strong>BACK SPACE</strong>，退格键，删除光标前一个字符</li>
+<li><strong>DEL</strong>，删除键，删除光标后一个字符</li>
+<li><strong>方向键</strong>，在文本中移动光标</li>
+<li><strong>HOME</strong>/<strong>END</strong>，移动光标到行首/行尾</li>
+<li><strong>Page Up</strong>/<strong>Page Down</strong>，上/下翻页</li>
+<li><strong>Insert</strong>，切换光标为输入/替换模式，光标将变成竖线/下划线</li>
+<li><strong>ESC</strong>，退出输入模式，切换到命令模式</li>
+</ul>
+<p><strong>底线命令模式</strong></p>
+<ul>
+<li>:q，退出程序</li>
+<li>:w，保存文件</li>
+</ul>
+<p><img src="/myBlog/Linux/image-20211103165822413.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20211103165822413"></p>
+<p><strong>第一部分：一般模式可用的光标移动、复制粘贴、搜索替换等</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">移动光标的方法</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">h 或 向左箭头键(←)</td>
+<td>光标向左移动一个字符</td>
+</tr>
+<tr>
+<td align="left">j 或 向下箭头键(↓)</td>
+<td>光标向下移动一个字符</td>
+</tr>
+<tr>
+<td align="left">k 或 向上箭头键(↑)</td>
+<td>光标向上移动一个字符</td>
+</tr>
+<tr>
+<td align="left">l 或 向右箭头键(→)</td>
+<td>光标向右移动一个字符</td>
+</tr>
+<tr>
+<td align="left">[Ctrl] + [f]</td>
+<td>屏幕『向下』移动一页，相当于 [Page Down]按键 (常用)</td>
+</tr>
+<tr>
+<td align="left">[Ctrl] + [b]</td>
+<td>屏幕『向上』移动一页，相当于 [Page Up] 按键 (常用)</td>
+</tr>
+<tr>
+<td align="left">[Ctrl] + [d]</td>
+<td>屏幕『向下』移动半页</td>
+</tr>
+<tr>
+<td align="left">[Ctrl] + [u]</td>
+<td>屏幕『向上』移动半页</td>
+</tr>
+<tr>
+<td align="left">+</td>
+<td>光标移动到非空格符的下一行</td>
+</tr>
+<tr>
+<td align="left">-</td>
+<td>光标移动到非空格符的上一行</td>
+</tr>
+<tr>
+<td align="left">==n&lt; space&gt;==</td>
+<td>那个 n 表示『数字』，例如 20 。按下数字后再按空格键，光标会向右移动这一行的 n 个字符。</td>
+</tr>
+<tr>
+<td align="left">0 或功能键[Home]</td>
+<td>这是数字『 0 』：移动到这一行的最前面字符处 (常用)</td>
+</tr>
+<tr>
+<td align="left">$ 或功能键[End]</td>
+<td>移动到这一行的最后面字符处(常用)</td>
+</tr>
+<tr>
+<td align="left">H</td>
+<td>光标移动到这个屏幕的最上方那一行的第一个字符</td>
+</tr>
+<tr>
+<td align="left">M</td>
+<td>光标移动到这个屏幕的中央那一行的第一个字符</td>
+</tr>
+<tr>
+<td align="left">L</td>
+<td>光标移动到这个屏幕的最下方那一行的第一个字符</td>
+</tr>
+<tr>
+<td align="left">G</td>
+<td>移动到这个档案的最后一行(常用)</td>
+</tr>
+<tr>
+<td align="left">nG</td>
+<td>n 为数字。移动到这个档案的第 n 行。例如 20G 则会移动到这个档案的第 20 行(可配合 :set nu)</td>
+</tr>
+<tr>
+<td align="left">gg</td>
+<td>移动到这个档案的第一行，相当于 1G 啊！(常用)</td>
+</tr>
+<tr>
+<td align="left">n&lt; Enter&gt;</td>
+<td>n 为数字。光标向下移动 n 行(常用)</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">搜索替换</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">==/word==</td>
+<td>向光标之下寻找一个名称为 word 的字符串。例如要在档案内搜寻 vbird 这个字符串，就输入 /vbird 即可！(常用)</td>
+</tr>
+<tr>
+<td align="left">?word</td>
+<td>向光标之上寻找一个字符串名称为 word 的字符串。</td>
+</tr>
+<tr>
+<td align="left">==n==</td>
+<td>这个 n 是英文按键。代表重复前一个搜寻的动作。举例来说， 如果刚刚我们执行 /vbird 去向下搜寻 vbird 这个字符串，则按下 n 后，会向下继续搜寻下一个名称为 vbird 的字符串。如果是执行 ?vbird 的话，那么按下 n 则会向上继续搜寻名称为 vbird 的字符串！</td>
+</tr>
+<tr>
+<td align="left">==N==</td>
+<td>这个 N 是英文按键。与 n 刚好相反，为『反向』进行前一个搜寻动作。例如 /vbird 后，按下 N 则表示『向上』搜寻 vbird 。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">删除、复制与粘贴</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">x, X</td>
+<td>在一行字当中，x 为向后删除一个字符 (相当于 [del] 按键)， X 为向前删除一个字符(相当于 [backspace] 亦即是退格键) (常用)</td>
+</tr>
+<tr>
+<td align="left">nx</td>
+<td>n 为数字，连续向后删除 n 个字符。举例来说，我要连续删除 10 个字符， 『10x』。</td>
+</tr>
+<tr>
+<td align="left">dd</td>
+<td>删除游标所在的那一整行(常用)</td>
+</tr>
+<tr>
+<td align="left">ndd</td>
+<td>n 为数字。删除光标所在的向下 n 行，例如 20dd 则是删除 20 行 (常用)</td>
+</tr>
+<tr>
+<td align="left">d1G</td>
+<td>删除光标所在到第一行的所有数据</td>
+</tr>
+<tr>
+<td align="left">dG</td>
+<td>删除光标所在到最后一行的所有数据</td>
+</tr>
+<tr>
+<td align="left">d$</td>
+<td>删除游标所在处，到该行的最后一个字符</td>
+</tr>
+<tr>
+<td align="left">d0</td>
+<td>那个是数字的 0 ，删除游标所在处，到该行的最前面一个字符</td>
+</tr>
+<tr>
+<td align="left">yy</td>
+<td>复制游标所在的那一行(常用)</td>
+</tr>
+<tr>
+<td align="left">nyy</td>
+<td>n 为数字。复制光标所在的向下 n 行，例如 20yy 则是复制 20 行(常用)</td>
+</tr>
+<tr>
+<td align="left">y1G</td>
+<td>复制游标所在行到第一行的所有数据</td>
+</tr>
+<tr>
+<td align="left">yG</td>
+<td>复制游标所在行到最后一行的所有数据</td>
+</tr>
+<tr>
+<td align="left">y0</td>
+<td>复制光标所在的那个字符到该行行首的所有数据</td>
+</tr>
+<tr>
+<td align="left">y$</td>
+<td>复制光标所在的那个字符到该行行尾的所有数据</td>
+</tr>
+<tr>
+<td align="left">p, P</td>
+<td>p 为将已复制的数据在光标下一行贴上，P 则为贴在游标上一行！举例来说，我目前光标在第 20 行，且已经复制了 10 行数据。则按下 p 后， 那 10 行数据会贴在原本的 20 行之后，亦即由 21 行开始贴。但如果是按下 P 呢？那么原本的第 20 行会被推到变成 30 行。(常用)</td>
+</tr>
+<tr>
+<td align="left">J</td>
+<td>将光标所在行与下一行的数据结合成同一行</td>
+</tr>
+<tr>
+<td align="left">c</td>
+<td>重复删除多个数据，例如向下删除 10 行，[ 10cj ]</td>
+</tr>
+<tr>
+<td align="left">u</td>
+<td>复原前一个动作。(常用)</td>
+</tr>
+<tr>
+<td align="left">[Ctrl]+r</td>
+<td>重做上一个动作。(常用)</td>
+</tr>
+</tbody></table>
+<p><strong>第二部分：一般模式切换到编辑模式的可用的按钮说明</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">进入输入或取代的编辑模式</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">==i, I==</td>
+<td>进入输入模式(Insert mode)：i 为『从目前光标所在处输入』， I 为『在目前所在行的第一个非空格符处开始输入』。(常用)</td>
+</tr>
+<tr>
+<td align="left">a, A</td>
+<td>进入输入模式(Insert mode)：a 为『从目前光标所在的下一个字符处开始输入』， A 为『从光标所在行的最后一个字符处开始输入』。(常用)</td>
+</tr>
+<tr>
+<td align="left">o, O</td>
+<td>进入输入模式(Insert mode)：这是英文字母 o 的大小写。o 为『在目前光标所在的下一行处输入新的一行』；O 为在目前光标所在处的上一行输入新的一行！(常用)</td>
+</tr>
+<tr>
+<td align="left">r, R</td>
+<td>进入取代模式(Replace mode)：r 只会取代光标所在的那一个字符一次；R会一直取代光标所在的文字，直到按下 ESC 为止；(常用)</td>
+</tr>
+<tr>
+<td align="left">[Esc]</td>
+<td>退出编辑模式，回到一般模式中(常用)</td>
+</tr>
+</tbody></table>
+<p><strong>第三部分：一般模式切换到指令行模式的可用的按钮说明</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">指令行的储存、离开等指令</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">:w</td>
+<td>将编辑的数据写入硬盘档案中(常用)</td>
+</tr>
+<tr>
+<td align="left">:w!</td>
+<td>若文件属性为『只读』时，强制写入该档案。不过，到底能不能写入， 还是跟你对该档案的档案权限有关啊！</td>
+</tr>
+<tr>
+<td align="left">:q</td>
+<td>离开 vi (常用)</td>
+</tr>
+<tr>
+<td align="left">:q!</td>
+<td>若曾修改过档案，又不想储存，使用 ! 为强制离开不储存档案。</td>
+</tr>
+<tr>
+<td align="left">注意一下啊，那个惊叹号 (!) 在 vi 当中，常常具有『强制』的意思～</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">==:wq==</td>
+<td>储存后离开，若为 :wq! 则为强制储存后离开 (常用)</td>
+</tr>
+<tr>
+<td align="left">ZZ</td>
+<td>这是大写的 Z 喔！若档案没有更动，则不储存离开，若档案已经被更动过，则储存后离开！</td>
+</tr>
+<tr>
+<td align="left">:w [filename]</td>
+<td>将编辑的数据储存成另一个档案（类似另存新档）</td>
+</tr>
+<tr>
+<td align="left">:r [filename]</td>
+<td>在编辑的数据中，读入另一个档案的数据。亦即将 『filename』 这个档案内容加到游标所在行后面</td>
+</tr>
+<tr>
+<td align="left">:n1,n2 w [filename]</td>
+<td>将 n1 到 n2 的内容储存成 filename 这个档案。</td>
+</tr>
+<tr>
+<td align="left">:! command</td>
+<td>暂时离开 vi 到指令行模式下执行 command 的显示结果！例如 『:! ls /home』即可在 vi 当中看 /home 底下以 ls 输出的档案信息！</td>
+</tr>
+<tr>
+<td align="left">==:set nu==</td>
+<td>显示行号，设定之后，会在每一行的前缀显示该行的行号</td>
+</tr>
+<tr>
+<td align="left">:set nonu</td>
+<td>与 set nu 相反，为取消行号！</td>
+</tr>
+</tbody></table>
+<h2 id="账号管理"><a href="#账号管理" class="headerlink" title="账号管理"></a>账号管理</h2><p><strong>添加用户，useradd命令</strong></p>
+<ul>
+<li><p>useradd -m  用户名：自动创建这个用户的目录/home/Test，如useradd -m Test,创建一个名为Test的用户</p>
+</li>
+<li><p>cat /etc/passwd，就可以看到刚刚被创建的用户</p>
+</li>
+<li><p>useradd -G 用户名：分配组</p>
+</li>
+</ul>
+<p><strong>删除用户 userdel</strong></p>
+<ul>
+<li>userdel - r Test，将刚刚创建的Test用户的目录一并删掉</li>
+</ul>
+<p><strong>修改用户</strong> usermod</p>
+<ul>
+<li>usermod 对应修改的内容 修改的用户，如usermod  -d /home/233 Test，将Test用户的主目录修改为233，修改完查看配置文件即可</li>
+</ul>
+<p><strong>切换用户</strong></p>
+<ul>
+<li>su 用户名，如su Test，或者su - root</li>
+<li>#：超级管理员，$：普通用户</li>
+</ul>
+<p><img src="/myBlog/Linux/image-20211103174249440.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20211103174249440"></p>
+<ul>
+<li>hostname 名字:修改主机名，如hostname Test，将主机名改为Test，改完之后重新连接。</li>
+</ul>
+<p><strong>修改用户的密码</strong></p>
+<p>root下：</p>
+<ul>
+<li>passwd 用户名，如passwd Test，修改</li>
+</ul>
+<p>用户下：</p>
+<ul>
+<li>直接passwd就可以输入了</li>
+</ul>
+<p><strong>锁定用户</strong></p>
+<ul>
+<li>passwd -l 用户名，如passwd -l Test，锁定Test用户，用户就不能登录了</li>
+<li>passwd -d 用户名，没有密码也不能登录</li>
+<li>passwd -u 用户名， 将锁定的用户解锁</li>
+</ul>
+<h2 id="用户组管理"><a href="#用户组管理" class="headerlink" title="用户组管理"></a>用户组管理</h2><p>属主、属组</p>
+<p>每个用户都有一个用户组，系统可以对一个用户组中的所有用户进行集中管理。用户组的管理涉及用户组的添加、删除和修改。组的增加、删除和修改实际上就是对/etc/group文件的更新。</p>
+<p><strong>groupadd：创建一个用户组</strong></p>
+<ul>
+<li>groupadd Test：创建一个Test的用户组</li>
+<li>groupadd -g 111 Test1，创建一个端口号为111的Test1组，如果不设置用户组id，他会自增。</li>
+<li>cat /etc/group：查看用户组的情况</li>
+</ul>
+<p><strong>groupdel：删除用户组</strong></p>
+<ul>
+<li>groupdel Test：删除Test的用户组</li>
+</ul>
+<p><strong>groupmod：修改</strong></p>
+<ul>
+<li>groupmod -g 666 -n newTest Test：将Test的用户组的用户组id改为666，并将名字改为newTest</li>
+</ul>
+<p><strong>切换用户组</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 登录当前用户 Test</span><br>$ newgrp root<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>拓展：文件的查看</strong>（了解）</p>
+<p>Linux系统中的每个用户都在/etc/passwd文件中有一个对应的记录行，它记录了这个用户的一些基本属性。</p>
+<ul>
+<li>/etc/passwd:</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">root:x:0:<br>bin:x:1:<br>daemon:x:2:<br>sys:x:3:<br>adm:x:4:<br>tty:x:5:<br>...<br>ntp:x:38:38::/etc/ntp:/sbin/nologin<br>tcpdump:x:72:72::/:/sbin/nologin<br>admin:x:1000:1000:admin:/home/admin:/bin/bash<br>Test:x:1001:666::/home/Test:/bin/bash<br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile">用户名:口令（登录密码，不可见）:用户标识号:组标识号:注释性描述:主目录:登录<span class="hljs-keyword">Shell</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>/etc/shadow</li>
+</ul>
+<p>登录口令：把真正的加密后的用户口令字存放到/etc/shadow文件中，而在/etc/passwd文件的口令字段中只存放一个特殊的字符，例如“x”或者“*”。</p>
+<ul>
+<li>/etc/group</li>
+</ul>
+<p>用户组的所有信息都存放在/etc/group文件中。</p>
+<h2 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h2><p>df（列出文件系统整体的磁盘使用）  du（检查磁盘空间使用量）</p>
+<ul>
+<li>df -h:列出多少M</li>
+<li>du -a:查看所有文件使用情况，可以看到子文件</li>
+<li>du -sm /* :检查根目录下，每个目录所占用的容量</li>
+</ul>
+<p><strong>Mac或者想要Linux挂载我们的一些本地磁盘或者文件</strong></p>
+<p>挂载</p>
+<ul>
+<li>mount /dev/Test /mnt/Test：将外部设备Test的U盘挂载到模mnt下面</li>
+</ul>
+<p>卸载：umount -f 挂载位置 ：强制卸载</p>
+<h2 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h2><p>==Linux中一切皆文件（文件：读写执行（查看、创建、删除、移动、复制、编辑 ），权限（用户、用户组）。系统：（磁盘、进程））==</p>
+<p><strong>基本概念</strong></p>
+<ol>
+<li>在Linux中，每一个程序都有自己的一个进程，每一个进程都有一个id号</li>
+<li>每一个进程，都有一个父进程！ </li>
+<li>进程可以有两种存在方式：前台！后台运行！</li>
+<li>一般的话服务都是后天运行的，基本的程序都是前天运行</li>
+</ol>
+<p><strong>命令</strong></p>
+<ul>
+<li>ps：查看当前系统中正在执行的各种进程的信息</li>
+<li>ps -a:显示当前终端运行的所有的进程信息</li>
+<li>ps -u:以用户的信息显示信息</li>
+<li>ps -x:显示后台运行进程的参数</li>
+<li>ps -aux:查看所有的进程</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">ps -aux | grep mysql		<span class="hljs-comment"># 过滤出与mysql相关的进程</span><br><span class="hljs-comment"># | 在Linux中这个叫做管道符		A|B，将A的输出结果作为B的输出条件</span><br><span class="hljs-comment"># grep 查找文件中符合条件的字符串！</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>ps -ef:可以查看到父进程的信息</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">ps -ef | grep mysql		<span class="hljs-comment"># 看父进程一般通过目录树结构来查看</span><br><br><br>pstree -pu<br>pstree -p				<span class="hljs-comment"># 显示父id</span><br>pstree -u				<span class="hljs-comment"># 显示当前用户组</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/myBlog/Linux/image-20211103222647990.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20211103222647990"></p>
+<p>结束进程：杀掉进程，等价于window结束任务</p>
+<ul>
+<li>kill -9 进程的id：强制结束该进程</li>
+</ul>
+<h1 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h1><h2 id="JDK安装-rpm"><a href="#JDK安装-rpm" class="headerlink" title="JDK安装(rpm)"></a>JDK安装(rpm)</h2><p>rpm安装jdk不用配置环境变量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 检查当前系统是否存在java环境	java -version</span><br><span class="hljs-comment"># 如果存在就卸载</span><br><span class="hljs-comment"># rpm -qa|grep jdk		# 检测JDK版本信息</span><br><span class="hljs-comment"># rpm -e --nodeps jdk_	# 强制卸载 </span><br><br><span class="hljs-comment"># 卸载完后再重新安装</span><br><span class="hljs-comment"># rpm -ivh rpm包</span><br><br><span class="hljs-comment"># 配置环境变量</span><br></code></pre></td></tr></table></figure>
+
+<p>配置环境变量：/etc/profile</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> JAVA_HOME=/usr/<span class="hljs-built_in">local</span>/java/jdk1.8.0_121<br><span class="hljs-built_in">export</span> JRE_HOME=<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span>/jre<br><span class="hljs-built_in">export</span> CLASSPATH=.:<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span>/lib:<span class="hljs-variable">$&#123;JRE_HOME&#125;</span>/lib:<span class="hljs-variable">$CLASSPATH</span><br><span class="hljs-built_in">export</span> JAVA_PATH=<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span>/bin:<span class="hljs-variable">$&#123;JRE_HOME&#125;</span>/bin<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$&#123;JAVA_PATH&#125;</span><br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> JAVA_HOME=/usr/<span class="hljs-built_in">local</span>/java/java1.8...<br><span class="hljs-built_in">export</span> JRE_HOME=<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span>/jre<br><span class="hljs-built_in">export</span> CLASSPATH=.:<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span>/lib:<span class="hljs-variable">$&#123;JRE_HOME&#125;</span>/lib:<span class="hljs-variable">$&#123;CLASSPATH&#125;</span><br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PAHT</span>:<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span>/bin:<span class="hljs-variable">$&#123;JRE_HOME&#125;</span>/bin<br></code></pre></td></tr></table></figure>
+
+
+
+<p>让这个配置文件生效：source /etc/profi</p>
+<p>查看端口：</p>
+<p>firewall-cmd –list-ports</p>
+<p>开启防火墙端口：</p>
+<p>firewall-cmd –zone=pulic –add-port=9000/tcp –p ermanent</p>
+<p>重启防火墙：</p>
+<p>systemctl restart firewalld.service</p>
+<p>检查当前的网卡文件：</p>
+<p>ip addr</p>
+<h2 id="Tomcat安装（tar-gz）"><a href="#Tomcat安装（tar-gz）" class="headerlink" title="Tomcat安装（tar.gz）"></a>Tomcat安装（tar.gz）</h2><ol>
+<li>解压</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">unzip 文件名 		<span class="hljs-comment"># 如果是压缩包是zip格式的，使用</span><br>tar -zvxf 包名<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>启动Tomcat测试，./xxx.sh脚本即可运行</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 执行 ./startup.sh</span><br><span class="hljs-comment"># 停止 ./shutdown.sh</span><br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>查看防火墙，并开启8080端口</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 查看firewall服务状态</span><br>systemctl status firewalld<br><br><span class="hljs-comment"># 开启、重启、关闭、firewalld.service服务</span><br><span class="hljs-comment"># 开启</span><br>service firewalld start<br><span class="hljs-comment"># 重启</span><br>service firewalld restart<br><span class="hljs-comment"># 关闭</span><br>service firewalld stop<br><br><span class="hljs-comment"># 查看防火墙规则</span><br>firewall-cmd --list-all    <span class="hljs-comment"># 查看全部信息</span><br>firewall-cmd --list-ports  <span class="hljs-comment"># 只看端口信息</span><br><br><span class="hljs-comment"># 开启端口</span><br>开端口命令：firewall-cmd --zone=public --add-port=80/tcp --permanent<br>重启防火墙：systemctl restart firewalld.service<br><br>命令含义：<br>--zone <span class="hljs-comment">#作用域</span><br>--add-port=80/tcp  <span class="hljs-comment">#添加端口，格式为：端口/通讯协议</span><br>--permanent   <span class="hljs-comment">#永久生效，没有此参数重启后失效</span><br></code></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>测试。访问192.168.242.3:8080。出现页面，表示安装成功。</li>
+</ol>
+<h2 id="安装Docker（yum）"><a href="#安装Docker（yum）" class="headerlink" title="安装Docker（yum）"></a>安装Docker（yum）</h2><ol>
+<li><p>查看系统版本信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@localhost bin]<span class="hljs-comment"># cat /etc/redhat-release </span><br>CentOS Linux release 7.8.2003 (Core)<br></code></pre></td></tr></table></figure></li>
+<li><p>安装我们的准备环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">yum -y install 包名		<span class="hljs-comment"># yum install 安装命令 	-y	所有的提示都为y</span><br>yum -y install gcc<br>yum -y install gcc-c++<br></code></pre></td></tr></table></figure></li>
+<li><p>或者用宝塔面板安装 </p>
+</li>
+</ol>
+<h1 id="VMare使用"><a href="#VMare使用" class="headerlink" title="VMare使用"></a>VMare使用</h1><h3 id="快照"><a href="#快照" class="headerlink" title="快照"></a>快照</h3><p>保留当前系统的信息为快照，随时可以恢复，以防未来系统被损坏，就好比游戏中的归档</p>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><h2 id="使用xftp上传文件时，状态显示错误"><a href="#使用xftp上传文件时，状态显示错误" class="headerlink" title="使用xftp上传文件时，状态显示错误"></a>使用xftp上传文件时，状态显示错误</h2><p><img src="/myBlog/Linux/image-20211104114435498.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20211104114435498"></p>
+<p>原因可能是：内存不够、权限不够（切换root）、或者是目录权限不够，如果是目录权限不够可以用以下命令设置权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">chmod 777 目录名<br></code></pre></td></tr></table></figure>
+
+
+
+<p>使用tar.gz包</p>
+<p>安装到/home/admin/java</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">tar -zxvf jdk包名<br></code></pre></td></tr></table></figure>
+
+<p>配置环境变量</p>
+<p>vim /etc/profile</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> JAVA_HOME=/home/admin/java/jdk1.8.0_121<br><span class="hljs-built_in">export</span> JRE_HOME=<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span>/jre<br><span class="hljs-built_in">export</span> CLASSPATH=.:<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span>/lib:<span class="hljs-variable">$&#123;JRE_HOME&#125;</span>/lib<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span>/bin:<span class="hljs-variable">$PATH</span><br><br></code></pre></td></tr></table></figure>
+
+<p>刷新配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> /etc/profile<br></code></pre></td></tr></table></figure>
+
+<p>最后java -version检查是否配置成功</p>
+<p>这个笔记是在学习狂神说Linux做的笔记，如需原版，请前往b站。地址：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV187411y7hF?spm_id_from=333.999.0.0">https://www.bilibili.com/video/BV187411y7hF?spm_id_from=333.999.0.0</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/myBlog/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/myBlog/tags/Linux/">Linux</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/myBlog/Redis/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Redis</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/myBlog/mybatis/">
+                        <span class="hidden-mobile">mybatis</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://github.com" target="_blank" rel="nofollow noopener"><span>GitHub</span></a> <i class="iconfont icon-love"></i> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+  
+  <div>
+      <span id="timeDate">载入天数...</span>
+      <span id="times">载入时分秒...</span>
+      <script>
+      var now = new Date();
+      function createtime(){
+          var grt= new Date("11/11/2021 00:00:00");//此处修改你的建站时间或者网站上线时间
+          now.setTime(now.getTime()+250);
+          days = (now - grt ) / 1000 / 60 / 60 / 24;
+          dnum = Math.floor(days);
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+          hnum = Math.floor(hours);
+          if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+          }
+          minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes);
+          if(String(mnum).length ==1 ){
+                    mnum = "0" + mnum;
+          }
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds);
+          if(String(snum).length ==1 ){
+                    snum = "0" + snum;
+          }
+          document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+          document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+      }
+      setInterval("createtime()",250);
+      </script>
+    </div>
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/myBlog/js/events.js" ></script>
+<script  src="/myBlog/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/myBlog/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/myBlog/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/myBlog/js/boot.js" ></script>
+
+
+</body>
+</html>
