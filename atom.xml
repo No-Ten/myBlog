@@ -6,7 +6,7 @@
   <link href="https://no-ten.github.io/atom.xml" rel="self"/>
   
   <link href="https://no-ten.github.io/"/>
-  <updated>2021-11-15T05:03:51.548Z</updated>
+  <updated>2021-11-17T16:01:25.417Z</updated>
   <id>https://no-ten.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MybatisPlus</title>
+    <link href="https://no-ten.github.io/MybatisPlus/"/>
+    <id>https://no-ten.github.io/MybatisPlus/</id>
+    <published>2021-11-17T15:48:24.235Z</published>
+    <updated>2021-11-17T16:01:25.417Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;MybatisPlus&quot;&gt;&lt;a href=&quot;#MybatisPlus&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="MybatisPlus" scheme="https://no-ten.github.io/categories/MybatisPlus/"/>
+    
+    
+    <category term="MybatisPlus" scheme="https://no-ten.github.io/tags/MybatisPlus/"/>
+    
+  </entry>
   
   <entry>
     <title>找不到该项目，位置不可</title>
