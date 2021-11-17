@@ -53,7 +53,17 @@
     
     
       
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
     
   
 
@@ -372,7 +382,35 @@
 <li><p>rm -rf /*：直接删除系统中所有文件，没有警告，非常危险！！！不建议执行！！！！否则你将会这样</p>
 </li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 此处省略N行。。。</span><br>rm: cannot remove ‘/proc/697/task/713/mem’: Permission denied<br>rm: cannot remove ‘/proc/697/task/713/cwd’: Permission denied<br>rm: cannot remove ‘/proc/697/task/713/root’: Permission denied<br>rm: cannot remove ‘/proc/697/task/713/exe’: Permission denied<br>rm: cannot remove ‘/proc/697/task/713/mounts’: Permission denied<br>rm: cannot remove ‘/proc/697/task/713/mountinfo’^C<br>[root@localhost <span class="hljs-built_in">test</span>]<span class="hljs-comment"># rm: cannot remove ‘test2’: Is a directory</span><br>-bash: /usr/libexec/pk-command-not-found: /lib64/ld-linux-x86-64.so.2: bad ELF interpreter: No such file or directory<br>[root@localhost <span class="hljs-built_in">test</span>]<span class="hljs-comment"># rm: cannot remove ‘test2’: Is a directory</span><br>-bash: /usr/libexec/pk-command-not-found: /lib64/ld-linux-x86-64.so.2: bad ELF interpreter: No such file or directory<br>[root@localhost <span class="hljs-built_in">test</span>]<span class="hljs-comment"># ls</span><br>-bash: /bin/ls: No such file or directory<br>[root@localhost <span class="hljs-built_in">test</span>]<span class="hljs-comment"># cd ../</span><br><span class="hljs-built_in">cd</span>: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory<br>[root@localhost ]<span class="hljs-comment"># pwd</span><br>/home/admin/<span class="hljs-built_in">test</span>/../<br>[root@localhost ]<span class="hljs-comment"># cd /home</span><br>[root@localhost home]<span class="hljs-comment"># ls</span><br>-bash: /bin/ls: No such file or directory<br>[root@localhost home]<span class="hljs-comment"># cd ~</span><br>[root@localhost ~]<span class="hljs-comment"># ls</span><br>-bash: /bin/ls: No such file or directory<br>[root@localhost ~]<span class="hljs-comment"># ls -al</span><br>-bash: /bin/ls: No such file or directory<br>[root@localhost ~]<span class="hljs-comment"># dir</span><br>-bash: /bin/dir: No such file or directory<br>[root@localhost ~]<span class="hljs-comment"># </span><br><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 此处省略N行。。。</span>
+rm: cannot remove ‘/proc/697/task/713/mem’: Permission denied
+rm: cannot remove ‘/proc/697/task/713/cwd’: Permission denied
+rm: cannot remove ‘/proc/697/task/713/root’: Permission denied
+rm: cannot remove ‘/proc/697/task/713/exe’: Permission denied
+rm: cannot remove ‘/proc/697/task/713/mounts’: Permission denied
+rm: cannot remove ‘/proc/697/task/713/mountinfo’^C
+<span class="token punctuation">[</span>root@localhost test<span class="token punctuation">]</span><span class="token comment"># rm: cannot remove ‘test2’: Is a directory</span>
+-bash: /usr/libexec/pk-command-not-found: /lib64/ld-linux-x86-64.so.2: bad ELF interpreter: No such <span class="token function">file</span> or directory
+<span class="token punctuation">[</span>root@localhost test<span class="token punctuation">]</span><span class="token comment"># rm: cannot remove ‘test2’: Is a directory</span>
+-bash: /usr/libexec/pk-command-not-found: /lib64/ld-linux-x86-64.so.2: bad ELF interpreter: No such <span class="token function">file</span> or directory
+<span class="token punctuation">[</span>root@localhost test<span class="token punctuation">]</span><span class="token comment"># ls</span>
+-bash: /bin/ls: No such <span class="token function">file</span> or directory
+<span class="token punctuation">[</span>root@localhost test<span class="token punctuation">]</span><span class="token comment"># cd ../</span>
+cd: error retrieving current directory: getcwd: cannot access parent directories: No such <span class="token function">file</span> or directory
+<span class="token punctuation">[</span>root@localhost <span class="token punctuation">]</span><span class="token comment"># pwd</span>
+/home/admin/test/<span class="token punctuation">..</span>/
+<span class="token punctuation">[</span>root@localhost <span class="token punctuation">]</span><span class="token comment"># cd /home</span>
+<span class="token punctuation">[</span>root@localhost home<span class="token punctuation">]</span><span class="token comment"># ls</span>
+-bash: /bin/ls: No such <span class="token function">file</span> or directory
+<span class="token punctuation">[</span>root@localhost home<span class="token punctuation">]</span><span class="token comment"># cd ~</span>
+<span class="token punctuation">[</span>root@localhost ~<span class="token punctuation">]</span><span class="token comment"># ls</span>
+-bash: /bin/ls: No such <span class="token function">file</span> or directory
+<span class="token punctuation">[</span>root@localhost ~<span class="token punctuation">]</span><span class="token comment"># ls -al</span>
+-bash: /bin/ls: No such <span class="token function">file</span> or directory
+<span class="token punctuation">[</span>root@localhost ~<span class="token punctuation">]</span><span class="token comment"># dir</span>
+-bash: /bin/dir: No such <span class="token function">file</span> or directory
+<span class="token punctuation">[</span>root@localhost ~<span class="token punctuation">]</span><span class="token comment"># </span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 
 <p><img src="/myBlog/Linux/image-20211102165244390.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20211102165244390"></p>
 <h3 id="mv：移动文件或者目录，重命名"><a href="#mv：移动文件或者目录，重命名" class="headerlink" title="mv：移动文件或者目录，重命名"></a>mv：移动文件或者目录，重命名</h3><ul>
@@ -412,7 +450,16 @@
 <li>chgrp -R 属组 文件名：如chgrp -R root test，test原本所属组为admin，现在改为root</li>
 <li>-R：递归更改文件属组，就是在更改某个目录文件的属组时，如果加上-R的参数，那么该目录下的所有文件的属组都会更改。</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@localhost Ten]<span class="hljs-comment"># ls -l</span><br>total 0<br>drwxrwxr-x. 2 admin admin 6 Nov  2 20:09 <span class="hljs-built_in">test</span><br>drwxrwxr-x. 2 admin admin 6 Nov  2 20:11 test2<br>[root@localhost Ten]<span class="hljs-comment"># chgrp -R root test</span><br>[root@localhost Ten]<span class="hljs-comment"># ls -l</span><br>total 0<br>drwxrwxr-x. 2 admin root  6 Nov  2 20:09 <span class="hljs-built_in">test</span><br>drwxrwxr-x. 2 admin admin 6 Nov  2 20:11 test2<br>[root@localhost Ten]<span class="hljs-comment"># </span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@localhost Ten<span class="token punctuation">]</span><span class="token comment"># ls -l</span>
+total <span class="token number">0</span>
+drwxrwxr-x. <span class="token number">2</span> admin admin <span class="token number">6</span> Nov  <span class="token number">2</span> <span class="token number">20</span>:09 <span class="token builtin class-name">test</span>
+drwxrwxr-x. <span class="token number">2</span> admin admin <span class="token number">6</span> Nov  <span class="token number">2</span> <span class="token number">20</span>:11 test2
+<span class="token punctuation">[</span>root@localhost Ten<span class="token punctuation">]</span><span class="token comment"># chgrp -R root test</span>
+<span class="token punctuation">[</span>root@localhost Ten<span class="token punctuation">]</span><span class="token comment"># ls -l</span>
+total <span class="token number">0</span>
+drwxrwxr-x. <span class="token number">2</span> admin root  <span class="token number">6</span> Nov  <span class="token number">2</span> <span class="token number">20</span>:09 <span class="token builtin class-name">test</span>
+drwxrwxr-x. <span class="token number">2</span> admin admin <span class="token number">6</span> Nov  <span class="token number">2</span> <span class="token number">20</span>:11 test2
+<span class="token punctuation">[</span>root@localhost Ten<span class="token punctuation">]</span><span class="token comment"># </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 
 <p><img src="/myBlog/Linux/image-20211102205944102.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20211102205944102"></p>
 <h3 id="chown：更改文件的属主"><a href="#chown：更改文件的属主" class="headerlink" title="chown：更改文件的属主"></a>chown：更改文件的属主</h3><ul>
@@ -424,7 +471,7 @@
 </ul>
 <p>Linux文件属性有两种设置方法，一种是数字，一种是符号。</p>
 <p>Linux文件的基本权限就有九个，分别是owner/group/others三种身份各有自己的read/write/execute权限。</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">r</span>:<span class="hljs-number">4</span>     w:<span class="hljs-number">2</span>         x:<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">r:4     w:2         x:1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
 
 <p>每种身份(owner/group/others)各自的三个权限(r/w/x)分数是需要累加的，例如当权限为：[-rwxrwx—] 分数则是：</p>
 <ul>
@@ -458,17 +505,58 @@
 <li>ln：创建一个硬链接，如ln f1 f2，创建一个硬链接，从f1指向f2</li>
 <li>ln -s ：创建一个软链接，如ln -s f1 f3，创建一个软链接，从f1指向f3</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs bash">[admin@localhost Ten]$ touch f1				<span class="hljs-comment"># 创建f1</span><br>[admin@localhost Ten]$ ls<br>f1  <span class="hljs-built_in">test</span>  test2<br>[admin@localhost Ten]$ ln f1 f2				<span class="hljs-comment"># 创建从f1指向f2的硬链接</span><br>[admin@localhost Ten]$ ls<br>f1  f2  <span class="hljs-built_in">test</span>  test2<br>[admin@localhost Ten]$ ln -s f1 f3			<span class="hljs-comment"># 创建从f1指向f3的软链接（符号链接）</span><br>[admin@localhost Ten]$ ls<br>f1  f2  f3  <span class="hljs-built_in">test</span>  test2<br>[admin@localhost Ten]$ ls -l<br>total 0<br>-rw-rw-r--. 2 admin admin 0 Nov  3 11:37 f1<br>-rw-rw-r--. 2 admin admin 0 Nov  3 11:37 f2<br>lrwxrwxrwx. 1 admin admin 2 Nov  3 11:37 f3 -&gt; f1<br>drwxrwxr-x. 2 admin admin 6 Nov  2 20:09 <span class="hljs-built_in">test</span><br>drwxrwxr-x. 2 admin admin 6 Nov  2 20:11 test2<br>[admin@localhost Ten]$ <br>[admin@localhost Ten]$ <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Hello&quot;</span> &gt;&gt; <span class="hljs-string">&quot;f1&quot;</span>	<span class="hljs-comment"># 往f1中写入内容</span><br>[admin@localhost Ten]$ cat f1				<span class="hljs-comment"># f1正常读</span><br>Hello<br>[admin@localhost Ten]$ cat f2				<span class="hljs-comment"># f2正常读</span><br>Hello<br>[admin@localhost Ten]$ cat f3				<span class="hljs-comment"># f3正常读</span><br>Hello<br>[admin@localhost Ten]$ <br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>admin@localhost Ten<span class="token punctuation">]</span>$ <span class="token function">touch</span> f1				<span class="token comment"># 创建f1</span>
+<span class="token punctuation">[</span>admin@localhost Ten<span class="token punctuation">]</span>$ <span class="token function">ls</span>
+f1  <span class="token builtin class-name">test</span>  test2
+<span class="token punctuation">[</span>admin@localhost Ten<span class="token punctuation">]</span>$ <span class="token function">ln</span> f1 f2				<span class="token comment"># 创建从f1指向f2的硬链接</span>
+<span class="token punctuation">[</span>admin@localhost Ten<span class="token punctuation">]</span>$ <span class="token function">ls</span>
+f1  f2  <span class="token builtin class-name">test</span>  test2
+<span class="token punctuation">[</span>admin@localhost Ten<span class="token punctuation">]</span>$ <span class="token function">ln</span> -s f1 f3			<span class="token comment"># 创建从f1指向f3的软链接（符号链接）</span>
+<span class="token punctuation">[</span>admin@localhost Ten<span class="token punctuation">]</span>$ <span class="token function">ls</span>
+f1  f2  f3  <span class="token builtin class-name">test</span>  test2
+<span class="token punctuation">[</span>admin@localhost Ten<span class="token punctuation">]</span>$ <span class="token function">ls</span> -l
+total <span class="token number">0</span>
+-rw-rw-r--. <span class="token number">2</span> admin admin <span class="token number">0</span> Nov  <span class="token number">3</span> <span class="token number">11</span>:37 f1
+-rw-rw-r--. <span class="token number">2</span> admin admin <span class="token number">0</span> Nov  <span class="token number">3</span> <span class="token number">11</span>:37 f2
+lrwxrwxrwx. <span class="token number">1</span> admin admin <span class="token number">2</span> Nov  <span class="token number">3</span> <span class="token number">11</span>:37 f3 -<span class="token operator">></span> f1
+drwxrwxr-x. <span class="token number">2</span> admin admin <span class="token number">6</span> Nov  <span class="token number">2</span> <span class="token number">20</span>:09 <span class="token builtin class-name">test</span>
+drwxrwxr-x. <span class="token number">2</span> admin admin <span class="token number">6</span> Nov  <span class="token number">2</span> <span class="token number">20</span>:11 test2
+<span class="token punctuation">[</span>admin@localhost Ten<span class="token punctuation">]</span>$ 
+<span class="token punctuation">[</span>admin@localhost Ten<span class="token punctuation">]</span>$ <span class="token builtin class-name">echo</span> <span class="token string">"Hello"</span> <span class="token operator">>></span> <span class="token string">"f1"</span>	<span class="token comment"># 往f1中写入内容</span>
+<span class="token punctuation">[</span>admin@localhost Ten<span class="token punctuation">]</span>$ <span class="token function">cat</span> f1				<span class="token comment"># f1正常读</span>
+Hello
+<span class="token punctuation">[</span>admin@localhost Ten<span class="token punctuation">]</span>$ <span class="token function">cat</span> f2				<span class="token comment"># f2正常读</span>
+Hello
+<span class="token punctuation">[</span>admin@localhost Ten<span class="token punctuation">]</span>$ <span class="token function">cat</span> f3				<span class="token comment"># f3正常读</span>
+Hello
+<span class="token punctuation">[</span>admin@localhost Ten<span class="token punctuation">]</span>$ <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 
 
 
 <p>删除</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">[admin@localhost Ten]$ ls<br>f1  f2  f3  <span class="hljs-built_in">test</span>  test2<br>[admin@localhost Ten]$ rm -rf f1		<span class="hljs-comment"># 删除f1</span><br>[admin@localhost Ten]$ ls <br>f2  f3  <span class="hljs-built_in">test</span>  test2<br>[admin@localhost Ten]$ cat f2			<span class="hljs-comment"># f2是硬链接，没有影响，依旧可以访问</span><br>I am Ten<br>[admin@localhost Ten]$ cat f3			<span class="hljs-comment"># f3是软链接，已经失效</span><br>cat: f3: No such file or directory<br>[admin@localhost Ten]$ ^C<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>admin@localhost Ten<span class="token punctuation">]</span>$ <span class="token function">ls</span>
+f1  f2  f3  <span class="token builtin class-name">test</span>  test2
+<span class="token punctuation">[</span>admin@localhost Ten<span class="token punctuation">]</span>$ <span class="token function">rm</span> -rf f1		<span class="token comment"># 删除f1</span>
+<span class="token punctuation">[</span>admin@localhost Ten<span class="token punctuation">]</span>$ <span class="token function">ls</span> 
+f2  f3  <span class="token builtin class-name">test</span>  test2
+<span class="token punctuation">[</span>admin@localhost Ten<span class="token punctuation">]</span>$ <span class="token function">cat</span> f2			<span class="token comment"># f2是硬链接，没有影响，依旧可以访问</span>
+I am Ten
+<span class="token punctuation">[</span>admin@localhost Ten<span class="token punctuation">]</span>$ <span class="token function">cat</span> f3			<span class="token comment"># f3是软链接，已经失效</span>
+cat: f3: No such <span class="token function">file</span> or directory
+<span class="token punctuation">[</span>admin@localhost Ten<span class="token punctuation">]</span>$ ^C<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 
 <ul>
 <li>ls -li：显示索引节点号（Inode Index）</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">[admin@localhost Ten]$ ls -li<br>total 8<br> 5194981 -rw-rw-r--. 2 admin admin 6 Nov  3 11:38 f1<br> 5194981 -rw-rw-r--. 2 admin admin 6 Nov  3 11:38 f2<br> 5195004 lrwxrwxrwx. 1 admin admin 2 Nov  3 11:37 f3 -&gt; f1<br>13209000 drwxrwxr-x. 2 admin admin 6 Nov  2 20:09 <span class="hljs-built_in">test</span><br>   77723 drwxrwxr-x. 2 admin admin 6 Nov  2 20:11 test2<br>[admin@localhost Ten]$ <br><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>admin@localhost Ten<span class="token punctuation">]</span>$ <span class="token function">ls</span> -li
+total <span class="token number">8</span>
+ <span class="token number">5194981</span> -rw-rw-r--. <span class="token number">2</span> admin admin <span class="token number">6</span> Nov  <span class="token number">3</span> <span class="token number">11</span>:38 f1
+ <span class="token number">5194981</span> -rw-rw-r--. <span class="token number">2</span> admin admin <span class="token number">6</span> Nov  <span class="token number">3</span> <span class="token number">11</span>:38 f2
+ <span class="token number">5195004</span> lrwxrwxrwx. <span class="token number">1</span> admin admin <span class="token number">2</span> Nov  <span class="token number">3</span> <span class="token number">11</span>:37 f3 -<span class="token operator">></span> f1
+<span class="token number">13209000</span> drwxrwxr-x. <span class="token number">2</span> admin admin <span class="token number">6</span> Nov  <span class="token number">2</span> <span class="token number">20</span>:09 <span class="token builtin class-name">test</span>
+   <span class="token number">77723</span> drwxrwxr-x. <span class="token number">2</span> admin admin <span class="token number">6</span> Nov  <span class="token number">2</span> <span class="token number">20</span>:11 test2
+<span class="token punctuation">[</span>admin@localhost Ten<span class="token punctuation">]</span>$ 
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 
 
 
@@ -845,7 +933,8 @@
 <li>groupmod -g 666 -n newTest Test：将Test的用户组的用户组id改为666，并将名字改为newTest</li>
 </ul>
 <p><strong>切换用户组</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 登录当前用户 Test</span><br>$ newgrp root<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 登录当前用户 Test</span>
+$ newgrp root<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
 
 
 
@@ -854,11 +943,21 @@
 <ul>
 <li>/etc/passwd:</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">root:x:0:<br>bin:x:1:<br>daemon:x:2:<br>sys:x:3:<br>adm:x:4:<br>tty:x:5:<br>...<br>ntp:x:38:38::/etc/ntp:/sbin/nologin<br>tcpdump:x:72:72::/:/sbin/nologin<br>admin:x:1000:1000:admin:/home/admin:/bin/bash<br>Test:x:1001:666::/home/Test:/bin/bash<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root:x:0:
+bin:x:1:
+daemon:x:2:
+sys:x:3:
+adm:x:4:
+tty:x:5:
+<span class="token punctuation">..</span>.
+ntp:x:38:38::/etc/ntp:/sbin/nologin
+tcpdump:x:72:72::/:/sbin/nologin
+admin:x:1000:1000:admin:/home/admin:/bin/bash
+Test:x:1001:666::/home/Test:/bin/bash<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 
 
 
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile">用户名:口令（登录密码，不可见）:用户标识号:组标识号:注释性描述:主目录:登录<span class="hljs-keyword">Shell</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">用户名:口令（登录密码，不可见）:用户标识号:组标识号:注释性描述:主目录:登录Shell<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
 
 <ul>
 <li>/etc/shadow</li>
@@ -896,10 +995,17 @@
 <li>ps -x:显示后台运行进程的参数</li>
 <li>ps -aux:查看所有的进程</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">ps -aux | grep mysql		<span class="hljs-comment"># 过滤出与mysql相关的进程</span><br><span class="hljs-comment"># | 在Linux中这个叫做管道符		A|B，将A的输出结果作为B的输出条件</span><br><span class="hljs-comment"># grep 查找文件中符合条件的字符串！</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> -aux <span class="token operator">|</span> <span class="token function">grep</span> mysql		<span class="token comment"># 过滤出与mysql相关的进程</span>
+<span class="token comment"># | 在Linux中这个叫做管道符		A|B，将A的输出结果作为B的输出条件</span>
+<span class="token comment"># grep 查找文件中符合条件的字符串！</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
 
 <p><strong>ps -ef:可以查看到父进程的信息</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">ps -ef | grep mysql		<span class="hljs-comment"># 看父进程一般通过目录树结构来查看</span><br><br><br>pstree -pu<br>pstree -p				<span class="hljs-comment"># 显示父id</span><br>pstree -u				<span class="hljs-comment"># 显示当前用户组</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> -ef <span class="token operator">|</span> <span class="token function">grep</span> mysql		<span class="token comment"># 看父进程一般通过目录树结构来查看</span>
+
+
+pstree -pu
+pstree -p				<span class="token comment"># 显示父id</span>
+pstree -u				<span class="token comment"># 显示当前用户组</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 
 <p><img src="/myBlog/Linux/image-20211103222647990.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20211103222647990"></p>
 <p>结束进程：杀掉进程，等价于window结束任务</p>
@@ -907,12 +1013,28 @@
 <li>kill -9 进程的id：强制结束该进程</li>
 </ul>
 <h1 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h1><h2 id="JDK安装-rpm"><a href="#JDK安装-rpm" class="headerlink" title="JDK安装(rpm)"></a>JDK安装(rpm)</h2><p>rpm安装jdk不用配置环境变量</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 检查当前系统是否存在java环境	java -version</span><br><span class="hljs-comment"># 如果存在就卸载</span><br><span class="hljs-comment"># rpm -qa|grep jdk		# 检测JDK版本信息</span><br><span class="hljs-comment"># rpm -e --nodeps jdk_	# 强制卸载 </span><br><br><span class="hljs-comment"># 卸载完后再重新安装</span><br><span class="hljs-comment"># rpm -ivh rpm包</span><br><br><span class="hljs-comment"># 配置环境变量</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 检查当前系统是否存在java环境	java -version</span>
+<span class="token comment"># 如果存在就卸载</span>
+<span class="token comment"># rpm -qa|grep jdk		# 检测JDK版本信息</span>
+<span class="token comment"># rpm -e --nodeps jdk_	# 强制卸载 </span>
+
+<span class="token comment"># 卸载完后再重新安装</span>
+<span class="token comment"># rpm -ivh rpm包</span>
+
+<span class="token comment"># 配置环境变量</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 
 <p>配置环境变量：/etc/profile</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> JAVA_HOME=/usr/<span class="hljs-built_in">local</span>/java/jdk1.8.0_121<br><span class="hljs-built_in">export</span> JRE_HOME=<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span>/jre<br><span class="hljs-built_in">export</span> CLASSPATH=.:<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span>/lib:<span class="hljs-variable">$&#123;JRE_HOME&#125;</span>/lib:<span class="hljs-variable">$CLASSPATH</span><br><span class="hljs-built_in">export</span> JAVA_PATH=<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span>/bin:<span class="hljs-variable">$&#123;JRE_HOME&#125;</span>/bin<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$&#123;JAVA_PATH&#125;</span><br><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">JAVA_HOME</span><span class="token operator">=</span>/usr/local/java/jdk1.8.0_121
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">JRE_HOME</span><span class="token operator">=</span><span class="token variable">$&#123;JAVA_HOME&#125;</span>/jre
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">CLASSPATH</span><span class="token operator">=</span>.:<span class="token variable">$&#123;JAVA_HOME&#125;</span>/lib:<span class="token variable">$&#123;JRE_HOME&#125;</span>/lib:<span class="token variable">$CLASSPATH</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">JAVA_PATH</span><span class="token operator">=</span><span class="token variable">$&#123;JAVA_HOME&#125;</span>/bin:<span class="token variable">$&#123;JRE_HOME&#125;</span>/bin
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span><span class="token builtin class-name">:</span><span class="token variable">$&#123;JAVA_PATH&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> JAVA_HOME=/usr/<span class="hljs-built_in">local</span>/java/java1.8...<br><span class="hljs-built_in">export</span> JRE_HOME=<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span>/jre<br><span class="hljs-built_in">export</span> CLASSPATH=.:<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span>/lib:<span class="hljs-variable">$&#123;JRE_HOME&#125;</span>/lib:<span class="hljs-variable">$&#123;CLASSPATH&#125;</span><br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PAHT</span>:<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span>/bin:<span class="hljs-variable">$&#123;JRE_HOME&#125;</span>/bin<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">JAVA_HOME</span><span class="token operator">=</span>/usr/local/java/java1.8<span class="token punctuation">..</span>.
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">JRE_HOME</span><span class="token operator">=</span><span class="token variable">$&#123;JAVA_HOME&#125;</span>/jre
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">CLASSPATH</span><span class="token operator">=</span>.:<span class="token variable">$&#123;JAVA_HOME&#125;</span>/lib:<span class="token variable">$&#123;JRE_HOME&#125;</span>/lib:<span class="token variable">$&#123;CLASSPATH&#125;</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token variable">$PAHT</span><span class="token builtin class-name">:</span><span class="token variable">$&#123;JAVA_HOME&#125;</span>/bin:<span class="token variable">$&#123;JRE_HOME&#125;</span>/bin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
 
 
 
@@ -928,46 +1050,77 @@
 <h2 id="Tomcat安装（tar-gz）"><a href="#Tomcat安装（tar-gz）" class="headerlink" title="Tomcat安装（tar.gz）"></a>Tomcat安装（tar.gz）</h2><ol>
 <li>解压</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">unzip 文件名 		<span class="hljs-comment"># 如果是压缩包是zip格式的，使用</span><br>tar -zvxf 包名<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">unzip</span> 文件名 		<span class="token comment"># 如果是压缩包是zip格式的，使用</span>
+<span class="token function">tar</span> -zvxf 包名<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
 
 <ol start="2">
 <li>启动Tomcat测试，./xxx.sh脚本即可运行</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 执行 ./startup.sh</span><br><span class="hljs-comment"># 停止 ./shutdown.sh</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 执行 ./startup.sh</span>
+<span class="token comment"># 停止 ./shutdown.sh</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
 
 <ol start="3">
 <li>查看防火墙，并开启8080端口</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 查看firewall服务状态</span><br>systemctl status firewalld<br><br><span class="hljs-comment"># 开启、重启、关闭、firewalld.service服务</span><br><span class="hljs-comment"># 开启</span><br>service firewalld start<br><span class="hljs-comment"># 重启</span><br>service firewalld restart<br><span class="hljs-comment"># 关闭</span><br>service firewalld stop<br><br><span class="hljs-comment"># 查看防火墙规则</span><br>firewall-cmd --list-all    <span class="hljs-comment"># 查看全部信息</span><br>firewall-cmd --list-ports  <span class="hljs-comment"># 只看端口信息</span><br><br><span class="hljs-comment"># 开启端口</span><br>开端口命令：firewall-cmd --zone=public --add-port=80/tcp --permanent<br>重启防火墙：systemctl restart firewalld.service<br><br>命令含义：<br>--zone <span class="hljs-comment">#作用域</span><br>--add-port=80/tcp  <span class="hljs-comment">#添加端口，格式为：端口/通讯协议</span><br>--permanent   <span class="hljs-comment">#永久生效，没有此参数重启后失效</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 查看firewall服务状态</span>
+systemctl status firewalld
+
+<span class="token comment"># 开启、重启、关闭、firewalld.service服务</span>
+<span class="token comment"># 开启</span>
+<span class="token function">service</span> firewalld start
+<span class="token comment"># 重启</span>
+<span class="token function">service</span> firewalld restart
+<span class="token comment"># 关闭</span>
+<span class="token function">service</span> firewalld stop
+
+<span class="token comment"># 查看防火墙规则</span>
+firewall-cmd --list-all    <span class="token comment"># 查看全部信息</span>
+firewall-cmd --list-ports  <span class="token comment"># 只看端口信息</span>
+
+<span class="token comment"># 开启端口</span>
+开端口命令：firewall-cmd --zone<span class="token operator">=</span>public --add-port<span class="token operator">=</span><span class="token number">80</span>/tcp --permanent
+重启防火墙：systemctl restart firewalld.service
+
+命令含义：
+--zone <span class="token comment">#作用域</span>
+--add-port<span class="token operator">=</span><span class="token number">80</span>/tcp  <span class="token comment">#添加端口，格式为：端口/通讯协议</span>
+--permanent   <span class="token comment">#永久生效，没有此参数重启后失效</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 
 <ol start="4">
 <li>测试。访问192.168.242.3:8080。出现页面，表示安装成功。</li>
 </ol>
 <h2 id="安装Docker（yum）"><a href="#安装Docker（yum）" class="headerlink" title="安装Docker（yum）"></a>安装Docker（yum）</h2><ol>
 <li><p>查看系统版本信息</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@localhost bin]<span class="hljs-comment"># cat /etc/redhat-release </span><br>CentOS Linux release 7.8.2003 (Core)<br></code></pre></td></tr></table></figure></li>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@localhost bin<span class="token punctuation">]</span><span class="token comment"># cat /etc/redhat-release </span>
+CentOS Linux release <span class="token number">7.8</span>.2003 <span class="token punctuation">(</span>Core<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></li>
 <li><p>安装我们的准备环境</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">yum -y install 包名		<span class="hljs-comment"># yum install 安装命令 	-y	所有的提示都为y</span><br>yum -y install gcc<br>yum -y install gcc-c++<br></code></pre></td></tr></table></figure></li>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">yum -y <span class="token function">install</span> 包名		<span class="token comment"># yum install 安装命令 	-y	所有的提示都为y</span>
+yum -y <span class="token function">install</span> gcc
+yum -y <span class="token function">install</span> gcc-c++<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></li>
 <li><p>或者用宝塔面板安装 </p>
 </li>
 </ol>
 <h1 id="VMare使用"><a href="#VMare使用" class="headerlink" title="VMare使用"></a>VMare使用</h1><h3 id="快照"><a href="#快照" class="headerlink" title="快照"></a>快照</h3><p>保留当前系统的信息为快照，随时可以恢复，以防未来系统被损坏，就好比游戏中的归档</p>
 <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><h2 id="使用xftp上传文件时，状态显示错误"><a href="#使用xftp上传文件时，状态显示错误" class="headerlink" title="使用xftp上传文件时，状态显示错误"></a>使用xftp上传文件时，状态显示错误</h2><p><img src="/myBlog/Linux/image-20211104114435498.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20211104114435498"></p>
 <p>原因可能是：内存不够、权限不够（切换root）、或者是目录权限不够，如果是目录权限不够可以用以下命令设置权限</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">chmod 777 目录名<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">chmod</span> <span class="token number">777</span> 目录名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
 
 
 
 <p>使用tar.gz包</p>
 <p>安装到/home/admin/java</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">tar -zxvf jdk包名<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tar</span> -zxvf jdk包名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
 
 <p>配置环境变量</p>
 <p>vim /etc/profile</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> JAVA_HOME=/home/admin/java/jdk1.8.0_121<br><span class="hljs-built_in">export</span> JRE_HOME=<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span>/jre<br><span class="hljs-built_in">export</span> CLASSPATH=.:<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span>/lib:<span class="hljs-variable">$&#123;JRE_HOME&#125;</span>/lib<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span>/bin:<span class="hljs-variable">$PATH</span><br><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">JAVA_HOME</span><span class="token operator">=</span>/home/admin/java/jdk1.8.0_121
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">JRE_HOME</span><span class="token operator">=</span><span class="token variable">$&#123;JAVA_HOME&#125;</span>/jre
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">CLASSPATH</span><span class="token operator">=</span>.:<span class="token variable">$&#123;JAVA_HOME&#125;</span>/lib:<span class="token variable">$&#123;JRE_HOME&#125;</span>/lib
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token variable">$&#123;JAVA_HOME&#125;</span>/bin:<span class="token environment constant">$PATH</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
 
 <p>刷新配置文件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> /etc/profile<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> /etc/profile<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
 
 <p>最后java -version检查是否配置成功</p>
 <p>这个笔记是在学习狂神说Linux做的笔记，如需原版，请前往b站。地址：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV187411y7hF?spm_id_from=333.999.0.0">https://www.bilibili.com/video/BV187411y7hF?spm_id_from=333.999.0.0</a></p>
@@ -1176,6 +1329,8 @@
 
 
 
+  
+    
   
 
 
