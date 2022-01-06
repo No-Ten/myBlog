@@ -1,0 +1,815 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/myBlog/img/favicon.png">
+  <link rel="icon" href="/myBlog/img/browserTitle.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Ten">
+  <meta name="keywords" content="">
+  <meta name="description" content="day10课程管理-删除视屏接口创建InitVodUtils工具类 public class InitVodClient &amp;#123;      public static DefaultAcsClient initVodClient(String accessKeyId, String accessKeySecret) throws ClientException &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day-10-课程管理">
+<meta property="og:url" content="https://no-ten.github.io/day10-%E8%AF%BE%E7%A8%8B%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:site_name" content="TBlog">
+<meta property="og:description" content="day10课程管理-删除视屏接口创建InitVodUtils工具类 public class InitVodClient &amp;#123;      public static DefaultAcsClient initVodClient(String accessKeyId, String accessKeySecret) throws ClientException &amp;#123;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/day10-%E8%AF%BE%E7%A8%8B%E7%AE%A1%E7%90%86/image-20220106234453087.png">
+<meta property="article:published_time" content="2022-01-06T15:38:08.216Z">
+<meta property="article:modified_time" content="2022-01-06T17:51:02.169Z">
+<meta property="article:author" content="Ten">
+<meta property="article:tag" content="project">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://no-ten.github.io/myBlog/day10-%E8%AF%BE%E7%A8%8B%E7%AE%A1%E7%90%86/image-20220106234453087.png">
+  
+  <title>day-10-课程管理 - TBlog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/myBlog/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/myBlog/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"no-ten.github.io","root":"/myBlog/","version":"1.8.12","typing":{"enable":true,"typeSpeed":230,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/myBlog/local-search.xml"};
+  </script>
+  <script  src="/myBlog/js/utils.js" ></script>
+  <script  src="/myBlog/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/myBlog/atom.xml" title="TBlog" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/myBlog/">
+      <strong>TBlog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/myBlog/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="day-10-课程管理">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Ten
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-06 23:38" pubdate>
+        2022年1月6日晚上11点38分 
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      7.1k 字
+    </span>
+  
+
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">day-10-课程管理</h1>
+            
+            <div class="markdown-body">
+              <h1 id="day10"><a href="#day10" class="headerlink" title="day10"></a>day10</h1><h1 id="课程管理-删除视屏接口"><a href="#课程管理-删除视屏接口" class="headerlink" title="课程管理-删除视屏接口"></a>课程管理-删除视屏接口</h1><p>创建InitVodUtils工具类</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">InitVodClient</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">DefaultAcsClient</span> <span class="token function">initVodClient</span><span class="token punctuation">(</span><span class="token class-name">String</span> accessKeyId<span class="token punctuation">,</span> <span class="token class-name">String</span> accessKeySecret<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ClientException</span> <span class="token punctuation">&#123;</span>
+
+        <span class="token class-name">String</span> regionId <span class="token operator">=</span> <span class="token string">"cn-shanghai"</span><span class="token punctuation">;</span>  <span class="token comment">// 点播服务接入区域</span>
+
+        <span class="token class-name">DefaultProfile</span> profile <span class="token operator">=</span> <span class="token class-name">DefaultProfile</span><span class="token punctuation">.</span><span class="token function">getProfile</span><span class="token punctuation">(</span>regionId<span class="token punctuation">,</span> accessKeyId<span class="token punctuation">,</span> accessKeySecret<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">DefaultAcsClient</span> client <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DefaultAcsClient</span><span class="token punctuation">(</span>profile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> client<span class="token punctuation">;</span>
+
+    <span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>在VodController</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 删除阿里云的视频</span>
+<span class="token annotation punctuation">@DeleteMapping</span><span class="token punctuation">(</span><span class="token string">"deleteAlyVideo/&#123;id&#125;"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">deleteAlyVideo</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> id<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+    <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 初始化对象</span>
+        <span class="token class-name">DefaultAcsClient</span> client <span class="token operator">=</span> <span class="token class-name">InitVodClient</span><span class="token punctuation">.</span><span class="token function">initVodClient</span><span class="token punctuation">(</span><span class="token class-name">ConstantVodUtils</span><span class="token punctuation">.</span>ACCESS_KEY_ID<span class="token punctuation">,</span> <span class="token class-name">ConstantVodUtils</span><span class="token punctuation">.</span>ACCESS_KEY_SECRET<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 创建删除的request请求</span>
+        <span class="token class-name">DeleteVideoRequest</span> request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DeleteVideoRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 设置视频id</span>
+        request<span class="token punctuation">.</span><span class="token function">setVideoIds</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 调用初始化方法进行删除</span>
+        client<span class="token punctuation">.</span><span class="token function">getAcsResponse</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ClientException</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">GuliException</span><span class="token punctuation">(</span><span class="token number">20001</span><span class="token punctuation">,</span><span class="token string">"删除视频失败"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<h1 id="课程管理-删除视屏前端"><a href="#课程管理-删除视屏前端" class="headerlink" title="课程管理-删除视屏前端"></a>课程管理-删除视屏前端</h1><p>Api</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&#x2F;&#x2F; 删除小节视频
+ deleteAlyVideo(id)&#123;
+     return request(&#123;
+         url: &#96;&#x2F;eduvod&#x2F;video&#x2F;deleteAlyVideo&#x2F;$&#123;id&#125;&#96;,
+         method: &#39;delete&#39;
+       &#125;)
+ &#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>Video.vue</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">methods: &#123;
+     &#x2F;&#x2F; 点击确认的时候删除
+     handleVodRemove()&#123;
+        video.deleteAlyVideo(this.video.videoSourceId)
+          .then(response &#x3D;&gt;&#123;
+             &#x2F;&#x2F; 提示信息
+              this.$message(&#123;
+                  type: &#39;success&#39;,
+                  message: &#39;删除视频成功!&#39;
+              &#125;);
+              fileList: []  &#x2F;&#x2F; 清空上传列表
+              this.video.videoSourceId &#x3D; &#39;&#39;
+              this.video.videoOriginalName &#x3D; &#39;&#39;
+          &#125;)
+     &#125;,
+     &#x2F;&#x2F; 点击x的时候弹框
+     beforeVodRemove(file, fileList)&#123;
+      return this.$confirm(&#96;确定移除 $&#123; file.name &#125;？&#96;);
+     &#125;,
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<h1 id="技术点-微服务SpringCloud"><a href="#技术点-微服务SpringCloud" class="headerlink" title="技术点-微服务SpringCloud"></a>技术点-微服务SpringCloud</h1><h2 id="SpringCloud和SpringBoot的关系："><a href="#SpringCloud和SpringBoot的关系：" class="headerlink" title="SpringCloud和SpringBoot的关系："></a>SpringCloud和SpringBoot的关系：</h2><p>SpringBoot是Spring的一套快速配置脚手架，可以基于SpringBoot快速开发单个微服务。SpringCloud是一系列框架的总称。要使用SpringCloud的话必须要基于SpringBoot，而SpringBoot可以单独使用。</p>
+<h1 id="Nacos下载安装"><a href="#Nacos下载安装" class="headerlink" title="Nacos下载安装"></a>Nacos下载安装</h1><p><strong>下载地址和版本</strong></p>
+<p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/alibaba/nacos/releases">https://github.com/alibaba/nacos/releases</a></p>
+<p>下载版本：nacos-server-1.1.4.tar.gz或nacos-server-1.1.4.zip，解压任意目录即可</p>
+<p>- Windows</p>
+<p>启动命令：cmd startup.cmd 或者双击startup.cmd运行文件。</p>
+<p>访问：<a target="_blank" rel="noopener" href="http://localhost:8848/nacos">http://localhost:8848/nacos</a></p>
+<p>用户名密码：nacos/nacos</p>
+<h1 id="服务注册（service-edu为例）"><a href="#服务注册（service-edu为例）" class="headerlink" title="服务注册（service_edu为例）"></a>服务注册（service_edu为例）</h1><h2 id="在service模块配置pom"><a href="#在service模块配置pom" class="headerlink" title="在service模块配置pom"></a>在service模块配置pom</h2><p>配置Nacos客户端的pom依赖</p>
+<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!--服务注册--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-alibaba-nacos-discovery<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h2 id="添加服务配置信息"><a href="#添加服务配置信息" class="headerlink" title="添加服务配置信息"></a>添加服务配置信息</h2><p>配置application.properties，在客户端微服务中添加注册Nacos服务的配置信息</p>
+<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token comment"># nacos服务地址</span>
+<span class="token attr-name">spring.cloud.nacos.discovery.server-addr</span><span class="token punctuation">=</span><span class="token attr-value">127.0.0.1:8848</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+<h2 id="添加Nacos客户端注解"><a href="#添加Nacos客户端注解" class="headerlink" title="添加Nacos客户端注解"></a>添加Nacos客户端注解</h2><p>在客户端微服务启动类中添加注解@EnableDiscoveryClient</p>
+<h2 id="启动客户端微服务"><a href="#启动客户端微服务" class="headerlink" title="启动客户端微服务"></a>启动客户端微服务</h2><p>启动注册中心     </p>
+<p>启动已注册的微服务，可以在Nacos服务列表中看到被注册的微服务</p>
+<h1 id="课程管理-删除小节删除视频Feign"><a href="#课程管理-删除小节删除视频Feign" class="headerlink" title="课程管理-删除小节删除视频Feign"></a>课程管理-删除小节删除视频Feign</h1><h2 id="在service模块添加pom依赖"><a href="#在service模块添加pom依赖" class="headerlink" title="在service模块添加pom依赖"></a>在service模块添加pom依赖</h2><div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- 服务调用 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-openfeign<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h2 id="在调用端的启动类添加注解"><a href="#在调用端的启动类添加注解" class="headerlink" title="在调用端的启动类添加注解"></a>在调用端的启动类添加注解</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@EnableFeignClients</span> <span class="token comment">// 开启远程调用</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h2 id="创建包和接口"><a href="#创建包和接口" class="headerlink" title="创建包和接口"></a>创建包和接口</h2><p>创建client包</p>
+<p>@FeignClient注解用于指定从哪个服务中调用功能 ，名称与被调用的服务名保持一致。</p>
+<p>@GetMapping注解用于对被调用的微服务进行地址映射。</p>
+<p>@PathVariable注解一定要指定参数名称，否则出错</p>
+<p>@Component注解防止，在其他位置注入CodClient时idea报错</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
+<span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span><span class="token string">"service-vod"</span><span class="token punctuation">)</span>     <span class="token comment">// 远程调用服务名称</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">VodClient</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token comment">// 删除阿里云的视频</span>
+    <span class="token comment">// 路径为全路径</span>
+    <span class="token comment">// @PathVariable("id")需要指名参数名字，否则会报错</span>
+    <span class="token annotation punctuation">@DeleteMapping</span><span class="token punctuation">(</span><span class="token string">"/eduvod/video/deleteAlyVideo/&#123;id&#125;"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">deleteAlyVideo</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span> <span class="token class-name">String</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h2 id="调用微服务"><a href="#调用微服务" class="headerlink" title="调用微服务"></a>调用微服务</h2><p>在调用端的VideoServiceImpl中调用client中的方法</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 删除小节 顺便删除视频</span>
+<span class="token annotation punctuation">@DeleteMapping</span><span class="token punctuation">(</span><span class="token string">"&#123;id&#125;"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">deleteVideo</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> id<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token comment">// 根据小节id查询出视频id</span>
+    <span class="token class-name">EduVideo</span> eduVideo <span class="token operator">=</span> eduVideoService<span class="token punctuation">.</span><span class="token function">getById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> videoSourceId <span class="token operator">=</span> eduVideo<span class="token punctuation">.</span><span class="token function">getVideoSourceId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 先判断得到的视频id是否为空</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>videoSourceId<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token comment">// 根据视频id删除阿里云的视频</span>
+        vodClient<span class="token punctuation">.</span><span class="token function">deleteAlyVideo</span><span class="token punctuation">(</span>videoSourceId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    eduVideoService<span class="token punctuation">.</span><span class="token function">removeById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>测试</p>
+<h1 id="课程管理-删除课程删除视频后端"><a href="#课程管理-删除课程删除视频后端" class="headerlink" title="课程管理-删除课程删除视频后端"></a>课程管理-删除课程删除视频后端</h1><p>com.atguigu.vod.controller.VodController</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 删除多个阿里云视频</span>
+<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"delete-batch"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">deleteBatch</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span><span class="token string">"videoIddList"</span><span class="token punctuation">)</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> videoIddList<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    vodService<span class="token punctuation">.</span><span class="token function">removeMoreVideo</span><span class="token punctuation">(</span>videoIddList<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<p>VodService</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 删除多个阿里云视频</span>
+<span class="token keyword">void</span> <span class="token function">removeMoreVideo</span><span class="token punctuation">(</span><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> videoIddList<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+
+
+<p>VodServiceImpl</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 删除多个阿里云视频</span>
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">removeMoreVideo</span><span class="token punctuation">(</span><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> videoIddList<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 初始化对象</span>
+        <span class="token class-name">DefaultAcsClient</span> client <span class="token operator">=</span> <span class="token class-name">InitVodClient</span><span class="token punctuation">.</span><span class="token function">initVodClient</span><span class="token punctuation">(</span><span class="token class-name">ConstantVodUtils</span><span class="token punctuation">.</span>ACCESS_KEY_ID<span class="token punctuation">,</span> <span class="token class-name">ConstantVodUtils</span><span class="token punctuation">.</span>ACCESS_KEY_SECRET<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 创建删除的request请求</span>
+        <span class="token class-name">DeleteVideoRequest</span> request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DeleteVideoRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 将videoIds集合遍历出来，做成1,2,3这样的形式</span>
+        <span class="token class-name">String</span> videoIds <span class="token operator">=</span> <span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>videoIddList<span class="token punctuation">.</span><span class="token function">toArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 设置视频id</span>
+        request<span class="token punctuation">.</span><span class="token function">setVideoIds</span><span class="token punctuation">(</span>videoIds<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 调用初始化方法进行删除</span>
+        client<span class="token punctuation">.</span><span class="token function">getAcsResponse</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ClientException</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">GuliException</span><span class="token punctuation">(</span><span class="token number">20001</span><span class="token punctuation">,</span><span class="token string">"删除视频失败"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<h1 id="课程管理-删除课程删除视频远程调用"><a href="#课程管理-删除课程删除视频远程调用" class="headerlink" title="课程管理-删除课程删除视频远程调用"></a>课程管理-删除课程删除视频远程调用</h1><p>com.atguigu.eduservice.client.VodClient</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 删除多个阿里云视频</span>
+<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/eduvod/video/delete-batch"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">deleteBatch</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span><span class="token string">"videoIddList"</span><span class="token punctuation">)</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> videoIddList<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+
+<p>com.atguigu.eduservice.service.impl.EduVideoServiceImpl</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">EduVideoServiceImpl</span> <span class="token keyword">extends</span> <span class="token class-name">ServiceImpl</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduVideoMapper</span><span class="token punctuation">,</span> <span class="token class-name">EduVideo</span><span class="token punctuation">></span></span> <span class="token keyword">implements</span> <span class="token class-name">EduVideoService</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">VodClient</span> vodClient<span class="token punctuation">;</span>
+
+    <span class="token comment">// 根据课程id删除小节</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">removeVideoByCourseId</span><span class="token punctuation">(</span><span class="token class-name">String</span> courseId<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 根据课程id查询课程所有的视频id</span>
+        <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduVideo</span><span class="token punctuation">></span></span> wrapperVideo <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        wrapperVideo<span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token string">"course_id"</span><span class="token punctuation">,</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 只需要这一个字段</span>
+        wrapperVideo<span class="token punctuation">.</span><span class="token function">select</span><span class="token punctuation">(</span><span class="token string">"video_source_id"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduVideo</span><span class="token punctuation">></span></span> eduVideoList <span class="token operator">=</span> baseMapper<span class="token punctuation">.</span><span class="token function">selectList</span><span class="token punctuation">(</span>wrapperVideo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 需要将List&lt;EduVideo>变成List&lt;String>这样</span>
+        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> videoIds <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 遍历eduVideoList，拿到里面的每一个id值</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> eduVideoList<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">EduVideo</span> eduVideo <span class="token operator">=</span> eduVideoList<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">String</span> videoSourceId <span class="token operator">=</span> eduVideo<span class="token punctuation">.</span><span class="token function">getVideoSourceId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// 判断videoSourceId是否为空</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>videoSourceId<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                <span class="token comment">// 不为空，将id加入集合</span>
+                videoIds<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>videoSourceId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token comment">// 判断集合videoIds是否为空</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>videoIds<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token comment">// 调用远程方法，根据多少id进行删除视频</span>
+            vodClient<span class="token punctuation">.</span><span class="token function">deleteBatch</span><span class="token punctuation">(</span>videoIds<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+
+        <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduVideo</span><span class="token punctuation">></span></span> wrapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        wrapper<span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token string">"course_id"</span><span class="token punctuation">,</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        baseMapper<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span>wrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<h1 id="技术点-SpringCloud调用接口流程"><a href="#技术点-SpringCloud调用接口流程" class="headerlink" title="技术点-SpringCloud调用接口流程"></a>技术点-SpringCloud调用接口流程</h1><p>Feign-&gt;Hystrix-&gt;Ribbon-&gt;Http Client</p>
+<p><img src="/myBlog/day10-%E8%AF%BE%E7%A8%8B%E7%AE%A1%E7%90%86/image-20220106234453087.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220106234453087"></p>
+<h1 id="课程管理-项目中整合熔断器"><a href="#课程管理-项目中整合熔断器" class="headerlink" title="课程管理-项目中整合熔断器"></a>课程管理-项目中整合熔断器</h1><p>导入依赖</p>
+<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-netflix-ribbon<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+
+<span class="token comment">&lt;!--hystrix依赖，主要是用  @HystrixCommand --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-netflix-hystrix<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>配置文件开启熔断器</p>
+<div class="code-wrapper"><pre class="line-numbers language-pro" data-language="pro"><code class="language-pro">#开启熔断机制
+feign.hystrix.enabled&#x3D;true
+# 设置hystrix超时时间，默认1000ms
+# hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds&#x3D;6000<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>编写调用远程方法接口的实现类</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">VodFileDegradeFeignClient</span> <span class="token keyword">implements</span> <span class="token class-name">VodClient</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token comment">// 熔断器，服务发送错误时调用次方法</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">deleteAlyVideo</span><span class="token punctuation">(</span><span class="token class-name">String</span> id<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">message</span><span class="token punctuation">(</span><span class="token string">"删除视频失败"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">deleteBatch</span><span class="token punctuation">(</span><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> videoIddList<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">message</span><span class="token punctuation">(</span><span class="token string">"删除多个视频失败"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>在接口的Feign加入fallback属性</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
+<span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"service-vod"</span><span class="token punctuation">,</span>fallback <span class="token operator">=</span> <span class="token class-name">VodFileDegradeFeignClient</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>     <span class="token comment">// 远程调用服务名称</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">VodClient</span> <span class="token punctuation">&#123;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+
+<p>修改删除小节的方法，Debug测试</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@DeleteMapping</span><span class="token punctuation">(</span><span class="token string">"&#123;id&#125;"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">deleteVideo</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> id<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token comment">// 根据小节id查询出视频id</span>
+    <span class="token class-name">EduVideo</span> eduVideo <span class="token operator">=</span> eduVideoService<span class="token punctuation">.</span><span class="token function">getById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> videoSourceId <span class="token operator">=</span> eduVideo<span class="token punctuation">.</span><span class="token function">getVideoSourceId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 先判断得到的视频id是否为空</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>videoSourceId<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token comment">// 根据视频id删除阿里云的视频</span>
+        <span class="token class-name">R</span> result <span class="token operator">=</span> vodClient<span class="token punctuation">.</span><span class="token function">deleteAlyVideo</span><span class="token punctuation">(</span>videoSourceId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>result<span class="token punctuation">.</span><span class="token function">getCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">20001</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">GuliException</span><span class="token punctuation">(</span><span class="token number">20001</span><span class="token punctuation">,</span><span class="token string">"删除视频失败，熔断器..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    eduVideoService<span class="token punctuation">.</span><span class="token function">removeById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/myBlog/categories/%E9%A1%B9%E7%9B%AE-%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2-%E7%AC%94%E8%AE%B0/">项目|谷粒学院|笔记</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/myBlog/tags/project/">project</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/myBlog/day11-%E9%A6%96%E9%A1%B5%E6%95%B0%E6%8D%AE%E6%98%BE%E7%A4%BA/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">day11-首页数据显示</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/myBlog/day18-%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86_Nacos%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83_Git/">
+                        <span class="hidden-mobile">day18-权限管理_Nacos配置中心_Git</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://github.com" target="_blank" rel="nofollow noopener"><span>GitHub</span></a> <i class="iconfont icon-love"></i> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+  
+  <div>
+      <span id="timeDate">载入天数...</span>
+      <span id="times">载入时分秒...</span>
+      <script>
+      var now = new Date();
+      function createtime(){
+          var grt= new Date("11/11/2021 00:00:00");//此处修改你的建站时间或者网站上线时间
+          now.setTime(now.getTime()+250);
+          days = (now - grt ) / 1000 / 60 / 60 / 24;
+          dnum = Math.floor(days);
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+          hnum = Math.floor(hours);
+          if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+          }
+          minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes);
+          if(String(mnum).length ==1 ){
+                    mnum = "0" + mnum;
+          }
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds);
+          if(String(snum).length ==1 ){
+                    snum = "0" + snum;
+          }
+          document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+          document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+      }
+      setInterval("createtime()",250);
+      </script>
+    </div>
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/myBlog/js/events.js" ></script>
+<script  src="/myBlog/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/myBlog/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/myBlog/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/myBlog/js/boot.js" ></script>
+
+
+</body>
+</html>

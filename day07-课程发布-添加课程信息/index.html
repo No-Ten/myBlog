@@ -1,0 +1,968 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/myBlog/img/favicon.png">
+  <link rel="icon" href="/myBlog/img/browserTitle.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Ten">
+  <meta name="keywords" content="">
+  <meta name="description" content="day07-课程发布-添加课程信息课程管理-添加课程信息接口课程相关表的关系  课程发布流程  执行代码生成器，将这四个表”edu_course”,”edu_course_description”,”edu_chapter”,”edu_video”的相关代码生成 编写CourseInfoVo用于接收传进来的信息 @ApiModel(value &#x3D; &quot;课程基本信息&quot;, description &#x3D; &quot;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day07-课程发布-添加课程信息">
+<meta property="og:url" content="https://no-ten.github.io/day07-%E8%AF%BE%E7%A8%8B%E5%8F%91%E5%B8%83-%E6%B7%BB%E5%8A%A0%E8%AF%BE%E7%A8%8B%E4%BF%A1%E6%81%AF/index.html">
+<meta property="og:site_name" content="TBlog">
+<meta property="og:description" content="day07-课程发布-添加课程信息课程管理-添加课程信息接口课程相关表的关系  课程发布流程  执行代码生成器，将这四个表”edu_course”,”edu_course_description”,”edu_chapter”,”edu_video”的相关代码生成 编写CourseInfoVo用于接收传进来的信息 @ApiModel(value &#x3D; &quot;课程基本信息&quot;, description &#x3D; &quot;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/day07-%E8%AF%BE%E7%A8%8B%E5%8F%91%E5%B8%83-%E6%B7%BB%E5%8A%A0%E8%AF%BE%E7%A8%8B%E4%BF%A1%E6%81%AF/05-%E8%AF%BE%E7%A8%8B%E7%9B%B8%E5%85%B3%E8%A1%A8%E5%85%B3%E7%B3%BB.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/day07-%E8%AF%BE%E7%A8%8B%E5%8F%91%E5%B8%83-%E6%B7%BB%E5%8A%A0%E8%AF%BE%E7%A8%8B%E4%BF%A1%E6%81%AF/04-%E8%AF%BE%E7%A8%8B%E5%8F%91%E5%B8%83%E6%B5%81%E7%A8%8B%E7%9A%84%E8%AF%B4%E6%98%8E.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/day07-%E8%AF%BE%E7%A8%8B%E5%8F%91%E5%B8%83-%E6%B7%BB%E5%8A%A0%E8%AF%BE%E7%A8%8B%E4%BF%A1%E6%81%AF/image-20211225171651508.png">
+<meta property="article:published_time" content="2021-12-24T11:50:42.183Z">
+<meta property="article:modified_time" content="2022-01-06T17:39:05.058Z">
+<meta property="article:author" content="Ten">
+<meta property="article:tag" content="project">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://no-ten.github.io/myBlog/day07-%E8%AF%BE%E7%A8%8B%E5%8F%91%E5%B8%83-%E6%B7%BB%E5%8A%A0%E8%AF%BE%E7%A8%8B%E4%BF%A1%E6%81%AF/05-%E8%AF%BE%E7%A8%8B%E7%9B%B8%E5%85%B3%E8%A1%A8%E5%85%B3%E7%B3%BB.png">
+  
+  <title>day07-课程发布-添加课程信息 - TBlog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/myBlog/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/myBlog/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"no-ten.github.io","root":"/myBlog/","version":"1.8.12","typing":{"enable":true,"typeSpeed":230,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/myBlog/local-search.xml"};
+  </script>
+  <script  src="/myBlog/js/utils.js" ></script>
+  <script  src="/myBlog/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/myBlog/atom.xml" title="TBlog" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/myBlog/">
+      <strong>TBlog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/myBlog/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="day07-课程发布-添加课程信息">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Ten
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-24 19:50" pubdate>
+        2021年12月24日晚上7点50分 
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      12k 字
+    </span>
+  
+
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">day07-课程发布-添加课程信息</h1>
+            
+            <div class="markdown-body">
+              <h1 id="day07-课程发布-添加课程信息"><a href="#day07-课程发布-添加课程信息" class="headerlink" title="day07-课程发布-添加课程信息"></a>day07-课程发布-添加课程信息</h1><h1 id="课程管理-添加课程信息接口"><a href="#课程管理-添加课程信息接口" class="headerlink" title="课程管理-添加课程信息接口"></a>课程管理-添加课程信息接口</h1><p>课程相关表的关系</p>
+<p><img src="/myBlog/day07-%E8%AF%BE%E7%A8%8B%E5%8F%91%E5%B8%83-%E6%B7%BB%E5%8A%A0%E8%AF%BE%E7%A8%8B%E4%BF%A1%E6%81%AF/05-%E8%AF%BE%E7%A8%8B%E7%9B%B8%E5%85%B3%E8%A1%A8%E5%85%B3%E7%B3%BB.png" srcset="/myBlog/img/loading.gif" lazyload alt="05-课程相关表关系"></p>
+<p>课程发布流程</p>
+<p><img src="/myBlog/day07-%E8%AF%BE%E7%A8%8B%E5%8F%91%E5%B8%83-%E6%B7%BB%E5%8A%A0%E8%AF%BE%E7%A8%8B%E4%BF%A1%E6%81%AF/04-%E8%AF%BE%E7%A8%8B%E5%8F%91%E5%B8%83%E6%B5%81%E7%A8%8B%E7%9A%84%E8%AF%B4%E6%98%8E.png" srcset="/myBlog/img/loading.gif" lazyload alt="04-课程发布流程的说明"></p>
+<p>执行代码生成器，将这四个表”edu_course”,”edu_course_description”,”edu_chapter”,”edu_video”的相关代码生成</p>
+<h2 id="编写CourseInfoVo"><a href="#编写CourseInfoVo" class="headerlink" title="编写CourseInfoVo"></a>编写CourseInfoVo</h2><p>用于接收传进来的信息</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@ApiModel</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"课程基本信息"</span><span class="token punctuation">,</span> description <span class="token operator">=</span> <span class="token string">"编辑课程基本信息的表单对象"</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Data</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CourseInfoVo</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"课程ID"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> id<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"课程讲师ID"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> teacherId<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"课程专业ID"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> subjectId<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"课程专业父级ID"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> subjectParentId<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"课程标题"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> title<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"课程销售价格，设置为0则可免费观看"</span><span class="token punctuation">)</span>
+    <span class="token comment">// 0.01</span>
+    <span class="token keyword">private</span> <span class="token class-name">BigDecimal</span> price<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"总课时"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">Integer</span> lessonNum<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"课程封面图片路径"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> cover<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"课程简介"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> description<span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h2 id="编写EduCourseController"><a href="#编写EduCourseController" class="headerlink" title="编写EduCourseController"></a>编写EduCourseController</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Api</span><span class="token punctuation">(</span>description<span class="token operator">=</span><span class="token string">"课程管理"</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@RestController</span>
+<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/eduservice/course"</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@CrossOrigin</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">EduCourseController</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">EduCourseService</span> eduCourseService<span class="token punctuation">;</span>
+
+    <span class="token comment">// 添加课程信息</span>
+    <span class="token annotation punctuation">@ApiOperation</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"新增课程"</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"addCourseInfo"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">addCourseInfo</span><span class="token punctuation">(</span>
+            <span class="token annotation punctuation">@ApiParam</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"CourseInfoForm"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">"课程基本信息"</span><span class="token punctuation">,</span> required <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+            <span class="token annotation punctuation">@RequestBody</span> <span class="token class-name">CourseInfoVo</span> courseInfoVo<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        eduCourseService<span class="token punctuation">.</span><span class="token function">saveCourseInfo</span><span class="token punctuation">(</span>courseInfoVo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h2 id="EduCourseService接口"><a href="#EduCourseService接口" class="headerlink" title="EduCourseService接口"></a>EduCourseService接口</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">EduCourseService</span> <span class="token keyword">extends</span> <span class="token class-name">IService</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduCourse</span><span class="token punctuation">></span></span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 添加课程信息</span>
+    <span class="token keyword">void</span> <span class="token function">saveCourseInfo</span><span class="token punctuation">(</span><span class="token class-name">CourseInfoVo</span> courseInfoVo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h2 id="EduCourseServiceImpl实现类"><a href="#EduCourseServiceImpl实现类" class="headerlink" title="EduCourseServiceImpl实现类"></a>EduCourseServiceImpl实现类</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">EduCourseServiceImpl</span> <span class="token keyword">extends</span> <span class="token class-name">ServiceImpl</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduCourseMapper</span><span class="token punctuation">,</span> <span class="token class-name">EduCourse</span><span class="token punctuation">></span></span> <span class="token keyword">implements</span> <span class="token class-name">EduCourseService</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token comment">// 为了添加课程描述信息到数据库</span>
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">EduCourseDescriptionService</span> eduCourseDescriptionService<span class="token punctuation">;</span>
+
+    <span class="token comment">// 添加课程信息</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">saveCourseInfo</span><span class="token punctuation">(</span><span class="token class-name">CourseInfoVo</span> courseInfoVo<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 添加课程基本信息</span>
+        <span class="token comment">// 由于添加到数据库需要的是EduCourse，所以先创建一个EduCourse对象</span>
+        <span class="token class-name">EduCourse</span> eduCourse <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">EduCourse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 将传进来的vo对象赋值给新建的EduCourse对象</span>
+        <span class="token class-name">BeanUtils</span><span class="token punctuation">.</span><span class="token function">copyProperties</span><span class="token punctuation">(</span>courseInfoVo<span class="token punctuation">,</span>eduCourse<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 保存到数据库</span>
+        <span class="token keyword">int</span> insert <span class="token operator">=</span> baseMapper<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>eduCourse<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>insert <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">GuliException</span><span class="token punctuation">(</span><span class="token number">20001</span><span class="token punctuation">,</span><span class="token string">"课程信息保存失败"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token comment">// 获取课程信息的id</span>
+        <span class="token class-name">String</span> cid <span class="token operator">=</span> eduCourse<span class="token punctuation">.</span><span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 添加课程描述信息</span>
+        <span class="token class-name">EduCourseDescription</span> eduCourseDescription <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">EduCourseDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        eduCourseDescription<span class="token punctuation">.</span><span class="token function">setDescription</span><span class="token punctuation">(</span>courseInfoVo<span class="token punctuation">.</span><span class="token function">getDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        eduCourseDescription<span class="token punctuation">.</span><span class="token function">setId</span><span class="token punctuation">(</span>cid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        eduCourseDescriptionService<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>eduCourseDescription<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h2 id="修改EduCourseDescription的主键生成策略"><a href="#修改EduCourseDescription的主键生成策略" class="headerlink" title="修改EduCourseDescription的主键生成策略"></a>修改EduCourseDescription的主键生成策略</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"创建时间"</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@TableField</span><span class="token punctuation">(</span>fill <span class="token operator">=</span> <span class="token class-name">FieldFill</span><span class="token punctuation">.</span>INSERT<span class="token punctuation">)</span>
+<span class="token keyword">private</span> <span class="token class-name">Date</span> gmtCreate<span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"更新时间"</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@TableField</span><span class="token punctuation">(</span>fill <span class="token operator">=</span> <span class="token class-name">FieldFill</span><span class="token punctuation">.</span>INSERT_UPDATE<span class="token punctuation">)</span>
+<span class="token keyword">private</span> <span class="token class-name">Date</span> gmtModified<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<h1 id="课程管理-添加课程信息前端"><a href="#课程管理-添加课程信息前端" class="headerlink" title="课程管理-添加课程信息前端"></a>课程管理-添加课程信息前端</h1><h2 id="添加路由"><a href="#添加路由" class="headerlink" title="添加路由"></a>添加路由</h2><div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token punctuation">&#123;</span>
+    path<span class="token operator">:</span> <span class="token string">'/course'</span><span class="token punctuation">,</span>
+    component<span class="token operator">:</span> Layout<span class="token punctuation">,</span>
+    redirect<span class="token operator">:</span> <span class="token string">'/course/list'</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'Course'</span><span class="token punctuation">,</span>
+    meta<span class="token operator">:</span> <span class="token punctuation">&#123;</span> title<span class="token operator">:</span> <span class="token string">'课程管理'</span><span class="token punctuation">,</span> icon<span class="token operator">:</span> <span class="token string">'form'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    children<span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">&#123;</span>
+        path<span class="token operator">:</span> <span class="token string">'list'</span><span class="token punctuation">,</span>
+        name<span class="token operator">:</span> <span class="token string">'EduCourseList'</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'@/views/edu/course/list'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        meta<span class="token operator">:</span> <span class="token punctuation">&#123;</span> title<span class="token operator">:</span> <span class="token string">'课程列表'</span> <span class="token punctuation">&#125;</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token punctuation">&#123;</span>
+        path<span class="token operator">:</span> <span class="token string">'info'</span><span class="token punctuation">,</span>
+        name<span class="token operator">:</span> <span class="token string">'EduCourseInfo'</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'@/views/edu/course/info'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        meta<span class="token operator">:</span> <span class="token punctuation">&#123;</span> title<span class="token operator">:</span> <span class="token string">'发布课程'</span> <span class="token punctuation">&#125;</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token punctuation">&#123;</span>
+        path<span class="token operator">:</span> <span class="token string">'info/:id'</span><span class="token punctuation">,</span>
+        name<span class="token operator">:</span> <span class="token string">'EduCourseInfoEdit'</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'@/views/edu/course/info'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        meta<span class="token operator">:</span> <span class="token punctuation">&#123;</span> title<span class="token operator">:</span> <span class="token string">'编辑课程基本信息'</span><span class="token punctuation">,</span> noCache<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        hidden<span class="token operator">:</span> <span class="token boolean">true</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token punctuation">&#123;</span>
+        path<span class="token operator">:</span> <span class="token string">'chapter/:id'</span><span class="token punctuation">,</span>
+        name<span class="token operator">:</span> <span class="token string">'EduCourseChapterEdit'</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'@/views/edu/course/chapter'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        meta<span class="token operator">:</span> <span class="token punctuation">&#123;</span> title<span class="token operator">:</span> <span class="token string">'编辑课程大纲'</span><span class="token punctuation">,</span> noCache<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        hidden<span class="token operator">:</span> <span class="token boolean">true</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token punctuation">&#123;</span>
+        path<span class="token operator">:</span> <span class="token string">'publish/:id'</span><span class="token punctuation">,</span>
+        name<span class="token operator">:</span> <span class="token string">'EduCoursePublishEdit'</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'@/views/edu/course/publish'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        meta<span class="token operator">:</span> <span class="token punctuation">&#123;</span> title<span class="token operator">:</span> <span class="token string">'发布课程'</span><span class="token punctuation">,</span> noCache<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        hidden<span class="token operator">:</span> <span class="token boolean">true</span>
+      <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h2 id="添加vue组件"><a href="#添加vue组件" class="headerlink" title="添加vue组件"></a>添加vue组件</h2><p>chapter.vue,info,vue,list.vue,publish.vue</p>
+<h2 id="课程信息页面"><a href="#课程信息页面" class="headerlink" title="课程信息页面"></a>课程信息页面</h2><p>info.vue</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
+   &lt;div class&#x3D;&quot;app-container&quot;&gt;
+     &lt;h2 style&#x3D;&quot;text-align: center;&quot;&gt;发布新课程&lt;&#x2F;h2&gt;
+     &lt;el-steps :active&#x3D;&quot;1&quot; process-status&#x3D;&quot;wait&quot; align-center style&#x3D;&quot;margin-bottom: 40px;&quot;&gt;
+       &lt;el-step title&#x3D;&quot;填写课程基本信息&quot;&#x2F;&gt;
+       &lt;el-step title&#x3D;&quot;创建课程大纲&quot;&#x2F;&gt;
+       &lt;el-step title&#x3D;&quot;课程发布&quot;&#x2F;&gt;
+     &lt;&#x2F;el-steps&gt;
+     &lt;el-form label-width&#x3D;&quot;120px&quot;&gt;
+       &lt;el-form-item&gt;
+         &lt;el-button :disabled&#x3D;&quot;saveBtnDisabled&quot; type&#x3D;&quot;primary&quot; @click&#x3D;&quot;next&quot;&gt;保存并下一步&lt;&#x2F;el-button&gt;
+       &lt;&#x2F;el-form-item&gt;
+     &lt;&#x2F;el-form&gt;
+   &lt;&#x2F;div&gt;
+ &lt;&#x2F;template&gt;
+&lt;script&gt;
+export default &#123;
+    data()&#123;
+        return&#123;
+            saveBtnDisabled:false    &#x2F;&#x2F; 保存按钮是否禁用
+        &#125;
+    &#125;,
+    created()&#123;
+
+    &#125;,
+    methods:&#123;
+        next()&#123;
+            this.$router.push(&#123; path: &#39;&#x2F;course&#x2F;chapter&#x2F;1&#39; &#125;)
+        &#125;
+    &#125;
+&#125;
+&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h2 id="课程大纲页面"><a href="#课程大纲页面" class="headerlink" title="课程大纲页面"></a>课程大纲页面</h2><p>chapter.vue</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
+   &lt;div class&#x3D;&quot;app-container&quot;&gt;
+     &lt;h2 style&#x3D;&quot;text-align: center;&quot;&gt;发布新课程&lt;&#x2F;h2&gt;
+     &lt;el-steps :active&#x3D;&quot;2&quot; process-status&#x3D;&quot;wait&quot; align-center style&#x3D;&quot;margin-bottom: 40px;&quot;&gt;
+       &lt;el-step title&#x3D;&quot;填写课程基本信息&quot;&#x2F;&gt;
+       &lt;el-step title&#x3D;&quot;创建课程大纲&quot;&#x2F;&gt;
+       &lt;el-step title&#x3D;&quot;最终发布&quot;&#x2F;&gt;
+     &lt;&#x2F;el-steps&gt;
+     &lt;el-form label-width&#x3D;&quot;120px&quot;&gt;
+       &lt;el-form-item&gt;
+         &lt;el-button @click&#x3D;&quot;previous&quot;&gt;上一步&lt;&#x2F;el-button&gt;
+         &lt;el-button :disabled&#x3D;&quot;saveBtnDisabled&quot; type&#x3D;&quot;primary&quot; @click&#x3D;&quot;next&quot;&gt;下一步&lt;&#x2F;el-button&gt;
+       &lt;&#x2F;el-form-item&gt;
+     &lt;&#x2F;el-form&gt;
+   &lt;&#x2F;div&gt;
+ &lt;&#x2F;template&gt;
+ &lt;script&gt;
+ export default &#123;
+   data() &#123;
+     return &#123;
+       saveBtnDisabled: false &#x2F;&#x2F; 保存按钮是否禁用
+     &#125;
+   &#125;,
+   created() &#123;
+     console.log(&#39;chapter created&#39;)
+   &#125;,
+   methods: &#123;
+     previous() &#123;
+       this.$router.push(&#123; path: &#39;&#x2F;course&#x2F;info&#x2F;1&#39; &#125;)
+     &#125;,
+     next() &#123;
+       console.log(&#39;next&#39;)
+       this.$router.push(&#123; path: &#39;&#x2F;course&#x2F;publish&#x2F;1&#39; &#125;)
+     &#125;
+   &#125;
+ &#125;
+ &lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h2 id="课程发布页面"><a href="#课程发布页面" class="headerlink" title="课程发布页面"></a>课程发布页面</h2><p>publish.vue</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
+   &lt;div class&#x3D;&quot;app-container&quot;&gt;
+     &lt;h2 style&#x3D;&quot;text-align: center;&quot;&gt;发布新课程&lt;&#x2F;h2&gt;
+     &lt;el-steps :active&#x3D;&quot;3&quot; process-status&#x3D;&quot;wait&quot; align-center style&#x3D;&quot;margin-bottom: 40px;&quot;&gt;
+       &lt;el-step title&#x3D;&quot;填写课程基本信息&quot;&#x2F;&gt;
+       &lt;el-step title&#x3D;&quot;创建课程大纲&quot;&#x2F;&gt;
+       &lt;el-step title&#x3D;&quot;最终发布&quot;&#x2F;&gt;
+     &lt;&#x2F;el-steps&gt;
+     &lt;el-form label-width&#x3D;&quot;120px&quot;&gt;
+       &lt;el-form-item&gt;
+         &lt;el-button @click&#x3D;&quot;previous&quot;&gt;返回修改&lt;&#x2F;el-button&gt;
+         &lt;el-button :disabled&#x3D;&quot;saveBtnDisabled&quot; type&#x3D;&quot;primary&quot; @click&#x3D;&quot;publish&quot;&gt;发布课程&lt;&#x2F;el-button&gt;
+       &lt;&#x2F;el-form-item&gt;
+     &lt;&#x2F;el-form&gt;
+   &lt;&#x2F;div&gt;
+ &lt;&#x2F;template&gt;
+ &lt;script&gt;
+ export default &#123;
+   data() &#123;
+     return &#123;
+       saveBtnDisabled: false &#x2F;&#x2F; 保存按钮是否禁用
+     &#125;
+   &#125;,
+   created() &#123;
+   &#125;,
+   methods: &#123;
+     previous() &#123;
+       this.$router.push(&#123; path: &#39;&#x2F;course&#x2F;chapter&#x2F;1&#39; &#125;)
+     &#125;,
+     publish() &#123;
+       this.$router.push(&#123; path: &#39;&#x2F;course&#x2F;list&#39; &#125;)
+     &#125;
+   &#125;
+ &#125;
+ &lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<h2 id="讲师下拉列表显示"><a href="#讲师下拉列表显示" class="headerlink" title="讲师下拉列表显示"></a>讲师下拉列表显示</h2><h3 id="组件模板"><a href="#组件模板" class="headerlink" title="组件模板"></a>组件模板</h3><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!-- 课程讲师 TODO --&gt;
+        &lt;el-form-item label&#x3D;&quot;课程讲师&quot;&gt;
+        &lt;el-select
+            v-model&#x3D;&quot;courseInfo.teacherId&quot;
+            placeholder&#x3D;&quot;请选择&quot;&gt;
+            &lt;el-option
+            v-for&#x3D;&quot;teacher in teacherList&quot;
+            :key&#x3D;&quot;teacher.id&quot;
+            :label&#x3D;&quot;teacher.name&quot;
+            :value&#x3D;&quot;teacher.id&quot;&#x2F;&gt;
+        &lt;&#x2F;el-select&gt;
+        &lt;&#x2F;el-form-item&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h3 id="定义api"><a href="#定义api" class="headerlink" title="定义api"></a>定义api</h3><p>vue-admin-template-master\src\api\edu\course.js</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 查询所有讲师，下拉列表</span>
+<span class="token function">getListTeacher</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+        url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/eduservice/teacher/findAll</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        method<span class="token operator">:</span> <span class="token string">'get'</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h3 id="组件脚本"><a href="#组件脚本" class="headerlink" title="组件脚本"></a>组件脚本</h3><p>定义data</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">teacherList: [] &#x2F;&#x2F; 讲师列表<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<p>表单初始化时获取讲师列表</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">created()&#123;
+    this.findTeacherList()
+&#125;,
+methods:&#123;
+    &#x2F;&#x2F; 下拉列表查询所有讲师
+    findTeacherList()&#123;
+        course.getListTeacher()
+        .then(response &#x3D;&gt;&#123;
+            this.teacherList  &#x3D; response.data.items
+        &#125;)
+    &#125;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<h2 id="显示课程分类-多级联动"><a href="#显示课程分类-多级联动" class="headerlink" title="显示课程分类(多级联动)"></a>显示课程分类(多级联动)</h2><p><img src="/myBlog/day07-%E8%AF%BE%E7%A8%8B%E5%8F%91%E5%B8%83-%E6%B7%BB%E5%8A%A0%E8%AF%BE%E7%A8%8B%E4%BF%A1%E6%81%AF/image-20211225171651508.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20211225171651508"></p>
+<h3 id="获取一级分类"><a href="#获取一级分类" class="headerlink" title="获取一级分类"></a>获取一级分类</h3><h4 id="组件数据定义"><a href="#组件数据定义" class="headerlink" title="组件数据定义"></a>组件数据定义</h4><p>定义在data中</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">subjectOneList:[],  &#x2F;&#x2F; 一级分类
+subjectTwoList:[]   &#x2F;&#x2F; 二级分类<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+<h4 id="组件模板-1"><a href="#组件模板-1" class="headerlink" title="组件模板"></a>组件模板</h4><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!-- 所属分类：级联下拉列表 --&gt;
+         &lt;!-- 一级分类 --&gt;
+         &lt;el-form-item label&#x3D;&quot;课程类别&quot;&gt;
+         &lt;el-select
+             v-model&#x3D;&quot;courseInfo.subjectParentId&quot;
+             placeholder&#x3D;&quot;一级分类&quot;
+             @change&#x3D;&quot;subjectLevelOneChanged&quot;&gt;
+             &lt;el-option
+             v-for&#x3D;&quot;subject in subjectOneList&quot;
+             :key&#x3D;&quot;subject.id&quot;
+             :label&#x3D;&quot;subject.title&quot;
+             :value&#x3D;&quot;subject.id&quot;&#x2F;&gt;
+         &lt;&#x2F;el-select&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h4 id="组件脚本-1"><a href="#组件脚本-1" class="headerlink" title="组件脚本"></a>组件脚本</h4><p>表单初始化时获取一级分类嵌套列表，引入subject api</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">import subject from &#39;@&#x2F;api&#x2F;edu&#x2F;subject&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<p>定义方法</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">created()&#123;
+    ...
+    &#x2F;&#x2F; 初始化一级分类
+    this.getOneSubjectList()
+&#125;,
+methods:&#123;
+    &#x2F;&#x2F; 查询一级分类
+    getOneSubjectList()&#123;
+        subject.getSubjectList()
+        .then(response &#x3D;&gt;&#123;
+            this.subjectOneList &#x3D; response.data.list
+        &#125;)
+    &#125;,
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h3 id="级联显示二级分类"><a href="#级联显示二级分类" class="headerlink" title="级联显示二级分类"></a>级联显示二级分类</h3><h4 id="组件模板-2"><a href="#组件模板-2" class="headerlink" title="组件模板"></a>组件模板</h4><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!-- 二级分类 --&gt;
+         &lt;el-select v-model&#x3D;&quot;courseInfo.subjectId&quot; placeholder&#x3D;&quot;二级分类&quot;&gt;
+             &lt;el-option
+             v-for&#x3D;&quot;subject in subjectTwoList&quot;
+             :key&#x3D;&quot;subject.id&quot;
+             :label&#x3D;&quot;subject.title&quot;
+             :value&#x3D;&quot;subject.id&quot;&#x2F;&gt;
+         &lt;&#x2F;el-select&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h4 id="注册change事件"><a href="#注册change事件" class="headerlink" title="注册change事件"></a>注册change事件</h4><p>在一级分类的<el-select>组件中注册change事件</el-select></p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;el-select @change&#x3D;&quot;subjectLevelOneChanged&quot; ......<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h4 id="定义change事件方法"><a href="#定义change事件方法" class="headerlink" title="定义change事件方法"></a>定义change事件方法</h4><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&#x2F;&#x2F; 显示二级分类，当选择一级分类时，显示二级分类
+      subjectLevelOneChanged(value)&#123;
+          &#x2F;&#x2F; 遍历一级分类的集合
+          for(var i &#x3D; 0; this.subjectOneList.length; i++)&#123;
+              &#x2F;&#x2F; 每一个一级分类
+              var oneSubject &#x3D; this.subjectOneList[i]
+
+              &#x2F;&#x2F; 判断一级分类的id是否和传进来的id一样
+              if(value &#x3D;&#x3D;&#x3D; oneSubject.id)&#123;
+                  &#x2F;&#x2F; 从一级分类中获取二级分类
+                  this.subjectTwoList &#x3D; oneSubject.children
+                  this.courseInfo.subjectId &#x3D; &#39;&#39;
+              &#125;
+          &#125;
+      &#125;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h2 id="封面上传"><a href="#封面上传" class="headerlink" title="封面上传"></a>封面上传</h2><h3 id="组件模板-3"><a href="#组件模板-3" class="headerlink" title="组件模板"></a>组件模板</h3><p>在info.vue中添加上传组件模板</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!-- 课程封面--&gt;
+      &lt;el-form-item label&#x3D;&quot;课程封面&quot;&gt;
+      &lt;el-upload
+          :show-file-list&#x3D;&quot;false&quot;
+          :on-success&#x3D;&quot;handleAvatarSuccess&quot;
+          :before-upload&#x3D;&quot;beforeAvatarUpload&quot;
+          :action&#x3D;&quot;BASE_API+&#39;&#x2F;eduoss&#x2F;fileoss&#39;&quot;
+          class&#x3D;&quot;avatar-uploader&quot;&gt;
+          &lt;img :src&#x3D;&quot;courseInfo.cover&quot;&gt;
+      &lt;&#x2F;el-upload&gt;
+      &lt;&#x2F;el-form-item&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h3 id="结果回调"><a href="#结果回调" class="headerlink" title="结果回调"></a>结果回调</h3><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">methods:&#123;
+        &#x2F;&#x2F; 上传成功
+        handleAvatarSuccess(res, file) &#123;
+            console.log(res)&#x2F;&#x2F; 上传响应
+            console.log(URL.createObjectURL(file.raw))&#x2F;&#x2F; base64编码
+            this.courseInfo.cover &#x3D; res.data.url
+        &#125;,
+        &#x2F;&#x2F; 上传之前
+        beforeAvatarUpload(file) &#123;
+            const isJPG &#x3D; file.type &#x3D;&#x3D;&#x3D; &#39;image&#x2F;jpeg&#39;
+            const isLt2M &#x3D; file.size &#x2F; 1024 &#x2F; 1024 &lt; 2
+            if (!isJPG) &#123;
+                this.$message.error(&#39;上传头像图片只能是 JPG 格式!&#39;)
+            &#125;
+            if (!isLt2M) &#123;
+                this.$message.error(&#39;上传头像图片大小不能超过 2MB!&#39;)
+            &#125;
+            return isJPG &amp;&amp; isLt2M
+        &#125;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<h1 id="Tinymce可视化编辑器"><a href="#Tinymce可视化编辑器" class="headerlink" title="Tinymce可视化编辑器"></a>Tinymce可视化编辑器</h1><h2 id="组件初始化"><a href="#组件初始化" class="headerlink" title="组件初始化"></a>组件初始化</h2><p>Tinymce是一个传统javascript插件，默认不能用于Vue.js因此需要做一些特殊的整合步骤</p>
+<h3 id="复制脚本库"><a href="#复制脚本库" class="headerlink" title="复制脚本库"></a>复制脚本库</h3><p>将脚本库复制到项目的static目录下（在vue-element-admin-master的static路径下）</p>
+<h3 id="配置html变量"><a href="#配置html变量" class="headerlink" title="配置html变量"></a>配置html变量</h3><p>在 guli-admin/build/webpack.dev.conf.js 中添加配置</p>
+<p>使在html页面中可是使用这里定义的BASE_URL变量</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">new</span> <span class="token class-name">HtmlWebpackPlugin</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+    <span class="token operator">...</span><span class="token operator">...</span>
+    templateParameters<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token constant">BASE_URL</span><span class="token operator">:</span> config<span class="token punctuation">.</span>dev<span class="token punctuation">.</span>assetsPublicPath <span class="token operator">+</span> config<span class="token punctuation">.</span>dev<span class="token punctuation">.</span>assetsSubDirectory
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h3 id="引入js脚本"><a href="#引入js脚本" class="headerlink" title="引入js脚本"></a>引入js脚本</h3><p>在guli-admin/index.html 中引入js脚本</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token operator">&lt;</span><span class="token operator">%=</span> <span class="token constant">BASE_URL</span> <span class="token operator">%</span><span class="token operator">></span><span class="token operator">/</span>tinymce4<span class="token punctuation">.</span><span class="token number">7.5</span><span class="token operator">/</span>tinymce<span class="token punctuation">.</span>min<span class="token punctuation">.</span>js<span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+<span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token operator">&lt;</span><span class="token operator">%=</span> <span class="token constant">BASE_URL</span> <span class="token operator">%</span><span class="token operator">></span><span class="token operator">/</span>tinymce4<span class="token punctuation">.</span><span class="token number">7.5</span><span class="token operator">/</span>langs<span class="token operator">/</span>zh_CN<span class="token punctuation">.</span>js<span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+<h2 id="组件引入"><a href="#组件引入" class="headerlink" title="组件引入"></a>组件引入</h2><p>为了让Tinymce能用于Vue.js项目，vue-element-admin-master对Tinymce进行了封装，下面我们将它引入到我们的课程信息页面</p>
+<h3 id="复制组件"><a href="#复制组件" class="headerlink" title="复制组件"></a>复制组件</h3><p>src/components/Tinymce</p>
+<h3 id="引入组件"><a href="#引入组件" class="headerlink" title="引入组件"></a>引入组件</h3><p>课程信息组件中引入 Tinymce</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">import Tinymce from &#39;@&#x2F;components&#x2F;Tinymce&#39;
+
+export default &#123;
+    &#x2F;&#x2F; 初始化文本编辑器
+    components: &#123; Tinymce &#125;,
+    data()&#123;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h3 id="组件模板-4"><a href="#组件模板-4" class="headerlink" title="组件模板"></a>组件模板</h3><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!-- 课程简介--&gt;
+&lt;el-form-item label&#x3D;&quot;课程简介&quot;&gt;
+    &lt;tinymce :height&#x3D;&quot;300&quot; v-model&#x3D;&quot;courseInfo.description&quot;&#x2F;&gt;
+&lt;&#x2F;el-form-item&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h3 id="组件样式"><a href="#组件样式" class="headerlink" title="组件样式"></a>组件样式</h3><p>在info.vue文件的最后添加如下代码，调整上传图片按钮的高度</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;style scoped&gt;
+.tinymce-container &#123;
+  line-height: 29px;
+&#125;
+&lt;&#x2F;style&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>Tinymce中的图片上传功能直接存储的是图片的base64编码，因此无需图片服务器</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/myBlog/categories/%E9%A1%B9%E7%9B%AE-%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2-%E7%AC%94%E8%AE%B0/">项目|谷粒学院|笔记</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/myBlog/tags/project/">project</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/myBlog/day08-%E8%AF%BE%E7%A8%8B%E7%AE%A1%E7%90%86/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">day08-课程管理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/myBlog/day06-%E6%95%B4%E5%90%88%E9%98%BF%E9%87%8C%E4%BA%91oss%E5%92%8CExcel%E5%AF%BC%E5%85%A5%E5%88%86%E7%B1%BB/">
+                        <span class="hidden-mobile">day06-整合阿里云oss和Excel导入分类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://github.com" target="_blank" rel="nofollow noopener"><span>GitHub</span></a> <i class="iconfont icon-love"></i> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+  
+  <div>
+      <span id="timeDate">载入天数...</span>
+      <span id="times">载入时分秒...</span>
+      <script>
+      var now = new Date();
+      function createtime(){
+          var grt= new Date("11/11/2021 00:00:00");//此处修改你的建站时间或者网站上线时间
+          now.setTime(now.getTime()+250);
+          days = (now - grt ) / 1000 / 60 / 60 / 24;
+          dnum = Math.floor(days);
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+          hnum = Math.floor(hours);
+          if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+          }
+          minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes);
+          if(String(mnum).length ==1 ){
+                    mnum = "0" + mnum;
+          }
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds);
+          if(String(snum).length ==1 ){
+                    snum = "0" + snum;
+          }
+          document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+          document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+      }
+      setInterval("createtime()",250);
+      </script>
+    </div>
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/myBlog/js/events.js" ></script>
+<script  src="/myBlog/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/myBlog/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/myBlog/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/myBlog/js/boot.js" ></script>
+
+
+</body>
+</html>

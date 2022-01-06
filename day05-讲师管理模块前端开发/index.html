@@ -1,0 +1,1385 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/myBlog/img/favicon.png">
+  <link rel="icon" href="/myBlog/img/browserTitle.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Ten">
+  <meta name="keywords" content="">
+  <meta name="description" content="day05-讲师管理模块前端开发后台系统登录功能改造在config中的dev.env.js把地址改成下面的 &#39;use strict&#39; const merge &#x3D; require(&#39;webpack-merge&#39;) const prodEnv &#x3D; require(&#39;.&#x2F;prod.env&#39;)  module.exports &#x3D; merge(prodEnv, &amp;#123;   NODE_ENV: &#39;&quot;de">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day05-讲师管理模块前端开发">
+<meta property="og:url" content="https://no-ten.github.io/day05-%E8%AE%B2%E5%B8%88%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9D%97%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/index.html">
+<meta property="og:site_name" content="TBlog">
+<meta property="og:description" content="day05-讲师管理模块前端开发后台系统登录功能改造在config中的dev.env.js把地址改成下面的 &#39;use strict&#39; const merge &#x3D; require(&#39;webpack-merge&#39;) const prodEnv &#x3D; require(&#39;.&#x2F;prod.env&#39;)  module.exports &#x3D; merge(prodEnv, &amp;#123;   NODE_ENV: &#39;&quot;de">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/day05-%E8%AE%B2%E5%B8%88%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9D%97%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/image-20211223104513320.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/day05-%E8%AE%B2%E5%B8%88%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9D%97%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/03-%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E4%BB%8B%E7%BB%8D.png">
+<meta property="article:published_time" content="2021-12-22T16:14:18.147Z">
+<meta property="article:modified_time" content="2022-01-06T16:40:25.075Z">
+<meta property="article:author" content="Ten">
+<meta property="article:tag" content="project">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://no-ten.github.io/myBlog/day05-%E8%AE%B2%E5%B8%88%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9D%97%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/image-20211223104513320.png">
+  
+  <title>day05-讲师管理模块前端开发 - TBlog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/myBlog/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/myBlog/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"no-ten.github.io","root":"/myBlog/","version":"1.8.12","typing":{"enable":true,"typeSpeed":230,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/myBlog/local-search.xml"};
+  </script>
+  <script  src="/myBlog/js/utils.js" ></script>
+  <script  src="/myBlog/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/myBlog/atom.xml" title="TBlog" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/myBlog/">
+      <strong>TBlog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/myBlog/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="day05-讲师管理模块前端开发">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Ten
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-23 00:14" pubdate>
+        2021年12月23日凌晨12点14分 
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      20k 字
+    </span>
+  
+
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">day05-讲师管理模块前端开发</h1>
+            
+            <div class="markdown-body">
+              <h1 id="day05-讲师管理模块前端开发"><a href="#day05-讲师管理模块前端开发" class="headerlink" title="day05-讲师管理模块前端开发"></a>day05-讲师管理模块前端开发</h1><h1 id="后台系统登录功能改造"><a href="#后台系统登录功能改造" class="headerlink" title="后台系统登录功能改造"></a>后台系统登录功能改造</h1><p>在config中的dev.env.js把地址改成下面的</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token string">'use strict'</span>
+<span class="token keyword">const</span> merge <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'webpack-merge'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> prodEnv <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./prod.env'</span><span class="token punctuation">)</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token function">merge</span><span class="token punctuation">(</span>prodEnv<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
+  <span class="token constant">NODE_ENV</span><span class="token operator">:</span> <span class="token string">'"development"'</span><span class="token punctuation">,</span>
+  <span class="token comment">//BASE_API: '"https://easy-mock.com/mock/5950a2419adc231f356a6636/vue-admin"',</span>
+  <span class="token constant">BASE_API</span><span class="token operator">:</span> <span class="token string">'"http://localhost:8001"'</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<p>在com.atguigu.eduservice.controller包下面，先模拟一个登录controller</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
+<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/eduservice/user"</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@CrossOrigin</span>    <span class="token comment">// 解决跨域</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">EduLoginController</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token comment">// login</span>
+    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"login"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">login</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"token"</span><span class="token punctuation">,</span><span class="token string">"token"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">// info</span>
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"info"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">info</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"roles"</span><span class="token punctuation">,</span><span class="token string">"roles"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">,</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"avatar"</span><span class="token punctuation">,</span><span class="token string">"http://img.hb.aicdn.com/7378f66599670a3614ce38edf79bf1551dacd8d0f5c70-53yvFv_fw580"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<p>在vue的api文件夹中修改url</p>
+<p><img src="/myBlog/day05-%E8%AE%B2%E5%B8%88%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9D%97%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/image-20211223104513320.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20211223104513320"></p>
+<p>启动后端服务器和前端页面，这时会报一个跨域的错误，只需要在controller上面加@CrossOrigin，重启服务器即可解决跨域问题。</p>
+<h1 id="前端框架开发过程介绍"><a href="#前端框架开发过程介绍" class="headerlink" title="前端框架开发过程介绍"></a>前端框架开发过程介绍</h1><p><img src="/myBlog/day05-%E8%AE%B2%E5%B8%88%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9D%97%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/03-%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E4%BB%8B%E7%BB%8D.png" srcset="/myBlog/img/loading.gif" lazyload alt="03-前端框架开发过程介绍"></p>
+<h1 id="讲师管理前端"><a href="#讲师管理前端" class="headerlink" title="讲师管理前端"></a>讲师管理前端</h1><h2 id="讲师列表"><a href="#讲师列表" class="headerlink" title="讲师列表"></a>讲师列表</h2><p>添加路由</p>
+<p>在src的router的index.js文件中，添加讲师管理路由</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token punctuation">&#123;</span>
+  path<span class="token operator">:</span> <span class="token string">'/teacher'</span><span class="token punctuation">,</span>
+  component<span class="token operator">:</span> Layout<span class="token punctuation">,</span>
+  redirect<span class="token operator">:</span> <span class="token string">'/teacher/table'</span><span class="token punctuation">,</span>
+  name<span class="token operator">:</span> <span class="token string">'讲师管理'</span><span class="token punctuation">,</span>
+  meta<span class="token operator">:</span> <span class="token punctuation">&#123;</span> title<span class="token operator">:</span> <span class="token string">'讲师管理'</span><span class="token punctuation">,</span> icon<span class="token operator">:</span> <span class="token string">'example'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  children<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">&#123;</span>
+      path<span class="token operator">:</span> <span class="token string">'table'</span><span class="token punctuation">,</span>
+      name<span class="token operator">:</span> <span class="token string">'讲师列表'</span><span class="token punctuation">,</span>
+      <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'@/views/edu/teacher/list'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      meta<span class="token operator">:</span> <span class="token punctuation">&#123;</span> title<span class="token operator">:</span> <span class="token string">'讲师列表'</span><span class="token punctuation">,</span> icon<span class="token operator">:</span> <span class="token string">'table'</span> <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#123;</span>
+      path<span class="token operator">:</span> <span class="token string">'save'</span><span class="token punctuation">,</span>
+      name<span class="token operator">:</span> <span class="token string">'添加讲师'</span><span class="token punctuation">,</span>
+      <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'@/views/edu/teacher/save'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      meta<span class="token operator">:</span> <span class="token punctuation">&#123;</span> title<span class="token operator">:</span> <span class="token string">'添加讲师'</span><span class="token punctuation">,</span> icon<span class="token operator">:</span> <span class="token string">'tree'</span> <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<p>在views/edu/teacher下创建list.vue和save.vue文件</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
+    &lt;div class&#x3D;&quot;app-container&quot;&gt;
+        讲师列表
+    &lt;&#x2F;div&gt;
+&lt;&#x2F;template&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<p>在api/edu下面创建teacher.js文件，写方法</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> request <span class="token keyword">from</span> <span class="token string">'@/utils/request'</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span><span class="token punctuation">&#123;</span>
+    <span class="token comment">// 1.讲师列表（条件查询分页）</span>
+    <span class="token comment">// current:当前分页，limit每页记录数，teacherQuery条件对象</span>
+    <span class="token function">getTeacherListPage</span><span class="token punctuation">(</span><span class="token parameter">current<span class="token punctuation">,</span>limit<span class="token punctuation">,</span>teacherQuery</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+            <span class="token comment">// 可以拼接</span>
+            <span class="token comment">//url: '/eduservice/teacher/pageTeacherCondition'+"/"+'current',</span>
+            url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/eduservice/teacher/pageTeacherCondition/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>current<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>limit<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+            method<span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
+            <span class="token comment">// teacherQuery条件对象，后端使用RequestBody获取数据</span>
+            <span class="token comment">// data表示把对象转成json进行传递到接口里面</span>
+            data<span class="token operator">:</span>teacherQuery
+          <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<p>回到刚刚创建的list.vue页面将teacher.js文件引入当前页面，开始编码</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
+    &lt;div class&#x3D;&quot;app-container&quot;&gt;
+        讲师列表
+    &lt;&#x2F;div&gt;
+&lt;&#x2F;template&gt;
+
+&lt;script&gt;
+&#x2F;&#x2F; 引入teacher.js文
+import teacher from &#39;@&#x2F;api&#x2F;edu&#x2F;teacher&#39;
+
+export default &#123;
+    data()&#123;     &#x2F;&#x2F; 定义变量和初始值
+        return&#123;
+            list:null,  &#x2F;&#x2F; 查询之后接口返回集合
+            page : 1,   &#x2F;&#x2F; 当前页
+            limit : 10, &#x2F;&#x2F; 每页的记录数
+            total : 0,  &#x2F;&#x2F; 总记录数
+            teacherQuery:&#123;&#125;    &#x2F;&#x2F; 条封装对象
+
+        &#125;
+    &#125;,
+    created()&#123;      &#x2F;&#x2F; 页面渲染之前执行，调用创建的方法
+        this.getList
+    &#125;,
+    methods:&#123;
+        &#x2F;&#x2F; 讲师列表
+        getList()&#123;
+            teacher.getTeacherListPage(this.current,this.limit,this.teacherQuery)
+            .then(response &#x3D;&gt;&#123;&#x2F;&#x2F; 执行成功
+                &#x2F;&#x2F; response接口接口返回的数据
+                console.log(response);
+            &#125;)     
+            .catch(error &#x3D;&gt;&#123; &#x2F;&#x2F; 执行失败
+                console.log(error);
+            &#125;)   
+        &#125;
+    &#125;
+&#125;
+&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<p>测试看显示是否正确。正确之后，进行数据显示，完整代码如下</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
+    &lt;div class&#x3D;&quot;app-container&quot;&gt;
+        &lt;!-- 表格 --&gt;
+        &lt;el-table
+        v-loading&#x3D;&quot;listLoading&quot;
+        :data&#x3D;&quot;list&quot;
+        element-loading-text&#x3D;&quot;数据加载中&quot;
+        border
+        fit
+        highlight-current-row&gt;
+        &lt;el-table-column
+            label&#x3D;&quot;序号&quot;
+            width&#x3D;&quot;70&quot;
+            align&#x3D;&quot;center&quot;&gt;
+            &lt;template slot-scope&#x3D;&quot;scope&quot;&gt;
+            &#123;&#123; (page - 1) * limit + scope.$index + 1 &#125;&#125;
+            &lt;&#x2F;template&gt;
+        &lt;&#x2F;el-table-column&gt;
+        &lt;el-table-column prop&#x3D;&quot;name&quot; label&#x3D;&quot;名称&quot; width&#x3D;&quot;80&quot; &#x2F;&gt;
+        &lt;el-table-column label&#x3D;&quot;头衔&quot; width&#x3D;&quot;80&quot;&gt;
+            &lt;template slot-scope&#x3D;&quot;scope&quot;&gt;
+            &#123;&#123; scope.row.level&#x3D;&#x3D;&#x3D;1?&#39;高级讲师&#39;:&#39;首席讲师&#39; &#125;&#125;
+            &lt;&#x2F;template&gt;
+        &lt;&#x2F;el-table-column&gt;
+        &lt;el-table-column prop&#x3D;&quot;intro&quot; label&#x3D;&quot;资历&quot; &#x2F;&gt;
+        &lt;el-table-column prop&#x3D;&quot;gmtCreate&quot; label&#x3D;&quot;添加时间&quot; width&#x3D;&quot;160&quot;&#x2F;&gt;
+        &lt;el-table-column prop&#x3D;&quot;sort&quot; label&#x3D;&quot;排序&quot; width&#x3D;&quot;60&quot; &#x2F;&gt;
+        &lt;el-table-column label&#x3D;&quot;操作&quot; width&#x3D;&quot;200&quot; align&#x3D;&quot;center&quot;&gt;
+            &lt;template slot-scope&#x3D;&quot;scope&quot;&gt;
+            &lt;router-link :to&#x3D;&quot;&#39;&#x2F;edu&#x2F;teacher&#x2F;edit&#x2F;&#39;+scope.row.id&quot;&gt;
+                &lt;el-button type&#x3D;&quot;primary&quot; size&#x3D;&quot;mini&quot; icon&#x3D;&quot;el-icon-edit&quot;&gt;修改&lt;&#x2F;el-button&gt;
+            &lt;&#x2F;router-link&gt;
+            &lt;el-button type&#x3D;&quot;danger&quot; size&#x3D;&quot;mini&quot; icon&#x3D;&quot;el-icon-delete&quot; @click&#x3D;&quot;removeDataById(scope.row.id)&quot;&gt;删除&lt;&#x2F;el-button&gt;
+            &lt;&#x2F;template&gt;
+        &lt;&#x2F;el-table-column&gt;
+        &lt;&#x2F;el-table&gt;
+    &lt;&#x2F;div&gt;
+&lt;&#x2F;template&gt;
+
+&lt;script&gt;
+&#x2F;&#x2F; 引入teacher.js文
+import teacher from &#39;@&#x2F;api&#x2F;edu&#x2F;teacher&#39;
+
+export default &#123;
+    data()&#123;     &#x2F;&#x2F; 定义变量和初始值
+        return&#123;
+            list:null,  &#x2F;&#x2F; 查询之后接口返回集合
+            page:1,   &#x2F;&#x2F; 当前页
+            limit:10, &#x2F;&#x2F; 每页的记录数
+            total:0,  &#x2F;&#x2F; 总记录数
+            teacherQuery:&#123;&#125;    &#x2F;&#x2F; 条封装对象
+
+        &#125;
+    &#125;,
+    created()&#123;      &#x2F;&#x2F; 页面渲染之前执行，调用创建的方法
+        this.getList()
+    &#125;,
+    methods:&#123;
+        &#x2F;&#x2F; 讲师列表
+        getList()&#123;
+            teacher.getTeacherListPage(this.page,this.limit,this.teacherQuery)
+                .then(response &#x3D;&gt;&#123;&#x2F;&#x2F; 执行成功
+                    &#x2F;&#x2F; response接口接口返回的数据
+                    &#x2F;&#x2F;console.log(response)
+                    this.list &#x3D; response.data.rows
+                    this.total &#x3D; response.data.total
+                    console.log(this.list)
+                    console.log(this.total)
+                &#125;)     
+                .catch(error &#x3D;&gt;&#123; &#x2F;&#x2F; 执行失败
+                    console.log(error)
+                &#125;)   
+        &#125;
+    &#125;
+&#125;
+&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<p>再次测试。</p>
+<h2 id="讲师分页"><a href="#讲师分页" class="headerlink" title="讲师分页"></a>讲师分页</h2><p>在src/views/edu/teacher/list.vue中的table标签外加分页组件</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 分页 <span class="token operator">--</span><span class="token operator">></span>
+   <span class="token operator">&lt;</span>el<span class="token operator">-</span>pagination
+     <span class="token operator">:</span>current<span class="token operator">-</span>page<span class="token operator">=</span><span class="token string">"page"</span>
+     <span class="token operator">:</span>page<span class="token operator">-</span>size<span class="token operator">=</span><span class="token string">"limit"</span>
+     <span class="token operator">:</span>total<span class="token operator">=</span><span class="token string">"total"</span>
+     style<span class="token operator">=</span><span class="token string">"padding: 30px 0; text-align: center;"</span>
+     layout<span class="token operator">=</span><span class="token string">"total, prev, pager, next, jumper"</span>
+     @current<span class="token operator">-</span>change<span class="token operator">=</span><span class="token string">"getList"</span>
+   <span class="token operator">/</span><span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<p>在getList方法中作下面的修改</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 讲师列表</span>
+       <span class="token function">getList</span><span class="token punctuation">(</span><span class="token parameter">page <span class="token operator">=</span> <span class="token number">1</span></span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+           <span class="token keyword">this</span><span class="token punctuation">.</span>page <span class="token operator">=</span> page
+           teacher<span class="token punctuation">.</span><span class="token function">getTeacherListPage</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>page<span class="token punctuation">,</span><span class="token keyword">this</span><span class="token punctuation">.</span>limit<span class="token punctuation">,</span><span class="token keyword">this</span><span class="token punctuation">.</span>teacherQuery<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<h2 id="讲师条件查询"><a href="#讲师条件查询" class="headerlink" title="讲师条件查询"></a>讲师条件查询</h2><p>在table标签上面添加表单</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>查询表单<span class="token operator">--</span><span class="token operator">></span>
+     <span class="token operator">&lt;</span>el<span class="token operator">-</span>form <span class="token operator">:</span>inline<span class="token operator">=</span><span class="token string">"true"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"demo-form-inline"</span><span class="token operator">></span>
+       <span class="token operator">&lt;</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item<span class="token operator">></span>
+         <span class="token operator">&lt;</span>el<span class="token operator">-</span>input v<span class="token operator">-</span>model<span class="token operator">=</span><span class="token string">"teacherQuery.name"</span> placeholder<span class="token operator">=</span><span class="token string">"讲师名"</span><span class="token operator">/</span><span class="token operator">></span>
+       <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item<span class="token operator">></span>
+	   
+       <span class="token operator">&lt;</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item<span class="token operator">></span>
+         <span class="token operator">&lt;</span>el<span class="token operator">-</span>select v<span class="token operator">-</span>model<span class="token operator">=</span><span class="token string">"teacherQuery.level"</span> clearable placeholder<span class="token operator">=</span><span class="token string">"讲师头衔"</span><span class="token operator">></span>
+           <span class="token operator">&lt;</span>el<span class="token operator">-</span>option <span class="token operator">:</span>value<span class="token operator">=</span><span class="token string">"1"</span> label<span class="token operator">=</span><span class="token string">"高级讲师"</span><span class="token operator">/</span><span class="token operator">></span>
+           <span class="token operator">&lt;</span>el<span class="token operator">-</span>option <span class="token operator">:</span>value<span class="token operator">=</span><span class="token string">"2"</span> label<span class="token operator">=</span><span class="token string">"首席讲师"</span><span class="token operator">/</span><span class="token operator">></span>
+         <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>select<span class="token operator">></span>
+       <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item<span class="token operator">></span>
+	   
+       <span class="token operator">&lt;</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item label<span class="token operator">=</span><span class="token string">"添加时间"</span><span class="token operator">></span>
+         <span class="token operator">&lt;</span>el<span class="token operator">-</span>date<span class="token operator">-</span>picker
+           v<span class="token operator">-</span>model<span class="token operator">=</span><span class="token string">"teacherQuery.begin"</span>
+           type<span class="token operator">=</span><span class="token string">"datetime"</span>
+           placeholder<span class="token operator">=</span><span class="token string">"选择开始时间"</span>
+           value<span class="token operator">-</span>format<span class="token operator">=</span><span class="token string">"yyyy-MM-dd HH:mm:ss"</span>
+           <span class="token keyword">default</span><span class="token operator">-</span>time<span class="token operator">=</span><span class="token string">"00:00:00"</span>
+         <span class="token operator">/</span><span class="token operator">></span>
+       <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item<span class="token operator">></span>
+	   
+       <span class="token operator">&lt;</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item<span class="token operator">></span>
+         <span class="token operator">&lt;</span>el<span class="token operator">-</span>date<span class="token operator">-</span>picker
+           v<span class="token operator">-</span>model<span class="token operator">=</span><span class="token string">"teacherQuery.end"</span>
+           type<span class="token operator">=</span><span class="token string">"datetime"</span>
+           placeholder<span class="token operator">=</span><span class="token string">"选择截止时间"</span>
+           value<span class="token operator">-</span>format<span class="token operator">=</span><span class="token string">"yyyy-MM-dd HH:mm:ss"</span>
+           <span class="token keyword">default</span><span class="token operator">-</span>time<span class="token operator">=</span><span class="token string">"00:00:00"</span>
+         <span class="token operator">/</span><span class="token operator">></span>
+       <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item<span class="token operator">></span>
+	   
+       <span class="token operator">&lt;</span>el<span class="token operator">-</span>button type<span class="token operator">=</span><span class="token string">"primary"</span> icon<span class="token operator">=</span><span class="token string">"el-icon-search"</span> @click<span class="token operator">=</span><span class="token string">"getList()"</span><span class="token operator">></span>查询<span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>button<span class="token operator">></span>
+       <span class="token operator">&lt;</span>el<span class="token operator">-</span>button type<span class="token operator">=</span><span class="token string">"default"</span> @click<span class="token operator">=</span><span class="token string">"resetData()"</span><span class="token operator">></span>清空<span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>button<span class="token operator">></span>
+	   
+    <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>form<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<p>在mothods中添加清空方法</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">methods<span class="token operator">:</span><span class="token punctuation">&#123;</span>
+       <span class="token function">resetData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>    <span class="token comment">//清空</span>
+           <span class="token comment">// 清空所有数据</span>
+           <span class="token keyword">this</span><span class="token punctuation">.</span>teacherQuery <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+           <span class="token comment">// 查询所有用户</span>
+           <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getList</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+       <span class="token punctuation">&#125;</span>
+   <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<h2 id="讲师删除"><a href="#讲师删除" class="headerlink" title="讲师删除"></a>讲师删除</h2><p>在api/edu下面的teacher.js文件，添加删除讲师方法</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 删除讲师</span>
+<span class="token function">deleteTeacherId</span><span class="token punctuation">(</span><span class="token parameter">id</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+        url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/eduservice/teacher/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>id<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        method<span class="token operator">:</span> <span class="token string">'delete'</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>在src/views/edu/teacher/list.vue中的methods标签里面加删除方法</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 删除讲师</span>
+<span class="token function">removeDataById</span><span class="token punctuation">(</span><span class="token parameter">id</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$confirm</span><span class="token punctuation">(</span><span class="token string">'此操作将永久删除讲师记录, 是否继续?'</span><span class="token punctuation">,</span> <span class="token string">'提示'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
+        confirmButtonText<span class="token operator">:</span> <span class="token string">'确定'</span><span class="token punctuation">,</span>
+        cancelButtonText<span class="token operator">:</span> <span class="token string">'取消'</span><span class="token punctuation">,</span>
+        type<span class="token operator">:</span> <span class="token string">'warning'</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>     <span class="token comment">// 确认删除，执行then</span>
+        <span class="token comment">// 调用删除方法</span>
+        teacher<span class="token punctuation">.</span><span class="token function">deleteTeacherId</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">response</span> <span class="token operator">=></span><span class="token punctuation">&#123;</span>     <span class="token comment">// 删除成功</span>
+            <span class="token comment">// 提示信息</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$message</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+                type<span class="token operator">:</span> <span class="token string">'success'</span><span class="token punctuation">,</span>
+                message<span class="token operator">:</span> <span class="token string">'删除成功!'</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// 回到列表页面</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getList</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<h2 id="讲师添加"><a href="#讲师添加" class="headerlink" title="讲师添加"></a>讲师添加</h2><p>初始化src/views/edu/teacher/save.vue页面</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token operator">&lt;</span>template<span class="token operator">></span>
+    <span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"app-container"</span><span class="token operator">></span>
+        讲师添加
+        <span class="token operator">&lt;</span>el<span class="token operator">-</span>form label<span class="token operator">-</span>width<span class="token operator">=</span><span class="token string">"120px"</span><span class="token operator">></span>
+       <span class="token operator">&lt;</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item label<span class="token operator">=</span><span class="token string">"讲师名称"</span><span class="token operator">></span>
+         <span class="token operator">&lt;</span>el<span class="token operator">-</span>input v<span class="token operator">-</span>model<span class="token operator">=</span><span class="token string">"teacher.name"</span><span class="token operator">/</span><span class="token operator">></span>
+       <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item<span class="token operator">></span>
+       <span class="token operator">&lt;</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item label<span class="token operator">=</span><span class="token string">"讲师排序"</span><span class="token operator">></span>
+         <span class="token operator">&lt;</span>el<span class="token operator">-</span>input<span class="token operator">-</span>number v<span class="token operator">-</span>model<span class="token operator">=</span><span class="token string">"teacher.sort"</span> controls<span class="token operator">-</span>position<span class="token operator">=</span><span class="token string">"right"</span> min<span class="token operator">=</span><span class="token string">"0"</span><span class="token operator">/</span><span class="token operator">></span>
+       <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item<span class="token operator">></span>
+       <span class="token operator">&lt;</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item label<span class="token operator">=</span><span class="token string">"讲师头衔"</span><span class="token operator">></span>
+         <span class="token operator">&lt;</span>el<span class="token operator">-</span>select v<span class="token operator">-</span>model<span class="token operator">=</span><span class="token string">"teacher.level"</span> clearable placeholder<span class="token operator">=</span><span class="token string">"请选择"</span><span class="token operator">></span>
+           <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>
+             数据类型一定要和取出的json中的一致，否则没法回填
+             因此，这里value使用动态绑定的值，保证其数据类型是number
+           <span class="token operator">--</span><span class="token operator">></span>
+           <span class="token operator">&lt;</span>el<span class="token operator">-</span>option <span class="token operator">:</span>value<span class="token operator">=</span><span class="token string">"1"</span> label<span class="token operator">=</span><span class="token string">"高级讲师"</span><span class="token operator">/</span><span class="token operator">></span>
+           <span class="token operator">&lt;</span>el<span class="token operator">-</span>option <span class="token operator">:</span>value<span class="token operator">=</span><span class="token string">"2"</span> label<span class="token operator">=</span><span class="token string">"首席讲师"</span><span class="token operator">/</span><span class="token operator">></span>
+         <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>select<span class="token operator">></span>
+       <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item<span class="token operator">></span>
+       <span class="token operator">&lt;</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item label<span class="token operator">=</span><span class="token string">"讲师资历"</span><span class="token operator">></span>
+         <span class="token operator">&lt;</span>el<span class="token operator">-</span>input v<span class="token operator">-</span>model<span class="token operator">=</span><span class="token string">"teacher.career"</span><span class="token operator">/</span><span class="token operator">></span>
+       <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item<span class="token operator">></span>
+       <span class="token operator">&lt;</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item label<span class="token operator">=</span><span class="token string">"讲师简介"</span><span class="token operator">></span>
+         <span class="token operator">&lt;</span>el<span class="token operator">-</span>input v<span class="token operator">-</span>model<span class="token operator">=</span><span class="token string">"teacher.intro"</span> <span class="token operator">:</span>rows<span class="token operator">=</span><span class="token string">"10"</span> type<span class="token operator">=</span><span class="token string">"textarea"</span><span class="token operator">/</span><span class="token operator">></span>
+       <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item<span class="token operator">></span>
+       <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 讲师头像：<span class="token constant">TODO</span> <span class="token operator">--</span><span class="token operator">></span>
+       <span class="token operator">&lt;</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item<span class="token operator">></span>
+         <span class="token operator">&lt;</span>el<span class="token operator">-</span>button <span class="token operator">:</span>disabled<span class="token operator">=</span><span class="token string">"saveBtnDisabled"</span> type<span class="token operator">=</span><span class="token string">"primary"</span> @click<span class="token operator">=</span><span class="token string">"saveOrUpdate"</span><span class="token operator">></span>保存<span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>button<span class="token operator">></span>
+       <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item<span class="token operator">></span>
+     <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>form<span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">></span>
+
+<span class="token operator">&lt;</span>script<span class="token operator">></span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span><span class="token punctuation">&#123;</span>
+
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    methods<span class="token operator">:</span><span class="token punctuation">&#123;</span>
+
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>在api/edu下面的teacher.js文件，编写添加讲师方法</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token operator">/</span> 添加讲师
+<span class="token function">addTeacher</span><span class="token punctuation">(</span><span class="token parameter">teacher</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+        url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/eduservice/teacher/addTeacher</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        method<span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
+        data<span class="token operator">:</span>teacher
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>完成save.vue中方法的编写和调用，完整代码如下</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token operator">&lt;</span>template<span class="token operator">></span>
+    <span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"app-container"</span><span class="token operator">></span>
+        讲师添加
+        <span class="token operator">&lt;</span>el<span class="token operator">-</span>form label<span class="token operator">-</span>width<span class="token operator">=</span><span class="token string">"120px"</span><span class="token operator">></span>
+       <span class="token operator">&lt;</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item label<span class="token operator">=</span><span class="token string">"讲师名称"</span><span class="token operator">></span>
+         <span class="token operator">&lt;</span>el<span class="token operator">-</span>input v<span class="token operator">-</span>model<span class="token operator">=</span><span class="token string">"teacher.name"</span><span class="token operator">/</span><span class="token operator">></span>
+       <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item<span class="token operator">></span>
+       <span class="token operator">&lt;</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item label<span class="token operator">=</span><span class="token string">"讲师排序"</span><span class="token operator">></span>
+         <span class="token operator">&lt;</span>el<span class="token operator">-</span>input<span class="token operator">-</span>number v<span class="token operator">-</span>model<span class="token operator">=</span><span class="token string">"teacher.sort"</span> controls<span class="token operator">-</span>position<span class="token operator">=</span><span class="token string">"right"</span> min<span class="token operator">=</span><span class="token string">"0"</span><span class="token operator">/</span><span class="token operator">></span>
+       <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item<span class="token operator">></span>
+       <span class="token operator">&lt;</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item label<span class="token operator">=</span><span class="token string">"讲师头衔"</span><span class="token operator">></span>
+         <span class="token operator">&lt;</span>el<span class="token operator">-</span>select v<span class="token operator">-</span>model<span class="token operator">=</span><span class="token string">"teacher.level"</span> clearable placeholder<span class="token operator">=</span><span class="token string">"请选择"</span><span class="token operator">></span>
+           <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>
+             数据类型一定要和取出的json中的一致，否则没法回填
+             因此，这里value使用动态绑定的值，保证其数据类型是number
+           <span class="token operator">--</span><span class="token operator">></span>
+           <span class="token operator">&lt;</span>el<span class="token operator">-</span>option <span class="token operator">:</span>value<span class="token operator">=</span><span class="token string">"1"</span> label<span class="token operator">=</span><span class="token string">"高级讲师"</span><span class="token operator">/</span><span class="token operator">></span>
+           <span class="token operator">&lt;</span>el<span class="token operator">-</span>option <span class="token operator">:</span>value<span class="token operator">=</span><span class="token string">"2"</span> label<span class="token operator">=</span><span class="token string">"首席讲师"</span><span class="token operator">/</span><span class="token operator">></span>
+         <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>select<span class="token operator">></span>
+       <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item<span class="token operator">></span>
+       <span class="token operator">&lt;</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item label<span class="token operator">=</span><span class="token string">"讲师资历"</span><span class="token operator">></span>
+         <span class="token operator">&lt;</span>el<span class="token operator">-</span>input v<span class="token operator">-</span>model<span class="token operator">=</span><span class="token string">"teacher.career"</span><span class="token operator">/</span><span class="token operator">></span>
+       <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item<span class="token operator">></span>
+       <span class="token operator">&lt;</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item label<span class="token operator">=</span><span class="token string">"讲师简介"</span><span class="token operator">></span>
+         <span class="token operator">&lt;</span>el<span class="token operator">-</span>input v<span class="token operator">-</span>model<span class="token operator">=</span><span class="token string">"teacher.intro"</span> <span class="token operator">:</span>rows<span class="token operator">=</span><span class="token string">"10"</span> type<span class="token operator">=</span><span class="token string">"textarea"</span><span class="token operator">/</span><span class="token operator">></span>
+       <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item<span class="token operator">></span>
+       <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 讲师头像：<span class="token constant">TODO</span> <span class="token operator">--</span><span class="token operator">></span>
+       <span class="token operator">&lt;</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item<span class="token operator">></span>
+         <span class="token operator">&lt;</span>el<span class="token operator">-</span>button <span class="token operator">:</span>disabled<span class="token operator">=</span><span class="token string">"saveBtnDisabled"</span> type<span class="token operator">=</span><span class="token string">"primary"</span> @click<span class="token operator">=</span><span class="token string">"saveOrUpdate"</span><span class="token operator">></span>保存<span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>button<span class="token operator">></span>
+       <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>form<span class="token operator">-</span>item<span class="token operator">></span>
+     <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>form<span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">></span>
+
+<span class="token operator">&lt;</span>script<span class="token operator">></span>
+<span class="token keyword">import</span> teacherAPI <span class="token keyword">from</span> <span class="token string">'@/api/edu/teacher'</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span><span class="token punctuation">&#123;</span>
+            teacher<span class="token operator">:</span><span class="token punctuation">&#123;</span>
+                name<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+                sort<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                level<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+                career<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+                intro<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+                avatar<span class="token operator">:</span> <span class="token string">''</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    methods<span class="token operator">:</span><span class="token punctuation">&#123;</span>
+        <span class="token comment">// </span>
+        <span class="token function">saveOrUpdate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token comment">// 添加</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">saveTeacher</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        <span class="token comment">// 添加讲师</span>
+        <span class="token function">saveTeacher</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            teacherAPI<span class="token punctuation">.</span><span class="token function">addTeacher</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>teacher<span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">response</span> <span class="token operator">=></span><span class="token punctuation">&#123;</span>      <span class="token comment">//添加成功</span>
+            <span class="token comment">// 提示信息</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$message</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+                type<span class="token operator">:</span> <span class="token string">'success'</span><span class="token punctuation">,</span>
+                message<span class="token operator">:</span> <span class="token string">'删除成功!'</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// 返回list页面</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>path<span class="token operator">:</span><span class="token string">'/teacher/table'</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#125;</span>
+
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<h2 id="讲师修改"><a href="#讲师修改" class="headerlink" title="讲师修改"></a>讲师修改</h2><h3 id="添加路由"><a href="#添加路由" class="headerlink" title="添加路由"></a>添加路由</h3><p>在src/router/index.js添加一个隐藏路由</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token punctuation">&#123;</span>
+  path<span class="token operator">:</span> <span class="token string">'edit/:id'</span><span class="token punctuation">,</span>
+  name<span class="token operator">:</span> <span class="token string">'EduTeacherEdit'</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'@/views/edu/teacher/save'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  meta<span class="token operator">:</span> <span class="token punctuation">&#123;</span> title<span class="token operator">:</span> <span class="token string">'编辑讲师'</span><span class="token punctuation">,</span> noCache<span class="token operator">:</span><span class="token boolean">true</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  hidden<span class="token operator">:</span><span class="token boolean">true</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>在src/views/edu/teacher/list.vue中的修改按钮处做修改</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;router-link :to&#x3D;&quot;&#39;&#x2F;teacher&#x2F;edit&#x2F;&#39;+scope.row.id&quot;&gt;
+    &lt;el-button type&#x3D;&quot;primary&quot; size&#x3D;&quot;mini&quot; icon&#x3D;&quot;el-icon-edit&quot;&gt;修改&lt;&#x2F;el-button&gt;
+&lt;&#x2F;router-link&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+
+<p>测试效果，实现点击修改按钮，路由跳转到添加的页面</p>
+<h3 id="数据回显"><a href="#数据回显" class="headerlink" title="数据回显"></a>数据回显</h3><p>在api/edu下面的teacher.js文件，编写根据讲师id查询信息方法</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 根据id查询讲师    </span>
+<span class="token function">getTeacherInfo</span><span class="token punctuation">(</span><span class="token parameter">id</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+        url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/eduservice/teacher/getTeacher/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>id<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        method<span class="token operator">:</span> <span class="token string">'get'</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>在save.vue中添加根据讲师id查询信息</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">methods:&#123;
+       &#x2F;&#x2F; 根据讲师id查询信息
+       getInfo(id)&#123;
+           teacherAPI.getTeacherInfo(id)
+           .then(response &#x3D;&gt;&#123;
+               this.teacher &#x3D; response.data.teacher
+           &#125;) 
+       &#125;,
+       saveOrUpdate()&#123;
+           &#x2F;&#x2F; 添加
+           this.saveTeacher()
+       &#125;,
+       &#x2F;&#x2F; 添加讲师
+       saveTeacher()&#123;
+           teacherAPI.addTeacher(this.teacher)
+           .then(response &#x3D;&gt;&#123;      &#x2F;&#x2F;添加成功
+           &#x2F;&#x2F; 提示信息
+           this.$message(&#123;
+               type: &#39;success&#39;,
+               message: &#39;删除成功!&#39;
+           &#125;);
+           &#x2F;&#x2F; 返回list页面
+           this.$router.push(&#123;path:&#39;&#x2F;teacher&#x2F;table&#39;&#125;)
+           &#125;)
+       &#125;
+
+   &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>由于添加讲师的方法和修改讲师的方法的路径有差别，添加讲师的没有带id，修改讲师的有带id，所以根据路由的参数的id判断是否需要数据回显</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">created()&#123;   &#x2F;&#x2F; 页面渲染之前执行
+    &#x2F;&#x2F; 判断路径是否有id值
+    if (this.$route.params &amp;&amp; this.$route.params.id) &#123;
+    &#x2F;&#x2F; 从路径获取id值
+    const id &#x3D; this.$route.params.id
+    &#x2F;&#x2F; 调用根据id查询的方法
+    this.getInfo(id)
+    &#125;
+&#125;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<h3 id="完成修改"><a href="#完成修改" class="headerlink" title="完成修改"></a>完成修改</h3><p>在api/edu下面的teacher.js文件，编写修改讲师方法</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 修改讲师</span>
+<span class="token function">updateTeacherInfo</span><span class="token punctuation">(</span><span class="token parameter">teacher</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+        url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/eduservice/teacher/updateTeacher</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        method<span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
+        data<span class="token operator">:</span>teacher
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>在save.vue的methods中添加方法</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&#x2F;&#x2F; 修改讲师
+       updateTeacher()&#123;
+           teacherAPI.updateTeacherInfo(this.teacher)
+           .then(response &#x3D;&gt;&#123;
+               &#x2F;&#x2F; 提示信息
+               this.$message(&#123;
+                   type: &#39;success&#39;,
+                   message: &#39;修改成功!&#39;
+               &#125;);
+               &#x2F;&#x2F; 返回list页面
+               this.$router.push(&#123;path:&#39;&#x2F;teacher&#x2F;table&#39;&#125;)
+   
+           &#125;)
+       &#125;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>由于添加和修改都在同一个页面，先判断是哪个方法,在save.vue的methods</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">saveOrUpdate()&#123;
+    &#x2F;&#x2F; 判断修改还是添加
+    &#x2F;&#x2F; 根据teacher是否有id
+    if(!this.teacher.id)&#123;
+        &#x2F;&#x2F; 添加
+    this.saveTeacher()
+    &#125; else&#123;
+        &#x2F;&#x2F; 修改
+        this.updateTeacher()
+    &#125;
+    
+&#125;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>save.vue完整代码</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
+    &lt;div class&#x3D;&quot;app-container&quot;&gt;
+        讲师添加
+        &lt;el-form label-width&#x3D;&quot;120px&quot;&gt;
+       &lt;el-form-item label&#x3D;&quot;讲师名称&quot;&gt;
+         &lt;el-input v-model&#x3D;&quot;teacher.name&quot;&#x2F;&gt;
+       &lt;&#x2F;el-form-item&gt;
+       &lt;el-form-item label&#x3D;&quot;讲师排序&quot;&gt;
+         &lt;el-input-number v-model&#x3D;&quot;teacher.sort&quot; controls-position&#x3D;&quot;right&quot; min&#x3D;&quot;0&quot;&#x2F;&gt;
+       &lt;&#x2F;el-form-item&gt;
+       &lt;el-form-item label&#x3D;&quot;讲师头衔&quot;&gt;
+         &lt;el-select v-model&#x3D;&quot;teacher.level&quot; clearable placeholder&#x3D;&quot;请选择&quot;&gt;
+           &lt;!--
+             数据类型一定要和取出的json中的一致，否则没法回填
+             因此，这里value使用动态绑定的值，保证其数据类型是number
+           --&gt;
+           &lt;el-option :value&#x3D;&quot;1&quot; label&#x3D;&quot;高级讲师&quot;&#x2F;&gt;
+           &lt;el-option :value&#x3D;&quot;2&quot; label&#x3D;&quot;首席讲师&quot;&#x2F;&gt;
+         &lt;&#x2F;el-select&gt;
+       &lt;&#x2F;el-form-item&gt;
+       &lt;el-form-item label&#x3D;&quot;讲师资历&quot;&gt;
+         &lt;el-input v-model&#x3D;&quot;teacher.career&quot;&#x2F;&gt;
+       &lt;&#x2F;el-form-item&gt;
+       &lt;el-form-item label&#x3D;&quot;讲师简介&quot;&gt;
+         &lt;el-input v-model&#x3D;&quot;teacher.intro&quot; :rows&#x3D;&quot;10&quot; type&#x3D;&quot;textarea&quot;&#x2F;&gt;
+       &lt;&#x2F;el-form-item&gt;
+       &lt;!-- 讲师头像：TODO --&gt;
+       &lt;el-form-item&gt;
+         &lt;el-button :disabled&#x3D;&quot;saveBtnDisabled&quot; type&#x3D;&quot;primary&quot; @click&#x3D;&quot;saveOrUpdate&quot;&gt;保存&lt;&#x2F;el-button&gt;
+       &lt;&#x2F;el-form-item&gt;
+     &lt;&#x2F;el-form&gt;
+    &lt;&#x2F;div&gt;
+&lt;&#x2F;template&gt;
+
+&lt;script&gt;
+import teacherAPI from &#39;@&#x2F;api&#x2F;edu&#x2F;teacher&#39;
+export default &#123;
+    data()&#123;
+        return&#123;
+            teacher:&#123;
+                name: &#39;&#39;,
+                sort: 0,
+                level: 1,
+                career: &#39;&#39;,
+                intro: &#39;&#39;,
+                avatar: &#39;&#39;
+            &#125;,
+            saveBtnDisabled:false    &#x2F;&#x2F; 保存按钮是否禁止
+        &#125;
+    &#125;,
+    created()&#123;   &#x2F;&#x2F; 页面渲染之前执行
+        &#x2F;&#x2F; 判断路径是否有id值
+        if (this.$route.params &amp;&amp; this.$route.params.id) &#123;
+        &#x2F;&#x2F; 从路径获取id值
+        const id &#x3D; this.$route.params.id
+        &#x2F;&#x2F; 调用根据id查询的方法
+        this.getInfo(id)
+        &#125;
+    &#125;,
+    methods:&#123;
+        &#x2F;&#x2F; 根据讲师id查询信息
+        getInfo(id)&#123;
+            teacherAPI.getTeacherInfo(id)
+            .then(response &#x3D;&gt;&#123;
+                this.teacher &#x3D; response.data.teacher
+            &#125;) 
+        &#125;,
+
+        saveOrUpdate()&#123;
+            &#x2F;&#x2F; 判断修改还是添加
+            &#x2F;&#x2F; 根据teacher是否有id
+            if(!this.teacher.id)&#123;
+                &#x2F;&#x2F; 添加
+            this.saveTeacher()
+            &#125; else&#123;
+                &#x2F;&#x2F; 修改
+                this.updateTeacher()
+            &#125;
+            
+        &#125;,
+
+        &#x2F;&#x2F; 修改讲师
+        updateTeacher()&#123;
+            teacherAPI.updateTeacherInfo(this.teacher)
+            .then(response &#x3D;&gt;&#123;
+                &#x2F;&#x2F; 提示信息
+                this.$message(&#123;
+                    type: &#39;success&#39;,
+                    message: &#39;修改成功!&#39;
+                &#125;);
+                &#x2F;&#x2F; 返回list页面
+                this.$router.push(&#123;path:&#39;&#x2F;teacher&#x2F;table&#39;&#125;)
+    
+            &#125;)
+        &#125;,
+
+        &#x2F;&#x2F; 添加讲师
+        saveTeacher()&#123;
+            teacherAPI.addTeacher(this.teacher)
+            .then(response &#x3D;&gt;&#123;      &#x2F;&#x2F;添加成功
+            &#x2F;&#x2F; 提示信息
+            this.$message(&#123;
+                type: &#39;success&#39;,
+                message: &#39;删除成功!&#39;
+            &#125;);
+            &#x2F;&#x2F; 返回list页面
+            this.$router.push(&#123;path:&#39;&#x2F;teacher&#x2F;table&#39;&#125;)
+            &#125;)
+        &#125;
+
+    &#125;
+&#125;
+&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>测试添加和修改方法都成功</p>
+<h1 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h1><p>第一次点击修改，进行数据回显</p>
+<p>第二次再去点击 添加讲师，进入表单页面，数据没有清空，正确效果是清空</p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>在添加讲师前将表单清空</p>
+<p>在原有的created中添加一个else</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">created()&#123;   &#x2F;&#x2F; 页面渲染之前执行
+    &#x2F;&#x2F; 判断路径是否有id值
+    if (this.$route.params &amp;&amp; this.$route.params.id) &#123;
+    &#x2F;&#x2F; 从路径获取id值
+    const id &#x3D; this.$route.params.id
+    &#x2F;&#x2F; 调用根据id查询的方法
+    this.getInfo(id)
+    &#125; else &#123;    &#x2F;&#x2F; 路径没有id，做添加
+        &#x2F;&#x2F; 表单清空
+        this.teacher &#x3D; &#123;&#125;
+    &#125;
+&#125;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>发现结果还是不行。这个情况不是代码问题，因为created在页面渲染之前就执行，并且只执行一次，所以当点击修改的时候已经执行了，再次点击添加的时候就不会执行（同一个页面），为了让这个created方法可以再次执行，可以加一个监听watch。</p>
+<p>将created的内容抽取出来，放在methods中init方法，在created调用init，并加监听</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">created()&#123;   &#x2F;&#x2F; 页面渲染之前执行
+        this.init()
+    &#125;,
+    watch:&#123;
+        $route(to,from)&#123;    &#x2F;&#x2F; 路由变化方式
+        &#x2F;&#x2F; 路由发生变化时，方法就会被执行
+            this.init()
+        &#125;
+    &#125;,
+    methods:&#123;
+        init()&#123;
+               &#x2F;&#x2F; 判断路径是否有id值
+            if (this.$route.params &amp;&amp; this.$route.params.id) &#123;
+            &#x2F;&#x2F; 从路径获取id值
+            const id &#x3D; this.$route.params.id
+            &#x2F;&#x2F; 调用根据id查询的方法
+            this.getInfo(id)
+            &#125; else &#123;    &#x2F;&#x2F; 路径没有id，做添加
+                &#x2F;&#x2F; 表单清空
+                this.teacher &#x3D; &#123;&#125;
+            &#125;
+        
+        &#125;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>测试效果，完美解决。</p>
+<p>save.vue完整代码</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
+    &lt;div class&#x3D;&quot;app-container&quot;&gt;
+        讲师添加
+        &lt;el-form label-width&#x3D;&quot;120px&quot;&gt;
+       &lt;el-form-item label&#x3D;&quot;讲师名称&quot;&gt;
+         &lt;el-input v-model&#x3D;&quot;teacher.name&quot;&#x2F;&gt;
+       &lt;&#x2F;el-form-item&gt;
+       &lt;el-form-item label&#x3D;&quot;讲师排序&quot;&gt;
+         &lt;el-input-number v-model&#x3D;&quot;teacher.sort&quot; controls-position&#x3D;&quot;right&quot; min&#x3D;&quot;0&quot;&#x2F;&gt;
+       &lt;&#x2F;el-form-item&gt;
+       &lt;el-form-item label&#x3D;&quot;讲师头衔&quot;&gt;
+         &lt;el-select v-model&#x3D;&quot;teacher.level&quot; clearable placeholder&#x3D;&quot;请选择&quot;&gt;
+           &lt;!--
+             数据类型一定要和取出的json中的一致，否则没法回填
+             因此，这里value使用动态绑定的值，保证其数据类型是number
+           --&gt;
+           &lt;el-option :value&#x3D;&quot;1&quot; label&#x3D;&quot;高级讲师&quot;&#x2F;&gt;
+           &lt;el-option :value&#x3D;&quot;2&quot; label&#x3D;&quot;首席讲师&quot;&#x2F;&gt;
+         &lt;&#x2F;el-select&gt;
+       &lt;&#x2F;el-form-item&gt;
+       &lt;el-form-item label&#x3D;&quot;讲师资历&quot;&gt;
+         &lt;el-input v-model&#x3D;&quot;teacher.career&quot;&#x2F;&gt;
+       &lt;&#x2F;el-form-item&gt;
+       &lt;el-form-item label&#x3D;&quot;讲师简介&quot;&gt;
+         &lt;el-input v-model&#x3D;&quot;teacher.intro&quot; :rows&#x3D;&quot;10&quot; type&#x3D;&quot;textarea&quot;&#x2F;&gt;
+       &lt;&#x2F;el-form-item&gt;
+       &lt;!-- 讲师头像：TODO --&gt;
+       &lt;el-form-item&gt;
+         &lt;el-button :disabled&#x3D;&quot;saveBtnDisabled&quot; type&#x3D;&quot;primary&quot; @click&#x3D;&quot;saveOrUpdate&quot;&gt;保存&lt;&#x2F;el-button&gt;
+       &lt;&#x2F;el-form-item&gt;
+     &lt;&#x2F;el-form&gt;
+    &lt;&#x2F;div&gt;
+&lt;&#x2F;template&gt;
+
+&lt;script&gt;
+import teacherAPI from &#39;@&#x2F;api&#x2F;edu&#x2F;teacher&#39;
+export default &#123;
+    data()&#123;
+        return&#123;
+            teacher:&#123;
+                name: &#39;&#39;,
+                sort: 0,
+                level: 1,
+                career: &#39;&#39;,
+                intro: &#39;&#39;,
+                avatar: &#39;&#39;
+            &#125;,
+            saveBtnDisabled:false    &#x2F;&#x2F; 保存按钮是否禁止
+        &#125;
+    &#125;,
+    created()&#123;   &#x2F;&#x2F; 页面渲染之前执行
+        this.init()
+    &#125;,
+    watch:&#123;
+        $route(to,from)&#123;    &#x2F;&#x2F; 路由变化方式
+        &#x2F;&#x2F; 路由发生变化时，方法就会被执行
+            this.init()
+        &#125;
+    &#125;,
+    methods:&#123;
+        init()&#123;
+               &#x2F;&#x2F; 判断路径是否有id值
+            if (this.$route.params &amp;&amp; this.$route.params.id) &#123;
+            &#x2F;&#x2F; 从路径获取id值
+            const id &#x3D; this.$route.params.id
+            &#x2F;&#x2F; 调用根据id查询的方法
+            this.getInfo(id)
+            &#125; else &#123;    &#x2F;&#x2F; 路径没有id，做添加
+                &#x2F;&#x2F; 表单清空
+                this.teacher &#x3D; &#123;&#125;
+            &#125;
+        
+        &#125;,
+
+        &#x2F;&#x2F; 根据讲师id查询信息
+        getInfo(id)&#123;
+            teacherAPI.getTeacherInfo(id)
+            .then(response &#x3D;&gt;&#123;
+                this.teacher &#x3D; response.data.teacher
+            &#125;) 
+        &#125;,
+
+        saveOrUpdate()&#123;
+            &#x2F;&#x2F; 判断修改还是添加
+            &#x2F;&#x2F; 根据teacher是否有id
+            if(!this.teacher.id)&#123;
+                &#x2F;&#x2F; 添加
+            this.saveTeacher()
+            &#125; else&#123;
+                &#x2F;&#x2F; 修改
+                this.updateTeacher()
+            &#125;
+            
+        &#125;,
+
+        &#x2F;&#x2F; 修改讲师
+        updateTeacher()&#123;
+            teacherAPI.updateTeacherInfo(this.teacher)
+            .then(response &#x3D;&gt;&#123;
+                &#x2F;&#x2F; 提示信息
+                this.$message(&#123;
+                    type: &#39;success&#39;,
+                    message: &#39;修改成功!&#39;
+                &#125;);
+                &#x2F;&#x2F; 返回list页面
+                this.$router.push(&#123;path:&#39;&#x2F;teacher&#x2F;table&#39;&#125;)
+    
+            &#125;)
+        &#125;,
+
+        &#x2F;&#x2F; 添加讲师
+        saveTeacher()&#123;
+            teacherAPI.addTeacher(this.teacher)
+            .then(response &#x3D;&gt;&#123;      &#x2F;&#x2F;添加成功
+            &#x2F;&#x2F; 提示信息
+            this.$message(&#123;
+                type: &#39;success&#39;,
+                message: &#39;删除成功!&#39;
+            &#125;);
+            &#x2F;&#x2F; 返回list页面
+            this.$router.push(&#123;path:&#39;&#x2F;teacher&#x2F;table&#39;&#125;)
+            &#125;)
+        &#125;
+
+    &#125;
+&#125;
+&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/myBlog/categories/%E9%A1%B9%E7%9B%AE-%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2-%E7%AC%94%E8%AE%B0/">项目|谷粒学院|笔记</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/myBlog/tags/project/">project</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/myBlog/day06-%E6%95%B4%E5%90%88%E9%98%BF%E9%87%8C%E4%BA%91oss%E5%92%8CExcel%E5%AF%BC%E5%85%A5%E5%88%86%E7%B1%BB/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">day06-整合阿里云oss和Excel导入分类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/myBlog/day04-%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%89%8D%E7%AB%AF%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E4%BA%8C/">
+                        <span class="hidden-mobile">day04-项目的前端基本知识二</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://github.com" target="_blank" rel="nofollow noopener"><span>GitHub</span></a> <i class="iconfont icon-love"></i> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+  
+  <div>
+      <span id="timeDate">载入天数...</span>
+      <span id="times">载入时分秒...</span>
+      <script>
+      var now = new Date();
+      function createtime(){
+          var grt= new Date("11/11/2021 00:00:00");//此处修改你的建站时间或者网站上线时间
+          now.setTime(now.getTime()+250);
+          days = (now - grt ) / 1000 / 60 / 60 / 24;
+          dnum = Math.floor(days);
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+          hnum = Math.floor(hours);
+          if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+          }
+          minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes);
+          if(String(mnum).length ==1 ){
+                    mnum = "0" + mnum;
+          }
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds);
+          if(String(snum).length ==1 ){
+                    snum = "0" + snum;
+          }
+          document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+          document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+      }
+      setInterval("createtime()",250);
+      </script>
+    </div>
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/myBlog/js/events.js" ></script>
+<script  src="/myBlog/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/myBlog/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/myBlog/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/myBlog/js/boot.js" ></script>
+
+
+</body>
+</html>

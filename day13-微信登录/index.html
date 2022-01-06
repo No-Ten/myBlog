@@ -1,0 +1,1198 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/myBlog/img/favicon.png">
+  <link rel="icon" href="/myBlog/img/browserTitle.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Ten">
+  <meta name="keywords" content="">
+  <meta name="description" content="Day13-微信登录OAuth2介绍OAuth2解决方案:令牌机制，按照一定规则生成字符串，字符串包含用户信息  微信扫描登录-生成授权url（生成二维码）后端开发1、添加配置application.properties添加相关配置信息 # 微信开放平台 appid wx.open.app_id&#x3D;wxed9954c01bb89b47 # 微信开放平台 appsecret wx.open.app_s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day13-微信登录">
+<meta property="og:url" content="https://no-ten.github.io/day13-%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95/index.html">
+<meta property="og:site_name" content="TBlog">
+<meta property="og:description" content="Day13-微信登录OAuth2介绍OAuth2解决方案:令牌机制，按照一定规则生成字符串，字符串包含用户信息  微信扫描登录-生成授权url（生成二维码）后端开发1、添加配置application.properties添加相关配置信息 # 微信开放平台 appid wx.open.app_id&#x3D;wxed9954c01bb89b47 # 微信开放平台 appsecret wx.open.app_s">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/day13-%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95/image-20220107001223830.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/day13-%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95/image-20220107001247192.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/day13-%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95/image-20220107001357983.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/day13-%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95/image-20220107001556836.png">
+<meta property="article:published_time" content="2022-01-06T16:11:58.042Z">
+<meta property="article:modified_time" content="2022-01-06T17:53:04.996Z">
+<meta property="article:author" content="Ten">
+<meta property="article:tag" content="project">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://no-ten.github.io/myBlog/day13-%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95/image-20220107001223830.png">
+  
+  <title>day13-微信登录 - TBlog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/myBlog/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/myBlog/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"no-ten.github.io","root":"/myBlog/","version":"1.8.12","typing":{"enable":true,"typeSpeed":230,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/myBlog/local-search.xml"};
+  </script>
+  <script  src="/myBlog/js/utils.js" ></script>
+  <script  src="/myBlog/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/myBlog/atom.xml" title="TBlog" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/myBlog/">
+      <strong>TBlog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/myBlog/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="day13-微信登录">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Ten
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-07 00:11" pubdate>
+        2022年1月7日凌晨12点11分 
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      18k 字
+    </span>
+  
+
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">day13-微信登录</h1>
+            
+            <div class="markdown-body">
+              <h1 id="Day13-微信登录"><a href="#Day13-微信登录" class="headerlink" title="Day13-微信登录"></a>Day13-微信登录</h1><h1 id="OAuth2介绍"><a href="#OAuth2介绍" class="headerlink" title="OAuth2介绍"></a>OAuth2介绍</h1><p>OAuth2解决方案:令牌机制，按照一定规则生成字符串，字符串包含用户信息</p>
+<p><img src="/myBlog/day13-%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95/image-20220107001223830.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220107001223830"></p>
+<h1 id="微信扫描登录-生成授权url（生成二维码）"><a href="#微信扫描登录-生成授权url（生成二维码）" class="headerlink" title="微信扫描登录-生成授权url（生成二维码）"></a>微信扫描登录-生成授权url（生成二维码）</h1><h2 id="后端开发"><a href="#后端开发" class="headerlink" title="后端开发"></a>后端开发</h2><h3 id="1、添加配置"><a href="#1、添加配置" class="headerlink" title="1、添加配置"></a>1、添加配置</h3><p>application.properties添加相关配置信息</p>
+<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token comment"># 微信开放平台 appid</span>
+<span class="token attr-name">wx.open.app_id</span><span class="token punctuation">=</span><span class="token attr-value">wxed9954c01bb89b47</span>
+<span class="token comment"># 微信开放平台 appsecret</span>
+<span class="token attr-name">wx.open.app_secret</span><span class="token punctuation">=</span><span class="token attr-value">a7482517235173ddb4083788de60b90e</span>
+<span class="token comment"># 微信开放平台 重定向url</span>
+<span class="token attr-name">wx.open.redirect_url</span><span class="token punctuation">=</span><span class="token attr-value">http://localhost:8160/api/ucenter/wx/callback</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p><img src="/myBlog/day13-%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95/image-20220107001247192.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220107001247192"></p>
+<h3 id="2、创建常量类"><a href="#2、创建常量类" class="headerlink" title="2、创建常量类"></a>2、创建常量类</h3><p>创建util包，创建ConstantPropertiesUtil.java常量类</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ConstantWxUtil</span> <span class="token keyword">implements</span> <span class="token class-name">InitializingBean</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"$&#123;wx.open.app_id&#125;"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> appId<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"$&#123;wx.open.app_secret&#125;"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> appSecret<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"$&#123;wx.open.redirect_url&#125;"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> redirectUrl<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> WX_OPEN_APP_ID<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> WX_OPEN_APP_SECRET<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> WX_OPEN_REDIRECT_URL<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">afterPropertiesSet</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
+        WX_OPEN_APP_ID <span class="token operator">=</span> appId<span class="token punctuation">;</span>
+        WX_OPEN_APP_SECRET <span class="token operator">=</span> appSecret<span class="token punctuation">;</span>
+        WX_OPEN_REDIRECT_URL <span class="token operator">=</span> redirectUrl<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h3 id="3、创建controller"><a href="#3、创建controller" class="headerlink" title="3、创建controller"></a>3、创建controller</h3><p>guli-microservice-ucenter微服务中创建api包</p>
+<p>api包中创建WxApiController</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@CrossOrigin</span>
+<span class="token annotation punctuation">@Controller</span> <span class="token comment">// 这里不需要返回数据，所以用controller</span>
+<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/api/ucenter/wx"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">WxApiController</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"login"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getWxCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token comment">// 微信开放平台授权baseUrl</span>
+        <span class="token class-name">String</span> baseUrl <span class="token operator">=</span> <span class="token string">"https://open.weixin.qq.com/connect/qrconnect"</span> <span class="token operator">+</span>
+        <span class="token string">"?appid=%s"</span> <span class="token operator">+</span>
+        <span class="token string">"&amp;redirect_uri=%s"</span> <span class="token operator">+</span>
+        <span class="token string">"&amp;response_type=code"</span> <span class="token operator">+</span>
+        <span class="token string">"&amp;scope=snsapi_login"</span> <span class="token operator">+</span>
+        <span class="token string">"&amp;state=%s"</span> <span class="token operator">+</span>
+        <span class="token string">"#wechat_redirect"</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// redirect_url需要转码</span>
+        <span class="token class-name">String</span> redirectUrl <span class="token operator">=</span> <span class="token class-name">ConstantWxUtil</span><span class="token punctuation">.</span>WX_OPEN_REDIRECT_URL<span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+            redirectUrl <span class="token operator">=</span> <span class="token class-name">URLEncoder</span><span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span>redirectUrl<span class="token punctuation">,</span> <span class="token string">"utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token comment">// 生成url</span>
+        <span class="token class-name">String</span> url <span class="token operator">=</span> <span class="token class-name">String</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>
+                baseUrl<span class="token punctuation">,</span>
+                <span class="token class-name">ConstantWxUtil</span><span class="token punctuation">.</span>WX_OPEN_APP_ID<span class="token punctuation">,</span>
+                redirectUrl<span class="token punctuation">,</span>
+                <span class="token string">"atguigu"</span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> <span class="token string">"redirect:"</span><span class="token operator">+</span>url<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<h3 id="测试："><a href="#测试：" class="headerlink" title="测试："></a>测试：</h3><p>访问：<a target="_blank" rel="noopener" href="http://localhost:8006/api/ucenter/wx/login">http://localhost:8006/api/ucenter/wx/login</a> </p>
+<p>发现错误</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">redirect_uri 参数错误<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<p>解决方案</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">微信扫码失效的，使用新的，首先将模块启动端口改成8160（一定得是这个，其他的没用），其次将redirect_url 改为：http:&#x2F;&#x2F;localhost:8160&#x2F;api&#x2F;ucenter&#x2F;wx&#x2F;callback，还需要将Nginx的配置改成对应的url<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+
+
+<h1 id="微信扫描登录-开发回调url（获取扫描人的信息）"><a href="#微信扫描登录-开发回调url（获取扫描人的信息）" class="headerlink" title="微信扫描登录-开发回调url（获取扫描人的信息）"></a>微信扫描登录-开发回调url（获取扫描人的信息）</h1><p>扫描之后获取扫描人信息流程分析</p>
+<p><img src="/myBlog/day13-%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95/image-20220107001357983.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220107001357983"></p>
+<h2 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h2><h3 id="1、全局配置的跳转路径"><a href="#1、全局配置的跳转路径" class="headerlink" title="1、全局配置的跳转路径"></a>1、全局配置的跳转路径</h3><div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token comment"># 微信开放平台 重定向url</span>
+<span class="token attr-name">wx.open.redirect_url</span><span class="token punctuation">=</span><span class="token attr-value">http://localhost:8160/api/ucenter/wx/callback</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+<h3 id="2、修改当前项目启动端口号为8160"><a href="#2、修改当前项目启动端口号为8160" class="headerlink" title="2、修改当前项目启动端口号为8160"></a>2、修改当前项目启动端口号为8160</h3><h3 id="3、测试回调是否可用"><a href="#3、测试回调是否可用" class="headerlink" title="3、测试回调是否可用"></a>3、测试回调是否可用</h3><p>在WxApiController中添加方法</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"callback"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">callback</span><span class="token punctuation">(</span><span class="token class-name">String</span> code<span class="token punctuation">,</span> <span class="token class-name">String</span> state<span class="token punctuation">,</span> <span class="token class-name">HttpSession</span> session<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+   <span class="token comment">//得到授权临时票据code</span>
+   <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"code = "</span> <span class="token operator">+</span> code<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"state = "</span> <span class="token operator">+</span> state<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h2 id="二、后台开发"><a href="#二、后台开发" class="headerlink" title="二、后台开发"></a>二、后台开发</h2><h3 id="1、添加依赖"><a href="#1、添加依赖" class="headerlink" title="1、添加依赖"></a>1、添加依赖</h3><div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!--httpclient--></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.apache.httpcomponents<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>httpclient<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!--commons-io--></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>commons-io<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>commons-io<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!--gson--></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.google.code.gson<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>gson<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h3 id="2、创建httpclient工具类"><a href="#2、创建httpclient工具类" class="headerlink" title="2、创建httpclient工具类"></a>2、创建httpclient工具类</h3><p>放入util包</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>atguigu<span class="token punctuation">.</span>educenter<span class="token punctuation">.</span>utils</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>commons<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">IOUtils</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>commons<span class="token punctuation">.</span>lang<span class="token punctuation">.</span></span><span class="token class-name">StringUtils</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span></span><span class="token class-name">Consts</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span></span><span class="token class-name">HttpEntity</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span></span><span class="token class-name">HttpResponse</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span></span><span class="token class-name">NameValuePair</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>client<span class="token punctuation">.</span></span><span class="token class-name">HttpClient</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>client<span class="token punctuation">.</span>config<span class="token punctuation">.</span></span><span class="token class-name">RequestConfig</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>client<span class="token punctuation">.</span>config<span class="token punctuation">.</span></span><span class="token class-name">RequestConfig<span class="token punctuation">.</span>Builder</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>client<span class="token punctuation">.</span>entity<span class="token punctuation">.</span></span><span class="token class-name">UrlEncodedFormEntity</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>client<span class="token punctuation">.</span>methods<span class="token punctuation">.</span></span><span class="token class-name">HttpGet</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>client<span class="token punctuation">.</span>methods<span class="token punctuation">.</span></span><span class="token class-name">HttpPost</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>conn<span class="token punctuation">.</span></span><span class="token class-name">ConnectTimeoutException</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>conn<span class="token punctuation">.</span>ssl<span class="token punctuation">.</span></span><span class="token class-name">SSLConnectionSocketFactory</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>conn<span class="token punctuation">.</span>ssl<span class="token punctuation">.</span></span><span class="token class-name">SSLContextBuilder</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>conn<span class="token punctuation">.</span>ssl<span class="token punctuation">.</span></span><span class="token class-name">TrustStrategy</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>conn<span class="token punctuation">.</span>ssl<span class="token punctuation">.</span></span><span class="token class-name">X509HostnameVerifier</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>entity<span class="token punctuation">.</span></span><span class="token class-name">ContentType</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>entity<span class="token punctuation">.</span></span><span class="token class-name">StringEntity</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>impl<span class="token punctuation">.</span>client<span class="token punctuation">.</span></span><span class="token class-name">CloseableHttpClient</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>impl<span class="token punctuation">.</span>client<span class="token punctuation">.</span></span><span class="token class-name">HttpClients</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>impl<span class="token punctuation">.</span>conn<span class="token punctuation">.</span></span><span class="token class-name">PoolingHttpClientConnectionManager</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>message<span class="token punctuation">.</span></span><span class="token class-name">BasicNameValuePair</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">javax<span class="token punctuation">.</span>net<span class="token punctuation">.</span>ssl<span class="token punctuation">.</span></span><span class="token class-name">SSLContext</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">javax<span class="token punctuation">.</span>net<span class="token punctuation">.</span>ssl<span class="token punctuation">.</span></span><span class="token class-name">SSLException</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">javax<span class="token punctuation">.</span>net<span class="token punctuation">.</span>ssl<span class="token punctuation">.</span></span><span class="token class-name">SSLSession</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">javax<span class="token punctuation">.</span>net<span class="token punctuation">.</span>ssl<span class="token punctuation">.</span></span><span class="token class-name">SSLSocket</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">IOException</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>net<span class="token punctuation">.</span></span><span class="token class-name">SocketTimeoutException</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>security<span class="token punctuation">.</span></span><span class="token class-name">GeneralSecurityException</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>security<span class="token punctuation">.</span>cert<span class="token punctuation">.</span></span><span class="token class-name">CertificateException</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>security<span class="token punctuation">.</span>cert<span class="token punctuation">.</span></span><span class="token class-name">X509Certificate</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">ArrayList</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">List</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Map</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Map<span class="token punctuation">.</span>Entry</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Set</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ *  依赖的jar包有：commons-lang-2.6.jar、httpclient-4.3.2.jar、httpcore-4.3.1.jar、commons-io-2.4.jar
+ * @author zhaoyb
+ *
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HttpClientUtils</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> connTimeout<span class="token operator">=</span><span class="token number">10000</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> readTimeout<span class="token operator">=</span><span class="token number">10000</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> charset<span class="token operator">=</span><span class="token string">"UTF-8"</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">HttpClient</span> client <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">static</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">PoolingHttpClientConnectionManager</span> cm <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PoolingHttpClientConnectionManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        cm<span class="token punctuation">.</span><span class="token function">setMaxTotal</span><span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        cm<span class="token punctuation">.</span><span class="token function">setDefaultMaxPerRoute</span><span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        client <span class="token operator">=</span> <span class="token class-name">HttpClients</span><span class="token punctuation">.</span><span class="token function">custom</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setConnectionManager</span><span class="token punctuation">(</span>cm<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">postParameters</span><span class="token punctuation">(</span><span class="token class-name">String</span> url<span class="token punctuation">,</span> <span class="token class-name">String</span> parameterStr<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ConnectTimeoutException</span><span class="token punctuation">,</span> <span class="token class-name">SocketTimeoutException</span><span class="token punctuation">,</span> <span class="token class-name">Exception</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token function">post</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span>parameterStr<span class="token punctuation">,</span><span class="token string">"application/x-www-form-urlencoded"</span><span class="token punctuation">,</span>charset<span class="token punctuation">,</span>connTimeout<span class="token punctuation">,</span>readTimeout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">postParameters</span><span class="token punctuation">(</span><span class="token class-name">String</span> url<span class="token punctuation">,</span> <span class="token class-name">String</span> parameterStr<span class="token punctuation">,</span><span class="token class-name">String</span> charset<span class="token punctuation">,</span> <span class="token class-name">Integer</span> connTimeout<span class="token punctuation">,</span> <span class="token class-name">Integer</span> readTimeout<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ConnectTimeoutException</span><span class="token punctuation">,</span> <span class="token class-name">SocketTimeoutException</span><span class="token punctuation">,</span> <span class="token class-name">Exception</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token function">post</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span>parameterStr<span class="token punctuation">,</span><span class="token string">"application/x-www-form-urlencoded"</span><span class="token punctuation">,</span>charset<span class="token punctuation">,</span>connTimeout<span class="token punctuation">,</span>readTimeout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">postParameters</span><span class="token punctuation">(</span><span class="token class-name">String</span> url<span class="token punctuation">,</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">></span></span> params<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ConnectTimeoutException</span><span class="token punctuation">,</span>
+            <span class="token class-name">SocketTimeoutException</span><span class="token punctuation">,</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token function">postForm</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> params<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> connTimeout<span class="token punctuation">,</span> readTimeout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">postParameters</span><span class="token punctuation">(</span><span class="token class-name">String</span> url<span class="token punctuation">,</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">></span></span> params<span class="token punctuation">,</span> <span class="token class-name">Integer</span> connTimeout<span class="token punctuation">,</span><span class="token class-name">Integer</span> readTimeout<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ConnectTimeoutException</span><span class="token punctuation">,</span>
+            <span class="token class-name">SocketTimeoutException</span><span class="token punctuation">,</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token function">postForm</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> params<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> connTimeout<span class="token punctuation">,</span> readTimeout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token class-name">String</span> url<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token function">get</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> charset<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token class-name">String</span> url<span class="token punctuation">,</span> <span class="token class-name">String</span> charset<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token function">get</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> charset<span class="token punctuation">,</span> connTimeout<span class="token punctuation">,</span> readTimeout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">/**
+     * 发送一个 Post 请求, 使用指定的字符集编码.
+     *
+     * @param url
+     * @param body RequestBody
+     * @param mimeType 例如 application/xml "application/x-www-form-urlencoded" a=1&amp;b=2&amp;c=3
+     * @param charset 编码
+     * @param connTimeout 建立链接超时时间,毫秒.
+     * @param readTimeout 响应超时时间,毫秒.
+     * @return ResponseBody, 使用指定的字符集编码.
+     * @throws ConnectTimeoutException 建立链接超时异常
+     * @throws SocketTimeoutException  响应超时
+     * @throws Exception
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">post</span><span class="token punctuation">(</span><span class="token class-name">String</span> url<span class="token punctuation">,</span> <span class="token class-name">String</span> body<span class="token punctuation">,</span> <span class="token class-name">String</span> mimeType<span class="token punctuation">,</span><span class="token class-name">String</span> charset<span class="token punctuation">,</span> <span class="token class-name">Integer</span> connTimeout<span class="token punctuation">,</span> <span class="token class-name">Integer</span> readTimeout<span class="token punctuation">)</span>
+            <span class="token keyword">throws</span> <span class="token class-name">ConnectTimeoutException</span><span class="token punctuation">,</span> <span class="token class-name">SocketTimeoutException</span><span class="token punctuation">,</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">HttpClient</span> client <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token class-name">HttpPost</span> post <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpPost</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> result <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">isNotBlank</span><span class="token punctuation">(</span>body<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token class-name">HttpEntity</span> entity <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringEntity</span><span class="token punctuation">(</span>body<span class="token punctuation">,</span> <span class="token class-name">ContentType</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>mimeType<span class="token punctuation">,</span> charset<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                post<span class="token punctuation">.</span><span class="token function">setEntity</span><span class="token punctuation">(</span>entity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token comment">// 设置参数</span>
+            <span class="token class-name">Builder</span> customReqConf <span class="token operator">=</span> <span class="token class-name">RequestConfig</span><span class="token punctuation">.</span><span class="token function">custom</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>connTimeout <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                customReqConf<span class="token punctuation">.</span><span class="token function">setConnectTimeout</span><span class="token punctuation">(</span>connTimeout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>readTimeout <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                customReqConf<span class="token punctuation">.</span><span class="token function">setSocketTimeout</span><span class="token punctuation">(</span>readTimeout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            post<span class="token punctuation">.</span><span class="token function">setConfig</span><span class="token punctuation">(</span>customReqConf<span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token class-name">HttpResponse</span> res<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>url<span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span><span class="token string">"https"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token comment">// 执行 Https 请求.</span>
+                client <span class="token operator">=</span> <span class="token function">createSSLInsecureClient</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                res <span class="token operator">=</span> client<span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span>post<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+                <span class="token comment">// 执行 Http 请求.</span>
+                client <span class="token operator">=</span> <span class="token class-name">HttpClientUtils</span><span class="token punctuation">.</span>client<span class="token punctuation">;</span>
+                res <span class="token operator">=</span> client<span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span>post<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            result <span class="token operator">=</span> <span class="token class-name">IOUtils</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span><span class="token function">getEntity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> charset<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">finally</span> <span class="token punctuation">&#123;</span>
+            post<span class="token punctuation">.</span><span class="token function">releaseConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>url<span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span><span class="token string">"https"</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> client <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token operator">&amp;&amp;</span> client <span class="token keyword">instanceof</span> <span class="token class-name">CloseableHttpClient</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">CloseableHttpClient</span><span class="token punctuation">)</span> client<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+
+    <span class="token comment">/**
+     * 提交form表单
+     *
+     * @param url
+     * @param params
+     * @param connTimeout
+     * @param readTimeout
+     * @return
+     * @throws ConnectTimeoutException
+     * @throws SocketTimeoutException
+     * @throws Exception
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">postForm</span><span class="token punctuation">(</span><span class="token class-name">String</span> url<span class="token punctuation">,</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">></span></span> params<span class="token punctuation">,</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">></span></span> headers<span class="token punctuation">,</span> <span class="token class-name">Integer</span> connTimeout<span class="token punctuation">,</span><span class="token class-name">Integer</span> readTimeout<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ConnectTimeoutException</span><span class="token punctuation">,</span>
+            <span class="token class-name">SocketTimeoutException</span><span class="token punctuation">,</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
+
+        <span class="token class-name">HttpClient</span> client <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token class-name">HttpPost</span> post <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpPost</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>params <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>params<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">NameValuePair</span><span class="token punctuation">></span></span> formParams <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">NameValuePair</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token class-name">Set</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Entry</span><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">></span><span class="token punctuation">></span></span> entrySet <span class="token operator">=</span> params<span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">></span></span> entry <span class="token operator">:</span> entrySet<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    formParams<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">BasicNameValuePair</span><span class="token punctuation">(</span>entry<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> entry<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+                <span class="token class-name">UrlEncodedFormEntity</span> entity <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">UrlEncodedFormEntity</span><span class="token punctuation">(</span>formParams<span class="token punctuation">,</span> <span class="token class-name">Consts</span><span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                post<span class="token punctuation">.</span><span class="token function">setEntity</span><span class="token punctuation">(</span>entity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>headers <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>headers<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">></span></span> entry <span class="token operator">:</span> headers<span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    post<span class="token punctuation">.</span><span class="token function">addHeader</span><span class="token punctuation">(</span>entry<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> entry<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token comment">// 设置参数</span>
+            <span class="token class-name">Builder</span> customReqConf <span class="token operator">=</span> <span class="token class-name">RequestConfig</span><span class="token punctuation">.</span><span class="token function">custom</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>connTimeout <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                customReqConf<span class="token punctuation">.</span><span class="token function">setConnectTimeout</span><span class="token punctuation">(</span>connTimeout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>readTimeout <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                customReqConf<span class="token punctuation">.</span><span class="token function">setSocketTimeout</span><span class="token punctuation">(</span>readTimeout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            post<span class="token punctuation">.</span><span class="token function">setConfig</span><span class="token punctuation">(</span>customReqConf<span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">HttpResponse</span> res <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>url<span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span><span class="token string">"https"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token comment">// 执行 Https 请求.</span>
+                client <span class="token operator">=</span> <span class="token function">createSSLInsecureClient</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                res <span class="token operator">=</span> client<span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span>post<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+                <span class="token comment">// 执行 Http 请求.</span>
+                client <span class="token operator">=</span> <span class="token class-name">HttpClientUtils</span><span class="token punctuation">.</span>client<span class="token punctuation">;</span>
+                res <span class="token operator">=</span> client<span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span>post<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">return</span> <span class="token class-name">IOUtils</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span><span class="token function">getEntity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"UTF-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">finally</span> <span class="token punctuation">&#123;</span>
+            post<span class="token punctuation">.</span><span class="token function">releaseConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>url<span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span><span class="token string">"https"</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> client <span class="token operator">!=</span> <span class="token keyword">null</span>
+                    <span class="token operator">&amp;&amp;</span> client <span class="token keyword">instanceof</span> <span class="token class-name">CloseableHttpClient</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">CloseableHttpClient</span><span class="token punctuation">)</span> client<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+
+
+
+    <span class="token comment">/**
+     * 发送一个 GET 请求
+     *
+     * @param url
+     * @param charset
+     * @param connTimeout  建立链接超时时间,毫秒.
+     * @param readTimeout  响应超时时间,毫秒.
+     * @return
+     * @throws ConnectTimeoutException   建立链接超时
+     * @throws SocketTimeoutException   响应超时
+     * @throws Exception
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token class-name">String</span> url<span class="token punctuation">,</span> <span class="token class-name">String</span> charset<span class="token punctuation">,</span> <span class="token class-name">Integer</span> connTimeout<span class="token punctuation">,</span><span class="token class-name">Integer</span> readTimeout<span class="token punctuation">)</span>
+            <span class="token keyword">throws</span> <span class="token class-name">ConnectTimeoutException</span><span class="token punctuation">,</span><span class="token class-name">SocketTimeoutException</span><span class="token punctuation">,</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
+
+        <span class="token class-name">HttpClient</span> client <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token class-name">HttpGet</span> get <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpGet</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> result <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+            <span class="token comment">// 设置参数</span>
+            <span class="token class-name">Builder</span> customReqConf <span class="token operator">=</span> <span class="token class-name">RequestConfig</span><span class="token punctuation">.</span><span class="token function">custom</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>connTimeout <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                customReqConf<span class="token punctuation">.</span><span class="token function">setConnectTimeout</span><span class="token punctuation">(</span>connTimeout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>readTimeout <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                customReqConf<span class="token punctuation">.</span><span class="token function">setSocketTimeout</span><span class="token punctuation">(</span>readTimeout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            get<span class="token punctuation">.</span><span class="token function">setConfig</span><span class="token punctuation">(</span>customReqConf<span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token class-name">HttpResponse</span> res <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>url<span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span><span class="token string">"https"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token comment">// 执行 Https 请求.</span>
+                client <span class="token operator">=</span> <span class="token function">createSSLInsecureClient</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                res <span class="token operator">=</span> client<span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span>get<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+                <span class="token comment">// 执行 Http 请求.</span>
+                client <span class="token operator">=</span> <span class="token class-name">HttpClientUtils</span><span class="token punctuation">.</span>client<span class="token punctuation">;</span>
+                res <span class="token operator">=</span> client<span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span>get<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+
+            result <span class="token operator">=</span> <span class="token class-name">IOUtils</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span><span class="token function">getEntity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> charset<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">finally</span> <span class="token punctuation">&#123;</span>
+            get<span class="token punctuation">.</span><span class="token function">releaseConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>url<span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span><span class="token string">"https"</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> client <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> client <span class="token keyword">instanceof</span> <span class="token class-name">CloseableHttpClient</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">CloseableHttpClient</span><span class="token punctuation">)</span> client<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+
+    <span class="token comment">/**
+     * 从 response 里获取 charset
+     *
+     * @param ressponse
+     * @return
+     */</span>
+    <span class="token annotation punctuation">@SuppressWarnings</span><span class="token punctuation">(</span><span class="token string">"unused"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">getCharsetFromResponse</span><span class="token punctuation">(</span><span class="token class-name">HttpResponse</span> ressponse<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// Content-Type:text/html; charset=GBK</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>ressponse<span class="token punctuation">.</span><span class="token function">getEntity</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span>  <span class="token operator">&amp;&amp;</span> ressponse<span class="token punctuation">.</span><span class="token function">getEntity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getContentType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> ressponse<span class="token punctuation">.</span><span class="token function">getEntity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getContentType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">String</span> contentType <span class="token operator">=</span> ressponse<span class="token punctuation">.</span><span class="token function">getEntity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getContentType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>contentType<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span><span class="token string">"charset="</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">return</span> contentType<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span>contentType<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">"charset="</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+
+
+    <span class="token comment">/**
+     * 创建 SSL连接
+     * @return
+     * @throws GeneralSecurityException
+     */</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">CloseableHttpClient</span> <span class="token function">createSSLInsecureClient</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">GeneralSecurityException</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">SSLContext</span> sslContext <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SSLContextBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">loadTrustMaterial</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">TrustStrategy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isTrusted</span><span class="token punctuation">(</span><span class="token class-name">X509Certificate</span><span class="token punctuation">[</span><span class="token punctuation">]</span> chain<span class="token punctuation">,</span><span class="token class-name">String</span> authType<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">CertificateException</span> <span class="token punctuation">&#123;</span>
+                    <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token class-name">SSLConnectionSocketFactory</span> sslsf <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SSLConnectionSocketFactory</span><span class="token punctuation">(</span>sslContext<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">X509HostnameVerifier</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+                <span class="token annotation punctuation">@Override</span>
+                <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">verify</span><span class="token punctuation">(</span><span class="token class-name">String</span> arg0<span class="token punctuation">,</span> <span class="token class-name">SSLSession</span> arg1<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+
+                <span class="token annotation punctuation">@Override</span>
+                <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">verify</span><span class="token punctuation">(</span><span class="token class-name">String</span> host<span class="token punctuation">,</span> <span class="token class-name">SSLSocket</span> ssl<span class="token punctuation">)</span>
+                        <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">&#123;</span>
+                <span class="token punctuation">&#125;</span>
+
+                <span class="token annotation punctuation">@Override</span>
+                <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">verify</span><span class="token punctuation">(</span><span class="token class-name">String</span> host<span class="token punctuation">,</span> <span class="token class-name">X509Certificate</span> cert<span class="token punctuation">)</span>
+                        <span class="token keyword">throws</span> <span class="token class-name">SSLException</span> <span class="token punctuation">&#123;</span>
+                <span class="token punctuation">&#125;</span>
+
+                <span class="token annotation punctuation">@Override</span>
+                <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">verify</span><span class="token punctuation">(</span><span class="token class-name">String</span> host<span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> cns<span class="token punctuation">,</span>
+                                   <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> subjectAlts<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">SSLException</span> <span class="token punctuation">&#123;</span>
+                <span class="token punctuation">&#125;</span>
+
+            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token keyword">return</span> <span class="token class-name">HttpClients</span><span class="token punctuation">.</span><span class="token function">custom</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setSSLSocketFactory</span><span class="token punctuation">(</span>sslsf<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">GeneralSecurityException</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">throw</span> e<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">String</span> str<span class="token operator">=</span> <span class="token function">post</span><span class="token punctuation">(</span><span class="token string">"https://localhost:443/ssl/test.shtml"</span><span class="token punctuation">,</span><span class="token string">"name=12&amp;page=34"</span><span class="token punctuation">,</span><span class="token string">"application/x-www-form-urlencoded"</span><span class="token punctuation">,</span> <span class="token string">"UTF-8"</span><span class="token punctuation">,</span> <span class="token number">10000</span><span class="token punctuation">,</span> <span class="token number">10000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">//String str= get("https://localhost:443/ssl/test.shtml?name=12&amp;page=34","GBK");</span>
+            <span class="token comment">/*Map&lt;String,String> map = new HashMap&lt;String,String>();
+            map.put("name", "111");
+            map.put("page", "222");
+            String str= postForm("https://localhost:443/ssl/test.shtml",map,null, 10000, 10000);*/</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ConnectTimeoutException</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token comment">// TODO Auto-generated catch block</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">SocketTimeoutException</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token comment">// TODO Auto-generated catch block</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token comment">// TODO Auto-generated catch block</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h3 id="3、创建回调controller方法"><a href="#3、创建回调controller方法" class="headerlink" title="3、创建回调controller方法"></a>3、创建回调controller方法</h3><p>在WxApiController.java中添加如下方法</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">
+<span class="token comment">// 2.获取扫描人信息，添加数据</span>
+<span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"callback"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">callback</span><span class="token punctuation">(</span><span class="token class-name">String</span> code<span class="token punctuation">,</span><span class="token class-name">String</span> state<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 1.获取code和state</span>
+
+        <span class="token comment">// 2.根据获取到的code和state，去请求微信固定的地址，获取access_token</span>
+        <span class="token class-name">String</span> baseAccessTokenUrl <span class="token operator">=</span> <span class="token string">"https://api.weixin.qq.com/sns/oauth2/access_token"</span> <span class="token operator">+</span>
+                <span class="token string">"?appid=%s"</span> <span class="token operator">+</span>
+                <span class="token string">"&amp;secret=%s"</span> <span class="token operator">+</span>
+                <span class="token string">"&amp;code=%s"</span> <span class="token operator">+</span>
+                <span class="token string">"&amp;grant_type=authorization_code"</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">String</span> accessTokenUrl <span class="token operator">=</span> <span class="token class-name">String</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>
+                baseAccessTokenUrl<span class="token punctuation">,</span>
+                <span class="token class-name">ConstantWxUtil</span><span class="token punctuation">.</span>WX_OPEN_APP_ID<span class="token punctuation">,</span>
+                <span class="token class-name">ConstantWxUtil</span><span class="token punctuation">.</span>WX_OPEN_APP_SECRET<span class="token punctuation">,</span>
+                code<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 请求拼接好的url，得到返回的access_token和openid</span>
+        <span class="token comment">// 使用HTTPClient发送请求</span>
+        <span class="token class-name">String</span> accessTokenInfo <span class="token operator">=</span> <span class="token class-name">HttpClientUtils</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>accessTokenUrl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//System.out.println("accessTokenInfo:"+accessTokenInfo);</span>
+
+        <span class="token comment">// 从获取到的accessTokenInfo中将accessToken和openid取出来</span>
+        <span class="token comment">// 将获取到的accessTokenInfo字符串转换为map，利用gson</span>
+        <span class="token class-name">Gson</span> gson <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Gson</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">HashMap</span> mapAccessToken <span class="token operator">=</span> gson<span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>accessTokenInfo<span class="token punctuation">,</span> <span class="token class-name">HashMap</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">String</span> accessToken <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">)</span> mapAccessToken<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"access_token"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> openid <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">)</span> mapAccessToken<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"openid"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 根据accessToken和openid去请求微信固定的地址，获取用户信息</span>
+        <span class="token comment">// 拼接地址</span>
+        <span class="token comment">//访问微信的资源服务器，获取用户信息</span>
+        <span class="token class-name">String</span> baseUserInfoUrl <span class="token operator">=</span> <span class="token string">"https://api.weixin.qq.com/sns/userinfo"</span> <span class="token operator">+</span>
+        <span class="token string">"?access_token=%s"</span> <span class="token operator">+</span>
+        <span class="token string">"&amp;openid=%s"</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">String</span> userInfoUrl <span class="token operator">=</span> <span class="token class-name">String</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>baseUserInfoUrl<span class="token punctuation">,</span> accessToken<span class="token punctuation">,</span> openid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">// 根据userInfoUrl调用HTTPClient,发送请求</span>
+        <span class="token class-name">String</span> userInfo <span class="token operator">=</span> <span class="token class-name">HttpClientUtils</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>userInfoUrl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//System.out.println("userInfo="+userInfo);</span>
+
+        <span class="token comment">// 将获取到的用户信息字符串转换给map</span>
+        <span class="token class-name">HashMap</span> userInfoMap <span class="token operator">=</span> gson<span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>userInfo<span class="token punctuation">,</span> <span class="token class-name">HashMap</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> nickname <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">)</span> userInfoMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"nickname"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 昵称</span>
+        <span class="token class-name">String</span> headimgurl <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">)</span> userInfoMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"headimgurl"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 头像</span>
+
+        <span class="token comment">// 把扫描人的信息加到数据库中</span>
+        <span class="token comment">// 先判断数据库是否已经存在</span>
+        <span class="token class-name">UcenterMember</span> member <span class="token operator">=</span> memberService<span class="token punctuation">.</span><span class="token function">getOpenIdMember</span><span class="token punctuation">(</span>openid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>member <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token comment">// 说明没有，直接添加</span>
+            member <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">UcenterMember</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            member<span class="token punctuation">.</span><span class="token function">setId</span><span class="token punctuation">(</span>openid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            member<span class="token punctuation">.</span><span class="token function">setNickname</span><span class="token punctuation">(</span>nickname<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            member<span class="token punctuation">.</span><span class="token function">setAvatar</span><span class="token punctuation">(</span>headimgurl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            memberService<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>member<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token comment">// 登录成功之后，跳转到首页</span>
+        <span class="token keyword">return</span> <span class="token string">"redirect:http://localhost:3000"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">GuliException</span><span class="token punctuation">(</span><span class="token number">20001</span><span class="token punctuation">,</span><span class="token string">"登录失败"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h3 id="4、业务层"><a href="#4、业务层" class="headerlink" title="4、业务层"></a>4、业务层</h3><p>业务接口：MemberService.java</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 把扫描人的信息加到数据库中</span>
+<span class="token class-name">UcenterMember</span> <span class="token function">getOpenIdMember</span><span class="token punctuation">(</span><span class="token class-name">String</span> openid<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+<p>业务实现：MemberServiceImpl.java</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 根据openID查询用户</span>
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token class-name">UcenterMember</span> <span class="token function">getOpenIdMember</span><span class="token punctuation">(</span><span class="token class-name">String</span> openid<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">UcenterMember</span><span class="token punctuation">></span></span> wrapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    wrapper<span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token string">"openid"</span><span class="token punctuation">,</span>openid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">UcenterMember</span> member <span class="token operator">=</span> baseMapper<span class="token punctuation">.</span><span class="token function">selectOne</span><span class="token punctuation">(</span>wrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> member<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h1 id="微信扫描登录-功能完善和整合jwt令牌"><a href="#微信扫描登录-功能完善和整合jwt令牌" class="headerlink" title="微信扫描登录-功能完善和整合jwt令牌"></a>微信扫描登录-功能完善和整合jwt令牌</h1><p>把第3步换了位置，由于cookie不能跨域，所以整合jwt将用户信息转换成token字符串，通过路径传递。</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 2.获取扫描人信息，添加数据</span>
+<span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"callback"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">callback</span><span class="token punctuation">(</span><span class="token class-name">String</span> code<span class="token punctuation">,</span><span class="token class-name">String</span> state<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 1.获取code和state</span>
+
+        <span class="token comment">// 2.根据获取到的code和state，去请求微信固定的地址，获取access_token</span>
+        <span class="token class-name">String</span> baseAccessTokenUrl <span class="token operator">=</span> <span class="token string">"https://api.weixin.qq.com/sns/oauth2/access_token"</span> <span class="token operator">+</span>
+                <span class="token string">"?appid=%s"</span> <span class="token operator">+</span>
+                <span class="token string">"&amp;secret=%s"</span> <span class="token operator">+</span>
+                <span class="token string">"&amp;code=%s"</span> <span class="token operator">+</span>
+                <span class="token string">"&amp;grant_type=authorization_code"</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">String</span> accessTokenUrl <span class="token operator">=</span> <span class="token class-name">String</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>
+                baseAccessTokenUrl<span class="token punctuation">,</span>
+                <span class="token class-name">ConstantWxUtil</span><span class="token punctuation">.</span>WX_OPEN_APP_ID<span class="token punctuation">,</span>
+                <span class="token class-name">ConstantWxUtil</span><span class="token punctuation">.</span>WX_OPEN_APP_SECRET<span class="token punctuation">,</span>
+                code<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 请求拼接好的url，得到返回的access_token和openid</span>
+        <span class="token comment">// 使用HTTPClient发送请求</span>
+        <span class="token class-name">String</span> accessTokenInfo <span class="token operator">=</span> <span class="token class-name">HttpClientUtils</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>accessTokenUrl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//System.out.println("accessTokenInfo:"+accessTokenInfo);</span>
+
+        <span class="token comment">// 从获取到的accessTokenInfo中将accessToken和openid取出来</span>
+        <span class="token comment">// 将获取到的accessTokenInfo字符串转换为map，利用gson</span>
+        <span class="token class-name">Gson</span> gson <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Gson</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">HashMap</span> mapAccessToken <span class="token operator">=</span> gson<span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>accessTokenInfo<span class="token punctuation">,</span> <span class="token class-name">HashMap</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">String</span> accessToken <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">)</span> mapAccessToken<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"access_token"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> openid <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">)</span> mapAccessToken<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"openid"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+
+        <span class="token comment">// 把扫描人的信息加到数据库中</span>
+        <span class="token comment">// 先判断数据库是否已经存在</span>
+        <span class="token class-name">UcenterMember</span> member <span class="token operator">=</span> memberService<span class="token punctuation">.</span><span class="token function">getOpenIdMember</span><span class="token punctuation">(</span>openid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>member <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token comment">// 说明没有，直接添加</span>
+
+            <span class="token comment">// 3.根据accessToken和openid去请求微信固定的地址，获取用户信息</span>
+            <span class="token comment">// 拼接地址</span>
+            <span class="token comment">//访问微信的资源服务器，获取用户信息</span>
+            <span class="token class-name">String</span> baseUserInfoUrl <span class="token operator">=</span> <span class="token string">"https://api.weixin.qq.com/sns/userinfo"</span> <span class="token operator">+</span>
+                    <span class="token string">"?access_token=%s"</span> <span class="token operator">+</span>
+                    <span class="token string">"&amp;openid=%s"</span><span class="token punctuation">;</span>
+
+            <span class="token class-name">String</span> userInfoUrl <span class="token operator">=</span> <span class="token class-name">String</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>baseUserInfoUrl<span class="token punctuation">,</span> accessToken<span class="token punctuation">,</span> openid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment">// 根据userInfoUrl调用HTTPClient,发送请求</span>
+            <span class="token class-name">String</span> userInfo <span class="token operator">=</span> <span class="token class-name">HttpClientUtils</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>userInfoUrl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">//System.out.println("userInfo="+userInfo);</span>
+
+            <span class="token comment">// 将获取到的用户信息字符串转换给map</span>
+            <span class="token class-name">HashMap</span> userInfoMap <span class="token operator">=</span> gson<span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>userInfo<span class="token punctuation">,</span> <span class="token class-name">HashMap</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">String</span> nickname <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">)</span> userInfoMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"nickname"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 昵称</span>
+            <span class="token class-name">String</span> headimgurl <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">)</span> userInfoMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"headimgurl"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 头像</span>
+
+            member <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">UcenterMember</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            member<span class="token punctuation">.</span><span class="token function">setOpenid</span><span class="token punctuation">(</span>openid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            member<span class="token punctuation">.</span><span class="token function">setNickname</span><span class="token punctuation">(</span>nickname<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            member<span class="token punctuation">.</span><span class="token function">setAvatar</span><span class="token punctuation">(</span>headimgurl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            memberService<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>member<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token comment">// 由于cookie不能跨域，所以需要用jwt生成token信息，通过路径传递</span>
+        <span class="token class-name">String</span> jwtToken <span class="token operator">=</span> <span class="token class-name">JwtUtils</span><span class="token punctuation">.</span><span class="token function">getJwtToken</span><span class="token punctuation">(</span>member<span class="token punctuation">.</span><span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> member<span class="token punctuation">.</span><span class="token function">getNickname</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 登录成功之后，跳转到首页</span>
+        <span class="token keyword">return</span> <span class="token string">"redirect:http://localhost:3000?token="</span><span class="token operator">+</span>jwtToken<span class="token punctuation">;</span>
+
+    <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">GuliException</span><span class="token punctuation">(</span><span class="token number">20001</span><span class="token punctuation">,</span><span class="token string">"登录失败"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h1 id="微信扫描登录-首页面显示信息"><a href="#微信扫描登录-首页面显示信息" class="headerlink" title="微信扫描登录-首页面显示信息"></a>微信扫描登录-首页面显示信息</h1><p><img src="/myBlog/day13-%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95/image-20220107001556836.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220107001556836"></p>
+<h2 id="1、修改default-vue页面脚本"><a href="#1、修改default-vue页面脚本" class="headerlink" title="1、修改default.vue页面脚本"></a>1、修改default.vue页面脚本</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">export default &#123;
+     layout: &#39;sign&#39;,
+     data () &#123;
+       return &#123;
+         user:&#123;
+           mobile:&#39;&#39;,
+           password:&#39;&#39;
+         &#125;,
+         loginInfo:&#123;&#125;
+       &#125;
+     &#125;,
+     methods: &#123;
+
+       &#x2F;&#x2F; 登录
+       submitLogin()&#123;
+         &#x2F;&#x2F; 第一步调用接口获取登录token值
+         loginApi.submitLoginUser(this.user)
+          .then(response &#x3D;&gt;&#123;
+            &#x2F;&#x2F; 第二步，将获取到的token值放到cookie中
+            cookie.set(&#39;guli_token&#39;,response.data.data.token,&#123; domain: &#39;localhost&#39; &#125;)
+
+            &#x2F;&#x2F; 第四步，根据token的值，调用接口，获取用户数据，并存入cookie中
+            loginApi.getUserInfo()
+              .then(response &#x3D;&gt;&#123;
+                this.loginInfo &#x3D; response.data.data.userInfo
+                &#x2F;&#x2F; 将得到的用户信息存入cookie中
+                cookie.set(&quot;guli_ucenter&quot;,JSON.stringify(this.loginInfo),&#123; domain: &#39;localhost&#39; &#125;)
+                &#x2F;&#x2F; 跳转页面
+                window.location.href &#x3D; &quot;&#x2F;&quot;
+              &#125;)
+          &#125;)
+          
+       &#125;,
+       checkPhone (rule, value, callback) &#123;
+         &#x2F;&#x2F;debugger
+         if (!(&#x2F;^1[34578]\d&#123;9&#125;$&#x2F;.test(value))) &#123;
+           return callback(new Error(&#39;手机号码格式不正确&#39;))
+         &#125;
+         return callback()
+       &#125;
+     &#125;
+   &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/myBlog/categories/%E9%A1%B9%E7%9B%AE-%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2-%E7%AC%94%E8%AE%B0/">项目|谷粒学院|笔记</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/myBlog/tags/project/">project</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/myBlog/day14-%E8%AE%B2%E5%B8%88%E5%88%86%E9%A1%B5_%E8%AF%BE%E7%A8%8B%E5%88%97%E8%A1%A8_%E8%AF%BE%E7%A8%8B%E8%AF%A6%E6%83%85/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">day14-讲师分页_课程列表_课程详情</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/myBlog/day12-%E7%99%BB%E5%BD%95%E4%B8%9A%E5%8A%A1/">
+                        <span class="hidden-mobile">day12-登录业务</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://github.com" target="_blank" rel="nofollow noopener"><span>GitHub</span></a> <i class="iconfont icon-love"></i> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+  
+  <div>
+      <span id="timeDate">载入天数...</span>
+      <span id="times">载入时分秒...</span>
+      <script>
+      var now = new Date();
+      function createtime(){
+          var grt= new Date("11/11/2021 00:00:00");//此处修改你的建站时间或者网站上线时间
+          now.setTime(now.getTime()+250);
+          days = (now - grt ) / 1000 / 60 / 60 / 24;
+          dnum = Math.floor(days);
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+          hnum = Math.floor(hours);
+          if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+          }
+          minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes);
+          if(String(mnum).length ==1 ){
+                    mnum = "0" + mnum;
+          }
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds);
+          if(String(snum).length ==1 ){
+                    snum = "0" + snum;
+          }
+          document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+          document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+      }
+      setInterval("createtime()",250);
+      </script>
+    </div>
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/myBlog/js/events.js" ></script>
+<script  src="/myBlog/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/myBlog/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/myBlog/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/myBlog/js/boot.js" ></script>
+
+
+</body>
+</html>

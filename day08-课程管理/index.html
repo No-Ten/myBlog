@@ -1,0 +1,1483 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/myBlog/img/favicon.png">
+  <link rel="icon" href="/myBlog/img/browserTitle.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Ten">
+  <meta name="keywords" content="">
+  <meta name="description" content="day08-课程管理课程管理大纲列表后端创建对应的vo实体类 ChapterVo &#x2F;&#x2F; 课程章节 @Data public class ChapterVo &amp;#123;     private String id;     private String title;     &#x2F;&#x2F; 每个章节里面包含小节     List&lt;VideoVo&gt; children &#x3D; new ArrayList&amp;lt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day08-课程管理">
+<meta property="og:url" content="https://no-ten.github.io/day08-%E8%AF%BE%E7%A8%8B%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:site_name" content="TBlog">
+<meta property="og:description" content="day08-课程管理课程管理大纲列表后端创建对应的vo实体类 ChapterVo &#x2F;&#x2F; 课程章节 @Data public class ChapterVo &amp;#123;     private String id;     private String title;     &#x2F;&#x2F; 每个章节里面包含小节     List&lt;VideoVo&gt; children &#x3D; new ArrayList&amp;lt">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-12-25T11:48:50.322Z">
+<meta property="article:modified_time" content="2022-01-06T16:42:45.927Z">
+<meta property="article:author" content="Ten">
+<meta property="article:tag" content="project">
+<meta name="twitter:card" content="summary_large_image">
+  
+  <title>day08-课程管理 - TBlog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/myBlog/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/myBlog/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"no-ten.github.io","root":"/myBlog/","version":"1.8.12","typing":{"enable":true,"typeSpeed":230,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/myBlog/local-search.xml"};
+  </script>
+  <script  src="/myBlog/js/utils.js" ></script>
+  <script  src="/myBlog/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/myBlog/atom.xml" title="TBlog" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/myBlog/">
+      <strong>TBlog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/myBlog/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="day08-课程管理">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Ten
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-25 19:48" pubdate>
+        2021年12月25日晚上7点48分 
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      21k 字
+    </span>
+  
+
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">day08-课程管理</h1>
+            
+            <div class="markdown-body">
+              <h1 id="day08-课程管理"><a href="#day08-课程管理" class="headerlink" title="day08-课程管理"></a>day08-课程管理</h1><h1 id="课程管理大纲列表后端"><a href="#课程管理大纲列表后端" class="headerlink" title="课程管理大纲列表后端"></a>课程管理大纲列表后端</h1><p>创建对应的vo实体类</p>
+<p>ChapterVo</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 课程章节</span>
+<span class="token annotation punctuation">@Data</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ChapterVo</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> id<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> title<span class="token punctuation">;</span>
+    <span class="token comment">// 每个章节里面包含小节</span>
+    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">VideoVo</span><span class="token punctuation">></span></span> children <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>VideoVo</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 小节vo</span>
+<span class="token annotation punctuation">@Data</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">VideoVo</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> id<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> title<span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<p>controller</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
+<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/eduservice/chapter"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">EduChapterController</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">EduChapterService</span> eduChapterService<span class="token punctuation">;</span>
+
+    <span class="token comment">// 查看所有课程大纲，章节小节</span>
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"getAllChapterVideo/&#123;courseId&#125;"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">getAllChapterVideo</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> courseId<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ChapterVo</span><span class="token punctuation">></span></span> list <span class="token operator">=</span> eduChapterService<span class="token punctuation">.</span><span class="token function">getAllChapterVideo</span><span class="token punctuation">(</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"list"</span><span class="token punctuation">,</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>service接口</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">EduChapterService</span> <span class="token keyword">extends</span> <span class="token class-name">IService</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduChapter</span><span class="token punctuation">></span></span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 查看所有课程大纲，章节小节</span>
+    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ChapterVo</span><span class="token punctuation">></span></span> <span class="token function">getAllChapterVideo</span><span class="token punctuation">(</span><span class="token class-name">String</span> courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>serviceImpl实现类</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 查看所有课程大纲，章节小节</span>
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ChapterVo</span><span class="token punctuation">></span></span> <span class="token function">getAllChapterVideo</span><span class="token punctuation">(</span><span class="token class-name">String</span> courseId<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token comment">// 查询所有的章节</span>
+    <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduChapter</span><span class="token punctuation">></span></span> chapterWrapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    chapterWrapper<span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token string">"course_id"</span><span class="token punctuation">,</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduChapter</span><span class="token punctuation">></span></span> chapterList <span class="token operator">=</span> baseMapper<span class="token punctuation">.</span><span class="token function">selectList</span><span class="token punctuation">(</span>chapterWrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 查询所有的小节</span>
+    <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduVideo</span><span class="token punctuation">></span></span> videoWrapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    chapterWrapper<span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token string">"course_id"</span><span class="token punctuation">,</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduVideo</span><span class="token punctuation">></span></span> eduVideoList <span class="token operator">=</span> eduVideoService<span class="token punctuation">.</span><span class="token function">list</span><span class="token punctuation">(</span>videoWrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 创建集合保存最终的集合</span>
+    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ChapterVo</span><span class="token punctuation">></span></span> finalList <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 封装章节</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> chapterList<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 得到eduChapter对象</span>
+        <span class="token class-name">EduChapter</span> eduChapter <span class="token operator">=</span> chapterList<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">ChapterVo</span> chapterVo <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChapterVo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">BeanUtils</span><span class="token punctuation">.</span><span class="token function">copyProperties</span><span class="token punctuation">(</span>eduChapter<span class="token punctuation">,</span>chapterVo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 将得到的章节加入最终集合</span>
+        finalList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>chapterVo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 封装小节</span>
+        <span class="token comment">// 先创建一个集合存放小节</span>
+        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">VideoVo</span><span class="token punctuation">></span></span> videoList <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> m <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> m <span class="token operator">&lt;</span> eduVideoList<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> m<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">EduVideo</span> eduVideo <span class="token operator">=</span> eduVideoList<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span>
+           <span class="token comment">// 判断eduVideo中的chapter_id是否和章节的id相等</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>eduVideo<span class="token punctuation">.</span><span class="token function">getChapterId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>eduChapter<span class="token punctuation">.</span><span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                <span class="token class-name">VideoVo</span> videoVo <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VideoVo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token class-name">BeanUtils</span><span class="token punctuation">.</span><span class="token function">copyProperties</span><span class="token punctuation">(</span>eduVideo<span class="token punctuation">,</span>videoVo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                videoList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>videoVo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token comment">// 将小节加到章节chapterVo中</span>
+        chapterVo<span class="token punctuation">.</span><span class="token function">setChildren</span><span class="token punctuation">(</span>videoList<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">return</span> finalList<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<h1 id="课程管理大纲列表前端"><a href="#课程管理大纲列表前端" class="headerlink" title="课程管理大纲列表前端"></a>课程管理大纲列表前端</h1><h2 id="定义api"><a href="#定义api" class="headerlink" title="定义api"></a>定义api</h2><p>chapter.js</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> request <span class="token keyword">from</span> <span class="token string">'@/utils/request'</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span><span class="token punctuation">&#123;</span>
+    <span class="token comment">// 根据课程id查询章节和小节</span>
+    <span class="token function">getAllChapterVideo</span><span class="token punctuation">(</span><span class="token parameter">courseId</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+            url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/eduservice/chapter/getAllChapterVideo/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>courseId<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+            method<span class="token operator">:</span> <span class="token string">'get'</span>
+          <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h2 id="定义组件脚本"><a href="#定义组件脚本" class="headerlink" title="定义组件脚本"></a>定义组件脚本</h2><p>定义data</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">chapterVideoList:[],
+courseId:&#39;&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+<p>created中调用getChapterVideo方法</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">created() &#123;
+     &#x2F;&#x2F; 获取路由的id
+     if(this.$route.params &amp;&amp; this.$route.params.id)&#123;
+       this.courseId &#x3D; this.$route.params.id;
+       &#x2F;&#x2F; 根据课程id获取章节和小节
+       this.getChapterVideo()
+     &#125;
+   &#125;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>methods</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">methods: &#123;
+     &#x2F;&#x2F; 根据课程id查询章节和小节
+     getChapterVideo()&#123;
+       chapter.getAllChapterVideo(this.courseId)
+        .then(response &#x3D;&gt;&#123;
+          this.chapterVideoList &#x3D; response.data.allChapterVideo
+        &#125;)
+     &#125;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h2 id="定义组件模板"><a href="#定义组件模板" class="headerlink" title="定义组件模板"></a>定义组件模板</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;el-button type&#x3D;&quot;text&quot;&gt;添加章节&lt;&#x2F;el-button&gt;
+      &lt;!-- 章节 --&gt;
+      &lt;ul class&#x3D;&quot;chanpterList&quot;&gt;
+          &lt;li
+              v-for&#x3D;&quot;chapter in chapterVideoList&quot;
+              :key&#x3D;&quot;chapter.id&quot;&gt;
+              &lt;p&gt;
+                  &#123;&#123; chapter.title &#125;&#125;
+                  
+              &lt;&#x2F;p&gt;
+              &lt;!-- 视频 --&gt;
+              &lt;ul class&#x3D;&quot;chanpterList videoList&quot;&gt;
+                  &lt;li
+                      v-for&#x3D;&quot;video in chapter.children&quot;
+                      :key&#x3D;&quot;video.id&quot;&gt;
+                      &lt;p&gt;&#123;&#123; video.title &#125;&#125;
+                      &lt;&#x2F;p&gt;
+                  &lt;&#x2F;li&gt;
+              &lt;&#x2F;ul&gt;
+          &lt;&#x2F;li&gt;
+      &lt;&#x2F;ul&gt;
+      &lt;div&gt;
+          &lt;el-button @click&#x3D;&quot;previous&quot;&gt;上一步&lt;&#x2F;el-button&gt;
+          &lt;el-button :disabled&#x3D;&quot;saveBtnDisabled&quot; type&#x3D;&quot;primary&quot; @click&#x3D;&quot;next&quot;&gt;下一步&lt;&#x2F;el-button&gt;
+      &lt;&#x2F;div&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h2 id="定义样式"><a href="#定义样式" class="headerlink" title="定义样式"></a>定义样式</h2><p>将样式的定义放在页面的最后</p>
+<p>scope表示这里定义的样式只在当前页面范围内生效，不会污染到其他的页</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue"> &lt;style scoped&gt;
+.chanpterList&#123;
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+&#125;
+.chanpterList li&#123;
+  position: relative;
+&#125;
+.chanpterList p&#123;
+  float: left;
+  font-size: 20px;
+  margin: 10px 0;
+  padding: 10px;
+  height: 70px;
+  line-height: 50px;
+  width: 100%;
+  border: 1px solid #DDD;
+&#125;
+.chanpterList .acts &#123;
+    float: right;
+    font-size: 14px;
+&#125;
+.videoList&#123;
+  padding-left: 50px;
+&#125;
+.videoList p&#123;
+  float: left;
+  font-size: 14px;
+  margin: 10px 0;
+  padding: 10px;
+  height: 50px;
+  line-height: 30px;
+  width: 100%;
+  border: 1px dotted #DDD;
+&#125;
+&lt;&#x2F;style&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<h2 id="完整chapter-vue代码"><a href="#完整chapter-vue代码" class="headerlink" title="完整chapter.vue代码"></a>完整chapter.vue代码</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
+   &lt;div class&#x3D;&quot;app-container&quot;&gt;
+     &lt;h2 style&#x3D;&quot;text-align: center;&quot;&gt;发布新课程&lt;&#x2F;h2&gt;
+     &lt;el-steps :active&#x3D;&quot;2&quot; process-status&#x3D;&quot;wait&quot; align-center style&#x3D;&quot;margin-bottom: 40px;&quot;&gt;
+       &lt;el-step title&#x3D;&quot;填写课程基本信息&quot;&#x2F;&gt;
+       &lt;el-step title&#x3D;&quot;创建课程大纲&quot;&#x2F;&gt;
+       &lt;el-step title&#x3D;&quot;最终发布&quot;&#x2F;&gt;
+     &lt;&#x2F;el-steps&gt;
+
+      &lt;el-button type&#x3D;&quot;text&quot;&gt;添加章节&lt;&#x2F;el-button&gt;
+      &lt;!-- 章节 --&gt;
+      &lt;ul class&#x3D;&quot;chanpterList&quot;&gt;
+          &lt;li
+              v-for&#x3D;&quot;chapter in chapterVideoList&quot;
+              :key&#x3D;&quot;chapter.id&quot;&gt;
+              &lt;p&gt;
+                  &#123;&#123; chapter.title &#125;&#125;
+                  
+              &lt;&#x2F;p&gt;
+              &lt;!-- 视频 --&gt;
+              &lt;ul class&#x3D;&quot;chanpterList videoList&quot;&gt;
+                  &lt;li
+                      v-for&#x3D;&quot;video in chapter.children&quot;
+                      :key&#x3D;&quot;video.id&quot;&gt;
+                      &lt;p&gt;&#123;&#123; video.title &#125;&#125;
+                      &lt;&#x2F;p&gt;
+                  &lt;&#x2F;li&gt;
+              &lt;&#x2F;ul&gt;
+          &lt;&#x2F;li&gt;
+      &lt;&#x2F;ul&gt;
+      &lt;div&gt;
+          &lt;el-button @click&#x3D;&quot;previous&quot;&gt;上一步&lt;&#x2F;el-button&gt;
+          &lt;el-button :disabled&#x3D;&quot;saveBtnDisabled&quot; type&#x3D;&quot;primary&quot; @click&#x3D;&quot;next&quot;&gt;下一步&lt;&#x2F;el-button&gt;
+      &lt;&#x2F;div&gt;
+
+     &lt;!-- &lt;el-form label-width&#x3D;&quot;120px&quot;&gt;
+       &lt;el-form-item&gt;
+         &lt;el-button @click&#x3D;&quot;previous&quot;&gt;上一步&lt;&#x2F;el-button&gt;
+         &lt;el-button :disabled&#x3D;&quot;saveBtnDisabled&quot; type&#x3D;&quot;primary&quot; @click&#x3D;&quot;next&quot;&gt;下一步&lt;&#x2F;el-button&gt;
+       &lt;&#x2F;el-form-item&gt;
+     &lt;&#x2F;el-form&gt; --&gt;
+   &lt;&#x2F;div&gt;
+ &lt;&#x2F;template&gt;
+ &lt;script&gt;
+   import chapter from &#39;@&#x2F;api&#x2F;edu&#x2F;chapter&#39;
+ export default &#123;
+   data() &#123;
+     return &#123;
+       saveBtnDisabled: false, &#x2F;&#x2F; 保存按钮是否禁用
+       chapterVideoList:[],
+       courseId:&#39;&#39;
+     &#125;
+   &#125;,
+   created() &#123;
+     &#x2F;&#x2F; 获取路由的id
+     if(this.$route.params &amp;&amp; this.$route.params.id)&#123;
+       this.courseId &#x3D; this.$route.params.id;
+       &#x2F;&#x2F; 根据课程id获取章节和小节
+       this.getChapterVideo()
+     &#125;
+   &#125;,
+   methods: &#123;
+     &#x2F;&#x2F; 根据课程id查询章节和小节
+     getChapterVideo()&#123;
+       chapter.getAllChapterVideo(this.courseId)
+        .then(response &#x3D;&gt;&#123;
+          this.chapterVideoList &#x3D; response.data.allChapterVideo
+        &#125;)
+     &#125;,
+
+     previous() &#123;
+       this.$router.push(&#123; path: &#39;&#x2F;course&#x2F;info&#x2F;&#39;+this.courseId &#125;)
+     &#125;,
+     next() &#123;
+       console.log(&#39;next&#39;)
+       this.$router.push(&#123; path: &#39;&#x2F;course&#x2F;publish&#x2F;&#39;+this.courseId &#125;)
+     &#125;
+   &#125;
+ &#125;
+ &lt;&#x2F;script&gt;
+
+  &lt;style scoped&gt;
+ .chanpterList&#123;
+     position: relative;
+     list-style: none;
+     margin: 0;
+     padding: 0;
+ &#125;
+ .chanpterList li&#123;
+   position: relative;
+ &#125;
+ .chanpterList p&#123;
+   float: left;
+   font-size: 20px;
+   margin: 10px 0;
+   padding: 10px;
+   height: 70px;
+   line-height: 50px;
+   width: 100%;
+   border: 1px solid #DDD;
+ &#125;
+ .chanpterList .acts &#123;
+     float: right;
+     font-size: 14px;
+ &#125;
+ .videoList&#123;
+   padding-left: 50px;
+ &#125;
+ .videoList p&#123;
+   float: left;
+   font-size: 14px;
+   margin: 10px 0;
+   padding: 10px;
+   height: 50px;
+   line-height: 30px;
+   width: 100%;
+   border: 1px dotted #DDD;
+ &#125;
+ &lt;&#x2F;style&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<h1 id="课程管理-修改课程信息后端"><a href="#课程管理-修改课程信息后端" class="headerlink" title="课程管理-修改课程信息后端"></a>课程管理-修改课程信息后端</h1><p>controller</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 根据课程id查询基本信息</span>
+<span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"getCourseInfo/&#123;courseId&#125;"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">getCourseInfo</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> courseId<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token class-name">CourseInfoVo</span> courseInfoVo <span class="token operator">=</span> eduCourseService<span class="token punctuation">.</span><span class="token function">getCourseInfo</span><span class="token punctuation">(</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"courseInfoVo"</span><span class="token punctuation">,</span>courseInfoVo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 修改课程信息</span>
+<span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"updateCourseInfo"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">updateCourseInfo</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestBody</span> <span class="token class-name">CourseInfoVo</span> courseInfoVo<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    eduCourseService<span class="token punctuation">.</span><span class="token function">updateCourseInfo</span><span class="token punctuation">(</span>courseInfoVo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>service</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 根据课程id查询基本信息</span>
+<span class="token class-name">CourseInfoVo</span> <span class="token function">getCourseInfo</span><span class="token punctuation">(</span><span class="token class-name">String</span> courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 修改课程信息</span>
+<span class="token keyword">void</span> <span class="token function">updateCourseInfo</span><span class="token punctuation">(</span><span class="token class-name">CourseInfoVo</span> courseInfoVo<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>serviceImpl</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 根据课程id查询基本信息</span>
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token class-name">CourseInfoVo</span> <span class="token function">getCourseInfo</span><span class="token punctuation">(</span><span class="token class-name">String</span> courseId<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token comment">// 查询课程表</span>
+    <span class="token class-name">EduCourse</span> eduCourse <span class="token operator">=</span> baseMapper<span class="token punctuation">.</span><span class="token function">selectById</span><span class="token punctuation">(</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">CourseInfoVo</span> courseInfoVo <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">CourseInfoVo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">BeanUtils</span><span class="token punctuation">.</span><span class="token function">copyProperties</span><span class="token punctuation">(</span>eduCourse<span class="token punctuation">,</span>courseInfoVo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 查询描述表</span>
+    <span class="token class-name">EduCourseDescription</span> courseDescription <span class="token operator">=</span> eduCourseDescriptionService<span class="token punctuation">.</span><span class="token function">getById</span><span class="token punctuation">(</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    courseInfoVo<span class="token punctuation">.</span><span class="token function">setDescription</span><span class="token punctuation">(</span>courseDescription<span class="token punctuation">.</span><span class="token function">getDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> courseInfoVo<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 修改课程信息</span>
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">updateCourseInfo</span><span class="token punctuation">(</span><span class="token class-name">CourseInfoVo</span> courseInfoVo<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token comment">// 修改课程表</span>
+    <span class="token class-name">EduCourse</span> eduCourse <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">EduCourse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">BeanUtils</span><span class="token punctuation">.</span><span class="token function">copyProperties</span><span class="token punctuation">(</span>courseInfoVo<span class="token punctuation">,</span>eduCourse<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> update <span class="token operator">=</span> baseMapper<span class="token punctuation">.</span><span class="token function">updateById</span><span class="token punctuation">(</span>eduCourse<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>update <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">GuliException</span><span class="token punctuation">(</span><span class="token number">20001</span><span class="token punctuation">,</span><span class="token string">"修改课程信息失败"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 修改描述表</span>
+    <span class="token class-name">EduCourseDescription</span> description <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">EduCourseDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    description<span class="token punctuation">.</span><span class="token function">setId</span><span class="token punctuation">(</span>courseInfoVo<span class="token punctuation">.</span><span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    description<span class="token punctuation">.</span><span class="token function">setDescription</span><span class="token punctuation">(</span>courseInfoVo<span class="token punctuation">.</span><span class="token function">getDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    eduCourseDescriptionService<span class="token punctuation">.</span><span class="token function">updateById</span><span class="token punctuation">(</span>description<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<h1 id="课程管理-修改课程信息前端"><a href="#课程管理-修改课程信息前端" class="headerlink" title="课程管理-修改课程信息前端"></a>课程管理-修改课程信息前端</h1><p>course.js</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 根据课程id查询课程信息</span>
+<span class="token function">getCourseInfo</span><span class="token punctuation">(</span><span class="token parameter">id</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+        url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/eduservice/course/getCourseInfo/</span><span class="token template-punctuation string">`</span></span><span class="token operator">+</span>id<span class="token punctuation">,</span>
+        method<span class="token operator">:</span> <span class="token string">'get'</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token comment">// 修改课程信息</span>
+<span class="token function">updateCourseInfo</span><span class="token punctuation">(</span><span class="token parameter">courseInfo</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+        url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/eduservice/course/updateCourseInfo</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        method<span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
+        data<span class="token operator">:</span>courseInfo
+      <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<p>info.vue</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;script&gt;
+
+    import course from &#39;@&#x2F;api&#x2F;edu&#x2F;course&#39;
+    import subject from &#39;@&#x2F;api&#x2F;edu&#x2F;subject&#39;
+    import Tinymce from &#39;@&#x2F;components&#x2F;Tinymce&#39;
+
+export default &#123;
+		.....
+    created()&#123;
+    
+        &#x2F;&#x2F; 获取路由的id
+        if(this.$route.params &amp;&amp; this.$route.params.id)&#123;
+            this.courseId &#x3D; this.$route.params.id
+             &#x2F;&#x2F; 根据课程id查询课程信息
+            this.getCourseInfo()
+        &#125; else &#123;
+            &#x2F;&#x2F; 如果没有id，就清空表单
+            this.courseInfoVo &#x3D;&#123;&#125;
+            &#x2F;&#x2F; 初始化讲师下拉列表
+            this.findTeacherList()
+            &#x2F;&#x2F; 初始化一级分类
+            this.getOneSubjectList()
+        &#125;
+
+   
+    &#125;,
+    methods:&#123;
+        &#x2F;&#x2F; 根据课程id查询课程信息
+        getCourseInfo()&#123;
+            course.getCourseInfo(this.courseId)
+            .then(response &#x3D;&gt;&#123;
+                &#x2F;&#x2F; 获取课程信息
+                this.courseInfo &#x3D; response.data.courseInfoVo
+                &#x2F;&#x2F; 查询所有的分类，包括一级分类和二级分类 
+                subject.getSubjectList()
+                    .then(response &#x3D;&gt;&#123;
+                        &#x2F;&#x2F; 获取所有的一级分类
+                        this.subjectOneList &#x3D; response.data.list
+                        &#x2F;&#x2F; 把所有的一级分类进行遍历
+                        for(var i &#x3D; 0; i &lt; this.subjectOneList.length; i++)&#123;
+                            &#x2F;&#x2F; 获取每一个一级分类
+                            var oneSubject &#x3D; this.subjectOneList[i];
+                            &#x2F;&#x2F; 比较当前courseInfo的一级分类id和所有一级分类的id
+                            if(this.courseInfo.subjectParentId &#x3D;&#x3D; oneSubject.id)&#123;
+                                &#x2F;&#x2F; 获取一级分类的所有二级分类
+                                this.subjectTwoList &#x3D; oneSubject.children
+                            &#125;
+                        &#125;
+                        
+                &#125;)
+                &#x2F;&#x2F; 初始化讲师下拉列表
+                this.findTeacherList()
+            &#125;)
+        &#125;,
+
+        ....
+        
+        &#x2F;&#x2F; 添加
+        saveCourse()&#123;
+            course.addCourseInfo(this.courseInfo)
+            .then(response &#x3D;&gt;&#123;
+                &#x2F;&#x2F; 提示信息
+                this.$message(&#123;
+                        type: &#39;success&#39;,
+                        message: &#39;添加课程信息成功!&#39;
+                    &#125;);  
+                this.$router.push(&#123; path: &#39;&#x2F;course&#x2F;chapter&#x2F;&#39;+response.data.courseId &#125;)
+            &#125;)
+          
+        &#125;,
+        &#x2F;&#x2F; 修改
+        updateCourse()&#123;
+            course.updateCourseInfo(this.courseInfo)
+            .then(response &#x3D;&gt;&#123;
+                this.$message(&#123;
+                        type: &#39;success&#39;,
+                        message: &#39;修改课程信息成功!&#39;
+                    &#125;);  
+                this.$router.push(&#123; path: &#39;&#x2F;course&#x2F;chapter&#x2F;&#39;+this.courseId &#125;)
+            &#125;)
+        &#125;,
+
+        saveOrUpdate()&#123;
+          if(!this.courseId)&#123;
+              &#x2F;&#x2F; 添加
+              this.saveCourse()
+          &#125; else &#123;
+              &#x2F;&#x2F; 修改
+              this.updateCourse()
+          &#125;
+        &#125;
+    &#125;
+&#125;
+&lt;&#x2F;script&gt;
+
+&lt;style scoped&gt;
+.tinymce-container &#123;
+  line-height: 29px;
+&#125;
+&lt;&#x2F;style&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<h1 id="课程章节后端接口"><a href="#课程章节后端接口" class="headerlink" title="课程章节后端接口"></a>课程章节后端接口</h1><p>controller</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 添加章节</span>
+<span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"addChapter"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">addChapter</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestBody</span> <span class="token class-name">EduChapter</span> eduChapter<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    eduChapterService<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>eduChapter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 根据章节id查询章节</span>
+<span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"getChapterInfo/&#123;courseId&#125;"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">getChapterInfo</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> courseId<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    eduChapterService<span class="token punctuation">.</span><span class="token function">getById</span><span class="token punctuation">(</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 修改章节</span>
+<span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"updateChapter"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">updateChapter</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestBody</span> <span class="token class-name">EduChapter</span> eduChapter<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    eduChapterService<span class="token punctuation">.</span><span class="token function">updateById</span><span class="token punctuation">(</span>eduChapter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 删除章节</span>
+<span class="token annotation punctuation">@DeleteMapping</span><span class="token punctuation">(</span><span class="token string">"deleteChapter"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">deleteChapter</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> courseId<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">boolean</span> flag <span class="token operator">=</span> eduChapterService<span class="token punctuation">.</span><span class="token function">deleteChapter</span><span class="token punctuation">(</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>service</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 删除章节</span>
+<span class="token keyword">boolean</span> <span class="token function">deleteChapter</span><span class="token punctuation">(</span><span class="token class-name">String</span> courseId<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+<p>serviceImpl</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 删除章节</span>
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">deleteChapter</span><span class="token punctuation">(</span><span class="token class-name">String</span> courseId<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token comment">// 先查询是否有小节，如果有就不删除，没有就删除</span>
+    <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduVideo</span><span class="token punctuation">></span></span> wrapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    wrapper<span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token string">"chapter_id"</span><span class="token punctuation">,</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> count <span class="token operator">=</span> eduVideoService<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span>wrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>count <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token comment">// 说明有小节，不能删除</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">GuliException</span><span class="token punctuation">(</span><span class="token number">20001</span><span class="token punctuation">,</span><span class="token string">"还有小节，不能删除"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 否则没有小节，可以删除章节</span>
+        <span class="token keyword">int</span> result <span class="token operator">=</span> baseMapper<span class="token punctuation">.</span><span class="token function">deleteById</span><span class="token punctuation">(</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 如果result大于0，则为true，否则为false</span>
+        <span class="token keyword">return</span> result <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<h1 id="课程管理-添加章节前端"><a href="#课程管理-添加章节前端" class="headerlink" title="课程管理-添加章节前端"></a>课程管理-添加章节前端</h1><p>chapter.js</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 添加课程</span>
+<span class="token function">addChapter</span><span class="token punctuation">(</span><span class="token parameter">chapter</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+        url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/eduservice/chapter/addChapter</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        method<span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
+        data<span class="token operator">:</span>chapter
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<p>chapter.vue，添加chapter对象属性</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue"> export default &#123;
+   data() &#123;
+     return &#123;
+....
+       chapter: &#123;&#x2F;&#x2F; 章节对象
+          title:&#39;&#39;,
+          sort:0
+        &#125;
+     &#125;
+   &#125;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<p>methods</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">methods: &#123;
+     &#x2F;&#x2F; 添加课程
+     saveOrUpdate()&#123;
+       &#x2F;&#x2F; 设置课程id到chapter对象
+       this.chapter.courseId &#x3D; this.courseId 
+       chapter.addChapter(this.chapter)
+        .then(response &#x3D;&gt;&#123;
+          &#x2F;&#x2F; 提示
+          this.$message(&#123;
+                type: &#39;success&#39;,
+                message: &#39;添加课程成功!&#39;
+            &#125;);
+          &#x2F;&#x2F; 关闭弹框
+          this.dialogChapterFormVisible &#x3D; false
+
+          &#x2F;&#x2F; 回到页面
+          this.getChapterVideo()
+        &#125;)
+     &#125;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<h1 id="课程管理-修改章节前端"><a href="#课程管理-修改章节前端" class="headerlink" title="课程管理-修改章节前端"></a>课程管理-修改章节前端</h1><p>chapter.vue，添加编辑按钮</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!-- 章节 --&gt;
+&lt;ul class&#x3D;&quot;chanpterList&quot;&gt;
+    &lt;li
+        v-for&#x3D;&quot;chapter in chapterVideoList&quot;
+        :key&#x3D;&quot;chapter.id&quot;&gt;
+        &lt;p&gt;
+            &#123;&#123; chapter.title &#125;&#125;
+          &lt;span class&#x3D;&quot;acts&quot;&gt;
+              &lt;el-button style&#x3D;&quot;&quot; type&#x3D;&quot;text&quot; @click&#x3D;&quot;openEditChapter(chapter.id)&quot;&gt;编辑&lt;&#x2F;el-button&gt;
+              &lt;el-button type&#x3D;&quot;text&quot;&gt;删除&lt;&#x2F;el-button&gt;
+          &lt;&#x2F;span&gt;
+            
+        &lt;&#x2F;p&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>methods</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">methods: &#123;
+  &#x2F;&#x2F; 修改章节弹框数据回显
+  openEditChapter(chapterId)&#123;
+    &#x2F;&#x2F; 弹框
+    this.dialogChapterFormVisible &#x3D; true
+    &#x2F;&#x2F; 调用接口
+    chapter.getChapter(chapterId)
+     .then(response &#x3D;&gt;&#123;
+       this.chapter &#x3D; response.data.chapter
+     &#125;)
+  &#125;,
+  &#x2F;&#x2F; 添加章节弹框
+  openChapterDialog()&#123;
+    this.dialogChapterFormVisible &#x3D; true
+    this.chapter.title &#x3D; &#39;&#39;
+    this.chapter.sort &#x3D; 0
+  &#125;,
+  &#x2F;&#x2F; 添加章节
+  addChapter()&#123;
+   &#x2F;&#x2F; 设置课程id到chapter对象
+    this.chapter.courseId &#x3D; this.courseId 
+    chapter.addChapter(this.chapter)
+     .then(response &#x3D;&gt;&#123;
+       &#x2F;&#x2F; 提示
+       this.$message(&#123;
+             type: &#39;success&#39;,
+             message: &#39;添加课程成功!&#39;
+         &#125;);
+       &#x2F;&#x2F; 关闭弹框
+       this.dialogChapterFormVisible &#x3D; false
+
+       &#x2F;&#x2F; 回到页面
+       this.getChapterVideo()
+     &#125;)    
+  &#125;,
+  &#x2F;&#x2F; 修改章节
+ updateChapter()&#123;
+   chapter.updateChapter(this.chapter)
+   .then(response &#x3D;&gt;&#123;
+        &#x2F;&#x2F; 提示
+       this.$message(&#123;
+             type: &#39;success&#39;,
+             message: &#39;修改课程成功!&#39;
+         &#125;);
+       &#x2F;&#x2F; 关闭弹框
+       this.dialogChapterFormVisible &#x3D; false
+
+       &#x2F;&#x2F; 回到页面
+       this.getChapterVideo()
+   &#125;)
+ &#125; , 
+  &#x2F;&#x2F; 添加章节
+  saveOrUpdate()&#123;
+    if(!this.chapter.id)&#123;
+      &#x2F;&#x2F; 添加 
+      this.addChapter()
+    &#125; else &#123;
+      &#x2F;&#x2F; 修改
+      this.updateChapter()
+    &#125;
+   
+  &#125;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<h1 id="课程管理-删除章节前端"><a href="#课程管理-删除章节前端" class="headerlink" title="课程管理-删除章节前端"></a>课程管理-删除章节前端</h1><p>chapter.vue</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;el-button type&#x3D;&quot;text&quot; @click&#x3D;&quot;removeChapter(chapter.id)&quot;&gt;删除&lt;&#x2F;el-button&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<p>methods</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&#x2F;&#x2F; 删除章节
+    removeChapter(chapterId)&#123;
+      this.$confirm(&#39;此操作将永久删除讲师记录, 是否继续?&#39;, &#39;提示&#39;, &#123;
+           confirmButtonText: &#39;确定&#39;,
+           cancelButtonText: &#39;取消&#39;,
+           type: &#39;warning&#39;
+           &#125;).then(() &#x3D;&gt; &#123;     &#x2F;&#x2F; 确认删除，执行then
+               &#x2F;&#x2F; 调用删除方法
+               chapter.deleteChapter(chapterId)
+                   .then(response &#x3D;&gt;&#123;     &#x2F;&#x2F; 删除成功
+                       &#x2F;&#x2F; 提示信息
+                       this.$message(&#123;
+                           type: &#39;success&#39;,
+                           message: &#39;删除成功!&#39;
+                       &#125;);
+                       &#x2F;&#x2F; 回到页面
+                       this.getChapterVideo()
+                   &#125;)
+           
+           &#125;)
+    &#125;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<h1 id="课程管理-添加小节前端"><a href="#课程管理-添加小节前端" class="headerlink" title="课程管理-添加小节前端"></a>课程管理-添加小节前端</h1><p>api/video.js</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 添加小节</span>
+<span class="token function">addChapter</span><span class="token punctuation">(</span><span class="token parameter">video</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+        url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/eduservice/video/addVideo</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        method<span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
+        data<span class="token operator">:</span>video
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>chapter.vue</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;el-button style&#x3D;&quot;&quot; type&#x3D;&quot;text&quot; @click&#x3D;&quot;openEditVideo(chapter.id)&quot;&gt;添加小节&lt;&#x2F;el-button&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<p>template</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!-- 添加和修改课时表单 --&gt;
+     &lt;el-dialog :visible.sync&#x3D;&quot;dialogVideoFormVisible&quot; title&#x3D;&quot;添加课时&quot;&gt;
+       &lt;el-form :model&#x3D;&quot;video&quot; label-width&#x3D;&quot;120px&quot;&gt;
+         &lt;el-form-item label&#x3D;&quot;课时标题&quot;&gt;
+           &lt;el-input v-model&#x3D;&quot;video.title&quot;&#x2F;&gt;
+         &lt;&#x2F;el-form-item&gt;
+         &lt;el-form-item label&#x3D;&quot;课时排序&quot;&gt;
+           &lt;el-input-number v-model&#x3D;&quot;video.sort&quot; :min&#x3D;&quot;0&quot; controls-position&#x3D;&quot;right&quot;&#x2F;&gt;
+         &lt;&#x2F;el-form-item&gt;
+         &lt;el-form-item label&#x3D;&quot;是否免费&quot;&gt;
+           &lt;el-radio-group v-model&#x3D;&quot;video.free&quot;&gt;
+             &lt;el-radio :label&#x3D;&quot;true&quot;&gt;免费&lt;&#x2F;el-radio&gt;
+             &lt;el-radio :label&#x3D;&quot;false&quot;&gt;默认&lt;&#x2F;el-radio&gt;
+           &lt;&#x2F;el-radio-group&gt;
+         &lt;&#x2F;el-form-item&gt;
+         &lt;el-form-item label&#x3D;&quot;上传视频&quot;&gt;
+           &lt;!-- TODO --&gt;
+         &lt;&#x2F;el-form-item&gt;
+       &lt;&#x2F;el-form&gt;
+       &lt;div slot&#x3D;&quot;footer&quot; class&#x3D;&quot;dialog-footer&quot;&gt;
+         &lt;el-button @click&#x3D;&quot;dialogVideoFormVisible &#x3D; false&quot;&gt;取 消&lt;&#x2F;el-button&gt;
+         &lt;el-button :disabled&#x3D;&quot;saveVideoBtnDisabled&quot; type&#x3D;&quot;primary&quot; @click&#x3D;&quot;saveOrUpdateVideo&quot;&gt;确 定&lt;&#x2F;el-button&gt;
+       &lt;&#x2F;div&gt;
+     &lt;&#x2F;el-dialog&gt;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<p>methods</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&#x2F;&#x2F; 添加小节弹框
+      openEditVideo(chapterId)&#123;
+        &#x2F;&#x2F; 弹框
+        this.dialogVideoFormVisible &#x3D; true
+        &#x2F;&#x2F; 设置章节id
+        this.video.chapterId &#x3D; chapterId
+        this.video.title &#x3D; &#39;&#39;
+        this.video.sort &#x3D; 0
+        this.video.free &#x3D; 0
+        this.video.videoSourceId &#x3D; &#39;&#39;
+        
+      &#125;,
+     
+      &#x2F;&#x2F; 添加小节
+      addVideo()&#123;
+        &#x2F;&#x2F; 设置课程id
+        this.video.courseId &#x3D; this.courseId
+        video.addChapter(this.video)
+          .then(response &#x3D;&gt;&#123;
+          &#x2F;&#x2F; 提示
+            this.$message(&#123;
+                  type: &#39;success&#39;,
+                  message: &#39;添加小节成功!&#39;
+              &#125;);
+            &#x2F;&#x2F; 关闭弹框
+            this.dialogVideoFormVisible &#x3D; false
+
+            &#x2F;&#x2F; 回到页面
+            this.getChapterVideo()
+          &#125;)
+      &#125;,
+      saveOrUpdateVideo()&#123;
+        this.addVideo()
+      &#125;,
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<h1 id="课程管理-删除小节前端"><a href="#课程管理-删除小节前端" class="headerlink" title="课程管理-删除小节前端"></a>课程管理-删除小节前端</h1><p>api/video.js</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 删除小节</span>
+<span class="token function">deleteVideo</span><span class="token punctuation">(</span><span class="token parameter">id</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+        url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/eduservice/video/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>id<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        method<span class="token operator">:</span> <span class="token string">'delete'</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<p>chapter.js</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;span class&#x3D;&quot;acts&quot;&gt;
+    &lt;el-button style&#x3D;&quot;&quot; type&#x3D;&quot;text&quot;&gt;编辑&lt;&#x2F;el-button&gt;
+    &lt;el-button type&#x3D;&quot;text&quot; @click&#x3D;&quot;removeVideo(video.id)&quot;&gt;删除&lt;&#x2F;el-button&gt;
+&lt;&#x2F;span&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>methods</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&#x2F;&#x2F; 删除小节
+      removeVideo(id)&#123;
+          this.$confirm(&#39;此操作将永久删除小节记录, 是否继续?&#39;, &#39;提示&#39;, &#123;
+            confirmButtonText: &#39;确定&#39;,
+            cancelButtonText: &#39;取消&#39;,
+            type: &#39;warning&#39;
+            &#125;).then(() &#x3D;&gt; &#123;     &#x2F;&#x2F; 确认删除，执行then
+                &#x2F;&#x2F; 调用删除方法
+                video.deleteVideo(id)
+                    .then(response &#x3D;&gt;&#123;     &#x2F;&#x2F; 删除成功
+                        &#x2F;&#x2F; 提示信息
+                        this.$message(&#123;
+                            type: &#39;success&#39;,
+                            message: &#39;删除小节成功!&#39;
+                        &#125;);
+                        &#x2F;&#x2F; 回到页面
+                        this.getChapterVideo()
+                    &#125;)
+            
+            &#125;)
+      &#125;,
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<h1 id="课程管理-信息确认后端"><a href="#课程管理-信息确认后端" class="headerlink" title="课程管理-信息确认后端"></a>课程管理-信息确认后端</h1><p>根据信息确认需要返回的数据创建CoursePublishVo类，自己写SQL语句查询结果</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Data</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CoursePublishVo</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> id<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> title<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> cover<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">Integer</span> lessonNum<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> subjectLevelOne<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> subjectLevelTwo<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> teacherName<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> price<span class="token punctuation">;</span><span class="token comment">//只用于显示</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>mapper</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">EduCourseMapper</span> <span class="token keyword">extends</span> <span class="token class-name">BaseMapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduCourse</span><span class="token punctuation">></span></span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 根据课程id查询课程信息</span>
+    <span class="token keyword">public</span> <span class="token class-name">CoursePublishVo</span> <span class="token function">getCoursePublishInfo</span><span class="token punctuation">(</span><span class="token class-name">String</span> courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>mapper.xml</p>
+<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">mapper</span> <span class="token name">PUBLIC</span> <span class="token string">"-//mybatis.org//DTD Mapper 3.0//EN"</span> <span class="token string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mapper</span> <span class="token attr-name">namespace</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.atguigu.eduservice.mapper.EduCourseMapper<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+
+    <span class="token comment">&lt;!--根据课程id查询课程信息--></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>getCoursePublishInfo<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.atguigu.eduservice.entity.vo.CoursePublishVo<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        SELECT
+          ec.`id`,
+          ec.`title`,
+          ec.`price`,
+          ec.`lesson_num` AS lessonNum,
+          ec.`cover`,
+          et.`name` AS teacherName,
+          es1.`title` AS subjectLevelOne,
+          es2.`title` AS subjectLevelTwo
+        FROM
+          edu_course ec
+          LEFT OUTER JOIN edu_course_description ecd
+            ON ec.`id` = ecd.`id`
+          LEFT OUTER JOIN edu_teacher et
+            ON ec.`teacher_id` = et.`id`
+          LEFT OUTER JOIN edu_subject es1
+            ON ec.`subject_parent_id` = es1.`id`
+          LEFT OUTER JOIN edu_subject es2
+            ON ec.`subject_id` = es2.`id`
+        WHERE ec.`id` = #&#123;courseId&#125;
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mapper</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<p>com.atguigu.eduservice.controller.EduCourseController编写controller</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 根据课程id查询最终发布的课程信息</span>
+<span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"getPublishCourseInfo/&#123;id&#125;"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">getPublishCourseInfo</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> id<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token class-name">CoursePublishVo</span> coursePublishVo <span class="token operator">=</span> eduCourseService<span class="token punctuation">.</span><span class="token function">getPublishCourse</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"courseInfo"</span><span class="token punctuation">,</span>coursePublishVo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>service</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 根据课程id查询最终发布的课程信息</span>
+<span class="token class-name">CoursePublishVo</span> <span class="token function">getPublishCourse</span><span class="token punctuation">(</span><span class="token class-name">String</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+<p>serviceImpl</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 根据课程id查询最终发布的课程信息</span>
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token class-name">CoursePublishVo</span> <span class="token function">getPublishCourse</span><span class="token punctuation">(</span><span class="token class-name">String</span> id<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 调用mapper</span>
+    <span class="token class-name">CoursePublishVo</span> coursePublishInfo <span class="token operator">=</span> baseMapper<span class="token punctuation">.</span><span class="token function">getCoursePublishInfo</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> coursePublishInfo<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+
+
+<p>测试的时候出现了下面这个错误，原因是maven的默认加载机制是只加载后缀为.java的文件，其他的不加载，所以新加的xml没有加载到target文件中，即没有被编译</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.atguigu.eduservice.mapper.EduCourseMapper.getCoursePublishInfo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<p>解决方法有</p>
+<ol>
+<li>复制xml到target中</li>
+<li>把xml文件放到resources文件中</li>
+<li><strong>推荐使用：通过配置文件加载xml文件</strong><ol>
+<li>pom.xml</li>
+<li>application.properties</li>
+</ol>
+</li>
+</ol>
+<p>pom.xml</p>
+<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- 项目打包时会将java目录中的*.xml文件也进行打包 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>build</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resources</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resource</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>directory</span><span class="token punctuation">></span></span>src/main/java<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>directory</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>includes</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>include</span><span class="token punctuation">></span></span>**/*.xml<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>include</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>includes</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filtering</span><span class="token punctuation">></span></span>false<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filtering</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>resource</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>resources</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>build</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>application.properties</p>
+<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token comment">#配置mapper xml文件的路径</span>
+<span class="token attr-name">mybatis-plus.mapper-locations</span><span class="token punctuation">=</span><span class="token attr-value">classpath:com/atguigu/eduservice/mapper/xml/*.xml</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+
+
+<h1 id="403问题"><a href="#403问题" class="headerlink" title="403问题"></a>403问题</h1><h2 id="跨域或路径写错"><a href="#跨域或路径写错" class="headerlink" title="跨域或路径写错"></a>跨域或路径写错</h2><p>出现这个问题是因为在controller没有加@CrossOrigin的注解，没有开启跨域访问，或者是路径写错了403</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">Access to XMLHttpRequest at &#39;http:&#x2F;&#x2F;localhost:9001&#x2F;eduservice&#x2F;chapter&#x2F;getAllChapterVideo&#x2F;18&#39; from origin &#39;http:&#x2F;&#x2F;localhost:9528&#39; has been blocked by CORS policy: Response to preflight request doesn&#39;t pass access control check: No &#39;Access-Control-Allow-Origin&#39; header is present on the requested resource.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/myBlog/categories/%E9%A1%B9%E7%9B%AE-%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2-%E7%AC%94%E8%AE%B0/">项目|谷粒学院|笔记</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/myBlog/tags/project/">project</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/myBlog/day09-%E8%AF%BE%E7%A8%8B%E7%AE%A1%E7%90%86/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">day-09-课程管理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/myBlog/day07-%E8%AF%BE%E7%A8%8B%E5%8F%91%E5%B8%83-%E6%B7%BB%E5%8A%A0%E8%AF%BE%E7%A8%8B%E4%BF%A1%E6%81%AF/">
+                        <span class="hidden-mobile">day07-课程发布-添加课程信息</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://github.com" target="_blank" rel="nofollow noopener"><span>GitHub</span></a> <i class="iconfont icon-love"></i> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+  
+  <div>
+      <span id="timeDate">载入天数...</span>
+      <span id="times">载入时分秒...</span>
+      <script>
+      var now = new Date();
+      function createtime(){
+          var grt= new Date("11/11/2021 00:00:00");//此处修改你的建站时间或者网站上线时间
+          now.setTime(now.getTime()+250);
+          days = (now - grt ) / 1000 / 60 / 60 / 24;
+          dnum = Math.floor(days);
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+          hnum = Math.floor(hours);
+          if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+          }
+          minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes);
+          if(String(mnum).length ==1 ){
+                    mnum = "0" + mnum;
+          }
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds);
+          if(String(snum).length ==1 ){
+                    snum = "0" + snum;
+          }
+          document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+          document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+      }
+      setInterval("createtime()",250);
+      </script>
+    </div>
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/myBlog/js/events.js" ></script>
+<script  src="/myBlog/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/myBlog/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/myBlog/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/myBlog/js/boot.js" ></script>
+
+
+</body>
+</html>
