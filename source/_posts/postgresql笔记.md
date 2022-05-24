@@ -267,7 +267,7 @@ varchar：变长字符串，有长度限制，不足的不会以空格填充。
 
 ## 常用的日期和时间函数
 
-![image-20220522223939888](image-20220522223939888.png)
+![](image-20220522223939888.png)
 
 ```sql
 select e_no,e_name,e_hireDate,extract(year from e_hireDate), extract(month from e_hireDate),extract(day from e_hireDate) from employee;
