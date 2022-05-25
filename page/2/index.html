@@ -7,16 +7,16 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/myBlog/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/myBlog/img/fluid.png">
   <link rel="icon" href="/myBlog/img/browserTitle.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="Ten">
   <meta name="keywords" content="">
-  <meta property="og:type" content="website">
+  
+    <meta property="og:type" content="website">
 <meta property="og:title" content="TBlog">
 <meta property="og:url" content="https://no-ten.github.io/page/2/index.html">
 <meta property="og:site_name" content="TBlog">
@@ -24,15 +24,22 @@
 <meta property="article:author" content="Ten">
 <meta name="twitter:card" content="summary_large_image">
   
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
   <title>TBlog</title>
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
 
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -41,22 +48,41 @@
 
 <link  rel="stylesheet" href="/myBlog/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/myBlog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/myBlog/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"no-ten.github.io","root":"/myBlog/","version":"1.8.12","typing":{"enable":true,"typeSpeed":230,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/myBlog/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"no-ten.github.io","root":"/myBlog/","version":"1.9.0","typing":{"enable":true,"typeSpeed":230,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/myBlog/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/myBlog/js/utils.js" ></script>
   <script  src="/myBlog/js/color-schema.js" ></script>
+
+  
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/myBlog/atom.xml" title="TBlog" type="application/atom+xml">
 </head>
 
 
 <body>
-  <header style="height: 100vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/myBlog/">
       <strong>TBlog</strong>
@@ -138,6 +164,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -150,34 +177,40 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/myBlog/img/main.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Learning and sharing">
-              
-            </span>
+  
 
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/myBlog/img/main.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
+            <span id="subtitle" data-typed-text="Learning and sharing"></span>
           
         </div>
+
+        
       </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          style=margin-top:0>
+        <div id="board"
+          style="margin-top: 0">
           
           <div class="container">
             <div class="row">
@@ -196,18 +229,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/myBlog/day16-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90_%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/" target="_self">
+      <a class="index-excerpt" href="/myBlog/day16-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90_%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/" target="_self">
+        <div>
           
-          
-            
-          
-          day16-数据分析_统计分析课程详情页显示效果完善修改课程详情接口1、在service_order模块添加接口根据用户id和课程id查询订单信息
-// 根据课程id和用户id查询订单支付状态
-@GetMapping("isBuyCourse/&#123;courseId&#125;/&#123;memberId&#125;")
-public boolean isBuyCourse(@PathVa
-        </a>
-      </p>
+          day16-数据分析_统计分析课程详情页显示效果完善修改课程详情接口1、在service_order模块添加接口根据用户id和课程id查询订单信息 &#x2F;&#x2F; 根据课程id和用户id查询订单支付状态 @GetMapping(&quot;isBuyCourse&#x2F;&amp;#123;courseId&amp;#125;&#x2F;&amp;#123;memberId&amp;#125;&quot;) public boolean isBuyCourse(@PathVa
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -219,18 +246,32 @@ public boolean isBuyCourse(@PathVa
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/myBlog/categories/%E9%A1%B9%E7%9B%AE-%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2-%E7%AC%94%E8%AE%B0/">项目|谷粒学院|笔记</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/myBlog/categories/%E9%A1%B9%E7%9B%AE-%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2-%E7%AC%94%E8%AE%B0/" class="category-chain-item">项目|谷粒学院|笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/myBlog/tags/project/">project</a>
+              <a href="/myBlog/tags/project/">#project</a>
             
           </div>
         
@@ -249,20 +290,12 @@ public boolean isBuyCourse(@PathVa
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/myBlog/day15-%E8%AF%BE%E7%A8%8B%E8%AF%84%E8%AE%BA%E5%88%86%E6%9E%90_%E6%94%AF%E4%BB%98%E5%8A%9F%E8%83%BD/" target="_self">
+      <a class="index-excerpt" href="/myBlog/day15-%E8%AF%BE%E7%A8%8B%E8%AF%84%E8%AE%BA%E5%88%86%E6%9E%90_%E6%94%AF%E4%BB%98%E5%8A%9F%E8%83%BD/" target="_self">
+        <div>
           
-          
-            
-          
-          day15-课程评论分析_支付功能课程评论实现过程分析(TODO)![02 课程评论实现过程分析](day15-课程评论分析_支付功能/02 课程评论实现过程分析.png)
-一、数据库设计1、数据库edu_comment
-2、数据表guli_edu.sql
-
-二、创建课程评论接口1、在service-edu模块，生成课程评论代码（1）使用mp代码生成器生成
-2、在service-ucenter模块
-        </a>
-      </p>
+          day15-课程评论分析_支付功能课程评论实现过程分析(TODO)![02 课程评论实现过程分析](day15-课程评论分析_支付功能&#x2F;02 课程评论实现过程分析.png) 一、数据库设计1、数据库edu_comment 2、数据表guli_edu.sql  二、创建课程评论接口1、在service-edu模块，生成课程评论代码（1）使用mp代码生成器生成 2、在service-ucenter模块
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -274,18 +307,32 @@ public boolean isBuyCourse(@PathVa
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/myBlog/categories/%E9%A1%B9%E7%9B%AE-%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2-%E7%AC%94%E8%AE%B0/">项目|谷粒学院|笔记</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/myBlog/categories/%E9%A1%B9%E7%9B%AE-%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2-%E7%AC%94%E8%AE%B0/" class="category-chain-item">项目|谷粒学院|笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/myBlog/tags/project/">project</a>
+              <a href="/myBlog/tags/project/">#project</a>
             
           </div>
         
@@ -304,21 +351,12 @@ public boolean isBuyCourse(@PathVa
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/myBlog/day09-%E8%AF%BE%E7%A8%8B%E7%AE%A1%E7%90%86/" target="_self">
+      <a class="index-excerpt" href="/myBlog/day09-%E8%AF%BE%E7%A8%8B%E7%AE%A1%E7%90%86/" target="_self">
+        <div>
           
-          
-            
-          
-          day09课程管理-课程信息确认前端定义apicourse.js
-// 根据课程id查询最终发布的课程信息
-getPublishCourseInfo(id)&#123;
-    return request(&#123;
-        url: `/eduservice/course/getPublishCourseInfo/`+id,
-        method: 'get'
-      &
-        </a>
-      </p>
+          day09课程管理-课程信息确认前端定义apicourse.js &#x2F;&#x2F; 根据课程id查询最终发布的课程信息 getPublishCourseInfo(id)&amp;#123;     return request(&amp;#123;         url: &#96;&#x2F;eduservice&#x2F;course&#x2F;getPublishCourseInfo&#x2F;&#96;+id,         method: &#39;get&#39;       &amp;
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -330,18 +368,32 @@ getPublishCourseInfo(id)&#123;
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/myBlog/categories/%E9%A1%B9%E7%9B%AE-%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2-%E7%AC%94%E8%AE%B0/">项目|谷粒学院|笔记</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/myBlog/categories/%E9%A1%B9%E7%9B%AE-%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2-%E7%AC%94%E8%AE%B0/" class="category-chain-item">项目|谷粒学院|笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/myBlog/tags/project/">project</a>
+              <a href="/myBlog/tags/project/">#project</a>
             
           </div>
         
@@ -360,23 +412,12 @@ getPublishCourseInfo(id)&#123;
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/myBlog/day08-%E8%AF%BE%E7%A8%8B%E7%AE%A1%E7%90%86/" target="_self">
+      <a class="index-excerpt" href="/myBlog/day08-%E8%AF%BE%E7%A8%8B%E7%AE%A1%E7%90%86/" target="_self">
+        <div>
           
-          
-            
-          
-          day08-课程管理课程管理大纲列表后端创建对应的vo实体类
-ChapterVo
-// 课程章节
-@Data
-public class ChapterVo &#123;
-    private String id;
-    private String title;
-    // 每个章节里面包含小节
-    List&lt;VideoVo> children = new ArrayList&lt
-        </a>
-      </p>
+          day08-课程管理课程管理大纲列表后端创建对应的vo实体类 ChapterVo &#x2F;&#x2F; 课程章节 @Data public class ChapterVo &amp;#123;     private String id;     private String title;     &#x2F;&#x2F; 每个章节里面包含小节     List&lt;VideoVo&gt; children &#x3D; new ArrayList&amp;lt
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -388,18 +429,32 @@ public class ChapterVo &#123;
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/myBlog/categories/%E9%A1%B9%E7%9B%AE-%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2-%E7%AC%94%E8%AE%B0/">项目|谷粒学院|笔记</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/myBlog/categories/%E9%A1%B9%E7%9B%AE-%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2-%E7%AC%94%E8%AE%B0/" class="category-chain-item">项目|谷粒学院|笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/myBlog/tags/project/">project</a>
+              <a href="/myBlog/tags/project/">#project</a>
             
           </div>
         
@@ -418,21 +473,12 @@ public class ChapterVo &#123;
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/myBlog/day07-%E8%AF%BE%E7%A8%8B%E5%8F%91%E5%B8%83-%E6%B7%BB%E5%8A%A0%E8%AF%BE%E7%A8%8B%E4%BF%A1%E6%81%AF/" target="_self">
+      <a class="index-excerpt" href="/myBlog/day07-%E8%AF%BE%E7%A8%8B%E5%8F%91%E5%B8%83-%E6%B7%BB%E5%8A%A0%E8%AF%BE%E7%A8%8B%E4%BF%A1%E6%81%AF/" target="_self">
+        <div>
           
-          
-            
-          
-          day07-课程发布-添加课程信息课程管理-添加课程信息接口课程相关表的关系
-
-课程发布流程
-
-执行代码生成器，将这四个表”edu_course”,”edu_course_description”,”edu_chapter”,”edu_video”的相关代码生成
-编写CourseInfoVo用于接收传进来的信息
-@ApiModel(value = "课程基本信息", description = "
-        </a>
-      </p>
+          day07-课程发布-添加课程信息课程管理-添加课程信息接口课程相关表的关系  课程发布流程  执行代码生成器，将这四个表”edu_course”,”edu_course_description”,”edu_chapter”,”edu_video”的相关代码生成 编写CourseInfoVo用于接收传进来的信息 @ApiModel(value &#x3D; &quot;课程基本信息&quot;, description &#x3D; &quot;
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -444,18 +490,32 @@ public class ChapterVo &#123;
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/myBlog/categories/%E9%A1%B9%E7%9B%AE-%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2-%E7%AC%94%E8%AE%B0/">项目|谷粒学院|笔记</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/myBlog/categories/%E9%A1%B9%E7%9B%AE-%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2-%E7%AC%94%E8%AE%B0/" class="category-chain-item">项目|谷粒学院|笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/myBlog/tags/project/">project</a>
+              <a href="/myBlog/tags/project/">#project</a>
             
           </div>
         
@@ -474,21 +534,12 @@ public class ChapterVo &#123;
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/myBlog/day06-%E6%95%B4%E5%90%88%E9%98%BF%E9%87%8C%E4%BA%91oss%E5%92%8CExcel%E5%AF%BC%E5%85%A5%E5%88%86%E7%B1%BB/" target="_self">
+      <a class="index-excerpt" href="/myBlog/day06-%E6%95%B4%E5%90%88%E9%98%BF%E9%87%8C%E4%BA%91oss%E5%92%8CExcel%E5%AF%BC%E5%85%A5%E5%88%86%E7%B1%BB/" target="_self">
+        <div>
           
-          
-            
-          
-          day06-整合阿里云oss和Excel导入分类讲师管理-上传讲师头像后端接口后端环境搭建搭建阿里云OSS项目环境在service模块下创建子模块service_oss
-配置pom.xml
-&lt;dependencies>
-
-        &lt;!-- 阿里云oss依赖 -->
-        &lt;dependency>
-            &lt;groupId>com.aliyu
-        </a>
-      </p>
+          day06-整合阿里云oss和Excel导入分类讲师管理-上传讲师头像后端接口后端环境搭建搭建阿里云OSS项目环境在service模块下创建子模块service_oss 配置pom.xml &lt;dependencies&gt;          &lt;!-- 阿里云oss依赖 --&gt;         &lt;dependency&gt;             &lt;groupId&gt;com.aliyu
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -500,18 +551,32 @@ public class ChapterVo &#123;
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/myBlog/categories/%E9%A1%B9%E7%9B%AE-%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2-%E7%AC%94%E8%AE%B0/">项目|谷粒学院|笔记</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/myBlog/categories/%E9%A1%B9%E7%9B%AE-%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2-%E7%AC%94%E8%AE%B0/" class="category-chain-item">项目|谷粒学院|笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/myBlog/tags/project/">project</a>
+              <a href="/myBlog/tags/project/">#project</a>
             
           </div>
         
@@ -530,21 +595,12 @@ public class ChapterVo &#123;
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/myBlog/day05-%E8%AE%B2%E5%B8%88%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9D%97%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" target="_self">
+      <a class="index-excerpt" href="/myBlog/day05-%E8%AE%B2%E5%B8%88%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9D%97%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" target="_self">
+        <div>
           
-          
-            
-          
-          day05-讲师管理模块前端开发后台系统登录功能改造在config中的dev.env.js把地址改成下面的
-'use strict'
-const merge = require('webpack-merge')
-const prodEnv = require('./prod.env')
-
-module.exports = merge(prodEnv, &#123;
-  NODE_ENV: '"de
-        </a>
-      </p>
+          day05-讲师管理模块前端开发后台系统登录功能改造在config中的dev.env.js把地址改成下面的 &#39;use strict&#39; const merge &#x3D; require(&#39;webpack-merge&#39;) const prodEnv &#x3D; require(&#39;.&#x2F;prod.env&#39;)  module.exports &#x3D; merge(prodEnv, &amp;#123;   NODE_ENV: &#39;&quot;de
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -556,18 +612,32 @@ module.exports = merge(prodEnv, &#123;
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/myBlog/categories/%E9%A1%B9%E7%9B%AE-%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2-%E7%AC%94%E8%AE%B0/">项目|谷粒学院|笔记</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/myBlog/categories/%E9%A1%B9%E7%9B%AE-%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2-%E7%AC%94%E8%AE%B0/" class="category-chain-item">项目|谷粒学院|笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/myBlog/tags/project/">project</a>
+              <a href="/myBlog/tags/project/">#project</a>
             
           </div>
         
@@ -586,27 +656,12 @@ module.exports = merge(prodEnv, &#123;
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/myBlog/day04-%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%89%8D%E7%AB%AF%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E4%BA%8C/" target="_self">
+      <a class="index-excerpt" href="/myBlog/day04-%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%89%8D%E7%AB%AF%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E4%BA%8C/" target="_self">
+        <div>
           
-          
-            
-          
-          day04-项目的前端基本知识二axiosaxios是独立于vue的一个项目，基于promise用于浏览器和node.js的http客户端
-
-在浏览器中可以帮助我们完成 ajax请求的发送
-在node.js中可以向远程接口发送请求
-
-
-导入axios.min.js文件
-编写一个json数据，模拟接口
-
-&#123;
-    "success":true,
-    "code":20000,
-   
-        </a>
-      </p>
+          day04-项目的前端基本知识二axiosaxios是独立于vue的一个项目，基于promise用于浏览器和node.js的http客户端  在浏览器中可以帮助我们完成 ajax请求的发送 在node.js中可以向远程接口发送请求   导入axios.min.js文件 编写一个json数据，模拟接口  &amp;#123;     &quot;success&quot;:true,     &quot;code&quot;:20000,
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -618,18 +673,32 @@ module.exports = merge(prodEnv, &#123;
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/myBlog/categories/%E9%A1%B9%E7%9B%AE-%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2-%E7%AC%94%E8%AE%B0/">项目|谷粒学院|笔记</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/myBlog/categories/%E9%A1%B9%E7%9B%AE-%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2-%E7%AC%94%E8%AE%B0/" class="category-chain-item">项目|谷粒学院|笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/myBlog/tags/project/">project</a>
+              <a href="/myBlog/tags/project/">#project</a>
             
           </div>
         
@@ -648,25 +717,12 @@ module.exports = merge(prodEnv, &#123;
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/myBlog/day03-%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%89%8D%E7%AB%AF%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E4%B8%80/" target="_self">
+      <a class="index-excerpt" href="/myBlog/day03-%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%89%8D%E7%AB%AF%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E4%B8%80/" target="_self">
+        <div>
           
-          
-            
-          
-          day03-项目的前端基本知识一es6简单使用let变量作用范围&lt;script>
-    // es6如何定义变量 
-    // js定义： var a = 1;  没有局部
-    // es6定义let：有局部
-    &#123;
-        var a = 10;
-        let b = 20;
-
-    &#125;
-    // 2.在代码块外面输入
-    con
-        </a>
-      </p>
+          day03-项目的前端基本知识一es6简单使用let变量作用范围&lt;script&gt;     &#x2F;&#x2F; es6如何定义变量      &#x2F;&#x2F; js定义： var a &#x3D; 1;  没有局部     &#x2F;&#x2F; es6定义let：有局部     &amp;#123;         var a &#x3D; 10;         let b &#x3D; 20;      &amp;#125;     &#x2F;&#x2F; 2.在代码块外面输入     con
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -678,18 +734,32 @@ module.exports = merge(prodEnv, &#123;
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/myBlog/categories/%E9%A1%B9%E7%9B%AE-%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2-%E7%AC%94%E8%AE%B0/">项目|谷粒学院|笔记</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/myBlog/categories/%E9%A1%B9%E7%9B%AE-%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2-%E7%AC%94%E8%AE%B0/" class="category-chain-item">项目|谷粒学院|笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/myBlog/tags/project/">project</a>
+              <a href="/myBlog/tags/project/">#project</a>
             
           </div>
         
@@ -708,25 +778,12 @@ module.exports = merge(prodEnv, &#123;
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/myBlog/day02-%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83/" target="_self">
+      <a class="index-excerpt" href="/myBlog/day02-%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83/" target="_self">
+        <div>
           
-          
-            
-          
-          day02-项目环境搭建逻辑删除讲师功能1、在EduConfig中配置逻辑删除插件/**
- * 逻辑删除插件
- */
-@Bean
-public ISqlInjector sqlInjector() &#123;
-    return new LogicSqlInjector();
-&#125;
-
-
-
-2、在实体类添加注解@ApiModelProperty(value = "逻辑删除 1（true）
-        </a>
-      </p>
+          day02-项目环境搭建逻辑删除讲师功能1、在EduConfig中配置逻辑删除插件&#x2F;**  * 逻辑删除插件  *&#x2F; @Bean public ISqlInjector sqlInjector() &amp;#123;     return new LogicSqlInjector(); &amp;#125;    2、在实体类添加注解@ApiModelProperty(value &#x3D; &quot;逻辑删除 1（true）
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -738,18 +795,32 @@ public ISqlInjector sqlInjector() &#123;
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/myBlog/categories/%E9%A1%B9%E7%9B%AE-%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2-%E7%AC%94%E8%AE%B0/">项目|谷粒学院|笔记</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/myBlog/categories/%E9%A1%B9%E7%9B%AE-%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2-%E7%AC%94%E8%AE%B0/" class="category-chain-item">项目|谷粒学院|笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/myBlog/tags/project/">project</a>
+              <a href="/myBlog/tags/project/">#project</a>
             
           </div>
         
@@ -794,92 +865,61 @@ public ISqlInjector sqlInjector() &#123;
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://github.com" target="_blank" rel="nofollow noopener"><span>GitHub</span></a> <i class="iconfont icon-love"></i> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
-  
-
-  
-  
-  <div>
-      <span id="timeDate">载入天数...</span>
-      <span id="times">载入时分秒...</span>
-      <script>
-      var now = new Date();
-      function createtime(){
-          var grt= new Date("11/11/2021 00:00:00");//此处修改你的建站时间或者网站上线时间
-          now.setTime(now.getTime()+250);
-          days = (now - grt ) / 1000 / 60 / 60 / 24;
-          dnum = Math.floor(days);
-          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
-          hnum = Math.floor(hours);
-          if(String(hnum).length ==1 ){
-              hnum = "0" + hnum;
-          }
-          minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
-          mnum = Math.floor(minutes);
-          if(String(mnum).length ==1 ){
-                    mnum = "0" + mnum;
-          }
-          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
-          snum = Math.round(seconds);
-          if(String(snum).length ==1 ){
-                    snum = "0" + snum;
-          }
-          document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
-          document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
-      }
-      setInterval("createtime()",250);
-      </script>
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
   
-</footer>
-
-
-  <!-- SCRIPTS -->
   
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":100})
@@ -890,44 +930,23 @@ public ISqlInjector sqlInjector() &#123;
   </script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
 <script  src="/myBlog/js/events.js" ></script>
 <script  src="/myBlog/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
-
-  <script  src="/myBlog/js/local-search.js" ></script>
-
-
-
-  
-    <script  src="/myBlog/js/img-lazyload.js" ></script>
-  
-
-
-
-  
-    
-  
-
-
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
       
-      typing(title)
+        typing(text);
       
     })(window, document);
   </script>
@@ -937,18 +956,30 @@ public ISqlInjector sqlInjector() &#123;
 
 
 
+  
+    <script  src="/myBlog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/myBlog/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
 
 
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/myBlog/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>
