@@ -27,19 +27,12 @@ page.banner_mask_alpha = theme.index.banner_mask_alpha
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="<%= post_url %>" target="<%- theme.index.post_url_target %>">
-          <% var excerpt = '' %>
-          <% if(post.description) { %>
-            <% excerpt = post.description %>
-          <% } else if(post.excerpt){ %>
-            <% excerpt = strip_html(post.excerpt).substr(0, 200) %>
-          <% } else if(theme.index.auto_excerpt.enable){ %>
-            <% excerpt = strip_html(post.content).substr(0, 200) %>
-          <% } %>
-          <%- excerpt %>
-        </a>
-      </p>
+      <a class="index-excerpt" href="<%= post_url %>" target="<%- theme.index.post_url_target %>">
+        <div>
+          <% var excerpt = post.description || post.excerpt || (theme.index.auto_excerpt.enable && post.content) %>
+          <%- escape_html(strip_html(excerpt).substring(0, 200).trim()).replace(/\n/g, ' ') %>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         <% if(theme.index.post_meta.date ) { %>
@@ -51,18 +44,16 @@ page.banner_mask_alpha = theme.index.banner_mask_alpha
           </div>
         <% } %>
         <% if(theme.index.post_meta.category && post.categories.length > 0) { %>
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
-            <% post.categories.each(function(cate){ %>
-              <a href="<%= url_for(cate.path) %>"><%- cate.name %></a>
-            <% }) %>
+            <%- partial('_partials/category-chains', { categories: post.categories, limit: 1 }) %>
           </div>
         <% } %>
         <% if(theme.index.post_meta.tag && post.tags.length > 0) { %>
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             <% post.tags.each(function(tag){ %>
-              <a href="<%= url_for(tag.path) %>"><%- tag.name %></a>
+              <a href="<%= url_for(tag.path) %>">#<%- tag.name %></a>
             <% }) %>
           </div>
         <% } %>
@@ -71,4 +62,4 @@ page.banner_mask_alpha = theme.index.banner_mask_alpha
   </div>
 <% }) %>
 
-<%- partial('_partial/paginator') %>
+<%- partial('_partials/paginator') %>
