@@ -229,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          75k 字
+          77k 字
         
       </span>
     
@@ -311,10 +311,10 @@ https://github.com/nuxt-community/starter-template/archive/master.zip
 
 name、description、author（必须修改这里，否则项目无法安装）
 
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token string">"name"</span><span class="token operator">:</span> <span class="token string">"guli"</span><span class="token punctuation">,</span>
-  <span class="token string">"version"</span><span class="token operator">:</span> <span class="token string">"1.0.0"</span><span class="token punctuation">,</span>
-  <span class="token string">"description"</span><span class="token operator">:</span> <span class="token string">"谷粒学院前台网站"</span><span class="token punctuation">,</span>
-  <span class="token string">"author"</span><span class="token operator">:</span> <span class="token string">"Helen &lt;111111111@qq.com>"</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&quot;name&quot;: &quot;guli&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;谷粒学院前台网站&quot;,
+  &quot;author&quot;: &quot;Helen &lt;111111111@qq.com&gt;&quot;,</code></pre></div>
 
 ## 修改nuxt.config.js
 
@@ -322,38 +322,38 @@ name、description、author（必须修改这里，否则项目无法安装）
 
 这里的设置最后会显示在页面标题栏和meta数据中
 
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">head<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-    title<span class="token operator">:</span> <span class="token string">'谷粒学院 - Java视频|HTML5视频|前端视频|Python视频|大数据视频-自学拿1万+月薪的IT在线视频课程，谷粉力挺，老学员为你推荐'</span><span class="token punctuation">,</span>
-    meta<span class="token operator">:</span> <span class="token punctuation">[</span>
-      <span class="token punctuation">&#123;</span> charset<span class="token operator">:</span> <span class="token string">'utf-8'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-      <span class="token punctuation">&#123;</span> name<span class="token operator">:</span> <span class="token string">'viewport'</span><span class="token punctuation">,</span> content<span class="token operator">:</span> <span class="token string">'width=device-width, initial-scale=1'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-      <span class="token punctuation">&#123;</span> hid<span class="token operator">:</span> <span class="token string">'keywords'</span><span class="token punctuation">,</span> name<span class="token operator">:</span> <span class="token string">'keywords'</span><span class="token punctuation">,</span> content<span class="token operator">:</span> <span class="token string">'谷粒学院,IT在线视频教程,Java视频,HTML5视频,前端视频,Python视频,大数据视频'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-      <span class="token punctuation">&#123;</span> hid<span class="token operator">:</span> <span class="token string">'description'</span><span class="token punctuation">,</span> name<span class="token operator">:</span> <span class="token string">'description'</span><span class="token punctuation">,</span> content<span class="token operator">:</span> <span class="token string">'谷粒学院是国内领先的IT在线视频学习平台、职业教育平台。截止目前,谷粒学院线上、线下学习人次数以万计！会同上百个知名开发团队联合制定的Java、HTML5前端、大数据、Python等视频课程，被广大学习者及IT工程师誉为：业界最适合自学、代码量最大、案例最多、实战性最强、技术最前沿的IT系列视频课程！'</span> <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">]</span><span class="token punctuation">,</span>
-    link<span class="token operator">:</span> <span class="token punctuation">[</span>
-      <span class="token punctuation">&#123;</span> rel<span class="token operator">:</span> <span class="token string">'icon'</span><span class="token punctuation">,</span> type<span class="token operator">:</span> <span class="token string">'image/x-icon'</span><span class="token punctuation">,</span> href<span class="token operator">:</span> <span class="token string">'/favicon.ico'</span> <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">]</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">head: &#123;
+    title: &#39;谷粒学院 - Java视频|HTML5视频|前端视频|Python视频|大数据视频-自学拿1万+月薪的IT在线视频课程，谷粉力挺，老学员为你推荐&#39;,
+    meta: [
+      &#123; charset: &#39;utf-8&#39; &#125;,
+      &#123; name: &#39;viewport&#39;, content: &#39;width&#x3D;device-width, initial-scale&#x3D;1&#39; &#125;,
+      &#123; hid: &#39;keywords&#39;, name: &#39;keywords&#39;, content: &#39;谷粒学院,IT在线视频教程,Java视频,HTML5视频,前端视频,Python视频,大数据视频&#39; &#125;,
+      &#123; hid: &#39;description&#39;, name: &#39;description&#39;, content: &#39;谷粒学院是国内领先的IT在线视频学习平台、职业教育平台。截止目前,谷粒学院线上、线下学习人次数以万计！会同上百个知名开发团队联合制定的Java、HTML5前端、大数据、Python等视频课程，被广大学习者及IT工程师誉为：业界最适合自学、代码量最大、案例最多、实战性最强、技术最前沿的IT系列视频课程！&#39; &#125;
+    ],
+    link: [
+      &#123; rel: &#39;icon&#39;, type: &#39;image&#x2F;x-icon&#39;, href: &#39;&#x2F;favicon.ico&#39; &#125;
+    ]
+  &#125;,
+</code></pre></div>
 
 ## 安装依赖
 
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm install</code></pre></div>
 
 ## 测试运行
 
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> run dev<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm run dev</code></pre></div>
 
 ## 幻灯片插件
 
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> vue-awesome-swiper<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm install vue-awesome-swiper</code></pre></div>
 
 在 plugins 文件夹下新建文件 nuxt-swiper-plugin.js，内容是
 
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
-<span class="token keyword">import</span> VueAwesomeSwiper <span class="token keyword">from</span> <span class="token string">'vue-awesome-swiper/dist/ssr'</span>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">import Vue from &#39;vue&#39;
+import VueAwesomeSwiper from &#39;vue-awesome-swiper&#x2F;dist&#x2F;ssr&#39;
 
-Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>VueAwesomeSwiper<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+Vue.use(VueAwesomeSwiper)</code></pre></div>
 
  
 
@@ -361,13 +361,13 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 
 将 plugins 和 css节点 复制到 module.exports节点下
 
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-  plugins<span class="token operator">:</span> <span class="token punctuation">[</span>
-    <span class="token punctuation">&#123;</span> src<span class="token operator">:</span> <span class="token string">'~/plugins/nuxt-swiper-plugin.js'</span><span class="token punctuation">,</span> ssr<span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">&#125;</span>
-  <span class="token punctuation">]</span><span class="token punctuation">,</span>
-  css<span class="token operator">:</span> <span class="token punctuation">[</span>
-    <span class="token string">'swiper/dist/css/swiper.css'</span>
-  <span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">module.exports &#x3D; &#123;
+  plugins: [
+    &#123; src: &#39;~&#x2F;plugins&#x2F;nuxt-swiper-plugin.js&#39;, ssr: false &#125;
+  ],
+  css: [
+    &#39;swiper&#x2F;dist&#x2F;css&#x2F;swiper.css&#39;
+  ],</code></pre></div>
 
 
 
@@ -538,7 +538,7 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
  import &quot;~&#x2F;assets&#x2F;css&#x2F;global.css&quot;;
  import &quot;~&#x2F;assets&#x2F;css&#x2F;web.css&quot;;
  export default &#123;&#125;;
- &lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+ &lt;&#x2F;script&gt;</code></pre></div>
 
 ## 定义首页面
 
@@ -924,7 +924,7 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
      &#125;
    &#125;
  &#125;
- &lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+ &lt;&#x2F;script&gt;</code></pre></div>
 
 ## 幻灯片插件
 
@@ -947,7 +947,7 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
           &lt;div class&#x3D;&quot;swiper-button-next swiper-button-white&quot; slot&#x3D;&quot;button-next&quot;&gt;&lt;&#x2F;div&gt;
       &lt;&#x2F;div&gt;
       &lt;!-- 幻灯片 结束 --&gt;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+</code></pre></div>
 
 Script
 
@@ -970,7 +970,7 @@ Script
    &#125;
  &#125;
  &lt;&#x2F;script&gt;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+</code></pre></div>
 
 ## 启动项目报错解决方案
 
@@ -1012,7 +1012,7 @@ fix: true
 &#125;)
 &#125;
 &#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+</code></pre></div>
 
 # 整合课程和名师页面
 
@@ -1337,7 +1337,7 @@ fix: true
  &lt;&#x2F;template&gt;
  &lt;script&gt;
  export default &#123;&#125;;
- &lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+ &lt;&#x2F;script&gt;</code></pre></div>
 
 ## 课程详情页面
 
@@ -1518,7 +1518,7 @@ fix: true
  &lt;script&gt;
  export default &#123;&#125;;
  &lt;&#x2F;script&gt;
- <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+ </code></pre></div>
 
 
 
@@ -1723,7 +1723,7 @@ fix: true
  &lt;script&gt;
  export default &#123;&#125;;
  &lt;&#x2F;script&gt;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+</code></pre></div>
 
 ## 名师详情页面
 
@@ -1844,7 +1844,7 @@ fix: true
  &lt;&#x2F;template&gt;
  &lt;script&gt;
  export default &#123;&#125;;
- &lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+ &lt;&#x2F;script&gt;</code></pre></div>
 
 
 
@@ -1862,41 +1862,41 @@ fix: true
 
 ### 配置application.properties
 
-<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token comment"># 服务端口</span>
-<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8004</span>
+<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"># 服务端口
+server.port&#x3D;8004
 
-<span class="token comment"># 服务名</span>
-<span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">service-cms</span>
+# 服务名
+spring.application.name&#x3D;service-cms
 
-<span class="token comment"># mysql数据库连接</span>
-<span class="token attr-name">spring.datasource.driver-class-name</span><span class="token punctuation">=</span><span class="token attr-value">com.mysql.cj.jdbc.Driver</span>
-<span class="token attr-name">spring.datasource.url</span><span class="token punctuation">=</span><span class="token attr-value">jdbc:mysql://localhost:3306/guli?serverTimezone=GMT%2B8</span>
-<span class="token attr-name">spring.datasource.username</span><span class="token punctuation">=</span><span class="token attr-value">root</span>
-<span class="token attr-name">spring.datasource.password</span><span class="token punctuation">=</span><span class="token attr-value">root</span>
+# mysql数据库连接
+spring.datasource.driver-class-name&#x3D;com.mysql.cj.jdbc.Driver
+spring.datasource.url&#x3D;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;guli?serverTimezone&#x3D;GMT%2B8
+spring.datasource.username&#x3D;root
+spring.datasource.password&#x3D;root
 
-<span class="token comment">#返回json的全局时间格式</span>
-<span class="token attr-name">spring.jackson.date-format</span><span class="token punctuation">=</span><span class="token attr-value">yyyy-MM-dd HH:mm:ss</span>
-<span class="token attr-name">spring.jackson.time-zone</span><span class="token punctuation">=</span><span class="token attr-value">GMT+8</span>
+#返回json的全局时间格式
+spring.jackson.date-format&#x3D;yyyy-MM-dd HH:mm:ss
+spring.jackson.time-zone&#x3D;GMT+8
 
-<span class="token comment">#配置mapper xml文件的路径</span>
-<span class="token attr-name">mybatis-plus.mapper-locations</span><span class="token punctuation">=</span><span class="token attr-value">classpath:com/atguigu/educms/mapper/xml/*.xml</span>
+#配置mapper xml文件的路径
+mybatis-plus.mapper-locations&#x3D;classpath:com&#x2F;atguigu&#x2F;educms&#x2F;mapper&#x2F;xml&#x2F;*.xml
 
-<span class="token comment">#mybatis日志</span>
-<span class="token attr-name">mybatis-plus.configuration.log-impl</span><span class="token punctuation">=</span><span class="token attr-value">org.apache.ibatis.logging.stdout.StdOutImpl</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+#mybatis日志
+mybatis-plus.configuration.log-impl&#x3D;org.apache.ibatis.logging.stdout.StdOutImpl
+</code></pre></div>
 
 ### 创建启动类
 
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span>
-<span class="token annotation punctuation">@ComponentScan</span><span class="token punctuation">(</span>basePackages <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">"com.atguigu"</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>  <span class="token comment">// 指定扫描位置</span>
-<span class="token annotation punctuation">@MapperScan</span><span class="token punctuation">(</span><span class="token string">"com.atguigu.educms.mapper"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CmsApplication</span> <span class="token punctuation">&#123;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@SpringBootApplication
+@ComponentScan(basePackages &#x3D; &#123;&quot;com.atguigu&quot;&#125;)  &#x2F;&#x2F; 指定扫描位置
+@MapperScan(&quot;com.atguigu.educms.mapper&quot;)
+public class CmsApplication &#123;
 
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token class-name">SpringApplication</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">CmsApplication</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+    public static void main(String[] args) &#123;
+        SpringApplication.run(CmsApplication.class,args);
+    &#125;
 
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;</code></pre></div>
 
 ## 创建banner服务接口
 
@@ -1904,106 +1904,106 @@ fix: true
 
 **banner****后台分页查询、添加、修改、删除接口**
 
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
-<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/educms/banneradmin"</span><span class="token punctuation">)</span>
-<span class="token annotation punctuation">@CrossOrigin</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">BannerAdminController</span> <span class="token punctuation">&#123;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@RestController
+@RequestMapping(&quot;&#x2F;educms&#x2F;banneradmin&quot;)
+@CrossOrigin
+public class BannerAdminController &#123;
 
-    <span class="token annotation punctuation">@Autowired</span>
-    <span class="token keyword">private</span> <span class="token class-name">CrmBannerService</span> crmBannerService<span class="token punctuation">;</span>
+    @Autowired
+    private CrmBannerService crmBannerService;
 
-    <span class="token comment">// 获取分页列表</span>
-    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"pageBanner/&#123;page&#125;/&#123;limit&#125;"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">pageBanner</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token keyword">long</span> page<span class="token punctuation">,</span><span class="token annotation punctuation">@PathVariable</span> <span class="token keyword">long</span> limit<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token class-name">Page</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">CrmBanner</span><span class="token punctuation">></span></span> bannerPage <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Page</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span>page<span class="token punctuation">,</span> limit<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        crmBannerService<span class="token punctuation">.</span><span class="token function">page</span><span class="token punctuation">(</span>bannerPage<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"list"</span><span class="token punctuation">,</span>bannerPage<span class="token punctuation">.</span><span class="token function">getRecords</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"total"</span><span class="token punctuation">,</span>bannerPage<span class="token punctuation">.</span><span class="token function">getTotal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+    &#x2F;&#x2F; 获取分页列表
+    @GetMapping(&quot;pageBanner&#x2F;&#123;page&#125;&#x2F;&#123;limit&#125;&quot;)
+    public R pageBanner(@PathVariable long page,@PathVariable long limit)&#123;
+        Page&lt;CrmBanner&gt; bannerPage &#x3D; new Page&lt;&gt;(page, limit);
+        crmBannerService.page(bannerPage, null);
+        return R.ok().data(&quot;list&quot;,bannerPage.getRecords()).data(&quot;total&quot;,bannerPage.getTotal());
+    &#125;
 
-    <span class="token comment">// 根据id查询banner</span>
-    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"getBannerById/&#123;id&#125;"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">getBannerById</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> id<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token class-name">CrmBanner</span> banner <span class="token operator">=</span> crmBannerService<span class="token punctuation">.</span><span class="token function">getById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"banner"</span><span class="token punctuation">,</span>banner<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+    &#x2F;&#x2F; 根据id查询banner
+    @GetMapping(&quot;getBannerById&#x2F;&#123;id&#125;&quot;)
+    public R getBannerById(@PathVariable String id)&#123;
+        CrmBanner banner &#x3D; crmBannerService.getById(id);
+        return R.ok().data(&quot;banner&quot;,banner);
+    &#125;
 
-    <span class="token comment">// 添加banner</span>
-    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"addBanner"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">addBanner</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestBody</span> <span class="token class-name">CrmBanner</span> banner<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        crmBannerService<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>banner<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+    &#x2F;&#x2F; 添加banner
+    @PostMapping(&quot;addBanner&quot;)
+    public R addBanner(@RequestBody CrmBanner banner)&#123;
+        crmBannerService.save(banner);
+        return R.ok();
+    &#125;
 
-    <span class="token comment">// 修改</span>
-    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"updateBanner"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">updateBanner</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestBody</span> <span class="token class-name">CrmBanner</span> banner<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        crmBannerService<span class="token punctuation">.</span><span class="token function">updateById</span><span class="token punctuation">(</span>banner<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+    &#x2F;&#x2F; 修改
+    @PostMapping(&quot;updateBanner&quot;)
+    public R updateBanner(@RequestBody CrmBanner banner)&#123;
+        crmBannerService.updateById(banner);
+        return R.ok();
+    &#125;
 
-    <span class="token comment">// 删除</span>
-    <span class="token annotation punctuation">@DeleteMapping</span><span class="token punctuation">(</span><span class="token string">"deleteBanner/&#123;id&#125;"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">deleteBanner</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> id<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        crmBannerService<span class="token punctuation">.</span><span class="token function">removeById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+    &#x2F;&#x2F; 删除
+    @DeleteMapping(&quot;deleteBanner&#x2F;&#123;id&#125;&quot;)
+    public R deleteBanner(@PathVariable String id)&#123;
+        crmBannerService.removeById(id);
+        return R.ok();
+    &#125;
 
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;</code></pre></div>
 
 ### 创建banner前台查询接口
 
 **首页获取banner数据接口**
 
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
-<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/educms/ bannerfront"</span><span class="token punctuation">)</span>
-<span class="token annotation punctuation">@CrossOrigin</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">BannerFrontController</span> <span class="token punctuation">&#123;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@RestController
+@RequestMapping(&quot;&#x2F;educms&#x2F; bannerfront&quot;)
+@CrossOrigin
+public class BannerFrontController &#123;
 
-    <span class="token annotation punctuation">@Autowired</span>
-    <span class="token keyword">private</span> <span class="token class-name">CrmBannerService</span> crmBannerService<span class="token punctuation">;</span>
+    @Autowired
+    private CrmBannerService crmBannerService;
 
-    <span class="token comment">// 显示所有banner</span>
-    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"getAllBanner"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">getAllBanner</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">CrmBanner</span><span class="token punctuation">></span></span> list <span class="token operator">=</span> crmBannerService<span class="token punctuation">.</span><span class="token function">list</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"list"</span><span class="token punctuation">,</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    &#x2F;&#x2F; 显示所有banner
+    @GetMapping(&quot;getAllBanner&quot;)
+    public R getAllBanner()&#123;
+        List&lt;CrmBanner&gt; list &#x3D; crmBannerService.list(null);
+        return R.ok().data(&quot;list&quot;,list);
+    &#125;
+&#125;</code></pre></div>
 
 修改前台banner查询所有的方法
 
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
-<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/educms/bannerfront"</span><span class="token punctuation">)</span>
-<span class="token annotation punctuation">@CrossOrigin</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">BannerFrontController</span> <span class="token punctuation">&#123;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@RestController
+@RequestMapping(&quot;&#x2F;educms&#x2F;bannerfront&quot;)
+@CrossOrigin
+public class BannerFrontController &#123;
 
-    <span class="token annotation punctuation">@Autowired</span>
-    <span class="token keyword">private</span> <span class="token class-name">CrmBannerService</span> crmBannerService<span class="token punctuation">;</span>
+    @Autowired
+    private CrmBannerService crmBannerService;
 
-    <span class="token comment">// 显示所有banner</span>
-    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"getAllBanner"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">getAllBanner</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">CrmBanner</span><span class="token punctuation">></span></span> list <span class="token operator">=</span> crmBannerService<span class="token punctuation">.</span><span class="token function">selectAllBanner</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"list"</span><span class="token punctuation">,</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    &#x2F;&#x2F; 显示所有banner
+    @GetMapping(&quot;getAllBanner&quot;)
+    public R getAllBanner()&#123;
+        List&lt;CrmBanner&gt; list &#x3D; crmBannerService.selectAllBanner();
+        return R.ok().data(&quot;list&quot;,list);
+    &#125;
+&#125;</code></pre></div>
 
 Impl
 
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CrmBannerServiceImpl</span> <span class="token keyword">extends</span> <span class="token class-name">ServiceImpl</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">CrmBannerMapper</span><span class="token punctuation">,</span> <span class="token class-name">CrmBanner</span><span class="token punctuation">></span></span> <span class="token keyword">implements</span> <span class="token class-name">CrmBannerService</span> <span class="token punctuation">&#123;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Service
+public class CrmBannerServiceImpl extends ServiceImpl&lt;CrmBannerMapper, CrmBanner&gt; implements CrmBannerService &#123;
 
-    <span class="token comment">// 显示所有banner</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">CrmBanner</span><span class="token punctuation">></span></span> <span class="token function">selectAllBanner</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token comment">// 根据id降序，查询前2两条记录</span>
-        <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">CrmBanner</span><span class="token punctuation">></span></span> wrapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        wrapper<span class="token punctuation">.</span><span class="token function">orderByDesc</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        wrapper<span class="token punctuation">.</span><span class="token function">last</span><span class="token punctuation">(</span><span class="token string">"limit 2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">CrmBanner</span><span class="token punctuation">></span></span> list <span class="token operator">=</span> baseMapper<span class="token punctuation">.</span><span class="token function">selectList</span><span class="token punctuation">(</span>wrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> list<span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    &#x2F;&#x2F; 显示所有banner
+    @Override
+    public List&lt;CrmBanner&gt; selectAllBanner() &#123;
+        &#x2F;&#x2F; 根据id降序，查询前2两条记录
+        QueryWrapper&lt;CrmBanner&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
+        wrapper.orderByDesc(&quot;id&quot;);
+        wrapper.last(&quot;limit 2&quot;);
+        List&lt;CrmBanner&gt; list &#x3D; baseMapper.selectList(wrapper);
+        return list;
+    &#125;
+&#125;</code></pre></div>
 
 
 
@@ -2011,36 +2011,36 @@ Impl
 
 为了调用方便，直接在eduservice中写com.atguigu.eduservice.controller.front;
 
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
-<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"eduservice/index"</span><span class="token punctuation">)</span>
-<span class="token annotation punctuation">@CrossOrigin</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">IndexController</span> <span class="token punctuation">&#123;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@RestController
+@RequestMapping(&quot;eduservice&#x2F;index&quot;)
+@CrossOrigin
+public class IndexController &#123;
 
-    <span class="token annotation punctuation">@Autowired</span>
-    <span class="token keyword">private</span> <span class="token class-name">EduTeacherService</span> teacherService<span class="token punctuation">;</span>
+    @Autowired
+    private EduTeacherService teacherService;
 
-    <span class="token annotation punctuation">@Autowired</span>
-    <span class="token keyword">private</span> <span class="token class-name">EduCourseService</span> courseService<span class="token punctuation">;</span>
+    @Autowired
+    private EduCourseService courseService;
 
-    <span class="token comment">// 根据id降序查询出前8个热门课程，前4个名师</span>
+    &#x2F;&#x2F; 根据id降序查询出前8个热门课程，前4个名师
 
-    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"index"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token comment">// 课程</span>
-        <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduCourse</span><span class="token punctuation">></span></span> <span class="token class-name">CourseWrapper</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">CourseWrapper</span><span class="token punctuation">.</span><span class="token function">orderByDesc</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">CourseWrapper</span><span class="token punctuation">.</span><span class="token function">last</span><span class="token punctuation">(</span><span class="token string">"limit 8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduCourse</span><span class="token punctuation">></span></span> courseList <span class="token operator">=</span> courseService<span class="token punctuation">.</span><span class="token function">list</span><span class="token punctuation">(</span><span class="token class-name">CourseWrapper</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    @GetMapping(&quot;index&quot;)
+    public R index()&#123;
+        &#x2F;&#x2F; 课程
+        QueryWrapper&lt;EduCourse&gt; CourseWrapper &#x3D; new QueryWrapper&lt;&gt;();
+        CourseWrapper.orderByDesc(&quot;id&quot;);
+        CourseWrapper.last(&quot;limit 8&quot;);
+        List&lt;EduCourse&gt; courseList &#x3D; courseService.list(CourseWrapper);
 
-        <span class="token comment">// 名师</span>
-        <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduTeacher</span><span class="token punctuation">></span></span> teacherWrapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        teacherWrapper<span class="token punctuation">.</span><span class="token function">orderByDesc</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        teacherWrapper<span class="token punctuation">.</span><span class="token function">last</span><span class="token punctuation">(</span><span class="token string">"limit 4"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduTeacher</span><span class="token punctuation">></span></span> teacherList <span class="token operator">=</span> teacherService<span class="token punctuation">.</span><span class="token function">list</span><span class="token punctuation">(</span>teacherWrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        &#x2F;&#x2F; 名师
+        QueryWrapper&lt;EduTeacher&gt; teacherWrapper &#x3D; new QueryWrapper&lt;&gt;();
+        teacherWrapper.orderByDesc(&quot;id&quot;);
+        teacherWrapper.last(&quot;limit 4&quot;);
+        List&lt;EduTeacher&gt; teacherList &#x3D; teacherService.list(teacherWrapper);
 
-        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"courseList"</span><span class="token punctuation">,</span>courseList<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"teacherList"</span><span class="token punctuation">,</span>teacherList<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+        return R.ok().data(&quot;courseList&quot;,courseList).data(&quot;teacherList&quot;,teacherList);
+    &#125;
+&#125;</code></pre></div>
 
 
 
@@ -2054,15 +2054,15 @@ Impl
 
 创建utils文件夹，utils下创建request.js
 
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> axios <span class="token keyword">from</span> <span class="token string">'axios'</span>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">import axios from &#39;axios&#39;
 
-<span class="token comment">// 创建axios实例</span>
-<span class="token keyword">const</span> service <span class="token operator">=</span> axios<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-  baseURL<span class="token operator">:</span> <span class="token string">'http://localhost:9001'</span><span class="token punctuation">,</span> <span class="token comment">// api的base_url</span>
-  timeout<span class="token operator">:</span> <span class="token number">20000</span> <span class="token comment">// 请求超时时间</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+&#x2F;&#x2F; 创建axios实例
+const service &#x3D; axios.create(&#123;
+  baseURL: &#39;http:&#x2F;&#x2F;localhost:9001&#39;, &#x2F;&#x2F; api的base_url
+  timeout: 20000 &#x2F;&#x2F; 请求超时时间
+&#125;)
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> service<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+export default service</code></pre></div>
 
 ## 首页banner数据显示
 
@@ -2070,17 +2070,17 @@ Impl
 
 **banner.js**
 
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> request <span class="token keyword">from</span> <span class="token string">'@/utils/request'</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 查询前两条banner，幻灯片</span>
-  <span class="token function">getListBanner</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-      url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/educms/bannerfront/getAllBanner</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
-      method<span class="token operator">:</span> <span class="token string">'get'</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">import request from &#39;@&#x2F;utils&#x2F;request&#39;
+export default &#123;
+    &#x2F;&#x2F; 查询前两条banner，幻灯片
+  getListBanner() &#123;
+    return request(&#123;
+      url: &#96;&#x2F;educms&#x2F;bannerfront&#x2F;getAllBanner&#96;,
+      method: &#39;get&#39;
+    &#125;)
+  &#125;
+&#125;
+</code></pre></div>
 
 ### 在首页面引入，调用实现
 
@@ -2118,7 +2118,7 @@ import banner from &quot;@&#x2F;api&#x2F;banner&quot;
      &#125;
    &#125;
  &#125;
- &lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+ &lt;&#x2F;script&gt;</code></pre></div>
 
 
 
@@ -2140,7 +2140,7 @@ import banner from &quot;@&#x2F;api&#x2F;banner&quot;
     &lt;div class&#x3D;&quot;swiper-button-next swiper-button-white&quot; slot&#x3D;&quot;button-next&quot;&gt;&lt;&#x2F;div&gt;
 &lt;&#x2F;div&gt;
 &lt;!-- 幻灯片 结束 --&gt;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+</code></pre></div>
 
 
 
@@ -2148,27 +2148,27 @@ import banner from &quot;@&#x2F;api&#x2F;banner&quot;
 
 Api/index.js
 
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> request <span class="token keyword">from</span> <span class="token string">'@/utils/request'</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 首页数据</span>
-  <span class="token function">getIndexdata</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-      url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/eduservice/indexfront/index</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
-      method<span class="token operator">:</span> <span class="token string">'get'</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">import request from &#39;@&#x2F;utils&#x2F;request&#39;
+export default &#123;
+    &#x2F;&#x2F; 首页数据
+  getIndexdata() &#123;
+    return request(&#123;
+      url: &#96;&#x2F;eduservice&#x2F;indexfront&#x2F;index&#96;,
+      method: &#39;get&#39;
+    &#125;)
+  &#125;
+&#125;</code></pre></div>
 
 Pages/index.vue
 
 导入依赖
 
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">import index from &#39;@&#x2F;api&#x2F;index&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">import index from &#39;@&#x2F;api&#x2F;index&#39;</code></pre></div>
 
 初始化数组
 
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">teacherList:[],
- courseList:[]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+ courseList:[]</code></pre></div>
 
 调用方法
 
@@ -2180,7 +2180,7 @@ Pages/index.vue
        this.courseList &#x3D; response.data.data.courseList
        this.teacherList &#x3D; response.data.data.teacherList
      &#125;)
-  &#125;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+  &#125;,</code></pre></div>
 
 Templates，遍历和名师
 
@@ -2274,7 +2274,7 @@ Templates，遍历和名师
           &lt;&#x2F;div&gt;
         &lt;&#x2F;section&gt;
       &lt;&#x2F;div&gt;
-      &lt;!-- &#x2F;网校名师 结束 --&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+      &lt;!-- &#x2F;网校名师 结束 --&gt;</code></pre></div>
 
 
 
@@ -2290,65 +2290,65 @@ Templates，遍历和名师
 
 由于redis缓存是公共应用，所以我们把依赖与配置添加到了common模块下面，在common模块pom.xml下添加以下依赖
 
-<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- redis --></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-data-redis<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-<span class="token comment">&lt;!-- spring2.X集成redis所需common-pool2--></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.apache.commons<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>commons-pool2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>2.6.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
-&lt;/dependency<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">&lt;!-- redis --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-data-redis&lt;&#x2F;artifactId&gt;
+&lt;&#x2F;dependency&gt;
+&lt;!-- spring2.X集成redis所需common-pool2--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.commons&lt;&#x2F;groupId&gt;
+    &lt;artifactId&gt;commons-pool2&lt;&#x2F;artifactId&gt;
+    &lt;version&gt;2.6.0&lt;&#x2F;version&gt;
+&lt;&#x2F;dependency</code></pre></div>
 
 ## 在service-base模块添加redis配置类
 
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@EnableCaching</span>  <span class="token comment">// 开启缓存</span>
-<span class="token annotation punctuation">@Configuration</span>  <span class="token comment">// 配置类</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisConfig</span> <span class="token punctuation">&#123;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@EnableCaching  &#x2F;&#x2F; 开启缓存
+@Configuration  &#x2F;&#x2F; 配置类
+public class RedisConfig &#123;
 
-    <span class="token annotation punctuation">@Bean</span>
-    <span class="token keyword">public</span> <span class="token class-name">RedisTemplate</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span> <span class="token function">redisTemplate</span><span class="token punctuation">(</span><span class="token class-name">RedisConnectionFactory</span> factory<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token class-name">RedisTemplate</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span> template <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RedisTemplate</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">RedisSerializer</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> redisSerializer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringRedisSerializer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">Jackson2JsonRedisSerializer</span> jackson2JsonRedisSerializer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Jackson2JsonRedisSerializer</span><span class="token punctuation">(</span><span class="token class-name">Object</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">ObjectMapper</span> om <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ObjectMapper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        om<span class="token punctuation">.</span><span class="token function">setVisibility</span><span class="token punctuation">(</span><span class="token class-name">PropertyAccessor</span><span class="token punctuation">.</span>ALL<span class="token punctuation">,</span> <span class="token class-name">JsonAutoDetect<span class="token punctuation">.</span>Visibility</span><span class="token punctuation">.</span>ANY<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        om<span class="token punctuation">.</span><span class="token function">enableDefaultTyping</span><span class="token punctuation">(</span><span class="token class-name">ObjectMapper<span class="token punctuation">.</span>DefaultTyping</span><span class="token punctuation">.</span>NON_FINAL<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        jackson2JsonRedisSerializer<span class="token punctuation">.</span><span class="token function">setObjectMapper</span><span class="token punctuation">(</span>om<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        template<span class="token punctuation">.</span><span class="token function">setConnectionFactory</span><span class="token punctuation">(</span>factory<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">//key序列化方式</span>
-        template<span class="token punctuation">.</span><span class="token function">setKeySerializer</span><span class="token punctuation">(</span>redisSerializer<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">//value序列化</span>
-        template<span class="token punctuation">.</span><span class="token function">setValueSerializer</span><span class="token punctuation">(</span>jackson2JsonRedisSerializer<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">//value hashmap序列化</span>
-        template<span class="token punctuation">.</span><span class="token function">setHashValueSerializer</span><span class="token punctuation">(</span>jackson2JsonRedisSerializer<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> template<span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+    @Bean
+    public RedisTemplate&lt;String, Object&gt; redisTemplate(RedisConnectionFactory factory) &#123;
+        RedisTemplate&lt;String, Object&gt; template &#x3D; new RedisTemplate&lt;&gt;();
+        RedisSerializer&lt;String&gt; redisSerializer &#x3D; new StringRedisSerializer();
+        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer &#x3D; new Jackson2JsonRedisSerializer(Object.class);
+        ObjectMapper om &#x3D; new ObjectMapper();
+        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        jackson2JsonRedisSerializer.setObjectMapper(om);
+        template.setConnectionFactory(factory);
+        &#x2F;&#x2F;key序列化方式
+        template.setKeySerializer(redisSerializer);
+        &#x2F;&#x2F;value序列化
+        template.setValueSerializer(jackson2JsonRedisSerializer);
+        &#x2F;&#x2F;value hashmap序列化
+        template.setHashValueSerializer(jackson2JsonRedisSerializer);
+        return template;
+    &#125;
 
-    <span class="token annotation punctuation">@Bean</span>
-    <span class="token keyword">public</span> <span class="token class-name">CacheManager</span> <span class="token function">cacheManager</span><span class="token punctuation">(</span><span class="token class-name">RedisConnectionFactory</span> factory<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token class-name">RedisSerializer</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> redisSerializer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringRedisSerializer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">Jackson2JsonRedisSerializer</span> jackson2JsonRedisSerializer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Jackson2JsonRedisSerializer</span><span class="token punctuation">(</span><span class="token class-name">Object</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">//解决查询缓存转换异常的问题</span>
-        <span class="token class-name">ObjectMapper</span> om <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ObjectMapper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        om<span class="token punctuation">.</span><span class="token function">setVisibility</span><span class="token punctuation">(</span><span class="token class-name">PropertyAccessor</span><span class="token punctuation">.</span>ALL<span class="token punctuation">,</span> <span class="token class-name">JsonAutoDetect<span class="token punctuation">.</span>Visibility</span><span class="token punctuation">.</span>ANY<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        om<span class="token punctuation">.</span><span class="token function">enableDefaultTyping</span><span class="token punctuation">(</span><span class="token class-name">ObjectMapper<span class="token punctuation">.</span>DefaultTyping</span><span class="token punctuation">.</span>NON_FINAL<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        jackson2JsonRedisSerializer<span class="token punctuation">.</span><span class="token function">setObjectMapper</span><span class="token punctuation">(</span>om<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">// 配置序列化（解决乱码的问题）,过期时间600秒</span>
-        <span class="token class-name">RedisCacheConfiguration</span> config <span class="token operator">=</span> <span class="token class-name">RedisCacheConfiguration</span><span class="token punctuation">.</span><span class="token function">defaultCacheConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">entryTtl</span><span class="token punctuation">(</span><span class="token class-name">Duration</span><span class="token punctuation">.</span><span class="token function">ofSeconds</span><span class="token punctuation">(</span><span class="token number">600</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">serializeKeysWith</span><span class="token punctuation">(</span><span class="token class-name">RedisSerializationContext<span class="token punctuation">.</span>SerializationPair</span><span class="token punctuation">.</span><span class="token function">fromSerializer</span><span class="token punctuation">(</span>redisSerializer<span class="token punctuation">)</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">serializeValuesWith</span><span class="token punctuation">(</span><span class="token class-name">RedisSerializationContext<span class="token punctuation">.</span>SerializationPair</span><span class="token punctuation">.</span><span class="token function">fromSerializer</span><span class="token punctuation">(</span>jackson2JsonRedisSerializer<span class="token punctuation">)</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">disableCachingNullValues</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">RedisCacheManager</span> cacheManager <span class="token operator">=</span> <span class="token class-name">RedisCacheManager</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span>factory<span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">cacheDefaults</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> cacheManager<span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+    @Bean
+    public CacheManager cacheManager(RedisConnectionFactory factory) &#123;
+        RedisSerializer&lt;String&gt; redisSerializer &#x3D; new StringRedisSerializer();
+        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer &#x3D; new Jackson2JsonRedisSerializer(Object.class);
+        &#x2F;&#x2F;解决查询缓存转换异常的问题
+        ObjectMapper om &#x3D; new ObjectMapper();
+        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        jackson2JsonRedisSerializer.setObjectMapper(om);
+        &#x2F;&#x2F; 配置序列化（解决乱码的问题）,过期时间600秒
+        RedisCacheConfiguration config &#x3D; RedisCacheConfiguration.defaultCacheConfig()
+                .entryTtl(Duration.ofSeconds(600))
+                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(redisSerializer))
+                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(jackson2JsonRedisSerializer))
+                .disableCachingNullValues();
+        RedisCacheManager cacheManager &#x3D; RedisCacheManager.builder(factory)
+                .cacheDefaults(config)
+                .build();
+        return cacheManager;
+    &#125;
 
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;</code></pre></div>
 
 
 
@@ -2403,21 +2403,21 @@ Templates，遍历和名师
 
 添加@Cacheable注解在查询banner的方法上
 
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CrmBannerServiceImpl</span> <span class="token keyword">extends</span> <span class="token class-name">ServiceImpl</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">CrmBannerMapper</span><span class="token punctuation">,</span> <span class="token class-name">CrmBanner</span><span class="token punctuation">></span></span> <span class="token keyword">implements</span> <span class="token class-name">CrmBannerService</span> <span class="token punctuation">&#123;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Service
+public class CrmBannerServiceImpl extends ServiceImpl&lt;CrmBannerMapper, CrmBanner&gt; implements CrmBannerService &#123;
 
-    <span class="token comment">// 显示所有banner</span>
-    <span class="token annotation punctuation">@Cacheable</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"banner"</span><span class="token punctuation">,</span>key <span class="token operator">=</span> <span class="token string">"'selectIndexList'"</span><span class="token punctuation">)</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">CrmBanner</span><span class="token punctuation">></span></span> <span class="token function">selectAllBanner</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token comment">// 根据id降序，查询前2两条记录</span>
-        <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">CrmBanner</span><span class="token punctuation">></span></span> wrapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        wrapper<span class="token punctuation">.</span><span class="token function">orderByDesc</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        wrapper<span class="token punctuation">.</span><span class="token function">last</span><span class="token punctuation">(</span><span class="token string">"limit 2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">CrmBanner</span><span class="token punctuation">></span></span> list <span class="token operator">=</span> baseMapper<span class="token punctuation">.</span><span class="token function">selectList</span><span class="token punctuation">(</span>wrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> list<span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    &#x2F;&#x2F; 显示所有banner
+    @Cacheable(value &#x3D; &quot;banner&quot;,key &#x3D; &quot;&#39;selectIndexList&#39;&quot;)
+    @Override
+    public List&lt;CrmBanner&gt; selectAllBanner() &#123;
+        &#x2F;&#x2F; 根据id降序，查询前2两条记录
+        QueryWrapper&lt;CrmBanner&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
+        wrapper.orderByDesc(&quot;id&quot;);
+        wrapper.last(&quot;limit 2&quot;);
+        List&lt;CrmBanner&gt; list &#x3D; baseMapper.selectList(wrapper);
+        return list;
+    &#125;
+&#125;</code></pre></div>
 
 
 
@@ -2453,16 +2453,16 @@ protected-mode no
 
 **在service-cms模块配置文件添加redis配置**
 
-<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">spring.redis.host</span><span class="token punctuation">=</span><span class="token attr-value">192.168.242.3</span>
-<span class="token attr-name">spring.redis.port</span><span class="token punctuation">=</span><span class="token attr-value">6379</span>
-<span class="token attr-name">spring.redis.password</span><span class="token punctuation">=</span><span class="token attr-value">123456</span>
-<span class="token attr-name">spring.redis.database</span><span class="token punctuation">=</span> <span class="token attr-value">0</span>
-<span class="token attr-name">spring.redis.timeout</span><span class="token punctuation">=</span><span class="token attr-value">1800000</span>
-<span class="token attr-name">spring.redis.lettuce.pool.max-active</span><span class="token punctuation">=</span><span class="token attr-value">20</span>
-<span class="token attr-name">spring.redis.lettuce.pool.max-wait</span><span class="token punctuation">=</span><span class="token attr-value">-1</span>
-<span class="token comment">#最大阻塞等待时间(负数表示没限制)</span>
-<span class="token attr-name">spring.redis.lettuce.pool.max-idle</span><span class="token punctuation">=</span><span class="token attr-value">5</span>
-<span class="token attr-name">spring.redis.lettuce.pool.min-idle</span><span class="token punctuation">=</span><span class="token attr-value">0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties">spring.redis.host&#x3D;192.168.242.3
+spring.redis.port&#x3D;6379
+spring.redis.password&#x3D;123456
+spring.redis.database&#x3D; 0
+spring.redis.timeout&#x3D;1800000
+spring.redis.lettuce.pool.max-active&#x3D;20
+spring.redis.lettuce.pool.max-wait&#x3D;-1
+#最大阻塞等待时间(负数表示没限制)
+spring.redis.lettuce.pool.max-idle&#x3D;5
+spring.redis.lettuce.pool.min-idle&#x3D;0</code></pre></div>
 
 启动测试，在redis中添加了key
 
@@ -2470,18 +2470,18 @@ protected-mode no
 
 **通过源码查看到key生成的规则**
 
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>data<span class="token punctuation">.</span>redis<span class="token punctuation">.</span>cache</span><span class="token punctuation">;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package org.springframework.data.redis.cache;
 
-<span class="token annotation punctuation">@FunctionalInterface</span>
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">CacheKeyPrefix</span> <span class="token punctuation">&#123;</span>
-    <span class="token class-name">String</span> <span class="token function">compute</span><span class="token punctuation">(</span><span class="token class-name">String</span> var1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+@FunctionalInterface
+public interface CacheKeyPrefix &#123;
+    String compute(String var1);
 
-    <span class="token keyword">static</span> <span class="token class-name">CacheKeyPrefix</span> <span class="token function">simple</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">return</span> <span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
-            <span class="token keyword">return</span> name <span class="token operator">+</span> <span class="token string">"::"</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    static CacheKeyPrefix simple() &#123;
+        return (name) -&gt; &#123;
+            return name + &quot;::&quot;;
+        &#125;;
+    &#125;
+&#125;</code></pre></div>
 
 
 

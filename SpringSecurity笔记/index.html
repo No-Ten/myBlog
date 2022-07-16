@@ -243,7 +243,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          20k 字
+          22k 字
         
       </span>
     
@@ -345,19 +345,19 @@
 <p><code>unsuccessfulAuthentication</code>，验证用户名和密码，如果成功就调用成功的方法，失败就调用失败的。后面两个方法在父类<code>AbstractAuthenticationProcessingFilter</code>.</p>
 <p>创建类实现<code>UserDetailsService</code>接口，编写查询数据库的过程，返回User对象，这个User对象是安全框架提供的。</p>
 <h3 id="PasswordEncoder接口"><a href="#PasswordEncoder接口" class="headerlink" title="PasswordEncoder接口"></a>PasswordEncoder接口</h3><p>数据加密接口，用于返回User对象里面密码加密</p>
-<h1 id="web权限方案-用户认证"><a href="#web权限方案-用户认证" class="headerlink" title="web权限方案-用户认证"></a>web权限方案-用户认证</h1><h2 id="方法一：在配置文件添加用户信息"><a href="#方法一：在配置文件添加用户信息" class="headerlink" title="方法一：在配置文件添加用户信息"></a>方法一：在配置文件添加用户信息</h2><div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8111</span>
-<span class="token attr-name">spring.security.user.name</span><span class="token punctuation">=</span><span class="token attr-value">atguigu</span>
-<span class="token attr-name">spring.security.user.password</span><span class="token punctuation">=</span><span class="token attr-value">atguigu</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<h1 id="web权限方案-用户认证"><a href="#web权限方案-用户认证" class="headerlink" title="web权限方案-用户认证"></a>web权限方案-用户认证</h1><h2 id="方法一：在配置文件添加用户信息"><a href="#方法一：在配置文件添加用户信息" class="headerlink" title="方法一：在配置文件添加用户信息"></a>方法一：在配置文件添加用户信息</h2><div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties">server.port&#x3D;8111
+spring.security.user.name&#x3D;atguigu
+spring.security.user.password&#x3D;atguigu</code></pre></div>
 
 
 
-<h2 id="方法二：编写配置类"><a href="#方法二：编写配置类" class="headerlink" title="方法二：编写配置类"></a>方法二：编写配置类</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SecurityConfig</span> <span class="token keyword">extends</span> <span class="token class-name">WebSecurityConfigurerAdapter</span> <span class="token punctuation">&#123;</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">configure</span><span class="token punctuation">(</span><span class="token class-name">AuthenticationManagerBuilder</span> auth<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
-        auth<span class="token punctuation">.</span><span class="token function">inMemoryAuthentication</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">withUser</span><span class="token punctuation">(</span><span class="token string">"lucy"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">password</span><span class="token punctuation">(</span><span class="token string">"123"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">roles</span><span class="token punctuation">(</span><span class="token string">"admin"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="方法二：编写配置类"><a href="#方法二：编写配置类" class="headerlink" title="方法二：编写配置类"></a>方法二：编写配置类</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Configuration
+public class SecurityConfig extends WebSecurityConfigurerAdapter &#123;
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception &#123;
+        auth.inMemoryAuthentication().withUser(&quot;lucy&quot;).password(&quot;123&quot;).roles(&quot;admin&quot;);
+    &#125;
+&#125;</code></pre></div>
 
 <p>启动的时候，发现报错</p>
 <p>java.lang.IllegalArgumentException: There is no PasswordEncoder mapped for the id “null”</p>
@@ -365,46 +365,46 @@
 <p><strong>解决：</strong></p>
 <p>注入一个Bean，<code>PasswordEncoder</code>，返回密码对象</p>
 <p>完整代码</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SecurityConfig</span> <span class="token keyword">extends</span> <span class="token class-name">WebSecurityConfigurerAdapter</span> <span class="token punctuation">&#123;</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">configure</span><span class="token punctuation">(</span><span class="token class-name">AuthenticationManagerBuilder</span> auth<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
-        <span class="token class-name">BCryptPasswordEncoder</span> passwordEncoder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BCryptPasswordEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">String</span> password <span class="token operator">=</span> passwordEncoder<span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span><span class="token string">"123"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        auth<span class="token punctuation">.</span><span class="token function">inMemoryAuthentication</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">withUser</span><span class="token punctuation">(</span><span class="token string">"lucy"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">password</span><span class="token punctuation">(</span>password<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">roles</span><span class="token punctuation">(</span><span class="token string">"admin"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token annotation punctuation">@Bean</span>
-    <span class="token class-name">PasswordEncoder</span> <span class="token function">passwordEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">BCryptPasswordEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Configuration
+public class SecurityConfig extends WebSecurityConfigurerAdapter &#123;
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception &#123;
+        BCryptPasswordEncoder passwordEncoder &#x3D; new BCryptPasswordEncoder();
+        String password &#x3D; passwordEncoder.encode(&quot;123&quot;);
+        auth.inMemoryAuthentication().withUser(&quot;lucy&quot;).password(password).roles(&quot;admin&quot;);
+    &#125;
+    @Bean
+    PasswordEncoder passwordEncoder()&#123;
+        return new BCryptPasswordEncoder();
+    &#125;
+&#125;</code></pre></div>
 
 
 
 <h2 id="方法三：自定义配置类"><a href="#方法三：自定义配置类" class="headerlink" title="方法三：自定义配置类"></a>方法三：自定义配置类</h2><p>第一步：编写一个配置类，设置使用哪个UserDetailsService实现类</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SecurityConfigTest</span> <span class="token keyword">extends</span> <span class="token class-name">WebSecurityConfigurerAdapter</span> <span class="token punctuation">&#123;</span>
-    <span class="token annotation punctuation">@Autowired</span>
-    <span class="token keyword">private</span> <span class="token class-name">UserDetailsService</span> userDetailsService<span class="token punctuation">;</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">configure</span><span class="token punctuation">(</span><span class="token class-name">AuthenticationManagerBuilder</span> auth<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
-       auth<span class="token punctuation">.</span><span class="token function">userDetailsService</span><span class="token punctuation">(</span>userDetailsService<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">passwordEncoder</span><span class="token punctuation">(</span><span class="token function">passwordEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token annotation punctuation">@Bean</span>
-    <span class="token class-name">PasswordEncoder</span> <span class="token function">passwordEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">BCryptPasswordEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Configuration
+public class SecurityConfigTest extends WebSecurityConfigurerAdapter &#123;
+    @Autowired
+    private UserDetailsService userDetailsService;
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception &#123;
+       auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    &#125;
+    @Bean
+    PasswordEncoder passwordEncoder()&#123;
+        return new BCryptPasswordEncoder();
+    &#125;
+&#125;</code></pre></div>
 
 <p>第二步：创建一个实现类，返回User对象，User对象有用户名密码和操作权限</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Service</span><span class="token punctuation">(</span><span class="token string">"userDetailsService"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyUserDetailsService</span> <span class="token keyword">implements</span> <span class="token class-name">UserDetailsService</span> <span class="token punctuation">&#123;</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token class-name">UserDetails</span> <span class="token function">loadUserByUsername</span><span class="token punctuation">(</span><span class="token class-name">String</span> s<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">UsernameNotFoundException</span> <span class="token punctuation">&#123;</span>
-        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">GrantedAuthority</span><span class="token punctuation">></span></span> auths <span class="token operator">=</span> <span class="token class-name">AuthorityUtils</span><span class="token punctuation">.</span><span class="token function">commaSeparatedStringToAuthorityList</span><span class="token punctuation">(</span><span class="token string">"role"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token string">"mary"</span><span class="token punctuation">,</span><span class="token keyword">new</span> <span class="token class-name">BCryptPasswordEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span><span class="token string">"123"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>auths<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Service(&quot;userDetailsService&quot;)
+public class MyUserDetailsService implements UserDetailsService &#123;
+    @Override
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException &#123;
+        List&lt;GrantedAuthority&gt; auths &#x3D; AuthorityUtils.commaSeparatedStringToAuthorityList(&quot;role&quot;);
+        return new User(&quot;mary&quot;,new BCryptPasswordEncoder().encode(&quot;123&quot;),auths);
+    &#125;
+&#125;</code></pre></div>
 
 
 
@@ -421,203 +421,203 @@ INSERT INTO users VALUES(1,&#39;张
 san&#39;,&#39;$2a$10$2R&#x2F;M6iU3mCZt3ByG7kwYTeeW0w7&#x2F;UqdeXrb27zkBIizBvAven0&#x2F;na&#39;);
 -- 密码 atguigu
 INSERT INTO users VALUES(2,&#39;李
-si&#39;,&#39;$2a$10$2R&#x2F;M6iU3mCZt3ByG7kwYTeeW0w7&#x2F;UqdeXrb27zkBIizBvAven0&#x2F;na&#39;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+si&#39;,&#39;$2a$10$2R&#x2F;M6iU3mCZt3ByG7kwYTeeW0w7&#x2F;UqdeXrb27zkBIizBvAven0&#x2F;na&#39;);</code></pre></div>
 
 
 
 <p>导入依赖</p>
-<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter&lt;&#x2F;artifactId&gt;
+    &lt;&#x2F;dependency&gt;
 
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-web<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-web&lt;&#x2F;artifactId&gt;
+    &lt;&#x2F;dependency&gt;
 
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-security<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-security&lt;&#x2F;artifactId&gt;
+    &lt;&#x2F;dependency&gt;
 
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">></span></span>test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-test&lt;&#x2F;artifactId&gt;
+        &lt;scope&gt;test&lt;&#x2F;scope&gt;
+    &lt;&#x2F;dependency&gt;
 
-    <span class="token comment">&lt;!--mybatis-plus--></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.baomidou<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>mybatis-plus-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>3.0.5<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token comment">&lt;!--mysql--></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>mysql<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>mysql-connector-java<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token comment">&lt;!--lombok 用来简化实体类--></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.projectlombok<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>lombok<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+    &lt;!--mybatis-plus--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.baomidou&lt;&#x2F;groupId&gt;
+        &lt;artifactId&gt;mybatis-plus-boot-starter&lt;&#x2F;artifactId&gt;
+        &lt;version&gt;3.0.5&lt;&#x2F;version&gt;
+    &lt;&#x2F;dependency&gt;
+    &lt;!--mysql--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;mysql&lt;&#x2F;groupId&gt;
+        &lt;artifactId&gt;mysql-connector-java&lt;&#x2F;artifactId&gt;
+    &lt;&#x2F;dependency&gt;
+    &lt;!--lombok 用来简化实体类--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.projectlombok&lt;&#x2F;groupId&gt;
+        &lt;artifactId&gt;lombok&lt;&#x2F;artifactId&gt;
+    &lt;&#x2F;dependency&gt;
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&lt;&#x2F;dependencies&gt;</code></pre></div>
 
 
 
 <p>在配置文件中添加数据库配置</p>
-<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token comment"># 数据库配置</span>
-<span class="token attr-name">spring.datasource.driver-class-name</span><span class="token punctuation">=</span><span class="token attr-value">com.mysql.cj.jdbc.Driver</span>
-<span class="token attr-name">spring.datasource.url</span><span class="token punctuation">=</span><span class="token attr-value">jdbc:mysql://localhost:3306/demo?serverTimezone=GMT%2B8</span>
-<span class="token attr-name">spring.datasource.username</span><span class="token punctuation">=</span><span class="token attr-value">root</span>
-<span class="token attr-name">spring.datasource.password</span><span class="token punctuation">=</span><span class="token attr-value">root</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"># 数据库配置
+spring.datasource.driver-class-name&#x3D;com.mysql.cj.jdbc.Driver
+spring.datasource.url&#x3D;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;demo?serverTimezone&#x3D;GMT%2B8
+spring.datasource.username&#x3D;root
+spring.datasource.password&#x3D;root</code></pre></div>
 
 <p>编写实体类</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Data</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Users</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">private</span> <span class="token class-name">Integer</span> id<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token class-name">String</span> username<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token class-name">String</span> password<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Data
+public class Users &#123;
+    private Integer id;
+    private String username;
+    private String password;
+&#125;</code></pre></div>
 
 <p>编写mapper</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Repository</span>
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">UsersMapper</span> <span class="token keyword">extends</span> <span class="token class-name">BaseMapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Users</span><span class="token punctuation">></span></span> <span class="token punctuation">&#123;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Repository
+public interface UsersMapper extends BaseMapper&lt;Users&gt; &#123;
+&#125;</code></pre></div>
 
 <p>编写service</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Service</span><span class="token punctuation">(</span><span class="token string">"userDetailsService"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyUserDetailsService</span> <span class="token keyword">implements</span> <span class="token class-name">UserDetailsService</span> <span class="token punctuation">&#123;</span>
-    <span class="token annotation punctuation">@Autowired</span>
-    <span class="token keyword">private</span> <span class="token class-name">UsersMapper</span> usersMapper<span class="token punctuation">;</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token class-name">UserDetails</span> <span class="token function">loadUserByUsername</span><span class="token punctuation">(</span><span class="token class-name">String</span> username<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">UsernameNotFoundException</span> <span class="token punctuation">&#123;</span>
-        <span class="token comment">// 根据用户名查询数据库</span>
-        <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Users</span><span class="token punctuation">></span></span> wrapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        wrapper<span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token string">"username"</span><span class="token punctuation">,</span>username<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">Users</span> users <span class="token operator">=</span> usersMapper<span class="token punctuation">.</span><span class="token function">selectOne</span><span class="token punctuation">(</span>wrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>users <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-            <span class="token comment">// 如果user为空，直接抛出异常</span>
-            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">UsernameNotFoundException</span><span class="token punctuation">(</span><span class="token string">"用户为空"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Service(&quot;userDetailsService&quot;)
+public class MyUserDetailsService implements UserDetailsService &#123;
+    @Autowired
+    private UsersMapper usersMapper;
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException &#123;
+        &#x2F;&#x2F; 根据用户名查询数据库
+        QueryWrapper&lt;Users&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
+        wrapper.eq(&quot;username&quot;,username);
+        Users users &#x3D; usersMapper.selectOne(wrapper);
+        if (users &#x3D;&#x3D; null)&#123;
+            &#x2F;&#x2F; 如果user为空，直接抛出异常
+            throw new UsernameNotFoundException(&quot;用户为空&quot;);
+        &#125;
 
-        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">GrantedAuthority</span><span class="token punctuation">></span></span> auths <span class="token operator">=</span> <span class="token class-name">AuthorityUtils</span><span class="token punctuation">.</span><span class="token function">commaSeparatedStringToAuthorityList</span><span class="token punctuation">(</span><span class="token string">"role"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span>users<span class="token punctuation">.</span><span class="token function">getUsername</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token keyword">new</span> <span class="token class-name">BCryptPasswordEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span>users<span class="token punctuation">.</span><span class="token function">getPassword</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>auths<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+        List&lt;GrantedAuthority&gt; auths &#x3D; AuthorityUtils.commaSeparatedStringToAuthorityList(&quot;role&quot;);
+        return new User(users.getUsername(),new BCryptPasswordEncoder().encode(users.getPassword()),auths);
+    &#125;
+&#125;</code></pre></div>
 
 <p>debug测试</p>
 <h2 id="自定义完成登录页面"><a href="#自定义完成登录页面" class="headerlink" title="自定义完成登录页面"></a>自定义完成登录页面</h2><p>在配置类中重写configure方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SecurityConfigTest</span> <span class="token keyword">extends</span> <span class="token class-name">WebSecurityConfigurerAdapter</span> <span class="token punctuation">&#123;</span>
-    <span class="token annotation punctuation">@Autowired</span>
-    <span class="token keyword">private</span> <span class="token class-name">UserDetailsService</span> userDetailsService<span class="token punctuation">;</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">configure</span><span class="token punctuation">(</span><span class="token class-name">AuthenticationManagerBuilder</span> auth<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
-       auth<span class="token punctuation">.</span><span class="token function">userDetailsService</span><span class="token punctuation">(</span>userDetailsService<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">passwordEncoder</span><span class="token punctuation">(</span><span class="token function">passwordEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token annotation punctuation">@Bean</span>
-    <span class="token class-name">PasswordEncoder</span> <span class="token function">passwordEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">BCryptPasswordEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Configuration
+public class SecurityConfigTest extends WebSecurityConfigurerAdapter &#123;
+    @Autowired
+    private UserDetailsService userDetailsService;
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception &#123;
+       auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    &#125;
+    @Bean
+    PasswordEncoder passwordEncoder()&#123;
+        return new BCryptPasswordEncoder();
+    &#125;
 
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">configure</span><span class="token punctuation">(</span><span class="token class-name">HttpSecurity</span> http<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
-        http<span class="token punctuation">.</span><span class="token function">formLogin</span><span class="token punctuation">(</span><span class="token punctuation">)</span>    <span class="token comment">// 自定义编写的登录页面</span>
-                <span class="token punctuation">.</span><span class="token function">loginPage</span><span class="token punctuation">(</span><span class="token string">"/login.html"</span><span class="token punctuation">)</span>       <span class="token comment">// 登录页面设置</span>
-                <span class="token punctuation">.</span><span class="token function">loginProcessingUrl</span><span class="token punctuation">(</span><span class="token string">"/user/login"</span><span class="token punctuation">)</span>  <span class="token comment">// 登录页面访问路径</span>
-                <span class="token punctuation">.</span><span class="token function">defaultSuccessUrl</span><span class="token punctuation">(</span><span class="token string">"/text/index"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">permitAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span>   <span class="token comment">// 登录成功跳转到的页面</span>
-                <span class="token punctuation">.</span><span class="token function">and</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">authorizeRequests</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                    <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">,</span><span class="token string">"/test/hello"</span><span class="token punctuation">,</span><span class="token string">"/user/login"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">permitAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span>      <span class="token comment">// 哪些请求可以放行</span>
-                <span class="token punctuation">.</span><span class="token function">anyRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">authenticated</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">and</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">csrf</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">disable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">// 关闭csrf防护</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    @Override
+    protected void configure(HttpSecurity http) throws Exception &#123;
+        http.formLogin()    &#x2F;&#x2F; 自定义编写的登录页面
+                .loginPage(&quot;&#x2F;login.html&quot;)       &#x2F;&#x2F; 登录页面设置
+                .loginProcessingUrl(&quot;&#x2F;user&#x2F;login&quot;)  &#x2F;&#x2F; 登录页面访问路径
+                .defaultSuccessUrl(&quot;&#x2F;text&#x2F;index&quot;).permitAll()   &#x2F;&#x2F; 登录成功跳转到的页面
+                .and().authorizeRequests()
+                    .antMatchers(&quot;&#x2F;&quot;,&quot;&#x2F;test&#x2F;hello&quot;,&quot;&#x2F;user&#x2F;login&quot;).permitAll()      &#x2F;&#x2F; 哪些请求可以放行
+                .anyRequest().authenticated()
+                .and().csrf().disable();        &#x2F;&#x2F; 关闭csrf防护
+    &#125;
+&#125;</code></pre></div>
 
 <p>编写登录页面</p>
-<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Title<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/user/login<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>post<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-        用户名：<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>username<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-        密码：<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>login<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang&#x3D;&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Title&lt;&#x2F;title&gt;
+&lt;&#x2F;head&gt;
+&lt;body&gt;
+    &lt;form action&#x3D;&quot;&#x2F;user&#x2F;login&quot; method&#x3D;&quot;post&quot;&gt;
+        用户名：&lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;username&quot;&gt;
+        密码：&lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;password&quot;&gt;
+        &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;login&quot;&gt;
+    &lt;&#x2F;form&gt;
+&lt;&#x2F;body&gt;
+&lt;&#x2F;html&gt;</code></pre></div>
 
 <p>新增controller</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
-<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/test"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> testController <span class="token punctuation">&#123;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@RestController
+@RequestMapping(&quot;&#x2F;test&quot;)
+public class testController &#123;
 
-    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token keyword">return</span> <span class="token string">"hello security"</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"index"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token keyword">return</span> <span class="token string">"hello index"</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    @GetMapping(&quot;hello&quot;)
+    public String hello()&#123;
+        return &quot;hello security&quot;;
+    &#125;
+    @GetMapping(&quot;index&quot;)
+    public String index()&#123;
+        return &quot;hello index&quot;;
+    &#125;
+&#125;</code></pre></div>
 
 <p>测试，先访问/test/hello,再访问/test/index</p>
 <h1 id="web权限方案-用户授权"><a href="#web权限方案-用户授权" class="headerlink" title="web权限方案-用户授权"></a>web权限方案-用户授权</h1><h2 id="基于权限访问控制"><a href="#基于权限访问控制" class="headerlink" title="基于权限访问控制"></a>基于权限访问控制</h2><h3 id="hasAuthority方法和hasAnyAuthority方法"><a href="#hasAuthority方法和hasAnyAuthority方法" class="headerlink" title="hasAuthority方法和hasAnyAuthority方法"></a>hasAuthority方法和hasAnyAuthority方法</h3><p>(type=Forbidden, status=403).没有权限</p>
 <p>在实现类添加权限List<GrantedAuthority> auths = AuthorityUtils.commaSeparatedStringToAuthorityList(“admins”);</GrantedAuthority></p>
 <p>在配置类添加下面的方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
-<span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">configure</span><span class="token punctuation">(</span><span class="token class-name">HttpSecurity</span> http<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
-    http<span class="token punctuation">.</span><span class="token function">formLogin</span><span class="token punctuation">(</span><span class="token punctuation">)</span>    <span class="token comment">// 自定义编写的登录页面</span>
-            <span class="token punctuation">.</span><span class="token function">loginPage</span><span class="token punctuation">(</span><span class="token string">"/login.html"</span><span class="token punctuation">)</span>       <span class="token comment">// 登录页面设置</span>
-            <span class="token punctuation">.</span><span class="token function">loginProcessingUrl</span><span class="token punctuation">(</span><span class="token string">"/user/login"</span><span class="token punctuation">)</span>  <span class="token comment">// 登录页面访问路径</span>
-            <span class="token punctuation">.</span><span class="token function">defaultSuccessUrl</span><span class="token punctuation">(</span><span class="token string">"/text/index"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">permitAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span>   <span class="token comment">// 登录成功跳转到的页面</span>
-            <span class="token punctuation">.</span><span class="token function">and</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">authorizeRequests</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">,</span><span class="token string">"/test/hello"</span><span class="token punctuation">,</span><span class="token string">"/user/login"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">permitAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span>      <span class="token comment">// 哪些请求可以放行</span>
-            <span class="token comment">// 当前用户登录，只有只有admins权限才可以访问这个路径</span>
-            <span class="token comment">// hasAuthority方法，只能一个</span>
-            <span class="token comment">//.antMatchers("/test/index").hasAuthority("admins")</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Override
+protected void configure(HttpSecurity http) throws Exception &#123;
+    http.formLogin()    &#x2F;&#x2F; 自定义编写的登录页面
+            .loginPage(&quot;&#x2F;login.html&quot;)       &#x2F;&#x2F; 登录页面设置
+            .loginProcessingUrl(&quot;&#x2F;user&#x2F;login&quot;)  &#x2F;&#x2F; 登录页面访问路径
+            .defaultSuccessUrl(&quot;&#x2F;text&#x2F;index&quot;).permitAll()   &#x2F;&#x2F; 登录成功跳转到的页面
+            .and().authorizeRequests()
+                .antMatchers(&quot;&#x2F;&quot;,&quot;&#x2F;test&#x2F;hello&quot;,&quot;&#x2F;user&#x2F;login&quot;).permitAll()      &#x2F;&#x2F; 哪些请求可以放行
+            &#x2F;&#x2F; 当前用户登录，只有只有admins权限才可以访问这个路径
+            &#x2F;&#x2F; hasAuthority方法，只能一个
+            &#x2F;&#x2F;.antMatchers(&quot;&#x2F;test&#x2F;index&quot;).hasAuthority(&quot;admins&quot;)
 
-            <span class="token comment">// hasAnyAuthority方法，可以多个</span>
-            <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/test/index"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hasAnyAuthority</span><span class="token punctuation">(</span><span class="token string">"admins,role"</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">anyRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">authenticated</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">and</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">csrf</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">disable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">// 关闭csrf防护</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+            &#x2F;&#x2F; hasAnyAuthority方法，可以多个
+            .antMatchers(&quot;&#x2F;test&#x2F;index&quot;).hasAnyAuthority(&quot;admins,role&quot;)
+            .anyRequest().authenticated()
+            .and().csrf().disable();        &#x2F;&#x2F; 关闭csrf防护
+&#125;</code></pre></div>
 
 
 
 <h2 id="基于角色访问控制"><a href="#基于角色访问控制" class="headerlink" title="基于角色访问控制"></a>基于角色访问控制</h2><h2 id="hasRole和hasAnyRole"><a href="#hasRole和hasAnyRole" class="headerlink" title="hasRole和hasAnyRole"></a>hasRole和hasAnyRole</h2><p>在实现类中添加role的时候要注意格式，需要加上ROLE_前缀，可以通过查看源码发现</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">GrantedAuthority</span><span class="token punctuation">></span></span> auths <span class="token operator">=</span> <span class="token class-name">AuthorityUtils</span><span class="token punctuation">.</span><span class="token function">commaSeparatedStringToAuthorityList</span><span class="token punctuation">(</span><span class="token string">"admins,ROLE_sale"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">List&lt;GrantedAuthority&gt; auths &#x3D; AuthorityUtils.commaSeparatedStringToAuthorityList(&quot;admins,ROLE_sale&quot;);</code></pre></div>
 
 <p>配置类</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 3.hasRole</span>
-<span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/test/index"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hasRole</span><span class="token punctuation">(</span><span class="token string">"sale"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 3.hasRole
+.antMatchers(&quot;&#x2F;test&#x2F;index&quot;).hasRole(&quot;sale&quot;)</code></pre></div>
 
 <p>hasAnyRole和上面的类型，多个角色用逗号隔开就行。</p>
 <h2 id="自定义403页面"><a href="#自定义403页面" class="headerlink" title="自定义403页面"></a>自定义403页面</h2><p><img src="/myBlog/SpringSecurity%E7%AC%94%E8%AE%B0/image-20220126151935413.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220126151935413"></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
-<span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">configure</span><span class="token punctuation">(</span><span class="token class-name">HttpSecurity</span> http<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 配置没有权限跳转的页面</span>
-    http<span class="token punctuation">.</span><span class="token function">exceptionHandling</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">accessDeniedPage</span><span class="token punctuation">(</span><span class="token string">"/unauth.html"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Override
+protected void configure(HttpSecurity http) throws Exception &#123;
+    &#x2F;&#x2F; 配置没有权限跳转的页面
+    http.exceptionHandling().accessDeniedPage(&quot;&#x2F;unauth.html&quot;);</code></pre></div>
 
 <p>页面</p>
-<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Title<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>没有访问权限！<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang&#x3D;&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Title&lt;&#x2F;title&gt;
+&lt;&#x2F;head&gt;
+&lt;body&gt;
+    &lt;h1&gt;没有访问权限！&lt;&#x2F;h1&gt;
+&lt;&#x2F;body&gt;
+&lt;&#x2F;html&gt;</code></pre></div>
 
 <p><img src="/myBlog/SpringSecurity%E7%AC%94%E8%AE%B0/image-20220126152035554.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220126152035554"></p>
 <h2 id="注解使用"><a href="#注解使用" class="headerlink" title="注解使用"></a>注解使用</h2><p> 使用注解先要开启注解功能！ @EnableGlobalMethodSecurity(securedEnabled=true)</p>
@@ -626,51 +626,51 @@ si&#39;,&#39;$2a$10$2R&#x2F;M6iU3mCZt3ByG7kwYTeeW0w7&#x2F;UqdeXrb27zkBIizBvAven0
 <h3 id="PreAuthoriz"><a href="#PreAuthoriz" class="headerlink" title="@PreAuthoriz"></a>@PreAuthoriz</h3><p>在方法执行前进行验证权限</p>
 <p>开启注解，@EnableGlobalMethodSecurity(prePostEnabled = true)</p>
 <h3 id="PostAuthorize"><a href="#PostAuthorize" class="headerlink" title="@PostAuthorize"></a>@PostAuthorize</h3><p>方法执行之后再进行权限验证，适合用在有返回值的方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"update"</span><span class="token punctuation">)</span>
-<span class="token comment">//@Secured(&#123;"normal","ROLE_sale"&#125;)   // 需要拥有这些角色才可以访问</span>
-<span class="token comment">//@PreAuthorize("hasAnyAuthority('admins')") // 需要拥有这个权限才可以访问,PreAuthorize注解适合进入方法前的权限验证</span>
-<span class="token comment">//@PostAuthorize("hasAnyAuthority('admins1')")    // 执行方法后再进行权限认证，适合验证带返回值的</span>
-<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"update..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token string">"hello update"</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@GetMapping(&quot;update&quot;)
+&#x2F;&#x2F;@Secured(&#123;&quot;normal&quot;,&quot;ROLE_sale&quot;&#125;)   &#x2F;&#x2F; 需要拥有这些角色才可以访问
+&#x2F;&#x2F;@PreAuthorize(&quot;hasAnyAuthority(&#39;admins&#39;)&quot;) &#x2F;&#x2F; 需要拥有这个权限才可以访问,PreAuthorize注解适合进入方法前的权限验证
+&#x2F;&#x2F;@PostAuthorize(&quot;hasAnyAuthority(&#39;admins1&#39;)&quot;)    &#x2F;&#x2F; 执行方法后再进行权限认证，适合验证带返回值的
+public String update()&#123;
+    System.out.println(&quot;update...&quot;);
+    return &quot;hello update&quot;;
+&#125;</code></pre></div>
 
 
 
 <h3 id="PostFilter"><a href="#PostFilter" class="headerlink" title="@PostFilter"></a>@PostFilter</h3><p>权限验证之后对数据进行过滤 留下用户名是 admin1 的数据</p>
 <p>表达式中的 filterObject 引用的是方法返回值 List 中的某一个元素</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"getAll"</span><span class="token punctuation">)</span>
-<span class="token annotation punctuation">@PostAuthorize</span><span class="token punctuation">(</span><span class="token string">"hasAnyAuthority('admins1')"</span><span class="token punctuation">)</span>
-<span class="token annotation punctuation">@PostFilter</span><span class="token punctuation">(</span><span class="token string">"filterObject.username == 'admin1'"</span><span class="token punctuation">)</span>        <span class="token comment">// 对数据进行过滤，只留下admin1的</span>
-<span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Users</span><span class="token punctuation">></span></span> <span class="token function">getAllUser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Users</span><span class="token punctuation">></span></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Users</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">"admin1"</span><span class="token punctuation">,</span><span class="token string">"6666"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Users</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token string">"admin2"</span><span class="token punctuation">,</span><span class="token string">"888"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> list<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@RequestMapping(&quot;getAll&quot;)
+@PostAuthorize(&quot;hasAnyAuthority(&#39;admins1&#39;)&quot;)
+@PostFilter(&quot;filterObject.username &#x3D;&#x3D; &#39;admin1&#39;&quot;)        &#x2F;&#x2F; 对数据进行过滤，只留下admin1的
+public List&lt;Users&gt; getAllUser()&#123;
+    ArrayList&lt;Users&gt; list &#x3D; new ArrayList&lt;&gt;();
+    list.add(new Users(1,&quot;admin1&quot;,&quot;6666&quot;));
+    list.add(new Users(2,&quot;admin2&quot;,&quot;888&quot;));
+    System.out.println(list);
+    return list;
+&#125;</code></pre></div>
 
 
 
 <h3 id="PreFilter"><a href="#PreFilter" class="headerlink" title="@PreFilter"></a>@PreFilter</h3><p> @PreFilter: 进入控制器之前对数据进行过滤，和上面这个注解类似</p>
 <h1 id="web权限方案-用户注销"><a href="#web权限方案-用户注销" class="headerlink" title="web权限方案-用户注销"></a>web权限方案-用户注销</h1><p>编写登录成功的页面</p>
-<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Title<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>登录成功<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/logout<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>退出<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang&#x3D;&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Title&lt;&#x2F;title&gt;
+&lt;&#x2F;head&gt;
+&lt;body&gt;
+    &lt;p&gt;登录成功&lt;&#x2F;p&gt;
+    &lt;a href&#x3D;&quot;&#x2F;logout&quot;&gt;退出&lt;&#x2F;a&gt;
+&lt;&#x2F;body&gt;
+&lt;&#x2F;html&gt;</code></pre></div>
 
 <p>在配置类添加配置</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
-<span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">configure</span><span class="token punctuation">(</span><span class="token class-name">HttpSecurity</span> http<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 配置退出登录</span>
-    http<span class="token punctuation">.</span><span class="token function">logout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">logoutUrl</span><span class="token punctuation">(</span><span class="token string">"/logout"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">logoutSuccessUrl</span><span class="token punctuation">(</span><span class="token string">"/test/index"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">permitAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Override
+protected void configure(HttpSecurity http) throws Exception &#123;
+    &#x2F;&#x2F; 配置退出登录
+    http.logout().logoutUrl(&quot;&#x2F;logout&quot;).logoutSuccessUrl(&quot;&#x2F;test&#x2F;index&quot;).permitAll();</code></pre></div>
 
 <p>修改登录成功的页面到上面的页面</p>
 <p><strong>测试</strong></p>
@@ -681,28 +681,28 @@ si&#39;,&#39;$2a$10$2R&#x2F;M6iU3mCZt3ByG7kwYTeeW0w7&#x2F;UqdeXrb27zkBIizBvAven0
 <p><strong>11,12,13,14详细流程</strong></p>
 <p><img src="/myBlog/SpringSecurity%E7%AC%94%E8%AE%B0/image-20220126175934833.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220126175934833"></p>
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>在配置类中添加数据源</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Autowired</span>
-<span class="token keyword">private</span> <span class="token class-name">DataSource</span> dataSource<span class="token punctuation">;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Autowired
+private DataSource dataSource;
 
-<span class="token annotation punctuation">@Bean</span>
-<span class="token class-name">PersistentTokenRepository</span> <span class="token function">persistentTokenRepository</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token class-name">JdbcTokenRepositoryImpl</span> jdbcTokenRepository <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">JdbcTokenRepositoryImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 赋值数据源</span>
-    jdbcTokenRepository<span class="token punctuation">.</span><span class="token function">setDataSource</span><span class="token punctuation">(</span>dataSource<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 自动创建表,第一次执行会创建，以后要执行就要删除掉！</span>
-    <span class="token comment">//jdbcTokenRepository.setCreateTableOnStartup(true);</span>
-    <span class="token keyword">return</span> jdbcTokenRepository<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+@Bean
+PersistentTokenRepository persistentTokenRepository()&#123;
+    JdbcTokenRepositoryImpl jdbcTokenRepository &#x3D; new JdbcTokenRepositoryImpl();
+    &#x2F;&#x2F; 赋值数据源
+    jdbcTokenRepository.setDataSource(dataSource);
+    &#x2F;&#x2F; 自动创建表,第一次执行会创建，以后要执行就要删除掉！
+    &#x2F;&#x2F;jdbcTokenRepository.setCreateTableOnStartup(true);
+    return jdbcTokenRepository;
+&#125;</code></pre></div>
 
 <p>在configure中开启记住我功能</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 开启记住我</span>
-<span class="token punctuation">.</span><span class="token function">and</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">rememberMe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">tokenRepository</span><span class="token punctuation">(</span><span class="token function">persistentTokenRepository</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token punctuation">.</span><span class="token function">tokenValiditySeconds</span><span class="token punctuation">(</span><span class="token number">60</span><span class="token punctuation">)</span>
-<span class="token punctuation">.</span><span class="token function">userDetailsService</span><span class="token punctuation">(</span>userDetailsService<span class="token punctuation">)</span>
-<span class="token punctuation">.</span><span class="token function">and</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">csrf</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">disable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">// 关闭csrf防护</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 开启记住我
+.and().rememberMe().tokenRepository(persistentTokenRepository())
+.tokenValiditySeconds(60)
+.userDetailsService(userDetailsService)
+.and().csrf().disable();        &#x2F;&#x2F; 关闭csrf防护</code></pre></div>
 
 <p>在页面添加复选框</p>
-<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html">记住我<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>checkbox<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>remember-me<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html">记住我&lt;input type&#x3D;&quot;checkbox&quot; name&#x3D;&quot;remember-me&quot;&gt;</code></pre></div>
 
 
 
@@ -716,335 +716,335 @@ si&#39;,&#39;$2a$10$2R&#x2F;M6iU3mCZt3ByG7kwYTeeW0w7&#x2F;UqdeXrb27zkBIizBvAven0
 <h1 id="微服务权限方案-数据模型介绍"><a href="#微服务权限方案-数据模型介绍" class="headerlink" title="微服务权限方案-数据模型介绍"></a>微服务权限方案-数据模型介绍</h1><p><img src="/myBlog/SpringSecurity%E7%AC%94%E8%AE%B0/14-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9D%83%E9%99%90%E6%96%B9%E6%A1%88-%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B.png" srcset="/myBlog/img/loading.gif" lazyload alt="14-微服务权限方案-数据模型"></p>
 <h1 id="微服务权限方案-搭建项目工程"><a href="#微服务权限方案-搭建项目工程" class="headerlink" title="微服务权限方案-搭建项目工程"></a>微服务权限方案-搭建项目工程</h1><p>参照谷粒学院的</p>
 <h1 id="微服务权限方案-编写security工具类"><a href="#微服务权限方案-编写security工具类" class="headerlink" title="微服务权限方案-编写security工具类"></a>微服务权限方案-编写security工具类</h1><h2 id="密码处理"><a href="#密码处理" class="headerlink" title="密码处理"></a>密码处理</h2><p>DefaultPasswordEncoder</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>atguigu<span class="token punctuation">.</span>utils<span class="token punctuation">.</span></span>MD5<span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>security<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span>password<span class="token punctuation">.</span></span><span class="token class-name">PasswordEncoder</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Component</span><span class="token punctuation">;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">import com.atguigu.utils.MD5;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
-<span class="token comment">/**
+&#x2F;**
  * 密码处理
- */</span>
-<span class="token annotation punctuation">@Component</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DefaultPasswordEncoder</span> <span class="token keyword">implements</span> <span class="token class-name">PasswordEncoder</span> <span class="token punctuation">&#123;</span>
+ *&#x2F;
+@Component
+public class DefaultPasswordEncoder implements PasswordEncoder &#123;
 
-    <span class="token keyword">public</span> <span class="token class-name">DefaultPasswordEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">this</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token comment">// 有参构造</span>
-    <span class="token keyword">public</span> <span class="token class-name">DefaultPasswordEncoder</span><span class="token punctuation">(</span><span class="token keyword">int</span> strength<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token punctuation">&#125;</span>
+    public DefaultPasswordEncoder() &#123;
+        this(-1);
+    &#125;
+    &#x2F;&#x2F; 有参构造
+    public DefaultPasswordEncoder(int strength) &#123;
+    &#125;
 
-    <span class="token comment">// MD5工具处理密码</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">encode</span><span class="token punctuation">(</span><span class="token class-name">CharSequence</span> rawPassword<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">return</span> MD5<span class="token punctuation">.</span><span class="token function">encrypt</span><span class="token punctuation">(</span>rawPassword<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+    &#x2F;&#x2F; MD5工具处理密码
+    @Override
+    public String encode(CharSequence rawPassword) &#123;
+        return MD5.encrypt(rawPassword.toString());
+    &#125;
 
-    <span class="token comment">/**
+    &#x2F;**
      * 判断密码是否匹配
      * @param rawPassword 输入的密码
      * @param encodedPassword 已经处理过的密码
      * @return 两个比较，如果相同，返回true，否则false
-     */</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">matches</span><span class="token punctuation">(</span><span class="token class-name">CharSequence</span> rawPassword<span class="token punctuation">,</span> <span class="token class-name">String</span> encodedPassword<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">return</span> encodedPassword<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>MD5<span class="token punctuation">.</span><span class="token function">encrypt</span><span class="token punctuation">(</span>rawPassword<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+     *&#x2F;
+    @Override
+    public boolean matches(CharSequence rawPassword, String encodedPassword) &#123;
+        return encodedPassword.equals(MD5.encrypt(rawPassword.toString()));
+    &#125;
+&#125;</code></pre></div>
 
-<h2 id="token事务"><a href="#token事务" class="headerlink" title="token事务"></a>token事务</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TokenManager</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// token 过期时间</span>
-    <span class="token keyword">private</span> <span class="token keyword">long</span> tokenExpiration <span class="token operator">=</span> <span class="token number">1000</span><span class="token operator">*</span><span class="token number">60</span><span class="token operator">*</span><span class="token number">60</span><span class="token operator">*</span><span class="token number">24</span><span class="token punctuation">;</span>   <span class="token comment">// 一天</span>
-    <span class="token comment">// 密钥</span>
-    <span class="token keyword">private</span> <span class="token class-name">String</span> tokenSignKey <span class="token operator">=</span> <span class="token string">"123456"</span><span class="token punctuation">;</span>
+<h2 id="token事务"><a href="#token事务" class="headerlink" title="token事务"></a>token事务</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Component
+public class TokenManager &#123;
+    &#x2F;&#x2F; token 过期时间
+    private long tokenExpiration &#x3D; 1000*60*60*24;   &#x2F;&#x2F; 一天
+    &#x2F;&#x2F; 密钥
+    private String tokenSignKey &#x3D; &quot;123456&quot;;
 
-    <span class="token comment">// 生成token</span>
-    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">createToken</span><span class="token punctuation">(</span><span class="token class-name">String</span> username<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token class-name">String</span> token <span class="token operator">=</span> <span class="token class-name">Jwts</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setSubject</span><span class="token punctuation">(</span>username<span class="token punctuation">)</span>     <span class="token comment">// 设置用户名</span>
-                <span class="token punctuation">.</span><span class="token function">setExpiration</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> tokenExpiration<span class="token punctuation">)</span><span class="token punctuation">)</span>        <span class="token comment">// 设置过期时间</span>
-                <span class="token punctuation">.</span><span class="token function">signWith</span><span class="token punctuation">(</span><span class="token class-name">SignatureAlgorithm</span><span class="token punctuation">.</span>HS512<span class="token punctuation">,</span> tokenSignKey<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">compressWith</span><span class="token punctuation">(</span><span class="token class-name">CompressionCodecs</span><span class="token punctuation">.</span>GZIP<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">compact</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 设置密码</span>
-        <span class="token comment">// 返回token</span>
-        <span class="token keyword">return</span> token<span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+    &#x2F;&#x2F; 生成token
+    public String createToken(String username)&#123;
+        String token &#x3D; Jwts.builder().setSubject(username)     &#x2F;&#x2F; 设置用户名
+                .setExpiration(new Date(System.currentTimeMillis() + tokenExpiration))        &#x2F;&#x2F; 设置过期时间
+                .signWith(SignatureAlgorithm.HS512, tokenSignKey).compressWith(CompressionCodecs.GZIP).compact();&#x2F;&#x2F; 设置密码
+        &#x2F;&#x2F; 返回token
+        return token;
+    &#125;
 
-    <span class="token comment">// 根据token获取用户信息</span>
-    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getUserInfoFromToken</span><span class="token punctuation">(</span><span class="token class-name">String</span> token<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token class-name">String</span> user <span class="token operator">=</span> <span class="token class-name">Jwts</span><span class="token punctuation">.</span><span class="token function">parser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setSigningKey</span><span class="token punctuation">(</span>tokenSignKey<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">parseClaimsJws</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getBody</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getSubject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> user<span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+    &#x2F;&#x2F; 根据token获取用户信息
+    public String getUserInfoFromToken(String token)&#123;
+        String user &#x3D; Jwts.parser().setSigningKey(tokenSignKey).parseClaimsJws(token).getBody().getSubject();
+        return user;
+    &#125;
 
-    <span class="token comment">// 删除token</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">removeToken</span><span class="token punctuation">(</span><span class="token class-name">String</span> token<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token comment">// jwttoken无需删除，客户端扔掉即可。</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    &#x2F;&#x2F; 删除token
+    public void removeToken(String token)&#123;
+        &#x2F;&#x2F; jwttoken无需删除，客户端扔掉即可。
+    &#125;
+&#125;</code></pre></div>
 
 
 
-<h2 id="退出登录处理器"><a href="#退出登录处理器" class="headerlink" title="退出登录处理器"></a>退出登录处理器</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+<h2 id="退出登录处理器"><a href="#退出登录处理器" class="headerlink" title="退出登录处理器"></a>退出登录处理器</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
  * 退出登录处理器
- */</span>
-<span class="token annotation punctuation">@Component</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TokenLogoutHandler</span> <span class="token keyword">implements</span> <span class="token class-name">LogoutHandler</span> <span class="token punctuation">&#123;</span>
+ *&#x2F;
+@Component
+public class TokenLogoutHandler implements LogoutHandler &#123;
 
-    <span class="token keyword">private</span> <span class="token class-name">TokenManager</span> tokenManager<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token class-name">RedisTemplate</span> redisTemplate<span class="token punctuation">;</span>
+    private TokenManager tokenManager;
+    private RedisTemplate redisTemplate;
 
-    <span class="token comment">// 有参构成</span>
-    <span class="token keyword">public</span> <span class="token class-name">TokenLogoutHandler</span><span class="token punctuation">(</span><span class="token class-name">TokenManager</span> tokenManager<span class="token punctuation">,</span><span class="token class-name">RedisTemplate</span> redisTemplate<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>tokenManager <span class="token operator">=</span> tokenManager<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>redisTemplate <span class="token operator">=</span> redisTemplate<span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+    &#x2F;&#x2F; 有参构成
+    public TokenLogoutHandler(TokenManager tokenManager,RedisTemplate redisTemplate)&#123;
+        this.tokenManager &#x3D; tokenManager;
+        this.redisTemplate &#x3D; redisTemplate;
+    &#125;
 
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">logout</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">,</span> <span class="token class-name">Authentication</span> authentication<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token comment">// 删除token，根据token获取用户名，根据用户名从redis中删除相关信息</span>
-        <span class="token comment">// 获取token</span>
-        <span class="token class-name">String</span> token <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getHeader</span><span class="token punctuation">(</span><span class="token string">"token"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>token <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-            <span class="token comment">// 删除token</span>
-            tokenManager<span class="token punctuation">.</span><span class="token function">removeToken</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    @Override
+    public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) &#123;
+        &#x2F;&#x2F; 删除token，根据token获取用户名，根据用户名从redis中删除相关信息
+        &#x2F;&#x2F; 获取token
+        String token &#x3D; request.getHeader(&quot;token&quot;);
+        if (token !&#x3D; null)&#123;
+            &#x2F;&#x2F; 删除token
+            tokenManager.removeToken(token);
 
-            <span class="token comment">// 清空当前用户缓存中的权限数据</span>
-            <span class="token class-name">String</span> username <span class="token operator">=</span> tokenManager<span class="token punctuation">.</span><span class="token function">getUserInfoFromToken</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            redisTemplate<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span>username<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-        <span class="token comment">// 退出</span>
-        <span class="token class-name">ResponseUtil</span><span class="token punctuation">.</span><span class="token function">out</span><span class="token punctuation">(</span>response<span class="token punctuation">,</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+            &#x2F;&#x2F; 清空当前用户缓存中的权限数据
+            String username &#x3D; tokenManager.getUserInfoFromToken(token);
+            redisTemplate.delete(username);
+        &#125;
+        &#x2F;&#x2F; 退出
+        ResponseUtil.out(response, R.ok());
+    &#125;
+&#125;</code></pre></div>
 
 
 
-<h1 id="微服务权限方案-编写security认证过滤器"><a href="#微服务权限方案-编写security认证过滤器" class="headerlink" title="微服务权限方案-编写security认证过滤器"></a>微服务权限方案-编写security认证过滤器</h1><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+<h1 id="微服务权限方案-编写security认证过滤器"><a href="#微服务权限方案-编写security认证过滤器" class="headerlink" title="微服务权限方案-编写security认证过滤器"></a>微服务权限方案-编写security认证过滤器</h1><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
  * 认证的过滤器
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TokenLoginFilter</span> <span class="token keyword">extends</span> <span class="token class-name">UsernamePasswordAuthenticationFilter</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">private</span> <span class="token class-name">TokenManager</span> tokenManager<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token class-name">RedisTemplate</span> redisTemplate<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token class-name">AuthenticationManager</span> authenticationManager<span class="token punctuation">;</span>
+ *&#x2F;
+public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter &#123;
+    private TokenManager tokenManager;
+    private RedisTemplate redisTemplate;
+    private AuthenticationManager authenticationManager;
 
-    <span class="token comment">// 有参构造</span>
-    <span class="token keyword">public</span> <span class="token class-name">TokenLoginFilter</span><span class="token punctuation">(</span><span class="token class-name">AuthenticationManager</span> authenticationManager<span class="token punctuation">,</span> <span class="token class-name">TokenManager</span> tokenManager<span class="token punctuation">,</span> <span class="token class-name">RedisTemplate</span> redisTemplate<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>authenticationManager <span class="token operator">=</span> authenticationManager<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>tokenManager <span class="token operator">=</span> tokenManager<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>redisTemplate <span class="token operator">=</span> redisTemplate<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setPostOnly</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setRequiresAuthenticationRequestMatcher</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">AntPathRequestMatcher</span><span class="token punctuation">(</span><span class="token string">"/admin/acl/login"</span><span class="token punctuation">,</span><span class="token string">"POST"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+    &#x2F;&#x2F; 有参构造
+    public TokenLoginFilter(AuthenticationManager authenticationManager, TokenManager tokenManager, RedisTemplate redisTemplate) &#123;
+        this.authenticationManager &#x3D; authenticationManager;
+        this.tokenManager &#x3D; tokenManager;
+        this.redisTemplate &#x3D; redisTemplate;
+        this.setPostOnly(false);
+        this.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher(&quot;&#x2F;admin&#x2F;acl&#x2F;login&quot;,&quot;POST&quot;));
+    &#125;
 
-    <span class="token comment">// 认证用户名和密码,获取表单提交用户名和密码</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token class-name">Authentication</span> <span class="token function">attemptAuthentication</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">AuthenticationException</span> <span class="token punctuation">&#123;</span>
-        <span class="token comment">// 获取表单提交数据</span>
-        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
-            <span class="token class-name">User</span> user <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ObjectMapper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">readValue</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span><span class="token function">getInputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">User</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">return</span> authenticationManager<span class="token punctuation">.</span><span class="token function">authenticate</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">UsernamePasswordAuthenticationToken</span><span class="token punctuation">(</span>user<span class="token punctuation">.</span><span class="token function">getUsername</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>user<span class="token punctuation">.</span><span class="token function">getPassword</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-                    <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span>
+    &#x2F;&#x2F; 认证用户名和密码,获取表单提交用户名和密码
+    @Override
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException &#123;
+        &#x2F;&#x2F; 获取表单提交数据
+        try &#123;
+            User user &#x3D; new ObjectMapper().readValue(request.getInputStream(), User.class);
+            return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword(),
+                    new ArrayList&lt;&gt;()));
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+            throw new RuntimeException();
+        &#125;
+    &#125;
 
-    <span class="token comment">// 认证成功执行</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">successfulAuthentication</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">,</span>
-                                            <span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">,</span> <span class="token class-name">FilterChain</span> chain<span class="token punctuation">,</span> <span class="token class-name">Authentication</span> authResult<span class="token punctuation">)</span>
-            <span class="token keyword">throws</span> <span class="token class-name">IOException</span><span class="token punctuation">,</span> <span class="token class-name">ServletException</span> <span class="token punctuation">&#123;</span>
-        <span class="token comment">// 得到用户认证成功后的信息</span>
-        <span class="token class-name">SecurityUser</span> user <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">SecurityUser</span><span class="token punctuation">)</span> authResult<span class="token punctuation">.</span><span class="token function">getPrincipal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">// 生成token信息</span>
-        <span class="token class-name">String</span> token <span class="token operator">=</span> tokenManager<span class="token punctuation">.</span><span class="token function">createToken</span><span class="token punctuation">(</span>user<span class="token punctuation">.</span><span class="token function">getCurrentUserInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getUsername</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">// 存到redis，k为用户名，value为权限值</span>
-        redisTemplate<span class="token punctuation">.</span><span class="token function">opsForValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>user<span class="token punctuation">.</span><span class="token function">getCurrentUserInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getUsername</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>user<span class="token punctuation">.</span><span class="token function">getPermissionValueList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    &#x2F;&#x2F; 认证成功执行
+    @Override
+    protected void successfulAuthentication(HttpServletRequest request,
+                                            HttpServletResponse response, FilterChain chain, Authentication authResult)
+            throws IOException, ServletException &#123;
+        &#x2F;&#x2F; 得到用户认证成功后的信息
+        SecurityUser user &#x3D; (SecurityUser) authResult.getPrincipal();
+        &#x2F;&#x2F; 生成token信息
+        String token &#x3D; tokenManager.createToken(user.getCurrentUserInfo().getUsername());
+        &#x2F;&#x2F; 存到redis，k为用户名，value为权限值
+        redisTemplate.opsForValue().set(user.getCurrentUserInfo().getUsername(),user.getPermissionValueList());
 
-        <span class="token class-name">ResponseUtil</span><span class="token punctuation">.</span><span class="token function">out</span><span class="token punctuation">(</span>response<span class="token punctuation">,</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"token"</span><span class="token punctuation">,</span>token<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+        ResponseUtil.out(response, R.ok().data(&quot;token&quot;,token));
+    &#125;
 
-    <span class="token comment">// 认证失败执行</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">unsuccessfulAuthentication</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">,</span>
-                                              <span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">,</span> <span class="token class-name">AuthenticationException</span> failed<span class="token punctuation">)</span>
-            <span class="token keyword">throws</span> <span class="token class-name">IOException</span><span class="token punctuation">,</span> <span class="token class-name">ServletException</span> <span class="token punctuation">&#123;</span>
-        <span class="token class-name">ResponseUtil</span><span class="token punctuation">.</span><span class="token function">out</span><span class="token punctuation">(</span>response<span class="token punctuation">,</span><span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    &#x2F;&#x2F; 认证失败执行
+    @Override
+    protected void unsuccessfulAuthentication(HttpServletRequest request,
+                                              HttpServletResponse response, AuthenticationException failed)
+            throws IOException, ServletException &#123;
+        ResponseUtil.out(response,R.error());
+    &#125;
+&#125;</code></pre></div>
 
 
 
-<h1 id="微服务权限方案-security授权过滤器"><a href="#微服务权限方案-security授权过滤器" class="headerlink" title="微服务权限方案-security授权过滤器"></a>微服务权限方案-security授权过滤器</h1><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+<h1 id="微服务权限方案-security授权过滤器"><a href="#微服务权限方案-security授权过滤器" class="headerlink" title="微服务权限方案-security授权过滤器"></a>微服务权限方案-security授权过滤器</h1><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
  * 授权过滤器
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TokenAuthenticationFilter</span> <span class="token keyword">extends</span> <span class="token class-name">BasicAuthenticationFilter</span> <span class="token punctuation">&#123;</span>
+ *&#x2F;
+public class TokenAuthenticationFilter extends BasicAuthenticationFilter &#123;
 
-    <span class="token keyword">private</span> <span class="token class-name">TokenManager</span> tokenManager<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token class-name">RedisTemplate</span> redisTemplate<span class="token punctuation">;</span>
+    private TokenManager tokenManager;
+    private RedisTemplate redisTemplate;
 
-    <span class="token keyword">public</span> <span class="token class-name">TokenAuthenticationFilter</span><span class="token punctuation">(</span><span class="token class-name">AuthenticationManager</span> authenticationManager<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">super</span><span class="token punctuation">(</span>authenticationManager<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>tokenManager <span class="token operator">=</span> tokenManager<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>redisTemplate <span class="token operator">=</span> redisTemplate<span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+    public TokenAuthenticationFilter(AuthenticationManager authenticationManager) &#123;
+        super(authenticationManager);
+        this.tokenManager &#x3D; tokenManager;
+        this.redisTemplate &#x3D; redisTemplate;
+    &#125;
 
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doFilterInternal</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">,</span> <span class="token class-name">FilterChain</span> chain<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span><span class="token punctuation">,</span> <span class="token class-name">ServletException</span> <span class="token punctuation">&#123;</span>
-        <span class="token comment">// 获取当前认证成功的用户信息</span>
-        <span class="token class-name">UsernamePasswordAuthenticationToken</span> authRequest <span class="token operator">=</span> <span class="token function">getAuthentication</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">// 判断如果有权限值，就放到权限上下文中</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>authRequest <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-            <span class="token class-name">SecurityContextHolder</span><span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setAuthentication</span><span class="token punctuation">(</span>authRequest<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException &#123;
+        &#x2F;&#x2F; 获取当前认证成功的用户信息
+        UsernamePasswordAuthenticationToken authRequest &#x3D; getAuthentication(request);
+        &#x2F;&#x2F; 判断如果有权限值，就放到权限上下文中
+        if (authRequest !&#x3D; null)&#123;
+            SecurityContextHolder.getContext().setAuthentication(authRequest);
+        &#125;
         
-        chain<span class="token punctuation">.</span><span class="token function">doFilter</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span>response<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+        chain.doFilter(request,response);
+    &#125;
 
-    <span class="token keyword">private</span> <span class="token class-name">UsernamePasswordAuthenticationToken</span> <span class="token function">getAuthentication</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token comment">// 从header中获取token信息</span>
-        <span class="token class-name">String</span> token <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getHeader</span><span class="token punctuation">(</span><span class="token string">"token"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>token <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-            <span class="token comment">// 根据token信息获取用户信息</span>
-            <span class="token class-name">String</span> username <span class="token operator">=</span> tokenManager<span class="token punctuation">.</span><span class="token function">getUserInfoFromToken</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token comment">// 从redis中查询对应的权限列表</span>
-            <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> permissionValueList <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span><span class="token punctuation">)</span> redisTemplate<span class="token punctuation">.</span><span class="token function">opsForValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>username<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token comment">// 将权限列表的类型转换为GrantedAuthority</span>
-            <span class="token class-name">Collection</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">GrantedAuthority</span><span class="token punctuation">></span></span> authorities <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request)&#123;
+        &#x2F;&#x2F; 从header中获取token信息
+        String token &#x3D; request.getHeader(&quot;token&quot;);
+        if (token !&#x3D; null)&#123;
+            &#x2F;&#x2F; 根据token信息获取用户信息
+            String username &#x3D; tokenManager.getUserInfoFromToken(token);
+            &#x2F;&#x2F; 从redis中查询对应的权限列表
+            List&lt;String&gt; permissionValueList &#x3D; (List&lt;String&gt;) redisTemplate.opsForValue().get(username);
+            &#x2F;&#x2F; 将权限列表的类型转换为GrantedAuthority
+            Collection&lt;GrantedAuthority&gt; authorities &#x3D; new ArrayList&lt;&gt;();
 
-            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">String</span> permission <span class="token operator">:</span> permissionValueList<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-                <span class="token class-name">SimpleGrantedAuthority</span> auth <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SimpleGrantedAuthority</span><span class="token punctuation">(</span>permission<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                authorities<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>auth<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">&#125;</span>
+            for (String permission : permissionValueList) &#123;
+                SimpleGrantedAuthority auth &#x3D; new SimpleGrantedAuthority(permission);
+                authorities.add(auth);
+            &#125;
 
-            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">UsernamePasswordAuthenticationToken</span><span class="token punctuation">(</span>username<span class="token punctuation">,</span>token<span class="token punctuation">,</span>authorities<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+            return new UsernamePasswordAuthenticationToken(username,token,authorities);
+        &#125;
+        return null;
+    &#125;
+&#125;</code></pre></div>
 
 
 
-<h1 id="微服务权限方案-核心配置类"><a href="#微服务权限方案-核心配置类" class="headerlink" title="微服务权限方案-核心配置类"></a>微服务权限方案-核心配置类</h1><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+<h1 id="微服务权限方案-核心配置类"><a href="#微服务权限方案-核心配置类" class="headerlink" title="微服务权限方案-核心配置类"></a>微服务权限方案-核心配置类</h1><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
  * 核心配置类
- */</span>
-<span class="token annotation punctuation">@Configuration</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TokenWebSecurityConfig</span> <span class="token keyword">extends</span> <span class="token class-name">WebSecurityConfigurerAdapter</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">private</span> <span class="token class-name">TokenManager</span> tokenManager<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token class-name">RedisTemplate</span> redisTemplate<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token class-name">UserDetailsService</span> userDetailsService<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token class-name">DefaultPasswordEncoder</span> defaultPasswordEncoder<span class="token punctuation">;</span>
+ *&#x2F;
+@Configuration
+public class TokenWebSecurityConfig extends WebSecurityConfigurerAdapter &#123;
+    private TokenManager tokenManager;
+    private RedisTemplate redisTemplate;
+    private UserDetailsService userDetailsService;
+    private DefaultPasswordEncoder defaultPasswordEncoder;
 
-    <span class="token annotation punctuation">@Autowired</span>
-    <span class="token keyword">public</span> <span class="token class-name">TokenWebSecurityConfig</span><span class="token punctuation">(</span><span class="token class-name">UserDetailsService</span> userDetailsService<span class="token punctuation">,</span> <span class="token class-name">DefaultPasswordEncoder</span> defaultPasswordEncoder<span class="token punctuation">,</span>
-                                  <span class="token class-name">TokenManager</span> tokenManager<span class="token punctuation">,</span> <span class="token class-name">RedisTemplate</span> redisTemplate<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>userDetailsService <span class="token operator">=</span> userDetailsService<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>defaultPasswordEncoder <span class="token operator">=</span> defaultPasswordEncoder<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>tokenManager <span class="token operator">=</span> tokenManager<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>redisTemplate <span class="token operator">=</span> redisTemplate<span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+    @Autowired
+    public TokenWebSecurityConfig(UserDetailsService userDetailsService, DefaultPasswordEncoder defaultPasswordEncoder,
+                                  TokenManager tokenManager, RedisTemplate redisTemplate) &#123;
+        this.userDetailsService &#x3D; userDetailsService;
+        this.defaultPasswordEncoder &#x3D; defaultPasswordEncoder;
+        this.tokenManager &#x3D; tokenManager;
+        this.redisTemplate &#x3D; redisTemplate;
+    &#125;
 
-    <span class="token comment">/**
+    &#x2F;**
      * 配置设置
      * @param http
      * @throws Exception
-     */</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">configure</span><span class="token punctuation">(</span><span class="token class-name">HttpSecurity</span> http<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
-        http<span class="token punctuation">.</span><span class="token function">exceptionHandling</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">authenticationEntryPoint</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">UnauthEntryPoint</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>       <span class="token comment">// 没有权限访问</span>
-                <span class="token punctuation">.</span><span class="token function">and</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">csrf</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">disable</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">authorizeRequests</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">anyRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">authenticated</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">and</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">logout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">logoutUrl</span><span class="token punctuation">(</span><span class="token string">"/admin/acl/index/logout"</span><span class="token punctuation">)</span>    <span class="token comment">// 设置退出路径</span>
-                <span class="token punctuation">.</span><span class="token function">addLogoutHandler</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">TokenLogoutHandler</span><span class="token punctuation">(</span>tokenManager<span class="token punctuation">,</span>redisTemplate<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">and</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">addFilter</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">TokenLoginFilter</span><span class="token punctuation">(</span><span class="token function">authenticationManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> tokenManager<span class="token punctuation">,</span> redisTemplate<span class="token punctuation">)</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">addFilter</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">TokenAuthenticationFilter</span><span class="token punctuation">(</span><span class="token function">authenticationManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> tokenManager<span class="token punctuation">,</span> redisTemplate<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">httpBasic</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+     *&#x2F;
+    @Override
+    protected void configure(HttpSecurity http) throws Exception &#123;
+        http.exceptionHandling()
+                .authenticationEntryPoint(new UnauthEntryPoint())       &#x2F;&#x2F; 没有权限访问
+                .and().csrf().disable()
+                .authorizeRequests()
+                .anyRequest().authenticated()
+                .and().logout().logoutUrl(&quot;&#x2F;admin&#x2F;acl&#x2F;index&#x2F;logout&quot;)    &#x2F;&#x2F; 设置退出路径
+                .addLogoutHandler(new TokenLogoutHandler(tokenManager,redisTemplate)).and()
+                .addFilter(new TokenLoginFilter(authenticationManager(), tokenManager, redisTemplate))
+                .addFilter(new TokenAuthenticationFilter(authenticationManager(), tokenManager, redisTemplate)).httpBasic();
+    &#125;
 
-    <span class="token comment">// 调用userDetailsService和密码处理</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">configure</span><span class="token punctuation">(</span><span class="token class-name">AuthenticationManagerBuilder</span> auth<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
-        auth<span class="token punctuation">.</span><span class="token function">userDetailsService</span><span class="token punctuation">(</span>userDetailsService<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">passwordEncoder</span><span class="token punctuation">(</span>defaultPasswordEncoder<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+    &#x2F;&#x2F; 调用userDetailsService和密码处理
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception &#123;
+        auth.userDetailsService(userDetailsService).passwordEncoder(defaultPasswordEncoder);
+    &#125;
 
-    <span class="token comment">// 不进行认证的路径，可以直接访问</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">configure</span><span class="token punctuation">(</span><span class="token class-name">WebSecurity</span> web<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
-        web<span class="token punctuation">.</span><span class="token function">ignoring</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/api/**"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    &#x2F;&#x2F; 不进行认证的路径，可以直接访问
+    @Override
+    public void configure(WebSecurity web) throws Exception &#123;
+        web.ignoring().antMatchers(&quot;&#x2F;api&#x2F;**&quot;);
+    &#125;
+&#125;</code></pre></div>
 
 
 
-<h1 id="微服务权限方案-UserDetailsService实现类"><a href="#微服务权限方案-UserDetailsService实现类" class="headerlink" title="微服务权限方案-UserDetailsService实现类"></a>微服务权限方案-UserDetailsService实现类</h1><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+<h1 id="微服务权限方案-UserDetailsService实现类"><a href="#微服务权限方案-UserDetailsService实现类" class="headerlink" title="微服务权限方案-UserDetailsService实现类"></a>微服务权限方案-UserDetailsService实现类</h1><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
  * security的UserDetailsService实现类
- */</span>
-<span class="token annotation punctuation">@Service</span><span class="token punctuation">(</span><span class="token string">"userDetailsService"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserDetailsServiceImpl</span> <span class="token keyword">implements</span> <span class="token class-name">UserDetailsService</span> <span class="token punctuation">&#123;</span>
+ *&#x2F;
+@Service(&quot;userDetailsService&quot;)
+public class UserDetailsServiceImpl implements UserDetailsService &#123;
 
-    <span class="token annotation punctuation">@Autowired</span>
-    <span class="token keyword">private</span> <span class="token class-name">UserService</span> userService<span class="token punctuation">;</span>
-    <span class="token annotation punctuation">@Autowired</span>
-    <span class="token keyword">private</span> <span class="token class-name">PermissionService</span> permissionService<span class="token punctuation">;</span>
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private PermissionService permissionService;
 
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token class-name">UserDetails</span> <span class="token function">loadUserByUsername</span><span class="token punctuation">(</span><span class="token class-name">String</span> username<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">UsernameNotFoundException</span> <span class="token punctuation">&#123;</span>
-        <span class="token comment">// 根据用户名查询数据</span>
-        <span class="token class-name">User</span> user <span class="token operator">=</span> userService<span class="token punctuation">.</span><span class="token function">selectByUsername</span><span class="token punctuation">(</span>username<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">// 判断</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>user <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">UsernameNotFoundException</span><span class="token punctuation">(</span><span class="token string">"用户不存在"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-        <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>atguigu<span class="token punctuation">.</span>entity<span class="token punctuation">.</span></span>User</span> curUser <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>atguigu<span class="token punctuation">.</span>entity<span class="token punctuation">.</span></span>User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">BeanUtils</span><span class="token punctuation">.</span><span class="token function">copyProperties</span><span class="token punctuation">(</span>user<span class="token punctuation">,</span>curUser<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException &#123;
+        &#x2F;&#x2F; 根据用户名查询数据
+        User user &#x3D; userService.selectByUsername(username);
+        &#x2F;&#x2F; 判断
+        if (user &#x3D;&#x3D; null)&#123;
+            throw new UsernameNotFoundException(&quot;用户不存在&quot;);
+        &#125;
+        com.atguigu.entity.User curUser &#x3D; new com.atguigu.entity.User();
+        BeanUtils.copyProperties(user,curUser);
 
-        <span class="token comment">// 根据用户id查询权限列表</span>
-        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> permissionValueList <span class="token operator">=</span> permissionService<span class="token punctuation">.</span><span class="token function">selectPermissionValueByUserId</span><span class="token punctuation">(</span>user<span class="token punctuation">.</span><span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">SecurityUser</span> securityUser <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SecurityUser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        securityUser<span class="token punctuation">.</span><span class="token function">setPermissionValueList</span><span class="token punctuation">(</span>permissionValueList<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> securityUser<span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+        &#x2F;&#x2F; 根据用户id查询权限列表
+        List&lt;String&gt; permissionValueList &#x3D; permissionService.selectPermissionValueByUserId(user.getId());
+        SecurityUser securityUser &#x3D; new SecurityUser();
+        securityUser.setPermissionValueList(permissionValueList);
+        return securityUser;
+    &#125;
+&#125;</code></pre></div>
 
 
 
-<h1 id="微服务权限-整合网关和权限"><a href="#微服务权限-整合网关和权限" class="headerlink" title="微服务权限-整合网关和权限"></a>微服务权限-整合网关和权限</h1><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+<h1 id="微服务权限-整合网关和权限"><a href="#微服务权限-整合网关和权限" class="headerlink" title="微服务权限-整合网关和权限"></a>微服务权限-整合网关和权限</h1><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
  * 解决跨域
- */</span>
-<span class="token annotation punctuation">@Configuration</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CorsConfig</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 方法，请求头，跨域都可以访问</span>
-    <span class="token annotation punctuation">@Bean</span>
-    <span class="token keyword">public</span> <span class="token class-name">CorsWebFilter</span> <span class="token function">corsWebFilter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token class-name">CorsConfiguration</span> config <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">CorsConfiguration</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        config<span class="token punctuation">.</span><span class="token function">addAllowedMethod</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        config<span class="token punctuation">.</span><span class="token function">addAllowedOrigin</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        config<span class="token punctuation">.</span><span class="token function">addAllowedHeader</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ *&#x2F;
+@Configuration
+public class CorsConfig &#123;
+    &#x2F;&#x2F; 方法，请求头，跨域都可以访问
+    @Bean
+    public CorsWebFilter corsWebFilter() &#123;
+        CorsConfiguration config &#x3D; new CorsConfiguration();
+        config.addAllowedMethod(&quot;*&quot;);
+        config.addAllowedOrigin(&quot;*&quot;);
+        config.addAllowedHeader(&quot;*&quot;);
 
-        <span class="token class-name">UrlBasedCorsConfigurationSource</span> source <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">UrlBasedCorsConfigurationSource</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">PathPatternParser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        source<span class="token punctuation">.</span><span class="token function">registerCorsConfiguration</span><span class="token punctuation">(</span><span class="token string">"/**"</span><span class="token punctuation">,</span> config<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        UrlBasedCorsConfigurationSource source &#x3D; new UrlBasedCorsConfigurationSource(new PathPatternParser());
+        source.registerCorsConfiguration(&quot;&#x2F;**&quot;, config);
 
-        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">CorsWebFilter</span><span class="token punctuation">(</span>source<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+        return new CorsWebFilter(source);
+    &#125;
+&#125;</code></pre></div>
 
 
 
 <p>配置文件</p>
-<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token comment"># 服务端口</span>
-<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8222</span>
-<span class="token comment"># 服务名</span>
-<span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">service-gateway</span>
-<span class="token comment"># nacos服务地址</span>
-<span class="token attr-name">spring.cloud.nacos.discovery.server-addr</span><span class="token punctuation">=</span><span class="token attr-value">127.0.0.1:8848</span>
-<span class="token comment">#使用路由发现</span>
-<span class="token attr-name">spring.cloud.gateway.discovery.locator.enabled</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
+<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"># 服务端口
+server.port&#x3D;8222
+# 服务名
+spring.application.name&#x3D;service-gateway
+# nacos服务地址
+spring.cloud.nacos.discovery.server-addr&#x3D;127.0.0.1:8848
+#使用路由发现
+spring.cloud.gateway.discovery.locator.enabled&#x3D;true
 
-<span class="token comment">#设置路由id</span>
-<span class="token attr-name">spring.cloud.gateway.routes[0].id</span><span class="token punctuation">=</span><span class="token attr-value">service-acl</span>
-<span class="token comment">#设置路由的uri   lb://nacos注册服务名称</span>
-<span class="token attr-name">spring.cloud.gateway.routes[0].uri</span><span class="token punctuation">=</span><span class="token attr-value">lb://service-acl</span>
-<span class="token comment">#设置路由断言,代理servicerId为auth-service的/auth/路径</span>
-<span class="token attr-name">spring.cloud.gateway.routes[0].predicates</span><span class="token punctuation">=</span> <span class="token attr-value">Path=/*/acl/**</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+#设置路由id
+spring.cloud.gateway.routes[0].id&#x3D;service-acl
+#设置路由的uri   lb:&#x2F;&#x2F;nacos注册服务名称
+spring.cloud.gateway.routes[0].uri&#x3D;lb:&#x2F;&#x2F;service-acl
+#设置路由断言,代理servicerId为auth-service的&#x2F;auth&#x2F;路径
+spring.cloud.gateway.routes[0].predicates&#x3D; Path&#x3D;&#x2F;*&#x2F;acl&#x2F;**</code></pre></div>
 
 
 

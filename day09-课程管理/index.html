@@ -16,12 +16,12 @@
   <meta name="author" content="Ten">
   <meta name="keywords" content="">
   
-    <meta name="description" content="day09课程管理-课程信息确认前端定义apicourse.js &#x2F;&#x2F; 根据课程id查询最终发布的课程信息 getPublishCourseInfo(id)&amp;#123;     return request(&amp;#123;         url: &#96;&#x2F;eduservice&#x2F;course&#x2F;getPublishCourseInfo&#x2F;&#96;+id,         method: &#39;get&#39;       &amp;">
+    <meta name="description" content="day09课程管理-课程信息确认前端定义apicourse.js &#x2F;&#x2F; 根据课程id查询最终发布的课程信息 getPublishCourseInfo(id)&amp;#123;     return request(&amp;#123;         url: &#96;&#x2F;eduservice&#x2F;course&#x2F;getPublishCourseInfo&#x2F;&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="day-09-课程管理">
 <meta property="og:url" content="https://no-ten.github.io/day09-%E8%AF%BE%E7%A8%8B%E7%AE%A1%E7%90%86/index.html">
 <meta property="og:site_name" content="TBlog">
-<meta property="og:description" content="day09课程管理-课程信息确认前端定义apicourse.js &#x2F;&#x2F; 根据课程id查询最终发布的课程信息 getPublishCourseInfo(id)&amp;#123;     return request(&amp;#123;         url: &#96;&#x2F;eduservice&#x2F;course&#x2F;getPublishCourseInfo&#x2F;&#96;+id,         method: &#39;get&#39;       &amp;">
+<meta property="og:description" content="day09课程管理-课程信息确认前端定义apicourse.js &#x2F;&#x2F; 根据课程id查询最终发布的课程信息 getPublishCourseInfo(id)&amp;#123;     return request(&amp;#123;         url: &#96;&#x2F;eduservice&#x2F;course&#x2F;getPublishCourseInfo&#x2F;&amp;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-27T08:39:13.644Z">
 <meta property="article:modified_time" content="2022-01-06T16:42:21.232Z">
@@ -227,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          16k 字
+          17k 字
         
       </span>
     
@@ -280,13 +280,13 @@
             <div class="markdown-body">
               
               <h1 id="day09"><a href="#day09" class="headerlink" title="day09"></a>day09</h1><h1 id="课程管理-课程信息确认前端"><a href="#课程管理-课程信息确认前端" class="headerlink" title="课程管理-课程信息确认前端"></a>课程管理-课程信息确认前端</h1><h2 id="定义api"><a href="#定义api" class="headerlink" title="定义api"></a>定义api</h2><p>course.js</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 根据课程id查询最终发布的课程信息</span>
-<span class="token function">getPublishCourseInfo</span><span class="token punctuation">(</span><span class="token parameter">id</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-        url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/eduservice/course/getPublishCourseInfo/</span><span class="token template-punctuation string">`</span></span><span class="token operator">+</span>id<span class="token punctuation">,</span>
-        method<span class="token operator">:</span> <span class="token string">'get'</span>
-      <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 根据课程id查询最终发布的课程信息
+getPublishCourseInfo(id)&#123;
+    return request(&#123;
+        url: &#96;&#x2F;eduservice&#x2F;course&#x2F;getPublishCourseInfo&#x2F;&#96;+id,
+        method: &#39;get&#39;
+      &#125;)
+&#125;</code></pre></div>
 
 <h2 id="定义数据模型"><a href="#定义数据模型" class="headerlink" title="定义数据模型"></a>定义数据模型</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">data() &#123;
   return &#123;
@@ -294,17 +294,17 @@
     courseId:&#39;&#39;,
     coursePublish:&#123;&#125;
   &#125;
-&#125;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;,</code></pre></div>
 
 <h2 id="完善步骤导航"><a href="#完善步骤导航" class="headerlink" title="完善步骤导航"></a>完善步骤导航</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">previous() &#123;
       this.$router.push(&#123; path: &#39;&#x2F;course&#x2F;chapter&#x2F;&#39;+this.courseId &#125;)
     &#125;,
     publish() &#123;
       this.$router.push(&#123; path: &#39;&#x2F;course&#x2F;list&#39; &#125;)
-    &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    &#125;</code></pre></div>
 
 <h2 id="组件方法定义"><a href="#组件方法定义" class="headerlink" title="组件方法定义"></a>组件方法定义</h2><p>import</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">import course from &#39;@&#x2F;api&#x2F;edu&#x2F;course&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">import course from &#39;@&#x2F;api&#x2F;edu&#x2F;course&#39;</code></pre></div>
 
 <p>created</p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">created() &#123;
@@ -313,7 +313,7 @@
      this.courseId &#x3D; this.$route.params.id
     &#x2F;&#x2F; 根据课程id回显数据
     this.getPublishCourseId()
-  &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+  &#125;</code></pre></div>
 
 <p>methods</p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">methods: &#123;
@@ -323,7 +323,7 @@
        .then(response &#x3D;&gt;&#123;
          this.coursePublish &#x3D; response.data.courseInfo
        &#125;)
-    &#125;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    &#125;,</code></pre></div>
 
 <h2 id="组件模板"><a href="#组件模板" class="headerlink" title="组件模板"></a>组件模板</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
   &lt;div class&#x3D;&quot;app-container&quot;&gt;
@@ -348,7 +348,7 @@
       &lt;el-button :disabled&#x3D;&quot;saveBtnDisabled&quot; type&#x3D;&quot;primary&quot; @click&#x3D;&quot;publish&quot;&gt;发布课程&lt;&#x2F;el-button&gt;
     &lt;&#x2F;div&gt;
   &lt;&#x2F;div&gt;
-&lt;&#x2F;template&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&lt;&#x2F;template&gt;</code></pre></div>
 
 <h2 id="css样式"><a href="#css样式" class="headerlink" title="css样式"></a>css样式</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;style scoped&gt;
  .ccInfo &#123;
@@ -399,26 +399,26 @@
      font-weight: normal;
      position: absolute;
  &#125;
- &lt;&#x2F;style&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+ &lt;&#x2F;style&gt;</code></pre></div>
 
-<h1 id="课程管理-课程最终发布"><a href="#课程管理-课程最终发布" class="headerlink" title="课程管理-课程最终发布"></a>课程管理-课程最终发布</h1><h2 id="后端"><a href="#后端" class="headerlink" title="后端"></a>后端</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 根据课程id实现最终课程发布，修改表中的status字段，课程状态 Draft未发布 Normal已发布</span>
-<span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"publishCourse/&#123;id&#125;"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">publishCourse</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> id<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token class-name">EduCourse</span> eduCourse <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">EduCourse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    eduCourse<span class="token punctuation">.</span><span class="token function">setId</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    eduCourse<span class="token punctuation">.</span><span class="token function">setStatus</span><span class="token punctuation">(</span><span class="token string">"Normal"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    eduCourseService<span class="token punctuation">.</span><span class="token function">updateById</span><span class="token punctuation">(</span>eduCourse<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h1 id="课程管理-课程最终发布"><a href="#课程管理-课程最终发布" class="headerlink" title="课程管理-课程最终发布"></a>课程管理-课程最终发布</h1><h2 id="后端"><a href="#后端" class="headerlink" title="后端"></a>后端</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据课程id实现最终课程发布，修改表中的status字段，课程状态 Draft未发布 Normal已发布
+@PostMapping(&quot;publishCourse&#x2F;&#123;id&#125;&quot;)
+public R publishCourse(@PathVariable String id)&#123;
+    EduCourse eduCourse &#x3D; new EduCourse();
+    eduCourse.setId(id);
+    eduCourse.setStatus(&quot;Normal&quot;);
+    eduCourseService.updateById(eduCourse);
+    return R.ok();
+&#125;</code></pre></div>
 
 <h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><p>course.js</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 根据课程id实现最终课程发布</span>
-<span class="token function">publishCourseInfo</span><span class="token punctuation">(</span><span class="token parameter">id</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-        url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/eduservice/course/publishCourse/</span><span class="token template-punctuation string">`</span></span><span class="token operator">+</span>id<span class="token punctuation">,</span>
-        method<span class="token operator">:</span> <span class="token string">'post'</span>
-      <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 根据课程id实现最终课程发布
+publishCourseInfo(id)&#123;
+    return request(&#123;
+        url: &#96;&#x2F;eduservice&#x2F;course&#x2F;publishCourse&#x2F;&#96;+id,
+        method: &#39;post&#39;
+      &#125;)
+&#125;</code></pre></div>
 
 <p>publish.vue中的methods</p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">publish() &#123;
@@ -440,23 +440,23 @@
                       this.$router.push(&#123; path: &#39;&#x2F;course&#x2F;list&#39; &#125;)
                    &#125;)
            
-           &#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+           &#125;)</code></pre></div>
 
-<h1 id="课程管理-课程列表"><a href="#课程管理-课程列表" class="headerlink" title="课程管理-课程列表"></a>课程管理-课程列表</h1><h2 id="后端-1"><a href="#后端-1" class="headerlink" title="后端"></a>后端</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 课程列表</span>
-<span class="token annotation punctuation">@GetMapping</span>
-<span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">getCourseList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduCourse</span><span class="token punctuation">></span></span> list <span class="token operator">=</span> eduCourseService<span class="token punctuation">.</span><span class="token function">list</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"list"</span><span class="token punctuation">,</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h1 id="课程管理-课程列表"><a href="#课程管理-课程列表" class="headerlink" title="课程管理-课程列表"></a>课程管理-课程列表</h1><h2 id="后端-1"><a href="#后端-1" class="headerlink" title="后端"></a>后端</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 课程列表
+@GetMapping
+public R getCourseList()&#123;
+    List&lt;EduCourse&gt; list &#x3D; eduCourseService.list(null);
+    return R.ok().data(&quot;list&quot;,list);
+&#125;</code></pre></div>
 
 <h2 id="前端-1"><a href="#前端-1" class="headerlink" title="前端"></a>前端</h2><p>api/course.js</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 课程列表</span>
-<span class="token function">getCourseList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-        url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/eduservice/course</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
-        method<span class="token operator">:</span> <span class="token string">'get'</span>
-      <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 课程列表
+getCourseList()&#123;
+    return request(&#123;
+        url: &#96;&#x2F;eduservice&#x2F;course&#96;,
+        method: &#39;get&#39;
+      &#125;)
+&#125; </code></pre></div>
 
 <p>list.vue</p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
@@ -569,85 +569,85 @@ export default &#123;
         
     &#125;
 &#125;
-&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&lt;&#x2F;script&gt;</code></pre></div>
 
 
 
 <h1 id="课程管理-删除课程后端"><a href="#课程管理-删除课程后端" class="headerlink" title="课程管理-删除课程后端"></a>课程管理-删除课程后端</h1><p>删除流程：</p>
 <p>小节=&gt;章节=&gt;课程描述=&gt;课程</p>
 <p>com.atguigu.eduservice.controller.EduCourseController</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 根据课程id删除课程</span>
-<span class="token annotation punctuation">@DeleteMapping</span><span class="token punctuation">(</span><span class="token string">"deleteCourse/&#123;courseId&#125;"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">deleteCourse</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> courseId<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    eduCourseService<span class="token punctuation">.</span><span class="token function">removeCourseById</span><span class="token punctuation">(</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据课程id删除课程
+@DeleteMapping(&quot;deleteCourse&#x2F;&#123;courseId&#125;&quot;)
+public R deleteCourse(@PathVariable String courseId)&#123;
+    eduCourseService.removeCourseById(courseId);
+    return R.ok();
+&#125;</code></pre></div>
 
 <p>EduCourseService</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 根据课程id删除课程</span>
-<span class="token keyword">void</span> <span class="token function">removeCourseById</span><span class="token punctuation">(</span><span class="token class-name">String</span> courseId<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据课程id删除课程
+void removeCourseById(String courseId);</code></pre></div>
 
 <p>删除小节EduVideoService</p>
 <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">public interface EduVideoService extends IService&lt;EduVideo&gt; &#123;
 
     &#x2F;&#x2F; 根据课程id删除小节
     void removeVideoByCourseId(String courseId);
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;</code></pre></div>
 
 <p>删除小节EduVideoServiceImpl</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">EduVideoServiceImpl</span> <span class="token keyword">extends</span> <span class="token class-name">ServiceImpl</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduVideoMapper</span><span class="token punctuation">,</span> <span class="token class-name">EduVideo</span><span class="token punctuation">></span></span> <span class="token keyword">implements</span> <span class="token class-name">EduVideoService</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 根据课程id删除小节</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">removeVideoByCourseId</span><span class="token punctuation">(</span><span class="token class-name">String</span> courseId<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduVideo</span><span class="token punctuation">></span></span> wrapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        wrapper<span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token string">"course_id"</span><span class="token punctuation">,</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        baseMapper<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span>wrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Service
+public class EduVideoServiceImpl extends ServiceImpl&lt;EduVideoMapper, EduVideo&gt; implements EduVideoService &#123;
+    &#x2F;&#x2F; 根据课程id删除小节
+    @Override
+    public void removeVideoByCourseId(String courseId) &#123;
+        QueryWrapper&lt;EduVideo&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
+        wrapper.eq(&quot;course_id&quot;,courseId);
+        baseMapper.delete(wrapper);
+    &#125;
+&#125;</code></pre></div>
 
 <p>删除章节EduChapterService</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 根据课程id删除章节</span>
-<span class="token keyword">void</span> <span class="token function">removeChapterByCourseId</span><span class="token punctuation">(</span><span class="token class-name">String</span> courseId<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据课程id删除章节
+void removeChapterByCourseId(String courseId);</code></pre></div>
 
 <p>删除章节EduChapterServiceImpl</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">    <span class="token comment">// 根据课程id删除章节</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">removeChapterByCourseId</span><span class="token punctuation">(</span><span class="token class-name">String</span> courseId<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduChapter</span><span class="token punctuation">></span></span> wrapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        wrapper<span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token string">"course_id"</span><span class="token punctuation">,</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        baseMapper<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span>wrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">    &#x2F;&#x2F; 根据课程id删除章节
+    @Override
+    public void removeChapterByCourseId(String courseId) &#123;
+        QueryWrapper&lt;EduChapter&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
+        wrapper.eq(&quot;course_id&quot;,courseId);
+        baseMapper.delete(wrapper);
+    &#125;
+&#125;</code></pre></div>
 
 <p>EduCourseServiceImpl</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 根据课程id删除课程</span>
-<span class="token annotation punctuation">@Override</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">removeCourseById</span><span class="token punctuation">(</span><span class="token class-name">String</span> courseId<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 根据课程id删除小节</span>
-    eduVideoService<span class="token punctuation">.</span><span class="token function">removeVideoByCourseId</span><span class="token punctuation">(</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据课程id删除课程
+@Override
+public void removeCourseById(String courseId) &#123;
+    &#x2F;&#x2F; 根据课程id删除小节
+    eduVideoService.removeVideoByCourseId(courseId);
 
-    <span class="token comment">// 根据课程id删除章节</span>
-    eduChapterService<span class="token punctuation">.</span><span class="token function">removeChapterByCourseId</span><span class="token punctuation">(</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    &#x2F;&#x2F; 根据课程id删除章节
+    eduChapterService.removeChapterByCourseId(courseId);
 
-    <span class="token comment">// 根据课程id删除描述,因为描述的id就是课程的id，可以直接删除</span>
-    eduCourseDescriptionService<span class="token punctuation">.</span><span class="token function">removeById</span><span class="token punctuation">(</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    &#x2F;&#x2F; 根据课程id删除描述,因为描述的id就是课程的id，可以直接删除
+    eduCourseDescriptionService.removeById(courseId);
 
-    <span class="token comment">// 根据课程id删除课程</span>
-    <span class="token keyword">int</span> result <span class="token operator">=</span> baseMapper<span class="token punctuation">.</span><span class="token function">deleteById</span><span class="token punctuation">(</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>result <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">GuliException</span><span class="token punctuation">(</span><span class="token number">20001</span><span class="token punctuation">,</span><span class="token string">"删除失败"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    &#x2F;&#x2F; 根据课程id删除课程
+    int result &#x3D; baseMapper.deleteById(courseId);
+    if (result &#x3D;&#x3D; 0)&#123;
+        throw new GuliException(20001,&quot;删除失败&quot;);
+    &#125;
+&#125;</code></pre></div>
 
 <h1 id="课程管理-删除课程前端"><a href="#课程管理-删除课程前端" class="headerlink" title="课程管理-删除课程前端"></a>课程管理-删除课程前端</h1><p>course.js</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 根据课程id删除课程</span>
-<span class="token function">deleteCourseById</span><span class="token punctuation">(</span><span class="token parameter">id</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-        url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/eduservice/course/deleteCourse/</span><span class="token template-punctuation string">`</span></span><span class="token operator">+</span>id<span class="token punctuation">,</span>
-        method<span class="token operator">:</span> <span class="token string">'delete'</span>
-      <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 根据课程id删除课程
+deleteCourseById(id)&#123;
+    return request(&#123;
+        url: &#96;&#x2F;eduservice&#x2F;course&#x2F;deleteCourse&#x2F;&#96;+id,
+        method: &#39;delete&#39;
+      &#125;)
+&#125;</code></pre></div>
 
 <p>list.vue</p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">methods:&#123;
@@ -671,53 +671,53 @@ export default &#123;
                     &#125;)
             
             &#125;)
-        &#125;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+        &#125;,</code></pre></div>
 
 <p>TODO:</p>
 <p>课程条件查询，分页</p>
 <h1 id="课程管理-课程条件分页查询"><a href="#课程管理-课程条件分页查询" class="headerlink" title="课程管理-课程条件分页查询"></a>课程管理-课程条件分页查询</h1><h2 id="后端-2"><a href="#后端-2" class="headerlink" title="后端"></a>后端</h2><p>CourseQuery封装对象</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Data</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CourseQuery</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 课程名称</span>
-    <span class="token keyword">private</span> <span class="token class-name">String</span> title<span class="token punctuation">;</span>
-    <span class="token comment">// 发布状态</span>
-    <span class="token keyword">private</span> <span class="token class-name">String</span> status<span class="token punctuation">;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Data
+public class CourseQuery &#123;
+    &#x2F;&#x2F; 课程名称
+    private String title;
+    &#x2F;&#x2F; 发布状态
+    private String status;
 
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;</code></pre></div>
 
 <p>controller</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 分页带条件</span>
-<span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"getCoursePageCondition/&#123;current&#125;/&#123;limit&#125;"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">getCoursePageCondition</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token keyword">long</span> current<span class="token punctuation">,</span> <span class="token annotation punctuation">@PathVariable</span> <span class="token keyword">long</span> limit<span class="token punctuation">,</span>
-                                <span class="token annotation punctuation">@RequestBody</span> <span class="token class-name">CourseQuery</span> courseQuery<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token comment">// 构建分页对象</span>
-    <span class="token class-name">Page</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduCourse</span><span class="token punctuation">></span></span> coursePage <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Page</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span>current<span class="token punctuation">,</span> limit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 分页带条件
+@PostMapping(&quot;getCoursePageCondition&#x2F;&#123;current&#125;&#x2F;&#123;limit&#125;&quot;)
+public R getCoursePageCondition(@PathVariable long current, @PathVariable long limit,
+                                @RequestBody CourseQuery courseQuery)&#123;
+    &#x2F;&#x2F; 构建分页对象
+    Page&lt;EduCourse&gt; coursePage &#x3D; new Page&lt;&gt;(current, limit);
 
-    <span class="token comment">// 构建查询条件</span>
-    <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduCourse</span><span class="token punctuation">></span></span> wrapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    &#x2F;&#x2F; 构建查询条件
+    QueryWrapper&lt;EduCourse&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
 
-    <span class="token comment">// 取到传进来的对象的数据</span>
-    <span class="token class-name">String</span> title <span class="token operator">=</span> courseQuery<span class="token punctuation">.</span><span class="token function">getTitle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">String</span> status <span class="token operator">=</span> courseQuery<span class="token punctuation">.</span><span class="token function">getStatus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    &#x2F;&#x2F; 取到传进来的对象的数据
+    String title &#x3D; courseQuery.getTitle();
+    String status &#x3D; courseQuery.getStatus();
 
-    <span class="token comment">// 判断数据的有效性，并封装条件</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>title<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token comment">// 模块查询课程名称</span>
-        wrapper<span class="token punctuation">.</span><span class="token function">like</span><span class="token punctuation">(</span><span class="token string">"title"</span><span class="token punctuation">,</span>title<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>status<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        wrapper<span class="token punctuation">.</span><span class="token function">like</span><span class="token punctuation">(</span><span class="token string">"status"</span><span class="token punctuation">,</span>status<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+    &#x2F;&#x2F; 判断数据的有效性，并封装条件
+    if (!StringUtils.isEmpty(title))&#123;
+        &#x2F;&#x2F; 模块查询课程名称
+        wrapper.like(&quot;title&quot;,title);
+    &#125;
+    if (!StringUtils.isEmpty(status))&#123;
+        wrapper.like(&quot;status&quot;,status);
+    &#125;
 
-    <span class="token comment">// 查询数据库</span>
-    eduCourseService<span class="token punctuation">.</span><span class="token function">page</span><span class="token punctuation">(</span>coursePage<span class="token punctuation">,</span>wrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    &#x2F;&#x2F; 查询数据库
+    eduCourseService.page(coursePage,wrapper);
 
-    <span class="token comment">// 得到所有数据</span>
-    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduCourse</span><span class="token punctuation">></span></span> records <span class="token operator">=</span> coursePage<span class="token punctuation">.</span><span class="token function">getRecords</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">long</span> total <span class="token operator">=</span> coursePage<span class="token punctuation">.</span><span class="token function">getTotal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    &#x2F;&#x2F; 得到所有数据
+    List&lt;EduCourse&gt; records &#x3D; coursePage.getRecords();
+    long total &#x3D; coursePage.getTotal();
 
-    <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"records"</span><span class="token punctuation">,</span>records<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"total"</span><span class="token punctuation">,</span>total<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    return R.ok().data(&quot;records&quot;,records).data(&quot;total&quot;,total);
+&#125;</code></pre></div>
 
 <h2 id="前端-2"><a href="#前端-2" class="headerlink" title="前端"></a>前端</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&#x2F;&#x2F; 条件查询分页
        getList(page &#x3D; 1)&#123;
@@ -728,122 +728,122 @@ export default &#123;
                this.total &#x3D; response.data.total
            
            &#125;)
-       &#125;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+       &#125;,</code></pre></div>
 
 
 
 <h1 id="阿里云视频点播"><a href="#阿里云视频点播" class="headerlink" title="阿里云视频点播"></a>阿里云视频点播</h1><p>选择存储区域的时候一定要选择上海，会报not found的错误 ，this video not exist</p>
 <h2 id="课程管理-添加小节上传视频后端"><a href="#课程管理-添加小节上传视频后端" class="headerlink" title="课程管理-添加小节上传视频后端"></a>课程管理-添加小节上传视频后端</h2><p>在service模块下创建service_vod子模块</p>
 <p>application.properties</p>
-<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token comment"># 服务端口</span>
-<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8003</span>
-<span class="token comment"># 服务名</span>
-<span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">service-vod</span>
-<span class="token comment"># 环境设置：dev、test、prod</span>
-<span class="token attr-name">spring.profiles.active</span><span class="token punctuation">=</span><span class="token attr-value">dev</span>
-<span class="token comment">#阿里云 vod</span>
-<span class="token comment">#不同的服务器，地址不同</span>
-<span class="token attr-name">aliyun.vod.file.keyid</span><span class="token punctuation">=</span><span class="token attr-value">your accessKeyId</span>
-<span class="token attr-name">aliyun.vod.file.keysecret</span><span class="token punctuation">=</span><span class="token attr-value">your accessKeySecret</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"># 服务端口
+server.port&#x3D;8003
+# 服务名
+spring.application.name&#x3D;service-vod
+# 环境设置：dev、test、prod
+spring.profiles.active&#x3D;dev
+#阿里云 vod
+#不同的服务器，地址不同
+aliyun.vod.file.keyid&#x3D;your accessKeyId
+aliyun.vod.file.keysecret&#x3D;your accessKeySecret</code></pre></div>
 
 <p>定义工具类ConstantVodUtils</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ConstantVodUtils</span> <span class="token keyword">implements</span> <span class="token class-name">InitializingBean</span> <span class="token punctuation">&#123;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Component
+public class ConstantVodUtils implements InitializingBean &#123;
 
-    <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"aliyun.vod.file.keyid"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token class-name">String</span> keyId<span class="token punctuation">;</span>
+    @Value(&quot;aliyun.vod.file.keyid&quot;)
+    private String keyId;
 
-    <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"aliyun.vod.file.keysecret"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token class-name">String</span> keySecret<span class="token punctuation">;</span>
+    @Value(&quot;aliyun.vod.file.keysecret&quot;)
+    private String keySecret;
 
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> ACCESS_KEY_ID<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> ACCESS_KEY_SECRET<span class="token punctuation">;</span>
+    public static String ACCESS_KEY_ID;
+    public static String ACCESS_KEY_SECRET;
 
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">afterPropertiesSet</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
-        ACCESS_KEY_ID <span class="token operator">=</span> keyId<span class="token punctuation">;</span>
-        ACCESS_KEY_SECRET <span class="token operator">=</span> keySecret<span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    @Override
+    public void afterPropertiesSet() throws Exception &#123;
+        ACCESS_KEY_ID &#x3D; keyId;
+        ACCESS_KEY_SECRET &#x3D; keySecret;
+    &#125;
+&#125;</code></pre></div>
 
 <p>controller</p>
 <p>com.atguigu.vod.controller.VodController</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
-<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"eduvod/video"</span><span class="token punctuation">)</span>
-<span class="token annotation punctuation">@CrossOrigin</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">VodController</span> <span class="token punctuation">&#123;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@RestController
+@RequestMapping(&quot;eduvod&#x2F;video&quot;)
+@CrossOrigin
+public class VodController &#123;
 
-    <span class="token annotation punctuation">@Autowired</span>
-    <span class="token keyword">private</span> <span class="token class-name">VodService</span> vodService<span class="token punctuation">;</span>
+    @Autowired
+    private VodService vodService;
 
-    <span class="token comment">// 上传视频到阿里云</span>
-    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"uploadAlyVideo"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">uploadAlyVideo</span><span class="token punctuation">(</span><span class="token class-name">MultipartFile</span> file<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token class-name">String</span> videoId <span class="token operator">=</span> vodService<span class="token punctuation">.</span><span class="token function">uploadAly</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"videoId"</span><span class="token punctuation">,</span>videoId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    &#x2F;&#x2F; 上传视频到阿里云
+    @PostMapping(&quot;uploadAlyVideo&quot;)
+    public R uploadAlyVideo(MultipartFile file)&#123;
+        String videoId &#x3D; vodService.uploadAly(file);
+        return R.ok().data(&quot;videoId&quot;,videoId);
+    &#125;
+&#125;</code></pre></div>
 
 
 
 <p>Service</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">VodService</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 上传视频到阿里云</span>
-    <span class="token class-name">String</span> <span class="token function">uploadAly</span><span class="token punctuation">(</span><span class="token class-name">MultipartFile</span> file<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">public interface VodService &#123;
+    &#x2F;&#x2F; 上传视频到阿里云
+    String uploadAly(MultipartFile file);
+&#125;</code></pre></div>
 
 
 
 <p>ServiceImpl</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">VodServiceImpl</span> <span class="token keyword">implements</span> <span class="token class-name">VodService</span> <span class="token punctuation">&#123;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Service
+public class VodServiceImpl implements VodService &#123;
 
-    <span class="token comment">// 上传视频到阿里云</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">uploadAly</span><span class="token punctuation">(</span><span class="token class-name">MultipartFile</span> file<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    &#x2F;&#x2F; 上传视频到阿里云
+    @Override
+    public String uploadAly(MultipartFile file) &#123;
 
-        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
-            <span class="token comment">// 文件输入流</span>
-            <span class="token class-name">InputStream</span> inputStream <span class="token operator">=</span> file<span class="token punctuation">.</span><span class="token function">getInputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token comment">// 文件的源名字</span>
-            <span class="token class-name">String</span> fileName <span class="token operator">=</span> file<span class="token punctuation">.</span><span class="token function">getOriginalFilename</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        try &#123;
+            &#x2F;&#x2F; 文件输入流
+            InputStream inputStream &#x3D; file.getInputStream();
+            &#x2F;&#x2F; 文件的源名字
+            String fileName &#x3D; file.getOriginalFilename();
 
-            <span class="token comment">// 上传文件的名称</span>
-            <span class="token comment">// 源文件，01.mp4,改成01</span>
-            <span class="token class-name">String</span> title <span class="token operator">=</span> fileName<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> fileName<span class="token punctuation">.</span><span class="token function">lastIndexOf</span><span class="token punctuation">(</span><span class="token string">"."</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            &#x2F;&#x2F; 上传文件的名称
+            &#x2F;&#x2F; 源文件，01.mp4,改成01
+            String title &#x3D; fileName.substring(0, fileName.lastIndexOf(&quot;.&quot;));
 
-            <span class="token class-name">UploadStreamRequest</span> request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">UploadStreamRequest</span><span class="token punctuation">(</span><span class="token class-name">ConstantVodUtils</span><span class="token punctuation">.</span>ACCESS_KEY_ID<span class="token punctuation">,</span> <span class="token class-name">ConstantVodUtils</span><span class="token punctuation">.</span>ACCESS_KEY_SECRET<span class="token punctuation">,</span> title<span class="token punctuation">,</span> fileName<span class="token punctuation">,</span> inputStream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            UploadStreamRequest request &#x3D; new UploadStreamRequest(ConstantVodUtils.ACCESS_KEY_ID, ConstantVodUtils.ACCESS_KEY_SECRET, title, fileName, inputStream);
 
-            <span class="token class-name">UploadVideoImpl</span> uploader <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">UploadVideoImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token class-name">UploadStreamResponse</span> response <span class="token operator">=</span> uploader<span class="token punctuation">.</span><span class="token function">uploadStream</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"RequestId="</span> <span class="token operator">+</span> response<span class="token punctuation">.</span><span class="token function">getRequestId</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//请求视频点播服务的请求ID</span>
+            UploadVideoImpl uploader &#x3D; new UploadVideoImpl();
+            UploadStreamResponse response &#x3D; uploader.uploadStream(request);
+            System.out.print(&quot;RequestId&#x3D;&quot; + response.getRequestId() + &quot;\n&quot;);  &#x2F;&#x2F;请求视频点播服务的请求ID
 
-            <span class="token comment">// 视频返回的id</span>
-            <span class="token class-name">String</span> videoId <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>response<span class="token punctuation">.</span><span class="token function">isSuccess</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-                videoId <span class="token operator">=</span> response<span class="token punctuation">.</span><span class="token function">getVideoId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span> <span class="token comment">//如果设置回调URL无效，不影响视频上传，可以返回VideoId同时会返回错误码。其他情况上传失败时，VideoId为空，此时需要根据返回错误码分析具体错误原因</span>
-                videoId <span class="token operator">=</span> response<span class="token punctuation">.</span><span class="token function">getVideoId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">&#125;</span>
+            &#x2F;&#x2F; 视频返回的id
+            String videoId &#x3D; &quot;&quot;;
+            if (response.isSuccess()) &#123;
+                videoId &#x3D; response.getVideoId();
+            &#125; else &#123; &#x2F;&#x2F;如果设置回调URL无效，不影响视频上传，可以返回VideoId同时会返回错误码。其他情况上传失败时，VideoId为空，此时需要根据返回错误码分析具体错误原因
+                videoId &#x3D; response.getVideoId();
+            &#125;
 
-            <span class="token keyword">return</span> videoId<span class="token punctuation">;</span>
+            return videoId;
 
-        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+            return null;
+        &#125;
+    &#125;
+&#125;</code></pre></div>
 
 <p>启动测试，报了一下错误，超过文件上传最大的容量，1M</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Caused by: org.apache.tomcat.util.http.fileupload.FileUploadBase<span class="token variable">$FileSizeLimitExceededException</span><span class="token builtin class-name">:</span> The field <span class="token function">file</span> exceeds its maximum permitted size of <span class="token number">1048576</span> bytes.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Caused by: org.apache.tomcat.util.http.fileupload.FileUploadBase$FileSizeLimitExceededException: The field file exceeds its maximum permitted size of 1048576 bytes.</code></pre></div>
 
 <p>解决方案</p>
 <p>在application.properties配置文件中添加下面配置</p>
-<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token comment"># 最大上传单个文件大小：默认1M</span>
-<span class="token attr-name">spring.servlet.multipart.max-file-size</span><span class="token punctuation">=</span><span class="token attr-value">1024MB</span>
-<span class="token comment"># 最大置总上传的数据大小 ：默认10M</span>
-<span class="token attr-name">spring.servlet.multipart.max-request-size</span><span class="token punctuation">=</span><span class="token attr-value">1024MB</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"># 最大上传单个文件大小：默认1M
+spring.servlet.multipart.max-file-size&#x3D;1024MB
+# 最大置总上传的数据大小 ：默认10M
+spring.servlet.multipart.max-request-size&#x3D;1024MB</code></pre></div>
 
 
 
@@ -851,16 +851,16 @@ export default &#123;
 <p>将接口地址加入nginx配置</p>
 <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">location ~ &#x2F;eduvod&#x2F; &#123;
     proxy_pass http:&#x2F;&#x2F;localhost:8003;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+&#125;</code></pre></div>
 
 <p>配置nginx上传文件大小，否则上传时会有 413 (Request Entity Too Large) 异常</p>
 <p>打开nginx主配置文件nginx.conf，找到http{}，添加</p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">client_max_body_size 1024m;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">client_max_body_size 1024m;</code></pre></div>
 
 <p>重启nginx</p>
 <p><strong>数据定义</strong></p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">fileList: [],&#x2F;&#x2F;上传文件列表
-BASE_API: process.env.BASE_API &#x2F;&#x2F; 接口API地址<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+BASE_API: process.env.BASE_API &#x2F;&#x2F; 接口API地址</code></pre></div>
 
 <p><strong>整合上传组件</strong></p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;el-form-item label&#x3D;&quot;上传视频&quot;&gt;
@@ -884,7 +884,7 @@ BASE_API: process.env.BASE_API &#x2F;&#x2F; 接口API地址<span aria-hidden="tr
             &lt;&#x2F;el-tooltip&gt;
             &lt;&#x2F;el-upload&gt;
         &lt;&#x2F;el-form-item&gt;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+</code></pre></div>
 
 
 
@@ -899,7 +899,7 @@ BASE_API: process.env.BASE_API &#x2F;&#x2F; 接口API地址<span aria-hidden="tr
     handleUploadExceed(files, fileList) &#123;
       this.$message.warning(&#39;想要重新上传视频，请先删除已上传的
     &#125;,
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+</code></pre></div>
 
 
 

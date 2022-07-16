@@ -231,7 +231,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          23k 字
+          27k 字
         
       </span>
     
@@ -285,105 +285,105 @@
               
               <h1 id="day15-课程评论分析-支付功能"><a href="#day15-课程评论分析-支付功能" class="headerlink" title="day15-课程评论分析_支付功能"></a>day15-课程评论分析_支付功能</h1><h1 id="课程评论实现过程分析-TODO"><a href="#课程评论实现过程分析-TODO" class="headerlink" title="课程评论实现过程分析(TODO)"></a>课程评论实现过程分析(TODO)</h1><p>![02 课程评论实现过程分析](day15-课程评论分析_支付功能/02 课程评论实现过程分析.png)</p>
 <h2 id="一、数据库设计"><a href="#一、数据库设计" class="headerlink" title="一、数据库设计"></a>一、数据库设计</h2><h3 id="1、数据库"><a href="#1、数据库" class="headerlink" title="1、数据库"></a>1、数据库</h3><p>edu_comment</p>
-<h3 id="2、数据表"><a href="#2、数据表" class="headerlink" title="2、数据表"></a><strong>2、数据表</strong></h3><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">guli_edu<span class="token punctuation">.</span>sql<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h3 id="2、数据表"><a href="#2、数据表" class="headerlink" title="2、数据表"></a><strong>2、数据表</strong></h3><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">guli_edu.sql</code></pre></div>
 
 <h2 id="二、创建课程评论接口"><a href="#二、创建课程评论接口" class="headerlink" title="二、创建课程评论接口"></a><strong>二、创建课程评论接口</strong></h2><h3 id="1、在service-edu模块，生成课程评论代码"><a href="#1、在service-edu模块，生成课程评论代码" class="headerlink" title="1、在service-edu模块，生成课程评论代码"></a>1、在service-edu模块，生成课程评论代码</h3><p>（1）使用mp代码生成器生成</p>
 <h3 id="2、在service-ucenter模块，创建接口"><a href="#2、在service-ucenter模块，创建接口" class="headerlink" title="2、在service-ucenter模块，创建接口"></a>2、在service-ucenter模块，创建接口</h3><p>（1）实现用户id获取用户信息，返回用户信息对象</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">//根据token字符串获取用户信息</span>
-<span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"getInfoUc/&#123;id&#125;"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>atguigu<span class="token punctuation">.</span>commonutils<span class="token punctuation">.</span>vo<span class="token punctuation">.</span></span>UcenterMember</span> <span class="token function">getInfo</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> id<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token comment">//根据用户id获取用户信息</span>
-        <span class="token class-name">UcenterMember</span> ucenterMember <span class="token operator">=</span> memberService<span class="token punctuation">.</span><span class="token function">getById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>atguigu<span class="token punctuation">.</span>commonutils<span class="token punctuation">.</span>vo<span class="token punctuation">.</span></span>UcenterMember</span> memeber <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>atguigu<span class="token punctuation">.</span>commonutils<span class="token punctuation">.</span>vo<span class="token punctuation">.</span></span>UcenterMember</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">BeanUtils</span><span class="token punctuation">.</span><span class="token function">copyProperties</span><span class="token punctuation">(</span>ucenterMember<span class="token punctuation">,</span>memeber<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> memeber<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F;根据token字符串获取用户信息
+@PostMapping(&quot;getInfoUc&#x2F;&#123;id&#125;&quot;)
+public com.atguigu.commonutils.vo.UcenterMember getInfo(@PathVariable String id) &#123;
+        &#x2F;&#x2F;根据用户id获取用户信息
+        UcenterMember ucenterMember &#x3D; memberService.getById(id);
+        com.atguigu.commonutils.vo.UcenterMember memeber &#x3D; new com.atguigu.commonutils.vo.UcenterMember();
+        BeanUtils.copyProperties(ucenterMember,memeber);
+        return memeber;
+&#125;</code></pre></div>
 
 
 
 <h3 id="3、创建课程评论controller"><a href="#3、创建课程评论controller" class="headerlink" title="3、创建课程评论controller"></a><strong>3、创建课程评论controller</strong></h3><p>（1）在service-edu模块创建client，实现微服务调用</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
-<span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"service-ucenter"</span><span class="token punctuation">,</span>fallback <span class="token operator">=</span> <span class="token class-name">UcenterClientImpl</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">UcenterClient</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">//根据用户id获取用户信息</span>
-    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/ucenterservice/member/getUcenterPay/&#123;memberId&#125;"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token class-name">UcenterMemberPay</span> <span class="token function">getUcenterPay</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"memberId"</span><span class="token punctuation">)</span> <span class="token class-name">String</span> memberId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token annotation punctuation">@Component</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UcenterClientImpl</span> <span class="token keyword">implements</span> <span class="token class-name">UcenterClient</span> <span class="token punctuation">&#123;</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token class-name">UcenterMemberPay</span> <span class="token function">getUcenterPay</span><span class="token punctuation">(</span><span class="token class-name">String</span> memberId<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Component
+@FeignClient(name&#x3D;&quot;service-ucenter&quot;,fallback &#x3D; UcenterClientImpl.class)
+public interface UcenterClient &#123;
+    &#x2F;&#x2F;根据用户id获取用户信息
+    @GetMapping(&quot;&#x2F;ucenterservice&#x2F;member&#x2F;getUcenterPay&#x2F;&#123;memberId&#125;&quot;)
+    public UcenterMemberPay getUcenterPay(@PathVariable(&quot;memberId&quot;) String memberId);
+&#125;
+@Component
+public class UcenterClientImpl implements UcenterClient &#123;
+    @Override
+    public UcenterMemberPay getUcenterPay(String memberId) &#123;
+        return null;
+    &#125;
+&#125;</code></pre></div>
 
 <p>（2）创建评论列表和添加评论接口</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
-<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/eduservice/comment"</span><span class="token punctuation">)</span>
-<span class="token annotation punctuation">@CrossOrigin</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CommentFrontController</span> <span class="token punctuation">&#123;</span>
-    <span class="token annotation punctuation">@Autowired</span>
-    <span class="token keyword">private</span> <span class="token class-name">CommentService</span> commentService<span class="token punctuation">;</span>
-    <span class="token annotation punctuation">@Autowired</span>
-    <span class="token keyword">private</span> <span class="token class-name">UcenterClient</span> ucenterClient<span class="token punctuation">;</span>
-    <span class="token comment">//根据课程id查询评论列表</span>
-    <span class="token annotation punctuation">@ApiOperation</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"评论分页列表"</span><span class="token punctuation">)</span>
-    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"&#123;page&#125;/&#123;limit&#125;"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">index</span><span class="token punctuation">(</span>
-            <span class="token annotation punctuation">@ApiParam</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"page"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">"当前页码"</span><span class="token punctuation">,</span> required <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
-            <span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">Long</span> page<span class="token punctuation">,</span>
-            <span class="token annotation punctuation">@ApiParam</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"limit"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">"每页记录数"</span><span class="token punctuation">,</span> required <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
-            <span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">Long</span> limit<span class="token punctuation">,</span>
-            <span class="token annotation punctuation">@ApiParam</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"courseQuery"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">"查询对象"</span><span class="token punctuation">,</span> required <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
-                    <span class="token class-name">String</span> courseId<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token class-name">Page</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Comment</span><span class="token punctuation">></span></span> pageParam <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Page</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span>page<span class="token punctuation">,</span> limit<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Comment</span><span class="token punctuation">></span></span> wrapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        wrapper<span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token string">"course_id"</span><span class="token punctuation">,</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        commentService<span class="token punctuation">.</span><span class="token function">page</span><span class="token punctuation">(</span>pageParam<span class="token punctuation">,</span>wrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Comment</span><span class="token punctuation">></span></span> commentList <span class="token operator">=</span> pageParam<span class="token punctuation">.</span><span class="token function">getRecords</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"items"</span><span class="token punctuation">,</span> commentList<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"current"</span><span class="token punctuation">,</span> pageParam<span class="token punctuation">.</span><span class="token function">getCurrent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"pages"</span><span class="token punctuation">,</span> pageParam<span class="token punctuation">.</span><span class="token function">getPages</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"size"</span><span class="token punctuation">,</span> pageParam<span class="token punctuation">.</span><span class="token function">getSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"total"</span><span class="token punctuation">,</span> pageParam<span class="token punctuation">.</span><span class="token function">getTotal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"hasNext"</span><span class="token punctuation">,</span> pageParam<span class="token punctuation">.</span><span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"hasPrevious"</span><span class="token punctuation">,</span> pageParam<span class="token punctuation">.</span><span class="token function">hasPrevious</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span>map<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token annotation punctuation">@ApiOperation</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"添加评论"</span><span class="token punctuation">)</span>
-    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"auth/save"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">save</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestBody</span> <span class="token class-name">Comment</span> comment<span class="token punctuation">,</span> <span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token class-name">String</span> memberId <span class="token operator">=</span> <span class="token class-name">JwtUtils</span><span class="token punctuation">.</span><span class="token function">getMemberIdByJwtToken</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>memberId<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">code</span><span class="token punctuation">(</span><span class="token number">28004</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">message</span><span class="token punctuation">(</span><span class="token string">"请登录"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-        comment<span class="token punctuation">.</span><span class="token function">setMemberId</span><span class="token punctuation">(</span>memberId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">UcenterMemberPay</span> ucenterInfo <span class="token operator">=</span> ucenterClient<span class="token punctuation">.</span><span class="token function">getUcenterPay</span><span class="token punctuation">(</span>memberId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        comment<span class="token punctuation">.</span><span class="token function">setNickname</span><span class="token punctuation">(</span>ucenterInfo<span class="token punctuation">.</span><span class="token function">getNickname</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        comment<span class="token punctuation">.</span><span class="token function">setAvatar</span><span class="token punctuation">(</span>ucenterInfo<span class="token punctuation">.</span><span class="token function">getAvatar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        commentService<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>comment<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@RestController
+@RequestMapping(&quot;&#x2F;eduservice&#x2F;comment&quot;)
+@CrossOrigin
+public class CommentFrontController &#123;
+    @Autowired
+    private CommentService commentService;
+    @Autowired
+    private UcenterClient ucenterClient;
+    &#x2F;&#x2F;根据课程id查询评论列表
+    @ApiOperation(value &#x3D; &quot;评论分页列表&quot;)
+    @GetMapping(&quot;&#123;page&#125;&#x2F;&#123;limit&#125;&quot;)
+    public R index(
+            @ApiParam(name &#x3D; &quot;page&quot;, value &#x3D; &quot;当前页码&quot;, required &#x3D; true)
+            @PathVariable Long page,
+            @ApiParam(name &#x3D; &quot;limit&quot;, value &#x3D; &quot;每页记录数&quot;, required &#x3D; true)
+            @PathVariable Long limit,
+            @ApiParam(name &#x3D; &quot;courseQuery&quot;, value &#x3D; &quot;查询对象&quot;, required &#x3D; false)
+                    String courseId) &#123;
+        Page&lt;Comment&gt; pageParam &#x3D; new Page&lt;&gt;(page, limit);
+        QueryWrapper&lt;Comment&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
+        wrapper.eq(&quot;course_id&quot;,courseId);
+        commentService.page(pageParam,wrapper);
+        List&lt;Comment&gt; commentList &#x3D; pageParam.getRecords();
+        Map&lt;String, Object&gt; map &#x3D; new HashMap&lt;&gt;();
+        map.put(&quot;items&quot;, commentList);
+        map.put(&quot;current&quot;, pageParam.getCurrent());
+        map.put(&quot;pages&quot;, pageParam.getPages());
+        map.put(&quot;size&quot;, pageParam.getSize());
+        map.put(&quot;total&quot;, pageParam.getTotal());
+        map.put(&quot;hasNext&quot;, pageParam.hasNext());
+        map.put(&quot;hasPrevious&quot;, pageParam.hasPrevious());
+        return R.ok().data(map);
+    &#125;
+    @ApiOperation(value &#x3D; &quot;添加评论&quot;)
+    @PostMapping(&quot;auth&#x2F;save&quot;)
+    public R save(@RequestBody Comment comment, HttpServletRequest request) &#123;
+        String memberId &#x3D; JwtUtils.getMemberIdByJwtToken(request);
+        if(StringUtils.isEmpty(memberId)) &#123;
+            return R.error().code(28004).message(&quot;请登录&quot;);
+        &#125;
+        comment.setMemberId(memberId);
+        UcenterMemberPay ucenterInfo &#x3D; ucenterClient.getUcenterPay(memberId);
+        comment.setNickname(ucenterInfo.getNickname());
+        comment.setAvatar(ucenterInfo.getAvatar());
+        commentService.save(comment);
+        return R.ok();
+    &#125;
+&#125;</code></pre></div>
 
-<h2 id="三、课程评论前端整合"><a href="#三、课程评论前端整合" class="headerlink" title="三、课程评论前端整合"></a>三、课程评论前端整合</h2><h3 id="1、在api创建commonedu-js"><a href="#1、在api创建commonedu-js" class="headerlink" title="1、在api创建commonedu.js"></a>1、在api创建commonedu.js</h3><div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> request <span class="token keyword">from</span> <span class="token string">'@/utils/request'</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">&#123;</span>
-  <span class="token function">getPageList</span><span class="token punctuation">(</span><span class="token parameter">page<span class="token punctuation">,</span> limit<span class="token punctuation">,</span> courseId</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-      url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/eduservice/comment/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>page<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>limit<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
-      method<span class="token operator">:</span> <span class="token string">'get'</span><span class="token punctuation">,</span>
-      params<span class="token operator">:</span> <span class="token punctuation">&#123;</span>courseId<span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-  <span class="token function">addComment</span><span class="token punctuation">(</span><span class="token parameter">comment</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-      url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/eduservice/comment/auth/save</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
-      method<span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
-      data<span class="token operator">:</span> comment
-    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="三、课程评论前端整合"><a href="#三、课程评论前端整合" class="headerlink" title="三、课程评论前端整合"></a>三、课程评论前端整合</h2><h3 id="1、在api创建commonedu-js"><a href="#1、在api创建commonedu-js" class="headerlink" title="1、在api创建commonedu.js"></a>1、在api创建commonedu.js</h3><div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">import request from &#39;@&#x2F;utils&#x2F;request&#39;
+export default &#123;
+  getPageList(page, limit, courseId) &#123;
+    return request(&#123;
+      url: &#96;&#x2F;eduservice&#x2F;comment&#x2F;$&#123;page&#125;&#x2F;$&#123;limit&#125;&#96;,
+      method: &#39;get&#39;,
+      params: &#123;courseId&#125;
+    &#125;)
+  &#125;,
+  addComment(comment) &#123;
+    return request(&#123;
+      url: &#96;&#x2F;eduservice&#x2F;comment&#x2F;auth&#x2F;save&#96;,
+      method: &#39;post&#39;,
+      data: comment
+    &#125;)
+  &#125;
+&#125;</code></pre></div>
 
 <h3 id="2、在课程详情页面，调用方法-id-vue"><a href="#2、在课程详情页面，调用方法-id-vue" class="headerlink" title="2、在课程详情页面，调用方法 _id.vue"></a>2、在课程详情页面，调用方法 _id.vue</h3><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">import comment from &#39;@&#x2F;api&#x2F;commonedu&#39;
 2
@@ -450,90 +450,90 @@ export default &#123;
        &#125;
    &#125;
  &#125;;
- &lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+ &lt;&#x2F;script&gt;</code></pre></div>
 
-<h3 id="3、在课程详情页面-id-vue显示评论"><a href="#3、在课程详情页面-id-vue显示评论" class="headerlink" title="3、在课程详情页面 _id.vue显示评论"></a>3、在课程详情页面 _id.vue显示评论</h3><div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"mt50 commentHtml"</span><span class="token operator">></span><span class="token operator">&lt;</span>div<span class="token operator">></span>
-       <span class="token operator">&lt;</span>h6 <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"c-c-content c-infor-title"</span> id<span class="token operator">=</span><span class="token string">"i-art-comment"</span><span class="token operator">></span>
-         <span class="token operator">&lt;</span>span <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"commentTitle"</span><span class="token operator">></span>课程评论<span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">></span>
-       <span class="token operator">&lt;</span><span class="token operator">/</span>h6<span class="token operator">></span>
-       <span class="token operator">&lt;</span>section <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"lh-bj-list pr mt20 replyhtml"</span><span class="token operator">></span>
-         <span class="token operator">&lt;</span>ul<span class="token operator">></span>
-           <span class="token operator">&lt;</span>li <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"unBr"</span><span class="token operator">></span>
-             <span class="token operator">&lt;</span>aside <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"noter-pic"</span><span class="token operator">></span>
-               <span class="token operator">&lt;</span>img width<span class="token operator">=</span><span class="token string">"50"</span> height<span class="token operator">=</span><span class="token string">"50"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"picImg"</span> src<span class="token operator">=</span><span class="token string">"~/assets/img/avatar-boy.gif"</span><span class="token operator">></span>
-               <span class="token operator">&lt;</span><span class="token operator">/</span>aside<span class="token operator">></span>
-             <span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"of"</span><span class="token operator">></span>
-               <span class="token operator">&lt;</span>section <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"n-reply-wrap"</span><span class="token operator">></span>
-                 <span class="token operator">&lt;</span>fieldset<span class="token operator">></span>
-                   <span class="token operator">&lt;</span>textarea name<span class="token operator">=</span><span class="token string">""</span> v<span class="token operator">-</span>model<span class="token operator">=</span><span class="token string">"comment.content"</span> placeholder<span class="token operator">=</span><span class="token string">"输入您要评论的文字"</span> id<span class="token operator">=</span><span class="token string">"commentContent"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>textarea<span class="token operator">></span>
-                 <span class="token operator">&lt;</span><span class="token operator">/</span>fieldset<span class="token operator">></span>
-                 <span class="token operator">&lt;</span>p <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"of mt5 tar pl10 pr10"</span><span class="token operator">></span>
-                   <span class="token operator">&lt;</span>span <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"fl "</span><span class="token operator">></span><span class="token operator">&lt;</span>tt <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"c-red commentContentmeg"</span> style<span class="token operator">=</span><span class="token string">"display: none;"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>tt<span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">></span>
-                   <span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"button"</span> @click<span class="token operator">=</span><span class="token string">"addComment()"</span> value<span class="token operator">=</span><span class="token string">"回复"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"lh-reply-btn"</span><span class="token operator">></span>
-                 <span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">></span>
-               <span class="token operator">&lt;</span><span class="token operator">/</span>section<span class="token operator">></span>
-             <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
-           <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">></span>
-         <span class="token operator">&lt;</span><span class="token operator">/</span>ul<span class="token operator">></span>
-       <span class="token operator">&lt;</span><span class="token operator">/</span>section<span class="token operator">></span>
-       <span class="token operator">&lt;</span>section <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">""</span><span class="token operator">></span>
-           <span class="token operator">&lt;</span>section <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"question-list lh-bj-list pr"</span><span class="token operator">></span>
-             <span class="token operator">&lt;</span>ul <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"pr10"</span><span class="token operator">></span>
-               <span class="token operator">&lt;</span>li v<span class="token operator">-</span><span class="token keyword">for</span><span class="token operator">=</span><span class="token string">"(comment,index) in data.items"</span> v<span class="token operator">-</span>bind<span class="token operator">:</span>key<span class="token operator">=</span><span class="token string">"index"</span><span class="token operator">></span>
-                   <span class="token operator">&lt;</span>aside <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"noter-pic"</span><span class="token operator">></span>
-                     <span class="token operator">&lt;</span>img width<span class="token operator">=</span><span class="token string">"50"</span> height<span class="token operator">=</span><span class="token string">"50"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"picImg"</span> <span class="token operator">:</span>src<span class="token operator">=</span><span class="token string">"comment.avatar"</span><span class="token operator">></span>
-                     <span class="token operator">&lt;</span><span class="token operator">/</span>aside<span class="token operator">></span>
-                   <span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"of"</span><span class="token operator">></span>
-                     <span class="token operator">&lt;</span>span <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"fl"</span><span class="token operator">></span> 
-                     <span class="token operator">&lt;</span>font <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"fsize12 c-blue"</span><span class="token operator">></span> 
-                       <span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span>comment<span class="token punctuation">.</span>nickname<span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token operator">&lt;</span><span class="token operator">/</span>font<span class="token operator">></span>
-                     <span class="token operator">&lt;</span>font <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"fsize12 c-999 ml5"</span><span class="token operator">></span>评论：<span class="token operator">&lt;</span><span class="token operator">/</span>font<span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">></span>
-                   <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
-                   <span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"noter-txt mt5"</span><span class="token operator">></span>
-                     <span class="token operator">&lt;</span>p<span class="token operator">></span><span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span>comment<span class="token punctuation">.</span>content<span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">></span>
-                   <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
-                   <span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"of mt5"</span><span class="token operator">></span>
-                     <span class="token operator">&lt;</span>span <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"fr"</span><span class="token operator">></span><span class="token operator">&lt;</span>font <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"fsize12 c-999 ml5"</span><span class="token operator">></span><span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span>comment<span class="token punctuation">.</span>gmtCreate<span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token operator">&lt;</span><span class="token operator">/</span>font<span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">></span>
-                   <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
-                 <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">></span>
-               <span class="token operator">&lt;</span><span class="token operator">/</span>ul<span class="token operator">></span>
-           <span class="token operator">&lt;</span><span class="token operator">/</span>section<span class="token operator">></span>
-         <span class="token operator">&lt;</span><span class="token operator">/</span>section<span class="token operator">></span>
-         <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 公共分页 开始 <span class="token operator">--</span><span class="token operator">></span>
-         <span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"paging"</span><span class="token operator">></span>
-             <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> undisable这个<span class="token keyword">class</span>是否存在，取决于数据属性hasPrevious <span class="token operator">--</span><span class="token operator">></span>
-             <span class="token operator">&lt;</span>a
-             <span class="token operator">:</span><span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"&#123;undisable: !data.hasPrevious&#125;"</span>
-             href<span class="token operator">=</span><span class="token string">"#"</span>
-             title<span class="token operator">=</span><span class="token string">"首页"</span>
-             @click<span class="token punctuation">.</span>prevent<span class="token operator">=</span><span class="token string">"gotoPage(1)"</span><span class="token operator">></span>首<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">></span>
-             <span class="token operator">&lt;</span>a
-             <span class="token operator">:</span><span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"&#123;undisable: !data.hasPrevious&#125;"</span>
-             href<span class="token operator">=</span><span class="token string">"#"</span>
-             title<span class="token operator">=</span><span class="token string">"前一页"</span>
-             @click<span class="token punctuation">.</span>prevent<span class="token operator">=</span><span class="token string">"gotoPage(data.current-1)"</span><span class="token operator">></span><span class="token operator">&amp;</span>lt<span class="token punctuation">;</span><span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">></span>
-             <span class="token operator">&lt;</span>a
-             v<span class="token operator">-</span><span class="token keyword">for</span><span class="token operator">=</span><span class="token string">"page in data.pages"</span>
-             <span class="token operator">:</span>key<span class="token operator">=</span><span class="token string">"page"</span>
-             <span class="token operator">:</span><span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"&#123;current: data.current == page, undisable: data.current == page&#125;"</span>
-             <span class="token operator">:</span>title<span class="token operator">=</span><span class="token string">"'第'+page+'页'"</span>
-             href<span class="token operator">=</span><span class="token string">"#"</span>
-             @click<span class="token punctuation">.</span>prevent<span class="token operator">=</span><span class="token string">"gotoPage(page)"</span><span class="token operator">></span><span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> page <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">></span>
-             <span class="token operator">&lt;</span>a
-             <span class="token operator">:</span><span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"&#123;undisable: !data.hasNext&#125;"</span>
-             href<span class="token operator">=</span><span class="token string">"#"</span>
-             title<span class="token operator">=</span><span class="token string">"后一页"</span>
-             @click<span class="token punctuation">.</span>prevent<span class="token operator">=</span><span class="token string">"gotoPage(data.current+1)"</span><span class="token operator">></span><span class="token operator">&amp;</span>gt<span class="token punctuation">;</span><span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">></span>
-             <span class="token operator">&lt;</span>a
-             <span class="token operator">:</span><span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"&#123;undisable: !data.hasNext&#125;"</span>
-             href<span class="token operator">=</span><span class="token string">"#"</span>
-             title<span class="token operator">=</span><span class="token string">"末页"</span>
-             @click<span class="token punctuation">.</span>prevent<span class="token operator">=</span><span class="token string">"gotoPage(data.pages)"</span><span class="token operator">></span>末<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">></span>
-             <span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"clear"</span><span class="token operator">/</span><span class="token operator">></span>
-         <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
-         <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 公共分页 结束 <span class="token operator">--</span><span class="token operator">></span>
-       <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
-     <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h3 id="3、在课程详情页面-id-vue显示评论"><a href="#3、在课程详情页面-id-vue显示评论" class="headerlink" title="3、在课程详情页面 _id.vue显示评论"></a>3、在课程详情页面 _id.vue显示评论</h3><div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&lt;div class&#x3D;&quot;mt50 commentHtml&quot;&gt;&lt;div&gt;
+       &lt;h6 class&#x3D;&quot;c-c-content c-infor-title&quot; id&#x3D;&quot;i-art-comment&quot;&gt;
+         &lt;span class&#x3D;&quot;commentTitle&quot;&gt;课程评论&lt;&#x2F;span&gt;
+       &lt;&#x2F;h6&gt;
+       &lt;section class&#x3D;&quot;lh-bj-list pr mt20 replyhtml&quot;&gt;
+         &lt;ul&gt;
+           &lt;li class&#x3D;&quot;unBr&quot;&gt;
+             &lt;aside class&#x3D;&quot;noter-pic&quot;&gt;
+               &lt;img width&#x3D;&quot;50&quot; height&#x3D;&quot;50&quot; class&#x3D;&quot;picImg&quot; src&#x3D;&quot;~&#x2F;assets&#x2F;img&#x2F;avatar-boy.gif&quot;&gt;
+               &lt;&#x2F;aside&gt;
+             &lt;div class&#x3D;&quot;of&quot;&gt;
+               &lt;section class&#x3D;&quot;n-reply-wrap&quot;&gt;
+                 &lt;fieldset&gt;
+                   &lt;textarea name&#x3D;&quot;&quot; v-model&#x3D;&quot;comment.content&quot; placeholder&#x3D;&quot;输入您要评论的文字&quot; id&#x3D;&quot;commentContent&quot;&gt;&lt;&#x2F;textarea&gt;
+                 &lt;&#x2F;fieldset&gt;
+                 &lt;p class&#x3D;&quot;of mt5 tar pl10 pr10&quot;&gt;
+                   &lt;span class&#x3D;&quot;fl &quot;&gt;&lt;tt class&#x3D;&quot;c-red commentContentmeg&quot; style&#x3D;&quot;display: none;&quot;&gt;&lt;&#x2F;tt&gt;&lt;&#x2F;span&gt;
+                   &lt;input type&#x3D;&quot;button&quot; @click&#x3D;&quot;addComment()&quot; value&#x3D;&quot;回复&quot; class&#x3D;&quot;lh-reply-btn&quot;&gt;
+                 &lt;&#x2F;p&gt;
+               &lt;&#x2F;section&gt;
+             &lt;&#x2F;div&gt;
+           &lt;&#x2F;li&gt;
+         &lt;&#x2F;ul&gt;
+       &lt;&#x2F;section&gt;
+       &lt;section class&#x3D;&quot;&quot;&gt;
+           &lt;section class&#x3D;&quot;question-list lh-bj-list pr&quot;&gt;
+             &lt;ul class&#x3D;&quot;pr10&quot;&gt;
+               &lt;li v-for&#x3D;&quot;(comment,index) in data.items&quot; v-bind:key&#x3D;&quot;index&quot;&gt;
+                   &lt;aside class&#x3D;&quot;noter-pic&quot;&gt;
+                     &lt;img width&#x3D;&quot;50&quot; height&#x3D;&quot;50&quot; class&#x3D;&quot;picImg&quot; :src&#x3D;&quot;comment.avatar&quot;&gt;
+                     &lt;&#x2F;aside&gt;
+                   &lt;div class&#x3D;&quot;of&quot;&gt;
+                     &lt;span class&#x3D;&quot;fl&quot;&gt; 
+                     &lt;font class&#x3D;&quot;fsize12 c-blue&quot;&gt; 
+                       &#123;&#123;comment.nickname&#125;&#125;&lt;&#x2F;font&gt;
+                     &lt;font class&#x3D;&quot;fsize12 c-999 ml5&quot;&gt;评论：&lt;&#x2F;font&gt;&lt;&#x2F;span&gt;
+                   &lt;&#x2F;div&gt;
+                   &lt;div class&#x3D;&quot;noter-txt mt5&quot;&gt;
+                     &lt;p&gt;&#123;&#123;comment.content&#125;&#125;&lt;&#x2F;p&gt;
+                   &lt;&#x2F;div&gt;
+                   &lt;div class&#x3D;&quot;of mt5&quot;&gt;
+                     &lt;span class&#x3D;&quot;fr&quot;&gt;&lt;font class&#x3D;&quot;fsize12 c-999 ml5&quot;&gt;&#123;&#123;comment.gmtCreate&#125;&#125;&lt;&#x2F;font&gt;&lt;&#x2F;span&gt;
+                   &lt;&#x2F;div&gt;
+                 &lt;&#x2F;li&gt;
+               &lt;&#x2F;ul&gt;
+           &lt;&#x2F;section&gt;
+         &lt;&#x2F;section&gt;
+         &lt;!-- 公共分页 开始 --&gt;
+         &lt;div class&#x3D;&quot;paging&quot;&gt;
+             &lt;!-- undisable这个class是否存在，取决于数据属性hasPrevious --&gt;
+             &lt;a
+             :class&#x3D;&quot;&#123;undisable: !data.hasPrevious&#125;&quot;
+             href&#x3D;&quot;#&quot;
+             title&#x3D;&quot;首页&quot;
+             @click.prevent&#x3D;&quot;gotoPage(1)&quot;&gt;首&lt;&#x2F;a&gt;
+             &lt;a
+             :class&#x3D;&quot;&#123;undisable: !data.hasPrevious&#125;&quot;
+             href&#x3D;&quot;#&quot;
+             title&#x3D;&quot;前一页&quot;
+             @click.prevent&#x3D;&quot;gotoPage(data.current-1)&quot;&gt;&lt;&lt;&#x2F;a&gt;
+             &lt;a
+             v-for&#x3D;&quot;page in data.pages&quot;
+             :key&#x3D;&quot;page&quot;
+             :class&#x3D;&quot;&#123;current: data.current &#x3D;&#x3D; page, undisable: data.current &#x3D;&#x3D; page&#125;&quot;
+             :title&#x3D;&quot;&#39;第&#39;+page+&#39;页&#39;&quot;
+             href&#x3D;&quot;#&quot;
+             @click.prevent&#x3D;&quot;gotoPage(page)&quot;&gt;&#123;&#123; page &#125;&#125;&lt;&#x2F;a&gt;
+             &lt;a
+             :class&#x3D;&quot;&#123;undisable: !data.hasNext&#125;&quot;
+             href&#x3D;&quot;#&quot;
+             title&#x3D;&quot;后一页&quot;
+             @click.prevent&#x3D;&quot;gotoPage(data.current+1)&quot;&gt;&gt;&lt;&#x2F;a&gt;
+             &lt;a
+             :class&#x3D;&quot;&#123;undisable: !data.hasNext&#125;&quot;
+             href&#x3D;&quot;#&quot;
+             title&#x3D;&quot;末页&quot;
+             @click.prevent&#x3D;&quot;gotoPage(data.pages)&quot;&gt;末&lt;&#x2F;a&gt;
+             &lt;div class&#x3D;&quot;clear&quot;&#x2F;&gt;
+         &lt;&#x2F;div&gt;
+         &lt;!-- 公共分页 结束 --&gt;
+       &lt;&#x2F;div&gt;
+     &lt;&#x2F;div&gt;</code></pre></div>
 
 
 
@@ -541,194 +541,194 @@ export default &#123;
 <h2 id="所需接口"><a href="#所需接口" class="headerlink" title="所需接口"></a>所需接口</h2><p>![04 课程支付接口](day15-课程评论分析_支付功能/04 课程支付接口.png)</p>
 <h2 id="创建支付模块和准备"><a href="#创建支付模块和准备" class="headerlink" title="创建支付模块和准备"></a>创建支付模块和准备</h2><p>1、在service模块下创建子模块service_order</p>
 <p>2、在service_order模块中引入依赖</p>
-<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.github.wxpay<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>wxpay-sdk<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>0.0.3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.alibaba<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>fastjson<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.github.wxpay&lt;&#x2F;groupId&gt;
+        &lt;artifactId&gt;wxpay-sdk&lt;&#x2F;artifactId&gt;
+        &lt;version&gt;0.0.3&lt;&#x2F;version&gt;
+    &lt;&#x2F;dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.alibaba&lt;&#x2F;groupId&gt;
+        &lt;artifactId&gt;fastjson&lt;&#x2F;artifactId&gt;
+    &lt;&#x2F;dependency&gt;
+&lt;&#x2F;dependencies&gt;</code></pre></div>
 
 <p>3、创建支付相关的表</p>
 <p>4、使用代码生成器生成相关代码</p>
 <p>5、编写application.properties配置文件</p>
-<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token comment"># 服务端口</span>
-<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8007</span>
+<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"># 服务端口
+server.port&#x3D;8007
 
-<span class="token comment"># 服务名</span>
-<span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">service-order</span>
+# 服务名
+spring.application.name&#x3D;service-order
 
-<span class="token comment"># mysql数据库连接</span>
-<span class="token attr-name">spring.datasource.driver-class-name</span><span class="token punctuation">=</span><span class="token attr-value">com.mysql.cj.jdbc.Driver</span>
-<span class="token attr-name">spring.datasource.url</span><span class="token punctuation">=</span><span class="token attr-value">jdbc:mysql://localhost:3306/guli?serverTimezone=GMT%2B8</span>
-<span class="token attr-name">spring.datasource.username</span><span class="token punctuation">=</span><span class="token attr-value">root</span>
-<span class="token attr-name">spring.datasource.password</span><span class="token punctuation">=</span><span class="token attr-value">root</span>
+# mysql数据库连接
+spring.datasource.driver-class-name&#x3D;com.mysql.cj.jdbc.Driver
+spring.datasource.url&#x3D;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;guli?serverTimezone&#x3D;GMT%2B8
+spring.datasource.username&#x3D;root
+spring.datasource.password&#x3D;root
 
-<span class="token comment">#返回json的全局时间格式</span>
-<span class="token attr-name">spring.jackson.date-format</span><span class="token punctuation">=</span><span class="token attr-value">yyyy-MM-dd HH:mm:ss</span>
-<span class="token attr-name">spring.jackson.time-zone</span><span class="token punctuation">=</span><span class="token attr-value">GMT+8</span>
+#返回json的全局时间格式
+spring.jackson.date-format&#x3D;yyyy-MM-dd HH:mm:ss
+spring.jackson.time-zone&#x3D;GMT+8
 
-<span class="token comment">#配置mapper xml文件的路径</span>
-<span class="token attr-name">mybatis-plus.mapper-locations</span><span class="token punctuation">=</span><span class="token attr-value">classpath:com/atguigu/eduorder/mapper/xml/*.xml</span>
+#配置mapper xml文件的路径
+mybatis-plus.mapper-locations&#x3D;classpath:com&#x2F;atguigu&#x2F;eduorder&#x2F;mapper&#x2F;xml&#x2F;*.xml
 
-<span class="token comment">#mybatis日志</span>
-<span class="token attr-name">mybatis-plus.configuration.log-impl</span><span class="token punctuation">=</span><span class="token attr-value">org.apache.ibatis.logging.stdout.StdOutImpl</span>
+#mybatis日志
+mybatis-plus.configuration.log-impl&#x3D;org.apache.ibatis.logging.stdout.StdOutImpl
 
-<span class="token comment"># nacos服务地址</span>
-<span class="token attr-name">spring.cloud.nacos.discovery.server-addr</span><span class="token punctuation">=</span><span class="token attr-value">127.0.0.1:8848</span>
+# nacos服务地址
+spring.cloud.nacos.discovery.server-addr&#x3D;127.0.0.1:8848
 
-<span class="token comment">#开启熔断机制</span>
-<span class="token comment">#feign.hystrix.enabled=true</span>
-<span class="token comment"># 设置hystrix超时时间，默认1000ms</span>
-<span class="token comment">#hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds=3000</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+#开启熔断机制
+#feign.hystrix.enabled&#x3D;true
+# 设置hystrix超时时间，默认1000ms
+#hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds&#x3D;3000</code></pre></div>
 
 
 
 <h2 id="开发创建订单接口"><a href="#开发创建订单接口" class="headerlink" title="开发创建订单接口"></a>开发创建订单接口</h2><p>1、编写订单controller</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
-<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/eduorder/order"</span><span class="token punctuation">)</span>
-<span class="token annotation punctuation">@CrossOrigin</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">OrderController</span> <span class="token punctuation">&#123;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@RestController
+@RequestMapping(&quot;&#x2F;eduorder&#x2F;order&quot;)
+@CrossOrigin
+public class OrderController &#123;
 
-    <span class="token annotation punctuation">@Autowired</span>
-    <span class="token keyword">private</span> <span class="token class-name">OrderService</span> orderService<span class="token punctuation">;</span>
+    @Autowired
+    private OrderService orderService;
 
-    <span class="token comment">// 根据课程id，生成订单的方法，返回订单号</span>
-    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"createOrder/&#123;id&#125;"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">saveOrder</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> id<span class="token punctuation">,</span> <span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    &#x2F;&#x2F; 根据课程id，生成订单的方法，返回订单号
+    @PostMapping(&quot;createOrder&#x2F;&#123;id&#125;&quot;)
+    public R saveOrder(@PathVariable String id, HttpServletRequest request)&#123;
 
-        <span class="token class-name">String</span> orderId <span class="token operator">=</span> orderService<span class="token punctuation">.</span><span class="token function">createOrder</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span><span class="token class-name">JwtUtils</span><span class="token punctuation">.</span><span class="token function">getMemberIdByJwtToken</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"orderId"</span><span class="token punctuation">,</span>orderId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+        String orderId &#x3D; orderService.createOrder(id,JwtUtils.getMemberIdByJwtToken(request));
+        return R.ok().data(&quot;orderId&quot;,orderId);
+    &#125;
 
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;</code></pre></div>
 
 <p>2、在service_edu创建接口</p>
 <p>（1）实现根据课程id获取课程信息，返回课程信息对象(所需要的返回对象，直接复制原来的实体类到公共模块即可)</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 根据课程id，查询课程信息</span>
-<span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"getCourseInfoOrder/&#123;id&#125;"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token class-name">CourseWebVoOrder</span> <span class="token function">getCourseInfoOrder</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> id<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token class-name">CourseWebVo</span> courseInfo <span class="token operator">=</span> courseService<span class="token punctuation">.</span><span class="token function">getBaseCourseInfo</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">CourseWebVoOrder</span> courseWebVoOrder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">CourseWebVoOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">BeanUtils</span><span class="token punctuation">.</span><span class="token function">copyProperties</span><span class="token punctuation">(</span>courseInfo<span class="token punctuation">,</span>courseWebVoOrder<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> courseWebVoOrder<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据课程id，查询课程信息
+@PostMapping(&quot;getCourseInfoOrder&#x2F;&#123;id&#125;&quot;)
+public CourseWebVoOrder getCourseInfoOrder(@PathVariable String id)&#123;
+    CourseWebVo courseInfo &#x3D; courseService.getBaseCourseInfo(id);
+    CourseWebVoOrder courseWebVoOrder &#x3D; new CourseWebVoOrder();
+    BeanUtils.copyProperties(courseInfo,courseWebVoOrder);
+    return courseWebVoOrder;
+&#125;</code></pre></div>
 
 <p>3、在service_ucenter创建接口</p>
 <p>（1）实现用户id获取用户信息，返回用户信息对象</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 根据用户id查询用户信息，前台</span>
-<span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"getUserInfoOrder/&#123;id&#125;"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token class-name">UcenterMemberOrder</span> <span class="token function">getUserInfoOrder</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> id<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token class-name">UcenterMember</span> member <span class="token operator">=</span> memberService<span class="token punctuation">.</span><span class="token function">getById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">UcenterMemberOrder</span> ucenterMemberOrder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">UcenterMemberOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">BeanUtils</span><span class="token punctuation">.</span><span class="token function">copyProperties</span><span class="token punctuation">(</span>member<span class="token punctuation">,</span>ucenterMemberOrder<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> ucenterMemberOrder<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据用户id查询用户信息，前台
+@PostMapping(&quot;getUserInfoOrder&#x2F;&#123;id&#125;&quot;)
+public UcenterMemberOrder getUserInfoOrder(@PathVariable String id)&#123;
+    UcenterMember member &#x3D; memberService.getById(id);
+    UcenterMemberOrder ucenterMemberOrder &#x3D; new UcenterMemberOrder();
+    BeanUtils.copyProperties(member,ucenterMemberOrder);
+    return ucenterMemberOrder;
+&#125;</code></pre></div>
 
 <p>4、编写订单service</p>
 <p>（1）在service_order模块创建接口，实现远程调用</p>
 <p><strong>EduClient</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
-<span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"service-edu"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">EduClient</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 根据课程id，查询课程信息</span>
-    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"/eduservice/coursefront/getCourseInfoOrder/&#123;id&#125;"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token class-name">CourseWebVoOrder</span> <span class="token function">getCourseInfoOrder</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span> <span class="token class-name">String</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Component
+@FeignClient(name &#x3D; &quot;service-edu&quot;)
+public interface EduClient &#123;
+    &#x2F;&#x2F; 根据课程id，查询课程信息
+    @PostMapping(&quot;&#x2F;eduservice&#x2F;coursefront&#x2F;getCourseInfoOrder&#x2F;&#123;id&#125;&quot;)
+    public CourseWebVoOrder getCourseInfoOrder(@PathVariable(&quot;id&quot;) String id);
 
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;</code></pre></div>
 
 <p><strong>UcenterClient</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
-<span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"service-ucenter"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">UcenterClient</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 根据用户id查询用户信息，前台</span>
-    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"/educenter/member/getUserInfoOrder/&#123;id&#125;"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token class-name">UcenterMemberOrder</span> <span class="token function">getUserInfoOrder</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span> <span class="token class-name">String</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Component
+@FeignClient(name &#x3D; &quot;service-ucenter&quot;)
+public interface UcenterClient &#123;
+    &#x2F;&#x2F; 根据用户id查询用户信息，前台
+    @PostMapping(&quot;&#x2F;educenter&#x2F;member&#x2F;getUserInfoOrder&#x2F;&#123;id&#125;&quot;)
+    public UcenterMemberOrder getUserInfoOrder(@PathVariable(&quot;id&quot;) String id);
 
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;</code></pre></div>
 
 <p>(2）在service_order模块编写创建订单service</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">OrderServiceImpl</span> <span class="token keyword">extends</span> <span class="token class-name">ServiceImpl</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">OrderMapper</span><span class="token punctuation">,</span> <span class="token class-name">Order</span><span class="token punctuation">></span></span> <span class="token keyword">implements</span> <span class="token class-name">OrderService</span> <span class="token punctuation">&#123;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Service
+public class OrderServiceImpl extends ServiceImpl&lt;OrderMapper, Order&gt; implements OrderService &#123;
 
-    <span class="token annotation punctuation">@Autowired</span>
-    <span class="token keyword">private</span> <span class="token class-name">EduClient</span> eduClient<span class="token punctuation">;</span>
+    @Autowired
+    private EduClient eduClient;
 
-    <span class="token annotation punctuation">@Autowired</span>
-    <span class="token keyword">private</span> <span class="token class-name">UcenterClient</span> ucenterClient<span class="token punctuation">;</span>
+    @Autowired
+    private UcenterClient ucenterClient;
 
-    <span class="token comment">// 根据课程id，生成订单的方法，返回订单号</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">createOrder</span><span class="token punctuation">(</span><span class="token class-name">String</span> courseId<span class="token punctuation">,</span> <span class="token class-name">String</span> memberId<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token comment">// 1.根据课程id查询课程信息</span>
-        <span class="token class-name">CourseWebVoOrder</span> courseInfoOrder <span class="token operator">=</span> eduClient<span class="token punctuation">.</span><span class="token function">getCourseInfoOrder</span><span class="token punctuation">(</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    &#x2F;&#x2F; 根据课程id，生成订单的方法，返回订单号
+    @Override
+    public String createOrder(String courseId, String memberId) &#123;
+        &#x2F;&#x2F; 1.根据课程id查询课程信息
+        CourseWebVoOrder courseInfoOrder &#x3D; eduClient.getCourseInfoOrder(courseId);
 
-        <span class="token comment">// 2.根据用户id，查询用户信息</span>
-        <span class="token class-name">UcenterMemberOrder</span> userInfoOrder <span class="token operator">=</span> ucenterClient<span class="token punctuation">.</span><span class="token function">getUserInfoOrder</span><span class="token punctuation">(</span>memberId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        &#x2F;&#x2F; 2.根据用户id，查询用户信息
+        UcenterMemberOrder userInfoOrder &#x3D; ucenterClient.getUserInfoOrder(memberId);
 
-        <span class="token comment">// 加到数据库</span>
-        <span class="token class-name">Order</span> order <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Order</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        order<span class="token punctuation">.</span><span class="token function">setOrderNo</span><span class="token punctuation">(</span><span class="token class-name">OrderNoUtil</span><span class="token punctuation">.</span><span class="token function">getOrderNo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token comment">// 订单号</span>
-        order<span class="token punctuation">.</span><span class="token function">setCourseId</span><span class="token punctuation">(</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        order<span class="token punctuation">.</span><span class="token function">setCourseTitle</span><span class="token punctuation">(</span>courseInfoOrder<span class="token punctuation">.</span><span class="token function">getTitle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        order<span class="token punctuation">.</span><span class="token function">setCourseCover</span><span class="token punctuation">(</span>courseInfoOrder<span class="token punctuation">.</span><span class="token function">getCover</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        order<span class="token punctuation">.</span><span class="token function">setTeacherName</span><span class="token punctuation">(</span>courseInfoOrder<span class="token punctuation">.</span><span class="token function">getTeacherName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        order<span class="token punctuation">.</span><span class="token function">setTotalFee</span><span class="token punctuation">(</span>courseInfoOrder<span class="token punctuation">.</span><span class="token function">getPrice</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        order<span class="token punctuation">.</span><span class="token function">setMemberId</span><span class="token punctuation">(</span>memberId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        order<span class="token punctuation">.</span><span class="token function">setMobile</span><span class="token punctuation">(</span>userInfoOrder<span class="token punctuation">.</span><span class="token function">getMobile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        order<span class="token punctuation">.</span><span class="token function">setNickname</span><span class="token punctuation">(</span>userInfoOrder<span class="token punctuation">.</span><span class="token function">getNickname</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        &#x2F;&#x2F; 加到数据库
+        Order order &#x3D; new Order();
+        order.setOrderNo(OrderNoUtil.getOrderNo());                 &#x2F;&#x2F; 订单号
+        order.setCourseId(courseId);
+        order.setCourseTitle(courseInfoOrder.getTitle());
+        order.setCourseCover(courseInfoOrder.getCover());
+        order.setTeacherName(courseInfoOrder.getTeacherName());
+        order.setTotalFee(courseInfoOrder.getPrice());
+        order.setMemberId(memberId);
+        order.setMobile(userInfoOrder.getMobile());
+        order.setNickname(userInfoOrder.getNickname());
 
-        order<span class="token punctuation">.</span><span class="token function">setStatus</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// 订单状态（0：未支付 1：已支付）</span>
-        order<span class="token punctuation">.</span><span class="token function">setPayType</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 支付类型（1：微信 2：支付宝）</span>
+        order.setStatus(0);     &#x2F;&#x2F; 订单状态（0：未支付 1：已支付）
+        order.setPayType(1);    &#x2F;&#x2F; 支付类型（1：微信 2：支付宝）
 
-        baseMapper<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>order<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        baseMapper.insert(order);
 
-        <span class="token comment">// 返回订单号</span>
-        <span class="token keyword">return</span> order<span class="token punctuation">.</span><span class="token function">getOrderNo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+        &#x2F;&#x2F; 返回订单号
+        return order.getOrderNo();
+    &#125;
+&#125;</code></pre></div>
 
 <p><strong>OrderNoUtil</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
  * 订单号工具类
  *
  * @author qy
  * @since 1.0
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">OrderNoUtil</span> <span class="token punctuation">&#123;</span>
+ *&#x2F;
+public class OrderNoUtil &#123;
 
-    <span class="token comment">/**
+    &#x2F;**
      * 获取订单号
      * @return
-     */</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">getOrderNo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token class-name">SimpleDateFormat</span> sdf <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SimpleDateFormat</span><span class="token punctuation">(</span><span class="token string">"yyyyMMddHHmmss"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">String</span> newDate <span class="token operator">=</span> sdf<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">String</span> result <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
-        <span class="token class-name">Random</span> random <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            result <span class="token operator">+=</span> random<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-        <span class="token keyword">return</span> newDate <span class="token operator">+</span> result<span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+     *&#x2F;
+    public static String getOrderNo() &#123;
+        SimpleDateFormat sdf &#x3D; new SimpleDateFormat(&quot;yyyyMMddHHmmss&quot;);
+        String newDate &#x3D; sdf.format(new Date());
+        String result &#x3D; &quot;&quot;;
+        Random random &#x3D; new Random();
+        for (int i &#x3D; 0; i &lt; 3; i++) &#123;
+            result +&#x3D; random.nextInt(10);
+        &#125;
+        return newDate + result;
+    &#125;
 
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;</code></pre></div>
 
 
 
 <h2 id="开发获取订单接口"><a href="#开发获取订单接口" class="headerlink" title="开发获取订单接口"></a>开发获取订单接口</h2><p>1、在订单controller创建根据id获取订单信息接口</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 根据订单号查询订单信息</span>
-<span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"getOrder/&#123;orderId&#125;"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">getOrder</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> orderId<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Order</span><span class="token punctuation">></span></span> wrapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    wrapper<span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token string">"order_no"</span><span class="token punctuation">,</span>orderId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">Order</span> order <span class="token operator">=</span> orderService<span class="token punctuation">.</span><span class="token function">getOne</span><span class="token punctuation">(</span>wrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"item"</span><span class="token punctuation">,</span>order<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据订单号查询订单信息
+@GetMapping(&quot;getOrder&#x2F;&#123;orderId&#125;&quot;)
+public R getOrder(@PathVariable String orderId)&#123;
+    QueryWrapper&lt;Order&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
+    wrapper.eq(&quot;order_no&quot;,orderId);
+    Order order &#x3D; orderService.getOne(wrapper);
+    return R.ok().data(&quot;item&quot;,order);
+&#125;</code></pre></div>
 
 
 
@@ -745,26 +745,26 @@ import &#39;~&#x2F;assets&#x2F;css&#x2F;bottom_rec.css&#39;
 import &#39;~&#x2F;assets&#x2F;css&#x2F;nice_select.css&#39;
 import &#39;~&#x2F;assets&#x2F;css&#x2F;order.css&#39;
 import &#39;~&#x2F;assets&#x2F;css&#x2F;swiper-3.3.1.min.css&#39;
-import &quot;~&#x2F;assets&#x2F;css&#x2F;pages-weixinpay.css&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+import &quot;~&#x2F;assets&#x2F;css&#x2F;pages-weixinpay.css&quot;</code></pre></div>
 
 <h3 id="课程支付前端"><a href="#课程支付前端" class="headerlink" title="课程支付前端"></a><strong>课程支付前端</strong></h3><p>1、在api文件夹下创建order.js文件</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> request <span class="token keyword">from</span> <span class="token string">'@/utils/request'</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">&#123;</span>
-  <span class="token comment">// 创建订单</span>
-  <span class="token function">createOrder</span><span class="token punctuation">(</span><span class="token parameter">courseId</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-      url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/eduorder/order/createOrder/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>courseId<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
-      method<span class="token operator">:</span> <span class="token string">'post'</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-  <span class="token comment">// 根据订单号查询订单信息</span>
-  <span class="token function">getOrderInfo</span><span class="token punctuation">(</span><span class="token parameter">id</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-      url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/eduorder/order/getOrder/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>id<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
-      method<span class="token operator">:</span> <span class="token string">'get'</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">import request from &#39;@&#x2F;utils&#x2F;request&#39;
+export default &#123;
+  &#x2F;&#x2F; 创建订单
+  createOrder(courseId) &#123;
+    return request(&#123;
+      url: &#96;&#x2F;eduorder&#x2F;order&#x2F;createOrder&#x2F;$&#123;courseId&#125;&#96;,
+      method: &#39;post&#39;
+    &#125;)
+  &#125;,
+  &#x2F;&#x2F; 根据订单号查询订单信息
+  getOrderInfo(id) &#123;
+    return request(&#123;
+      url: &#96;&#x2F;eduorder&#x2F;order&#x2F;getOrder&#x2F;$&#123;id&#125;&#96;,
+      method: &#39;get&#39;
+    &#125;)
+  &#125;
+&#125;</code></pre></div>
 
 <p>2、在课程详情页面中添加创建订单方法</p>
 <p>在“立即购买”位置添加事件</p>
@@ -779,7 +779,7 @@ import &quot;~&#x2F;assets&#x2F;css&#x2F;pages-weixinpay.css&quot;<span aria-hid
          this.$router.push(&#123;path:&#39;&#x2F;order&#x2F;&#39;+response.data.data.orderId &#125;)
        &#125;)
    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;</code></pre></div>
 
 <h3 id="创建订单页面，显示订单信息"><a href="#创建订单页面，显示订单信息" class="headerlink" title="创建订单页面，显示订单信息"></a><strong>创建订单页面，显示订单信息</strong></h3><p>在pages下面创建order文件夹，创建_oid.vue页面</p>
 <p>在_oid.vue页面调用方法，获取订单信息</p>
@@ -852,7 +852,7 @@ import &quot;~&#x2F;assets&#x2F;css&#x2F;pages-weixinpay.css&quot;<span aria-hid
        &lt;&#x2F;div&gt;
      &lt;&#x2F;form&gt;
    &lt;&#x2F;div&gt;
- &lt;&#x2F;template&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+ &lt;&#x2F;template&gt;</code></pre></div>
 
 <p>（2）调用部分</p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;script&gt;
@@ -868,146 +868,146 @@ export default &#123;
            &#125;)
     &#125;
 &#125;
-&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&lt;&#x2F;script&gt;</code></pre></div>
 
 
 
 <h2 id="生成微信支付二维码接口"><a href="#生成微信支付二维码接口" class="headerlink" title="生成微信支付二维码接口"></a>生成微信支付二维码接口</h2><p>需要用的信息</p>
 <img src="/myBlog/day15-%E8%AF%BE%E7%A8%8B%E8%AF%84%E8%AE%BA%E5%88%86%E6%9E%90_%E6%94%AF%E4%BB%98%E5%8A%9F%E8%83%BD/image-20220103173830092.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220103173830092">
 
-<h3 id="1、编写controller"><a href="#1、编写controller" class="headerlink" title="1、编写controller"></a>1、编写controller</h3><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
-<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/eduorder/paylog"</span><span class="token punctuation">)</span>
-<span class="token annotation punctuation">@CrossOrigin</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PayLogController</span> <span class="token punctuation">&#123;</span>
+<h3 id="1、编写controller"><a href="#1、编写controller" class="headerlink" title="1、编写controller"></a>1、编写controller</h3><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@RestController
+@RequestMapping(&quot;&#x2F;eduorder&#x2F;paylog&quot;)
+@CrossOrigin
+public class PayLogController &#123;
 
-    <span class="token annotation punctuation">@Autowired</span>
-    <span class="token keyword">private</span> <span class="token class-name">PayLogService</span> payLogService<span class="token punctuation">;</span>
+    @Autowired
+    private PayLogService payLogService;
 
-    <span class="token comment">// 生成微信支付二维码</span>
-    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"createNative/&#123;orderNo&#125;"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">createNative</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> orderNo<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token comment">// 需要返回二维码和订单信息</span>
-        <span class="token class-name">Map</span> map <span class="token operator">=</span> payLogService<span class="token punctuation">.</span><span class="token function">createNative</span><span class="token punctuation">(</span>orderNo<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span>map<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    &#x2F;&#x2F; 生成微信支付二维码
+    @GetMapping(&quot;createNative&#x2F;&#123;orderNo&#125;&quot;)
+    public R createNative(@PathVariable String orderNo)&#123;
+        &#x2F;&#x2F; 需要返回二维码和订单信息
+        Map map &#x3D; payLogService.createNative(orderNo);
+        return R.ok().data(map);
+    &#125;
+&#125;</code></pre></div>
 
-<h3 id="2、编写service"><a href="#2、编写service" class="headerlink" title="2、编写service"></a><strong>2、编写service</strong></h3><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token number">1</span><span class="token annotation punctuation">@Service</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PayLogServiceImpl</span> <span class="token keyword">extends</span> <span class="token class-name">ServiceImpl</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">PayLogMapper</span><span class="token punctuation">,</span> <span class="token class-name">PayLog</span><span class="token punctuation">></span></span> <span class="token keyword">implements</span> <span class="token class-name">PayLogService</span> <span class="token punctuation">&#123;</span>
+<h3 id="2、编写service"><a href="#2、编写service" class="headerlink" title="2、编写service"></a><strong>2、编写service</strong></h3><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">1@Service
+public class PayLogServiceImpl extends ServiceImpl&lt;PayLogMapper, PayLog&gt; implements PayLogService &#123;
 
-    <span class="token annotation punctuation">@Autowired</span>
-    <span class="token keyword">private</span> <span class="token class-name">OrderService</span> orderService<span class="token punctuation">;</span>
+    @Autowired
+    private OrderService orderService;
 
-    <span class="token comment">// 生成微信支付二维码</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token class-name">Map</span> <span class="token function">createNative</span><span class="token punctuation">(</span><span class="token class-name">String</span> orderNo<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    &#x2F;&#x2F; 生成微信支付二维码
+    @Override
+    public Map createNative(String orderNo) &#123;
 
-        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
-            <span class="token comment">// 1.根据订单号，查询订单信息</span>
-            <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Order</span><span class="token punctuation">></span></span> wrapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            wrapper<span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token string">"order_no"</span><span class="token punctuation">,</span>orderNo<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token class-name">Order</span> order <span class="token operator">=</span> orderService<span class="token punctuation">.</span><span class="token function">getOne</span><span class="token punctuation">(</span>wrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        try &#123;
+            &#x2F;&#x2F; 1.根据订单号，查询订单信息
+            QueryWrapper&lt;Order&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
+            wrapper.eq(&quot;order_no&quot;,orderNo);
+            Order order &#x3D; orderService.getOne(wrapper);
 
-            <span class="token comment">// 2.用map封装生成二维码需要的参数</span>
-            <span class="token class-name">Map</span> m <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            m<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"appid"</span><span class="token punctuation">,</span> <span class="token string">"wx74862e0dfcf69954"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            m<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"mch_id"</span><span class="token punctuation">,</span> <span class="token string">"1558950191"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            m<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"nonce_str"</span><span class="token punctuation">,</span> <span class="token class-name">WXPayUtil</span><span class="token punctuation">.</span><span class="token function">generateNonceStr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 生成随机的字符串，让每一个二维码都不一样</span>
-            m<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"body"</span><span class="token punctuation">,</span> order<span class="token punctuation">.</span><span class="token function">getCourseTitle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 课程标题</span>
-            m<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"out_trade_no"</span><span class="token punctuation">,</span> orderNo<span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// 订单号</span>
-            <span class="token comment">// 将BigDecimal类型先转换为long，再转换为字符串</span>
-            m<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"total_fee"</span><span class="token punctuation">,</span> order<span class="token punctuation">.</span><span class="token function">getTotalFee</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">multiply</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">BigDecimal</span><span class="token punctuation">(</span><span class="token string">"100"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">longValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            m<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"spbill_create_ip"</span><span class="token punctuation">,</span> <span class="token string">"127.0.0.1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            m<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"notify_url"</span><span class="token punctuation">,</span> <span class="token string">"http://guli.shop/api/order/weixinPay/weixinNotify\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            m<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"trade_type"</span><span class="token punctuation">,</span> <span class="token string">"NATIVE"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            &#x2F;&#x2F; 2.用map封装生成二维码需要的参数
+            Map m &#x3D; new HashMap();
+            m.put(&quot;appid&quot;, &quot;wx74862e0dfcf69954&quot;);
+            m.put(&quot;mch_id&quot;, &quot;1558950191&quot;);
+            m.put(&quot;nonce_str&quot;, WXPayUtil.generateNonceStr());   &#x2F;&#x2F; 生成随机的字符串，让每一个二维码都不一样
+            m.put(&quot;body&quot;, order.getCourseTitle());  &#x2F;&#x2F; 课程标题
+            m.put(&quot;out_trade_no&quot;, orderNo);         &#x2F;&#x2F; 订单号
+            &#x2F;&#x2F; 将BigDecimal类型先转换为long，再转换为字符串
+            m.put(&quot;total_fee&quot;, order.getTotalFee().multiply(new BigDecimal(&quot;100&quot;)).longValue()+&quot;&quot;);
+            m.put(&quot;spbill_create_ip&quot;, &quot;127.0.0.1&quot;);
+            m.put(&quot;notify_url&quot;, &quot;http:&#x2F;&#x2F;guli.shop&#x2F;api&#x2F;order&#x2F;weixinPay&#x2F;weixinNotify\n&quot;);
+            m.put(&quot;trade_type&quot;, &quot;NATIVE&quot;);
 
-            <span class="token comment">// 3.用client发送请求</span>
-            <span class="token class-name">HttpClient</span> client <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpClient</span><span class="token punctuation">(</span><span class="token string">"https://api.mch.weixin.qq.com/pay/unifiedorder"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            &#x2F;&#x2F; 3.用client发送请求
+            HttpClient client &#x3D; new HttpClient(&quot;https:&#x2F;&#x2F;api.mch.weixin.qq.com&#x2F;pay&#x2F;unifiedorder&quot;);
 
-            <span class="token comment">// client 设置参数</span>
-            client<span class="token punctuation">.</span><span class="token function">setXmlParam</span><span class="token punctuation">(</span><span class="token class-name">WXPayUtil</span><span class="token punctuation">.</span><span class="token function">generateSignedXml</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span> <span class="token string">"T6m9iK73b0kn9g5v426MKfHQH7X8rKwb"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            client<span class="token punctuation">.</span><span class="token function">setHttps</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            client<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            &#x2F;&#x2F; client 设置参数
+            client.setXmlParam(WXPayUtil.generateSignedXml(m, &quot;T6m9iK73b0kn9g5v426MKfHQH7X8rKwb&quot;));
+            client.setHttps(true);
+            client.post();
 
-            <span class="token comment">// 返回数据，xml格式</span>
-            <span class="token class-name">String</span> xml <span class="token operator">=</span> client<span class="token punctuation">.</span><span class="token function">getContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token comment">// 利用微信提供的工具类将xml格式转换为map格式</span>
-            <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">></span></span> resultMap <span class="token operator">=</span> <span class="token class-name">WXPayUtil</span><span class="token punctuation">.</span><span class="token function">xmlToMap</span><span class="token punctuation">(</span>xml<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            &#x2F;&#x2F; 返回数据，xml格式
+            String xml &#x3D; client.getContent();
+            &#x2F;&#x2F; 利用微信提供的工具类将xml格式转换为map格式
+            Map&lt;String, String&gt; resultMap &#x3D; WXPayUtil.xmlToMap(xml);
 
-            <span class="token comment">// 4.封装最后的数据</span>
-            <span class="token class-name">Map</span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"out_trade_no"</span><span class="token punctuation">,</span> orderNo<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"course_id"</span><span class="token punctuation">,</span> order<span class="token punctuation">.</span><span class="token function">getCourseId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"total_fee"</span><span class="token punctuation">,</span> order<span class="token punctuation">.</span><span class="token function">getTotalFee</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"result_code"</span><span class="token punctuation">,</span> resultMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"result_code"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"code_url"</span><span class="token punctuation">,</span> resultMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"code_url"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            &#x2F;&#x2F; 4.封装最后的数据
+            Map map &#x3D; new HashMap&lt;&gt;();
+            map.put(&quot;out_trade_no&quot;, orderNo);
+            map.put(&quot;course_id&quot;, order.getCourseId());
+            map.put(&quot;total_fee&quot;, order.getTotalFee());
+            map.put(&quot;result_code&quot;, resultMap.get(&quot;result_code&quot;));
+            map.put(&quot;code_url&quot;, resultMap.get(&quot;code_url&quot;));
 
-            <span class="token comment">//微信支付二维码2小时过期，可采取2小时未支付取消订单</span>
-            <span class="token comment">//redisTemplate.opsForValue().set(orderNo, map, 120, TimeUnit.MINUTES);</span>
-            <span class="token comment">// 将封装好的map返回</span>
-            <span class="token keyword">return</span> map<span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">GuliException</span><span class="token punctuation">(</span><span class="token number">20001</span><span class="token punctuation">,</span><span class="token string">"生成二维码失败"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
+            &#x2F;&#x2F;微信支付二维码2小时过期，可采取2小时未支付取消订单
+            &#x2F;&#x2F;redisTemplate.opsForValue().set(orderNo, map, 120, TimeUnit.MINUTES);
+            &#x2F;&#x2F; 将封装好的map返回
+            return map;
+        &#125; catch (Exception e) &#123;
+            e.printStackTrace();
+            throw new GuliException(20001,&quot;生成二维码失败&quot;);
+        &#125;
 
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    &#125;
+&#125;</code></pre></div>
 
 
 
-<h2 id="查询订单支付状态接口"><a href="#查询订单支付状态接口" class="headerlink" title="查询订单支付状态接口"></a>查询订单支付状态接口</h2><h3 id="1、编写controller-1"><a href="#1、编写controller-1" class="headerlink" title="1、编写controller"></a><strong>1、编写controller</strong></h3><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 根据订单号查询支付状态</span>
-<span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"queryPayStatus/&#123;orderNo&#125;"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">queryPayStatus</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> orderNo<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token comment">// 根据订单号查询支付状态</span>
-    <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span><span class="token class-name">String</span><span class="token punctuation">></span></span> map <span class="token operator">=</span> payLogService<span class="token punctuation">.</span><span class="token function">queryPayStatus</span><span class="token punctuation">(</span>orderNo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<h2 id="查询订单支付状态接口"><a href="#查询订单支付状态接口" class="headerlink" title="查询订单支付状态接口"></a>查询订单支付状态接口</h2><h3 id="1、编写controller-1"><a href="#1、编写controller-1" class="headerlink" title="1、编写controller"></a><strong>1、编写controller</strong></h3><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据订单号查询支付状态
+@GetMapping(&quot;queryPayStatus&#x2F;&#123;orderNo&#125;&quot;)
+public R queryPayStatus(@PathVariable String orderNo)&#123;
+    &#x2F;&#x2F; 根据订单号查询支付状态
+    Map&lt;String,String&gt; map &#x3D; payLogService.queryPayStatus(orderNo);
 
-    <span class="token comment">// 判断返回的map是否为空</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>map <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">message</span><span class="token punctuation">(</span><span class="token string">"支付失败"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+    &#x2F;&#x2F; 判断返回的map是否为空
+    if (map &#x3D;&#x3D; null)&#123;
+        return R.error().message(&quot;支付失败&quot;);
+    &#125;
 
-    <span class="token comment">//支付成功</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>map<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"trade_state"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"SUCCESS"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token comment">// 向表里面添加记录，更支付状态</span>
-        payLogService<span class="token punctuation">.</span><span class="token function">updataOrderStatus</span><span class="token punctuation">(</span>map<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">message</span><span class="token punctuation">(</span><span class="token string">"支付成功"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+    &#x2F;&#x2F;支付成功
+    if (map.get(&quot;trade_state&quot;).equals(&quot;SUCCESS&quot;))&#123;
+        &#x2F;&#x2F; 向表里面添加记录，更支付状态
+        payLogService.updataOrderStatus(map);
+        return R.ok().message(&quot;支付成功&quot;);
+    &#125;
 
-    <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">message</span><span class="token punctuation">(</span><span class="token string">"支付中"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    return R.ok().message(&quot;支付中&quot;);
+&#125;</code></pre></div>
 
-<h3 id="2、编写service，更新订单状态"><a href="#2、编写service，更新订单状态" class="headerlink" title="2、编写service，更新订单状态"></a>2、编写service，更新订单状态</h3><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 向表里面添加记录，更支付状态</span>
-<span class="token annotation punctuation">@Override</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">updataOrderStatus</span><span class="token punctuation">(</span><span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span><span class="token class-name">String</span><span class="token punctuation">></span></span> map<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 获取订单号id</span>
-    <span class="token class-name">String</span> orderNo <span class="token operator">=</span> map<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"out_trade_no"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<h3 id="2、编写service，更新订单状态"><a href="#2、编写service，更新订单状态" class="headerlink" title="2、编写service，更新订单状态"></a>2、编写service，更新订单状态</h3><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 向表里面添加记录，更支付状态
+@Override
+public void updataOrderStatus(Map&lt;String,String&gt; map) &#123;
+    &#x2F;&#x2F; 获取订单号id
+    String orderNo &#x3D; map.get(&quot;out_trade_no&quot;);
 
-    <span class="token comment">// 根据订单号，查询订单信息</span>
-    <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Order</span><span class="token punctuation">></span></span> wrapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    wrapper<span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token string">"order_no"</span><span class="token punctuation">,</span>orderNo<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">Order</span> order <span class="token operator">=</span> orderService<span class="token punctuation">.</span><span class="token function">getOne</span><span class="token punctuation">(</span>wrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    &#x2F;&#x2F; 根据订单号，查询订单信息
+    QueryWrapper&lt;Order&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
+    wrapper.eq(&quot;order_no&quot;,orderNo);
+    Order order &#x3D; orderService.getOne(wrapper);
 
-    <span class="token comment">// 判断是否已支付</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>order<span class="token punctuation">.</span><span class="token function">getStatus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">intValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token comment">// 如果没有支付,则设置支付状态</span>
-    order<span class="token punctuation">.</span><span class="token function">setStatus</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    orderService<span class="token punctuation">.</span><span class="token function">updateById</span><span class="token punctuation">(</span>order<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    &#x2F;&#x2F; 判断是否已支付
+    if (order.getStatus().intValue() &#x3D;&#x3D; 1)&#123;
+        return;
+    &#125;
+    &#x2F;&#x2F; 如果没有支付,则设置支付状态
+    order.setStatus(1);
+    orderService.updateById(order);
 
-    <span class="token comment">//记录支付日志</span>
-    <span class="token class-name">PayLog</span> payLog<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">PayLog</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    payLog<span class="token punctuation">.</span><span class="token function">setOrderNo</span><span class="token punctuation">(</span>order<span class="token punctuation">.</span><span class="token function">getOrderNo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">// 支付订单号</span>
-    payLog<span class="token punctuation">.</span><span class="token function">setPayTime</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                  <span class="token comment">// 支付时间</span>
-    payLog<span class="token punctuation">.</span><span class="token function">setPayType</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                           <span class="token comment">// 支付类型 1微信</span>
-    payLog<span class="token punctuation">.</span><span class="token function">setTotalFee</span><span class="token punctuation">(</span>order<span class="token punctuation">.</span><span class="token function">getTotalFee</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">// 总金额(分)</span>
-    payLog<span class="token punctuation">.</span><span class="token function">setTradeState</span><span class="token punctuation">(</span>map<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"trade_state"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 支付状态</span>
-    payLog<span class="token punctuation">.</span><span class="token function">setTransactionId</span><span class="token punctuation">(</span>map<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"transaction_id"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 流水号</span>
-    payLog<span class="token punctuation">.</span><span class="token function">setAttr</span><span class="token punctuation">(</span><span class="token class-name">JSONObject</span><span class="token punctuation">.</span><span class="token function">toJSONString</span><span class="token punctuation">(</span>map<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 将其他信息加入以json的格式加入到数据库</span>
-    baseMapper<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>payLog<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//插入到支付日志表</span>
+    &#x2F;&#x2F;记录支付日志
+    PayLog payLog&#x3D;new PayLog();
+    payLog.setOrderNo(order.getOrderNo());          &#x2F;&#x2F; 支付订单号
+    payLog.setPayTime(new Date());                  &#x2F;&#x2F; 支付时间
+    payLog.setPayType(1);                           &#x2F;&#x2F; 支付类型 1微信
+    payLog.setTotalFee(order.getTotalFee());        &#x2F;&#x2F; 总金额(分)
+    payLog.setTradeState(map.get(&quot;trade_state&quot;));   &#x2F;&#x2F; 支付状态
+    payLog.setTransactionId(map.get(&quot;transaction_id&quot;)); &#x2F;&#x2F; 流水号
+    payLog.setAttr(JSONObject.toJSONString(map));   &#x2F;&#x2F; 将其他信息加入以json的格式加入到数据库
+    baseMapper.insert(payLog);&#x2F;&#x2F;插入到支付日志表
 
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;</code></pre></div>
 
 
 
@@ -1041,7 +1041,7 @@ export default &#123;
        &lt;&#x2F;div&gt;
      &lt;&#x2F;div&gt;
    &lt;&#x2F;div&gt;
- &lt;&#x2F;template&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+ &lt;&#x2F;template&gt;</code></pre></div>
 
 
 
@@ -1091,7 +1091,7 @@ export default &#123;
         &#125;
     &#125;
 &#125;
-&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&lt;&#x2F;script&gt;</code></pre></div>
 
 
               

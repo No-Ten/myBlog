@@ -16,12 +16,12 @@
   <meta name="author" content="Ten">
   <meta name="keywords" content="">
   
-    <meta name="description" content="day16-数据分析_统计分析课程详情页显示效果完善修改课程详情接口1、在service_order模块添加接口根据用户id和课程id查询订单信息 &#x2F;&#x2F; 根据课程id和用户id查询订单支付状态 @GetMapping(&quot;isBuyCourse&#x2F;&amp;#123;courseId&amp;#125;&#x2F;&amp;#123;memberId&amp;#125;&quot;) public boolean isBuyCourse(@PathVa">
+    <meta name="description" content="day16-数据分析_统计分析课程详情页显示效果完善修改课程详情接口1、在service_order模块添加接口根据用户id和课程id查询订单信息 &#x2F;&#x2F; 根据课程id和用户id查询订单支付状态 @GetMapping(&quot;isBuyCourse&#x2F;&amp;#123;courseId&amp;#125;&#x2F;&amp;#123;memberId&amp;#125;&quot;) publ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="day16-数据分析_统计分析">
 <meta property="og:url" content="https://no-ten.github.io/day16-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90_%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="TBlog">
-<meta property="og:description" content="day16-数据分析_统计分析课程详情页显示效果完善修改课程详情接口1、在service_order模块添加接口根据用户id和课程id查询订单信息 &#x2F;&#x2F; 根据课程id和用户id查询订单支付状态 @GetMapping(&quot;isBuyCourse&#x2F;&amp;#123;courseId&amp;#125;&#x2F;&amp;#123;memberId&amp;#125;&quot;) public boolean isBuyCourse(@PathVa">
+<meta property="og:description" content="day16-数据分析_统计分析课程详情页显示效果完善修改课程详情接口1、在service_order模块添加接口根据用户id和课程id查询订单信息 &#x2F;&#x2F; 根据课程id和用户id查询订单支付状态 @GetMapping(&quot;isBuyCourse&#x2F;&amp;#123;courseId&amp;#125;&#x2F;&amp;#123;memberId&amp;#125;&quot;) publ">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-01-04T01:33:05.528Z">
 <meta property="article:modified_time" content="2022-01-06T16:50:19.938Z">
@@ -227,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          17k 字
+          19k 字
         
       </span>
     
@@ -280,55 +280,55 @@
             <div class="markdown-body">
               
               <h1 id="day16-数据分析-统计分析"><a href="#day16-数据分析-统计分析" class="headerlink" title="day16-数据分析_统计分析"></a>day16-数据分析_统计分析</h1><h1 id="课程详情页显示效果完善"><a href="#课程详情页显示效果完善" class="headerlink" title="课程详情页显示效果完善"></a>课程详情页显示效果完善</h1><h2 id="修改课程详情接口"><a href="#修改课程详情接口" class="headerlink" title="修改课程详情接口"></a>修改课程详情接口</h2><h3 id="1、在service-order模块添加接口"><a href="#1、在service-order模块添加接口" class="headerlink" title="1、在service_order模块添加接口"></a>1、在service_order模块添加接口</h3><p>根据用户id和课程id查询订单信息</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 根据课程id和用户id查询订单支付状态</span>
-<span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"isBuyCourse/&#123;courseId&#125;/&#123;memberId&#125;"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isBuyCourse</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> courseId<span class="token punctuation">,</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> memberId<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Order</span><span class="token punctuation">></span></span> wrapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    wrapper<span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token string">"course_id"</span><span class="token punctuation">,</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    wrapper<span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token string">"member_id"</span><span class="token punctuation">,</span>memberId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    wrapper<span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token string">"status"</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// 1.已支付</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据课程id和用户id查询订单支付状态
+@GetMapping(&quot;isBuyCourse&#x2F;&#123;courseId&#125;&#x2F;&#123;memberId&#125;&quot;)
+public boolean isBuyCourse(@PathVariable String courseId,@PathVariable String memberId)&#123;
+    QueryWrapper&lt;Order&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
+    wrapper.eq(&quot;course_id&quot;,courseId);
+    wrapper.eq(&quot;member_id&quot;,memberId);
+    wrapper.eq(&quot;status&quot;,1);     &#x2F;&#x2F; 1.已支付
 
-    <span class="token keyword">int</span> count <span class="token operator">=</span> orderService<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span>wrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>count <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token comment">// 说明已经支付</span>
-        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
-        <span class="token comment">// 否则未支付，返回false</span>
-        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    int count &#x3D; orderService.count(wrapper);
+    if (count &gt; 0)&#123;
+        &#x2F;&#x2F; 说明已经支付
+        return true;
+    &#125; else &#123;
+        &#x2F;&#x2F; 否则未支付，返回false
+        return false;
+    &#125;
+&#125;</code></pre></div>
 
 <h3 id="2、在service-edu模块课程详情接口远程调用"><a href="#2、在service-edu模块课程详情接口远程调用" class="headerlink" title="2、在service_edu模块课程详情接口远程调用"></a><strong>2、在service_edu模块课程详情接口远程调用</strong></h3><p>（1）创建OrderClient接口</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
-<span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"service-order"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">OrderClient</span> <span class="token punctuation">&#123;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Component
+@FeignClient(name &#x3D; &quot;service-order&quot;)
+public interface OrderClient &#123;
 
-    <span class="token comment">// 根据课程id和用户id查询订单支付状态</span>
-    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/eduorder/order/isBuyCourse/&#123;courseId&#125;/&#123;memberId&#125;"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isBuyCourse</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"courseId"</span><span class="token punctuation">)</span> <span class="token class-name">String</span> courseId<span class="token punctuation">,</span> <span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"memberId"</span><span class="token punctuation">)</span> <span class="token class-name">String</span> memberId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    &#x2F;&#x2F; 根据课程id和用户id查询订单支付状态
+    @GetMapping(&quot;&#x2F;eduorder&#x2F;order&#x2F;isBuyCourse&#x2F;&#123;courseId&#125;&#x2F;&#123;memberId&#125;&quot;)
+    public boolean isBuyCourse(@PathVariable(&quot;courseId&quot;) String courseId, @PathVariable(&quot;memberId&quot;) String memberId);
 
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;</code></pre></div>
 
 <p>（2）在课程详情接口调用com.atguigu.eduservice.controller.front</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 2.课程详情的方法</span>
-<span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"getFrontCourseInfo/&#123;courseId&#125;"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">getFrontCourseInfo</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> courseId<span class="token punctuation">,</span> <span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 2.课程详情的方法
+@GetMapping(&quot;getFrontCourseInfo&#x2F;&#123;courseId&#125;&quot;)
+public R getFrontCourseInfo(@PathVariable String courseId, HttpServletRequest request)&#123;
 
-    <span class="token comment">// 根据课程id，编写SQL语句查询课程信息</span>
-    <span class="token class-name">CourseWebVo</span> courseWebVo <span class="token operator">=</span> courseService<span class="token punctuation">.</span><span class="token function">getBaseCourseInfo</span><span class="token punctuation">(</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 根据课程id，查询章节和小节</span>
-    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ChapterVo</span><span class="token punctuation">></span></span> chapterVideoList <span class="token operator">=</span> chapterService<span class="token punctuation">.</span><span class="token function">getAllChapterVideo</span><span class="token punctuation">(</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    &#x2F;&#x2F; 根据课程id，编写SQL语句查询课程信息
+    CourseWebVo courseWebVo &#x3D; courseService.getBaseCourseInfo(courseId);
+    &#x2F;&#x2F; 根据课程id，查询章节和小节
+    List&lt;ChapterVo&gt; chapterVideoList &#x3D; chapterService.getAllChapterVideo(courseId);
 
-    <span class="token comment">// 根据课程id和用户id查询当前课程是否已经支付过了</span>
-    <span class="token class-name">String</span> memberId <span class="token operator">=</span> <span class="token class-name">JwtUtils</span><span class="token punctuation">.</span><span class="token function">getMemberIdByJwtToken</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 判断是否已经登录</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>memberId<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token keyword">boolean</span> buyCourse <span class="token operator">=</span> orderClient<span class="token punctuation">.</span><span class="token function">isBuyCourse</span><span class="token punctuation">(</span>courseId<span class="token punctuation">,</span> memberId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"courseWebVo"</span><span class="token punctuation">,</span>courseWebVo<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"chapterVideoList"</span><span class="token punctuation">,</span>chapterVideoList<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"isBuy"</span><span class="token punctuation">,</span>buyCourse<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">code</span><span class="token punctuation">(</span><span class="token number">28004</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">message</span><span class="token punctuation">(</span><span class="token string">"请先登录"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    &#x2F;&#x2F; 根据课程id和用户id查询当前课程是否已经支付过了
+    String memberId &#x3D; JwtUtils.getMemberIdByJwtToken(request);
+    &#x2F;&#x2F; 判断是否已经登录
+    if (!StringUtils.isEmpty(memberId))&#123;
+        boolean buyCourse &#x3D; orderClient.isBuyCourse(courseId, memberId);
+        return R.ok().data(&quot;courseWebVo&quot;,courseWebVo).data(&quot;chapterVideoList&quot;,chapterVideoList).data(&quot;isBuy&quot;,buyCourse);
+    &#125;
+    return R.ok().code(28004).message(&quot;请先登录&quot;);
 
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;</code></pre></div>
 
 <h2 id="修改课程详情页面"><a href="#修改课程详情页面" class="headerlink" title="修改课程详情页面"></a>修改课程详情页面</h2><p>1、页面内容修改</p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;section class&#x3D;&quot;c-attr-mt&quot; v-if&#x3D;&quot;isBuy || Number(courseWebVo.price) &#x3D;&#x3D;&#x3D; 0&quot;&gt;
@@ -336,7 +336,7 @@
 &lt;&#x2F;section&gt;
 &lt;section class&#x3D;&quot;c-attr-mt&quot; v-else&gt;
   &lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;立即购买&quot; class&#x3D;&quot;comm-btn c-btn-3&quot; @click&#x3D;&quot;createOrder()&quot;&gt;立即购买&lt;&#x2F;a&gt;
-&lt;&#x2F;section&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&lt;&#x2F;section&gt;</code></pre></div>
 
 <p>2、调用方法修改</p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue"> &lt;script&gt;
@@ -378,177 +378,177 @@ import order from &quot;@&#x2F;api&#x2F;order&quot;
    &#125;
    
  &#125;;
- &lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+ &lt;&#x2F;script&gt;</code></pre></div>
 
 
 
 <h1 id="数据分析-生成统计数据接口"><a href="#数据分析-生成统计数据接口" class="headerlink" title="数据分析-生成统计数据接口"></a>数据分析-生成统计数据接口</h1><h2 id="一、数据库设计"><a href="#一、数据库设计" class="headerlink" title="一、数据库设计"></a>一、数据库设计</h2><p>1、数据库</p>
 <p>guli_statistics</p>
 <p>2、数据表</p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">guli_statistics.sql<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">guli_statistics.sql</code></pre></div>
 
 <h2 id="二、创建微服务"><a href="#二、创建微服务" class="headerlink" title="二、创建微服务"></a><strong>二、创建微服务</strong></h2><h3 id="1、在service模块下创建子模块service-statistics"><a href="#1、在service模块下创建子模块service-statistics" class="headerlink" title="1、在service模块下创建子模块service_statistics"></a>1、在service模块下创建子模块service_statistics</h3><h3 id="2、application-properties"><a href="#2、application-properties" class="headerlink" title="2、application.properties"></a><strong>2</strong>、application.properties</h3><p>resources目录下创建文件</p>
-<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token comment"># 服务端口</span>
-<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8008</span>
-<span class="token comment"># 服务名</span>
-<span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">service-statistics</span>
-<span class="token comment"># mysql数据库连接</span>
-<span class="token attr-name">spring.datasource.driver-class-name</span><span class="token punctuation">=</span><span class="token attr-value">com.mysql.cj.jdbc.Driver</span>
-<span class="token attr-name">spring.datasource.url</span><span class="token punctuation">=</span><span class="token attr-value">jdbc:mysql://localhost:3306/guli?serverTimezone=GMT%2B8</span>
-<span class="token attr-name">spring.datasource.username</span><span class="token punctuation">=</span><span class="token attr-value">root</span>
-<span class="token attr-name">spring.datasource.password</span><span class="token punctuation">=</span><span class="token attr-value">root</span>
-<span class="token comment">#返回json的全局时间格式</span>
-<span class="token attr-name">spring.jackson.date-format</span><span class="token punctuation">=</span><span class="token attr-value">yyyy-MM-dd HH:mm:ss</span>
-<span class="token attr-name">spring.jackson.time-zone</span><span class="token punctuation">=</span><span class="token attr-value">GMT+8</span>
-<span class="token comment">#配置mapper xml文件的路径</span>
-<span class="token attr-name">mybatis-plus.mapper-locations</span><span class="token punctuation">=</span><span class="token attr-value">classpath:com/atguigu/staservice/mapper/xml/*.xml</span>
-<span class="token comment">#mybatis日志</span>
-<span class="token attr-name">mybatis-plus.configuration.log-impl</span><span class="token punctuation">=</span><span class="token attr-value">org.apache.ibatis.logging.stdout.StdOutImpl</span>
-<span class="token comment"># nacos服务地址</span>
-<span class="token attr-name">spring.cloud.nacos.discovery.server-addr</span><span class="token punctuation">=</span><span class="token attr-value">127.0.0.1:8848</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"># 服务端口
+server.port&#x3D;8008
+# 服务名
+spring.application.name&#x3D;service-statistics
+# mysql数据库连接
+spring.datasource.driver-class-name&#x3D;com.mysql.cj.jdbc.Driver
+spring.datasource.url&#x3D;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;guli?serverTimezone&#x3D;GMT%2B8
+spring.datasource.username&#x3D;root
+spring.datasource.password&#x3D;root
+#返回json的全局时间格式
+spring.jackson.date-format&#x3D;yyyy-MM-dd HH:mm:ss
+spring.jackson.time-zone&#x3D;GMT+8
+#配置mapper xml文件的路径
+mybatis-plus.mapper-locations&#x3D;classpath:com&#x2F;atguigu&#x2F;staservice&#x2F;mapper&#x2F;xml&#x2F;*.xml
+#mybatis日志
+mybatis-plus.configuration.log-impl&#x3D;org.apache.ibatis.logging.stdout.StdOutImpl
+# nacos服务地址
+spring.cloud.nacos.discovery.server-addr&#x3D;127.0.0.1:8848</code></pre></div>
 
-<h3 id="3、MP代码生成器生成代码"><a href="#3、MP代码生成器生成代码" class="headerlink" title="3、MP代码生成器生成代码"></a>3、MP代码生成器生成代码</h3><h3 id="4、创建SpringBoot启动类"><a href="#4、创建SpringBoot启动类" class="headerlink" title="4、创建SpringBoot启动类"></a>4、创建SpringBoot启动类</h3><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span>
-<span class="token annotation punctuation">@ComponentScan</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">"com.atguigu"</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-<span class="token annotation punctuation">@MapperScan</span><span class="token punctuation">(</span><span class="token string">"com.atguigu.staservice.mapper"</span><span class="token punctuation">)</span>
-<span class="token annotation punctuation">@EnableDiscoveryClient</span>  <span class="token comment">// 开启nacos</span>
-<span class="token annotation punctuation">@EnableFeignClients</span> <span class="token comment">// 开启远程调用</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">StaApplication</span> <span class="token punctuation">&#123;</span>
+<h3 id="3、MP代码生成器生成代码"><a href="#3、MP代码生成器生成代码" class="headerlink" title="3、MP代码生成器生成代码"></a>3、MP代码生成器生成代码</h3><h3 id="4、创建SpringBoot启动类"><a href="#4、创建SpringBoot启动类" class="headerlink" title="4、创建SpringBoot启动类"></a>4、创建SpringBoot启动类</h3><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@SpringBootApplication
+@ComponentScan(&#123;&quot;com.atguigu&quot;&#125;)
+@MapperScan(&quot;com.atguigu.staservice.mapper&quot;)
+@EnableDiscoveryClient  &#x2F;&#x2F; 开启nacos
+@EnableFeignClients &#x2F;&#x2F; 开启远程调用
+public class StaApplication &#123;
 
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token class-name">SpringApplication</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">StaApplication</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+    public static void main(String[] args) &#123;
+        SpringApplication.run(StaApplication.class,args);
+    &#125;
 
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;</code></pre></div>
 
 <h2 id="三、实现服务调用"><a href="#三、实现服务调用" class="headerlink" title="三、实现服务调用"></a>三、实现服务调用</h2><h3 id="1、在service-ucenter模块创建接口，统计某一天的注册人数"><a href="#1、在service-ucenter模块创建接口，统计某一天的注册人数" class="headerlink" title="1、在service_ucenter模块创建接口，统计某一天的注册人数"></a>1、在service_ucenter模块创建接口，统计某一天的注册人数</h3><p><strong>controller</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 根据日期查询某一天的注册人数</span>
-<span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"countRegister/&#123;day&#125;"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">countRegister</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> day<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token class-name">Integer</span> count <span class="token operator">=</span> memberService<span class="token punctuation">.</span><span class="token function">countRegister</span><span class="token punctuation">(</span>day<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"countRegister"</span><span class="token punctuation">,</span>count<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据日期查询某一天的注册人数
+@PostMapping(&quot;countRegister&#x2F;&#123;day&#125;&quot;)
+public R countRegister(@PathVariable String day)&#123;
+    Integer count &#x3D; memberService.countRegister(day);
+    return R.ok().data(&quot;countRegister&quot;,count);
+&#125;</code></pre></div>
 
 <p><strong>service</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 根据日期查询某一天的注册人数</span>
-<span class="token class-name">Integer</span> <span class="token function">countRegister</span><span class="token punctuation">(</span><span class="token class-name">String</span> day<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据日期查询某一天的注册人数
+Integer countRegister(String day);</code></pre></div>
 
 <p><strong>serviceImpl</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 根据日期查询某一天的注册人数</span>
-<span class="token annotation punctuation">@Override</span>
-<span class="token keyword">public</span> <span class="token class-name">Integer</span> <span class="token function">countRegister</span><span class="token punctuation">(</span><span class="token class-name">String</span> day<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> baseMapper<span class="token punctuation">.</span><span class="token function">countRegister</span><span class="token punctuation">(</span>day<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据日期查询某一天的注册人数
+@Override
+public Integer countRegister(String day) &#123;
+    return baseMapper.countRegister(day);
+&#125;</code></pre></div>
 
 <p><strong>mapper</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">UcenterMemberMapper</span> <span class="token keyword">extends</span> <span class="token class-name">BaseMapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">UcenterMember</span><span class="token punctuation">></span></span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 查询某一天的注册人数，如果是多个参数，需要用@Param("day")</span>
-    <span class="token class-name">Integer</span> <span class="token function">countRegister</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Param</span><span class="token punctuation">(</span><span class="token string">"day"</span><span class="token punctuation">)</span> <span class="token class-name">String</span> day<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">public interface UcenterMemberMapper extends BaseMapper&lt;UcenterMember&gt; &#123;
+    &#x2F;&#x2F; 查询某一天的注册人数，如果是多个参数，需要用@Param(&quot;day&quot;)
+    Integer countRegister(@Param(&quot;day&quot;) String day);
+&#125;</code></pre></div>
 
 <p><strong>xml</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>countRegister<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>java.lang.Integer<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">&lt;select id&#x3D;&quot;countRegister&quot; resultType&#x3D;&quot;java.lang.Integer&quot;&gt;
     SELECT
       COUNT(*)
     FROM
       ucenter_member uc
-    WHERE DATE(uc.`gmt_create`) = #&#123;day&#125;
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    WHERE DATE(uc.&#96;gmt_create&#96;) &#x3D; #&#123;day&#125;
+&lt;&#x2F;select&gt;</code></pre></div>
 
 <h3 id="2、在service-statistics模块创建远程调用接口"><a href="#2、在service-statistics模块创建远程调用接口" class="headerlink" title="2、在service_statistics模块创建远程调用接口"></a>2、在service_statistics模块创建远程调用接口</h3><p>创建client包和UcenterClient接口</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
-<span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"service-ucenter"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">UcenterClient</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 根据日期查询某一天的注册人数</span>
-    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"/educenter/member/countRegister/&#123;day&#125;"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">countRegister</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"day"</span><span class="token punctuation">)</span> <span class="token class-name">String</span> day<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Component
+@FeignClient(name &#x3D; &quot;service-ucenter&quot;)
+public interface UcenterClient &#123;
+    &#x2F;&#x2F; 根据日期查询某一天的注册人数
+    @PostMapping(&quot;&#x2F;educenter&#x2F;member&#x2F;countRegister&#x2F;&#123;day&#125;&quot;)
+    public R countRegister(@PathVariable(&quot;day&quot;) String day);
+&#125;</code></pre></div>
 
 <h3 id="3、在service-statistics模块调用微服务"><a href="#3、在service-statistics模块调用微服务" class="headerlink" title="3、在service_statistics模块调用微服务"></a>3、在service_statistics模块调用微服务</h3><p><strong>controller</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
-<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/staservice/sta"</span><span class="token punctuation">)</span>
-<span class="token annotation punctuation">@CrossOrigin</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">StatisticsDailyController</span> <span class="token punctuation">&#123;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@RestController
+@RequestMapping(&quot;&#x2F;staservice&#x2F;sta&quot;)
+@CrossOrigin
+public class StatisticsDailyController &#123;
 
-    <span class="token annotation punctuation">@Autowired</span>
-    <span class="token keyword">private</span> <span class="token class-name">StatisticsDailyService</span> dailyService<span class="token punctuation">;</span>
+    @Autowired
+    private StatisticsDailyService dailyService;
 
-    <span class="token comment">// 查询某一天的注册人数，并加入到数据库</span>
-    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"registerCount/&#123;day&#125;"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">registerCount</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> day<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        dailyService<span class="token punctuation">.</span><span class="token function">registerCountDay</span><span class="token punctuation">(</span>day<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    &#x2F;&#x2F; 查询某一天的注册人数，并加入到数据库
+    @PostMapping(&quot;registerCount&#x2F;&#123;day&#125;&quot;)
+    public R registerCount(@PathVariable String day)&#123;
+        dailyService.registerCountDay(day);
+        return R.ok();
+    &#125;
+&#125;</code></pre></div>
 
 <p><strong>service</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">StatisticsDailyServiceImpl</span> <span class="token keyword">extends</span> <span class="token class-name">ServiceImpl</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">StatisticsDailyMapper</span><span class="token punctuation">,</span> <span class="token class-name">StatisticsDaily</span><span class="token punctuation">></span></span> <span class="token keyword">implements</span> <span class="token class-name">StatisticsDailyService</span> <span class="token punctuation">&#123;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Service
+public class StatisticsDailyServiceImpl extends ServiceImpl&lt;StatisticsDailyMapper, StatisticsDaily&gt; implements StatisticsDailyService &#123;
 
-    <span class="token annotation punctuation">@Autowired</span>
-    <span class="token keyword">private</span> <span class="token class-name">UcenterClient</span> ucenterClient<span class="token punctuation">;</span>
+    @Autowired
+    private UcenterClient ucenterClient;
 
-    <span class="token comment">// 查询某一天的注册人数，并加入到数据库</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">registerCountDay</span><span class="token punctuation">(</span><span class="token class-name">String</span> day<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token comment">// 添加记录之前先删除相同日期的</span>
-        <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">StatisticsDaily</span><span class="token punctuation">></span></span> wrapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        wrapper<span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token string">"date_calculated"</span><span class="token punctuation">,</span>day<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        baseMapper<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span>wrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    &#x2F;&#x2F; 查询某一天的注册人数，并加入到数据库
+    @Override
+    public void registerCountDay(String day) &#123;
+        &#x2F;&#x2F; 添加记录之前先删除相同日期的
+        QueryWrapper&lt;StatisticsDaily&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
+        wrapper.eq(&quot;date_calculated&quot;,day);
+        baseMapper.delete(wrapper);
 
-        <span class="token comment">// 调用远程方法，查询数据库</span>
-        <span class="token class-name">R</span> registerR <span class="token operator">=</span> ucenterClient<span class="token punctuation">.</span><span class="token function">countRegister</span><span class="token punctuation">(</span>day<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        &#x2F;&#x2F; 调用远程方法，查询数据库
+        R registerR &#x3D; ucenterClient.countRegister(day);
 
-        <span class="token comment">// data中取出人数</span>
-        <span class="token class-name">Integer</span> countRegister <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">Integer</span><span class="token punctuation">)</span> registerR<span class="token punctuation">.</span><span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"countRegister"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        &#x2F;&#x2F; data中取出人数
+        Integer countRegister &#x3D; (Integer) registerR.getData().get(&quot;countRegister&quot;);
 
-        <span class="token comment">// 将数据加入到数据库</span>
-        <span class="token class-name">StatisticsDaily</span> daily <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StatisticsDaily</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        daily<span class="token punctuation">.</span><span class="token function">setRegisterNum</span><span class="token punctuation">(</span>countRegister<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        daily<span class="token punctuation">.</span><span class="token function">setDateCalculated</span><span class="token punctuation">(</span>day<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        daily<span class="token punctuation">.</span><span class="token function">setLoginNum</span><span class="token punctuation">(</span><span class="token class-name">RandomUtils</span><span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        daily<span class="token punctuation">.</span><span class="token function">setVideoViewNum</span><span class="token punctuation">(</span><span class="token class-name">RandomUtils</span><span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        daily<span class="token punctuation">.</span><span class="token function">setCourseNum</span><span class="token punctuation">(</span><span class="token class-name">RandomUtils</span><span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        &#x2F;&#x2F; 将数据加入到数据库
+        StatisticsDaily daily &#x3D; new StatisticsDaily();
+        daily.setRegisterNum(countRegister);
+        daily.setDateCalculated(day);
+        daily.setLoginNum(RandomUtils.nextInt(100, 200));
+        daily.setVideoViewNum(RandomUtils.nextInt(100, 200));
+        daily.setCourseNum(RandomUtils.nextInt(100, 200));
 
-        baseMapper<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>daily<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+        baseMapper.insert(daily);
+    &#125;
+&#125;</code></pre></div>
 
 
 
-<h1 id="统计分析-生成统计数据前端整合"><a href="#统计分析-生成统计数据前端整合" class="headerlink" title="统计分析-生成统计数据前端整合"></a>统计分析-生成统计数据前端整合</h1><h2 id="添加路由"><a href="#添加路由" class="headerlink" title="添加路由"></a>添加路由</h2><div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token punctuation">&#123;</span>
-    path<span class="token operator">:</span> <span class="token string">'/sta'</span><span class="token punctuation">,</span>
-    component<span class="token operator">:</span> Layout<span class="token punctuation">,</span>
-    redirect<span class="token operator">:</span> <span class="token string">'/sta/create'</span><span class="token punctuation">,</span>
-    name<span class="token operator">:</span> <span class="token string">'统计分析'</span><span class="token punctuation">,</span>
-    meta<span class="token operator">:</span> <span class="token punctuation">&#123;</span> title<span class="token operator">:</span> <span class="token string">'统计分析'</span><span class="token punctuation">,</span> icon<span class="token operator">:</span> <span class="token string">'example'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-    children<span class="token operator">:</span> <span class="token punctuation">[</span>
-      <span class="token punctuation">&#123;</span>
-        path<span class="token operator">:</span> <span class="token string">'create'</span><span class="token punctuation">,</span>
-        name<span class="token operator">:</span> <span class="token string">'生成数据'</span><span class="token punctuation">,</span>
-        <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'@/views/sta/create'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-        meta<span class="token operator">:</span> <span class="token punctuation">&#123;</span> title<span class="token operator">:</span> <span class="token string">'生成数据'</span><span class="token punctuation">,</span> icon<span class="token operator">:</span> <span class="token string">'table'</span> <span class="token punctuation">&#125;</span>
-      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-      <span class="token punctuation">&#123;</span>
-        path<span class="token operator">:</span> <span class="token string">'show'</span><span class="token punctuation">,</span>
-        name<span class="token operator">:</span> <span class="token string">'显示数据'</span><span class="token punctuation">,</span>
-        <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'@/views/sta/show'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-        meta<span class="token operator">:</span> <span class="token punctuation">&#123;</span> title<span class="token operator">:</span> <span class="token string">'显示数据'</span><span class="token punctuation">,</span> icon<span class="token operator">:</span> <span class="token string">'tree'</span> <span class="token punctuation">&#125;</span>
-      <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">]</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h1 id="统计分析-生成统计数据前端整合"><a href="#统计分析-生成统计数据前端整合" class="headerlink" title="统计分析-生成统计数据前端整合"></a>统计分析-生成统计数据前端整合</h1><h2 id="添加路由"><a href="#添加路由" class="headerlink" title="添加路由"></a>添加路由</h2><div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#123;
+    path: &#39;&#x2F;sta&#39;,
+    component: Layout,
+    redirect: &#39;&#x2F;sta&#x2F;create&#39;,
+    name: &#39;统计分析&#39;,
+    meta: &#123; title: &#39;统计分析&#39;, icon: &#39;example&#39; &#125;,
+    children: [
+      &#123;
+        path: &#39;create&#39;,
+        name: &#39;生成数据&#39;,
+        component: () &#x3D;&gt; import(&#39;@&#x2F;views&#x2F;sta&#x2F;create&#39;),
+        meta: &#123; title: &#39;生成数据&#39;, icon: &#39;table&#39; &#125;
+      &#125;,
+      &#123;
+        path: &#39;show&#39;,
+        name: &#39;显示数据&#39;,
+        component: () &#x3D;&gt; import(&#39;@&#x2F;views&#x2F;sta&#x2F;show&#39;),
+        meta: &#123; title: &#39;显示数据&#39;, icon: &#39;tree&#39; &#125;
+      &#125;
+    ]
+  &#125;,
+</code></pre></div>
 
 <h2 id="创建api"><a href="#创建api" class="headerlink" title="创建api"></a>创建api</h2><p>src/api/sta.js</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> request <span class="token keyword">from</span> <span class="token string">'@/utils/request'</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span><span class="token punctuation">&#123;</span>
-    <span class="token comment">// 生成数据</span>
-    <span class="token function">createStaDate</span><span class="token punctuation">(</span><span class="token parameter">day</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-            url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/staservice/sta/registerCount/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>day<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
-            method<span class="token operator">:</span> <span class="token string">'post'</span>
-          <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">import request from &#39;@&#x2F;utils&#x2F;request&#39;
+export default&#123;
+    &#x2F;&#x2F; 生成数据
+    createStaDate(day)&#123;
+        return request(&#123;
+            url: &#96;&#x2F;staservice&#x2F;sta&#x2F;registerCount&#x2F;$&#123;day&#125;&#96;,
+            method: &#39;post&#39;
+          &#125;)
+    &#125;
+&#125;</code></pre></div>
 
 <h2 id="创建组件"><a href="#创建组件" class="headerlink" title="创建组件"></a><strong>创建组件</strong></h2><p>src/views/sta/create.vue</p>
 <p>模板部分</p>
@@ -569,7 +569,7 @@ import order from &quot;@&#x2F;api&#x2F;order&quot;
         @click&#x3D;&quot;create()&quot;&gt;生成&lt;&#x2F;el-button&gt;
     &lt;&#x2F;el-form&gt;
   &lt;&#x2F;div&gt;
-&lt;&#x2F;template&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&lt;&#x2F;template&gt;</code></pre></div>
 
 <p>script</p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;script&gt;
@@ -599,78 +599,78 @@ export default &#123;
         &#125;
     &#125;
 &#125;
-&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&lt;&#x2F;script&gt;</code></pre></div>
 
 <h1 id="添加定时任务"><a href="#添加定时任务" class="headerlink" title="添加定时任务"></a>添加定时任务</h1><h2 id="1、创建定时任务类，使用cron表达式"><a href="#1、创建定时任务类，使用cron表达式" class="headerlink" title="1、创建定时任务类，使用cron表达式"></a>1、创建定时任务类，使用cron表达式</h2><p><strong>复制日期工具类</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>atguigu<span class="token punctuation">.</span>staservice<span class="token punctuation">.</span>utils</span><span class="token punctuation">;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.atguigu.staservice.utils;
 
-<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>text<span class="token punctuation">.</span></span><span class="token class-name">SimpleDateFormat</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Calendar</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Date</span><span class="token punctuation">;</span>
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
-<span class="token comment">/**
+&#x2F;**
  * 日期操作工具类
  *
  * @author qy
  * @since 1.0
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DateUtil</span> <span class="token punctuation">&#123;</span>
+ *&#x2F;
+public class DateUtil &#123;
 
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> dateFormat <span class="token operator">=</span> <span class="token string">"yyyy-MM-dd"</span><span class="token punctuation">;</span>
+    private static final String dateFormat &#x3D; &quot;yyyy-MM-dd&quot;;
 
-    <span class="token comment">/**
+    &#x2F;**
      * 格式化日期
      *
      * @param date
      * @return
-     */</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">formatDate</span><span class="token punctuation">(</span><span class="token class-name">Date</span> date<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token class-name">SimpleDateFormat</span> sdf <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SimpleDateFormat</span><span class="token punctuation">(</span>dateFormat<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> sdf<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     *&#x2F;
+    public static String formatDate(Date date) &#123;
+        SimpleDateFormat sdf &#x3D; new SimpleDateFormat(dateFormat);
+        return sdf.format(date);
 
-    <span class="token punctuation">&#125;</span>
+    &#125;
 
-    <span class="token comment">/**
+    &#x2F;**
      * 在日期date上增加amount天 。
      *
      * @param date   处理的日期，非null
      * @param amount 要加的天数，可能为负数
-     */</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">Date</span> <span class="token function">addDays</span><span class="token punctuation">(</span><span class="token class-name">Date</span> date<span class="token punctuation">,</span> <span class="token keyword">int</span> amount<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token class-name">Calendar</span> now <span class="token operator">=</span><span class="token class-name">Calendar</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        now<span class="token punctuation">.</span><span class="token function">setTime</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        now<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token class-name">Calendar</span><span class="token punctuation">.</span>DATE<span class="token punctuation">,</span>now<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token class-name">Calendar</span><span class="token punctuation">.</span>DATE<span class="token punctuation">)</span><span class="token operator">+</span>amount<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> now<span class="token punctuation">.</span><span class="token function">getTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+     *&#x2F;
+    public static Date addDays(Date date, int amount) &#123;
+        Calendar now &#x3D;Calendar.getInstance();
+        now.setTime(date);
+        now.set(Calendar.DATE,now.get(Calendar.DATE)+amount);
+        return now.getTime();
+    &#125;
 
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">DateUtil</span><span class="token punctuation">.</span><span class="token function">formatDate</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">DateUtil</span><span class="token punctuation">.</span><span class="token function">formatDate</span><span class="token punctuation">(</span><span class="token class-name">DateUtil</span><span class="token punctuation">.</span><span class="token function">addDays</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    public static void main(String[] args) &#123;
+        System.out.println(DateUtil.formatDate(new Date()));
+        System.out.println(DateUtil.formatDate(DateUtil.addDays(new Date(), -1)));
+    &#125;
+&#125;</code></pre></div>
 
-<h2 id="2、在启动类上添加注解"><a href="#2、在启动类上添加注解" class="headerlink" title="2、在启动类上添加注解"></a>2、在启动类上添加注解</h2><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">@EnableScheduling   &#x2F;&#x2F; 开启定时任务<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h2 id="2、在启动类上添加注解"><a href="#2、在启动类上添加注解" class="headerlink" title="2、在启动类上添加注解"></a>2、在启动类上添加注解</h2><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">@EnableScheduling   &#x2F;&#x2F; 开启定时任务</code></pre></div>
 
-<h2 id="3-编写方法"><a href="#3-编写方法" class="headerlink" title="3.编写方法"></a>3.编写方法</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ScheduledTask</span> <span class="token punctuation">&#123;</span>
+<h2 id="3-编写方法"><a href="#3-编写方法" class="headerlink" title="3.编写方法"></a>3.编写方法</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Component
+public class ScheduledTask &#123;
 
-    <span class="token annotation punctuation">@Autowired</span>
-    <span class="token keyword">private</span> <span class="token class-name">StatisticsDailyService</span> dailyService<span class="token punctuation">;</span>
+    @Autowired
+    private StatisticsDailyService dailyService;
 
-    <span class="token comment">// 只能是6位，默认年为当前的年</span>
-    <span class="token comment">// 秒 分 时 日 月 周 年</span>
-    <span class="token annotation punctuation">@Scheduled</span><span class="token punctuation">(</span>cron <span class="token operator">=</span> <span class="token string">"0 0 1 * * ?"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">task2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        dailyService<span class="token punctuation">.</span><span class="token function">registerCountDay</span><span class="token punctuation">(</span><span class="token class-name">DateUtil</span><span class="token punctuation">.</span><span class="token function">formatDate</span><span class="token punctuation">(</span><span class="token class-name">DateUtil</span><span class="token punctuation">.</span><span class="token function">addDays</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+    &#x2F;&#x2F; 只能是6位，默认年为当前的年
+    &#x2F;&#x2F; 秒 分 时 日 月 周 年
+    @Scheduled(cron &#x3D; &quot;0 0 1 * * ?&quot;)
+    public void task2()&#123;
+        dailyService.registerCountDay(DateUtil.formatDate(DateUtil.addDays(new Date(), -1)));
+    &#125;
 
-<span class="token comment">/*    // 每隔5秒执行一次
-    @Scheduled(cron = "0/5 * * * * ?")
+&#x2F;*    &#x2F;&#x2F; 每隔5秒执行一次
+    @Scheduled(cron &#x3D; &quot;0&#x2F;5 * * * * ?&quot;)
     public void task1() &#123;
-        System.out.println("*********++++++++++++*****执行了");
-    &#125;*/</span>
+        System.out.println(&quot;*********++++++++++++*****执行了&quot;);
+    &#125;*&#x2F;
 
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;</code></pre></div>
 
 <p>在线生成工具</p>
 <p><a target="_blank" rel="noopener" href="https://www.pppet.net/">https://www.pppet.net/</a></p>
@@ -678,83 +678,83 @@ export default &#123;
 <h2 id="2、基本使用"><a href="#2、基本使用" class="headerlink" title="2、基本使用"></a>2、基本使用</h2><p>入门参考：官网-&gt;文档-&gt;教程-&gt;5分钟上手ECharts</p>
 <p>（1）创建html页面：柱图.html</p>
 <p>（2）引入ECharts</p>
-<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token comment">&lt;!-- 引入 ECharts 文件 --></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>echarts.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;!-- 引入 ECharts 文件 --&gt;
+&lt;script src&#x3D;&quot;echarts.min.js&quot;&gt;&lt;&#x2F;script&gt;</code></pre></div>
 
 <p>（3）定义图表区域</p>
-<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token comment">&lt;!-- 为ECharts准备一个具备大小（宽高）的Dom --></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>main<span class="token punctuation">"</span></span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">width</span><span class="token punctuation">:</span> 600px<span class="token punctuation">;</span><span class="token property">height</span><span class="token punctuation">:</span>400px<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;!-- 为ECharts准备一个具备大小（宽高）的Dom --&gt;
+&lt;div id&#x3D;&quot;main&quot; style&#x3D;&quot;width: 600px;height:400px;&quot;&gt;&lt;&#x2F;div&gt; </code></pre></div>
 
 <p>（4）渲染图表</p>
-<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
-        <span class="token comment">// 基于准备好的dom，初始化echarts实例</span>
-        <span class="token keyword">var</span> myChart <span class="token operator">=</span> echarts<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'main'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">// 指定图表的配置项和数据</span>
-        <span class="token keyword">var</span> option <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-            title<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-                text<span class="token operator">:</span> <span class="token string">'ECharts 入门示例'</span>
-            <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-            tooltip<span class="token operator">:</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-            legend<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-                data<span class="token operator">:</span><span class="token punctuation">[</span><span class="token string">'销量'</span><span class="token punctuation">]</span>
-            <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-            xAxis<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-                data<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"衬衫"</span><span class="token punctuation">,</span><span class="token string">"羊毛衫"</span><span class="token punctuation">,</span><span class="token string">"雪纺衫"</span><span class="token punctuation">,</span><span class="token string">"裤子"</span><span class="token punctuation">,</span><span class="token string">"高跟鞋"</span><span class="token punctuation">,</span><span class="token string">"袜子"</span><span class="token punctuation">]</span>
-            <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-            yAxis<span class="token operator">:</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-            series<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">&#123;</span>
-                name<span class="token operator">:</span> <span class="token string">'销量'</span><span class="token punctuation">,</span>
-                type<span class="token operator">:</span> <span class="token string">'bar'</span><span class="token punctuation">,</span>
-                data<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">36</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">]</span>
-            <span class="token punctuation">&#125;</span><span class="token punctuation">]</span>
-        <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-        <span class="token comment">// 使用刚指定的配置项和数据显示图表。</span>
-        myChart<span class="token punctuation">.</span><span class="token function">setOption</span><span class="token punctuation">(</span>option<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;
+        &#x2F;&#x2F; 基于准备好的dom，初始化echarts实例
+        var myChart &#x3D; echarts.init(document.getElementById(&#39;main&#39;));
+        &#x2F;&#x2F; 指定图表的配置项和数据
+        var option &#x3D; &#123;
+            title: &#123;
+                text: &#39;ECharts 入门示例&#39;
+            &#125;,
+            tooltip: &#123;&#125;,
+            legend: &#123;
+                data:[&#39;销量&#39;]
+            &#125;,
+            xAxis: &#123;
+                data: [&quot;衬衫&quot;,&quot;羊毛衫&quot;,&quot;雪纺衫&quot;,&quot;裤子&quot;,&quot;高跟鞋&quot;,&quot;袜子&quot;]
+            &#125;,
+            yAxis: &#123;&#125;,
+            series: [&#123;
+                name: &#39;销量&#39;,
+                type: &#39;bar&#39;,
+                data: [5, 20, 36, 10, 10, 20]
+            &#125;]
+        &#125;;
+        &#x2F;&#x2F; 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    &lt;&#x2F;script&gt;</code></pre></div>
 
-<h2 id="3、折线图"><a href="#3、折线图" class="headerlink" title="3、折线图"></a>3、折线图</h2><div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>X-UA-Compatible<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>IE=edge<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Document<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
-<span class="token comment">&lt;!-- 引入 ECharts 文件 --></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>echarts.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>main<span class="token punctuation">"</span></span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">width</span><span class="token punctuation">:</span> 600px<span class="token punctuation">;</span><span class="token property">height</span><span class="token punctuation">:</span>400px<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span> 
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
-        <span class="token keyword">var</span> myChart <span class="token operator">=</span> echarts<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'main'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">var</span> option <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-            <span class="token comment">//x轴是类目轴（离散数据）,必须通过data设置类目数据</span>
-            xAxis<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-                type<span class="token operator">:</span> <span class="token string">'category'</span><span class="token punctuation">,</span>
-                data<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'Mon'</span><span class="token punctuation">,</span> <span class="token string">'Tue'</span><span class="token punctuation">,</span> <span class="token string">'Wed'</span><span class="token punctuation">,</span> <span class="token string">'Thu'</span><span class="token punctuation">,</span> <span class="token string">'Fri'</span><span class="token punctuation">,</span> <span class="token string">'Sat'</span><span class="token punctuation">,</span> <span class="token string">'Sun'</span><span class="token punctuation">]</span>
-            <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-            <span class="token comment">//y轴是数据轴（连续数据）</span>
-            yAxis<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-                type<span class="token operator">:</span> <span class="token string">'value'</span>
-            <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-            <span class="token comment">//系列列表。每个系列通过 type 决定自己的图表类型</span>
-            series<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">&#123;</span>
-                <span class="token comment">//系列中的数据内容数组</span>
-                data<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">820</span><span class="token punctuation">,</span> <span class="token number">932</span><span class="token punctuation">,</span> <span class="token number">901</span><span class="token punctuation">,</span> <span class="token number">934</span><span class="token punctuation">,</span> <span class="token number">1290</span><span class="token punctuation">,</span> <span class="token number">1330</span><span class="token punctuation">,</span> <span class="token number">1320</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-                <span class="token comment">//折线图</span>
-                type<span class="token operator">:</span> <span class="token string">'line'</span>
-            <span class="token punctuation">&#125;</span><span class="token punctuation">]</span>
-        <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-        myChart<span class="token punctuation">.</span><span class="token function">setOption</span><span class="token punctuation">(</span>option<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-
-
+<h2 id="3、折线图"><a href="#3、折线图" class="headerlink" title="3、折线图"></a>3、折线图</h2><div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang&#x3D;&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;
+    &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;IE&#x3D;edge&quot;&gt;
+    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot;&gt;
+    &lt;title&gt;Document&lt;&#x2F;title&gt;
+&lt;&#x2F;head&gt;
+&lt;!-- 引入 ECharts 文件 --&gt;
+&lt;script src&#x3D;&quot;echarts.min.js&quot;&gt;&lt;&#x2F;script&gt;
+&lt;body&gt;
+    &lt;div id&#x3D;&quot;main&quot; style&#x3D;&quot;width: 600px;height:400px;&quot;&gt;&lt;&#x2F;div&gt; 
+    &lt;script&gt;
+        var myChart &#x3D; echarts.init(document.getElementById(&#39;main&#39;));
+        var option &#x3D; &#123;
+            &#x2F;&#x2F;x轴是类目轴（离散数据）,必须通过data设置类目数据
+            xAxis: &#123;
+                type: &#39;category&#39;,
+                data: [&#39;Mon&#39;, &#39;Tue&#39;, &#39;Wed&#39;, &#39;Thu&#39;, &#39;Fri&#39;, &#39;Sat&#39;, &#39;Sun&#39;]
+            &#125;,
+            &#x2F;&#x2F;y轴是数据轴（连续数据）
+            yAxis: &#123;
+                type: &#39;value&#39;
+            &#125;,
+            &#x2F;&#x2F;系列列表。每个系列通过 type 决定自己的图表类型
+            series: [&#123;
+                &#x2F;&#x2F;系列中的数据内容数组
+                data: [820, 932, 901, 934, 1290, 1330, 1320],
+                &#x2F;&#x2F;折线图
+                type: &#39;line&#39;
+            &#125;]
+        &#125;;
+        myChart.setOption(option);
+    &lt;&#x2F;script&gt;
+&lt;&#x2F;body&gt;
+&lt;&#x2F;html&gt;</code></pre></div>
 
 
 
-<h1 id="统计分析-图表显示-页面整合"><a href="#统计分析-图表显示-页面整合" class="headerlink" title="统计分析-图表显示-页面整合"></a>统计分析-图表显示-页面整合</h1><h2 id="1、安装ECharts"><a href="#1、安装ECharts" class="headerlink" title="1、安装ECharts"></a>1、安装ECharts</h2><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> --save echarts@4.1.0
-<span class="token comment"># 如果不行就用cnpm </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+
+<h1 id="统计分析-图表显示-页面整合"><a href="#统计分析-图表显示-页面整合" class="headerlink" title="统计分析-图表显示-页面整合"></a>统计分析-图表显示-页面整合</h1><h2 id="1、安装ECharts"><a href="#1、安装ECharts" class="headerlink" title="1、安装ECharts"></a>1、安装ECharts</h2><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm install --save echarts@4.1.0
+# 如果不行就用cnpm </code></pre></div>
 
 
 
@@ -796,7 +796,7 @@ export default &#123;
        &lt;div id&#x3D;&quot;chart&quot; class&#x3D;&quot;chart&quot; style&#x3D;&quot;height:500px;width:100%&quot; &#x2F;&gt;
      &lt;&#x2F;div&gt;
    &lt;&#x2F;div&gt;
- &lt;&#x2F;template&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+ &lt;&#x2F;template&gt;</code></pre></div>
 
 <p><strong>js：暂时显示临时数据</strong></p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;script&gt;
@@ -850,76 +850,76 @@ import echarts from &#39;echarts&#39;
 
      &#125;
  &#125;
- &lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+ &lt;&#x2F;script&gt;</code></pre></div>
 
 
 
-<h1 id="统计分析-图标显示接口"><a href="#统计分析-图标显示接口" class="headerlink" title="统计分析-图标显示接口"></a>统计分析-图标显示接口</h1><h2 id="controller"><a href="#controller" class="headerlink" title="controller"></a>controller</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 图表显示，返回两部分数据，日期json数组 数量json数组</span>
-<span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"showData/&#123;type&#125;/&#123;begin&#125;/&#123;end&#125;"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">showData</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> type<span class="token punctuation">,</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> begin<span class="token punctuation">,</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> end<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span><span class="token class-name">Object</span><span class="token punctuation">></span></span> map <span class="token operator">=</span> dailyService<span class="token punctuation">.</span><span class="token function">getShowData</span><span class="token punctuation">(</span>type<span class="token punctuation">,</span>begin<span class="token punctuation">,</span>end<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span>map<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h1 id="统计分析-图标显示接口"><a href="#统计分析-图标显示接口" class="headerlink" title="统计分析-图标显示接口"></a>统计分析-图标显示接口</h1><h2 id="controller"><a href="#controller" class="headerlink" title="controller"></a>controller</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 图表显示，返回两部分数据，日期json数组 数量json数组
+@PostMapping(&quot;showData&#x2F;&#123;type&#125;&#x2F;&#123;begin&#125;&#x2F;&#123;end&#125;&quot;)
+public R showData(@PathVariable String type,@PathVariable String begin,@PathVariable String end)&#123;
+    Map&lt;String,Object&gt; map &#x3D; dailyService.getShowData(type,begin,end);
+    return R.ok().data(map);
+&#125;</code></pre></div>
 
-<h2 id="service"><a href="#service" class="headerlink" title="service"></a>service</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 图表显示，返回两部分数据，日期json数组 数量json数组</span>
-<span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span> <span class="token function">getShowData</span><span class="token punctuation">(</span><span class="token class-name">String</span> type<span class="token punctuation">,</span> <span class="token class-name">String</span> begin<span class="token punctuation">,</span> <span class="token class-name">String</span> end<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<h2 id="service"><a href="#service" class="headerlink" title="service"></a>service</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 图表显示，返回两部分数据，日期json数组 数量json数组
+Map&lt;String, Object&gt; getShowData(String type, String begin, String end);</code></pre></div>
 
-<h2 id="serviceImpl"><a href="#serviceImpl" class="headerlink" title="serviceImpl"></a>serviceImpl</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 图表显示，返回两部分数据，日期json数组 数量json数组</span>
-<span class="token annotation punctuation">@Override</span>
-<span class="token keyword">public</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span> <span class="token function">getShowData</span><span class="token punctuation">(</span><span class="token class-name">String</span> type<span class="token punctuation">,</span> <span class="token class-name">String</span> begin<span class="token punctuation">,</span> <span class="token class-name">String</span> end<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 先根据条件查询数据</span>
-    <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">StatisticsDaily</span><span class="token punctuation">></span></span> wrapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    wrapper<span class="token punctuation">.</span><span class="token function">between</span><span class="token punctuation">(</span><span class="token string">"date_calculated"</span><span class="token punctuation">,</span>begin<span class="token punctuation">,</span>end<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 由于只需要某个字段的数据，为了更加精确，所以有select</span>
-    wrapper<span class="token punctuation">.</span><span class="token function">select</span><span class="token punctuation">(</span><span class="token string">"date_calculated"</span><span class="token punctuation">,</span>type<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 查询</span>
-    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">StatisticsDaily</span><span class="token punctuation">></span></span> staList <span class="token operator">=</span> baseMapper<span class="token punctuation">.</span><span class="token function">selectList</span><span class="token punctuation">(</span>wrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<h2 id="serviceImpl"><a href="#serviceImpl" class="headerlink" title="serviceImpl"></a>serviceImpl</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 图表显示，返回两部分数据，日期json数组 数量json数组
+@Override
+public Map&lt;String, Object&gt; getShowData(String type, String begin, String end) &#123;
+    &#x2F;&#x2F; 先根据条件查询数据
+    QueryWrapper&lt;StatisticsDaily&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
+    wrapper.between(&quot;date_calculated&quot;,begin,end);
+    &#x2F;&#x2F; 由于只需要某个字段的数据，为了更加精确，所以有select
+    wrapper.select(&quot;date_calculated&quot;,type);
+    &#x2F;&#x2F; 查询
+    List&lt;StatisticsDaily&gt; staList &#x3D; baseMapper.selectList(wrapper);
 
-    <span class="token comment">// 按照条件构造日期json数组和数量json数组</span>
-    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> date_calculatedList <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">></span></span> numDataList <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    &#x2F;&#x2F; 按照条件构造日期json数组和数量json数组
+    List&lt;String&gt; date_calculatedList &#x3D; new ArrayList&lt;&gt;();
+    List&lt;Integer&gt; numDataList &#x3D; new ArrayList&lt;&gt;();
 
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> staList<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token class-name">StatisticsDaily</span> daily <span class="token operator">=</span> staList<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">// 将时间添加到时间集合</span>
-        date_calculatedList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>daily<span class="token punctuation">.</span><span class="token function">getDateCalculated</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    for (int i &#x3D; 0; i &lt; staList.size(); i++) &#123;
+        StatisticsDaily daily &#x3D; staList.get(i);
+        &#x2F;&#x2F; 将时间添加到时间集合
+        date_calculatedList.add(daily.getDateCalculated());
 
-        <span class="token comment">// 用switch判断选择的是哪个类型的数据</span>
-        <span class="token keyword">switch</span> <span class="token punctuation">(</span>type<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-            <span class="token keyword">case</span> <span class="token string">"login_num"</span><span class="token operator">:</span>
-                numDataList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>daily<span class="token punctuation">.</span><span class="token function">getLoginNum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token keyword">break</span><span class="token punctuation">;</span>
-            <span class="token keyword">case</span> <span class="token string">"register_num"</span><span class="token operator">:</span>
-                numDataList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>daily<span class="token punctuation">.</span><span class="token function">getRegisterNum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token keyword">break</span><span class="token punctuation">;</span>
-            <span class="token keyword">case</span> <span class="token string">"video_view_num"</span><span class="token operator">:</span>
-                numDataList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>daily<span class="token punctuation">.</span><span class="token function">getVideoViewNum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token keyword">break</span><span class="token punctuation">;</span>
-            <span class="token keyword">case</span> <span class="token string">"course_num"</span><span class="token operator">:</span>
-                numDataList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>daily<span class="token punctuation">.</span><span class="token function">getCourseNum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token keyword">break</span><span class="token punctuation">;</span>
-            <span class="token keyword">default</span><span class="token operator">:</span>
-                <span class="token keyword">break</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token comment">// 封装数据返回</span>
-    <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span> map  <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"date_calculatedList"</span><span class="token punctuation">,</span>date_calculatedList<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"numDataList"</span><span class="token punctuation">,</span>numDataList<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        &#x2F;&#x2F; 用switch判断选择的是哪个类型的数据
+        switch (type)&#123;
+            case &quot;login_num&quot;:
+                numDataList.add(daily.getLoginNum());
+                break;
+            case &quot;register_num&quot;:
+                numDataList.add(daily.getRegisterNum());
+                break;
+            case &quot;video_view_num&quot;:
+                numDataList.add(daily.getVideoViewNum());
+                break;
+            case &quot;course_num&quot;:
+                numDataList.add(daily.getCourseNum());
+                break;
+            default:
+                break;
+        &#125;
+    &#125;
+    &#x2F;&#x2F; 封装数据返回
+    Map&lt;String, Object&gt; map  &#x3D; new HashMap&lt;&gt;();
+    map.put(&quot;date_calculatedList&quot;,date_calculatedList);
+    map.put(&quot;numDataList&quot;,numDataList);
 
-    <span class="token keyword">return</span> map<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    return map;
+&#125;</code></pre></div>
 
 
 
 <h1 id="统计分析-图表显示前端"><a href="#统计分析-图表显示前端" class="headerlink" title="统计分析-图表显示前端"></a>统计分析-图表显示前端</h1><p>api/sta.js</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 图表显示</span>
-<span class="token function">getDataShow</span><span class="token punctuation">(</span><span class="token parameter">searchObj</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-        url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/staservice/sta/showData/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>searchObj<span class="token punctuation">.</span>type<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>searchObj<span class="token punctuation">.</span>begin<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>searchObj<span class="token punctuation">.</span>end<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
-        method<span class="token operator">:</span> <span class="token string">'get'</span>
-      <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 图表显示
+getDataShow(searchObj)&#123;
+    return request(&#123;
+        url: &#96;&#x2F;staservice&#x2F;sta&#x2F;showData&#x2F;$&#123;searchObj.type&#125;&#x2F;$&#123;searchObj.begin&#125;&#x2F;$&#123;searchObj.end&#125;&#96;,
+        method: &#39;get&#39;
+      &#125;)
+&#125;</code></pre></div>
 
 <p>methods</p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">methods:&#123;
@@ -959,17 +959,17 @@ import echarts from &#39;echarts&#39;
            &#125;
            this.chart.setOption(option)
        &#125;,
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+</code></pre></div>
 
 <h1 id="样式调整"><a href="#样式调整" class="headerlink" title="样式调整"></a>样式调整</h1><h2 id="1、显示标题"><a href="#1、显示标题" class="headerlink" title="1、显示标题"></a>1、显示标题</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&#x2F;&#x2F; 显示标题
 title: &#123;
 	text: &quot;数据统计&quot;
-&#125;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;,</code></pre></div>
 
 <h2 id="2、x坐标轴触发提示"><a href="#2、x坐标轴触发提示" class="headerlink" title="2、x坐标轴触发提示"></a>2、x坐标轴触发提示</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&#x2F;&#x2F; x坐标轴触发提示
 tooltip: &#123;
 	trigger: &#39;axis&#39;
-&#125;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;,</code></pre></div>
 
 <h2 id="3、区域缩放"><a href="#3、区域缩放" class="headerlink" title="3、区域缩放"></a>3、区域缩放</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&#x2F;&#x2F; 区域缩放
 dataZoom: [&#123;
@@ -997,7 +997,7 @@ dataZoom: [&#123;
         height: 15,
         start: 1,
         end: 35
-&#125;]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;]</code></pre></div>
 
 
 

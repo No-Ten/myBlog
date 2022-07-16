@@ -16,12 +16,12 @@
   <meta name="author" content="Ten">
   <meta name="keywords" content="">
   
-    <meta name="description" content="day04-项目的前端基本知识二axiosaxios是独立于vue的一个项目，基于promise用于浏览器和node.js的http客户端  在浏览器中可以帮助我们完成 ajax请求的发送 在node.js中可以向远程接口发送请求   导入axios.min.js文件 编写一个json数据，模拟接口  &amp;#123;     &quot;success&quot;:true,     &quot;code&quot;:20000,">
+    <meta name="description" content="day04-项目的前端基本知识二axiosaxios是独立于vue的一个项目，基于promise用于浏览器和node.js的http客户端  在浏览器中可以帮助我们完成 ajax请求的发送 在node.js中可以向远程接口发送请求   导入axios.min.js文件 编写一个json数据，模拟接口  &amp;#123;     &quot;success&quot;:true,     &quot;c">
 <meta property="og:type" content="article">
 <meta property="og:title" content="day04-项目的前端基本知识二">
 <meta property="og:url" content="https://no-ten.github.io/day04-%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%89%8D%E7%AB%AF%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E4%BA%8C/index.html">
 <meta property="og:site_name" content="TBlog">
-<meta property="og:description" content="day04-项目的前端基本知识二axiosaxios是独立于vue的一个项目，基于promise用于浏览器和node.js的http客户端  在浏览器中可以帮助我们完成 ajax请求的发送 在node.js中可以向远程接口发送请求   导入axios.min.js文件 编写一个json数据，模拟接口  &amp;#123;     &quot;success&quot;:true,     &quot;code&quot;:20000,">
+<meta property="og:description" content="day04-项目的前端基本知识二axiosaxios是独立于vue的一个项目，基于promise用于浏览器和node.js的http客户端  在浏览器中可以帮助我们完成 ajax请求的发送 在node.js中可以向远程接口发送请求   导入axios.min.js文件 编写一个json数据，模拟接口  &amp;#123;     &quot;success&quot;:true,     &quot;c">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://no-ten.github.io/myBlog/day04-%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%89%8D%E7%AB%AF%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E4%BA%8C/image-20211222162543838.png">
 <meta property="og:image" content="https://no-ten.github.io/myBlog/day04-%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%89%8D%E7%AB%AF%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E4%BA%8C/image-20211222203948729.png">
@@ -232,7 +232,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8.2k 字
+          9.8k 字
         
       </span>
     
@@ -293,90 +293,90 @@
 <li>导入axios.min.js文件</li>
 <li>编写一个json数据，模拟接口</li>
 </ol>
-<div class="code-wrapper"><pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
-    <span class="token property">"success"</span><span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">,</span>
-    <span class="token property">"code"</span><span class="token operator">:</span><span class="token number">20000</span><span class="token punctuation">,</span>
-    <span class="token property">"message"</span><span class="token operator">:</span><span class="token string">"成功"</span><span class="token punctuation">,</span>
-    <span class="token property">"data"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
-        <span class="token property">"items"</span><span class="token operator">:</span><span class="token punctuation">[</span>
-            <span class="token punctuation">&#123;</span><span class="token property">"name"</span><span class="token operator">:</span><span class="token string">"lucy"</span><span class="token punctuation">,</span><span class="token property">"age"</span><span class="token operator">:</span><span class="token string">"10"</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-            <span class="token punctuation">&#123;</span><span class="token property">"name"</span><span class="token operator">:</span><span class="token string">"mary"</span><span class="token punctuation">,</span><span class="token property">"age"</span><span class="token operator">:</span><span class="token string">"20"</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-            <span class="token punctuation">&#123;</span><span class="token property">"name"</span><span class="token operator">:</span><span class="token string">"jack"</span><span class="token punctuation">,</span><span class="token property">"age"</span><span class="token operator">:</span><span class="token string">"30"</span><span class="token punctuation">&#125;</span>
-        <span class="token punctuation">]</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-json" data-language="json"><code class="language-json">&#123;
+    &quot;success&quot;:true,
+    &quot;code&quot;:20000,
+    &quot;message&quot;:&quot;成功&quot;,
+    &quot;data&quot;:&#123;
+        &quot;items&quot;:[
+            &#123;&quot;name&quot;:&quot;lucy&quot;,&quot;age&quot;:&quot;10&quot;&#125;,
+            &#123;&quot;name&quot;:&quot;mary&quot;,&quot;age&quot;:&quot;20&quot;&#125;,
+            &#123;&quot;name&quot;:&quot;jack&quot;,&quot;age&quot;:&quot;30&quot;&#125;
+        ]
+    &#125;
+&#125;</code></pre></div>
 
 
 
 <ol start="4">
 <li>编写代码</li>
 </ol>
-<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang&#x3D;&quot;en&quot;&gt;
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>X-UA-Compatible<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>ie=edge<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Document<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+&lt;head&gt;
+    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;
+    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot;&gt;
+    &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;ie&#x3D;edge&quot;&gt;
+    &lt;title&gt;Document&lt;&#x2F;title&gt;
+&lt;&#x2F;head&gt;
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-        <span class="token comment">&lt;!--如何显示数据--></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>user in userList<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+&lt;body&gt;
+    &lt;div id&#x3D;&quot;app&quot;&gt;
+        &lt;!--如何显示数据--&gt;
+        &lt;div v-for&#x3D;&quot;user in userList&quot;&gt;
             &#123;&#123;user.name&#125;&#125; -- &#123;&#123;user.age&#125;&#125;
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+        &lt;&#x2F;div&gt;
 
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>vue.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>axios.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
-        <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-            el<span class="token operator">:</span> <span class="token string">'#app'</span><span class="token punctuation">,</span>
-            data<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-                <span class="token comment">// 定义一个空数组</span>
-                userList<span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
-            <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-            <span class="token function">created</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>     <span class="token comment">// 页面渲染之前执行</span>
-                <span class="token comment">// 调用方法</span>
-                <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getUserList</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-            methods<span class="token operator">:</span><span class="token punctuation">&#123;</span>       <span class="token comment">// 编写具体方法</span>
+    &lt;&#x2F;div&gt;
+    &lt;script src&#x3D;&quot;vue.min.js&quot;&gt;&lt;&#x2F;script&gt;
+    &lt;script src&#x3D;&quot;axios.min.js&quot;&gt;&lt;&#x2F;script&gt;
+    &lt;script&gt;
+        new Vue(&#123;
+            el: &#39;#app&#39;,
+            data: &#123;
+                &#x2F;&#x2F; 定义一个空数组
+                userList:[]
+            &#125;,
+            created ()&#123;     &#x2F;&#x2F; 页面渲染之前执行
+                &#x2F;&#x2F; 调用方法
+                this.getUserList()
+            &#125;,
+            methods:&#123;       &#x2F;&#x2F; 编写具体方法
 
-                <span class="token comment">// 创建方法，查询所有用户</span>
-                <span class="token function">getUserList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-                    <span class="token comment">// 使用axios的ajax请求</span>
-                    <span class="token comment">// axios.提交方式("请求接口地址").then().catch()</span>
-                    axios<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"data.json"</span><span class="token punctuation">)</span>
-                        <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">response</span> <span class="token operator">=></span><span class="token punctuation">&#123;</span>      <span class="token comment">// 请求成功执行then</span>
-                            <span class="token comment">// response就是请求放回的数据</span>
-                            <span class="token comment">//console.log(response);</span>
-                            <span class="token comment">// 通过response获取具体的值，赋值给定义空数组</span>
-                            <span class="token keyword">this</span><span class="token punctuation">.</span>userList <span class="token operator">=</span> response<span class="token punctuation">.</span>data<span class="token punctuation">.</span>data<span class="token punctuation">.</span>items
-                            <span class="token comment">//console.log(this.userList);</span>
-                        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>     
-                        <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">error</span> <span class="token operator">=></span><span class="token punctuation">&#123;</span>    <span class="token comment">//  请求失败执行catch</span>
+                &#x2F;&#x2F; 创建方法，查询所有用户
+                getUserList()&#123;
+                    &#x2F;&#x2F; 使用axios的ajax请求
+                    &#x2F;&#x2F; axios.提交方式(&quot;请求接口地址&quot;).then().catch()
+                    axios.get(&quot;data.json&quot;)
+                        .then(response &#x3D;&gt;&#123;      &#x2F;&#x2F; 请求成功执行then
+                            &#x2F;&#x2F; response就是请求放回的数据
+                            &#x2F;&#x2F;console.log(response);
+                            &#x2F;&#x2F; 通过response获取具体的值，赋值给定义空数组
+                            this.userList &#x3D; response.data.data.items
+                            &#x2F;&#x2F;console.log(this.userList);
+                        &#125;)     
+                        .catch(error &#x3D;&gt;&#123;    &#x2F;&#x2F;  请求失败执行catch
 
-                        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>    
-                <span class="token punctuation">&#125;</span>
-            <span class="token punctuation">&#125;</span>
-        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-    </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+                        &#125;)    
+                &#125;
+            &#125;
+        &#125;)
+    &lt;&#x2F;script&gt;
+&lt;&#x2F;body&gt;
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&lt;&#x2F;html&gt;</code></pre></div>
 
 <p>测试</p>
 <h1 id="element-ui"><a href="#element-ui" class="headerlink" title="element-ui"></a>element-ui</h1><p>官网： <a target="_blank" rel="noopener" href="http://element-cn.eleme.io/#/zh-CN">http://element-cn.eleme.io/#/zh-CN</a></p>
 <h1 id="nodejs"><a href="#nodejs" class="headerlink" title="nodejs"></a>nodejs</h1><p>可以模拟服务器，执行JavaScript代码。</p>
 <p>简单使用</p>
 <p>创建一个js文件</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'hello nodejs'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">console.log(&#39;hello nodejs&#39;);</code></pre></div>
 
 <p>用cmd进入js文件所在的位置，执行命令node 01.js，即可</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">E:<span class="token punctuation">\</span>VSCode<span class="token punctuation">\</span>workplace<span class="token punctuation">\</span>axiosdemo<span class="token operator">></span>node 01.js
-hello nodejs<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">E:\VSCode\workplace\axiosdemo&gt;node 01.js
+hello nodejs</code></pre></div>
 
 
 
@@ -385,121 +385,121 @@ hello nodejs<span aria-hidden="true" class="line-numbers-rows"><span></span><spa
 <h1 id="npm包管理器"><a href="#npm包管理器" class="headerlink" title="npm包管理器"></a>npm包管理器</h1><p>node package manager，类似后端的maven，maven管理jar包，npm管理js库，如jQuery等</p>
 <h2 id="使用npm项目初始化操作"><a href="#使用npm项目初始化操作" class="headerlink" title="使用npm项目初始化操作"></a>使用npm项目初始化操作</h2><p>npm init</p>
 <p>npm init -y；都默认按照</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">PS E:<span class="token punctuation">\</span>VSCode<span class="token punctuation">\</span>workplace<span class="token punctuation">\</span>npmdemo<span class="token operator">></span> <span class="token function">npm</span> init
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">PS E:\VSCode\workplace\npmdemo&gt; npm init
 This utility will walk you through creating a package.json file.
-It only covers the <span class="token function">most</span> common items, and tries to guess sensible defaults.
+It only covers the most common items, and tries to guess sensible defaults.
 
-See <span class="token variable"><span class="token variable">`</span><span class="token function">npm</span> <span class="token builtin class-name">help</span> init<span class="token variable">`</span></span> <span class="token keyword">for</span> definitive documentation on these fields
+See &#96;npm help init&#96; for definitive documentation on these fields
 and exactly what they do.
 
-Use <span class="token variable"><span class="token variable">`</span><span class="token function">npm</span> <span class="token function">install</span> <span class="token operator">&lt;</span>pkg<span class="token operator">></span><span class="token variable">`</span></span> afterwards to <span class="token function">install</span> a package and
-save it as a dependency <span class="token keyword">in</span> the package.json file.
+Use &#96;npm install &lt;pkg&gt;&#96; afterwards to install a package and
+save it as a dependency in the package.json file.
 
-Press ^C at any <span class="token function">time</span> to quit.
-package name: <span class="token punctuation">(</span>npmdemo<span class="token punctuation">)</span>
-version: <span class="token punctuation">(</span><span class="token number">1.0</span>.0<span class="token punctuation">)</span>
+Press ^C at any time to quit.
+package name: (npmdemo)
+version: (1.0.0)
 description:
-entry point: <span class="token punctuation">(</span>index.js<span class="token punctuation">)</span>
-<span class="token builtin class-name">test</span> command:
-<span class="token function">git</span> repository:
+entry point: (index.js)
+test command:
+git repository:
 keywords:
 author:
-license: <span class="token punctuation">(</span>ISC<span class="token punctuation">)</span>
-About to <span class="token function">write</span> to E:<span class="token punctuation">\</span>VSCode<span class="token punctuation">\</span>workplace<span class="token punctuation">\</span>npmdemo<span class="token punctuation">\</span>package.json:
+license: (ISC)
+About to write to E:\VSCode\workplace\npmdemo\package.json:
 
-<span class="token punctuation">&#123;</span>
-  <span class="token string">"name"</span><span class="token builtin class-name">:</span> <span class="token string">"npmdemo"</span>,
-  <span class="token string">"version"</span><span class="token builtin class-name">:</span> <span class="token string">"1.0.0"</span>,
-  <span class="token string">"description"</span><span class="token builtin class-name">:</span> <span class="token string">""</span>,
-  <span class="token string">"main"</span><span class="token builtin class-name">:</span> <span class="token string">"index.js"</span>,
-  <span class="token string">"scripts"</span><span class="token builtin class-name">:</span> <span class="token punctuation">&#123;</span>
-    <span class="token string">"test"</span><span class="token builtin class-name">:</span> <span class="token string">"echo <span class="token entity" title="\&quot;">\"</span>Error: no test specified<span class="token entity" title="\&quot;">\"</span> &amp;&amp; exit 1"</span>
-  <span class="token punctuation">&#125;</span>,
-  <span class="token string">"author"</span><span class="token builtin class-name">:</span> <span class="token string">""</span>,
-  <span class="token string">"license"</span><span class="token builtin class-name">:</span> <span class="token string">"ISC"</span>
-<span class="token punctuation">&#125;</span>
+&#123;
+  &quot;name&quot;: &quot;npmdemo&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: &#123;
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  &#125;,
+  &quot;author&quot;: &quot;&quot;,
+  &quot;license&quot;: &quot;ISC&quot;
+&#125;
 
 
-Is this OK? <span class="token punctuation">(</span>yes<span class="token punctuation">)</span> <span class="token function">yes</span>
-PS E:<span class="token punctuation">\</span>VSCode<span class="token punctuation">\</span>workplace<span class="token punctuation">\</span>npmdemo<span class="token operator">></span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+Is this OK? (yes) yes
+PS E:\VSCode\workplace\npmdemo&gt; </code></pre></div>
 
 
 
 <p>生成package.json文件，类似后端的pom.xml文件</p>
 <h2 id="npm-下载依赖"><a href="#npm-下载依赖" class="headerlink" title="npm 下载依赖"></a>npm 下载依赖</h2><p>npm install 依赖名称</p>
 <p>如下载jQuery ,</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 会下载最新版本</span>
-<span class="token function">install</span> jquery <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"># 会下载最新版本
+install jquery </code></pre></div>
 
 <p>如果想指定版本，则用</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> jquery@2.1.x<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm install jquery@2.1.x</code></pre></div>
 
 
 
 <p>下载完成之后，会出现node_modules文件夹里面会有jQuery的文件和一个package-lock.json文件，package-lock.json文件是锁定当前版本的jQuery版本。</p>
 <p>package.json文件中的dependencies是依赖的版本</p>
-<div class="code-wrapper"><pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"dependencies"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-  <span class="token property">"jquery"</span><span class="token operator">:</span> <span class="token string">"^3.6.0"</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-json" data-language="json"><code class="language-json">&quot;dependencies&quot;: &#123;
+  &quot;jquery&quot;: &quot;^3.6.0&quot;
+&#125;</code></pre></div>
 
 
 
 <h2 id="通过package-json下载依赖"><a href="#通过package-json下载依赖" class="headerlink" title="通过package.json下载依赖"></a>通过package.json下载依赖</h2><p>先把原有的node_modules文件删除，接着执行下面的命令（需要再项目根目录）</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm install</code></pre></div>
 
 
 
 <h1 id="babel转码器"><a href="#babel转码器" class="headerlink" title="babel转码器"></a>babel转码器</h1><p>将es6代码转成es5代码，目的：有些浏览器不兼容es6代码，为了提高兼容性</p>
 <p>新创建一个文件，初始化项目</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> init -y<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm init -y</code></pre></div>
 
 
 
 <p>安装babel工具</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> --global babel-cli<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm install --global babel-cli</code></pre></div>
 
 <p>查看版本号</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">babel --version<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">babel --version</code></pre></div>
 
 <p>创建es6文件夹，创建js文件</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 转码前</span>
-<span class="token comment">// 定义数据类型</span>
-<span class="token keyword">let</span> input <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span>
-<span class="token comment">// 将数组元素的每一个元素+1</span>
-input <span class="token operator">=</span> input<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">item</span> <span class="token operator">=></span> item<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 转码前
+&#x2F;&#x2F; 定义数据类型
+let input &#x3D; [1,2,3]
+&#x2F;&#x2F; 将数组元素的每一个元素+1
+input &#x3D; input.map(item &#x3D;&gt; item+1)
+console.log(input);</code></pre></div>
 
 <p>在项目根目录创建.babelrc配置文件</p>
 <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#123;
     &quot;presets&quot;:[&quot;es2015&quot;],
     &quot;plugins&quot;: []
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;</code></pre></div>
 
 <p>安装es2015转码器</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> --save-dev babel-preset-es2015<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm install --save-dev babel-preset-es2015</code></pre></div>
 
 <p><strong>根据文件转码</strong></p>
 <p>es6/01.js:源文件</p>
 <p>dist/001.js：生成的文件路径以及文件名字</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">babel es6/01.js -o dist/001.js<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">babel es6&#x2F;01.js -o dist&#x2F;001.js</code></pre></div>
 
 <p><strong>根据文件夹转换</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">babel es6 -d dist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">babel es6 -d dist</code></pre></div>
 
 
 
 <p>生成的es5文件</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token string">"use strict"</span><span class="token punctuation">;</span>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&quot;use strict&quot;;
 
-<span class="token comment">// 转码前</span>
-<span class="token comment">// 定义数据类型</span>
-<span class="token keyword">var</span> input <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token comment">// 将数组元素的每一个元素+1</span>
-input <span class="token operator">=</span> input<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">item</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-  <span class="token keyword">return</span> item <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#x2F;&#x2F; 转码前
+&#x2F;&#x2F; 定义数据类型
+var input &#x3D; [1, 2, 3];
+&#x2F;&#x2F; 将数组元素的每一个元素+1
+input &#x3D; input.map(function (item) &#123;
+  return item + 1;
+&#125;);
+console.log(input);
+</code></pre></div>
 
 
 
@@ -507,148 +507,148 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <h1 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h1><p>开发后端接口时候，开发controller service mapper，controller注入service，service注入mapper，在后端中，类与类之间的调用成为后端模块化操作</p>
 <p>前端模块化，在前端中，js与js之间调用成为前端模块化操作</p>
 <h2 id="es5实现模块化操作"><a href="#es5实现模块化操作" class="headerlink" title="es5实现模块化操作"></a>es5实现模块化操作</h2><p>创建1.js文件，提供方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 1.创能方法</span>
-<span class="token keyword">const</span> <span class="token function-variable function">sum</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span>b</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> <span class="token function">parseInt</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">parseInt</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">const</span> <span class="token function-variable function">substract</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span>b</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> <span class="token function">parseInt</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">parseInt</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 1.创能方法
+const sum &#x3D; function(a,b)&#123;
+    return parseInt(a) + parseInt(b)
+&#125;
+const substract &#x3D; function(a,b)&#123;
+    return parseInt(a) - parseInt(b)
+&#125;
 
-module<span class="token punctuation">.</span>exports <span class="token operator">=</span><span class="token punctuation">&#123;</span>
-    sum<span class="token punctuation">,</span>
+module.exports &#x3D;&#123;
+    sum,
     substract
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;</code></pre></div>
 
 <p>创建2.js文件，调用</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 调用1.js的方法</span>
-<span class="token comment">// 1.引入js文件</span>
-<span class="token keyword">const</span> m <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./1.js'</span><span class="token punctuation">)</span>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 调用1.js的方法
+&#x2F;&#x2F; 1.引入js文件
+const m &#x3D; require(&#39;.&#x2F;1.js&#39;)
 
-<span class="token comment">// 调用方法</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>m<span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>m<span class="token punctuation">.</span><span class="token function">substract</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#x2F;&#x2F; 调用方法
+console.log(m.sum(1,1));
+console.log(m.substract(3,1));</code></pre></div>
 
 <p>在终端测试</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">PS E:<span class="token punctuation">\</span>VSCode<span class="token punctuation">\</span>workplace<span class="token punctuation">\</span>moduledemo<span class="token punctuation">\</span>es5moduledemo<span class="token operator">></span> node <span class="token number">2</span>.js
-<span class="token number">2</span>
-<span class="token number">2</span>
-PS E:<span class="token punctuation">\</span>VSCode<span class="token punctuation">\</span>workplace<span class="token punctuation">\</span>moduledemo<span class="token punctuation">\</span>es5moduledemo<span class="token operator">></span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">PS E:\VSCode\workplace\moduledemo\es5moduledemo&gt; node 2.js
+2
+2
+PS E:\VSCode\workplace\moduledemo\es5moduledemo&gt; </code></pre></div>
 
 
 
 <h2 id="es6模块化"><a href="#es6模块化" class="headerlink" title="es6模块化"></a>es6模块化</h2><h3 id="第一种方法"><a href="#第一种方法" class="headerlink" title="第一种方法"></a>第一种方法</h3><p> 创建1.js文件，提供方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 定义方法</span>
-<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">getList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"getList...."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 定义方法
+export function getList()&#123;
+    console.log(&quot;getList....&quot;);
+&#125;
 
-<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"save...."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+export function save()&#123;
+    console.log(&quot;save....&quot;);
+&#125;</code></pre></div>
 
 <p>创建2.js文件，调用方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 调用1.js的方法</span>
-<span class="token keyword">import</span> <span class="token punctuation">&#123;</span> getList<span class="token punctuation">,</span>save <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">"./1"</span><span class="token punctuation">;</span>
-<span class="token function">getList</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 调用1.js的方法
+import &#123; getList,save &#125; from &quot;.&#x2F;1&quot;;
+getList()
+save()</code></pre></div>
 
 <p>由于es6不能直接在nodejs环境下运行，所以先用babel转成es5代码再进行测试</p>
 <h3 id="第二种方法"><a href="#第二种方法" class="headerlink" title="第二种方法"></a>第二种方法</h3><p>创建1.js文件，提供方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 定义方法</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span><span class="token punctuation">&#123;</span>
-    <span class="token function">getList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'getList.....'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-    <span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'save.....'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 定义方法
+export default&#123;
+    getList()&#123;
+        console.log(&#39;getList.....&#39;);
+    &#125;,
+    save()&#123;
+        console.log(&#39;save.....&#39;);
+    &#125;
 
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;</code></pre></div>
 
 <p>创建2.js文件，调用方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 调用1.js的方法</span>
-<span class="token keyword">import</span> m <span class="token keyword">from</span> <span class="token string">'./1'</span>
-m<span class="token punctuation">.</span><span class="token function">getList</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-m<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 调用1.js的方法
+import m from &#39;.&#x2F;1&#39;
+m.getList()
+m.save()</code></pre></div>
 
 <p>测试</p>
 <h1 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h1><h2 id="webpack是什么"><a href="#webpack是什么" class="headerlink" title="webpack是什么"></a>webpack是什么</h2><p>Webpack 是一个前端<strong>资源加载/打包</strong>工具。它将根据模块的依赖关系进行静态分析，然后将这些模块按照指定的规则生成对应的静态资源。</p>
 <p>从图中我们可以看出，Webpack 可以<strong>将多种静态资源</strong> js、css、less 转<strong>换成一个静态文件</strong>，<strong>减少了页面的请求</strong>。 </p>
 <p><img src="/myBlog/day04-%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%89%8D%E7%AB%AF%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E4%BA%8C/image-20211222203948729.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20211222203948729"></p>
-<h2 id="安装webpack"><a href="#安装webpack" class="headerlink" title="安装webpack"></a>安装webpack</h2><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> -g webpack webpack-cli<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h2 id="安装webpack"><a href="#安装webpack" class="headerlink" title="安装webpack"></a>安装webpack</h2><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm install -g webpack webpack-cli</code></pre></div>
 
 <p>查看版本</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">webpack -v<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">webpack -v</code></pre></div>
 
 
 
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">PS E:<span class="token punctuation">\</span>VSCode<span class="token punctuation">\</span>workplace<span class="token punctuation">\</span>webpackdemo<span class="token operator">></span> <span class="token function">npm</span> <span class="token function">install</span> -g webpack webpack-cli
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">PS E:\VSCode\workplace\webpackdemo&gt; npm install -g webpack webpack-cli
 
-added <span class="token number">3</span> packages, removed <span class="token number">4</span> packages, and changed <span class="token number">117</span> packages <span class="token keyword">in</span> 9s
+added 3 packages, removed 4 packages, and changed 117 packages in 9s
 
-<span class="token number">3</span> packages are looking <span class="token keyword">for</span> funding
-  run <span class="token variable"><span class="token variable">`</span><span class="token function">npm</span> fund<span class="token variable">`</span></span> <span class="token keyword">for</span> details
-PS E:<span class="token punctuation">\</span>VSCode<span class="token punctuation">\</span>workplace<span class="token punctuation">\</span>webpackdemo<span class="token operator">></span> webpack -v
-webpack: <span class="token number">5.65</span>.0
-webpack-cli: <span class="token number">4.9</span>.1
+3 packages are looking for funding
+  run &#96;npm fund&#96; for details
+PS E:\VSCode\workplace\webpackdemo&gt; webpack -v
+webpack: 5.65.0
+webpack-cli: 4.9.1
 webpack-dev-server not installed
-PS E:<span class="token punctuation">\</span>VSCode<span class="token punctuation">\</span>workplace<span class="token punctuation">\</span>webpackdemo<span class="token operator">></span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+PS E:\VSCode\workplace\webpackdemo&gt; </code></pre></div>
 
 
 
 <h2 id="创建src文件"><a href="#创建src文件" class="headerlink" title="创建src文件"></a>创建src文件</h2><p>src下创建common.js</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">exports<span class="token punctuation">.</span><span class="token function-variable function">info</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">str</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">exports.info &#x3D; function (str) &#123;
+    document.write(str);
+&#125;</code></pre></div>
 
 <p>src下创建utils.js</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">exports<span class="token punctuation">.</span><span class="token function-variable function">add</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">exports.add &#x3D; function (a, b) &#123;
+        return a + b;
+&#125;</code></pre></div>
 
 <p>src下创建main.js</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> common <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./common'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> utils <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./utils'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">const common &#x3D; require(&#39;.&#x2F;common&#39;);
+const utils &#x3D; require(&#39;.&#x2F;utils&#39;);
 
-common<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">'Hello world!'</span> <span class="token operator">+</span> utils<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+common.info(&#39;Hello world!&#39; + utils.add(100, 200));</code></pre></div>
 
 
 
 <h2 id="打包js"><a href="#打包js" class="headerlink" title="打包js"></a>打包js</h2><h3 id="webpack目录下创建配置文件webpack-config-js"><a href="#webpack目录下创建配置文件webpack-config-js" class="headerlink" title="webpack目录下创建配置文件webpack.config.js"></a><strong>webpack目录下创建配置文件</strong>webpack.config.js</h3><p>以下配置的意思是：读取当前项目目录下src文件夹中的main.js（入口文件）内容，分析资源依赖，把相关的js文件打包，打包后的文件放入当前目录的dist文件夹下，打包后的js文件名为bundle.js</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"path"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//Node.js内置模块</span>
-module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-    entry<span class="token operator">:</span> <span class="token string">'./src/main.js'</span><span class="token punctuation">,</span> <span class="token comment">//配置入口文件</span>
-    output<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-        path<span class="token operator">:</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'./dist'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">//输出路径，__dirname：当前文件所在路径</span>
-        filename<span class="token operator">:</span> <span class="token string">'bundle.js'</span> <span class="token comment">//输出文件</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">const path &#x3D; require(&quot;path&quot;); &#x2F;&#x2F;Node.js内置模块
+module.exports &#x3D; &#123;
+    entry: &#39;.&#x2F;src&#x2F;main.js&#39;, &#x2F;&#x2F;配置入口文件
+    output: &#123;
+        path: path.resolve(__dirname, &#39;.&#x2F;dist&#39;), &#x2F;&#x2F;输出路径，__dirname：当前文件所在路径
+        filename: &#39;bundle.js&#39; &#x2F;&#x2F;输出文件
+    &#125;
+&#125;</code></pre></div>
 
 <p>打包</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">webpack		<span class="token comment"># 有黄色警告</span>
-webpack --mode<span class="token operator">==</span>development	 <span class="token comment"># 没有警告</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">webpack		# 有黄色警告
+webpack --mode&#x3D;&#x3D;development	 # 没有警告</code></pre></div>
 
 <p>警告信息</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">PS E:<span class="token punctuation">\</span>VSCode<span class="token punctuation">\</span>workplace<span class="token punctuation">\</span>webpackdemo<span class="token operator">></span> webpack
-asset bundle.js <span class="token number">308</span> bytes <span class="token punctuation">[</span>emitted<span class="token punctuation">]</span> <span class="token punctuation">[</span>minimized<span class="token punctuation">]</span> <span class="token punctuation">(</span>name: main<span class="token punctuation">)</span>
-./src/main.js <span class="token number">124</span> bytes <span class="token punctuation">[</span>built<span class="token punctuation">]</span> <span class="token punctuation">[</span>code generated<span class="token punctuation">]</span>
-./src/common.js <span class="token number">60</span> bytes <span class="token punctuation">[</span>built<span class="token punctuation">]</span> <span class="token punctuation">[</span>code generated<span class="token punctuation">]</span>
-./src/utils.js <span class="token number">57</span> bytes <span class="token punctuation">[</span>built<span class="token punctuation">]</span> <span class="token punctuation">[</span>code generated<span class="token punctuation">]</span>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">PS E:\VSCode\workplace\webpackdemo&gt; webpack
+asset bundle.js 308 bytes [emitted] [minimized] (name: main)
+.&#x2F;src&#x2F;main.js 124 bytes [built] [code generated]
+.&#x2F;src&#x2F;common.js 60 bytes [built] [code generated]
+.&#x2F;src&#x2F;utils.js 57 bytes [built] [code generated]
 
-WARNING <span class="token keyword">in</span> configuration
-The <span class="token string">'mode'</span> option has not been set, webpack will fallback to <span class="token string">'production'</span> <span class="token keyword">for</span> this value.
-Set <span class="token string">'mode'</span> option to <span class="token string">'development'</span> or <span class="token string">'production'</span> to <span class="token builtin class-name">enable</span> defaults <span class="token keyword">for</span> each environment.
-You can also <span class="token builtin class-name">set</span> it to <span class="token string">'none'</span> to disable any default behavior. Learn more: https://webpack.js.org/configuration/mode/
+WARNING in configuration
+The &#39;mode&#39; option has not been set, webpack will fallback to &#39;production&#39; for this value.
+Set &#39;mode&#39; option to &#39;development&#39; or &#39;production&#39; to enable defaults for each environment.
+You can also set it to &#39;none&#39; to disable any default behavior. Learn more: https:&#x2F;&#x2F;webpack.js.org&#x2F;configuration&#x2F;mode&#x2F;
 
-webpack <span class="token number">5.65</span>.0 compiled with <span class="token number">1</span> warning <span class="token keyword">in</span> <span class="token number">279</span> ms
-PS E:<span class="token punctuation">\</span>VSCode<span class="token punctuation">\</span>workplace<span class="token punctuation">\</span>webpackdemo<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+webpack 5.65.0 compiled with 1 warning in 279 ms
+PS E:\VSCode\workplace\webpackdemo&gt;</code></pre></div>
 
 
 
 <p>测试</p>
 <p>在webpack目录下创建1.html，引用bundle.js，打开浏览器访问即可</p>
-<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dist/bundle.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;script src&#x3D;&quot;dist&#x2F;bundle.js&quot;&gt;&lt;&#x2F;script&gt;</code></pre></div>
 
 
 
@@ -657,56 +657,56 @@ PS E:<span class="token punctuation">\</span>VSCode<span class="token punctuatio
 
 
 <h2 id="打包css"><a href="#打包css" class="headerlink" title="打包css"></a>打包css</h2><h3 id="安装style-loader和-css-loader"><a href="#安装style-loader和-css-loader" class="headerlink" title="安装style-loader和 css-loader"></a><strong>安装style-loader和 css-loader</strong></h3><p>首先我们需要安装相关Loader插件，css-loader 是将 css 装载到 javascript；style-loader 是让 javascript 认识css</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> --save-dev style-loader css-loader <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm install --save-dev style-loader css-loader </code></pre></div>
 
 <p>创建一个style.css文件</p>
-<div class="code-wrapper"><pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">body</span><span class="token punctuation">&#123;</span>
-    <span class="token property">background-color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-css" data-language="css"><code class="language-css">body&#123;
+    background-color: red;
+&#125;</code></pre></div>
 
 <p>在main.js中引入</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> common <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./common'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> utils <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./utils'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">const common &#x3D; require(&#39;.&#x2F;common&#39;);
+const utils &#x3D; require(&#39;.&#x2F;utils&#39;);
 
-<span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./style.css'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+require(&#39;.&#x2F;style.css&#39;);
 
-common<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">'Hello world!'</span> <span class="token operator">+</span> utils<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+common.info(&#39;Hello world!&#39; + utils.add(100, 200));</code></pre></div>
 
 <p>在webpack.config.js中加入下面的代码</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"path"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//Node.js内置模块</span>
-module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-    entry<span class="token operator">:</span> <span class="token string">'./src/main.js'</span><span class="token punctuation">,</span> <span class="token comment">//配置入口文件</span>
-    output<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-        path<span class="token operator">:</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'./dist'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">//输出路径，__dirname：当前文件所在路径</span>
-        filename<span class="token operator">:</span> <span class="token string">'bundle.js'</span> <span class="token comment">//输出文件</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-    module<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-        rules<span class="token operator">:</span> <span class="token punctuation">[</span>  
-            <span class="token punctuation">&#123;</span>  
-                test<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.css$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>    <span class="token comment">//打包规则应用到以css结尾的文件上</span>
-                use<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'style-loader'</span><span class="token punctuation">,</span> <span class="token string">'css-loader'</span><span class="token punctuation">]</span>
-            <span class="token punctuation">&#125;</span>  
-        <span class="token punctuation">]</span>  
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">const path &#x3D; require(&quot;path&quot;); &#x2F;&#x2F;Node.js内置模块
+module.exports &#x3D; &#123;
+    entry: &#39;.&#x2F;src&#x2F;main.js&#39;, &#x2F;&#x2F;配置入口文件
+    output: &#123;
+        path: path.resolve(__dirname, &#39;.&#x2F;dist&#39;), &#x2F;&#x2F;输出路径，__dirname：当前文件所在路径
+        filename: &#39;bundle.js&#39; &#x2F;&#x2F;输出文件
+    &#125;,
+    module: &#123;
+        rules: [  
+            &#123;  
+                test: &#x2F;\.css$&#x2F;,    &#x2F;&#x2F;打包规则应用到以css结尾的文件上
+                use: [&#39;style-loader&#39;, &#39;css-loader&#39;]
+            &#125;  
+        ]  
+    &#125;
+&#125;</code></pre></div>
 
 <p>重新打包，最后访问1.html测试。</p>
 <h1 id="搭建项目前端页面"><a href="#搭建项目前端页面" class="headerlink" title="搭建项目前端页面"></a>搭建项目前端页面</h1><h2 id="vue-admin-template"><a href="#vue-admin-template" class="headerlink" title="vue-admin-template"></a>vue-admin-template</h2><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>vueAdmin-template是基于vue-element-admin的一套后台管理系统基础模板（最少精简版），可作为模板进行二次开发。</p>
 <p><strong>GitHub地址：</strong><a target="_blank" rel="noopener" href="https://github.com/PanJiaChen/vue-admin-template">https://github.com/PanJiaChen/vue-admin-template</a></p>
 <p><strong>建议：</strong>你可以在 <code>vue-admin-template</code> 的基础上进行二次开发，把 <code>vue-element-admin</code>当做工具箱，想要什么功能或者组件就去 <code>vue-element-admin</code> 那里复制过来。</p>
 <p>在根目录下执行npm install命令下载依赖，如果下载失败（报一个ERESOLVE unable to resolve dependency tree），可以使用cnpm install下载。如果下载失败，按照提示删除node_modules文件夹，再次下载。</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Install fail<span class="token operator">!</span> RunScriptError: post <span class="token function">install</span> error, please remove node_modules before retry<span class="token operator">!</span>ru<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Install fail! RunScriptError: post install error, please remove node_modules before retry!ru</code></pre></div>
 
 
 
 <p>如果报错node-sass不支持当前版本，可以重新卸载，再安装</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> uninstall --save node-sass
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm uninstall --save node-sass
 
-cnpm <span class="token function">install</span> node-sass -D<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+cnpm install node-sass -D</code></pre></div>
 
 <p>如果上面还不行就更换nodejs的版本，降低版本，可能是本地的nodejs版本过高导致的，我的由16.13.0降到14.18.2就行了</p>
 <p>下载成功后，利用命令启动</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> run dev<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm run dev</code></pre></div>
 
 <p><img src="/myBlog/day04-%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%89%8D%E7%AB%AF%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E4%BA%8C/image-20211222232247732.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20211222232247732"></p>
 <p>看到这个页面说明成功</p>
@@ -716,7 +716,7 @@ cnpm <span class="token function">install</span> node-sass -D<span aria-hidden="
 ├── node_modules &#x2F;&#x2F; 项目依赖模块
 ├── src &#x2F;&#x2F;项目源代码
 ├── static &#x2F;&#x2F; 静态资源
-└── package.jspon &#x2F;&#x2F; 项目信息和依赖配置<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+└── package.jspon &#x2F;&#x2F; 项目信息和依赖配置</code></pre></div>
 
 
 
@@ -732,7 +732,7 @@ cnpm <span class="token function">install</span> node-sass -D<span aria-hidden="
 ├── views &#x2F;&#x2F; 各种layout
 ├── App.vue &#x2F;&#x2F;***项目顶层组件*** 
 ├── main.js &#x2F;&#x2F;***项目入口文件***
-└── permission.js &#x2F;&#x2F;认证入口<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+└── permission.js &#x2F;&#x2F;认证入口</code></pre></div>
 
 
 

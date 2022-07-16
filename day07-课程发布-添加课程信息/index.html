@@ -16,12 +16,12 @@
   <meta name="author" content="Ten">
   <meta name="keywords" content="">
   
-    <meta name="description" content="day07-课程发布-添加课程信息课程管理-添加课程信息接口课程相关表的关系  课程发布流程  执行代码生成器，将这四个表”edu_course”,”edu_course_description”,”edu_chapter”,”edu_video”的相关代码生成 编写CourseInfoVo用于接收传进来的信息 @ApiModel(value &#x3D; &quot;课程基本信息&quot;, description &#x3D; &quot;">
+    <meta name="description" content="day07-课程发布-添加课程信息课程管理-添加课程信息接口课程相关表的关系  课程发布流程  执行代码生成器，将这四个表”edu_course”,”edu_course_description”,”edu_chapter”,”edu_video”的相关代码生成 编写CourseInfoVo用于接收传进来的信息 @ApiModel(value &#x3D; &quot;课程基本信息&quot;,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="day07-课程发布-添加课程信息">
 <meta property="og:url" content="https://no-ten.github.io/day07-%E8%AF%BE%E7%A8%8B%E5%8F%91%E5%B8%83-%E6%B7%BB%E5%8A%A0%E8%AF%BE%E7%A8%8B%E4%BF%A1%E6%81%AF/index.html">
 <meta property="og:site_name" content="TBlog">
-<meta property="og:description" content="day07-课程发布-添加课程信息课程管理-添加课程信息接口课程相关表的关系  课程发布流程  执行代码生成器，将这四个表”edu_course”,”edu_course_description”,”edu_chapter”,”edu_video”的相关代码生成 编写CourseInfoVo用于接收传进来的信息 @ApiModel(value &#x3D; &quot;课程基本信息&quot;, description &#x3D; &quot;">
+<meta property="og:description" content="day07-课程发布-添加课程信息课程管理-添加课程信息接口课程相关表的关系  课程发布流程  执行代码生成器，将这四个表”edu_course”,”edu_course_description”,”edu_chapter”,”edu_video”的相关代码生成 编写CourseInfoVo用于接收传进来的信息 @ApiModel(value &#x3D; &quot;课程基本信息&quot;,">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://no-ten.github.io/myBlog/day07-%E8%AF%BE%E7%A8%8B%E5%8F%91%E5%B8%83-%E6%B7%BB%E5%8A%A0%E8%AF%BE%E7%A8%8B%E4%BF%A1%E6%81%AF/05-%E8%AF%BE%E7%A8%8B%E7%9B%B8%E5%85%B3%E8%A1%A8%E5%85%B3%E7%B3%BB.png">
 <meta property="og:image" content="https://no-ten.github.io/myBlog/day07-%E8%AF%BE%E7%A8%8B%E5%8F%91%E5%B8%83-%E6%B7%BB%E5%8A%A0%E8%AF%BE%E7%A8%8B%E4%BF%A1%E6%81%AF/04-%E8%AF%BE%E7%A8%8B%E5%8F%91%E5%B8%83%E6%B5%81%E7%A8%8B%E7%9A%84%E8%AF%B4%E6%98%8E.png">
@@ -289,153 +289,153 @@
 <p><img src="/myBlog/day07-%E8%AF%BE%E7%A8%8B%E5%8F%91%E5%B8%83-%E6%B7%BB%E5%8A%A0%E8%AF%BE%E7%A8%8B%E4%BF%A1%E6%81%AF/04-%E8%AF%BE%E7%A8%8B%E5%8F%91%E5%B8%83%E6%B5%81%E7%A8%8B%E7%9A%84%E8%AF%B4%E6%98%8E.png" srcset="/myBlog/img/loading.gif" lazyload alt="04-课程发布流程的说明"></p>
 <p>执行代码生成器，将这四个表”edu_course”,”edu_course_description”,”edu_chapter”,”edu_video”的相关代码生成</p>
 <h2 id="编写CourseInfoVo"><a href="#编写CourseInfoVo" class="headerlink" title="编写CourseInfoVo"></a>编写CourseInfoVo</h2><p>用于接收传进来的信息</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@ApiModel</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"课程基本信息"</span><span class="token punctuation">,</span> description <span class="token operator">=</span> <span class="token string">"编辑课程基本信息的表单对象"</span><span class="token punctuation">)</span>
-<span class="token annotation punctuation">@Data</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CourseInfoVo</span> <span class="token punctuation">&#123;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@ApiModel(value &#x3D; &quot;课程基本信息&quot;, description &#x3D; &quot;编辑课程基本信息的表单对象&quot;)
+@Data
+public class CourseInfoVo &#123;
 
-    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"课程ID"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token class-name">String</span> id<span class="token punctuation">;</span>
+    @ApiModelProperty(value &#x3D; &quot;课程ID&quot;)
+    private String id;
 
-    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"课程讲师ID"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token class-name">String</span> teacherId<span class="token punctuation">;</span>
+    @ApiModelProperty(value &#x3D; &quot;课程讲师ID&quot;)
+    private String teacherId;
 
-    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"课程专业ID"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token class-name">String</span> subjectId<span class="token punctuation">;</span>
+    @ApiModelProperty(value &#x3D; &quot;课程专业ID&quot;)
+    private String subjectId;
 
-    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"课程专业父级ID"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token class-name">String</span> subjectParentId<span class="token punctuation">;</span>
+    @ApiModelProperty(value &#x3D; &quot;课程专业父级ID&quot;)
+    private String subjectParentId;
 
-    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"课程标题"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token class-name">String</span> title<span class="token punctuation">;</span>
+    @ApiModelProperty(value &#x3D; &quot;课程标题&quot;)
+    private String title;
 
-    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"课程销售价格，设置为0则可免费观看"</span><span class="token punctuation">)</span>
-    <span class="token comment">// 0.01</span>
-    <span class="token keyword">private</span> <span class="token class-name">BigDecimal</span> price<span class="token punctuation">;</span>
+    @ApiModelProperty(value &#x3D; &quot;课程销售价格，设置为0则可免费观看&quot;)
+    &#x2F;&#x2F; 0.01
+    private BigDecimal price;
 
-    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"总课时"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token class-name">Integer</span> lessonNum<span class="token punctuation">;</span>
+    @ApiModelProperty(value &#x3D; &quot;总课时&quot;)
+    private Integer lessonNum;
 
-    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"课程封面图片路径"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token class-name">String</span> cover<span class="token punctuation">;</span>
+    @ApiModelProperty(value &#x3D; &quot;课程封面图片路径&quot;)
+    private String cover;
 
-    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"课程简介"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token class-name">String</span> description<span class="token punctuation">;</span>
+    @ApiModelProperty(value &#x3D; &quot;课程简介&quot;)
+    private String description;
 
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;</code></pre></div>
 
-<h2 id="编写EduCourseController"><a href="#编写EduCourseController" class="headerlink" title="编写EduCourseController"></a>编写EduCourseController</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Api</span><span class="token punctuation">(</span>description<span class="token operator">=</span><span class="token string">"课程管理"</span><span class="token punctuation">)</span>
-<span class="token annotation punctuation">@RestController</span>
-<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/eduservice/course"</span><span class="token punctuation">)</span>
-<span class="token annotation punctuation">@CrossOrigin</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">EduCourseController</span> <span class="token punctuation">&#123;</span>
+<h2 id="编写EduCourseController"><a href="#编写EduCourseController" class="headerlink" title="编写EduCourseController"></a>编写EduCourseController</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Api(description&#x3D;&quot;课程管理&quot;)
+@RestController
+@RequestMapping(&quot;&#x2F;eduservice&#x2F;course&quot;)
+@CrossOrigin
+public class EduCourseController &#123;
 
-    <span class="token annotation punctuation">@Autowired</span>
-    <span class="token keyword">private</span> <span class="token class-name">EduCourseService</span> eduCourseService<span class="token punctuation">;</span>
+    @Autowired
+    private EduCourseService eduCourseService;
 
-    <span class="token comment">// 添加课程信息</span>
-    <span class="token annotation punctuation">@ApiOperation</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"新增课程"</span><span class="token punctuation">)</span>
-    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"addCourseInfo"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">addCourseInfo</span><span class="token punctuation">(</span>
-            <span class="token annotation punctuation">@ApiParam</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"CourseInfoForm"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">"课程基本信息"</span><span class="token punctuation">,</span> required <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
-            <span class="token annotation punctuation">@RequestBody</span> <span class="token class-name">CourseInfoVo</span> courseInfoVo<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        eduCourseService<span class="token punctuation">.</span><span class="token function">saveCourseInfo</span><span class="token punctuation">(</span>courseInfoVo<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+    &#x2F;&#x2F; 添加课程信息
+    @ApiOperation(value &#x3D; &quot;新增课程&quot;)
+    @PostMapping(&quot;addCourseInfo&quot;)
+    public R addCourseInfo(
+            @ApiParam(name &#x3D; &quot;CourseInfoForm&quot;, value &#x3D; &quot;课程基本信息&quot;, required &#x3D; true)
+            @RequestBody CourseInfoVo courseInfoVo)&#123;
+        eduCourseService.saveCourseInfo(courseInfoVo);
+        return R.ok();
+    &#125;
 
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;</code></pre></div>
 
-<h2 id="EduCourseService接口"><a href="#EduCourseService接口" class="headerlink" title="EduCourseService接口"></a>EduCourseService接口</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">EduCourseService</span> <span class="token keyword">extends</span> <span class="token class-name">IService</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduCourse</span><span class="token punctuation">></span></span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 添加课程信息</span>
-    <span class="token keyword">void</span> <span class="token function">saveCourseInfo</span><span class="token punctuation">(</span><span class="token class-name">CourseInfoVo</span> courseInfoVo<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="EduCourseService接口"><a href="#EduCourseService接口" class="headerlink" title="EduCourseService接口"></a>EduCourseService接口</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">public interface EduCourseService extends IService&lt;EduCourse&gt; &#123;
+    &#x2F;&#x2F; 添加课程信息
+    void saveCourseInfo(CourseInfoVo courseInfoVo);
+&#125;</code></pre></div>
 
-<h2 id="EduCourseServiceImpl实现类"><a href="#EduCourseServiceImpl实现类" class="headerlink" title="EduCourseServiceImpl实现类"></a>EduCourseServiceImpl实现类</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">EduCourseServiceImpl</span> <span class="token keyword">extends</span> <span class="token class-name">ServiceImpl</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduCourseMapper</span><span class="token punctuation">,</span> <span class="token class-name">EduCourse</span><span class="token punctuation">></span></span> <span class="token keyword">implements</span> <span class="token class-name">EduCourseService</span> <span class="token punctuation">&#123;</span>
+<h2 id="EduCourseServiceImpl实现类"><a href="#EduCourseServiceImpl实现类" class="headerlink" title="EduCourseServiceImpl实现类"></a>EduCourseServiceImpl实现类</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Service
+public class EduCourseServiceImpl extends ServiceImpl&lt;EduCourseMapper, EduCourse&gt; implements EduCourseService &#123;
 
-    <span class="token comment">// 为了添加课程描述信息到数据库</span>
-    <span class="token annotation punctuation">@Autowired</span>
-    <span class="token keyword">private</span> <span class="token class-name">EduCourseDescriptionService</span> eduCourseDescriptionService<span class="token punctuation">;</span>
+    &#x2F;&#x2F; 为了添加课程描述信息到数据库
+    @Autowired
+    private EduCourseDescriptionService eduCourseDescriptionService;
 
-    <span class="token comment">// 添加课程信息</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">saveCourseInfo</span><span class="token punctuation">(</span><span class="token class-name">CourseInfoVo</span> courseInfoVo<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token comment">// 添加课程基本信息</span>
-        <span class="token comment">// 由于添加到数据库需要的是EduCourse，所以先创建一个EduCourse对象</span>
-        <span class="token class-name">EduCourse</span> eduCourse <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">EduCourse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">// 将传进来的vo对象赋值给新建的EduCourse对象</span>
-        <span class="token class-name">BeanUtils</span><span class="token punctuation">.</span><span class="token function">copyProperties</span><span class="token punctuation">(</span>courseInfoVo<span class="token punctuation">,</span>eduCourse<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">// 保存到数据库</span>
-        <span class="token keyword">int</span> insert <span class="token operator">=</span> baseMapper<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>eduCourse<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    &#x2F;&#x2F; 添加课程信息
+    @Override
+    public void saveCourseInfo(CourseInfoVo courseInfoVo) &#123;
+        &#x2F;&#x2F; 添加课程基本信息
+        &#x2F;&#x2F; 由于添加到数据库需要的是EduCourse，所以先创建一个EduCourse对象
+        EduCourse eduCourse &#x3D; new EduCourse();
+        &#x2F;&#x2F; 将传进来的vo对象赋值给新建的EduCourse对象
+        BeanUtils.copyProperties(courseInfoVo,eduCourse);
+        &#x2F;&#x2F; 保存到数据库
+        int insert &#x3D; baseMapper.insert(eduCourse);
 
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>insert <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">GuliException</span><span class="token punctuation">(</span><span class="token number">20001</span><span class="token punctuation">,</span><span class="token string">"课程信息保存失败"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
+        if (insert &#x3D;&#x3D; 0)&#123;
+            throw new GuliException(20001,&quot;课程信息保存失败&quot;);
+        &#125;
 
-        <span class="token comment">// 获取课程信息的id</span>
-        <span class="token class-name">String</span> cid <span class="token operator">=</span> eduCourse<span class="token punctuation">.</span><span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        &#x2F;&#x2F; 获取课程信息的id
+        String cid &#x3D; eduCourse.getId();
 
-        <span class="token comment">// 添加课程描述信息</span>
-        <span class="token class-name">EduCourseDescription</span> eduCourseDescription <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">EduCourseDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        eduCourseDescription<span class="token punctuation">.</span><span class="token function">setDescription</span><span class="token punctuation">(</span>courseInfoVo<span class="token punctuation">.</span><span class="token function">getDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        eduCourseDescription<span class="token punctuation">.</span><span class="token function">setId</span><span class="token punctuation">(</span>cid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        &#x2F;&#x2F; 添加课程描述信息
+        EduCourseDescription eduCourseDescription &#x3D; new EduCourseDescription();
+        eduCourseDescription.setDescription(courseInfoVo.getDescription());
+        eduCourseDescription.setId(cid);
 
-        eduCourseDescriptionService<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>eduCourseDescription<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        eduCourseDescriptionService.save(eduCourseDescription);
 
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    &#125;
+&#125;</code></pre></div>
 
-<h2 id="修改EduCourseDescription的主键生成策略"><a href="#修改EduCourseDescription的主键生成策略" class="headerlink" title="修改EduCourseDescription的主键生成策略"></a>修改EduCourseDescription的主键生成策略</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"创建时间"</span><span class="token punctuation">)</span>
-<span class="token annotation punctuation">@TableField</span><span class="token punctuation">(</span>fill <span class="token operator">=</span> <span class="token class-name">FieldFill</span><span class="token punctuation">.</span>INSERT<span class="token punctuation">)</span>
-<span class="token keyword">private</span> <span class="token class-name">Date</span> gmtCreate<span class="token punctuation">;</span>
+<h2 id="修改EduCourseDescription的主键生成策略"><a href="#修改EduCourseDescription的主键生成策略" class="headerlink" title="修改EduCourseDescription的主键生成策略"></a>修改EduCourseDescription的主键生成策略</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@ApiModelProperty(value &#x3D; &quot;创建时间&quot;)
+@TableField(fill &#x3D; FieldFill.INSERT)
+private Date gmtCreate;
 
-<span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"更新时间"</span><span class="token punctuation">)</span>
-<span class="token annotation punctuation">@TableField</span><span class="token punctuation">(</span>fill <span class="token operator">=</span> <span class="token class-name">FieldFill</span><span class="token punctuation">.</span>INSERT_UPDATE<span class="token punctuation">)</span>
-<span class="token keyword">private</span> <span class="token class-name">Date</span> gmtModified<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+@ApiModelProperty(value &#x3D; &quot;更新时间&quot;)
+@TableField(fill &#x3D; FieldFill.INSERT_UPDATE)
+private Date gmtModified;</code></pre></div>
 
 
 
-<h1 id="课程管理-添加课程信息前端"><a href="#课程管理-添加课程信息前端" class="headerlink" title="课程管理-添加课程信息前端"></a>课程管理-添加课程信息前端</h1><h2 id="添加路由"><a href="#添加路由" class="headerlink" title="添加路由"></a>添加路由</h2><div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token punctuation">&#123;</span>
-    path<span class="token operator">:</span> <span class="token string">'/course'</span><span class="token punctuation">,</span>
-    component<span class="token operator">:</span> Layout<span class="token punctuation">,</span>
-    redirect<span class="token operator">:</span> <span class="token string">'/course/list'</span><span class="token punctuation">,</span>
-    name<span class="token operator">:</span> <span class="token string">'Course'</span><span class="token punctuation">,</span>
-    meta<span class="token operator">:</span> <span class="token punctuation">&#123;</span> title<span class="token operator">:</span> <span class="token string">'课程管理'</span><span class="token punctuation">,</span> icon<span class="token operator">:</span> <span class="token string">'form'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-    children<span class="token operator">:</span> <span class="token punctuation">[</span>
-      <span class="token punctuation">&#123;</span>
-        path<span class="token operator">:</span> <span class="token string">'list'</span><span class="token punctuation">,</span>
-        name<span class="token operator">:</span> <span class="token string">'EduCourseList'</span><span class="token punctuation">,</span>
-        <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'@/views/edu/course/list'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-        meta<span class="token operator">:</span> <span class="token punctuation">&#123;</span> title<span class="token operator">:</span> <span class="token string">'课程列表'</span> <span class="token punctuation">&#125;</span>
-      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-      <span class="token punctuation">&#123;</span>
-        path<span class="token operator">:</span> <span class="token string">'info'</span><span class="token punctuation">,</span>
-        name<span class="token operator">:</span> <span class="token string">'EduCourseInfo'</span><span class="token punctuation">,</span>
-        <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'@/views/edu/course/info'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-        meta<span class="token operator">:</span> <span class="token punctuation">&#123;</span> title<span class="token operator">:</span> <span class="token string">'发布课程'</span> <span class="token punctuation">&#125;</span>
-      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-      <span class="token punctuation">&#123;</span>
-        path<span class="token operator">:</span> <span class="token string">'info/:id'</span><span class="token punctuation">,</span>
-        name<span class="token operator">:</span> <span class="token string">'EduCourseInfoEdit'</span><span class="token punctuation">,</span>
-        <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'@/views/edu/course/info'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-        meta<span class="token operator">:</span> <span class="token punctuation">&#123;</span> title<span class="token operator">:</span> <span class="token string">'编辑课程基本信息'</span><span class="token punctuation">,</span> noCache<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-        hidden<span class="token operator">:</span> <span class="token boolean">true</span>
-      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-      <span class="token punctuation">&#123;</span>
-        path<span class="token operator">:</span> <span class="token string">'chapter/:id'</span><span class="token punctuation">,</span>
-        name<span class="token operator">:</span> <span class="token string">'EduCourseChapterEdit'</span><span class="token punctuation">,</span>
-        <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'@/views/edu/course/chapter'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-        meta<span class="token operator">:</span> <span class="token punctuation">&#123;</span> title<span class="token operator">:</span> <span class="token string">'编辑课程大纲'</span><span class="token punctuation">,</span> noCache<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-        hidden<span class="token operator">:</span> <span class="token boolean">true</span>
-      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-      <span class="token punctuation">&#123;</span>
-        path<span class="token operator">:</span> <span class="token string">'publish/:id'</span><span class="token punctuation">,</span>
-        name<span class="token operator">:</span> <span class="token string">'EduCoursePublishEdit'</span><span class="token punctuation">,</span>
-        <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'@/views/edu/course/publish'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-        meta<span class="token operator">:</span> <span class="token punctuation">&#123;</span> title<span class="token operator">:</span> <span class="token string">'发布课程'</span><span class="token punctuation">,</span> noCache<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-        hidden<span class="token operator">:</span> <span class="token boolean">true</span>
-      <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">]</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h1 id="课程管理-添加课程信息前端"><a href="#课程管理-添加课程信息前端" class="headerlink" title="课程管理-添加课程信息前端"></a>课程管理-添加课程信息前端</h1><h2 id="添加路由"><a href="#添加路由" class="headerlink" title="添加路由"></a>添加路由</h2><div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#123;
+    path: &#39;&#x2F;course&#39;,
+    component: Layout,
+    redirect: &#39;&#x2F;course&#x2F;list&#39;,
+    name: &#39;Course&#39;,
+    meta: &#123; title: &#39;课程管理&#39;, icon: &#39;form&#39; &#125;,
+    children: [
+      &#123;
+        path: &#39;list&#39;,
+        name: &#39;EduCourseList&#39;,
+        component: () &#x3D;&gt; import(&#39;@&#x2F;views&#x2F;edu&#x2F;course&#x2F;list&#39;),
+        meta: &#123; title: &#39;课程列表&#39; &#125;
+      &#125;,
+      &#123;
+        path: &#39;info&#39;,
+        name: &#39;EduCourseInfo&#39;,
+        component: () &#x3D;&gt; import(&#39;@&#x2F;views&#x2F;edu&#x2F;course&#x2F;info&#39;),
+        meta: &#123; title: &#39;发布课程&#39; &#125;
+      &#125;,
+      &#123;
+        path: &#39;info&#x2F;:id&#39;,
+        name: &#39;EduCourseInfoEdit&#39;,
+        component: () &#x3D;&gt; import(&#39;@&#x2F;views&#x2F;edu&#x2F;course&#x2F;info&#39;),
+        meta: &#123; title: &#39;编辑课程基本信息&#39;, noCache: true &#125;,
+        hidden: true
+      &#125;,
+      &#123;
+        path: &#39;chapter&#x2F;:id&#39;,
+        name: &#39;EduCourseChapterEdit&#39;,
+        component: () &#x3D;&gt; import(&#39;@&#x2F;views&#x2F;edu&#x2F;course&#x2F;chapter&#39;),
+        meta: &#123; title: &#39;编辑课程大纲&#39;, noCache: true &#125;,
+        hidden: true
+      &#125;,
+      &#123;
+        path: &#39;publish&#x2F;:id&#39;,
+        name: &#39;EduCoursePublishEdit&#39;,
+        component: () &#x3D;&gt; import(&#39;@&#x2F;views&#x2F;edu&#x2F;course&#x2F;publish&#39;),
+        meta: &#123; title: &#39;发布课程&#39;, noCache: true &#125;,
+        hidden: true
+      &#125;
+    ]
+  &#125;,</code></pre></div>
 
 <h2 id="添加vue组件"><a href="#添加vue组件" class="headerlink" title="添加vue组件"></a>添加vue组件</h2><p>chapter.vue,info,vue,list.vue,publish.vue</p>
 <h2 id="课程信息页面"><a href="#课程信息页面" class="headerlink" title="课程信息页面"></a>课程信息页面</h2><p>info.vue</p>
@@ -470,7 +470,7 @@ export default &#123;
         &#125;
     &#125;
 &#125;
-&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&lt;&#x2F;script&gt;</code></pre></div>
 
 <h2 id="课程大纲页面"><a href="#课程大纲页面" class="headerlink" title="课程大纲页面"></a>课程大纲页面</h2><p>chapter.vue</p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
@@ -509,7 +509,7 @@ export default &#123;
      &#125;
    &#125;
  &#125;
- &lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+ &lt;&#x2F;script&gt;</code></pre></div>
 
 <h2 id="课程发布页面"><a href="#课程发布页面" class="headerlink" title="课程发布页面"></a>课程发布页面</h2><p>publish.vue</p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
@@ -546,7 +546,7 @@ export default &#123;
      &#125;
    &#125;
  &#125;
- &lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+ &lt;&#x2F;script&gt;</code></pre></div>
 
 
 
@@ -561,19 +561,19 @@ export default &#123;
             :label&#x3D;&quot;teacher.name&quot;
             :value&#x3D;&quot;teacher.id&quot;&#x2F;&gt;
         &lt;&#x2F;el-select&gt;
-        &lt;&#x2F;el-form-item&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+        &lt;&#x2F;el-form-item&gt;</code></pre></div>
 
 <h3 id="定义api"><a href="#定义api" class="headerlink" title="定义api"></a>定义api</h3><p>vue-admin-template-master\src\api\edu\course.js</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 查询所有讲师，下拉列表</span>
-<span class="token function">getListTeacher</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-        url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/eduservice/teacher/findAll</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
-        method<span class="token operator">:</span> <span class="token string">'get'</span>
-      <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 查询所有讲师，下拉列表
+getListTeacher()&#123;
+    return request(&#123;
+        url: &#96;&#x2F;eduservice&#x2F;teacher&#x2F;findAll&#96;,
+        method: &#39;get&#39;
+      &#125;)
+&#125;</code></pre></div>
 
 <h3 id="组件脚本"><a href="#组件脚本" class="headerlink" title="组件脚本"></a>组件脚本</h3><p>定义data</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">teacherList: [] &#x2F;&#x2F; 讲师列表<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">teacherList: [] &#x2F;&#x2F; 讲师列表</code></pre></div>
 
 <p>表单初始化时获取讲师列表</p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">created()&#123;
@@ -586,14 +586,14 @@ methods:&#123;
         .then(response &#x3D;&gt;&#123;
             this.teacherList  &#x3D; response.data.items
         &#125;)
-    &#125;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    &#125;,</code></pre></div>
 
 
 
 <h2 id="显示课程分类-多级联动"><a href="#显示课程分类-多级联动" class="headerlink" title="显示课程分类(多级联动)"></a>显示课程分类(多级联动)</h2><p><img src="/myBlog/day07-%E8%AF%BE%E7%A8%8B%E5%8F%91%E5%B8%83-%E6%B7%BB%E5%8A%A0%E8%AF%BE%E7%A8%8B%E4%BF%A1%E6%81%AF/image-20211225171651508.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20211225171651508"></p>
 <h3 id="获取一级分类"><a href="#获取一级分类" class="headerlink" title="获取一级分类"></a>获取一级分类</h3><h4 id="组件数据定义"><a href="#组件数据定义" class="headerlink" title="组件数据定义"></a>组件数据定义</h4><p>定义在data中</p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">subjectOneList:[],  &#x2F;&#x2F; 一级分类
-subjectTwoList:[]   &#x2F;&#x2F; 二级分类<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+subjectTwoList:[]   &#x2F;&#x2F; 二级分类</code></pre></div>
 
 <h4 id="组件模板-1"><a href="#组件模板-1" class="headerlink" title="组件模板"></a>组件模板</h4><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!-- 所属分类：级联下拉列表 --&gt;
          &lt;!-- 一级分类 --&gt;
@@ -607,10 +607,10 @@ subjectTwoList:[]   &#x2F;&#x2F; 二级分类<span aria-hidden="true" class="lin
              :key&#x3D;&quot;subject.id&quot;
              :label&#x3D;&quot;subject.title&quot;
              :value&#x3D;&quot;subject.id&quot;&#x2F;&gt;
-         &lt;&#x2F;el-select&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+         &lt;&#x2F;el-select&gt;</code></pre></div>
 
 <h4 id="组件脚本-1"><a href="#组件脚本-1" class="headerlink" title="组件脚本"></a>组件脚本</h4><p>表单初始化时获取一级分类嵌套列表，引入subject api</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">import subject from &#39;@&#x2F;api&#x2F;edu&#x2F;subject&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">import subject from &#39;@&#x2F;api&#x2F;edu&#x2F;subject&#39;</code></pre></div>
 
 <p>定义方法</p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">created()&#123;
@@ -626,7 +626,7 @@ methods:&#123;
             this.subjectOneList &#x3D; response.data.list
         &#125;)
     &#125;,
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+</code></pre></div>
 
 <h3 id="级联显示二级分类"><a href="#级联显示二级分类" class="headerlink" title="级联显示二级分类"></a>级联显示二级分类</h3><h4 id="组件模板-2"><a href="#组件模板-2" class="headerlink" title="组件模板"></a>组件模板</h4><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!-- 二级分类 --&gt;
          &lt;el-select v-model&#x3D;&quot;courseInfo.subjectId&quot; placeholder&#x3D;&quot;二级分类&quot;&gt;
@@ -635,10 +635,10 @@ methods:&#123;
              :key&#x3D;&quot;subject.id&quot;
              :label&#x3D;&quot;subject.title&quot;
              :value&#x3D;&quot;subject.id&quot;&#x2F;&gt;
-         &lt;&#x2F;el-select&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+         &lt;&#x2F;el-select&gt;</code></pre></div>
 
 <h4 id="注册change事件"><a href="#注册change事件" class="headerlink" title="注册change事件"></a>注册change事件</h4><p>在一级分类的<el-select>组件中注册change事件</el-select></p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;el-select @change&#x3D;&quot;subjectLevelOneChanged&quot; ......<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;el-select @change&#x3D;&quot;subjectLevelOneChanged&quot; ......</code></pre></div>
 
 <h4 id="定义change事件方法"><a href="#定义change事件方法" class="headerlink" title="定义change事件方法"></a>定义change事件方法</h4><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&#x2F;&#x2F; 显示二级分类，当选择一级分类时，显示二级分类
       subjectLevelOneChanged(value)&#123;
@@ -654,7 +654,7 @@ methods:&#123;
                   this.courseInfo.subjectId &#x3D; &#39;&#39;
               &#125;
           &#125;
-      &#125;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+      &#125;,</code></pre></div>
 
 <h2 id="封面上传"><a href="#封面上传" class="headerlink" title="封面上传"></a>封面上传</h2><h3 id="组件模板-3"><a href="#组件模板-3" class="headerlink" title="组件模板"></a>组件模板</h3><p>在info.vue中添加上传组件模板</p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!-- 课程封面--&gt;
@@ -667,7 +667,7 @@ methods:&#123;
           class&#x3D;&quot;avatar-uploader&quot;&gt;
           &lt;img :src&#x3D;&quot;courseInfo.cover&quot;&gt;
       &lt;&#x2F;el-upload&gt;
-      &lt;&#x2F;el-form-item&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+      &lt;&#x2F;el-form-item&gt;</code></pre></div>
 
 <h3 id="结果回调"><a href="#结果回调" class="headerlink" title="结果回调"></a>结果回调</h3><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">methods:&#123;
         &#x2F;&#x2F; 上传成功
@@ -687,7 +687,7 @@ methods:&#123;
                 this.$message.error(&#39;上传头像图片大小不能超过 2MB!&#39;)
             &#125;
             return isJPG &amp;&amp; isLt2M
-        &#125;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+        &#125;,</code></pre></div>
 
 
 
@@ -695,16 +695,16 @@ methods:&#123;
 <h3 id="复制脚本库"><a href="#复制脚本库" class="headerlink" title="复制脚本库"></a>复制脚本库</h3><p>将脚本库复制到项目的static目录下（在vue-element-admin-master的static路径下）</p>
 <h3 id="配置html变量"><a href="#配置html变量" class="headerlink" title="配置html变量"></a>配置html变量</h3><p>在 guli-admin/build/webpack.dev.conf.js 中添加配置</p>
 <p>使在html页面中可是使用这里定义的BASE_URL变量</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">new</span> <span class="token class-name">HtmlWebpackPlugin</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-    <span class="token operator">...</span><span class="token operator">...</span>
-    templateParameters<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-        <span class="token constant">BASE_URL</span><span class="token operator">:</span> config<span class="token punctuation">.</span>dev<span class="token punctuation">.</span>assetsPublicPath <span class="token operator">+</span> config<span class="token punctuation">.</span>dev<span class="token punctuation">.</span>assetsSubDirectory
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">new HtmlWebpackPlugin(&#123;
+    ......
+    templateParameters: &#123;
+        BASE_URL: config.dev.assetsPublicPath + config.dev.assetsSubDirectory
+    &#125;
+&#125;)</code></pre></div>
 
 <h3 id="引入js脚本"><a href="#引入js脚本" class="headerlink" title="引入js脚本"></a>引入js脚本</h3><p>在guli-admin/index.html 中引入js脚本</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token operator">&lt;</span><span class="token operator">%=</span> <span class="token constant">BASE_URL</span> <span class="token operator">%</span><span class="token operator">></span><span class="token operator">/</span>tinymce4<span class="token punctuation">.</span><span class="token number">7.5</span><span class="token operator">/</span>tinymce<span class="token punctuation">.</span>min<span class="token punctuation">.</span>js<span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
-<span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token operator">&lt;</span><span class="token operator">%=</span> <span class="token constant">BASE_URL</span> <span class="token operator">%</span><span class="token operator">></span><span class="token operator">/</span>tinymce4<span class="token punctuation">.</span><span class="token number">7.5</span><span class="token operator">/</span>langs<span class="token operator">/</span>zh_CN<span class="token punctuation">.</span>js<span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&lt;script src&#x3D;&lt;%&#x3D; BASE_URL %&gt;&#x2F;tinymce4.7.5&#x2F;tinymce.min.js&gt;&lt;&#x2F;script&gt;
+&lt;script src&#x3D;&lt;%&#x3D; BASE_URL %&gt;&#x2F;tinymce4.7.5&#x2F;langs&#x2F;zh_CN.js&gt;&lt;&#x2F;script&gt;</code></pre></div>
 
 <h2 id="组件引入"><a href="#组件引入" class="headerlink" title="组件引入"></a>组件引入</h2><p>为了让Tinymce能用于Vue.js项目，vue-element-admin-master对Tinymce进行了封装，下面我们将它引入到我们的课程信息页面</p>
 <h3 id="复制组件"><a href="#复制组件" class="headerlink" title="复制组件"></a>复制组件</h3><p>src/components/Tinymce</p>
@@ -714,19 +714,19 @@ methods:&#123;
 export default &#123;
     &#x2F;&#x2F; 初始化文本编辑器
     components: &#123; Tinymce &#125;,
-    data()&#123;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    data()&#123;</code></pre></div>
 
 <h3 id="组件模板-4"><a href="#组件模板-4" class="headerlink" title="组件模板"></a>组件模板</h3><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!-- 课程简介--&gt;
 &lt;el-form-item label&#x3D;&quot;课程简介&quot;&gt;
     &lt;tinymce :height&#x3D;&quot;300&quot; v-model&#x3D;&quot;courseInfo.description&quot;&#x2F;&gt;
-&lt;&#x2F;el-form-item&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+&lt;&#x2F;el-form-item&gt;</code></pre></div>
 
 <h3 id="组件样式"><a href="#组件样式" class="headerlink" title="组件样式"></a>组件样式</h3><p>在info.vue文件的最后添加如下代码，调整上传图片按钮的高度</p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;style scoped&gt;
 .tinymce-container &#123;
   line-height: 29px;
 &#125;
-&lt;&#x2F;style&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&lt;&#x2F;style&gt;</code></pre></div>
 
 <p>Tinymce中的图片上传功能直接存储的是图片的base64编码，因此无需图片服务器</p>
 

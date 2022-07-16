@@ -16,12 +16,12 @@
   <meta name="author" content="Ten">
   <meta name="keywords" content="">
   
-    <meta name="description" content="day14-讲师分页 课程列表 课程详情讲师分页查询接口com.atguigu.eduservice.controller.front  controller@RestController @RequestMapping(&quot;&#x2F;eduservice&#x2F;teacherfront&quot;) @CrossOrigin public class TeacherFrontController &amp;#123;">
+    <meta name="description" content="day14-讲师分页 课程列表 课程详情讲师分页查询接口com.atguigu.eduservice.controller.front  controller@RestController @RequestMapping(&quot;&#x2F;eduservice&#x2F;teacherfront&quot;) @CrossOrigin public class TeacherFrontCon">
 <meta property="og:type" content="article">
 <meta property="og:title" content="day14-讲师分页_课程列表_课程详情">
 <meta property="og:url" content="https://no-ten.github.io/day14-%E8%AE%B2%E5%B8%88%E5%88%86%E9%A1%B5_%E8%AF%BE%E7%A8%8B%E5%88%97%E8%A1%A8_%E8%AF%BE%E7%A8%8B%E8%AF%A6%E6%83%85/index.html">
 <meta property="og:site_name" content="TBlog">
-<meta property="og:description" content="day14-讲师分页 课程列表 课程详情讲师分页查询接口com.atguigu.eduservice.controller.front  controller@RestController @RequestMapping(&quot;&#x2F;eduservice&#x2F;teacherfront&quot;) @CrossOrigin public class TeacherFrontController &amp;#123;">
+<meta property="og:description" content="day14-讲师分页 课程列表 课程详情讲师分页查询接口com.atguigu.eduservice.controller.front  controller@RestController @RequestMapping(&quot;&#x2F;eduservice&#x2F;teacherfront&quot;) @CrossOrigin public class TeacherFrontCon">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-01-06T16:16:21.714Z">
 <meta property="article:modified_time" content="2022-01-07T02:20:08.145Z">
@@ -227,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          46k 字
+          49k 字
         
       </span>
     
@@ -280,75 +280,75 @@
             <div class="markdown-body">
               
               <h1 id="day14-讲师分页-课程列表-课程详情"><a href="#day14-讲师分页-课程列表-课程详情" class="headerlink" title="day14-讲师分页 课程列表 课程详情"></a>day14-讲师分页 课程列表 课程详情</h1><h1 id="讲师分页查询接口"><a href="#讲师分页查询接口" class="headerlink" title="讲师分页查询接口"></a>讲师分页查询接口</h1><p>com.atguigu.eduservice.controller.front </p>
-<h2 id="controller"><a href="#controller" class="headerlink" title="controller"></a>controller</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
-<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/eduservice/teacherfront"</span><span class="token punctuation">)</span>
-<span class="token annotation punctuation">@CrossOrigin</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TeacherFrontController</span> <span class="token punctuation">&#123;</span>
+<h2 id="controller"><a href="#controller" class="headerlink" title="controller"></a>controller</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@RestController
+@RequestMapping(&quot;&#x2F;eduservice&#x2F;teacherfront&quot;)
+@CrossOrigin
+public class TeacherFrontController &#123;
 
-    <span class="token annotation punctuation">@Autowired</span>
-    <span class="token keyword">private</span> <span class="token class-name">EduTeacherService</span> teacherService<span class="token punctuation">;</span>
+    @Autowired
+    private EduTeacherService teacherService;
 
-    <span class="token comment">// 分页查询讲师的方法</span>
-    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"getTeacherFrontList/&#123;page&#125;/&#123;limit&#125;"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">getTeacherFrontList</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token keyword">long</span> page<span class="token punctuation">,</span><span class="token annotation punctuation">@PathVariable</span> <span class="token keyword">long</span> limit<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token class-name">Page</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduTeacher</span><span class="token punctuation">></span></span> teacherPage <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Page</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span>page<span class="token punctuation">,</span> limit<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span><span class="token class-name">Object</span><span class="token punctuation">></span></span> map <span class="token operator">=</span> teacherService<span class="token punctuation">.</span><span class="token function">getTeacherFrontList</span><span class="token punctuation">(</span>teacherPage<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span>map<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    &#x2F;&#x2F; 分页查询讲师的方法
+    @PostMapping(&quot;getTeacherFrontList&#x2F;&#123;page&#125;&#x2F;&#123;limit&#125;&quot;)
+    public R getTeacherFrontList(@PathVariable long page,@PathVariable long limit)&#123;
+        Page&lt;EduTeacher&gt; teacherPage &#x3D; new Page&lt;&gt;(page, limit);
+        Map&lt;String,Object&gt; map &#x3D; teacherService.getTeacherFrontList(teacherPage);
+        return R.ok().data(map);
+    &#125;
+&#125;</code></pre></div>
 
-<h2 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">EduTeacherService</span> <span class="token keyword">extends</span> <span class="token class-name">IService</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduTeacher</span><span class="token punctuation">></span></span> <span class="token punctuation">&#123;</span>
+<h2 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">public interface EduTeacherService extends IService&lt;EduTeacher&gt; &#123;
 
-    <span class="token comment">// 分页查询讲师的方法</span>
-    <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span> <span class="token function">getTeacherFrontList</span><span class="token punctuation">(</span><span class="token class-name">Page</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduTeacher</span><span class="token punctuation">></span></span> teacherPage<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    &#x2F;&#x2F; 分页查询讲师的方法
+    Map&lt;String, Object&gt; getTeacherFrontList(Page&lt;EduTeacher&gt; teacherPage);
+&#125;</code></pre></div>
 
-<h2 id="serviceImpl"><a href="#serviceImpl" class="headerlink" title="serviceImpl"></a>serviceImpl</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">EduTeacherServiceImpl</span> <span class="token keyword">extends</span> <span class="token class-name">ServiceImpl</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduTeacherMapper</span><span class="token punctuation">,</span> <span class="token class-name">EduTeacher</span><span class="token punctuation">></span></span> <span class="token keyword">implements</span> <span class="token class-name">EduTeacherService</span> <span class="token punctuation">&#123;</span>
+<h2 id="serviceImpl"><a href="#serviceImpl" class="headerlink" title="serviceImpl"></a>serviceImpl</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Service
+public class EduTeacherServiceImpl extends ServiceImpl&lt;EduTeacherMapper, EduTeacher&gt; implements EduTeacherService &#123;
 
-    <span class="token comment">// 分页查询讲师的方法</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span> <span class="token function">getTeacherFrontList</span><span class="token punctuation">(</span><span class="token class-name">Page</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduTeacher</span><span class="token punctuation">></span></span> teacherPage<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduTeacher</span><span class="token punctuation">></span></span> wrapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">// 按照id降序排序</span>
-        wrapper<span class="token punctuation">.</span><span class="token function">orderByDesc</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    &#x2F;&#x2F; 分页查询讲师的方法
+    @Override
+    public Map&lt;String, Object&gt; getTeacherFrontList(Page&lt;EduTeacher&gt; teacherPage) &#123;
+        QueryWrapper&lt;EduTeacher&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
+        &#x2F;&#x2F; 按照id降序排序
+        wrapper.orderByDesc(&quot;id&quot;);
 
-        baseMapper<span class="token punctuation">.</span><span class="token function">selectPage</span><span class="token punctuation">(</span>teacherPage<span class="token punctuation">,</span>wrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        baseMapper.selectPage(teacherPage,wrapper);
 
-        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduTeacher</span><span class="token punctuation">></span></span> records <span class="token operator">=</span> teacherPage<span class="token punctuation">.</span><span class="token function">getRecords</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">long</span> current <span class="token operator">=</span> teacherPage<span class="token punctuation">.</span><span class="token function">getCurrent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">long</span> pages <span class="token operator">=</span> teacherPage<span class="token punctuation">.</span><span class="token function">getPages</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">long</span> size <span class="token operator">=</span> teacherPage<span class="token punctuation">.</span><span class="token function">getSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">long</span> total <span class="token operator">=</span> teacherPage<span class="token punctuation">.</span><span class="token function">getTotal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">boolean</span> hasNext <span class="token operator">=</span> teacherPage<span class="token punctuation">.</span><span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">boolean</span> hasPrevious <span class="token operator">=</span> teacherPage<span class="token punctuation">.</span><span class="token function">hasPrevious</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        List&lt;EduTeacher&gt; records &#x3D; teacherPage.getRecords();
+        long current &#x3D; teacherPage.getCurrent();
+        long pages &#x3D; teacherPage.getPages();
+        long size &#x3D; teacherPage.getSize();
+        long total &#x3D; teacherPage.getTotal();
+        boolean hasNext &#x3D; teacherPage.hasNext();
+        boolean hasPrevious &#x3D; teacherPage.hasPrevious();
 
-        <span class="token comment">// 将查询出来的封装到map</span>
-        <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"records"</span><span class="token punctuation">,</span>records<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"current"</span><span class="token punctuation">,</span>current<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"pages"</span><span class="token punctuation">,</span>pages<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"size"</span><span class="token punctuation">,</span>size<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"total"</span><span class="token punctuation">,</span>total<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"hasNext"</span><span class="token punctuation">,</span>hasNext<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"hasPrevious"</span><span class="token punctuation">,</span>hasPrevious<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        &#x2F;&#x2F; 将查询出来的封装到map
+        Map&lt;String, Object&gt; map &#x3D; new HashMap&lt;&gt;();
+        map.put(&quot;records&quot;,records);
+        map.put(&quot;current&quot;,current);
+        map.put(&quot;pages&quot;,pages);
+        map.put(&quot;size&quot;,size);
+        map.put(&quot;total&quot;,total);
+        map.put(&quot;hasNext&quot;,hasNext);
+        map.put(&quot;hasPrevious&quot;,hasPrevious);
 
-        <span class="token comment">// 最后返回map</span>
-        <span class="token keyword">return</span> map<span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+        &#x2F;&#x2F; 最后返回map
+        return map;
+    &#125;
+&#125;</code></pre></div>
 
 <h1 id="讲师分页查询前端"><a href="#讲师分页查询前端" class="headerlink" title="讲师分页查询前端"></a>讲师分页查询前端</h1><h2 id="1、创建api"><a href="#1、创建api" class="headerlink" title="1、创建api"></a>1、创建api</h2><p>创建文件夹api，api下创建teacher.js，用于封装讲师模块的请求</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">request</span> from <span class="token string">'@/utils/request'</span>
-export <span class="token keyword">default</span> <span class="token punctuation">&#123;</span>
-  <span class="token comment">// 分页查询名师</span>
-  <span class="token function">getTeacherList</span><span class="token punctuation">(</span>page<span class="token punctuation">,</span>limit<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-      url<span class="token operator">:</span> `<span class="token operator">/</span>eduservice<span class="token operator">/</span>teacherfront<span class="token operator">/</span>getTeacherFrontList<span class="token operator">/</span>$<span class="token punctuation">&#123;</span>page<span class="token punctuation">&#125;</span><span class="token operator">/</span>$<span class="token punctuation">&#123;</span>limit<span class="token punctuation">&#125;</span>`<span class="token punctuation">,</span>
-      method<span class="token operator">:</span> <span class="token string">'post'</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">import request from &#39;@&#x2F;utils&#x2F;request&#39;
+export default &#123;
+  &#x2F;&#x2F; 分页查询名师
+  getTeacherList(page,limit) &#123;
+    return request(&#123;
+      url: &#96;&#x2F;eduservice&#x2F;teacherfront&#x2F;getTeacherFrontList&#x2F;$&#123;page&#125;&#x2F;$&#123;limit&#125;&#96;,
+      method: &#39;post&#39;
+    &#125;)
+  &#125;
+&#125;</code></pre></div>
 
 <h2 id="2、讲师列表组件中调用api"><a href="#2、讲师列表组件中调用api" class="headerlink" title="2、讲师列表组件中调用api"></a>2、讲师列表组件中调用api</h2><p>pages/teacher/index.vue</p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;script&gt;
@@ -364,7 +364,7 @@ export <span class="token keyword">default</span> <span class="token punctuation
       &#125;)
    &#125;
  &#125;;
- &lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+ &lt;&#x2F;script&gt;</code></pre></div>
 
 <h2 id="页面渲染"><a href="#页面渲染" class="headerlink" title="页面渲染"></a>页面渲染</h2><h3 id="1、无数据提示"><a href="#1、无数据提示" class="headerlink" title="1、无数据提示"></a>1、无数据提示</h3><p>添加：v-if=”data.total==0”</p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!-- &#x2F;无数据提示 开始--&gt;
@@ -372,7 +372,7 @@ export <span class="token keyword">default</span> <span class="token punctuation
   &lt;em class&#x3D;&quot;icon30 no-data-ico&quot;&gt;&amp;nbsp;&lt;&#x2F;em&gt;
   &lt;span class&#x3D;&quot;c-666 fsize14 ml10 vam&quot;&gt;没有相关数据，小编正在努力整理中...&lt;&#x2F;span&gt;
 &lt;&#x2F;section&gt;
-&lt;!-- &#x2F;无数据提示 结束--&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&lt;!-- &#x2F;无数据提示 结束--&gt;</code></pre></div>
 
 
 
@@ -399,7 +399,7 @@ export <span class="token keyword">default</span> <span class="token punctuation
                
              &lt;&#x2F;ul&gt;
              &lt;div class&#x3D;&quot;clear&quot;&gt;&lt;&#x2F;div&gt;
-           &lt;&#x2F;article&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+           &lt;&#x2F;article&gt;</code></pre></div>
 
 
 
@@ -412,7 +412,7 @@ export <span class="token keyword">default</span> <span class="token punctuation
        this.data &#x3D; response.data.data
      &#125;)
   &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;</code></pre></div>
 
 <h2 id="2、分页页面渲染"><a href="#2、分页页面渲染" class="headerlink" title="2、分页页面渲染"></a>2、分页页面渲染</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!-- 公共分页 开始 --&gt;
           &lt;div&gt;
@@ -448,30 +448,30 @@ export <span class="token keyword">default</span> <span class="token punctuation
               &lt;div class&#x3D;&quot;clear&quot;&#x2F;&gt;
             &lt;&#x2F;div&gt;
           &lt;&#x2F;div&gt;
-         &lt;!-- 公共分页 结束 --&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+         &lt;!-- 公共分页 结束 --&gt;</code></pre></div>
 
-<h1 id="讲师详情接口"><a href="#讲师详情接口" class="headerlink" title="讲师详情接口"></a>讲师详情接口</h1><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 讲师详情的功能</span>
-<span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"getTeacherFrontInfo/&#123;teacherId&#125;"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">getTeacherFrontInfo</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> teacherId<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token comment">// 1.根据讲师id查询讲师基本信息</span>
-    <span class="token class-name">EduTeacher</span> eduTeacher <span class="token operator">=</span> teacherService<span class="token punctuation">.</span><span class="token function">getById</span><span class="token punctuation">(</span>teacherId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<h1 id="讲师详情接口"><a href="#讲师详情接口" class="headerlink" title="讲师详情接口"></a>讲师详情接口</h1><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 讲师详情的功能
+@GetMapping(&quot;getTeacherFrontInfo&#x2F;&#123;teacherId&#125;&quot;)
+public R getTeacherFrontInfo(@PathVariable String teacherId)&#123;
+    &#x2F;&#x2F; 1.根据讲师id查询讲师基本信息
+    EduTeacher eduTeacher &#x3D; teacherService.getById(teacherId);
 
-    <span class="token comment">// 2.根据讲师id查询讲师所有的课程</span>
-    <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduCourse</span><span class="token punctuation">></span></span> wrapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    wrapper<span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token string">"teacher_id"</span><span class="token punctuation">,</span>teacherId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduCourse</span><span class="token punctuation">></span></span> courseList <span class="token operator">=</span> courseService<span class="token punctuation">.</span><span class="token function">list</span><span class="token punctuation">(</span>wrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    &#x2F;&#x2F; 2.根据讲师id查询讲师所有的课程
+    QueryWrapper&lt;EduCourse&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
+    wrapper.eq(&quot;teacher_id&quot;,teacherId);
+    List&lt;EduCourse&gt; courseList &#x3D; courseService.list(wrapper);
 
-    <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"teacher"</span><span class="token punctuation">,</span>eduTeacher<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"courseList"</span><span class="token punctuation">,</span>courseList<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    return R.ok().data(&quot;teacher&quot;,eduTeacher).data(&quot;courseList&quot;,courseList);
+&#125;</code></pre></div>
 
 <h1 id="讲师详情前端"><a href="#讲师详情前端" class="headerlink" title="讲师详情前端"></a>讲师详情前端</h1><h2 id="1、teacher-api"><a href="#1、teacher-api" class="headerlink" title="1、teacher api"></a>1、teacher api</h2><p>api/teacher.js</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 讲师详情</span>
-<span class="token function">getTeacherInfo</span><span class="token punctuation">(</span><span class="token parameter">id</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-  <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-    url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/eduservice/teacherfront/getTeacherFrontInfo/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>id<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
-    method<span class="token operator">:</span> <span class="token string">'get'</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 讲师详情
+getTeacherInfo(id)&#123;
+  return request(&#123;
+    url: &#96;&#x2F;eduservice&#x2F;teacherfront&#x2F;getTeacherFrontInfo&#x2F;$&#123;id&#125;&#96;,
+    method: &#39;get&#39;
+  &#125;)
+&#125;</code></pre></div>
 
 <h2 id="2、讲师详情页中调用api"><a href="#2、讲师详情页中调用api" class="headerlink" title="2、讲师详情页中调用api"></a>2、讲师详情页中调用api</h2><p>pages/teacher/_id.vue</p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;script&gt;
@@ -489,7 +489,7 @@ export default &#123;
      &#125;)
   &#125;
 &#125;;
-&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&lt;&#x2F;script&gt;</code></pre></div>
 
 <h2 id="讲师详情显示"><a href="#讲师详情显示" class="headerlink" title="讲师详情显示"></a>讲师详情显示</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!-- 讲师基本信息 --&gt;
         &lt;section class&#x3D;&quot;fl t-infor-box c-desc-content&quot;&gt;
@@ -511,14 +511,14 @@ export default &#123;
             &lt;&#x2F;section&gt;
             &lt;div class&#x3D;&quot;clear&quot;&gt;&lt;&#x2F;div&gt;
           &lt;&#x2F;div&gt;
-        &lt;&#x2F;section&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+        &lt;&#x2F;section&gt;</code></pre></div>
 
 <h2 id="无数据提示"><a href="#无数据提示" class="headerlink" title="无数据提示"></a>无数据提示</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!-- &#x2F;无数据提示 开始--&gt;
 &lt;section class&#x3D;&quot;no-data-wrap&quot; v-if&#x3D;&quot;courseList.length &#x3D;&#x3D; 0&quot;&gt;
   &lt;em class&#x3D;&quot;icon30 no-data-ico&quot;&gt;&amp;nbsp;&lt;&#x2F;em&gt;
   &lt;span class&#x3D;&quot;c-666 fsize14 ml10 vam&quot;&gt;没有相关数据，小编正在努力整理中...&lt;&#x2F;span&gt;
 &lt;&#x2F;section&gt;
-&lt;!-- &#x2F;无数据提示 结束--&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&lt;!-- &#x2F;无数据提示 结束--&gt;</code></pre></div>
 
 <h2 id="当前讲师课程列表"><a href="#当前讲师课程列表" class="headerlink" title="当前讲师课程列表"></a>当前讲师课程列表</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;article class&#x3D;&quot;comm-course-list&quot;&gt;
   &lt;ul class&#x3D;&quot;of&quot;&gt;
@@ -538,7 +538,7 @@ export default &#123;
    
   &lt;&#x2F;ul&gt;
   &lt;div class&#x3D;&quot;clear&quot;&gt;&lt;&#x2F;div&gt;
-&lt;&#x2F;article&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&lt;&#x2F;article&gt;</code></pre></div>
 
 <h2 id="完整页面"><a href="#完整页面" class="headerlink" title="完整页面"></a>完整页面</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
    &lt;div id&#x3D;&quot;aCoursesList&quot; class&#x3D;&quot;bg-fa of&quot;&gt;
@@ -629,108 +629,108 @@ export default &#123;
       &#125;)
    &#125;
  &#125;;
- &lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+ &lt;&#x2F;script&gt;</code></pre></div>
 
 
 
 <h1 id="课程列表接口"><a href="#课程列表接口" class="headerlink" title="课程列表接口"></a>课程列表接口</h1><h2 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h2><p>com.atguigu.eduservice.controller.front</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
-<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/eduservice/coursefront"</span><span class="token punctuation">)</span>
-<span class="token annotation punctuation">@CrossOrigin</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CourseFrontController</span> <span class="token punctuation">&#123;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@RestController
+@RequestMapping(&quot;&#x2F;eduservice&#x2F;coursefront&quot;)
+@CrossOrigin
+public class CourseFrontController &#123;
 
-    <span class="token annotation punctuation">@Autowired</span>
-    <span class="token keyword">private</span> <span class="token class-name">EduCourseService</span> courseService<span class="token punctuation">;</span>
+    @Autowired
+    private EduCourseService courseService;
 
-    <span class="token comment">// 条件分页查询课程，前台</span>
-    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"getCourseFrontList/&#123;page&#125;/&#123;limit&#125;"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">getCourseFrontList</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token keyword">long</span> page<span class="token punctuation">,</span> <span class="token annotation punctuation">@PathVariable</span> <span class="token keyword">long</span> limit<span class="token punctuation">,</span>
-                                <span class="token annotation punctuation">@RequestBody</span><span class="token punctuation">(</span>required <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token class-name">CourseFrontVo</span> courseFrontVo<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token class-name">Page</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduCourse</span><span class="token punctuation">></span></span> coursePage <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Page</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span>page<span class="token punctuation">,</span>limit<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span><span class="token class-name">Object</span><span class="token punctuation">></span></span> map <span class="token operator">=</span> courseService<span class="token punctuation">.</span><span class="token function">getCourseFrontList</span><span class="token punctuation">(</span>coursePage<span class="token punctuation">,</span>courseFrontVo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    &#x2F;&#x2F; 条件分页查询课程，前台
+    @PostMapping(&quot;getCourseFrontList&#x2F;&#123;page&#125;&#x2F;&#123;limit&#125;&quot;)
+    public R getCourseFrontList(@PathVariable long page, @PathVariable long limit,
+                                @RequestBody(required &#x3D; false) CourseFrontVo courseFrontVo)&#123;
+        Page&lt;EduCourse&gt; coursePage &#x3D; new Page&lt;&gt;(page,limit);
+        Map&lt;String,Object&gt; map &#x3D; courseService.getCourseFrontList(coursePage,courseFrontVo);
 
-        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span>map<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+        return R.ok().data(map);
+    &#125;
 
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;</code></pre></div>
 
-<h2 id="Service-1"><a href="#Service-1" class="headerlink" title="Service"></a>Service</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 条件分页查询课程，前台</span>
-<span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span> <span class="token function">getCourseFrontList</span><span class="token punctuation">(</span><span class="token class-name">Page</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduCourse</span><span class="token punctuation">></span></span> coursePage<span class="token punctuation">,</span> <span class="token class-name">CourseFrontVo</span> courseFrontVo<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<h2 id="Service-1"><a href="#Service-1" class="headerlink" title="Service"></a>Service</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 条件分页查询课程，前台
+Map&lt;String, Object&gt; getCourseFrontList(Page&lt;EduCourse&gt; coursePage, CourseFrontVo courseFrontVo);</code></pre></div>
 
-<h2 id="serviceImpl-1"><a href="#serviceImpl-1" class="headerlink" title="serviceImpl"></a>serviceImpl</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 条件分页查询课程，前台</span>
-<span class="token annotation punctuation">@Override</span>
-<span class="token keyword">public</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span> <span class="token function">getCourseFrontList</span><span class="token punctuation">(</span><span class="token class-name">Page</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduCourse</span><span class="token punctuation">></span></span> coursePage<span class="token punctuation">,</span> <span class="token class-name">CourseFrontVo</span> courseFrontVo<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+<h2 id="serviceImpl-1"><a href="#serviceImpl-1" class="headerlink" title="serviceImpl"></a>serviceImpl</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 条件分页查询课程，前台
+@Override
+public Map&lt;String, Object&gt; getCourseFrontList(Page&lt;EduCourse&gt; coursePage, CourseFrontVo courseFrontVo) &#123;
 
-    <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduCourse</span><span class="token punctuation">></span></span> wrapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QueryWrapper&lt;EduCourse&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
 
-    <span class="token comment">// 先判断传过来的值是否为空</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>courseFrontVo<span class="token punctuation">.</span><span class="token function">getSubjectParentId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token comment">// 一级标题</span>
-        wrapper<span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token string">"subject_parent_id"</span><span class="token punctuation">,</span>courseFrontVo<span class="token punctuation">.</span><span class="token function">getSubjectParentId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>courseFrontVo<span class="token punctuation">.</span><span class="token function">getSubjectId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token comment">// 二级标题</span>
-        wrapper<span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token string">"subject_id"</span><span class="token punctuation">,</span>courseFrontVo<span class="token punctuation">.</span><span class="token function">getSubjectId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>courseFrontVo<span class="token punctuation">.</span><span class="token function">getBuyCountSort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token comment">// 销售量</span>
-        wrapper<span class="token punctuation">.</span><span class="token function">orderByDesc</span><span class="token punctuation">(</span><span class="token string">"buy_count"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>courseFrontVo<span class="token punctuation">.</span><span class="token function">getGmtCreateSort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token comment">// 创建时间</span>
-        wrapper<span class="token punctuation">.</span><span class="token function">orderByDesc</span><span class="token punctuation">(</span><span class="token string">"gmt_create"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>courseFrontVo<span class="token punctuation">.</span><span class="token function">getPriceSort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token comment">// 价格</span>
-        wrapper<span class="token punctuation">.</span><span class="token function">orderByDesc</span><span class="token punctuation">(</span><span class="token string">"price"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+    &#x2F;&#x2F; 先判断传过来的值是否为空
+    if (!StringUtils.isEmpty(courseFrontVo.getSubjectParentId()))&#123;
+        &#x2F;&#x2F; 一级标题
+        wrapper.eq(&quot;subject_parent_id&quot;,courseFrontVo.getSubjectParentId());
+    &#125;
+    if (!StringUtils.isEmpty(courseFrontVo.getSubjectId()))&#123;
+        &#x2F;&#x2F; 二级标题
+        wrapper.eq(&quot;subject_id&quot;,courseFrontVo.getSubjectId());
+    &#125;
+    if (!StringUtils.isEmpty(courseFrontVo.getBuyCountSort()))&#123;
+        &#x2F;&#x2F; 销售量
+        wrapper.orderByDesc(&quot;buy_count&quot;);
+    &#125;
+    if (!StringUtils.isEmpty(courseFrontVo.getGmtCreateSort()))&#123;
+        &#x2F;&#x2F; 创建时间
+        wrapper.orderByDesc(&quot;gmt_create&quot;);
+    &#125;
+    if (!StringUtils.isEmpty(courseFrontVo.getPriceSort()))&#123;
+        &#x2F;&#x2F; 价格
+        wrapper.orderByDesc(&quot;price&quot;);
+    &#125;
 
-    baseMapper<span class="token punctuation">.</span><span class="token function">selectPage</span><span class="token punctuation">(</span>coursePage<span class="token punctuation">,</span>wrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    baseMapper.selectPage(coursePage,wrapper);
 
-    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EduCourse</span><span class="token punctuation">></span></span> records <span class="token operator">=</span> coursePage<span class="token punctuation">.</span><span class="token function">getRecords</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">long</span> current <span class="token operator">=</span> coursePage<span class="token punctuation">.</span><span class="token function">getCurrent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">long</span> pages <span class="token operator">=</span> coursePage<span class="token punctuation">.</span><span class="token function">getPages</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">long</span> size <span class="token operator">=</span> coursePage<span class="token punctuation">.</span><span class="token function">getSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">long</span> total <span class="token operator">=</span> coursePage<span class="token punctuation">.</span><span class="token function">getTotal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">boolean</span> hasNext <span class="token operator">=</span> coursePage<span class="token punctuation">.</span><span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">boolean</span> hasPrevious <span class="token operator">=</span> coursePage<span class="token punctuation">.</span><span class="token function">hasPrevious</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    List&lt;EduCourse&gt; records &#x3D; coursePage.getRecords();
+    long current &#x3D; coursePage.getCurrent();
+    long pages &#x3D; coursePage.getPages();
+    long size &#x3D; coursePage.getSize();
+    long total &#x3D; coursePage.getTotal();
+    boolean hasNext &#x3D; coursePage.hasNext();
+    boolean hasPrevious &#x3D; coursePage.hasPrevious();
 
-    <span class="token comment">// 将查询出来的封装到map</span>
-    <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"items"</span><span class="token punctuation">,</span>records<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"current"</span><span class="token punctuation">,</span>current<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"pages"</span><span class="token punctuation">,</span>pages<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"size"</span><span class="token punctuation">,</span>size<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"total"</span><span class="token punctuation">,</span>total<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"hasNext"</span><span class="token punctuation">,</span>hasNext<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"hasPrevious"</span><span class="token punctuation">,</span>hasPrevious<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    &#x2F;&#x2F; 将查询出来的封装到map
+    Map&lt;String, Object&gt; map &#x3D; new HashMap&lt;&gt;();
+    map.put(&quot;items&quot;,records);
+    map.put(&quot;current&quot;,current);
+    map.put(&quot;pages&quot;,pages);
+    map.put(&quot;size&quot;,size);
+    map.put(&quot;total&quot;,total);
+    map.put(&quot;hasNext&quot;,hasNext);
+    map.put(&quot;hasPrevious&quot;,hasPrevious);
 
-    <span class="token comment">// 最后返回map</span>
-    <span class="token keyword">return</span> map<span class="token punctuation">;</span>
+    &#x2F;&#x2F; 最后返回map
+    return map;
 
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;</code></pre></div>
 
 <h1 id="课程列表前端"><a href="#课程列表前端" class="headerlink" title="课程列表前端"></a>课程列表前端</h1><h2 id="1、定义api"><a href="#1、定义api" class="headerlink" title="1、定义api"></a>1、定义api</h2><p>api/course.js</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> request <span class="token keyword">from</span> <span class="token string">'@/utils/request'</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">&#123;</span>
-  <span class="token comment">// 条件分页查询课程</span>
-  <span class="token function">getCourseList</span><span class="token punctuation">(</span><span class="token parameter">page<span class="token punctuation">,</span>limit<span class="token punctuation">,</span>searchObj</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-      url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/eduservice/coursefront/getCourseFrontList/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>page<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>limit<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
-      method<span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
-      data<span class="token operator">:</span>searchObj
-    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">import request from &#39;@&#x2F;utils&#x2F;request&#39;
+export default &#123;
+  &#x2F;&#x2F; 条件分页查询课程
+  getCourseList(page,limit,searchObj) &#123;
+    return request(&#123;
+      url: &#96;&#x2F;eduservice&#x2F;coursefront&#x2F;getCourseFrontList&#x2F;$&#123;page&#125;&#x2F;$&#123;limit&#125;&#96;,
+      method: &#39;post&#39;,
+      data:searchObj
+    &#125;)
+  &#125;,
 
-  <span class="token comment">// 查询所有分类的方法</span>
-  <span class="token function">getAllSubject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-      url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/eduservice/subject/findAllSubject</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
-      method<span class="token operator">:</span> <span class="token string">'get'</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-  <span class="token punctuation">&#125;</span>
+  &#x2F;&#x2F; 查询所有分类的方法
+  getAllSubject()&#123;
+    return request(&#123;
+      url: &#96;&#x2F;eduservice&#x2F;subject&#x2F;findAllSubject&#96;,
+      method: &#39;get&#39;
+    &#125;)
+  &#125;
 
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;</code></pre></div>
 
 
 
@@ -869,7 +869,7 @@ export default &#123;
   .show &#123;
     display: block;
   &#125;
-&lt;&#x2F;style&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&lt;&#x2F;style&gt;</code></pre></div>
 
 <h2 id="3、课程类别显示"><a href="#3、课程类别显示" class="headerlink" title="3、课程类别显示"></a>3、课程类别显示</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;section class&#x3D;&quot;c-s-dl&quot;&gt;
            &lt;dl&gt;
@@ -901,7 +901,7 @@ export default &#123;
              &lt;&#x2F;dd&gt;
            &lt;&#x2F;dl&gt;
            &lt;div class&#x3D;&quot;clear&quot;&gt;&lt;&#x2F;div&gt;
-         &lt;&#x2F;section&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+         &lt;&#x2F;section&gt;</code></pre></div>
 
 
 
@@ -923,7 +923,7 @@ export default &#123;
        &lt;&#x2F;a&gt;
      &lt;&#x2F;li&gt;
   &lt;&#x2F;ol&gt;
-&lt;&#x2F;section&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&lt;&#x2F;section&gt;</code></pre></div>
 
 <h2 id="5、无数据提示"><a href="#5、无数据提示" class="headerlink" title="5、无数据提示"></a>5、无数据提示</h2><p>添加：v-if=”data.total==0”</p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!-- &#x2F;无数据提示 开始--&gt;
@@ -931,7 +931,7 @@ export default &#123;
   &lt;em class&#x3D;&quot;icon30 no-data-ico&quot;&gt;&amp;nbsp;&lt;&#x2F;em&gt;
   &lt;span class&#x3D;&quot;c-666 fsize14 ml10 vam&quot;&gt;没有相关数据，小编正在努力整理中...&lt;&#x2F;span&gt;
 &lt;&#x2F;section&gt;
-&lt;!-- &#x2F;无数据提示 结束--&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&lt;!-- &#x2F;无数据提示 结束--&gt;</code></pre></div>
 
 <h2 id="6、列表"><a href="#6、列表" class="headerlink" title="6、列表"></a>6、列表</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;article class&#x3D;&quot;comm-course-list&quot;  v-if&#x3D;&quot;data.total &gt; 0&quot;&gt;
              &lt;ul class&#x3D;&quot;of&quot; id&#x3D;&quot;bna&quot;&gt;
@@ -961,7 +961,7 @@ export default &#123;
 
              &lt;&#x2F;ul&gt;
              &lt;div class&#x3D;&quot;clear&quot;&gt;&lt;&#x2F;div&gt;
-           &lt;&#x2F;article&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+           &lt;&#x2F;article&gt;</code></pre></div>
 
 <h2 id="7、分页页面渲染"><a href="#7、分页页面渲染" class="headerlink" title="7、分页页面渲染"></a>7、分页页面渲染</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!-- 公共分页 开始 --&gt;
           &lt;div&gt;
@@ -997,104 +997,104 @@ export default &#123;
               &lt;div class&#x3D;&quot;clear&quot;&#x2F;&gt;
             &lt;&#x2F;div&gt;
           &lt;&#x2F;div&gt;
-         &lt;!-- 公共分页 结束 --&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+         &lt;!-- 公共分页 结束 --&gt;</code></pre></div>
 
 
 
-<h1 id="课程详情功能接口"><a href="#课程详情功能接口" class="headerlink" title="课程详情功能接口"></a>课程详情功能接口</h1><h2 id="Vo"><a href="#Vo" class="headerlink" title="Vo"></a>Vo</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Data</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CourseFrontVo</span> <span class="token keyword">implements</span> <span class="token class-name">Serializable</span> <span class="token punctuation">&#123;</span>
+<h1 id="课程详情功能接口"><a href="#课程详情功能接口" class="headerlink" title="课程详情功能接口"></a>课程详情功能接口</h1><h2 id="Vo"><a href="#Vo" class="headerlink" title="Vo"></a>Vo</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Data
+public class CourseFrontVo implements Serializable &#123;
 
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">long</span> serialVersionUID <span class="token operator">=</span> <span class="token number">1L</span><span class="token punctuation">;</span>
+    private static final long serialVersionUID &#x3D; 1L;
 
-    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"课程名称"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token class-name">String</span> title<span class="token punctuation">;</span>
+    @ApiModelProperty(value &#x3D; &quot;课程名称&quot;)
+    private String title;
 
-    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"讲师id"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token class-name">String</span> teacherId<span class="token punctuation">;</span>
+    @ApiModelProperty(value &#x3D; &quot;讲师id&quot;)
+    private String teacherId;
 
-    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"一级类别id"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token class-name">String</span> subjectParentId<span class="token punctuation">;</span>
+    @ApiModelProperty(value &#x3D; &quot;一级类别id&quot;)
+    private String subjectParentId;
 
-    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"二级类别id"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token class-name">String</span> subjectId<span class="token punctuation">;</span>
+    @ApiModelProperty(value &#x3D; &quot;二级类别id&quot;)
+    private String subjectId;
 
-    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"销量排序"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token class-name">String</span> buyCountSort<span class="token punctuation">;</span>
+    @ApiModelProperty(value &#x3D; &quot;销量排序&quot;)
+    private String buyCountSort;
 
-    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"最新时间排序"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token class-name">String</span> gmtCreateSort<span class="token punctuation">;</span>
+    @ApiModelProperty(value &#x3D; &quot;最新时间排序&quot;)
+    private String gmtCreateSort;
 
-    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"价格排序"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token class-name">String</span> priceSort<span class="token punctuation">;</span>
+    @ApiModelProperty(value &#x3D; &quot;价格排序&quot;)
+    private String priceSort;
 
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;</code></pre></div>
 
-<h2 id="Controller-1"><a href="#Controller-1" class="headerlink" title="Controller"></a>Controller</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 2.课程详情的方法</span>
-<span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"getFrontCourseInfo/&#123;courseId&#125;"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">getFrontCourseInfo</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> courseId<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token comment">// 根据课程id，编写SQL语句查询课程信息</span>
-    <span class="token class-name">CourseWebVo</span> courseWebVo <span class="token operator">=</span> courseService<span class="token punctuation">.</span><span class="token function">getBaseCourseInfo</span><span class="token punctuation">(</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 根据课程id，查询章节和小节</span>
-    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ChapterVo</span><span class="token punctuation">></span></span> chapterVideoList <span class="token operator">=</span> chapterService<span class="token punctuation">.</span><span class="token function">getAllChapterVideo</span><span class="token punctuation">(</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<h2 id="Controller-1"><a href="#Controller-1" class="headerlink" title="Controller"></a>Controller</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 2.课程详情的方法
+@GetMapping(&quot;getFrontCourseInfo&#x2F;&#123;courseId&#125;&quot;)
+public R getFrontCourseInfo(@PathVariable String courseId)&#123;
+    &#x2F;&#x2F; 根据课程id，编写SQL语句查询课程信息
+    CourseWebVo courseWebVo &#x3D; courseService.getBaseCourseInfo(courseId);
+    &#x2F;&#x2F; 根据课程id，查询章节和小节
+    List&lt;ChapterVo&gt; chapterVideoList &#x3D; chapterService.getAllChapterVideo(courseId);
 
-    <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"courseWebVo"</span><span class="token punctuation">,</span>courseWebVo<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"chapterVideoList"</span><span class="token punctuation">,</span>chapterVideoList<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    return R.ok().data(&quot;courseWebVo&quot;,courseWebVo).data(&quot;chapterVideoList&quot;,chapterVideoList);
+&#125;</code></pre></div>
 
 <h2 id="Service-2"><a href="#Service-2" class="headerlink" title="Service"></a>Service</h2><p>package com.atguigu.eduservice.service</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 根据课程id，编写SQL语句查询课程信息</span>
-<span class="token class-name">CourseWebVo</span> <span class="token function">getBaseCourseInfo</span><span class="token punctuation">(</span><span class="token class-name">String</span> courseId<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据课程id，编写SQL语句查询课程信息
+CourseWebVo getBaseCourseInfo(String courseId);</code></pre></div>
 
 <h2 id="ServiceImpl"><a href="#ServiceImpl" class="headerlink" title="ServiceImpl"></a>ServiceImpl</h2><p>com.atguigu.eduservice.service.impl</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 根据课程id，编写SQL语句查询课程信息</span>
-<span class="token annotation punctuation">@Override</span>
-<span class="token keyword">public</span> <span class="token class-name">CourseWebVo</span> <span class="token function">getBaseCourseInfo</span><span class="token punctuation">(</span><span class="token class-name">String</span> courseId<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> baseMapper<span class="token punctuation">.</span><span class="token function">getBaseCourseInfo</span><span class="token punctuation">(</span>courseId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据课程id，编写SQL语句查询课程信息
+@Override
+public CourseWebVo getBaseCourseInfo(String courseId) &#123;
+    return baseMapper.getBaseCourseInfo(courseId);
+&#125;</code></pre></div>
 
 <h2 id="Mapper"><a href="#Mapper" class="headerlink" title="Mapper"></a>Mapper</h2><p>package com.atguigu.eduservice.mapper</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 根据课程id，编写SQL语句查询课程信息</span>
-<span class="token class-name">CourseWebVo</span> <span class="token function">getBaseCourseInfo</span><span class="token punctuation">(</span><span class="token class-name">String</span> courseId<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据课程id，编写SQL语句查询课程信息
+CourseWebVo getBaseCourseInfo(String courseId);</code></pre></div>
 
 <h2 id="Xml"><a href="#Xml" class="headerlink" title="Xml"></a>Xml</h2><p>com/atguigu/eduservice/mapper/xml/EduCourseMapper.xml</p>
-<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!--根据课程id查询课程前端详情信息--></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>getBaseCourseInfo<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.atguigu.eduservice.entity.frontvo.CourseWebVo<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">&lt;!--根据课程id查询课程前端详情信息--&gt;
+&lt;select id&#x3D;&quot;getBaseCourseInfo&quot; resultType&#x3D;&quot;com.atguigu.eduservice.entity.frontvo.CourseWebVo&quot;&gt;
     SELECT
-      ec.`id`,
-      ec.`title`,
-      ec.`price`,
-      ec.`lesson_num` AS lessonNum,
-      ec.`cover`,
-      ec.`buy_count` AS buyCount,
-      ec.`view_count` AS viewCount,
-      ecd.`description` AS description,
-      et.`id` AS teacherId,
-      et.`name` AS teacherName,
-      et.`intro` AS intro,
-      et.`avatar`AS avatar,
-      es1.`id` AS subjectLevelOneId,
-      es1.`title` AS subjectLevelOne,
-      es2.`id` AS subjectLevelTwoId,
-      es2.`title` AS subjectLevelTwo
+      ec.&#96;id&#96;,
+      ec.&#96;title&#96;,
+      ec.&#96;price&#96;,
+      ec.&#96;lesson_num&#96; AS lessonNum,
+      ec.&#96;cover&#96;,
+      ec.&#96;buy_count&#96; AS buyCount,
+      ec.&#96;view_count&#96; AS viewCount,
+      ecd.&#96;description&#96; AS description,
+      et.&#96;id&#96; AS teacherId,
+      et.&#96;name&#96; AS teacherName,
+      et.&#96;intro&#96; AS intro,
+      et.&#96;avatar&#96;AS avatar,
+      es1.&#96;id&#96; AS subjectLevelOneId,
+      es1.&#96;title&#96; AS subjectLevelOne,
+      es2.&#96;id&#96; AS subjectLevelTwoId,
+      es2.&#96;title&#96; AS subjectLevelTwo
     FROM
       edu_course ec
       LEFT OUTER JOIN edu_course_description ecd
-        ON ec.`id` = ecd.`id`
+        ON ec.&#96;id&#96; &#x3D; ecd.&#96;id&#96;
       LEFT OUTER JOIN edu_teacher et
-        ON ec.`teacher_id` = et.`id`
+        ON ec.&#96;teacher_id&#96; &#x3D; et.&#96;id&#96;
       LEFT OUTER JOIN edu_subject es1
-        ON ec.`subject_parent_id` = es1.`id`
+        ON ec.&#96;subject_parent_id&#96; &#x3D; es1.&#96;id&#96;
       LEFT OUTER JOIN edu_subject es2
-        ON ec.`subject_id` = es2.`id`
-    WHERE ec.`id` = #&#123;courseId&#125;
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+        ON ec.&#96;subject_id&#96; &#x3D; es2.&#96;id&#96;
+    WHERE ec.&#96;id&#96; &#x3D; #&#123;courseId&#125;
+&lt;&#x2F;select&gt;</code></pre></div>
 
-<h1 id="课程详情功能前端"><a href="#课程详情功能前端" class="headerlink" title="课程详情功能前端"></a>课程详情功能前端</h1><h2 id="1、api-course-js"><a href="#1、api-course-js" class="headerlink" title="1、api/course.js"></a>1、api/course.js</h2><div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 根据id查询课程详情信息</span>
-<span class="token function">getCourseInfo</span><span class="token punctuation">(</span><span class="token parameter">id</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-  <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-    url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/eduservice/coursefront/getFrontCourseInfo/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>id<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
-    method<span class="token operator">:</span> <span class="token string">'get'</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h1 id="课程详情功能前端"><a href="#课程详情功能前端" class="headerlink" title="课程详情功能前端"></a>课程详情功能前端</h1><h2 id="1、api-course-js"><a href="#1、api-course-js" class="headerlink" title="1、api/course.js"></a>1、api/course.js</h2><div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 根据id查询课程详情信息
+getCourseInfo(id)&#123;
+  return request(&#123;
+    url: &#96;&#x2F;eduservice&#x2F;coursefront&#x2F;getFrontCourseInfo&#x2F;$&#123;id&#125;&#96;,
+    method: &#39;get&#39;
+  &#125;)
+&#125;</code></pre></div>
 
 <h2 id="2、pages-course-id-vue"><a href="#2、pages-course-id-vue" class="headerlink" title="2、pages/course/_id.vue"></a>2、pages/course/_id.vue</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue"> &lt;script&gt;
 import course from &quot;@&#x2F;api&#x2F;course&quot;
@@ -1113,7 +1113,7 @@ import course from &quot;@&#x2F;api&#x2F;course&quot;
    &#125;
    
  &#125;;
- &lt;&#x2F;scrip&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+ &lt;&#x2F;scrip&gt;</code></pre></div>
 
 <h2 id="课程所属分类"><a href="#课程所属分类" class="headerlink" title="课程所属分类"></a>课程所属分类</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!-- &#x2F;课程详情 开始 --&gt;
      &lt;section class&#x3D;&quot;container&quot;&gt;
@@ -1123,7 +1123,7 @@ import course from &quot;@&#x2F;api&#x2F;course&quot;
          &lt;a href&#x3D;&quot;#&quot; title class&#x3D;&quot;c-999 fsize14&quot;&gt;&#123;&#123;courseWebVo.subjectLevelOne&#125;&#125;&lt;&#x2F;a&gt;
          \
          &lt;span class&#x3D;&quot;c-333 fsize14&quot;&gt;&#123;&#123;courseWebVo.subjectLevelTwo&#125;&#125;&lt;&#x2F;span&gt;
-       &lt;&#x2F;section&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+       &lt;&#x2F;section&gt;</code></pre></div>
 
 <h2 id="课程基本信息"><a href="#课程基本信息" class="headerlink" title="课程基本信息"></a>课程基本信息</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;div&gt;
         &lt;article class&#x3D;&quot;c-v-pic-wrap&quot; style&#x3D;&quot;height: 357px;&quot;&gt;
@@ -1183,7 +1183,7 @@ import course from &quot;@&#x2F;api&#x2F;course&quot;
           &lt;&#x2F;ol&gt;
         &lt;&#x2F;aside&gt;
         &lt;div class&#x3D;&quot;clear&quot;&gt;&lt;&#x2F;div&gt;
-      &lt;&#x2F;div&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+      &lt;&#x2F;div&gt;</code></pre></div>
 
 <h2 id="课程详情介绍"><a href="#课程详情介绍" class="headerlink" title="课程详情介绍"></a>课程详情介绍</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;div&gt;
                   &lt;h6 class&#x3D;&quot;c-i-content c-infor-title&quot;&gt;
@@ -1194,7 +1194,7 @@ import course from &quot;@&#x2F;api&#x2F;course&quot;
                       &lt;p v-html&#x3D;&quot;courseWebVo.description&quot; &gt;&#123;&#123;courseWebVo.description&#125;&#125;&lt;&#x2F;p&gt;
                     &lt;&#x2F;section&gt;
                   &lt;&#x2F;div&gt;
-                &lt;&#x2F;div&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+                &lt;&#x2F;div&gt;</code></pre></div>
 
 <h2 id="课程大纲"><a href="#课程大纲" class="headerlink" title="课程大纲"></a>课程大纲</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!-- &#x2F;课程介绍 --&gt;
                  &lt;div class&#x3D;&quot;mt50&quot;&gt;
@@ -1227,7 +1227,7 @@ import course from &quot;@&#x2F;api&#x2F;course&quot;
                      &lt;&#x2F;div&gt;
                    &lt;&#x2F;section&gt;
                  &lt;&#x2F;div&gt;
-                 &lt;!-- &#x2F;课程大纲 --&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+                 &lt;!-- &#x2F;课程大纲 --&gt;</code></pre></div>
 
 <h2 id="主讲讲师"><a href="#主讲讲师" class="headerlink" title="主讲讲师"></a>主讲讲师</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;div class&#x3D;&quot;i-box&quot;&gt;
              &lt;div&gt;
@@ -1252,7 +1252,7 @@ import course from &quot;@&#x2F;api&#x2F;course&quot;
                  &lt;&#x2F;ul&gt;
                &lt;&#x2F;section&gt;
              &lt;&#x2F;div&gt;
-           &lt;&#x2F;div&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+           &lt;&#x2F;div&gt;</code></pre></div>
 
 <h2 id="完整页面-1"><a href="#完整页面-1" class="headerlink" title="完整页面"></a>完整页面</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
    &lt;div id&#x3D;&quot;aCoursesList&quot; class&#x3D;&quot;bg-fa of&quot;&gt;
@@ -1430,95 +1430,95 @@ import course from &quot;@&#x2F;api&#x2F;course&quot;
    &#125;
    
  &#125;;
- &lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+ &lt;&#x2F;script&gt;</code></pre></div>
 
-<h1 id="整合阿里云视频播放器测试"><a href="#整合阿里云视频播放器测试" class="headerlink" title="整合阿里云视频播放器测试"></a>整合阿里云视频播放器测试</h1><h2 id="视频地址播放"><a href="#视频地址播放" class="headerlink" title="视频地址播放"></a>视频地址播放</h2><div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>X-UA-Compatible<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>IE=edge<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Document<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+<h1 id="整合阿里云视频播放器测试"><a href="#整合阿里云视频播放器测试" class="headerlink" title="整合阿里云视频播放器测试"></a>整合阿里云视频播放器测试</h1><h2 id="视频地址播放"><a href="#视频地址播放" class="headerlink" title="视频地址播放"></a>视频地址播放</h2><div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang&#x3D;&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;
+    &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;IE&#x3D;edge&quot;&gt;
+    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot;&gt;
+    &lt;title&gt;Document&lt;&#x2F;title&gt;
+&lt;&#x2F;head&gt;
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://g.alicdn.com/de/prismplayer/2.8.1/skins/default/aliplayer-min.css<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://g.alicdn.com/de/prismplayer/2.8.1/aliplayer-min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span>  <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>prism-player<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>J_prismPlayer<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
-            <span class="token keyword">var</span> player <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Aliplayer</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-                id<span class="token operator">:</span> <span class="token string">'J_prismPlayer'</span><span class="token punctuation">,</span>
-                width<span class="token operator">:</span> <span class="token string">'100%'</span><span class="token punctuation">,</span>
-                autoplay<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
-                cover<span class="token operator">:</span> <span class="token string">'http://liveroom-img.oss-cn-qingdao.aliyuncs.com/logo.png'</span><span class="token punctuation">,</span>  
-                <span class="token comment">//播放配置</span>
-                <span class="token comment">//播放方式一：支持播放地址播放,此播放优先级最高，此种方式不能播放加密视频</span>
-                source <span class="token operator">:</span> <span class="token string">'https://outin-e7915c6967b411eca96500163e1c60dc.oss-cn-shanghai.aliyuncs.com/sv/12b862d3-17e007b353b/12b862d3-17e007b353b.mp4?Expires=1641138735&amp;OSSAccessKeyId=LTAIxSaOfEzCnBOj&amp;Signature=LZvaSss9BmRFXSrXL6DMmhmi%2BiQ%3D'</span><span class="token punctuation">,</span>
-            <span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">player</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+&lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;https:&#x2F;&#x2F;g.alicdn.com&#x2F;de&#x2F;prismplayer&#x2F;2.8.1&#x2F;skins&#x2F;default&#x2F;aliplayer-min.css&quot; &#x2F;&gt;
+&lt;script charset&#x3D;&quot;utf-8&quot; type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;https:&#x2F;&#x2F;g.alicdn.com&#x2F;de&#x2F;prismplayer&#x2F;2.8.1&#x2F;aliplayer-min.js&quot;&gt;&lt;&#x2F;script&gt;
+&lt;body&gt;
+    &lt;div  class&#x3D;&quot;prism-player&quot; id&#x3D;&quot;J_prismPlayer&quot;&gt;&lt;&#x2F;div&gt;
+        &lt;script&gt;
+            var player &#x3D; new Aliplayer(&#123;
+                id: &#39;J_prismPlayer&#39;,
+                width: &#39;100%&#39;,
+                autoplay: false,
+                cover: &#39;http:&#x2F;&#x2F;liveroom-img.oss-cn-qingdao.aliyuncs.com&#x2F;logo.png&#39;,  
+                &#x2F;&#x2F;播放配置
+                &#x2F;&#x2F;播放方式一：支持播放地址播放,此播放优先级最高，此种方式不能播放加密视频
+                source : &#39;https:&#x2F;&#x2F;outin-e7915c6967b411eca96500163e1c60dc.oss-cn-shanghai.aliyuncs.com&#x2F;sv&#x2F;12b862d3-17e007b353b&#x2F;12b862d3-17e007b353b.mp4?Expires&#x3D;1641138735&amp;OSSAccessKeyId&#x3D;LTAIxSaOfEzCnBOj&amp;Signature&#x3D;LZvaSss9BmRFXSrXL6DMmhmi%2BiQ%3D&#39;,
+            &#125;,function(player)&#123;
                
-            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+            &#125;);
+        &lt;&#x2F;script&gt;
+&lt;&#x2F;body&gt;
+&lt;&#x2F;html&gt;</code></pre></div>
 
-<h2 id="凭证播放"><a href="#凭证播放" class="headerlink" title="凭证播放"></a>凭证播放</h2><div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>X-UA-Compatible<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>IE=edge<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Document<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+<h2 id="凭证播放"><a href="#凭证播放" class="headerlink" title="凭证播放"></a>凭证播放</h2><div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang&#x3D;&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;
+    &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;IE&#x3D;edge&quot;&gt;
+    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot;&gt;
+    &lt;title&gt;Document&lt;&#x2F;title&gt;
+&lt;&#x2F;head&gt;
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://g.alicdn.com/de/prismplayer/2.8.1/skins/default/aliplayer-min.css<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://g.alicdn.com/de/prismplayer/2.8.1/aliplayer-min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span>  <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>prism-player<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>J_prismPlayer<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
-            <span class="token keyword">var</span> player <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Aliplayer</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-                id<span class="token operator">:</span> <span class="token string">'J_prismPlayer'</span><span class="token punctuation">,</span>
-                width<span class="token operator">:</span> <span class="token string">'100%'</span><span class="token punctuation">,</span>
-                autoplay<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
-                cover<span class="token operator">:</span> <span class="token string">'http://liveroom-img.oss-cn-qingdao.aliyuncs.com/logo.png'</span><span class="token punctuation">,</span>  
-                <span class="token comment">//播放配置</span>
-                encryptType<span class="token operator">:</span><span class="token string">'1'</span><span class="token punctuation">,</span><span class="token comment">//如果播放加密视频，则需设置encryptType=1，非加密视频无需设置此项</span>
-                vid<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>		<span class="token comment">// 视频id</span>
-                playauth <span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>	<span class="token comment">// 授权信息</span>
-            <span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">player</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+&lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;https:&#x2F;&#x2F;g.alicdn.com&#x2F;de&#x2F;prismplayer&#x2F;2.8.1&#x2F;skins&#x2F;default&#x2F;aliplayer-min.css&quot; &#x2F;&gt;
+&lt;script charset&#x3D;&quot;utf-8&quot; type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;https:&#x2F;&#x2F;g.alicdn.com&#x2F;de&#x2F;prismplayer&#x2F;2.8.1&#x2F;aliplayer-min.js&quot;&gt;&lt;&#x2F;script&gt;
+&lt;body&gt;
+    &lt;div  class&#x3D;&quot;prism-player&quot; id&#x3D;&quot;J_prismPlayer&quot;&gt;&lt;&#x2F;div&gt;
+        &lt;script&gt;
+            var player &#x3D; new Aliplayer(&#123;
+                id: &#39;J_prismPlayer&#39;,
+                width: &#39;100%&#39;,
+                autoplay: false,
+                cover: &#39;http:&#x2F;&#x2F;liveroom-img.oss-cn-qingdao.aliyuncs.com&#x2F;logo.png&#39;,  
+                &#x2F;&#x2F;播放配置
+                encryptType:&#39;1&#39;,&#x2F;&#x2F;如果播放加密视频，则需设置encryptType&#x3D;1，非加密视频无需设置此项
+                vid: &#39;&#39;,		&#x2F;&#x2F; 视频id
+                playauth : &#39;&#39;,	&#x2F;&#x2F; 授权信息
+            &#125;,function(player)&#123;
                
-            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+            &#125;);
+        &lt;&#x2F;script&gt;
+&lt;&#x2F;body&gt;
+&lt;&#x2F;html&gt;
+</code></pre></div>
 
 <h1 id="整合阿里云视频播放器"><a href="#整合阿里云视频播放器" class="headerlink" title="整合阿里云视频播放器"></a>整合阿里云视频播放器</h1><h2 id="一、后端获取播放凭证"><a href="#一、后端获取播放凭证" class="headerlink" title="一、后端获取播放凭证"></a>一、后端获取播放凭证</h2><h3 id="1、VideoController"><a href="#1、VideoController" class="headerlink" title="1、VideoController"></a>1、VideoController</h3><p>service-vod微服务中创建 VideoController.java</p>
 <p>controller中创建 getVideoAuth接口方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 根据视频id获取凭证</span>
-<span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"getVideoAuth/&#123;id&#125;"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token class-name">R</span> <span class="token function">getVideoAuth</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> id<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据视频id获取凭证
+@GetMapping(&quot;getVideoAuth&#x2F;&#123;id&#125;&quot;)
+public R getVideoAuth(@PathVariable String id)&#123;
 
-    <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
-        <span class="token comment">// 创建初始化对象</span>
-        <span class="token class-name">DefaultAcsClient</span> client <span class="token operator">=</span> <span class="token class-name">InitVodClient</span><span class="token punctuation">.</span><span class="token function">initVodClient</span><span class="token punctuation">(</span><span class="token class-name">ConstantVodUtils</span><span class="token punctuation">.</span>ACCESS_KEY_ID<span class="token punctuation">,</span> <span class="token class-name">ConstantVodUtils</span><span class="token punctuation">.</span>ACCESS_KEY_SECRET<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    try &#123;
+        &#x2F;&#x2F; 创建初始化对象
+        DefaultAcsClient client &#x3D; InitVodClient.initVodClient(ConstantVodUtils.ACCESS_KEY_ID, ConstantVodUtils.ACCESS_KEY_SECRET);
 
-        <span class="token comment">// 创建获取凭证的request和response对象</span>
-        <span class="token class-name">GetVideoPlayAuthRequest</span> request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">GetVideoPlayAuthRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        &#x2F;&#x2F; 创建获取凭证的request和response对象
+        GetVideoPlayAuthRequest request &#x3D; new GetVideoPlayAuthRequest();
 
-        <span class="token comment">// 设置视频id</span>
-        request<span class="token punctuation">.</span><span class="token function">setVideoId</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        &#x2F;&#x2F; 设置视频id
+        request.setVideoId(id);
 
-        <span class="token comment">// 调用初始化对象获取凭证</span>
-        <span class="token class-name">GetVideoPlayAuthResponse</span> response <span class="token operator">=</span> client<span class="token punctuation">.</span><span class="token function">getAcsResponse</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        &#x2F;&#x2F; 调用初始化对象获取凭证
+        GetVideoPlayAuthResponse response &#x3D; client.getAcsResponse(request);
 
-        <span class="token class-name">String</span> playAuth <span class="token operator">=</span> response<span class="token punctuation">.</span><span class="token function">getPlayAuth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        String playAuth &#x3D; response.getPlayAuth();
 
-        <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">"playAuth"</span><span class="token punctuation">,</span>playAuth<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ClientException</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">GuliException</span><span class="token punctuation">(</span><span class="token number">20001</span><span class="token punctuation">,</span><span class="token string">"获取凭证失败"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+        return R.ok().data(&quot;playAuth&quot;,playAuth);
+    &#125; catch (ClientException e) &#123;
+        e.printStackTrace();
+        throw new GuliException(20001,&quot;获取凭证失败&quot;);
+    &#125;
+&#125;</code></pre></div>
 
 <h2 id="二、前端播放器整合"><a href="#二、前端播放器整合" class="headerlink" title="二、前端播放器整合"></a>二、前端播放器整合</h2><h3 id="1、点击播放超链接"><a href="#1、点击播放超链接" class="headerlink" title="1、点击播放超链接"></a>1、点击播放超链接</h3><p>course/_id.vue</p>
 <p>修改课时目录超链接</p>
@@ -1527,7 +1527,7 @@ import course from &quot;@&#x2F;api&#x2F;course&quot;
         &lt;i class&#x3D;&quot;free-icon vam mr10&quot; &gt;免费试听&lt;&#x2F;i&gt;
     &lt;&#x2F;span&gt;
     &lt;em class&#x3D;&quot;lh-menu-i-2 icon16 mr5&quot;&gt;&amp;nbsp;&lt;&#x2F;em&gt;&#123;&#123;video.title&#125;&#125;
-&lt;&#x2F;a&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&lt;&#x2F;a&gt;</code></pre></div>
 
 <h3 id="2、layout"><a href="#2、layout" class="headerlink" title="2、layout"></a>2、layout</h3><p>因为播放器的布局和其他页面的基本布局不一致，因此创建新的布局容器 layouts/video.vue</p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
@@ -1569,18 +1569,18 @@ html,body&#123;
   bottom: 0;
   overflow: hidden;
 &#125;
-&lt;&#x2F;style&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&lt;&#x2F;style&gt;</code></pre></div>
 
 <h3 id="3、api"><a href="#3、api" class="headerlink" title="3、api"></a>3、api</h3><p>创建api模块 api/vod.js，从后端获取播放凭证</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> request <span class="token keyword">from</span> <span class="token string">'@/utils/request'</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">&#123;</span>
-  <span class="token function">getPlayAuth</span><span class="token punctuation">(</span><span class="token parameter">vid</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-      url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/eduvod/video/getVideoAuth/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>vid<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
-      method<span class="token operator">:</span> <span class="token string">'get'</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">import request from &#39;@&#x2F;utils&#x2F;request&#39;
+export default &#123;
+  getPlayAuth(vid) &#123;
+    return request(&#123;
+      url: &#96;&#x2F;eduvod&#x2F;video&#x2F;getVideoAuth&#x2F;$&#123;vid&#125;&#96;,
+      method: &#39;get&#39;
+    &#125;)
+  &#125;
+&#125;</code></pre></div>
 
 <h3 id="4、播放组件相关文档"><a href="#4、播放组件相关文档" class="headerlink" title="4、播放组件相关文档"></a>4、播放组件相关文档</h3><p><strong>集成文档：</strong><a target="_blank" rel="noopener" href="https://help.aliyun.com/document_detail/51991.html?spm=a2c4g.11186623.2.39.478e192b8VSdEn">https://help.aliyun.com/document_detail/51991.html?spm=a2c4g.11186623.2.39.478e192b8VSdEn</a></p>
 <p><strong>在线配置：</strong><a target="_blank" rel="noopener" href="https://player.alicdn.com/aliplayer/setting/setting.html">https://player.alicdn.com/aliplayer/setting/setting.html</a></p>
@@ -1596,7 +1596,7 @@ html,body&#123;
     &lt;!-- 定义播放器dom --&gt;
     &lt;div id&#x3D;&quot;J_prismPlayer&quot; class&#x3D;&quot;prism-player&quot; &#x2F;&gt;
   &lt;&#x2F;div&gt;
-&lt;&#x2F;template&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&lt;&#x2F;template&gt;</code></pre></div>
 
 <p>（2）获取播放凭证</p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;script&gt;
@@ -1615,7 +1615,7 @@ export default &#123;
     &#125;,
     
 &#125;
-&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&lt;&#x2F;script&gt;</code></pre></div>
 
 <p>（3）创建播放器</p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&#x2F;**
@@ -1634,7 +1634,7 @@ mounted() &#123;
     &#125;, function(player) &#123;
         &#x2F;&#x2F;console.log(&#39;播放器创建成功&#39;)
     &#125;)
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;</code></pre></div>
 
 <p>（4）其他常见的可选配置</p>
 <div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">    &#x2F;&#x2F; 以下可选设置
@@ -1648,7 +1648,7 @@ mounted() &#123;
     controlBarVisibility: &#39;hover&#39;, &#x2F;&#x2F; 控制条的显示方式：鼠标悬停
     useH5Prism: true, &#x2F;&#x2F; 播放器类型：html5
 &#125;, function(player) &#123;
-    &#x2F;&#x2F;console.log(&#39;播放器创建成功&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+    &#x2F;&#x2F;console.log(&#39;播放器创建成功&#39;)</code></pre></div>
 
 <h3 id="6、加入播放组件"><a href="#6、加入播放组件" class="headerlink" title="6、加入播放组件"></a>6、加入播放组件</h3><p><strong>功能展示：</strong><a target="_blank" rel="noopener" href="https://player.alicdn.com/aliplayer/presentation/index.html">https://player.alicdn.com/aliplayer/presentation/index.html</a></p>
 
