@@ -1,6 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>SpringBoot-2.4.9初始化工程</title>
+    <url>/myBlog/SpringBoot-2.4.9%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E7%A8%8B/</url>
+    <content><![CDATA[<h1 id="SpringBoot-2-4-9初始化工程"><a href="#SpringBoot-2-4-9初始化工程" class="headerlink" title="SpringBoot-2.4.9初始化工程"></a>SpringBoot-2.4.9初始化工程</h1><p>该springboot工程一整合mysql，mybatisPlus，mybatis-plus-generator，lombok，swagger</p>
+<p>仓库地址：<a href="https://github.com/No-Ten/springboot_init">https://github.com/No-Ten/springboot_init</a></p>
+<p>通过git clone</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git clone git@github.com:No-Ten&#x2F;springboot_init.git</code></pre></div>
+
+
+
+<h2 id="版本依赖"><a href="#版本依赖" class="headerlink" title="版本依赖"></a>版本依赖</h2><p>pom.xml</p>
+<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-web&lt;&#x2F;artifactId&gt;
+    &lt;&#x2F;dependency&gt;
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-test&lt;&#x2F;artifactId&gt;
+        &lt;scope&gt;test&lt;&#x2F;scope&gt;
+    &lt;&#x2F;dependency&gt;
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;mysql&lt;&#x2F;groupId&gt;
+        &lt;artifactId&gt;mysql-connector-java&lt;&#x2F;artifactId&gt;
+        &lt;scope&gt;runtime&lt;&#x2F;scope&gt;
+    &lt;&#x2F;dependency&gt;
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-jdbc&lt;&#x2F;artifactId&gt;
+    &lt;&#x2F;dependency&gt;
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.baomidou&lt;&#x2F;groupId&gt;
+        &lt;artifactId&gt;mybatis-plus-boot-starter&lt;&#x2F;artifactId&gt;
+        &lt;version&gt;3.5.1&lt;&#x2F;version&gt;
+    &lt;&#x2F;dependency&gt;
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.projectlombok&lt;&#x2F;groupId&gt;
+        &lt;artifactId&gt;lombok&lt;&#x2F;artifactId&gt;
+    &lt;&#x2F;dependency&gt;
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;io.springfox&lt;&#x2F;groupId&gt;
+        &lt;artifactId&gt;springfox-boot-starter&lt;&#x2F;artifactId&gt;
+        &lt;version&gt;3.0.0&lt;&#x2F;version&gt;
+    &lt;&#x2F;dependency&gt;
+
+    &lt;!-- 代码自动生成器 --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.baomidou&lt;&#x2F;groupId&gt;
+        &lt;artifactId&gt;mybatis-plus-generator&lt;&#x2F;artifactId&gt;
+        &lt;version&gt;3.5.1&lt;&#x2F;version&gt;
+    &lt;&#x2F;dependency&gt;
+    &lt;!-- freemarker 模块引擎 --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-freemarker&lt;&#x2F;artifactId&gt;
+    &lt;&#x2F;dependency&gt;
+
+&lt;&#x2F;dependencies&gt;</code></pre></div>
+
+
+
+<h2 id="mybatis-plus代码生成器"><a href="#mybatis-plus代码生成器" class="headerlink" title="mybatis-plus代码生成器"></a>mybatis-plus代码生成器</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
+ * Mybatis-Plus 自动生成代码类
+ *&#x2F;
+public class Generator &#123;
+    public static void main(String[] args) &#123;
+        &#x2F;&#x2F; 获取当前文件夹
+        String currentFile &#x3D; System.getProperty(&quot;user.dir&quot;);
+        &#x2F;&#x2F; 包名
+        String packageName &#x3D; &quot;com.db&quot;;
+
+        &#x2F;&#x2F; 生成
+        FastAutoGenerator.create(&quot;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;dbdemo&quot;,&quot;root&quot;,&quot;123456&quot;)
+                .globalConfig(builder -&gt; &#123;
+                    builder.author(&quot;xxx&quot;)
+                            &#x2F;&#x2F; 开启swagger
+                            .enableSwagger()
+                            &#x2F;&#x2F; 覆盖已生成的文件
+                            .fileOverride()
+                            &#x2F;&#x2F; 禁止打开输出目录，默认值为：true
+                            .disableOpenDir()
+                            &#x2F;&#x2F; 默认值：DateType.TIME_PACK
+                            .dateType(DateType.TIME_PACK)
+                            .outputDir(currentFile + &quot;&#x2F;src&#x2F;test&#x2F;java&quot;);
+                &#125;)
+                .packageConfig(builder -&gt; &#123;
+                    &#x2F;&#x2F; 设置父包名
+                    builder.parent(packageName)
+                            &#x2F;&#x2F; 设置父包模块名
+                            .moduleName(&quot;gsdb&quot;)
+                            &#x2F;&#x2F; Entity
+                            .entity(&quot;entity&quot;)
+                            &#x2F;&#x2F; 设置dto包名
+                            .other(&quot;dto&quot;)
+                            .mapper(&quot;mapper&quot;)
+                            .service(&quot;service&quot;)
+                            .serviceImpl(&quot;service&#x2F;serviceImpl&quot;)
+                            .controller(&quot;controller&quot;)
+                            &#x2F;&#x2F; 设置mapperXml生成路径
+                            .pathInfo(Collections.singletonMap(OutputFile.mapperXml,currentFile + &quot;&#x2F;src&#x2F;test&#x2F;resources&#x2F;&quot; + packageName));
+&#x2F;&#x2F;                            .pathInfo(Collections.singletonMap(OutputFile.mapperXml,currentFile + &quot;&#x2F;src&#x2F;test&#x2F;java&#x2F;&quot; + packageName + &quot;&#x2F;gsdb&#x2F;mapper&#x2F;mapping&quot;));
+                &#125;)
+                .strategyConfig(builder -&gt; &#123;
+                    &#x2F;&#x2F; 设置需要生成的表名
+                    builder.addInclude(&quot;student&quot;)
+                            &#x2F;&#x2F; 设置过滤表前缀
+                            .addTablePrefix(&quot;t_&quot;,&quot;c_&quot;)
+                            &#x2F;&#x2F; Entity策略配置
+                            .entityBuilder()
+                            &#x2F;&#x2F; 开启Lombok
+                            .enableLombok()
+                            &#x2F;&#x2F; 开启生成实体时生成字段注释
+                            .enableTableFieldAnnotation()
+                            &#x2F;&#x2F; Mapper策略配置
+                            .mapperBuilder()
+                            &#x2F;&#x2F; 开启@Mapper注解
+                            .enableMapperAnnotation()
+                            &#x2F;&#x2F; 启用BaseColumnList
+                            &#x2F;&#x2F;.enableBaseColumnList()
+                            &#x2F;&#x2F; 启用BaseResultMap生成
+                            &#x2F;&#x2F;.enableBaseResultMap()
+                            .serviceBuilder()
+                            &#x2F;&#x2F; &quot;%sService&quot; 去掉Service接口的首字母I
+                            .formatServiceFileName(&quot;%sService&quot;)
+                            &#x2F;&#x2F; controller策略配置
+                            .controllerBuilder()
+                            &#x2F;&#x2F; 开启生成@RestController控制器
+                            .enableRestStyle()
+                            .enableHyphenStyle();
+                &#125;)
+                &#x2F;&#x2F; 使用Freemarker引擎模块，默认的是Velocity引擎模板
+                .templateEngine(new FreemarkerTemplateEngine())
+                .execute();
+    &#125;
+&#125;</code></pre></div>
+
+]]></content>
+      <categories>
+        <category>springboo初始化工程</category>
+      </categories>
+      <tags>
+        <tag>springboo初始化工程</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>day01-MybatisPlus入门</title>
     <url>/myBlog/day01-MybatisPlus%E5%85%A5%E9%97%A8/</url>
     <content><![CDATA[<h1 id="day01-MybatisPlus入门"><a href="#day01-MybatisPlus入门" class="headerlink" title="day01 MybatisPlus入门"></a>day01 MybatisPlus入门</h1><h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h1><p>官网：<a href="http://mp.baomidou.com/">http://mp.baomidou.com/</a></p>
@@ -23,470 +173,6 @@
 <li><strong>内置全局拦截插件</strong>：提供全表 delete 、 update 操作智能分析阻断，也可自定义拦截规则，预防误操作</li>
 <li><strong>内置 Sql 注入剥离器</strong>：支持 Sql 注入剥离，有效预防 Sql 注入攻击</li>
 </ul>
-]]></content>
-      <categories>
-        <category>项目|谷粒学院|笔记</category>
-      </categories>
-      <tags>
-        <tag>project</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>day04-项目的前端基本知识二</title>
-    <url>/myBlog/day04-%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%89%8D%E7%AB%AF%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E4%BA%8C/</url>
-    <content><![CDATA[<h1 id="day04-项目的前端基本知识二"><a href="#day04-项目的前端基本知识二" class="headerlink" title="day04-项目的前端基本知识二"></a>day04-项目的前端基本知识二</h1><h1 id="axios"><a href="#axios" class="headerlink" title="axios"></a>axios</h1><p>axios是独立于vue的一个项目，基于promise用于浏览器和node.js的http客户端</p>
-<ul>
-<li>在浏览器中可以帮助我们完成 ajax请求的发送</li>
-<li>在node.js中可以向远程接口发送请求</li>
-</ul>
-<ol>
-<li>导入axios.min.js文件</li>
-<li>编写一个json数据，模拟接口</li>
-</ol>
-<div class="code-wrapper"><pre class="line-numbers language-json" data-language="json"><code class="language-json">&#123;
-    &quot;success&quot;:true,
-    &quot;code&quot;:20000,
-    &quot;message&quot;:&quot;成功&quot;,
-    &quot;data&quot;:&#123;
-        &quot;items&quot;:[
-            &#123;&quot;name&quot;:&quot;lucy&quot;,&quot;age&quot;:&quot;10&quot;&#125;,
-            &#123;&quot;name&quot;:&quot;mary&quot;,&quot;age&quot;:&quot;20&quot;&#125;,
-            &#123;&quot;name&quot;:&quot;jack&quot;,&quot;age&quot;:&quot;30&quot;&#125;
-        ]
-    &#125;
-&#125;</code></pre></div>
-
-
-
-<ol start="4">
-<li>编写代码</li>
-</ol>
-<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html lang&#x3D;&quot;en&quot;&gt;
-
-&lt;head&gt;
-    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;
-    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot;&gt;
-    &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;ie&#x3D;edge&quot;&gt;
-    &lt;title&gt;Document&lt;&#x2F;title&gt;
-&lt;&#x2F;head&gt;
-
-&lt;body&gt;
-    &lt;div id&#x3D;&quot;app&quot;&gt;
-        &lt;!--如何显示数据--&gt;
-        &lt;div v-for&#x3D;&quot;user in userList&quot;&gt;
-            &#123;&#123;user.name&#125;&#125; -- &#123;&#123;user.age&#125;&#125;
-        &lt;&#x2F;div&gt;
-
-    &lt;&#x2F;div&gt;
-    &lt;script src&#x3D;&quot;vue.min.js&quot;&gt;&lt;&#x2F;script&gt;
-    &lt;script src&#x3D;&quot;axios.min.js&quot;&gt;&lt;&#x2F;script&gt;
-    &lt;script&gt;
-        new Vue(&#123;
-            el: &#39;#app&#39;,
-            data: &#123;
-                &#x2F;&#x2F; 定义一个空数组
-                userList:[]
-            &#125;,
-            created ()&#123;     &#x2F;&#x2F; 页面渲染之前执行
-                &#x2F;&#x2F; 调用方法
-                this.getUserList()
-            &#125;,
-            methods:&#123;       &#x2F;&#x2F; 编写具体方法
-
-                &#x2F;&#x2F; 创建方法，查询所有用户
-                getUserList()&#123;
-                    &#x2F;&#x2F; 使用axios的ajax请求
-                    &#x2F;&#x2F; axios.提交方式(&quot;请求接口地址&quot;).then().catch()
-                    axios.get(&quot;data.json&quot;)
-                        .then(response &#x3D;&gt;&#123;      &#x2F;&#x2F; 请求成功执行then
-                            &#x2F;&#x2F; response就是请求放回的数据
-                            &#x2F;&#x2F;console.log(response);
-                            &#x2F;&#x2F; 通过response获取具体的值，赋值给定义空数组
-                            this.userList &#x3D; response.data.data.items
-                            &#x2F;&#x2F;console.log(this.userList);
-                        &#125;)     
-                        .catch(error &#x3D;&gt;&#123;    &#x2F;&#x2F;  请求失败执行catch
-
-                        &#125;)    
-                &#125;
-            &#125;
-        &#125;)
-    &lt;&#x2F;script&gt;
-&lt;&#x2F;body&gt;
-
-&lt;&#x2F;html&gt;</code></pre></div>
-
-<p>测试</p>
-<h1 id="element-ui"><a href="#element-ui" class="headerlink" title="element-ui"></a>element-ui</h1><p>官网： <a href="http://element-cn.eleme.io/#/zh-CN">http://element-cn.eleme.io/#/zh-CN</a></p>
-<h1 id="nodejs"><a href="#nodejs" class="headerlink" title="nodejs"></a>nodejs</h1><p>可以模拟服务器，执行JavaScript代码。</p>
-<p>简单使用</p>
-<p>创建一个js文件</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">console.log(&#39;hello nodejs&#39;);</code></pre></div>
-
-<p>用cmd进入js文件所在的位置，执行命令node 01.js，即可</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">E:\VSCode\workplace\axiosdemo&gt;node 01.js
-hello nodejs</code></pre></div>
-
-
-
-<p>在vscode中使用，右键选中文件，在终端中打开，输入启动命令和需要启动的文件即可。</p>
-<p><img src="/myBlog/day04-%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%89%8D%E7%AB%AF%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E4%BA%8C/image-20211222162543838.png" alt="image-20211222162543838"></p>
-<h1 id="npm包管理器"><a href="#npm包管理器" class="headerlink" title="npm包管理器"></a>npm包管理器</h1><p>node package manager，类似后端的maven，maven管理jar包，npm管理js库，如jQuery等</p>
-<h2 id="使用npm项目初始化操作"><a href="#使用npm项目初始化操作" class="headerlink" title="使用npm项目初始化操作"></a>使用npm项目初始化操作</h2><p>npm init</p>
-<p>npm init -y；都默认按照</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">PS E:\VSCode\workplace\npmdemo&gt; npm init
-This utility will walk you through creating a package.json file.
-It only covers the most common items, and tries to guess sensible defaults.
-
-See &#96;npm help init&#96; for definitive documentation on these fields
-and exactly what they do.
-
-Use &#96;npm install &lt;pkg&gt;&#96; afterwards to install a package and
-save it as a dependency in the package.json file.
-
-Press ^C at any time to quit.
-package name: (npmdemo)
-version: (1.0.0)
-description:
-entry point: (index.js)
-test command:
-git repository:
-keywords:
-author:
-license: (ISC)
-About to write to E:\VSCode\workplace\npmdemo\package.json:
-
-&#123;
-  &quot;name&quot;: &quot;npmdemo&quot;,
-  &quot;version&quot;: &quot;1.0.0&quot;,
-  &quot;description&quot;: &quot;&quot;,
-  &quot;main&quot;: &quot;index.js&quot;,
-  &quot;scripts&quot;: &#123;
-    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
-  &#125;,
-  &quot;author&quot;: &quot;&quot;,
-  &quot;license&quot;: &quot;ISC&quot;
-&#125;
-
-
-Is this OK? (yes) yes
-PS E:\VSCode\workplace\npmdemo&gt; </code></pre></div>
-
-
-
-<p>生成package.json文件，类似后端的pom.xml文件</p>
-<h2 id="npm-下载依赖"><a href="#npm-下载依赖" class="headerlink" title="npm 下载依赖"></a>npm 下载依赖</h2><p>npm install 依赖名称</p>
-<p>如下载jQuery ,</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"># 会下载最新版本
-install jquery </code></pre></div>
-
-<p>如果想指定版本，则用</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm install jquery@2.1.x</code></pre></div>
-
-
-
-<p>下载完成之后，会出现node_modules文件夹里面会有jQuery的文件和一个package-lock.json文件，package-lock.json文件是锁定当前版本的jQuery版本。</p>
-<p>package.json文件中的dependencies是依赖的版本</p>
-<div class="code-wrapper"><pre class="line-numbers language-json" data-language="json"><code class="language-json">&quot;dependencies&quot;: &#123;
-  &quot;jquery&quot;: &quot;^3.6.0&quot;
-&#125;</code></pre></div>
-
-
-
-<h2 id="通过package-json下载依赖"><a href="#通过package-json下载依赖" class="headerlink" title="通过package.json下载依赖"></a>通过package.json下载依赖</h2><p>先把原有的node_modules文件删除，接着执行下面的命令（需要再项目根目录）</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm install</code></pre></div>
-
-
-
-<h1 id="babel转码器"><a href="#babel转码器" class="headerlink" title="babel转码器"></a>babel转码器</h1><p>将es6代码转成es5代码，目的：有些浏览器不兼容es6代码，为了提高兼容性</p>
-<p>新创建一个文件，初始化项目</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm init -y</code></pre></div>
-
-
-
-<p>安装babel工具</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm install --global babel-cli</code></pre></div>
-
-<p>查看版本号</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">babel --version</code></pre></div>
-
-<p>创建es6文件夹，创建js文件</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 转码前
-&#x2F;&#x2F; 定义数据类型
-let input &#x3D; [1,2,3]
-&#x2F;&#x2F; 将数组元素的每一个元素+1
-input &#x3D; input.map(item &#x3D;&gt; item+1)
-console.log(input);</code></pre></div>
-
-<p>在项目根目录创建.babelrc配置文件</p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#123;
-    &quot;presets&quot;:[&quot;es2015&quot;],
-    &quot;plugins&quot;: []
-&#125;</code></pre></div>
-
-<p>安装es2015转码器</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm install --save-dev babel-preset-es2015</code></pre></div>
-
-<p><strong>根据文件转码</strong></p>
-<p>es6/01.js:源文件</p>
-<p>dist/001.js：生成的文件路径以及文件名字</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">babel es6&#x2F;01.js -o dist&#x2F;001.js</code></pre></div>
-
-<p><strong>根据文件夹转换</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">babel es6 -d dist</code></pre></div>
-
-
-
-<p>生成的es5文件</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&quot;use strict&quot;;
-
-&#x2F;&#x2F; 转码前
-&#x2F;&#x2F; 定义数据类型
-var input &#x3D; [1, 2, 3];
-&#x2F;&#x2F; 将数组元素的每一个元素+1
-input &#x3D; input.map(function (item) &#123;
-  return item + 1;
-&#125;);
-console.log(input);
-</code></pre></div>
-
-
-
-<p>==<strong>注意：转码的时候需要在项目的根目录下才可以转码，否则会报文件不存在的错误</strong>==</p>
-<h1 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h1><p>开发后端接口时候，开发controller service mapper，controller注入service，service注入mapper，在后端中，类与类之间的调用成为后端模块化操作</p>
-<p>前端模块化，在前端中，js与js之间调用成为前端模块化操作</p>
-<h2 id="es5实现模块化操作"><a href="#es5实现模块化操作" class="headerlink" title="es5实现模块化操作"></a>es5实现模块化操作</h2><p>创建1.js文件，提供方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 1.创能方法
-const sum &#x3D; function(a,b)&#123;
-    return parseInt(a) + parseInt(b)
-&#125;
-const substract &#x3D; function(a,b)&#123;
-    return parseInt(a) - parseInt(b)
-&#125;
-
-module.exports &#x3D;&#123;
-    sum,
-    substract
-&#125;</code></pre></div>
-
-<p>创建2.js文件，调用</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 调用1.js的方法
-&#x2F;&#x2F; 1.引入js文件
-const m &#x3D; require(&#39;.&#x2F;1.js&#39;)
-
-&#x2F;&#x2F; 调用方法
-console.log(m.sum(1,1));
-console.log(m.substract(3,1));</code></pre></div>
-
-<p>在终端测试</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">PS E:\VSCode\workplace\moduledemo\es5moduledemo&gt; node 2.js
-2
-2
-PS E:\VSCode\workplace\moduledemo\es5moduledemo&gt; </code></pre></div>
-
-
-
-<h2 id="es6模块化"><a href="#es6模块化" class="headerlink" title="es6模块化"></a>es6模块化</h2><h3 id="第一种方法"><a href="#第一种方法" class="headerlink" title="第一种方法"></a>第一种方法</h3><p> 创建1.js文件，提供方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 定义方法
-export function getList()&#123;
-    console.log(&quot;getList....&quot;);
-&#125;
-
-export function save()&#123;
-    console.log(&quot;save....&quot;);
-&#125;</code></pre></div>
-
-<p>创建2.js文件，调用方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 调用1.js的方法
-import &#123; getList,save &#125; from &quot;.&#x2F;1&quot;;
-getList()
-save()</code></pre></div>
-
-<p>由于es6不能直接在nodejs环境下运行，所以先用babel转成es5代码再进行测试</p>
-<h3 id="第二种方法"><a href="#第二种方法" class="headerlink" title="第二种方法"></a>第二种方法</h3><p>创建1.js文件，提供方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 定义方法
-export default&#123;
-    getList()&#123;
-        console.log(&#39;getList.....&#39;);
-    &#125;,
-    save()&#123;
-        console.log(&#39;save.....&#39;);
-    &#125;
-
-&#125;</code></pre></div>
-
-<p>创建2.js文件，调用方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 调用1.js的方法
-import m from &#39;.&#x2F;1&#39;
-m.getList()
-m.save()</code></pre></div>
-
-<p>测试</p>
-<h1 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h1><h2 id="webpack是什么"><a href="#webpack是什么" class="headerlink" title="webpack是什么"></a>webpack是什么</h2><p>Webpack 是一个前端<strong>资源加载/打包</strong>工具。它将根据模块的依赖关系进行静态分析，然后将这些模块按照指定的规则生成对应的静态资源。</p>
-<p>从图中我们可以看出，Webpack 可以<strong>将多种静态资源</strong> js、css、less 转<strong>换成一个静态文件</strong>，<strong>减少了页面的请求</strong>。 </p>
-<p><img src="/myBlog/day04-%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%89%8D%E7%AB%AF%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E4%BA%8C/image-20211222203948729.png" alt="image-20211222203948729"></p>
-<h2 id="安装webpack"><a href="#安装webpack" class="headerlink" title="安装webpack"></a>安装webpack</h2><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm install -g webpack webpack-cli</code></pre></div>
-
-<p>查看版本</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">webpack -v</code></pre></div>
-
-
-
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">PS E:\VSCode\workplace\webpackdemo&gt; npm install -g webpack webpack-cli
-
-added 3 packages, removed 4 packages, and changed 117 packages in 9s
-
-3 packages are looking for funding
-  run &#96;npm fund&#96; for details
-PS E:\VSCode\workplace\webpackdemo&gt; webpack -v
-webpack: 5.65.0
-webpack-cli: 4.9.1
-webpack-dev-server not installed
-PS E:\VSCode\workplace\webpackdemo&gt; </code></pre></div>
-
-
-
-<h2 id="创建src文件"><a href="#创建src文件" class="headerlink" title="创建src文件"></a>创建src文件</h2><p>src下创建common.js</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">exports.info &#x3D; function (str) &#123;
-    document.write(str);
-&#125;</code></pre></div>
-
-<p>src下创建utils.js</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">exports.add &#x3D; function (a, b) &#123;
-        return a + b;
-&#125;</code></pre></div>
-
-<p>src下创建main.js</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">const common &#x3D; require(&#39;.&#x2F;common&#39;);
-const utils &#x3D; require(&#39;.&#x2F;utils&#39;);
-
-common.info(&#39;Hello world!&#39; + utils.add(100, 200));</code></pre></div>
-
-
-
-<h2 id="打包js"><a href="#打包js" class="headerlink" title="打包js"></a>打包js</h2><h3 id="webpack目录下创建配置文件webpack-config-js"><a href="#webpack目录下创建配置文件webpack-config-js" class="headerlink" title="webpack目录下创建配置文件webpack.config.js"></a><strong>webpack目录下创建配置文件</strong>webpack.config.js</h3><p>以下配置的意思是：读取当前项目目录下src文件夹中的main.js（入口文件）内容，分析资源依赖，把相关的js文件打包，打包后的文件放入当前目录的dist文件夹下，打包后的js文件名为bundle.js</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">const path &#x3D; require(&quot;path&quot;); &#x2F;&#x2F;Node.js内置模块
-module.exports &#x3D; &#123;
-    entry: &#39;.&#x2F;src&#x2F;main.js&#39;, &#x2F;&#x2F;配置入口文件
-    output: &#123;
-        path: path.resolve(__dirname, &#39;.&#x2F;dist&#39;), &#x2F;&#x2F;输出路径，__dirname：当前文件所在路径
-        filename: &#39;bundle.js&#39; &#x2F;&#x2F;输出文件
-    &#125;
-&#125;</code></pre></div>
-
-<p>打包</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">webpack		# 有黄色警告
-webpack --mode&#x3D;&#x3D;development	 # 没有警告</code></pre></div>
-
-<p>警告信息</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">PS E:\VSCode\workplace\webpackdemo&gt; webpack
-asset bundle.js 308 bytes [emitted] [minimized] (name: main)
-.&#x2F;src&#x2F;main.js 124 bytes [built] [code generated]
-.&#x2F;src&#x2F;common.js 60 bytes [built] [code generated]
-.&#x2F;src&#x2F;utils.js 57 bytes [built] [code generated]
-
-WARNING in configuration
-The &#39;mode&#39; option has not been set, webpack will fallback to &#39;production&#39; for this value.
-Set &#39;mode&#39; option to &#39;development&#39; or &#39;production&#39; to enable defaults for each environment.
-You can also set it to &#39;none&#39; to disable any default behavior. Learn more: https:&#x2F;&#x2F;webpack.js.org&#x2F;configuration&#x2F;mode&#x2F;
-
-webpack 5.65.0 compiled with 1 warning in 279 ms
-PS E:\VSCode\workplace\webpackdemo&gt;</code></pre></div>
-
-
-
-<p>测试</p>
-<p>在webpack目录下创建1.html，引用bundle.js，打开浏览器访问即可</p>
-<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;script src&#x3D;&quot;dist&#x2F;bundle.js&quot;&gt;&lt;&#x2F;script&gt;</code></pre></div>
-
-
-
-
-
-
-
-<h2 id="打包css"><a href="#打包css" class="headerlink" title="打包css"></a>打包css</h2><h3 id="安装style-loader和-css-loader"><a href="#安装style-loader和-css-loader" class="headerlink" title="安装style-loader和 css-loader"></a><strong>安装style-loader和 css-loader</strong></h3><p>首先我们需要安装相关Loader插件，css-loader 是将 css 装载到 javascript；style-loader 是让 javascript 认识css</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm install --save-dev style-loader css-loader </code></pre></div>
-
-<p>创建一个style.css文件</p>
-<div class="code-wrapper"><pre class="line-numbers language-css" data-language="css"><code class="language-css">body&#123;
-    background-color: red;
-&#125;</code></pre></div>
-
-<p>在main.js中引入</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">const common &#x3D; require(&#39;.&#x2F;common&#39;);
-const utils &#x3D; require(&#39;.&#x2F;utils&#39;);
-
-require(&#39;.&#x2F;style.css&#39;);
-
-common.info(&#39;Hello world!&#39; + utils.add(100, 200));</code></pre></div>
-
-<p>在webpack.config.js中加入下面的代码</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">const path &#x3D; require(&quot;path&quot;); &#x2F;&#x2F;Node.js内置模块
-module.exports &#x3D; &#123;
-    entry: &#39;.&#x2F;src&#x2F;main.js&#39;, &#x2F;&#x2F;配置入口文件
-    output: &#123;
-        path: path.resolve(__dirname, &#39;.&#x2F;dist&#39;), &#x2F;&#x2F;输出路径，__dirname：当前文件所在路径
-        filename: &#39;bundle.js&#39; &#x2F;&#x2F;输出文件
-    &#125;,
-    module: &#123;
-        rules: [  
-            &#123;  
-                test: &#x2F;\.css$&#x2F;,    &#x2F;&#x2F;打包规则应用到以css结尾的文件上
-                use: [&#39;style-loader&#39;, &#39;css-loader&#39;]
-            &#125;  
-        ]  
-    &#125;
-&#125;</code></pre></div>
-
-<p>重新打包，最后访问1.html测试。</p>
-<h1 id="搭建项目前端页面"><a href="#搭建项目前端页面" class="headerlink" title="搭建项目前端页面"></a>搭建项目前端页面</h1><h2 id="vue-admin-template"><a href="#vue-admin-template" class="headerlink" title="vue-admin-template"></a>vue-admin-template</h2><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>vueAdmin-template是基于vue-element-admin的一套后台管理系统基础模板（最少精简版），可作为模板进行二次开发。</p>
-<p><strong>GitHub地址：</strong><a href="https://github.com/PanJiaChen/vue-admin-template">https://github.com/PanJiaChen/vue-admin-template</a></p>
-<p><strong>建议：</strong>你可以在 <code>vue-admin-template</code> 的基础上进行二次开发，把 <code>vue-element-admin</code>当做工具箱，想要什么功能或者组件就去 <code>vue-element-admin</code> 那里复制过来。</p>
-<p>在根目录下执行npm install命令下载依赖，如果下载失败（报一个ERESOLVE unable to resolve dependency tree），可以使用cnpm install下载。如果下载失败，按照提示删除node_modules文件夹，再次下载。</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Install fail! RunScriptError: post install error, please remove node_modules before retry!ru</code></pre></div>
-
-
-
-<p>如果报错node-sass不支持当前版本，可以重新卸载，再安装</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm uninstall --save node-sass
-
-cnpm install node-sass -D</code></pre></div>
-
-<p>如果上面还不行就更换nodejs的版本，降低版本，可能是本地的nodejs版本过高导致的，我的由16.13.0降到14.18.2就行了</p>
-<p>下载成功后，利用命令启动</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm run dev</code></pre></div>
-
-<p><img src="/myBlog/day04-%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%89%8D%E7%AB%AF%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E4%BA%8C/image-20211222232247732.png" alt="image-20211222232247732"></p>
-<p>看到这个页面说明成功</p>
-<h1 id="项目前端框架介绍"><a href="#项目前端框架介绍" class="headerlink" title="项目前端框架介绍"></a>项目前端框架介绍</h1><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">. 
-├── build &#x2F;&#x2F; 构建脚本
-├── config &#x2F;&#x2F; 全局配置 
-├── node_modules &#x2F;&#x2F; 项目依赖模块
-├── src &#x2F;&#x2F;项目源代码
-├── static &#x2F;&#x2F; 静态资源
-└── package.jspon &#x2F;&#x2F; 项目信息和依赖配置</code></pre></div>
-
-
-
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">src 
-├── api &#x2F;&#x2F; 各种接口 
-├── assets &#x2F;&#x2F; 图片等资源 
-├── components &#x2F;&#x2F; 各种公共组件，非公共组件在各自view下维护 
-├── icons &#x2F;&#x2F;svg icon 
-├── router &#x2F;&#x2F; 路由表 
-├── store &#x2F;&#x2F; 存储 
-├── styles &#x2F;&#x2F; 各种样式 
-├── utils &#x2F;&#x2F; 公共工具，非公共工具，在各自view下维护 
-├── views &#x2F;&#x2F; 各种layout
-├── App.vue &#x2F;&#x2F;***项目顶层组件*** 
-├── main.js &#x2F;&#x2F;***项目入口文件***
-└── permission.js &#x2F;&#x2F;认证入口</code></pre></div>
-
-
-
-<p><img src="/myBlog/day04-%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%89%8D%E7%AB%AF%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E4%BA%8C/12-%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2%E6%A1%86%E6%9E%B6%E7%BB%93%E6%9E%84%E8%AF%B4%E6%98%8E.png" alt="12-前端页面框架结构说明"></p>
 ]]></content>
       <categories>
         <category>项目|谷粒学院|笔记</category>
@@ -1014,6 +700,470 @@ Vue.component(&#39;Navbar&#39;, &#123;
     &lt;&#x2F;script&gt;
 &lt;&#x2F;body&gt;</code></pre></div>
 
+]]></content>
+      <categories>
+        <category>项目|谷粒学院|笔记</category>
+      </categories>
+      <tags>
+        <tag>project</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>day04-项目的前端基本知识二</title>
+    <url>/myBlog/day04-%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%89%8D%E7%AB%AF%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E4%BA%8C/</url>
+    <content><![CDATA[<h1 id="day04-项目的前端基本知识二"><a href="#day04-项目的前端基本知识二" class="headerlink" title="day04-项目的前端基本知识二"></a>day04-项目的前端基本知识二</h1><h1 id="axios"><a href="#axios" class="headerlink" title="axios"></a>axios</h1><p>axios是独立于vue的一个项目，基于promise用于浏览器和node.js的http客户端</p>
+<ul>
+<li>在浏览器中可以帮助我们完成 ajax请求的发送</li>
+<li>在node.js中可以向远程接口发送请求</li>
+</ul>
+<ol>
+<li>导入axios.min.js文件</li>
+<li>编写一个json数据，模拟接口</li>
+</ol>
+<div class="code-wrapper"><pre class="line-numbers language-json" data-language="json"><code class="language-json">&#123;
+    &quot;success&quot;:true,
+    &quot;code&quot;:20000,
+    &quot;message&quot;:&quot;成功&quot;,
+    &quot;data&quot;:&#123;
+        &quot;items&quot;:[
+            &#123;&quot;name&quot;:&quot;lucy&quot;,&quot;age&quot;:&quot;10&quot;&#125;,
+            &#123;&quot;name&quot;:&quot;mary&quot;,&quot;age&quot;:&quot;20&quot;&#125;,
+            &#123;&quot;name&quot;:&quot;jack&quot;,&quot;age&quot;:&quot;30&quot;&#125;
+        ]
+    &#125;
+&#125;</code></pre></div>
+
+
+
+<ol start="4">
+<li>编写代码</li>
+</ol>
+<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang&#x3D;&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;
+    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot;&gt;
+    &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;ie&#x3D;edge&quot;&gt;
+    &lt;title&gt;Document&lt;&#x2F;title&gt;
+&lt;&#x2F;head&gt;
+
+&lt;body&gt;
+    &lt;div id&#x3D;&quot;app&quot;&gt;
+        &lt;!--如何显示数据--&gt;
+        &lt;div v-for&#x3D;&quot;user in userList&quot;&gt;
+            &#123;&#123;user.name&#125;&#125; -- &#123;&#123;user.age&#125;&#125;
+        &lt;&#x2F;div&gt;
+
+    &lt;&#x2F;div&gt;
+    &lt;script src&#x3D;&quot;vue.min.js&quot;&gt;&lt;&#x2F;script&gt;
+    &lt;script src&#x3D;&quot;axios.min.js&quot;&gt;&lt;&#x2F;script&gt;
+    &lt;script&gt;
+        new Vue(&#123;
+            el: &#39;#app&#39;,
+            data: &#123;
+                &#x2F;&#x2F; 定义一个空数组
+                userList:[]
+            &#125;,
+            created ()&#123;     &#x2F;&#x2F; 页面渲染之前执行
+                &#x2F;&#x2F; 调用方法
+                this.getUserList()
+            &#125;,
+            methods:&#123;       &#x2F;&#x2F; 编写具体方法
+
+                &#x2F;&#x2F; 创建方法，查询所有用户
+                getUserList()&#123;
+                    &#x2F;&#x2F; 使用axios的ajax请求
+                    &#x2F;&#x2F; axios.提交方式(&quot;请求接口地址&quot;).then().catch()
+                    axios.get(&quot;data.json&quot;)
+                        .then(response &#x3D;&gt;&#123;      &#x2F;&#x2F; 请求成功执行then
+                            &#x2F;&#x2F; response就是请求放回的数据
+                            &#x2F;&#x2F;console.log(response);
+                            &#x2F;&#x2F; 通过response获取具体的值，赋值给定义空数组
+                            this.userList &#x3D; response.data.data.items
+                            &#x2F;&#x2F;console.log(this.userList);
+                        &#125;)     
+                        .catch(error &#x3D;&gt;&#123;    &#x2F;&#x2F;  请求失败执行catch
+
+                        &#125;)    
+                &#125;
+            &#125;
+        &#125;)
+    &lt;&#x2F;script&gt;
+&lt;&#x2F;body&gt;
+
+&lt;&#x2F;html&gt;</code></pre></div>
+
+<p>测试</p>
+<h1 id="element-ui"><a href="#element-ui" class="headerlink" title="element-ui"></a>element-ui</h1><p>官网： <a href="http://element-cn.eleme.io/#/zh-CN">http://element-cn.eleme.io/#/zh-CN</a></p>
+<h1 id="nodejs"><a href="#nodejs" class="headerlink" title="nodejs"></a>nodejs</h1><p>可以模拟服务器，执行JavaScript代码。</p>
+<p>简单使用</p>
+<p>创建一个js文件</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">console.log(&#39;hello nodejs&#39;);</code></pre></div>
+
+<p>用cmd进入js文件所在的位置，执行命令node 01.js，即可</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">E:\VSCode\workplace\axiosdemo&gt;node 01.js
+hello nodejs</code></pre></div>
+
+
+
+<p>在vscode中使用，右键选中文件，在终端中打开，输入启动命令和需要启动的文件即可。</p>
+<p><img src="/myBlog/day04-%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%89%8D%E7%AB%AF%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E4%BA%8C/image-20211222162543838.png" alt="image-20211222162543838"></p>
+<h1 id="npm包管理器"><a href="#npm包管理器" class="headerlink" title="npm包管理器"></a>npm包管理器</h1><p>node package manager，类似后端的maven，maven管理jar包，npm管理js库，如jQuery等</p>
+<h2 id="使用npm项目初始化操作"><a href="#使用npm项目初始化操作" class="headerlink" title="使用npm项目初始化操作"></a>使用npm项目初始化操作</h2><p>npm init</p>
+<p>npm init -y；都默认按照</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">PS E:\VSCode\workplace\npmdemo&gt; npm init
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+
+See &#96;npm help init&#96; for definitive documentation on these fields
+and exactly what they do.
+
+Use &#96;npm install &lt;pkg&gt;&#96; afterwards to install a package and
+save it as a dependency in the package.json file.
+
+Press ^C at any time to quit.
+package name: (npmdemo)
+version: (1.0.0)
+description:
+entry point: (index.js)
+test command:
+git repository:
+keywords:
+author:
+license: (ISC)
+About to write to E:\VSCode\workplace\npmdemo\package.json:
+
+&#123;
+  &quot;name&quot;: &quot;npmdemo&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: &#123;
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  &#125;,
+  &quot;author&quot;: &quot;&quot;,
+  &quot;license&quot;: &quot;ISC&quot;
+&#125;
+
+
+Is this OK? (yes) yes
+PS E:\VSCode\workplace\npmdemo&gt; </code></pre></div>
+
+
+
+<p>生成package.json文件，类似后端的pom.xml文件</p>
+<h2 id="npm-下载依赖"><a href="#npm-下载依赖" class="headerlink" title="npm 下载依赖"></a>npm 下载依赖</h2><p>npm install 依赖名称</p>
+<p>如下载jQuery ,</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"># 会下载最新版本
+install jquery </code></pre></div>
+
+<p>如果想指定版本，则用</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm install jquery@2.1.x</code></pre></div>
+
+
+
+<p>下载完成之后，会出现node_modules文件夹里面会有jQuery的文件和一个package-lock.json文件，package-lock.json文件是锁定当前版本的jQuery版本。</p>
+<p>package.json文件中的dependencies是依赖的版本</p>
+<div class="code-wrapper"><pre class="line-numbers language-json" data-language="json"><code class="language-json">&quot;dependencies&quot;: &#123;
+  &quot;jquery&quot;: &quot;^3.6.0&quot;
+&#125;</code></pre></div>
+
+
+
+<h2 id="通过package-json下载依赖"><a href="#通过package-json下载依赖" class="headerlink" title="通过package.json下载依赖"></a>通过package.json下载依赖</h2><p>先把原有的node_modules文件删除，接着执行下面的命令（需要再项目根目录）</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm install</code></pre></div>
+
+
+
+<h1 id="babel转码器"><a href="#babel转码器" class="headerlink" title="babel转码器"></a>babel转码器</h1><p>将es6代码转成es5代码，目的：有些浏览器不兼容es6代码，为了提高兼容性</p>
+<p>新创建一个文件，初始化项目</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm init -y</code></pre></div>
+
+
+
+<p>安装babel工具</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm install --global babel-cli</code></pre></div>
+
+<p>查看版本号</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">babel --version</code></pre></div>
+
+<p>创建es6文件夹，创建js文件</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 转码前
+&#x2F;&#x2F; 定义数据类型
+let input &#x3D; [1,2,3]
+&#x2F;&#x2F; 将数组元素的每一个元素+1
+input &#x3D; input.map(item &#x3D;&gt; item+1)
+console.log(input);</code></pre></div>
+
+<p>在项目根目录创建.babelrc配置文件</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#123;
+    &quot;presets&quot;:[&quot;es2015&quot;],
+    &quot;plugins&quot;: []
+&#125;</code></pre></div>
+
+<p>安装es2015转码器</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm install --save-dev babel-preset-es2015</code></pre></div>
+
+<p><strong>根据文件转码</strong></p>
+<p>es6/01.js:源文件</p>
+<p>dist/001.js：生成的文件路径以及文件名字</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">babel es6&#x2F;01.js -o dist&#x2F;001.js</code></pre></div>
+
+<p><strong>根据文件夹转换</strong></p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">babel es6 -d dist</code></pre></div>
+
+
+
+<p>生成的es5文件</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&quot;use strict&quot;;
+
+&#x2F;&#x2F; 转码前
+&#x2F;&#x2F; 定义数据类型
+var input &#x3D; [1, 2, 3];
+&#x2F;&#x2F; 将数组元素的每一个元素+1
+input &#x3D; input.map(function (item) &#123;
+  return item + 1;
+&#125;);
+console.log(input);
+</code></pre></div>
+
+
+
+<p>==<strong>注意：转码的时候需要在项目的根目录下才可以转码，否则会报文件不存在的错误</strong>==</p>
+<h1 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h1><p>开发后端接口时候，开发controller service mapper，controller注入service，service注入mapper，在后端中，类与类之间的调用成为后端模块化操作</p>
+<p>前端模块化，在前端中，js与js之间调用成为前端模块化操作</p>
+<h2 id="es5实现模块化操作"><a href="#es5实现模块化操作" class="headerlink" title="es5实现模块化操作"></a>es5实现模块化操作</h2><p>创建1.js文件，提供方法</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 1.创能方法
+const sum &#x3D; function(a,b)&#123;
+    return parseInt(a) + parseInt(b)
+&#125;
+const substract &#x3D; function(a,b)&#123;
+    return parseInt(a) - parseInt(b)
+&#125;
+
+module.exports &#x3D;&#123;
+    sum,
+    substract
+&#125;</code></pre></div>
+
+<p>创建2.js文件，调用</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 调用1.js的方法
+&#x2F;&#x2F; 1.引入js文件
+const m &#x3D; require(&#39;.&#x2F;1.js&#39;)
+
+&#x2F;&#x2F; 调用方法
+console.log(m.sum(1,1));
+console.log(m.substract(3,1));</code></pre></div>
+
+<p>在终端测试</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">PS E:\VSCode\workplace\moduledemo\es5moduledemo&gt; node 2.js
+2
+2
+PS E:\VSCode\workplace\moduledemo\es5moduledemo&gt; </code></pre></div>
+
+
+
+<h2 id="es6模块化"><a href="#es6模块化" class="headerlink" title="es6模块化"></a>es6模块化</h2><h3 id="第一种方法"><a href="#第一种方法" class="headerlink" title="第一种方法"></a>第一种方法</h3><p> 创建1.js文件，提供方法</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 定义方法
+export function getList()&#123;
+    console.log(&quot;getList....&quot;);
+&#125;
+
+export function save()&#123;
+    console.log(&quot;save....&quot;);
+&#125;</code></pre></div>
+
+<p>创建2.js文件，调用方法</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 调用1.js的方法
+import &#123; getList,save &#125; from &quot;.&#x2F;1&quot;;
+getList()
+save()</code></pre></div>
+
+<p>由于es6不能直接在nodejs环境下运行，所以先用babel转成es5代码再进行测试</p>
+<h3 id="第二种方法"><a href="#第二种方法" class="headerlink" title="第二种方法"></a>第二种方法</h3><p>创建1.js文件，提供方法</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 定义方法
+export default&#123;
+    getList()&#123;
+        console.log(&#39;getList.....&#39;);
+    &#125;,
+    save()&#123;
+        console.log(&#39;save.....&#39;);
+    &#125;
+
+&#125;</code></pre></div>
+
+<p>创建2.js文件，调用方法</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 调用1.js的方法
+import m from &#39;.&#x2F;1&#39;
+m.getList()
+m.save()</code></pre></div>
+
+<p>测试</p>
+<h1 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h1><h2 id="webpack是什么"><a href="#webpack是什么" class="headerlink" title="webpack是什么"></a>webpack是什么</h2><p>Webpack 是一个前端<strong>资源加载/打包</strong>工具。它将根据模块的依赖关系进行静态分析，然后将这些模块按照指定的规则生成对应的静态资源。</p>
+<p>从图中我们可以看出，Webpack 可以<strong>将多种静态资源</strong> js、css、less 转<strong>换成一个静态文件</strong>，<strong>减少了页面的请求</strong>。 </p>
+<p><img src="/myBlog/day04-%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%89%8D%E7%AB%AF%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E4%BA%8C/image-20211222203948729.png" alt="image-20211222203948729"></p>
+<h2 id="安装webpack"><a href="#安装webpack" class="headerlink" title="安装webpack"></a>安装webpack</h2><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm install -g webpack webpack-cli</code></pre></div>
+
+<p>查看版本</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">webpack -v</code></pre></div>
+
+
+
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">PS E:\VSCode\workplace\webpackdemo&gt; npm install -g webpack webpack-cli
+
+added 3 packages, removed 4 packages, and changed 117 packages in 9s
+
+3 packages are looking for funding
+  run &#96;npm fund&#96; for details
+PS E:\VSCode\workplace\webpackdemo&gt; webpack -v
+webpack: 5.65.0
+webpack-cli: 4.9.1
+webpack-dev-server not installed
+PS E:\VSCode\workplace\webpackdemo&gt; </code></pre></div>
+
+
+
+<h2 id="创建src文件"><a href="#创建src文件" class="headerlink" title="创建src文件"></a>创建src文件</h2><p>src下创建common.js</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">exports.info &#x3D; function (str) &#123;
+    document.write(str);
+&#125;</code></pre></div>
+
+<p>src下创建utils.js</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">exports.add &#x3D; function (a, b) &#123;
+        return a + b;
+&#125;</code></pre></div>
+
+<p>src下创建main.js</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">const common &#x3D; require(&#39;.&#x2F;common&#39;);
+const utils &#x3D; require(&#39;.&#x2F;utils&#39;);
+
+common.info(&#39;Hello world!&#39; + utils.add(100, 200));</code></pre></div>
+
+
+
+<h2 id="打包js"><a href="#打包js" class="headerlink" title="打包js"></a>打包js</h2><h3 id="webpack目录下创建配置文件webpack-config-js"><a href="#webpack目录下创建配置文件webpack-config-js" class="headerlink" title="webpack目录下创建配置文件webpack.config.js"></a><strong>webpack目录下创建配置文件</strong>webpack.config.js</h3><p>以下配置的意思是：读取当前项目目录下src文件夹中的main.js（入口文件）内容，分析资源依赖，把相关的js文件打包，打包后的文件放入当前目录的dist文件夹下，打包后的js文件名为bundle.js</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">const path &#x3D; require(&quot;path&quot;); &#x2F;&#x2F;Node.js内置模块
+module.exports &#x3D; &#123;
+    entry: &#39;.&#x2F;src&#x2F;main.js&#39;, &#x2F;&#x2F;配置入口文件
+    output: &#123;
+        path: path.resolve(__dirname, &#39;.&#x2F;dist&#39;), &#x2F;&#x2F;输出路径，__dirname：当前文件所在路径
+        filename: &#39;bundle.js&#39; &#x2F;&#x2F;输出文件
+    &#125;
+&#125;</code></pre></div>
+
+<p>打包</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">webpack		# 有黄色警告
+webpack --mode&#x3D;&#x3D;development	 # 没有警告</code></pre></div>
+
+<p>警告信息</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">PS E:\VSCode\workplace\webpackdemo&gt; webpack
+asset bundle.js 308 bytes [emitted] [minimized] (name: main)
+.&#x2F;src&#x2F;main.js 124 bytes [built] [code generated]
+.&#x2F;src&#x2F;common.js 60 bytes [built] [code generated]
+.&#x2F;src&#x2F;utils.js 57 bytes [built] [code generated]
+
+WARNING in configuration
+The &#39;mode&#39; option has not been set, webpack will fallback to &#39;production&#39; for this value.
+Set &#39;mode&#39; option to &#39;development&#39; or &#39;production&#39; to enable defaults for each environment.
+You can also set it to &#39;none&#39; to disable any default behavior. Learn more: https:&#x2F;&#x2F;webpack.js.org&#x2F;configuration&#x2F;mode&#x2F;
+
+webpack 5.65.0 compiled with 1 warning in 279 ms
+PS E:\VSCode\workplace\webpackdemo&gt;</code></pre></div>
+
+
+
+<p>测试</p>
+<p>在webpack目录下创建1.html，引用bundle.js，打开浏览器访问即可</p>
+<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;script src&#x3D;&quot;dist&#x2F;bundle.js&quot;&gt;&lt;&#x2F;script&gt;</code></pre></div>
+
+
+
+
+
+
+
+<h2 id="打包css"><a href="#打包css" class="headerlink" title="打包css"></a>打包css</h2><h3 id="安装style-loader和-css-loader"><a href="#安装style-loader和-css-loader" class="headerlink" title="安装style-loader和 css-loader"></a><strong>安装style-loader和 css-loader</strong></h3><p>首先我们需要安装相关Loader插件，css-loader 是将 css 装载到 javascript；style-loader 是让 javascript 认识css</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm install --save-dev style-loader css-loader </code></pre></div>
+
+<p>创建一个style.css文件</p>
+<div class="code-wrapper"><pre class="line-numbers language-css" data-language="css"><code class="language-css">body&#123;
+    background-color: red;
+&#125;</code></pre></div>
+
+<p>在main.js中引入</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">const common &#x3D; require(&#39;.&#x2F;common&#39;);
+const utils &#x3D; require(&#39;.&#x2F;utils&#39;);
+
+require(&#39;.&#x2F;style.css&#39;);
+
+common.info(&#39;Hello world!&#39; + utils.add(100, 200));</code></pre></div>
+
+<p>在webpack.config.js中加入下面的代码</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">const path &#x3D; require(&quot;path&quot;); &#x2F;&#x2F;Node.js内置模块
+module.exports &#x3D; &#123;
+    entry: &#39;.&#x2F;src&#x2F;main.js&#39;, &#x2F;&#x2F;配置入口文件
+    output: &#123;
+        path: path.resolve(__dirname, &#39;.&#x2F;dist&#39;), &#x2F;&#x2F;输出路径，__dirname：当前文件所在路径
+        filename: &#39;bundle.js&#39; &#x2F;&#x2F;输出文件
+    &#125;,
+    module: &#123;
+        rules: [  
+            &#123;  
+                test: &#x2F;\.css$&#x2F;,    &#x2F;&#x2F;打包规则应用到以css结尾的文件上
+                use: [&#39;style-loader&#39;, &#39;css-loader&#39;]
+            &#125;  
+        ]  
+    &#125;
+&#125;</code></pre></div>
+
+<p>重新打包，最后访问1.html测试。</p>
+<h1 id="搭建项目前端页面"><a href="#搭建项目前端页面" class="headerlink" title="搭建项目前端页面"></a>搭建项目前端页面</h1><h2 id="vue-admin-template"><a href="#vue-admin-template" class="headerlink" title="vue-admin-template"></a>vue-admin-template</h2><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>vueAdmin-template是基于vue-element-admin的一套后台管理系统基础模板（最少精简版），可作为模板进行二次开发。</p>
+<p><strong>GitHub地址：</strong><a href="https://github.com/PanJiaChen/vue-admin-template">https://github.com/PanJiaChen/vue-admin-template</a></p>
+<p><strong>建议：</strong>你可以在 <code>vue-admin-template</code> 的基础上进行二次开发，把 <code>vue-element-admin</code>当做工具箱，想要什么功能或者组件就去 <code>vue-element-admin</code> 那里复制过来。</p>
+<p>在根目录下执行npm install命令下载依赖，如果下载失败（报一个ERESOLVE unable to resolve dependency tree），可以使用cnpm install下载。如果下载失败，按照提示删除node_modules文件夹，再次下载。</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Install fail! RunScriptError: post install error, please remove node_modules before retry!ru</code></pre></div>
+
+
+
+<p>如果报错node-sass不支持当前版本，可以重新卸载，再安装</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm uninstall --save node-sass
+
+cnpm install node-sass -D</code></pre></div>
+
+<p>如果上面还不行就更换nodejs的版本，降低版本，可能是本地的nodejs版本过高导致的，我的由16.13.0降到14.18.2就行了</p>
+<p>下载成功后，利用命令启动</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm run dev</code></pre></div>
+
+<p><img src="/myBlog/day04-%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%89%8D%E7%AB%AF%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E4%BA%8C/image-20211222232247732.png" alt="image-20211222232247732"></p>
+<p>看到这个页面说明成功</p>
+<h1 id="项目前端框架介绍"><a href="#项目前端框架介绍" class="headerlink" title="项目前端框架介绍"></a>项目前端框架介绍</h1><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">. 
+├── build &#x2F;&#x2F; 构建脚本
+├── config &#x2F;&#x2F; 全局配置 
+├── node_modules &#x2F;&#x2F; 项目依赖模块
+├── src &#x2F;&#x2F;项目源代码
+├── static &#x2F;&#x2F; 静态资源
+└── package.jspon &#x2F;&#x2F; 项目信息和依赖配置</code></pre></div>
+
+
+
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">src 
+├── api &#x2F;&#x2F; 各种接口 
+├── assets &#x2F;&#x2F; 图片等资源 
+├── components &#x2F;&#x2F; 各种公共组件，非公共组件在各自view下维护 
+├── icons &#x2F;&#x2F;svg icon 
+├── router &#x2F;&#x2F; 路由表 
+├── store &#x2F;&#x2F; 存储 
+├── styles &#x2F;&#x2F; 各种样式 
+├── utils &#x2F;&#x2F; 公共工具，非公共工具，在各自view下维护 
+├── views &#x2F;&#x2F; 各种layout
+├── App.vue &#x2F;&#x2F;***项目顶层组件*** 
+├── main.js &#x2F;&#x2F;***项目入口文件***
+└── permission.js &#x2F;&#x2F;认证入口</code></pre></div>
+
+
+
+<p><img src="/myBlog/day04-%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%89%8D%E7%AB%AF%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E4%BA%8C/12-%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2%E6%A1%86%E6%9E%B6%E7%BB%93%E6%9E%84%E8%AF%B4%E6%98%8E.png" alt="12-前端页面框架结构说明"></p>
 ]]></content>
       <categories>
         <category>项目|谷粒学院|笔记</category>
@@ -1786,184 +1936,6 @@ public R deleteVideo(@PathVariable String id)&#123;
       </tags>
   </entry>
   <entry>
-    <title>快速搭建个人电子书Gitbook并部署到GitHub Pages和Nginx</title>
-    <url>/myBlog/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%94%B5%E5%AD%90%E4%B9%A6Gitbook%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0GitHubPages%E5%92%8CNginx/</url>
-    <content><![CDATA[<h1 id="快速搭建个人电子书Gitbook并部署到GitHub-Pages和Nginx"><a href="#快速搭建个人电子书Gitbook并部署到GitHub-Pages和Nginx" class="headerlink" title="快速搭建个人电子书Gitbook并部署到GitHub Pages和Nginx"></a>快速搭建个人电子书Gitbook并部署到GitHub Pages和Nginx</h1><h1 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h1><ul>
-<li><a href="https://nodejs.org/en/">nodejs</a></li>
-<li><a href="https://git-scm.com/">git</a></li>
-<li><a href="https://github.com/">GitHub账号</a></li>
-<li>Markdown编辑器，这里推荐<a href="https://www.typora.net/">Typora</a></li>
-</ul>
-<p>以上准备好之后就可以开始搭建了。</p>
-<h1 id="本地搭建"><a href="#本地搭建" class="headerlink" title="本地搭建"></a>本地搭建</h1><h2 id="全局安装gitbook-cli工具"><a href="#全局安装gitbook-cli工具" class="headerlink" title="全局安装gitbook-cli工具"></a>全局安装gitbook-cli工具</h2><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm install gitbook-cli -g</code></pre></div>
-
-<p>检查版本</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gitbook --version</code></pre></div>
-
-<p>如果出现版本号，说明安装成功。</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">CLI version: 2.3.2
-GitBook version: 3.2.3</code></pre></div>
-
-<p>如果有报类型找不到的错误，可能是nodejs的版本过高导致的，可以将版本，我这里用的是nodejs 12+的。</p>
-<h2 id="本地初始化一本电子书"><a href="#本地初始化一本电子书" class="headerlink" title="本地初始化一本电子书"></a>本地初始化一本电子书</h2><p>创建目录</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mkdir gitbook
-cd gitbook</code></pre></div>
-
-<p>初始化电子书</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gitbook init</code></pre></div>
-
-<p>成功之后会如下</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">E:\temp\gitbook&gt;gitbook init
-warn: no summary file in this book
-info: create README.md
-info: create SUMMARY.md
-info: initialization is finished
-
-E:\temp\gitbook&gt;</code></pre></div>
-
-<p>README.md为简介文档，SUMMARY.md为所要创建的电子书的目录文档，自动生成。</p>
-<h2 id="SUMMARY-md文件的格式"><a href="#SUMMARY-md文件的格式" class="headerlink" title="SUMMARY.md文件的格式"></a>SUMMARY.md文件的格式</h2><p>目录的Markdown语法格式如下</p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">* [第一章](doc&#x2F;第一章&#x2F;第一章.md)
-  * [第一节](doc&#x2F;第一章&#x2F;第一节.md)
-  * [第二节](doc&#x2F;第一章&#x2F;第二节.md)
-* [第二章](doc&#x2F;第二章&#x2F;第二章.md)
-  * [第一节](doc&#x2F;第二章&#x2F;第一节.md)
-    * [第一节的小节](doc&#x2F;第二章&#x2F;第一节&#x2F;第一节的小节.md)
-  * [第二节](doc&#x2F;第二章&#x2F;第二节.md)</code></pre></div>
-
-<p>效果如下</p>
-<p><img src="/myBlog/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%94%B5%E5%AD%90%E4%B9%A6Gitbook%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0GitHubPages%E5%92%8CNginx/image-20220717161114018.png" alt="目录结构"></p>
-<h2 id="生成电子书"><a href="#生成电子书" class="headerlink" title="生成电子书"></a>生成电子书</h2><p>由于上面我们自定义了电子书的目录，所以现在需要重新初始化一下</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gitbook init</code></pre></div>
-
-<p>如下。</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">E:\temp\gitbook&gt;gitbook init
-info: create doc&#x2F;第一章&#x2F;第一章.md
-info: create doc&#x2F;第一章&#x2F;第一节.md
-info: create doc&#x2F;第一章&#x2F;第二节.md
-info: create doc&#x2F;第二章&#x2F;第二章.md
-info: create doc&#x2F;第二章&#x2F;第一节.md
-info: create doc&#x2F;第二章&#x2F;第一节&#x2F;第一节的小节.md
-info: create doc&#x2F;第二章&#x2F;第二节.md
-info: create SUMMARY.md
-info: initialization is finished
-
-E:\temp\gitbook&gt;</code></pre></div>
-
-<p>启动电子书，在本地测试。访问<a href="http://localhost:4000进行测试，如果你想指定端口可以执行">http://localhost:4000进行测试，如果你想指定端口可以执行</a> gitbook serve –port 8888</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gitbook serve</code></pre></div>
-
-<p>效果如下，到这里一本电子书已经搭建完毕了，剩下的就是尽情挥洒你的文笔了。</p>
-<p><img src="/myBlog/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%94%B5%E5%AD%90%E4%B9%A6Gitbook%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0GitHubPages%E5%92%8CNginx/image-20220717161552070.png" alt="本地运行效果图"></p>
-<h2 id="文档打包"><a href="#文档打包" class="headerlink" title="文档打包"></a>文档打包</h2><p>可以使用gitbook build打包你的项目</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">E:\temp\gitbook&gt;gitbook build
-info: 7 plugins are installed
-info: 6 explicitly listed
-info: loading plugin &quot;highlight&quot;... OK
-info: loading plugin &quot;search&quot;... OK
-info: loading plugin &quot;lunr&quot;... OK
-info: loading plugin &quot;sharing&quot;... OK
-info: loading plugin &quot;fontsettings&quot;... OK
-info: loading plugin &quot;theme-default&quot;... OK
-info: found 8 pages
-info: found 7 asset files
-info: &gt;&gt; generation finished with success in 1.1s !
-
-E:\temp\gitbook&gt;</code></pre></div>
-
-<p>这时会生成一个_book的文件，这个文件就是生成的静态网页，如果是部署到自己的云服务器，直接拿这个文件去部署即可，入口为index.html。</p>
-<h1 id="部署到GitHub-Pages"><a href="#部署到GitHub-Pages" class="headerlink" title="部署到GitHub Pages"></a>部署到GitHub Pages</h1><h2 id="在GitHub上面创建一个repository"><a href="#在GitHub上面创建一个repository" class="headerlink" title="在GitHub上面创建一个repository"></a>在GitHub上面创建一个repository</h2><p>这个仓库主要是存储你的项目和部署项目用到。</p>
-<h2 id="将本地项目推到GitHub"><a href="#将本地项目推到GitHub" class="headerlink" title="将本地项目推到GitHub"></a>将本地项目推到GitHub</h2><p>编写一个.gitignore文件，忽略_book文件</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"># 忽略gitbook生成的项目目录
-_book</code></pre></div>
-
-<p>依次执行下面的代码，将项目推到GitHub</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git init
-git add .
-git commit -m &quot;first commit&quot;
-git remote add origin https:你自己的仓库地址
-git push -u origin master
-
-
-git init
-git add .
-git commit -m &quot;first commit&quot;
-git remote add origin git@github.com:No-Ten&#x2F;testGitBook.git
-git push -u origin master</code></pre></div>
-
-<p>执行完上面的命令之后，你的项目就会在GitHub上面啦</p>
-<h2 id="生成项目并推到GitHub的pages分支上"><a href="#生成项目并推到GitHub的pages分支上" class="headerlink" title="生成项目并推到GitHub的pages分支上"></a>生成项目并推到GitHub的pages分支上</h2><p>这里为了便捷，直接编写了一个脚本deploy.sh执行，也可以手动输入。</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">echo &#39;执行命令：gitbook build .&#39;
-gitbook build .
-
-# 进入_book文件
-echo &quot;执行命令：cd .&#x2F;_book\n&quot;
-cd .&#x2F;_book
-
-# 将_book初始化为git的仓库，方便推送到GitHub上面
-echo &quot;执行命令：git init&quot;
-git init
-
-# 保存所有的修改
-echo &quot;执行命令：git add .&quot;
-git add .
-
-# 把修改的文件提交
-echo &quot;执行命令：git commit -m &#39;deploy&#39;&quot;
-git commit -m &quot;deploy&quot;
-
-# 发布
-echo &quot;执行命令：git push -f 自己的仓库地址 master:gh-pages&quot;
-git push -f https:&#x2F;&#x2F;github.com&#x2F;xxxx&#x2F;xxx.git master:gh-pages
-
-# 返回上一级目录
-echo &quot;回到刚才工作目录&quot;
-cd -</code></pre></div>
-
-<p>文件保存之后，在终端下面执行，需要再git bash下面执行。</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">bash deploy.sh</code></pre></div>
-
-<p>执行成功之后，如果在GitHub上面看到有index.html说明已经成功了。</p>
-<h2 id="设置GitHub-pages访问路径"><a href="#设置GitHub-pages访问路径" class="headerlink" title="设置GitHub pages访问路径"></a>设置GitHub pages访问路径</h2><p>在github网站上的仓库里面点击<code>Settings</code> -&gt; <code>GitHub Pages</code>选项中 -&gt; <code>Source</code>里面选择<code>gh-pages branch</code> 然后点击<code>Save</code>按钮，然后在<code>GitHub Pages</code>下面就会看见一个网址，这个网址就是最终的网站。<br>最终效果如下图所示：</p>
-<p><img src="/myBlog/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%94%B5%E5%AD%90%E4%B9%A6Gitbook%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0GitHubPages%E5%92%8CNginx/image-20220717165337372.png" alt="image-20220717165337372"></p>
-<p>我这里了的GitHub pages的路径是自动设置好了，所以直接访问即可。到这里属于自己的电子书就搭建完成了，尽情享受吧！！！</p>
-<h1 id="gitbook的一些实用插件"><a href="#gitbook的一些实用插件" class="headerlink" title="gitbook的一些实用插件"></a>gitbook的一些实用插件</h1><p>这里不多说，直接上链接。</p>
-<p><a href="https://segmentfault.com/a/1190000019806829">https://segmentfault.com/a/1190000019806829</a></p>
-<h1 id="利用Nginx部署到本地或者远程服务器"><a href="#利用Nginx部署到本地或者远程服务器" class="headerlink" title="利用Nginx部署到本地或者远程服务器"></a>利用Nginx部署到本地或者远程服务器</h1><p>下载<a href="http://nginx.org/">Nginx</a></p>
-<p>下载好后再Nginx的conf文件夹里面找到nginx.conf文件，在server 添加一个监听</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">server&#123;
-	listen       4000;
-	server_name  localhost;
-	
-	location  &#x2F;gitbook &#123;
-		alias  E:&#x2F;temp&#x2F;gitbook&#x2F;_book;
-		index index.html index.html;
-		autoindex on;
-	&#125;
-&#125;</code></pre></div>
-
-<p>启动nginx ，双击nginx会闪退，可以在Nginx当前目录打开终端，执行下面的命令</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">nginx.exe</code></pre></div>
-
-<p>停止Nginx</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">nginx -s stop</code></pre></div>
-
-
-
-<p>访问测试，一般的Nginx都是80端口，可以直接访问localhost就可以看到nginx的页面了</p>
-<p><img src="/myBlog/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%94%B5%E5%AD%90%E4%B9%A6Gitbook%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0GitHubPages%E5%92%8CNginx/image-20220717170420677.png" alt="image-20220717170420677"></p>
-<p>加上我们gitbook的路径localhost:4000/gitbook</p>
-<p><img src="/myBlog/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%94%B5%E5%AD%90%E4%B9%A6Gitbook%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0GitHubPages%E5%92%8CNginx/image-20220717170530050.png" alt="image-20220717170530050"></p>
-<p>到这里，利用Nginx部署就完成了，远程的一样，稍微修改一下即可。</p>
-]]></content>
-      <categories>
-        <category>快速搭建个人电子书</category>
-      </categories>
-      <tags>
-        <tag>快速搭建个人电子书</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>postgresql笔记</title>
     <url>/myBlog/postgresql%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h1 id="postgresql笔记"><a href="#postgresql笔记" class="headerlink" title="postgresql笔记"></a>postgresql笔记</h1><h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><p>postgresql数据库的主要特点如下：</p>
@@ -2285,6 +2257,184 @@ select * from e where e_salary &gt; 5000;</code></pre></div>
       </categories>
       <tags>
         <tag>postgresql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>快速搭建个人电子书Gitbook并部署到GitHub Pages和Nginx</title>
+    <url>/myBlog/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%94%B5%E5%AD%90%E4%B9%A6Gitbook%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0GitHubPages%E5%92%8CNginx/</url>
+    <content><![CDATA[<h1 id="快速搭建个人电子书Gitbook并部署到GitHub-Pages和Nginx"><a href="#快速搭建个人电子书Gitbook并部署到GitHub-Pages和Nginx" class="headerlink" title="快速搭建个人电子书Gitbook并部署到GitHub Pages和Nginx"></a>快速搭建个人电子书Gitbook并部署到GitHub Pages和Nginx</h1><h1 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h1><ul>
+<li><a href="https://nodejs.org/en/">nodejs</a></li>
+<li><a href="https://git-scm.com/">git</a></li>
+<li><a href="https://github.com/">GitHub账号</a></li>
+<li>Markdown编辑器，这里推荐<a href="https://www.typora.net/">Typora</a></li>
+</ul>
+<p>以上准备好之后就可以开始搭建了。</p>
+<h1 id="本地搭建"><a href="#本地搭建" class="headerlink" title="本地搭建"></a>本地搭建</h1><h2 id="全局安装gitbook-cli工具"><a href="#全局安装gitbook-cli工具" class="headerlink" title="全局安装gitbook-cli工具"></a>全局安装gitbook-cli工具</h2><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm install gitbook-cli -g</code></pre></div>
+
+<p>检查版本</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gitbook --version</code></pre></div>
+
+<p>如果出现版本号，说明安装成功。</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">CLI version: 2.3.2
+GitBook version: 3.2.3</code></pre></div>
+
+<p>如果有报类型找不到的错误，可能是nodejs的版本过高导致的，可以将版本，我这里用的是nodejs 12+的。</p>
+<h2 id="本地初始化一本电子书"><a href="#本地初始化一本电子书" class="headerlink" title="本地初始化一本电子书"></a>本地初始化一本电子书</h2><p>创建目录</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mkdir gitbook
+cd gitbook</code></pre></div>
+
+<p>初始化电子书</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gitbook init</code></pre></div>
+
+<p>成功之后会如下</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">E:\temp\gitbook&gt;gitbook init
+warn: no summary file in this book
+info: create README.md
+info: create SUMMARY.md
+info: initialization is finished
+
+E:\temp\gitbook&gt;</code></pre></div>
+
+<p>README.md为简介文档，SUMMARY.md为所要创建的电子书的目录文档，自动生成。</p>
+<h2 id="SUMMARY-md文件的格式"><a href="#SUMMARY-md文件的格式" class="headerlink" title="SUMMARY.md文件的格式"></a>SUMMARY.md文件的格式</h2><p>目录的Markdown语法格式如下</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">* [第一章](doc&#x2F;第一章&#x2F;第一章.md)
+  * [第一节](doc&#x2F;第一章&#x2F;第一节.md)
+  * [第二节](doc&#x2F;第一章&#x2F;第二节.md)
+* [第二章](doc&#x2F;第二章&#x2F;第二章.md)
+  * [第一节](doc&#x2F;第二章&#x2F;第一节.md)
+    * [第一节的小节](doc&#x2F;第二章&#x2F;第一节&#x2F;第一节的小节.md)
+  * [第二节](doc&#x2F;第二章&#x2F;第二节.md)</code></pre></div>
+
+<p>效果如下</p>
+<p><img src="/myBlog/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%94%B5%E5%AD%90%E4%B9%A6Gitbook%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0GitHubPages%E5%92%8CNginx/image-20220717161114018.png" alt="目录结构"></p>
+<h2 id="生成电子书"><a href="#生成电子书" class="headerlink" title="生成电子书"></a>生成电子书</h2><p>由于上面我们自定义了电子书的目录，所以现在需要重新初始化一下</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gitbook init</code></pre></div>
+
+<p>如下。</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">E:\temp\gitbook&gt;gitbook init
+info: create doc&#x2F;第一章&#x2F;第一章.md
+info: create doc&#x2F;第一章&#x2F;第一节.md
+info: create doc&#x2F;第一章&#x2F;第二节.md
+info: create doc&#x2F;第二章&#x2F;第二章.md
+info: create doc&#x2F;第二章&#x2F;第一节.md
+info: create doc&#x2F;第二章&#x2F;第一节&#x2F;第一节的小节.md
+info: create doc&#x2F;第二章&#x2F;第二节.md
+info: create SUMMARY.md
+info: initialization is finished
+
+E:\temp\gitbook&gt;</code></pre></div>
+
+<p>启动电子书，在本地测试。访问<a href="http://localhost:4000进行测试，如果你想指定端口可以执行">http://localhost:4000进行测试，如果你想指定端口可以执行</a> gitbook serve –port 8888</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gitbook serve</code></pre></div>
+
+<p>效果如下，到这里一本电子书已经搭建完毕了，剩下的就是尽情挥洒你的文笔了。</p>
+<p><img src="/myBlog/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%94%B5%E5%AD%90%E4%B9%A6Gitbook%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0GitHubPages%E5%92%8CNginx/image-20220717161552070.png" alt="本地运行效果图"></p>
+<h2 id="文档打包"><a href="#文档打包" class="headerlink" title="文档打包"></a>文档打包</h2><p>可以使用gitbook build打包你的项目</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">E:\temp\gitbook&gt;gitbook build
+info: 7 plugins are installed
+info: 6 explicitly listed
+info: loading plugin &quot;highlight&quot;... OK
+info: loading plugin &quot;search&quot;... OK
+info: loading plugin &quot;lunr&quot;... OK
+info: loading plugin &quot;sharing&quot;... OK
+info: loading plugin &quot;fontsettings&quot;... OK
+info: loading plugin &quot;theme-default&quot;... OK
+info: found 8 pages
+info: found 7 asset files
+info: &gt;&gt; generation finished with success in 1.1s !
+
+E:\temp\gitbook&gt;</code></pre></div>
+
+<p>这时会生成一个_book的文件，这个文件就是生成的静态网页，如果是部署到自己的云服务器，直接拿这个文件去部署即可，入口为index.html。</p>
+<h1 id="部署到GitHub-Pages"><a href="#部署到GitHub-Pages" class="headerlink" title="部署到GitHub Pages"></a>部署到GitHub Pages</h1><h2 id="在GitHub上面创建一个repository"><a href="#在GitHub上面创建一个repository" class="headerlink" title="在GitHub上面创建一个repository"></a>在GitHub上面创建一个repository</h2><p>这个仓库主要是存储你的项目和部署项目用到。</p>
+<h2 id="将本地项目推到GitHub"><a href="#将本地项目推到GitHub" class="headerlink" title="将本地项目推到GitHub"></a>将本地项目推到GitHub</h2><p>编写一个.gitignore文件，忽略_book文件</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"># 忽略gitbook生成的项目目录
+_book</code></pre></div>
+
+<p>依次执行下面的代码，将项目推到GitHub</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git init
+git add .
+git commit -m &quot;first commit&quot;
+git remote add origin https:你自己的仓库地址
+git push -u origin master
+
+
+git init
+git add .
+git commit -m &quot;first commit&quot;
+git remote add origin git@github.com:No-Ten&#x2F;testGitBook.git
+git push -u origin master</code></pre></div>
+
+<p>执行完上面的命令之后，你的项目就会在GitHub上面啦</p>
+<h2 id="生成项目并推到GitHub的pages分支上"><a href="#生成项目并推到GitHub的pages分支上" class="headerlink" title="生成项目并推到GitHub的pages分支上"></a>生成项目并推到GitHub的pages分支上</h2><p>这里为了便捷，直接编写了一个脚本deploy.sh执行，也可以手动输入。</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">echo &#39;执行命令：gitbook build .&#39;
+gitbook build .
+
+# 进入_book文件
+echo &quot;执行命令：cd .&#x2F;_book\n&quot;
+cd .&#x2F;_book
+
+# 将_book初始化为git的仓库，方便推送到GitHub上面
+echo &quot;执行命令：git init&quot;
+git init
+
+# 保存所有的修改
+echo &quot;执行命令：git add .&quot;
+git add .
+
+# 把修改的文件提交
+echo &quot;执行命令：git commit -m &#39;deploy&#39;&quot;
+git commit -m &quot;deploy&quot;
+
+# 发布
+echo &quot;执行命令：git push -f 自己的仓库地址 master:gh-pages&quot;
+git push -f https:&#x2F;&#x2F;github.com&#x2F;xxxx&#x2F;xxx.git master:gh-pages
+
+# 返回上一级目录
+echo &quot;回到刚才工作目录&quot;
+cd -</code></pre></div>
+
+<p>文件保存之后，在终端下面执行，需要再git bash下面执行。</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">bash deploy.sh</code></pre></div>
+
+<p>执行成功之后，如果在GitHub上面看到有index.html说明已经成功了。</p>
+<h2 id="设置GitHub-pages访问路径"><a href="#设置GitHub-pages访问路径" class="headerlink" title="设置GitHub pages访问路径"></a>设置GitHub pages访问路径</h2><p>在github网站上的仓库里面点击<code>Settings</code> -&gt; <code>GitHub Pages</code>选项中 -&gt; <code>Source</code>里面选择<code>gh-pages branch</code> 然后点击<code>Save</code>按钮，然后在<code>GitHub Pages</code>下面就会看见一个网址，这个网址就是最终的网站。<br>最终效果如下图所示：</p>
+<p><img src="/myBlog/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%94%B5%E5%AD%90%E4%B9%A6Gitbook%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0GitHubPages%E5%92%8CNginx/image-20220717165337372.png" alt="image-20220717165337372"></p>
+<p>我这里了的GitHub pages的路径是自动设置好了，所以直接访问即可。到这里属于自己的电子书就搭建完成了，尽情享受吧！！！</p>
+<h1 id="gitbook的一些实用插件"><a href="#gitbook的一些实用插件" class="headerlink" title="gitbook的一些实用插件"></a>gitbook的一些实用插件</h1><p>这里不多说，直接上链接。</p>
+<p><a href="https://segmentfault.com/a/1190000019806829">https://segmentfault.com/a/1190000019806829</a></p>
+<h1 id="利用Nginx部署到本地或者远程服务器"><a href="#利用Nginx部署到本地或者远程服务器" class="headerlink" title="利用Nginx部署到本地或者远程服务器"></a>利用Nginx部署到本地或者远程服务器</h1><p>下载<a href="http://nginx.org/">Nginx</a></p>
+<p>下载好后再Nginx的conf文件夹里面找到nginx.conf文件，在server 添加一个监听</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">server&#123;
+	listen       4000;
+	server_name  localhost;
+	
+	location  &#x2F;gitbook &#123;
+		alias  E:&#x2F;temp&#x2F;gitbook&#x2F;_book;
+		index index.html index.html;
+		autoindex on;
+	&#125;
+&#125;</code></pre></div>
+
+<p>启动nginx ，双击nginx会闪退，可以在Nginx当前目录打开终端，执行下面的命令</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">nginx.exe</code></pre></div>
+
+<p>停止Nginx</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">nginx -s stop</code></pre></div>
+
+
+
+<p>访问测试，一般的Nginx都是80端口，可以直接访问localhost就可以看到nginx的页面了</p>
+<p><img src="/myBlog/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%94%B5%E5%AD%90%E4%B9%A6Gitbook%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0GitHubPages%E5%92%8CNginx/image-20220717170420677.png" alt="image-20220717170420677"></p>
+<p>加上我们gitbook的路径localhost:4000/gitbook</p>
+<p><img src="/myBlog/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%94%B5%E5%AD%90%E4%B9%A6Gitbook%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0GitHubPages%E5%92%8CNginx/image-20220717170530050.png" alt="image-20220717170530050"></p>
+<p>到这里，利用Nginx部署就完成了，远程的一样，稍微修改一下即可。</p>
+]]></content>
+      <categories>
+        <category>快速搭建个人电子书</category>
+      </categories>
+      <tags>
+        <tag>快速搭建个人电子书</tag>
       </tags>
   </entry>
   <entry>
@@ -11160,461 +11310,6 @@ dataZoom: [&#123;
       </tags>
   </entry>
   <entry>
-    <title>day17-canal_Gateway网关_权限管理</title>
-    <url>/myBlog/day17-canal_Gateway%E7%BD%91%E5%85%B3_%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h1 id="day17-canal-Gateway网关-权限管理"><a href="#day17-canal-Gateway网关-权限管理" class="headerlink" title="day17-canal_Gateway网关_权限管理"></a>day17-canal_Gateway网关_权限管理</h1><h1 id="canal数据同步【TODO】"><a href="#canal数据同步【TODO】" class="headerlink" title="canal数据同步【TODO】"></a>canal数据同步【TODO】</h1><p>Linux中还没装数据库</p>
-<h1 id="SpringCloud-Gateway网关"><a href="#SpringCloud-Gateway网关" class="headerlink" title="SpringCloud-Gateway网关"></a>SpringCloud-Gateway网关</h1><h2 id="创建api-gateway模块（网关服务）"><a href="#创建api-gateway模块（网关服务）" class="headerlink" title="创建api-gateway模块（网关服务）"></a>创建api-gateway模块（网关服务）</h2><p>1、在infrastructure模块下创建api_gateway模块</p>
-<p>2、在pom.xml引入依赖</p>
-<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">&lt;dependencies&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;com.atguigu&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;common_utils&lt;&#x2F;artifactId&gt;
-        &lt;version&gt;0.0.1-SNAPSHOT&lt;&#x2F;version&gt;
-    &lt;&#x2F;dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.cloud&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-discovery&lt;&#x2F;artifactId&gt;
-    &lt;&#x2F;dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.cloud&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;spring-cloud-starter-gateway&lt;&#x2F;artifactId&gt;
-    &lt;&#x2F;dependency&gt;
-    &lt;!--gson--&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;com.google.code.gson&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;gson&lt;&#x2F;artifactId&gt;
-    &lt;&#x2F;dependency&gt;
-    &lt;!--服务调用--&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.cloud&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;&#x2F;artifactId&gt;
-    &lt;&#x2F;dependency&gt;
-&lt;&#x2F;dependencies&gt;</code></pre></div>
-
-<p>3、编写application.properties配置文件</p>
-<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"># 服务端口
-server.port&#x3D;8222
-# 服务名
-spring.application.name&#x3D;service-gateway
-# nacos服务地址
-spring.cloud.nacos.discovery.server-addr&#x3D;127.0.0.1:8848
-#使用服务发现路由
-spring.cloud.gateway.discovery.locator.enabled&#x3D;true
-#服务路由名小写
-#spring.cloud.gateway.discovery.locator.lower-case-service-id&#x3D;true
-#设置路由id
-spring.cloud.gateway.routes[0].id&#x3D;service-acl
-#设置路由的uri
-spring.cloud.gateway.routes[0].uri&#x3D;lb:&#x2F;&#x2F;service-acl
-#设置路由断言,代理servicerId为auth-service的&#x2F;auth&#x2F;路径
-spring.cloud.gateway.routes[0].predicates&#x3D; Path&#x3D;&#x2F;*&#x2F;acl&#x2F;**
-#配置service-edu服务
-spring.cloud.gateway.routes[1].id&#x3D;service-edu
-spring.cloud.gateway.routes[1].uri&#x3D;lb:&#x2F;&#x2F;service-edu
-spring.cloud.gateway.routes[1].predicates&#x3D; Path&#x3D;&#x2F;eduservice&#x2F;**
-#配置service-ucenter服务
-spring.cloud.gateway.routes[2].id&#x3D;service-ucenter
-spring.cloud.gateway.routes[2].uri&#x3D;lb:&#x2F;&#x2F;service-ucenter
-spring.cloud.gateway.routes[2].predicates&#x3D; Path&#x3D;&#x2F;ucenterservice&#x2F;**
-#配置service-ucenter服务
-spring.cloud.gateway.routes[3].id&#x3D;service-cms
-spring.cloud.gateway.routes[3].uri&#x3D;lb:&#x2F;&#x2F;service-cms
-spring.cloud.gateway.routes[3].predicates&#x3D; Path&#x3D;&#x2F;cmsservice&#x2F;**</code></pre></div>
-
-<p>4、编写启动类</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@SpringBootApplication
-@EnableDiscoveryClient
-public class ApiGatewayApplication &#123;
-
-    public static void main(String[] args) &#123;
-        SpringApplication.run(ApiGatewayApplication.class,args);
-    &#125;
-
-&#125;</code></pre></div>
-
-<h2 id="网关相关配置"><a href="#网关相关配置" class="headerlink" title="网关相关配置"></a>网关相关配置</h2><p><strong>1、网关解决跨域问题</strong></p>
-<p><img src="/myBlog/day17-canal_Gateway%E7%BD%91%E5%85%B3_%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/image-20220105165534139.png" alt="image-20220105165534139"></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Configuration
-public class CorsConfig &#123;
-    @Bean
-    public CorsWebFilter corsFilter() &#123;
-        CorsConfiguration config &#x3D; new CorsConfiguration();
-        config.addAllowedMethod(&quot;*&quot;);
-        config.addAllowedOrigin(&quot;*&quot;);
-        config.addAllowedHeader(&quot;*&quot;);
-        UrlBasedCorsConfigurationSource source &#x3D; new UrlBasedCorsConfigurationSource(new PathPatternParser());
-        source.registerCorsConfiguration(&quot;&#x2F;**&quot;, config);
-        return new CorsWebFilter(source);
-    &#125;
-&#125;</code></pre></div>
-
-<p><strong>2、全局Filter，统一处理会员登录与外部不允许访问的服务</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
- * &lt;p&gt;
- * 全局Filter，统一处理会员登录与外部不允许访问的服务
- * &lt;&#x2F;p&gt;
- *&#x2F;
-@Component
-public class AuthGlobalFilter implements GlobalFilter, Ordered &#123;
-    private AntPathMatcher antPathMatcher &#x3D; new AntPathMatcher();
-    @Override
-    public Mono&lt;Void&gt; filter(ServerWebExchange exchange, GatewayFilterChain chain) &#123;
-        ServerHttpRequest request &#x3D; exchange.getRequest();
-        String path &#x3D; request.getURI().getPath();
-        &#x2F;&#x2F;谷粒学院api接口，校验用户必须登录
-        if(antPathMatcher.match(&quot;&#x2F;api&#x2F;**&#x2F;auth&#x2F;**&quot;, path)) &#123;
-            List&lt;String&gt; tokenList &#x3D; request.getHeaders().get(&quot;token&quot;);
-            if(null &#x3D;&#x3D; tokenList) &#123;
-                ServerHttpResponse response &#x3D; exchange.getResponse();
-                return out(response);
-            &#125; else &#123;
-&#x2F;&#x2F;                Boolean isCheck &#x3D; JwtUtils.checkToken(tokenList.get(0));
-&#x2F;&#x2F;                if(!isCheck) &#123;
-                ServerHttpResponse response &#x3D; exchange.getResponse();
-                return out(response);
-&#x2F;&#x2F;                &#125;
-            &#125;
-        &#125;
-        &#x2F;&#x2F;内部服务接口，不允许外部访问
-        if(antPathMatcher.match(&quot;&#x2F;**&#x2F;inner&#x2F;**&quot;, path)) &#123;
-            ServerHttpResponse response &#x3D; exchange.getResponse();
-            return out(response);
-        &#125;
-        return chain.filter(exchange);
-    &#125;
-    @Override
-    public int getOrder() &#123;
-        return 0;
-    &#125;
-    private Mono&lt;Void&gt; out(ServerHttpResponse response) &#123;
-        JsonObject message &#x3D; new JsonObject();
-        message.addProperty(&quot;success&quot;, false);
-        message.addProperty(&quot;code&quot;, 28004);
-        message.addProperty(&quot;data&quot;, &quot;鉴权失败&quot;);
-        byte[] bits &#x3D; message.toString().getBytes(StandardCharsets.UTF_8);
-        DataBuffer buffer &#x3D; response.bufferFactory().wrap(bits);
-        &#x2F;&#x2F;response.setStatusCode(HttpStatus.UNAUTHORIZED);
-        &#x2F;&#x2F;指定编码，否则在浏览器中会中文乱码
-        response.getHeaders().add(&quot;Content-Type&quot;, &quot;application&#x2F;json;charset&#x3D;UTF-8&quot;);
-        return response.writeWith(Mono.just(buffer));
-    &#125;
-&#125;</code></pre></div>
-
-
-
-<p><strong>3、自定义异常处理</strong></p>
-<p>服务网关调用服务时可能会有一些异常或服务不可用，它返回错误信息不友好，需要我们覆盖处理</p>
-<p>ErrorHandlerConfig</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
- * &lt;p&gt;
- * 全局Filter，统一处理会员登录与外部不允许访问的服务
- * &lt;&#x2F;p&gt;
- *&#x2F;
-@Configuration
-@EnableConfigurationProperties(&#123;ServerProperties.class, ResourceProperties.class&#125;)
-public class ErrorHandlerConfig &#123;
-    private final ServerProperties serverProperties;
-    private final ApplicationContext applicationContext;
-    private final ResourceProperties resourceProperties;
-    private final List&lt;ViewResolver&gt; viewResolvers;
-    private final ServerCodecConfigurer serverCodecConfigurer;
-    public ErrorHandlerConfig(ServerProperties serverProperties,
-                              ResourceProperties resourceProperties,
-                              ObjectProvider&lt;List&lt;ViewResolver&gt;&gt; viewResolversProvider,
-                              ServerCodecConfigurer serverCodecConfigurer,
-                              ApplicationContext applicationContext) &#123;
-        this.serverProperties &#x3D; serverProperties;
-        this.applicationContext &#x3D; applicationContext;
-        this.resourceProperties &#x3D; resourceProperties;
-        this.viewResolvers &#x3D; viewResolversProvider.getIfAvailable(Collections::emptyList);
-        this.serverCodecConfigurer &#x3D; serverCodecConfigurer;
-    &#125;
-    @Bean
-    @Order(Ordered.HIGHEST_PRECEDENCE)
-    public ErrorWebExceptionHandler errorWebExceptionHandler(ErrorAttributes errorAttributes) &#123;
-        JsonExceptionHandler exceptionHandler &#x3D; new JsonExceptionHandler(
-                errorAttributes,
-                this.resourceProperties,
-                this.serverProperties.getError(),
-                this.applicationContext);
-        exceptionHandler.setViewResolvers(this.viewResolvers);
-        exceptionHandler.setMessageWriters(this.serverCodecConfigurer.getWriters());
-        exceptionHandler.setMessageReaders(this.serverCodecConfigurer.getReaders());
-        return exceptionHandler;
-    &#125;
-&#125;</code></pre></div>
-
-<p>JsonExceptionHandler</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
- * 自定义异常处理
- * &lt;p&gt;异常时用JSON代替HTML异常信息&lt;p&gt;
- *&#x2F;
-public class JsonExceptionHandler extends DefaultErrorWebExceptionHandler &#123;
-    public JsonExceptionHandler(ErrorAttributes errorAttributes, ResourceProperties resourceProperties,
-                                ErrorProperties errorProperties, ApplicationContext applicationContext) &#123;
-        super(errorAttributes, resourceProperties, errorProperties, applicationContext);
-    &#125;
-
-    &#x2F;**
-     * 获取异常属性
-     *&#x2F;
-    @Override
-    protected Map&lt;String, Object&gt; getErrorAttributes(ServerRequest request, boolean includeStackTrace) &#123;
-        Map&lt;String, Object&gt; map &#x3D; new HashMap&lt;&gt;();
-        map.put(&quot;success&quot;, false);
-        map.put(&quot;code&quot;, 20005);
-        map.put(&quot;message&quot;, &quot;网关失败&quot;);
-        map.put(&quot;data&quot;, null);
-        return map;
-    &#125;
-
-    &#x2F;**
-     * 指定响应处理方法为JSON处理的方法
-     *
-     * @param errorAttributes
-     *&#x2F;
-    @Override
-    protected RouterFunction&lt;ServerResponse&gt; getRoutingFunction(ErrorAttributes errorAttributes) &#123;
-        return RouterFunctions.route(RequestPredicates.all(), this::renderErrorResponse);
-    &#125;
-
-    &#x2F;**
-     * 根据code获取对应的HttpStatus
-     *
-     * @param errorAttributes
-     *&#x2F;
-&#x2F;&#x2F;    @Override
-&#x2F;&#x2F;    protected HttpStatus getHttpStatus(Map&lt;String, Object&gt; errorAttributes) &#123;
-&#x2F;&#x2F;        return HttpStatus.OK;
-&#x2F;&#x2F;    &#125;
-&#125;</code></pre></div>
-
-
-
-<h1 id="权限管理-表结构和关系"><a href="#权限管理-表结构和关系" class="headerlink" title="权限管理-表结构和关系"></a>权限管理-表结构和关系</h1><p>![07 权限管理需求](day17-canal_Gateway网关_权限管理/07 权限管理需求.png)</p>
-<h1 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h1><p><strong>1、在service模块下创建子模块service-acl</strong></p>
-<p><strong>2、在service_acl模块中引入依赖</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">&lt;dependencies&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;com.atguigu&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;spring_security&lt;&#x2F;artifactId&gt;
-        &lt;version&gt;0.0.1-SNAPSHOT&lt;&#x2F;version&gt;
-    &lt;&#x2F;dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;com.alibaba&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;fastjson&lt;&#x2F;artifactId&gt;
-    &lt;&#x2F;dependency&gt;
-&lt;&#x2F;dependencies&gt;</code></pre></div>
-
-<p><strong>3、创建权限管理相关的表</strong></p>
-<p><img src="/myBlog/day17-canal_Gateway%E7%BD%91%E5%85%B3_%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/image-20220105205447389.png" alt="image-20220105205447389"></p>
-<p><strong>4、复制权限管理接口代码</strong></p>
-<p><strong>5、复制整合Spring Security代码</strong></p>
-<p><strong>（1）在common模块下创建子模块spring_security</strong></p>
-<p><strong>6、编写application.properties配置文件</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"># 服务端口
-server.port&#x3D;8009
-# 服务名
-spring.application.name&#x3D;service-acl
-
-# mysql数据库连接
-spring.datasource.driver-class-name&#x3D;com.mysql.cj.jdbc.Driver
-spring.datasource.url&#x3D;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;guli?serverTimezone&#x3D;GMT%2B8
-spring.datasource.username&#x3D;root
-spring.datasource.password&#x3D;root
-
-#返回json的全局时间格式
-spring.jackson.date-format&#x3D;yyyy-MM-dd HH:mm:ss
-spring.jackson.time-zone&#x3D;GMT+8
-
-spring.redis.host&#x3D;192.168.44.132
-spring.redis.port&#x3D;6379
-spring.redis.database&#x3D; 0
-spring.redis.timeout&#x3D;1800000
-
-spring.redis.lettuce.pool.max-active&#x3D;20
-spring.redis.lettuce.pool.max-wait&#x3D;-1
-#最大阻塞等待时间(负数表示没限制)
-spring.redis.lettuce.pool.max-idle&#x3D;5
-spring.redis.lettuce.pool.min-idle&#x3D;0
-#最小空闲
-
-#配置mapper xml文件的路径
-mybatis-plus.mapper-locations&#x3D;classpath:com&#x2F;atguigu&#x2F;aclservice&#x2F;mapper&#x2F;xml&#x2F;*.xml
-
-# nacos服务地址
-spring.cloud.nacos.discovery.server-addr&#x3D;127.0.0.1:8848
-
-#mybatis日志
-mybatis-plus.configuration.log-impl&#x3D;org.apache.ibatis.logging.stdout.StdOutImpl</code></pre></div>
-
-
-
-<h1 id="权限管理-查询所有菜单-递归"><a href="#权限管理-查询所有菜单-递归" class="headerlink" title="权限管理-查询所有菜单-递归"></a>权限管理-查询所有菜单-递归</h1><p>controller</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 获取全部菜单1
-@ApiOperation(value &#x3D; &quot;查询所有菜单1&quot;)
-@GetMapping
-public R indexAllPermission1() &#123;
-    List&lt;Permission&gt; list &#x3D;  permissionService.queryAllMenuGuli1();
-    return R.ok().data(&quot;children&quot;,list);
-&#125;</code></pre></div>
-
-<p>service</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 获取全部菜单1
-List&lt;Permission&gt; queryAllMenuGuli1();</code></pre></div>
-
-<p>serviceImpl</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 获取全部菜单1
-@Override
-public List&lt;Permission&gt; queryAllMenuGuli1() &#123;
-    &#x2F;&#x2F; 1.查询所有的菜单
-    QueryWrapper&lt;Permission&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
-    wrapper.orderByDesc(&quot;id&quot;);
-    List&lt;Permission&gt; permissionList &#x3D; baseMapper.selectList(wrapper);
-    &#x2F;&#x2F; 按照要求把所有的菜单进行封装返回
-    List&lt;Permission&gt; resultList &#x3D; bulidPermission1(permissionList);
-    return resultList;
-&#125;
-
-&#x2F;&#x2F; 遍历所有的菜单，将得到的数据进行封装
-public static List&lt;Permission&gt; bulidPermission1(List&lt;Permission&gt; permissionList) &#123;
-
-    &#x2F;&#x2F; 构建一个集合，用于最终的数据封装
-    List&lt;Permission&gt; finalList &#x3D; new ArrayList&lt;&gt;();
-
-    &#x2F;&#x2F; 2.遍历所有的菜单，找到一级菜单
-    for (Permission permissionNode : permissionList) &#123;
-        &#x2F;&#x2F; 判断是否是一级菜单，一级菜单的id为0，即找到递归查询的入口
-        if (&quot;0&quot;.equals(permissionNode.getPid()))&#123;
-            &#x2F;&#x2F; 将它的level层级设置为1
-            permissionNode.setLevel(1);
-            &#x2F;&#x2F; 根据顶层菜单，递归查询下面的子菜单，并加入到最终的集合
-            finalList.add(selectChildren1(permissionNode,permissionList));
-        &#125;
-    &#125;
-    return finalList;
-&#125;
-
-&#x2F;&#x2F; 查询子菜单
-public static Permission selectChildren1(Permission permissionNode, List&lt;Permission&gt; permissionList) &#123;
-    &#x2F;&#x2F; 先初始化父菜单的子菜单
-    permissionNode.setChildren(new ArrayList&lt;&gt;());
-
-    &#x2F;&#x2F; 遍历所有的菜单，查到子菜单
-    for (Permission it : permissionList) &#123;
-        &#x2F;&#x2F; 判断子菜单是否属于父菜单，条件为子菜单的pid等于父菜单的id
-        if (it.getPid().equals(permissionNode.getId()))&#123;
-            &#x2F;&#x2F; 将子菜单的level+1
-            Integer level &#x3D; permissionNode.getLevel() + 1;
-            it.setLevel(level );
-
-            &#x2F;&#x2F; 添加之前应该判断子菜单是否为空，如果为空，初始化
-            if (permissionNode.getChildren() &#x3D;&#x3D; null)&#123;
-                permissionNode.setChildren(new ArrayList&lt;&gt;());
-            &#125;
-
-            &#x2F;&#x2F; 将查询出来的菜单放到该父菜单下的子菜单中
-            &#x2F;&#x2F; 再以这个菜单为父菜单，继续查询该菜单下的子菜单，即递归查询子菜单
-            permissionNode.getChildren().add(selectChildren1(it,permissionList));
-
-        &#125;
-    &#125;
-    &#x2F;&#x2F; 最后返回父菜单
-    return permissionNode;
-&#125;</code></pre></div>
-
-
-
-<h1 id="权限管理-递归删除菜单"><a href="#权限管理-递归删除菜单" class="headerlink" title="权限管理-递归删除菜单"></a>权限管理-递归删除菜单</h1><p>controller</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@ApiOperation(value &#x3D; &quot;递归删除菜单1&quot;)
-@DeleteMapping(&quot;remove&#x2F;&#123;id&#125;&quot;)
-public R remove(@PathVariable String id) &#123;
-    permissionService.removeChildByIdGuli1(id);
-    return R.ok();
-&#125;</code></pre></div>
-
-<p>service</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 递归删除菜单1
-void removeChildByIdGuli1(String id);</code></pre></div>
-
-<p>serviceImpl</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; &#x3D;--------------递归删除菜单---------------------
-&#x2F;&#x2F; 递归删除菜单1
-@Override
-public void removeChildByIdGuli1(String id) &#123;
-    &#x2F;&#x2F; 先创建一个集合，用于封装所有需要删除的id
-    List&lt;String&gt; idList &#x3D; new ArrayList&lt;&gt;();
-    &#x2F;&#x2F; 查询要删除的id下面的所有的子菜单的id
-    this.selectPermissionChildById1111(id,idList);
-
-    &#x2F;&#x2F; 将需要删除的结点也加入到集合
-    idList.add(id);
-    baseMapper.deleteBatchIds(idList);
-&#125;
-
-&#x2F;&#x2F; 递归查询要删除的id下面所有的子菜单的id
-private void selectPermissionChildById1111(String id, List&lt;String&gt; idList) &#123;
-    &#x2F;&#x2F; 根据id查询出该菜单才所有的子菜单id
-    QueryWrapper&lt;Permission&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
-    wrapper.eq(&quot;pid&quot;,id);
-    wrapper.select(&quot;id&quot;);
-    &#x2F;&#x2F; 查询出来的子菜单id
-    List&lt;Permission&gt; selectIdList &#x3D; baseMapper.selectList(wrapper);
-
-    &#x2F;&#x2F; 遍历查询出来的子菜单id，加入到idList集合中
-    selectIdList.stream().forEach(item -&gt;&#123;
-        idList.add(item.getId());
-        &#x2F;&#x2F; 再以这个结点递归查询他下面的子菜单
-        this.selectPermissionChildById1111(item.getId(),idList);
-    &#125;);
-&#125;</code></pre></div>
-
-
-
-<h1 id="权限管理-角色分配菜单"><a href="#权限管理-角色分配菜单" class="headerlink" title="权限管理-角色分配菜单"></a>权限管理-角色分配菜单</h1><p>controller</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@ApiOperation(value &#x3D; &quot;给角色分配权限1&quot;)
-@PostMapping(&quot;&#x2F;doAssign&quot;)
-public R doAssign(String roleId,String[] permissionId) &#123;
-    permissionService.saveRolePermissionRealtionShipGuli11(roleId,permissionId);
-    return R.ok();
-&#125;</code></pre></div>
-
-<p>service</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 给角色分配菜单
-void saveRolePermissionRealtionShipGuli11(String roleId, String[] permissionId);</code></pre></div>
-
-<p>serviceImpl</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; &#x3D;--------------给角色分配菜单----------------
-@Override
-public void saveRolePermissionRealtionShipGuli11(String roleId, String[] permissionIds) &#123;
-    &#x2F;&#x2F; 先创建一个集合，用于封装需要添加的数据
-    List&lt;RolePermission&gt; rolePermissionList &#x3D; new ArrayList&lt;&gt;();
-
-    &#x2F;&#x2F; 遍历permissionIds，得到要添加的每一个菜单id
-    for (String permissionId : permissionIds) &#123;
-        &#x2F;&#x2F; 构造一个RolePermission对象
-        RolePermission rolePermission &#x3D; new RolePermission();
-        &#x2F;&#x2F; 设置rolePermission的角色id
-        rolePermission.setRoleId(roleId);
-        &#x2F;&#x2F; 设置rolePermission的菜单id
-        rolePermission.setPermissionId(permissionId);
-
-        &#x2F;&#x2F; 将封装好的rolePermission对象加入到rolePermissionList中
-        rolePermissionList.add(rolePermission);
-    &#125;
-    &#x2F;&#x2F; 调用方法，加入到数据库中，由于操作的是角色菜单表，因此需要注入rolePermissionService
-    rolePermissionService.saveBatch(rolePermissionList);
-&#125;</code></pre></div>
-
-]]></content>
-      <categories>
-        <category>项目|谷粒学院|笔记</category>
-      </categories>
-      <tags>
-        <tag>project</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>day18-权限管理_Nacos配置中心_Git</title>
     <url>/myBlog/day18-%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86_Nacos%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83_Git/</url>
     <content><![CDATA[<h1 id="day18-权限管理-Nacos-配置中心-Git"><a href="#day18-权限管理-Nacos-配置中心-Git" class="headerlink" title="day18-权限管理 Nacos 配置中心 Git"></a>day18-权限管理 Nacos 配置中心 Git</h1><h1 id="权限管理-SpringSecurity介绍"><a href="#权限管理-SpringSecurity介绍" class="headerlink" title="权限管理-SpringSecurity介绍"></a>权限管理-SpringSecurity介绍</h1><h2 id="授权和认证实现思路"><a href="#授权和认证实现思路" class="headerlink" title="授权和认证实现思路"></a>授权和认证实现思路</h2><p>用户先进行输入账号密码登录，从数据库中查询数据，如果登录成功，将用户的用户名作为key，将从数据库中查询出来的权限作为value存到redis中。登录成功后，返回token，将token存到cookie中并且在请起头header也存放token信息。接着SpringSecurity再请求头header中获取token信息，从token信息中解析出用户名，根据用户名去redis中查询该用户所有的权限，最后，SpringSecurity根据查询出来的权限赋予用户相当于的权限，可以进行对应的操作。</p>
@@ -12331,6 +12026,461 @@ spring.cloud.nacos.config.ext-config[1].data-id&#x3D;jdbc.properties</code></pre
 <p><img src="/myBlog/day18-%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86_Nacos%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83_Git/image-20220106143054094.png" alt="image-20220106143054094"></p>
 <p>来到项目的本地目录下，将.git文件夹删除，需要打开查看隐藏文件</p>
 <p><img src="/myBlog/day18-%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86_Nacos%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83_Git/image-20220106143227167.png" alt="image-20220106143227167"></p>
+]]></content>
+      <categories>
+        <category>项目|谷粒学院|笔记</category>
+      </categories>
+      <tags>
+        <tag>project</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>day17-canal_Gateway网关_权限管理</title>
+    <url>/myBlog/day17-canal_Gateway%E7%BD%91%E5%85%B3_%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h1 id="day17-canal-Gateway网关-权限管理"><a href="#day17-canal-Gateway网关-权限管理" class="headerlink" title="day17-canal_Gateway网关_权限管理"></a>day17-canal_Gateway网关_权限管理</h1><h1 id="canal数据同步【TODO】"><a href="#canal数据同步【TODO】" class="headerlink" title="canal数据同步【TODO】"></a>canal数据同步【TODO】</h1><p>Linux中还没装数据库</p>
+<h1 id="SpringCloud-Gateway网关"><a href="#SpringCloud-Gateway网关" class="headerlink" title="SpringCloud-Gateway网关"></a>SpringCloud-Gateway网关</h1><h2 id="创建api-gateway模块（网关服务）"><a href="#创建api-gateway模块（网关服务）" class="headerlink" title="创建api-gateway模块（网关服务）"></a>创建api-gateway模块（网关服务）</h2><p>1、在infrastructure模块下创建api_gateway模块</p>
+<p>2、在pom.xml引入依赖</p>
+<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.atguigu&lt;&#x2F;groupId&gt;
+        &lt;artifactId&gt;common_utils&lt;&#x2F;artifactId&gt;
+        &lt;version&gt;0.0.1-SNAPSHOT&lt;&#x2F;version&gt;
+    &lt;&#x2F;dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;&#x2F;groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-discovery&lt;&#x2F;artifactId&gt;
+    &lt;&#x2F;dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;&#x2F;groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-gateway&lt;&#x2F;artifactId&gt;
+    &lt;&#x2F;dependency&gt;
+    &lt;!--gson--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.google.code.gson&lt;&#x2F;groupId&gt;
+        &lt;artifactId&gt;gson&lt;&#x2F;artifactId&gt;
+    &lt;&#x2F;dependency&gt;
+    &lt;!--服务调用--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;&#x2F;groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;&#x2F;artifactId&gt;
+    &lt;&#x2F;dependency&gt;
+&lt;&#x2F;dependencies&gt;</code></pre></div>
+
+<p>3、编写application.properties配置文件</p>
+<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"># 服务端口
+server.port&#x3D;8222
+# 服务名
+spring.application.name&#x3D;service-gateway
+# nacos服务地址
+spring.cloud.nacos.discovery.server-addr&#x3D;127.0.0.1:8848
+#使用服务发现路由
+spring.cloud.gateway.discovery.locator.enabled&#x3D;true
+#服务路由名小写
+#spring.cloud.gateway.discovery.locator.lower-case-service-id&#x3D;true
+#设置路由id
+spring.cloud.gateway.routes[0].id&#x3D;service-acl
+#设置路由的uri
+spring.cloud.gateway.routes[0].uri&#x3D;lb:&#x2F;&#x2F;service-acl
+#设置路由断言,代理servicerId为auth-service的&#x2F;auth&#x2F;路径
+spring.cloud.gateway.routes[0].predicates&#x3D; Path&#x3D;&#x2F;*&#x2F;acl&#x2F;**
+#配置service-edu服务
+spring.cloud.gateway.routes[1].id&#x3D;service-edu
+spring.cloud.gateway.routes[1].uri&#x3D;lb:&#x2F;&#x2F;service-edu
+spring.cloud.gateway.routes[1].predicates&#x3D; Path&#x3D;&#x2F;eduservice&#x2F;**
+#配置service-ucenter服务
+spring.cloud.gateway.routes[2].id&#x3D;service-ucenter
+spring.cloud.gateway.routes[2].uri&#x3D;lb:&#x2F;&#x2F;service-ucenter
+spring.cloud.gateway.routes[2].predicates&#x3D; Path&#x3D;&#x2F;ucenterservice&#x2F;**
+#配置service-ucenter服务
+spring.cloud.gateway.routes[3].id&#x3D;service-cms
+spring.cloud.gateway.routes[3].uri&#x3D;lb:&#x2F;&#x2F;service-cms
+spring.cloud.gateway.routes[3].predicates&#x3D; Path&#x3D;&#x2F;cmsservice&#x2F;**</code></pre></div>
+
+<p>4、编写启动类</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@SpringBootApplication
+@EnableDiscoveryClient
+public class ApiGatewayApplication &#123;
+
+    public static void main(String[] args) &#123;
+        SpringApplication.run(ApiGatewayApplication.class,args);
+    &#125;
+
+&#125;</code></pre></div>
+
+<h2 id="网关相关配置"><a href="#网关相关配置" class="headerlink" title="网关相关配置"></a>网关相关配置</h2><p><strong>1、网关解决跨域问题</strong></p>
+<p><img src="/myBlog/day17-canal_Gateway%E7%BD%91%E5%85%B3_%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/image-20220105165534139.png" alt="image-20220105165534139"></p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Configuration
+public class CorsConfig &#123;
+    @Bean
+    public CorsWebFilter corsFilter() &#123;
+        CorsConfiguration config &#x3D; new CorsConfiguration();
+        config.addAllowedMethod(&quot;*&quot;);
+        config.addAllowedOrigin(&quot;*&quot;);
+        config.addAllowedHeader(&quot;*&quot;);
+        UrlBasedCorsConfigurationSource source &#x3D; new UrlBasedCorsConfigurationSource(new PathPatternParser());
+        source.registerCorsConfiguration(&quot;&#x2F;**&quot;, config);
+        return new CorsWebFilter(source);
+    &#125;
+&#125;</code></pre></div>
+
+<p><strong>2、全局Filter，统一处理会员登录与外部不允许访问的服务</strong></p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
+ * &lt;p&gt;
+ * 全局Filter，统一处理会员登录与外部不允许访问的服务
+ * &lt;&#x2F;p&gt;
+ *&#x2F;
+@Component
+public class AuthGlobalFilter implements GlobalFilter, Ordered &#123;
+    private AntPathMatcher antPathMatcher &#x3D; new AntPathMatcher();
+    @Override
+    public Mono&lt;Void&gt; filter(ServerWebExchange exchange, GatewayFilterChain chain) &#123;
+        ServerHttpRequest request &#x3D; exchange.getRequest();
+        String path &#x3D; request.getURI().getPath();
+        &#x2F;&#x2F;谷粒学院api接口，校验用户必须登录
+        if(antPathMatcher.match(&quot;&#x2F;api&#x2F;**&#x2F;auth&#x2F;**&quot;, path)) &#123;
+            List&lt;String&gt; tokenList &#x3D; request.getHeaders().get(&quot;token&quot;);
+            if(null &#x3D;&#x3D; tokenList) &#123;
+                ServerHttpResponse response &#x3D; exchange.getResponse();
+                return out(response);
+            &#125; else &#123;
+&#x2F;&#x2F;                Boolean isCheck &#x3D; JwtUtils.checkToken(tokenList.get(0));
+&#x2F;&#x2F;                if(!isCheck) &#123;
+                ServerHttpResponse response &#x3D; exchange.getResponse();
+                return out(response);
+&#x2F;&#x2F;                &#125;
+            &#125;
+        &#125;
+        &#x2F;&#x2F;内部服务接口，不允许外部访问
+        if(antPathMatcher.match(&quot;&#x2F;**&#x2F;inner&#x2F;**&quot;, path)) &#123;
+            ServerHttpResponse response &#x3D; exchange.getResponse();
+            return out(response);
+        &#125;
+        return chain.filter(exchange);
+    &#125;
+    @Override
+    public int getOrder() &#123;
+        return 0;
+    &#125;
+    private Mono&lt;Void&gt; out(ServerHttpResponse response) &#123;
+        JsonObject message &#x3D; new JsonObject();
+        message.addProperty(&quot;success&quot;, false);
+        message.addProperty(&quot;code&quot;, 28004);
+        message.addProperty(&quot;data&quot;, &quot;鉴权失败&quot;);
+        byte[] bits &#x3D; message.toString().getBytes(StandardCharsets.UTF_8);
+        DataBuffer buffer &#x3D; response.bufferFactory().wrap(bits);
+        &#x2F;&#x2F;response.setStatusCode(HttpStatus.UNAUTHORIZED);
+        &#x2F;&#x2F;指定编码，否则在浏览器中会中文乱码
+        response.getHeaders().add(&quot;Content-Type&quot;, &quot;application&#x2F;json;charset&#x3D;UTF-8&quot;);
+        return response.writeWith(Mono.just(buffer));
+    &#125;
+&#125;</code></pre></div>
+
+
+
+<p><strong>3、自定义异常处理</strong></p>
+<p>服务网关调用服务时可能会有一些异常或服务不可用，它返回错误信息不友好，需要我们覆盖处理</p>
+<p>ErrorHandlerConfig</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
+ * &lt;p&gt;
+ * 全局Filter，统一处理会员登录与外部不允许访问的服务
+ * &lt;&#x2F;p&gt;
+ *&#x2F;
+@Configuration
+@EnableConfigurationProperties(&#123;ServerProperties.class, ResourceProperties.class&#125;)
+public class ErrorHandlerConfig &#123;
+    private final ServerProperties serverProperties;
+    private final ApplicationContext applicationContext;
+    private final ResourceProperties resourceProperties;
+    private final List&lt;ViewResolver&gt; viewResolvers;
+    private final ServerCodecConfigurer serverCodecConfigurer;
+    public ErrorHandlerConfig(ServerProperties serverProperties,
+                              ResourceProperties resourceProperties,
+                              ObjectProvider&lt;List&lt;ViewResolver&gt;&gt; viewResolversProvider,
+                              ServerCodecConfigurer serverCodecConfigurer,
+                              ApplicationContext applicationContext) &#123;
+        this.serverProperties &#x3D; serverProperties;
+        this.applicationContext &#x3D; applicationContext;
+        this.resourceProperties &#x3D; resourceProperties;
+        this.viewResolvers &#x3D; viewResolversProvider.getIfAvailable(Collections::emptyList);
+        this.serverCodecConfigurer &#x3D; serverCodecConfigurer;
+    &#125;
+    @Bean
+    @Order(Ordered.HIGHEST_PRECEDENCE)
+    public ErrorWebExceptionHandler errorWebExceptionHandler(ErrorAttributes errorAttributes) &#123;
+        JsonExceptionHandler exceptionHandler &#x3D; new JsonExceptionHandler(
+                errorAttributes,
+                this.resourceProperties,
+                this.serverProperties.getError(),
+                this.applicationContext);
+        exceptionHandler.setViewResolvers(this.viewResolvers);
+        exceptionHandler.setMessageWriters(this.serverCodecConfigurer.getWriters());
+        exceptionHandler.setMessageReaders(this.serverCodecConfigurer.getReaders());
+        return exceptionHandler;
+    &#125;
+&#125;</code></pre></div>
+
+<p>JsonExceptionHandler</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
+ * 自定义异常处理
+ * &lt;p&gt;异常时用JSON代替HTML异常信息&lt;p&gt;
+ *&#x2F;
+public class JsonExceptionHandler extends DefaultErrorWebExceptionHandler &#123;
+    public JsonExceptionHandler(ErrorAttributes errorAttributes, ResourceProperties resourceProperties,
+                                ErrorProperties errorProperties, ApplicationContext applicationContext) &#123;
+        super(errorAttributes, resourceProperties, errorProperties, applicationContext);
+    &#125;
+
+    &#x2F;**
+     * 获取异常属性
+     *&#x2F;
+    @Override
+    protected Map&lt;String, Object&gt; getErrorAttributes(ServerRequest request, boolean includeStackTrace) &#123;
+        Map&lt;String, Object&gt; map &#x3D; new HashMap&lt;&gt;();
+        map.put(&quot;success&quot;, false);
+        map.put(&quot;code&quot;, 20005);
+        map.put(&quot;message&quot;, &quot;网关失败&quot;);
+        map.put(&quot;data&quot;, null);
+        return map;
+    &#125;
+
+    &#x2F;**
+     * 指定响应处理方法为JSON处理的方法
+     *
+     * @param errorAttributes
+     *&#x2F;
+    @Override
+    protected RouterFunction&lt;ServerResponse&gt; getRoutingFunction(ErrorAttributes errorAttributes) &#123;
+        return RouterFunctions.route(RequestPredicates.all(), this::renderErrorResponse);
+    &#125;
+
+    &#x2F;**
+     * 根据code获取对应的HttpStatus
+     *
+     * @param errorAttributes
+     *&#x2F;
+&#x2F;&#x2F;    @Override
+&#x2F;&#x2F;    protected HttpStatus getHttpStatus(Map&lt;String, Object&gt; errorAttributes) &#123;
+&#x2F;&#x2F;        return HttpStatus.OK;
+&#x2F;&#x2F;    &#125;
+&#125;</code></pre></div>
+
+
+
+<h1 id="权限管理-表结构和关系"><a href="#权限管理-表结构和关系" class="headerlink" title="权限管理-表结构和关系"></a>权限管理-表结构和关系</h1><p>![07 权限管理需求](day17-canal_Gateway网关_权限管理/07 权限管理需求.png)</p>
+<h1 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h1><p><strong>1、在service模块下创建子模块service-acl</strong></p>
+<p><strong>2、在service_acl模块中引入依赖</strong></p>
+<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.atguigu&lt;&#x2F;groupId&gt;
+        &lt;artifactId&gt;spring_security&lt;&#x2F;artifactId&gt;
+        &lt;version&gt;0.0.1-SNAPSHOT&lt;&#x2F;version&gt;
+    &lt;&#x2F;dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.alibaba&lt;&#x2F;groupId&gt;
+        &lt;artifactId&gt;fastjson&lt;&#x2F;artifactId&gt;
+    &lt;&#x2F;dependency&gt;
+&lt;&#x2F;dependencies&gt;</code></pre></div>
+
+<p><strong>3、创建权限管理相关的表</strong></p>
+<p><img src="/myBlog/day17-canal_Gateway%E7%BD%91%E5%85%B3_%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/image-20220105205447389.png" alt="image-20220105205447389"></p>
+<p><strong>4、复制权限管理接口代码</strong></p>
+<p><strong>5、复制整合Spring Security代码</strong></p>
+<p><strong>（1）在common模块下创建子模块spring_security</strong></p>
+<p><strong>6、编写application.properties配置文件</strong></p>
+<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"># 服务端口
+server.port&#x3D;8009
+# 服务名
+spring.application.name&#x3D;service-acl
+
+# mysql数据库连接
+spring.datasource.driver-class-name&#x3D;com.mysql.cj.jdbc.Driver
+spring.datasource.url&#x3D;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;guli?serverTimezone&#x3D;GMT%2B8
+spring.datasource.username&#x3D;root
+spring.datasource.password&#x3D;root
+
+#返回json的全局时间格式
+spring.jackson.date-format&#x3D;yyyy-MM-dd HH:mm:ss
+spring.jackson.time-zone&#x3D;GMT+8
+
+spring.redis.host&#x3D;192.168.44.132
+spring.redis.port&#x3D;6379
+spring.redis.database&#x3D; 0
+spring.redis.timeout&#x3D;1800000
+
+spring.redis.lettuce.pool.max-active&#x3D;20
+spring.redis.lettuce.pool.max-wait&#x3D;-1
+#最大阻塞等待时间(负数表示没限制)
+spring.redis.lettuce.pool.max-idle&#x3D;5
+spring.redis.lettuce.pool.min-idle&#x3D;0
+#最小空闲
+
+#配置mapper xml文件的路径
+mybatis-plus.mapper-locations&#x3D;classpath:com&#x2F;atguigu&#x2F;aclservice&#x2F;mapper&#x2F;xml&#x2F;*.xml
+
+# nacos服务地址
+spring.cloud.nacos.discovery.server-addr&#x3D;127.0.0.1:8848
+
+#mybatis日志
+mybatis-plus.configuration.log-impl&#x3D;org.apache.ibatis.logging.stdout.StdOutImpl</code></pre></div>
+
+
+
+<h1 id="权限管理-查询所有菜单-递归"><a href="#权限管理-查询所有菜单-递归" class="headerlink" title="权限管理-查询所有菜单-递归"></a>权限管理-查询所有菜单-递归</h1><p>controller</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 获取全部菜单1
+@ApiOperation(value &#x3D; &quot;查询所有菜单1&quot;)
+@GetMapping
+public R indexAllPermission1() &#123;
+    List&lt;Permission&gt; list &#x3D;  permissionService.queryAllMenuGuli1();
+    return R.ok().data(&quot;children&quot;,list);
+&#125;</code></pre></div>
+
+<p>service</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 获取全部菜单1
+List&lt;Permission&gt; queryAllMenuGuli1();</code></pre></div>
+
+<p>serviceImpl</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 获取全部菜单1
+@Override
+public List&lt;Permission&gt; queryAllMenuGuli1() &#123;
+    &#x2F;&#x2F; 1.查询所有的菜单
+    QueryWrapper&lt;Permission&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
+    wrapper.orderByDesc(&quot;id&quot;);
+    List&lt;Permission&gt; permissionList &#x3D; baseMapper.selectList(wrapper);
+    &#x2F;&#x2F; 按照要求把所有的菜单进行封装返回
+    List&lt;Permission&gt; resultList &#x3D; bulidPermission1(permissionList);
+    return resultList;
+&#125;
+
+&#x2F;&#x2F; 遍历所有的菜单，将得到的数据进行封装
+public static List&lt;Permission&gt; bulidPermission1(List&lt;Permission&gt; permissionList) &#123;
+
+    &#x2F;&#x2F; 构建一个集合，用于最终的数据封装
+    List&lt;Permission&gt; finalList &#x3D; new ArrayList&lt;&gt;();
+
+    &#x2F;&#x2F; 2.遍历所有的菜单，找到一级菜单
+    for (Permission permissionNode : permissionList) &#123;
+        &#x2F;&#x2F; 判断是否是一级菜单，一级菜单的id为0，即找到递归查询的入口
+        if (&quot;0&quot;.equals(permissionNode.getPid()))&#123;
+            &#x2F;&#x2F; 将它的level层级设置为1
+            permissionNode.setLevel(1);
+            &#x2F;&#x2F; 根据顶层菜单，递归查询下面的子菜单，并加入到最终的集合
+            finalList.add(selectChildren1(permissionNode,permissionList));
+        &#125;
+    &#125;
+    return finalList;
+&#125;
+
+&#x2F;&#x2F; 查询子菜单
+public static Permission selectChildren1(Permission permissionNode, List&lt;Permission&gt; permissionList) &#123;
+    &#x2F;&#x2F; 先初始化父菜单的子菜单
+    permissionNode.setChildren(new ArrayList&lt;&gt;());
+
+    &#x2F;&#x2F; 遍历所有的菜单，查到子菜单
+    for (Permission it : permissionList) &#123;
+        &#x2F;&#x2F; 判断子菜单是否属于父菜单，条件为子菜单的pid等于父菜单的id
+        if (it.getPid().equals(permissionNode.getId()))&#123;
+            &#x2F;&#x2F; 将子菜单的level+1
+            Integer level &#x3D; permissionNode.getLevel() + 1;
+            it.setLevel(level );
+
+            &#x2F;&#x2F; 添加之前应该判断子菜单是否为空，如果为空，初始化
+            if (permissionNode.getChildren() &#x3D;&#x3D; null)&#123;
+                permissionNode.setChildren(new ArrayList&lt;&gt;());
+            &#125;
+
+            &#x2F;&#x2F; 将查询出来的菜单放到该父菜单下的子菜单中
+            &#x2F;&#x2F; 再以这个菜单为父菜单，继续查询该菜单下的子菜单，即递归查询子菜单
+            permissionNode.getChildren().add(selectChildren1(it,permissionList));
+
+        &#125;
+    &#125;
+    &#x2F;&#x2F; 最后返回父菜单
+    return permissionNode;
+&#125;</code></pre></div>
+
+
+
+<h1 id="权限管理-递归删除菜单"><a href="#权限管理-递归删除菜单" class="headerlink" title="权限管理-递归删除菜单"></a>权限管理-递归删除菜单</h1><p>controller</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@ApiOperation(value &#x3D; &quot;递归删除菜单1&quot;)
+@DeleteMapping(&quot;remove&#x2F;&#123;id&#125;&quot;)
+public R remove(@PathVariable String id) &#123;
+    permissionService.removeChildByIdGuli1(id);
+    return R.ok();
+&#125;</code></pre></div>
+
+<p>service</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 递归删除菜单1
+void removeChildByIdGuli1(String id);</code></pre></div>
+
+<p>serviceImpl</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; &#x3D;--------------递归删除菜单---------------------
+&#x2F;&#x2F; 递归删除菜单1
+@Override
+public void removeChildByIdGuli1(String id) &#123;
+    &#x2F;&#x2F; 先创建一个集合，用于封装所有需要删除的id
+    List&lt;String&gt; idList &#x3D; new ArrayList&lt;&gt;();
+    &#x2F;&#x2F; 查询要删除的id下面的所有的子菜单的id
+    this.selectPermissionChildById1111(id,idList);
+
+    &#x2F;&#x2F; 将需要删除的结点也加入到集合
+    idList.add(id);
+    baseMapper.deleteBatchIds(idList);
+&#125;
+
+&#x2F;&#x2F; 递归查询要删除的id下面所有的子菜单的id
+private void selectPermissionChildById1111(String id, List&lt;String&gt; idList) &#123;
+    &#x2F;&#x2F; 根据id查询出该菜单才所有的子菜单id
+    QueryWrapper&lt;Permission&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
+    wrapper.eq(&quot;pid&quot;,id);
+    wrapper.select(&quot;id&quot;);
+    &#x2F;&#x2F; 查询出来的子菜单id
+    List&lt;Permission&gt; selectIdList &#x3D; baseMapper.selectList(wrapper);
+
+    &#x2F;&#x2F; 遍历查询出来的子菜单id，加入到idList集合中
+    selectIdList.stream().forEach(item -&gt;&#123;
+        idList.add(item.getId());
+        &#x2F;&#x2F; 再以这个结点递归查询他下面的子菜单
+        this.selectPermissionChildById1111(item.getId(),idList);
+    &#125;);
+&#125;</code></pre></div>
+
+
+
+<h1 id="权限管理-角色分配菜单"><a href="#权限管理-角色分配菜单" class="headerlink" title="权限管理-角色分配菜单"></a>权限管理-角色分配菜单</h1><p>controller</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@ApiOperation(value &#x3D; &quot;给角色分配权限1&quot;)
+@PostMapping(&quot;&#x2F;doAssign&quot;)
+public R doAssign(String roleId,String[] permissionId) &#123;
+    permissionService.saveRolePermissionRealtionShipGuli11(roleId,permissionId);
+    return R.ok();
+&#125;</code></pre></div>
+
+<p>service</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 给角色分配菜单
+void saveRolePermissionRealtionShipGuli11(String roleId, String[] permissionId);</code></pre></div>
+
+<p>serviceImpl</p>
+<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; &#x3D;--------------给角色分配菜单----------------
+@Override
+public void saveRolePermissionRealtionShipGuli11(String roleId, String[] permissionIds) &#123;
+    &#x2F;&#x2F; 先创建一个集合，用于封装需要添加的数据
+    List&lt;RolePermission&gt; rolePermissionList &#x3D; new ArrayList&lt;&gt;();
+
+    &#x2F;&#x2F; 遍历permissionIds，得到要添加的每一个菜单id
+    for (String permissionId : permissionIds) &#123;
+        &#x2F;&#x2F; 构造一个RolePermission对象
+        RolePermission rolePermission &#x3D; new RolePermission();
+        &#x2F;&#x2F; 设置rolePermission的角色id
+        rolePermission.setRoleId(roleId);
+        &#x2F;&#x2F; 设置rolePermission的菜单id
+        rolePermission.setPermissionId(permissionId);
+
+        &#x2F;&#x2F; 将封装好的rolePermission对象加入到rolePermissionList中
+        rolePermissionList.add(rolePermission);
+    &#125;
+    &#x2F;&#x2F; 调用方法，加入到数据库中，由于操作的是角色菜单表，因此需要注入rolePermissionService
+    rolePermissionService.saveBatch(rolePermissionList);
+&#125;</code></pre></div>
+
 ]]></content>
       <categories>
         <category>项目|谷粒学院|笔记</category>
