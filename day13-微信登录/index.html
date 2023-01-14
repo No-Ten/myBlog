@@ -16,12 +16,12 @@
   <meta name="author" content="Ten">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Day13-微信登录OAuth2介绍OAuth2解决方案:令牌机制，按照一定规则生成字符串，字符串包含用户信息  微信扫描登录-生成授权url（生成二维码）后端开发1、添加配置application.properties添加相关配置信息 # 微信开放平台 appid wx.open.app_id&#x3D;wxed9954c01bb89b47 # 微信开放平台 appsecret wx.open.">
+    <meta name="description" content="Day13-微信登录OAuth2介绍OAuth2解决方案:令牌机制，按照一定规则生成字符串，字符串包含用户信息  微信扫描登录-生成授权url（生成二维码）后端开发1、添加配置application.properties添加相关配置信息 123456# 微信开放平台 appidwx.open.app_id&#x3D;wxed9954c01bb89b47# 微信开放平台 appsecretwx.open.ap">
 <meta property="og:type" content="article">
 <meta property="og:title" content="day13-微信登录">
 <meta property="og:url" content="https://no-ten.github.io/day13-%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95/index.html">
 <meta property="og:site_name" content="TBlog">
-<meta property="og:description" content="Day13-微信登录OAuth2介绍OAuth2解决方案:令牌机制，按照一定规则生成字符串，字符串包含用户信息  微信扫描登录-生成授权url（生成二维码）后端开发1、添加配置application.properties添加相关配置信息 # 微信开放平台 appid wx.open.app_id&#x3D;wxed9954c01bb89b47 # 微信开放平台 appsecret wx.open.">
+<meta property="og:description" content="Day13-微信登录OAuth2介绍OAuth2解决方案:令牌机制，按照一定规则生成字符串，字符串包含用户信息  微信扫描登录-生成授权url（生成二维码）后端开发1、添加配置application.properties添加相关配置信息 123456# 微信开放平台 appidwx.open.app_id&#x3D;wxed9954c01bb89b47# 微信开放平台 appsecretwx.open.ap">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://no-ten.github.io/myBlog/day13-%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95/image-20220107001223830.png">
 <meta property="og:image" content="https://no-ten.github.io/myBlog/day13-%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95/image-20220107001247192.png">
@@ -47,8 +47,6 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
@@ -287,677 +285,53 @@
               <h1 id="Day13-微信登录"><a href="#Day13-微信登录" class="headerlink" title="Day13-微信登录"></a>Day13-微信登录</h1><h1 id="OAuth2介绍"><a href="#OAuth2介绍" class="headerlink" title="OAuth2介绍"></a>OAuth2介绍</h1><p>OAuth2解决方案:令牌机制，按照一定规则生成字符串，字符串包含用户信息</p>
 <p><img src="/myBlog/day13-%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95/image-20220107001223830.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220107001223830"></p>
 <h1 id="微信扫描登录-生成授权url（生成二维码）"><a href="#微信扫描登录-生成授权url（生成二维码）" class="headerlink" title="微信扫描登录-生成授权url（生成二维码）"></a>微信扫描登录-生成授权url（生成二维码）</h1><h2 id="后端开发"><a href="#后端开发" class="headerlink" title="后端开发"></a>后端开发</h2><h3 id="1、添加配置"><a href="#1、添加配置" class="headerlink" title="1、添加配置"></a>1、添加配置</h3><p>application.properties添加相关配置信息</p>
-<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"># 微信开放平台 appid
-wx.open.app_id&#x3D;wxed9954c01bb89b47
-# 微信开放平台 appsecret
-wx.open.app_secret&#x3D;a7482517235173ddb4083788de60b90e
-# 微信开放平台 重定向url
-wx.open.redirect_url&#x3D;http:&#x2F;&#x2F;localhost:8160&#x2F;api&#x2F;ucenter&#x2F;wx&#x2F;callback</code></pre></div>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment"># 微信开放平台 appid</span><br><span class="hljs-meta">wx.open.app_id</span>=<span class="hljs-string">wxed9954c01bb89b47</span><br><span class="hljs-comment"># 微信开放平台 appsecret</span><br><span class="hljs-meta">wx.open.app_secret</span>=<span class="hljs-string">a7482517235173ddb4083788de60b90e</span><br><span class="hljs-comment"># 微信开放平台 重定向url</span><br><span class="hljs-meta">wx.open.redirect_url</span>=<span class="hljs-string">http://localhost:8160/api/ucenter/wx/callback</span><br></code></pre></td></tr></table></figure>
 
 <p><img src="/myBlog/day13-%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95/image-20220107001247192.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220107001247192"></p>
 <h3 id="2、创建常量类"><a href="#2、创建常量类" class="headerlink" title="2、创建常量类"></a>2、创建常量类</h3><p>创建util包，创建ConstantPropertiesUtil.java常量类</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Component
-public class ConstantWxUtil implements InitializingBean &#123;
-
-    @Value(&quot;$&#123;wx.open.app_id&#125;&quot;)
-    private String appId;
-
-    @Value(&quot;$&#123;wx.open.app_secret&#125;&quot;)
-    private String appSecret;
-
-    @Value(&quot;$&#123;wx.open.redirect_url&#125;&quot;)
-    private String redirectUrl;
-
-    public static String WX_OPEN_APP_ID;
-    public static String WX_OPEN_APP_SECRET;
-    public static String WX_OPEN_REDIRECT_URL;
-
-    @Override
-    public void afterPropertiesSet() throws Exception &#123;
-        WX_OPEN_APP_ID &#x3D; appId;
-        WX_OPEN_APP_SECRET &#x3D; appSecret;
-        WX_OPEN_REDIRECT_URL &#x3D; redirectUrl;
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ConstantWxUtil</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">InitializingBean</span> </span>&#123;<br><br>    <span class="hljs-meta">@Value(&quot;$&#123;wx.open.app_id&#125;&quot;)</span><br>    <span class="hljs-keyword">private</span> String appId;<br><br>    <span class="hljs-meta">@Value(&quot;$&#123;wx.open.app_secret&#125;&quot;)</span><br>    <span class="hljs-keyword">private</span> String appSecret;<br><br>    <span class="hljs-meta">@Value(&quot;$&#123;wx.open.redirect_url&#125;&quot;)</span><br>    <span class="hljs-keyword">private</span> String redirectUrl;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String WX_OPEN_APP_ID;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String WX_OPEN_APP_SECRET;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String WX_OPEN_REDIRECT_URL;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">afterPropertiesSet</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        WX_OPEN_APP_ID = appId;<br>        WX_OPEN_APP_SECRET = appSecret;<br>        WX_OPEN_REDIRECT_URL = redirectUrl;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="3、创建controller"><a href="#3、创建controller" class="headerlink" title="3、创建controller"></a>3、创建controller</h3><p>guli-microservice-ucenter微服务中创建api包</p>
 <p>api包中创建WxApiController</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@CrossOrigin
-@Controller &#x2F;&#x2F; 这里不需要返回数据，所以用controller
-@RequestMapping(&quot;&#x2F;api&#x2F;ucenter&#x2F;wx&quot;)
-public class WxApiController &#123;
-
-    @GetMapping(&quot;login&quot;)
-    public String getWxCode()&#123;
-        &#x2F;&#x2F; 微信开放平台授权baseUrl
-        String baseUrl &#x3D; &quot;https:&#x2F;&#x2F;open.weixin.qq.com&#x2F;connect&#x2F;qrconnect&quot; +
-        &quot;?appid&#x3D;%s&quot; +
-        &quot;&amp;redirect_uri&#x3D;%s&quot; +
-        &quot;&amp;response_type&#x3D;code&quot; +
-        &quot;&amp;scope&#x3D;snsapi_login&quot; +
-        &quot;&amp;state&#x3D;%s&quot; +
-        &quot;#wechat_redirect&quot;;
-
-        &#x2F;&#x2F; redirect_url需要转码
-        String redirectUrl &#x3D; ConstantWxUtil.WX_OPEN_REDIRECT_URL;
-        try &#123;
-            redirectUrl &#x3D; URLEncoder.encode(redirectUrl, &quot;utf-8&quot;);
-        &#125; catch (Exception e) &#123;
-            e.printStackTrace();
-        &#125;
-
-        &#x2F;&#x2F; 生成url
-        String url &#x3D; String.format(
-                baseUrl,
-                ConstantWxUtil.WX_OPEN_APP_ID,
-                redirectUrl,
-                &quot;atguigu&quot;
-        );
-
-        return &quot;redirect:&quot;+url;
-    &#125;
-
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@CrossOrigin</span><br><span class="hljs-meta">@Controller</span> <span class="hljs-comment">// 这里不需要返回数据，所以用controller</span><br><span class="hljs-meta">@RequestMapping(&quot;/api/ucenter/wx&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WxApiController</span> </span>&#123;<br><br>    <span class="hljs-meta">@GetMapping(&quot;login&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getWxCode</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-comment">// 微信开放平台授权baseUrl</span><br>        String baseUrl = <span class="hljs-string">&quot;https://open.weixin.qq.com/connect/qrconnect&quot;</span> +<br>        <span class="hljs-string">&quot;?appid=%s&quot;</span> +<br>        <span class="hljs-string">&quot;&amp;redirect_uri=%s&quot;</span> +<br>        <span class="hljs-string">&quot;&amp;response_type=code&quot;</span> +<br>        <span class="hljs-string">&quot;&amp;scope=snsapi_login&quot;</span> +<br>        <span class="hljs-string">&quot;&amp;state=%s&quot;</span> +<br>        <span class="hljs-string">&quot;#wechat_redirect&quot;</span>;<br><br>        <span class="hljs-comment">// redirect_url需要转码</span><br>        String redirectUrl = ConstantWxUtil.WX_OPEN_REDIRECT_URL;<br>        <span class="hljs-keyword">try</span> &#123;<br>            redirectUrl = URLEncoder.encode(redirectUrl, <span class="hljs-string">&quot;utf-8&quot;</span>);<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>        &#125;<br><br>        <span class="hljs-comment">// 生成url</span><br>        String url = String.format(<br>                baseUrl,<br>                ConstantWxUtil.WX_OPEN_APP_ID,<br>                redirectUrl,<br>                <span class="hljs-string">&quot;atguigu&quot;</span><br>        );<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;redirect:&quot;</span>+url;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h3 id="测试："><a href="#测试：" class="headerlink" title="测试："></a>测试：</h3><p>访问：<a target="_blank" rel="noopener" href="http://localhost:8006/api/ucenter/wx/login">http://localhost:8006/api/ucenter/wx/login</a> </p>
 <p>发现错误</p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">redirect_uri 参数错误</code></pre></div>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">redirect_uri</span> 参数错误<br></code></pre></td></tr></table></figure>
 
 <p>解决方案</p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">微信扫码失效的，使用新的，首先将模块启动端口改成8160（一定得是这个，其他的没用），其次将redirect_url 改为：http:&#x2F;&#x2F;localhost:8160&#x2F;api&#x2F;ucenter&#x2F;wx&#x2F;callback，还需要将Nginx的配置改成对应的url</code></pre></div>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">微信扫码失效的，使用新的，首先将模块启动端口改成<span class="hljs-number">8160</span>（一定得是这个，其他的没用），其次将redirect_url 改为：http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">8160</span><span class="hljs-regexp">/api/u</span>center<span class="hljs-regexp">/wx/</span>callback，还需要将Nginx的配置改成对应的url<br></code></pre></td></tr></table></figure>
 
 
 
 <h1 id="微信扫描登录-开发回调url（获取扫描人的信息）"><a href="#微信扫描登录-开发回调url（获取扫描人的信息）" class="headerlink" title="微信扫描登录-开发回调url（获取扫描人的信息）"></a>微信扫描登录-开发回调url（获取扫描人的信息）</h1><p>扫描之后获取扫描人信息流程分析</p>
 <p><img src="/myBlog/day13-%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95/image-20220107001357983.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220107001357983"></p>
-<h2 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h2><h3 id="1、全局配置的跳转路径"><a href="#1、全局配置的跳转路径" class="headerlink" title="1、全局配置的跳转路径"></a>1、全局配置的跳转路径</h3><div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"># 微信开放平台 重定向url
-wx.open.redirect_url&#x3D;http:&#x2F;&#x2F;localhost:8160&#x2F;api&#x2F;ucenter&#x2F;wx&#x2F;callback</code></pre></div>
+<h2 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h2><h3 id="1、全局配置的跳转路径"><a href="#1、全局配置的跳转路径" class="headerlink" title="1、全局配置的跳转路径"></a>1、全局配置的跳转路径</h3><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment"># 微信开放平台 重定向url</span><br><span class="hljs-meta">wx.open.redirect_url</span>=<span class="hljs-string">http://localhost:8160/api/ucenter/wx/callback</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="2、修改当前项目启动端口号为8160"><a href="#2、修改当前项目启动端口号为8160" class="headerlink" title="2、修改当前项目启动端口号为8160"></a>2、修改当前项目启动端口号为8160</h3><h3 id="3、测试回调是否可用"><a href="#3、测试回调是否可用" class="headerlink" title="3、测试回调是否可用"></a>3、测试回调是否可用</h3><p>在WxApiController中添加方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@GetMapping(&quot;callback&quot;)
-public String callback(String code, String state, HttpSession session) &#123;
-   &#x2F;&#x2F;得到授权临时票据code
-   System.out.println(&quot;code &#x3D; &quot; + code);
-   System.out.println(&quot;state &#x3D; &quot; + state);
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@GetMapping(&quot;callback&quot;)</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">callback</span><span class="hljs-params">(String code, String state, HttpSession session)</span> </span>&#123;<br>   <span class="hljs-comment">//得到授权临时票据code</span><br>   System.out.println(<span class="hljs-string">&quot;code = &quot;</span> + code);<br>   System.out.println(<span class="hljs-string">&quot;state = &quot;</span> + state);<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h2 id="二、后台开发"><a href="#二、后台开发" class="headerlink" title="二、后台开发"></a>二、后台开发</h2><h3 id="1、添加依赖"><a href="#1、添加依赖" class="headerlink" title="1、添加依赖"></a>1、添加依赖</h3><div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">&lt;dependencies&gt;
-    &lt;!--httpclient--&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.apache.httpcomponents&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;httpclient&lt;&#x2F;artifactId&gt;
-    &lt;&#x2F;dependency&gt;
-    &lt;!--commons-io--&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;commons-io&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;commons-io&lt;&#x2F;artifactId&gt;
-    &lt;&#x2F;dependency&gt;
-    &lt;!--gson--&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;com.google.code.gson&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;gson&lt;&#x2F;artifactId&gt;
-    &lt;&#x2F;dependency&gt;
-&lt;&#x2F;dependencies&gt;</code></pre></div>
+<h2 id="二、后台开发"><a href="#二、后台开发" class="headerlink" title="二、后台开发"></a>二、后台开发</h2><h3 id="1、添加依赖"><a href="#1、添加依赖" class="headerlink" title="1、添加依赖"></a>1、添加依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--httpclient--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.httpcomponents<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>httpclient<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--commons-io--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>commons-io<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>commons-io<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--gson--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.google.code.gson<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>gson<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="2、创建httpclient工具类"><a href="#2、创建httpclient工具类" class="headerlink" title="2、创建httpclient工具类"></a>2、创建httpclient工具类</h3><p>放入util包</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.atguigu.educenter.utils;
-
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.StringUtils;
-import org.apache.http.Consts;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.config.RequestConfig;
-import org.apache.http.client.config.RequestConfig.Builder;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.conn.ConnectTimeoutException;
-import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.conn.ssl.SSLContextBuilder;
-import org.apache.http.conn.ssl.TrustStrategy;
-import org.apache.http.conn.ssl.X509HostnameVerifier;
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
-import org.apache.http.message.BasicNameValuePair;
-
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLException;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.SSLSocket;
-import java.io.IOException;
-import java.net.SocketTimeoutException;
-import java.security.GeneralSecurityException;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
-&#x2F;**
- *  依赖的jar包有：commons-lang-2.6.jar、httpclient-4.3.2.jar、httpcore-4.3.1.jar、commons-io-2.4.jar
- * @author zhaoyb
- *
- *&#x2F;
-public class HttpClientUtils &#123;
-
-    public static final int connTimeout&#x3D;10000;
-    public static final int readTimeout&#x3D;10000;
-    public static final String charset&#x3D;&quot;UTF-8&quot;;
-    private static HttpClient client &#x3D; null;
-
-    static &#123;
-        PoolingHttpClientConnectionManager cm &#x3D; new PoolingHttpClientConnectionManager();
-        cm.setMaxTotal(128);
-        cm.setDefaultMaxPerRoute(128);
-        client &#x3D; HttpClients.custom().setConnectionManager(cm).build();
-    &#125;
-
-    public static String postParameters(String url, String parameterStr) throws ConnectTimeoutException, SocketTimeoutException, Exception&#123;
-        return post(url,parameterStr,&quot;application&#x2F;x-www-form-urlencoded&quot;,charset,connTimeout,readTimeout);
-    &#125;
-
-    public static String postParameters(String url, String parameterStr,String charset, Integer connTimeout, Integer readTimeout) throws ConnectTimeoutException, SocketTimeoutException, Exception&#123;
-        return post(url,parameterStr,&quot;application&#x2F;x-www-form-urlencoded&quot;,charset,connTimeout,readTimeout);
-    &#125;
-
-    public static String postParameters(String url, Map&lt;String, String&gt; params) throws ConnectTimeoutException,
-            SocketTimeoutException, Exception &#123;
-        return postForm(url, params, null, connTimeout, readTimeout);
-    &#125;
-
-    public static String postParameters(String url, Map&lt;String, String&gt; params, Integer connTimeout,Integer readTimeout) throws ConnectTimeoutException,
-            SocketTimeoutException, Exception &#123;
-        return postForm(url, params, null, connTimeout, readTimeout);
-    &#125;
-
-    public static String get(String url) throws Exception &#123;
-        return get(url, charset, null, null);
-    &#125;
-
-    public static String get(String url, String charset) throws Exception &#123;
-        return get(url, charset, connTimeout, readTimeout);
-    &#125;
-
-    &#x2F;**
-     * 发送一个 Post 请求, 使用指定的字符集编码.
-     *
-     * @param url
-     * @param body RequestBody
-     * @param mimeType 例如 application&#x2F;xml &quot;application&#x2F;x-www-form-urlencoded&quot; a&#x3D;1&amp;b&#x3D;2&amp;c&#x3D;3
-     * @param charset 编码
-     * @param connTimeout 建立链接超时时间,毫秒.
-     * @param readTimeout 响应超时时间,毫秒.
-     * @return ResponseBody, 使用指定的字符集编码.
-     * @throws ConnectTimeoutException 建立链接超时异常
-     * @throws SocketTimeoutException  响应超时
-     * @throws Exception
-     *&#x2F;
-    public static String post(String url, String body, String mimeType,String charset, Integer connTimeout, Integer readTimeout)
-            throws ConnectTimeoutException, SocketTimeoutException, Exception &#123;
-        HttpClient client &#x3D; null;
-        HttpPost post &#x3D; new HttpPost(url);
-        String result &#x3D; &quot;&quot;;
-        try &#123;
-            if (StringUtils.isNotBlank(body)) &#123;
-                HttpEntity entity &#x3D; new StringEntity(body, ContentType.create(mimeType, charset));
-                post.setEntity(entity);
-            &#125;
-            &#x2F;&#x2F; 设置参数
-            Builder customReqConf &#x3D; RequestConfig.custom();
-            if (connTimeout !&#x3D; null) &#123;
-                customReqConf.setConnectTimeout(connTimeout);
-            &#125;
-            if (readTimeout !&#x3D; null) &#123;
-                customReqConf.setSocketTimeout(readTimeout);
-            &#125;
-            post.setConfig(customReqConf.build());
-
-            HttpResponse res;
-            if (url.startsWith(&quot;https&quot;)) &#123;
-                &#x2F;&#x2F; 执行 Https 请求.
-                client &#x3D; createSSLInsecureClient();
-                res &#x3D; client.execute(post);
-            &#125; else &#123;
-                &#x2F;&#x2F; 执行 Http 请求.
-                client &#x3D; HttpClientUtils.client;
-                res &#x3D; client.execute(post);
-            &#125;
-            result &#x3D; IOUtils.toString(res.getEntity().getContent(), charset);
-        &#125; finally &#123;
-            post.releaseConnection();
-            if (url.startsWith(&quot;https&quot;) &amp;&amp; client !&#x3D; null&amp;&amp; client instanceof CloseableHttpClient) &#123;
-                ((CloseableHttpClient) client).close();
-            &#125;
-        &#125;
-        return result;
-    &#125;
-
-
-    &#x2F;**
-     * 提交form表单
-     *
-     * @param url
-     * @param params
-     * @param connTimeout
-     * @param readTimeout
-     * @return
-     * @throws ConnectTimeoutException
-     * @throws SocketTimeoutException
-     * @throws Exception
-     *&#x2F;
-    public static String postForm(String url, Map&lt;String, String&gt; params, Map&lt;String, String&gt; headers, Integer connTimeout,Integer readTimeout) throws ConnectTimeoutException,
-            SocketTimeoutException, Exception &#123;
-
-        HttpClient client &#x3D; null;
-        HttpPost post &#x3D; new HttpPost(url);
-        try &#123;
-            if (params !&#x3D; null &amp;&amp; !params.isEmpty()) &#123;
-                List&lt;NameValuePair&gt; formParams &#x3D; new ArrayList&lt;NameValuePair&gt;();
-                Set&lt;Entry&lt;String, String&gt;&gt; entrySet &#x3D; params.entrySet();
-                for (Entry&lt;String, String&gt; entry : entrySet) &#123;
-                    formParams.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
-                &#125;
-                UrlEncodedFormEntity entity &#x3D; new UrlEncodedFormEntity(formParams, Consts.UTF_8);
-                post.setEntity(entity);
-            &#125;
-
-            if (headers !&#x3D; null &amp;&amp; !headers.isEmpty()) &#123;
-                for (Entry&lt;String, String&gt; entry : headers.entrySet()) &#123;
-                    post.addHeader(entry.getKey(), entry.getValue());
-                &#125;
-            &#125;
-            &#x2F;&#x2F; 设置参数
-            Builder customReqConf &#x3D; RequestConfig.custom();
-            if (connTimeout !&#x3D; null) &#123;
-                customReqConf.setConnectTimeout(connTimeout);
-            &#125;
-            if (readTimeout !&#x3D; null) &#123;
-                customReqConf.setSocketTimeout(readTimeout);
-            &#125;
-            post.setConfig(customReqConf.build());
-            HttpResponse res &#x3D; null;
-            if (url.startsWith(&quot;https&quot;)) &#123;
-                &#x2F;&#x2F; 执行 Https 请求.
-                client &#x3D; createSSLInsecureClient();
-                res &#x3D; client.execute(post);
-            &#125; else &#123;
-                &#x2F;&#x2F; 执行 Http 请求.
-                client &#x3D; HttpClientUtils.client;
-                res &#x3D; client.execute(post);
-            &#125;
-            return IOUtils.toString(res.getEntity().getContent(), &quot;UTF-8&quot;);
-        &#125; finally &#123;
-            post.releaseConnection();
-            if (url.startsWith(&quot;https&quot;) &amp;&amp; client !&#x3D; null
-                    &amp;&amp; client instanceof CloseableHttpClient) &#123;
-                ((CloseableHttpClient) client).close();
-            &#125;
-        &#125;
-    &#125;
-
-
-
-
-    &#x2F;**
-     * 发送一个 GET 请求
-     *
-     * @param url
-     * @param charset
-     * @param connTimeout  建立链接超时时间,毫秒.
-     * @param readTimeout  响应超时时间,毫秒.
-     * @return
-     * @throws ConnectTimeoutException   建立链接超时
-     * @throws SocketTimeoutException   响应超时
-     * @throws Exception
-     *&#x2F;
-    public static String get(String url, String charset, Integer connTimeout,Integer readTimeout)
-            throws ConnectTimeoutException,SocketTimeoutException, Exception &#123;
-
-        HttpClient client &#x3D; null;
-        HttpGet get &#x3D; new HttpGet(url);
-        String result &#x3D; &quot;&quot;;
-        try &#123;
-            &#x2F;&#x2F; 设置参数
-            Builder customReqConf &#x3D; RequestConfig.custom();
-            if (connTimeout !&#x3D; null) &#123;
-                customReqConf.setConnectTimeout(connTimeout);
-            &#125;
-            if (readTimeout !&#x3D; null) &#123;
-                customReqConf.setSocketTimeout(readTimeout);
-            &#125;
-            get.setConfig(customReqConf.build());
-
-            HttpResponse res &#x3D; null;
-
-            if (url.startsWith(&quot;https&quot;)) &#123;
-                &#x2F;&#x2F; 执行 Https 请求.
-                client &#x3D; createSSLInsecureClient();
-                res &#x3D; client.execute(get);
-            &#125; else &#123;
-                &#x2F;&#x2F; 执行 Http 请求.
-                client &#x3D; HttpClientUtils.client;
-                res &#x3D; client.execute(get);
-            &#125;
-
-            result &#x3D; IOUtils.toString(res.getEntity().getContent(), charset);
-        &#125; finally &#123;
-            get.releaseConnection();
-            if (url.startsWith(&quot;https&quot;) &amp;&amp; client !&#x3D; null &amp;&amp; client instanceof CloseableHttpClient) &#123;
-                ((CloseableHttpClient) client).close();
-            &#125;
-        &#125;
-        return result;
-    &#125;
-
-
-    &#x2F;**
-     * 从 response 里获取 charset
-     *
-     * @param ressponse
-     * @return
-     *&#x2F;
-    @SuppressWarnings(&quot;unused&quot;)
-    private static String getCharsetFromResponse(HttpResponse ressponse) &#123;
-        &#x2F;&#x2F; Content-Type:text&#x2F;html; charset&#x3D;GBK
-        if (ressponse.getEntity() !&#x3D; null  &amp;&amp; ressponse.getEntity().getContentType() !&#x3D; null &amp;&amp; ressponse.getEntity().getContentType().getValue() !&#x3D; null) &#123;
-            String contentType &#x3D; ressponse.getEntity().getContentType().getValue();
-            if (contentType.contains(&quot;charset&#x3D;&quot;)) &#123;
-                return contentType.substring(contentType.indexOf(&quot;charset&#x3D;&quot;) + 8);
-            &#125;
-        &#125;
-        return null;
-    &#125;
-
-
-
-    &#x2F;**
-     * 创建 SSL连接
-     * @return
-     * @throws GeneralSecurityException
-     *&#x2F;
-    private static CloseableHttpClient createSSLInsecureClient() throws GeneralSecurityException &#123;
-        try &#123;
-            SSLContext sslContext &#x3D; new SSLContextBuilder().loadTrustMaterial(null, new TrustStrategy() &#123;
-                public boolean isTrusted(X509Certificate[] chain,String authType) throws CertificateException &#123;
-                    return true;
-                &#125;
-            &#125;).build();
-
-            SSLConnectionSocketFactory sslsf &#x3D; new SSLConnectionSocketFactory(sslContext, new X509HostnameVerifier() &#123;
-
-                @Override
-                public boolean verify(String arg0, SSLSession arg1) &#123;
-                    return true;
-                &#125;
-
-                @Override
-                public void verify(String host, SSLSocket ssl)
-                        throws IOException &#123;
-                &#125;
-
-                @Override
-                public void verify(String host, X509Certificate cert)
-                        throws SSLException &#123;
-                &#125;
-
-                @Override
-                public void verify(String host, String[] cns,
-                                   String[] subjectAlts) throws SSLException &#123;
-                &#125;
-
-            &#125;);
-
-            return HttpClients.custom().setSSLSocketFactory(sslsf).build();
-
-        &#125; catch (GeneralSecurityException e) &#123;
-            throw e;
-        &#125;
-    &#125;
-
-    public static void main(String[] args) &#123;
-        try &#123;
-            String str&#x3D; post(&quot;https:&#x2F;&#x2F;localhost:443&#x2F;ssl&#x2F;test.shtml&quot;,&quot;name&#x3D;12&amp;page&#x3D;34&quot;,&quot;application&#x2F;x-www-form-urlencoded&quot;, &quot;UTF-8&quot;, 10000, 10000);
-            &#x2F;&#x2F;String str&#x3D; get(&quot;https:&#x2F;&#x2F;localhost:443&#x2F;ssl&#x2F;test.shtml?name&#x3D;12&amp;page&#x3D;34&quot;,&quot;GBK&quot;);
-            &#x2F;*Map&lt;String,String&gt; map &#x3D; new HashMap&lt;String,String&gt;();
-            map.put(&quot;name&quot;, &quot;111&quot;);
-            map.put(&quot;page&quot;, &quot;222&quot;);
-            String str&#x3D; postForm(&quot;https:&#x2F;&#x2F;localhost:443&#x2F;ssl&#x2F;test.shtml&quot;,map,null, 10000, 10000);*&#x2F;
-            System.out.println(str);
-        &#125; catch (ConnectTimeoutException e) &#123;
-            &#x2F;&#x2F; TODO Auto-generated catch block
-            e.printStackTrace();
-        &#125; catch (SocketTimeoutException e) &#123;
-            &#x2F;&#x2F; TODO Auto-generated catch block
-            e.printStackTrace();
-        &#125; catch (Exception e) &#123;
-            &#x2F;&#x2F; TODO Auto-generated catch block
-            e.printStackTrace();
-        &#125;
-    &#125;
-
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.atguigu.educenter.utils;<br><br><span class="hljs-keyword">import</span> org.apache.commons.io.IOUtils;<br><span class="hljs-keyword">import</span> org.apache.commons.lang.StringUtils;<br><span class="hljs-keyword">import</span> org.apache.http.Consts;<br><span class="hljs-keyword">import</span> org.apache.http.HttpEntity;<br><span class="hljs-keyword">import</span> org.apache.http.HttpResponse;<br><span class="hljs-keyword">import</span> org.apache.http.NameValuePair;<br><span class="hljs-keyword">import</span> org.apache.http.client.HttpClient;<br><span class="hljs-keyword">import</span> org.apache.http.client.config.RequestConfig;<br><span class="hljs-keyword">import</span> org.apache.http.client.config.RequestConfig.Builder;<br><span class="hljs-keyword">import</span> org.apache.http.client.entity.UrlEncodedFormEntity;<br><span class="hljs-keyword">import</span> org.apache.http.client.methods.HttpGet;<br><span class="hljs-keyword">import</span> org.apache.http.client.methods.HttpPost;<br><span class="hljs-keyword">import</span> org.apache.http.conn.ConnectTimeoutException;<br><span class="hljs-keyword">import</span> org.apache.http.conn.ssl.SSLConnectionSocketFactory;<br><span class="hljs-keyword">import</span> org.apache.http.conn.ssl.SSLContextBuilder;<br><span class="hljs-keyword">import</span> org.apache.http.conn.ssl.TrustStrategy;<br><span class="hljs-keyword">import</span> org.apache.http.conn.ssl.X509HostnameVerifier;<br><span class="hljs-keyword">import</span> org.apache.http.entity.ContentType;<br><span class="hljs-keyword">import</span> org.apache.http.entity.StringEntity;<br><span class="hljs-keyword">import</span> org.apache.http.impl.client.CloseableHttpClient;<br><span class="hljs-keyword">import</span> org.apache.http.impl.client.HttpClients;<br><span class="hljs-keyword">import</span> org.apache.http.impl.conn.PoolingHttpClientConnectionManager;<br><span class="hljs-keyword">import</span> org.apache.http.message.BasicNameValuePair;<br><br><span class="hljs-keyword">import</span> javax.net.ssl.SSLContext;<br><span class="hljs-keyword">import</span> javax.net.ssl.SSLException;<br><span class="hljs-keyword">import</span> javax.net.ssl.SSLSession;<br><span class="hljs-keyword">import</span> javax.net.ssl.SSLSocket;<br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> java.net.SocketTimeoutException;<br><span class="hljs-keyword">import</span> java.security.GeneralSecurityException;<br><span class="hljs-keyword">import</span> java.security.cert.CertificateException;<br><span class="hljs-keyword">import</span> java.security.cert.X509Certificate;<br><span class="hljs-keyword">import</span> java.util.ArrayList;<br><span class="hljs-keyword">import</span> java.util.List;<br><span class="hljs-keyword">import</span> java.util.Map;<br><span class="hljs-keyword">import</span> java.util.Map.Entry;<br><span class="hljs-keyword">import</span> java.util.Set;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  依赖的jar包有：commons-lang-2.6.jar、httpclient-4.3.2.jar、httpcore-4.3.1.jar、commons-io-2.4.jar</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> zhaoyb</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HttpClientUtils</span> </span>&#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> connTimeout=<span class="hljs-number">10000</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> readTimeout=<span class="hljs-number">10000</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String charset=<span class="hljs-string">&quot;UTF-8&quot;</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> HttpClient client = <span class="hljs-keyword">null</span>;<br><br>    <span class="hljs-keyword">static</span> &#123;<br>        PoolingHttpClientConnectionManager cm = <span class="hljs-keyword">new</span> PoolingHttpClientConnectionManager();<br>        cm.setMaxTotal(<span class="hljs-number">128</span>);<br>        cm.setDefaultMaxPerRoute(<span class="hljs-number">128</span>);<br>        client = HttpClients.custom().setConnectionManager(cm).build();<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">postParameters</span><span class="hljs-params">(String url, String parameterStr)</span> <span class="hljs-keyword">throws</span> ConnectTimeoutException, SocketTimeoutException, Exception</span>&#123;<br>        <span class="hljs-keyword">return</span> post(url,parameterStr,<span class="hljs-string">&quot;application/x-www-form-urlencoded&quot;</span>,charset,connTimeout,readTimeout);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">postParameters</span><span class="hljs-params">(String url, String parameterStr,String charset, Integer connTimeout, Integer readTimeout)</span> <span class="hljs-keyword">throws</span> ConnectTimeoutException, SocketTimeoutException, Exception</span>&#123;<br>        <span class="hljs-keyword">return</span> post(url,parameterStr,<span class="hljs-string">&quot;application/x-www-form-urlencoded&quot;</span>,charset,connTimeout,readTimeout);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">postParameters</span><span class="hljs-params">(String url, Map&lt;String, String&gt; params)</span> <span class="hljs-keyword">throws</span> ConnectTimeoutException,</span><br><span class="hljs-function">            SocketTimeoutException, Exception </span>&#123;<br>        <span class="hljs-keyword">return</span> postForm(url, params, <span class="hljs-keyword">null</span>, connTimeout, readTimeout);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">postParameters</span><span class="hljs-params">(String url, Map&lt;String, String&gt; params, Integer connTimeout,Integer readTimeout)</span> <span class="hljs-keyword">throws</span> ConnectTimeoutException,</span><br><span class="hljs-function">            SocketTimeoutException, Exception </span>&#123;<br>        <span class="hljs-keyword">return</span> postForm(url, params, <span class="hljs-keyword">null</span>, connTimeout, readTimeout);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">get</span><span class="hljs-params">(String url)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        <span class="hljs-keyword">return</span> get(url, charset, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">null</span>);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">get</span><span class="hljs-params">(String url, String charset)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        <span class="hljs-keyword">return</span> get(url, charset, connTimeout, readTimeout);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 发送一个 Post 请求, 使用指定的字符集编码.</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> url</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> body RequestBody</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mimeType 例如 application/xml &quot;application/x-www-form-urlencoded&quot; a=1&amp;b=2&amp;c=3</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> charset 编码</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> connTimeout 建立链接超时时间,毫秒.</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> readTimeout 响应超时时间,毫秒.</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> ResponseBody, 使用指定的字符集编码.</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> ConnectTimeoutException 建立链接超时异常</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> SocketTimeoutException  响应超时</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> Exception</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">post</span><span class="hljs-params">(String url, String body, String mimeType,String charset, Integer connTimeout, Integer readTimeout)</span></span><br><span class="hljs-function">            <span class="hljs-keyword">throws</span> ConnectTimeoutException, SocketTimeoutException, Exception </span>&#123;<br>        HttpClient client = <span class="hljs-keyword">null</span>;<br>        HttpPost post = <span class="hljs-keyword">new</span> HttpPost(url);<br>        String result = <span class="hljs-string">&quot;&quot;</span>;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-keyword">if</span> (StringUtils.isNotBlank(body)) &#123;<br>                HttpEntity entity = <span class="hljs-keyword">new</span> StringEntity(body, ContentType.create(mimeType, charset));<br>                post.setEntity(entity);<br>            &#125;<br>            <span class="hljs-comment">// 设置参数</span><br>            Builder customReqConf = RequestConfig.custom();<br>            <span class="hljs-keyword">if</span> (connTimeout != <span class="hljs-keyword">null</span>) &#123;<br>                customReqConf.setConnectTimeout(connTimeout);<br>            &#125;<br>            <span class="hljs-keyword">if</span> (readTimeout != <span class="hljs-keyword">null</span>) &#123;<br>                customReqConf.setSocketTimeout(readTimeout);<br>            &#125;<br>            post.setConfig(customReqConf.build());<br><br>            HttpResponse res;<br>            <span class="hljs-keyword">if</span> (url.startsWith(<span class="hljs-string">&quot;https&quot;</span>)) &#123;<br>                <span class="hljs-comment">// 执行 Https 请求.</span><br>                client = createSSLInsecureClient();<br>                res = client.execute(post);<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-comment">// 执行 Http 请求.</span><br>                client = HttpClientUtils.client;<br>                res = client.execute(post);<br>            &#125;<br>            result = IOUtils.toString(res.getEntity().getContent(), charset);<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            post.releaseConnection();<br>            <span class="hljs-keyword">if</span> (url.startsWith(<span class="hljs-string">&quot;https&quot;</span>) &amp;&amp; client != <span class="hljs-keyword">null</span>&amp;&amp; client <span class="hljs-keyword">instanceof</span> CloseableHttpClient) &#123;<br>                ((CloseableHttpClient) client).close();<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 提交form表单</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> url</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> params</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> connTimeout</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> readTimeout</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> ConnectTimeoutException</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> SocketTimeoutException</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> Exception</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">postForm</span><span class="hljs-params">(String url, Map&lt;String, String&gt; params, Map&lt;String, String&gt; headers, Integer connTimeout,Integer readTimeout)</span> <span class="hljs-keyword">throws</span> ConnectTimeoutException,</span><br><span class="hljs-function">            SocketTimeoutException, Exception </span>&#123;<br><br>        HttpClient client = <span class="hljs-keyword">null</span>;<br>        HttpPost post = <span class="hljs-keyword">new</span> HttpPost(url);<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-keyword">if</span> (params != <span class="hljs-keyword">null</span> &amp;&amp; !params.isEmpty()) &#123;<br>                List&lt;NameValuePair&gt; formParams = <span class="hljs-keyword">new</span> ArrayList&lt;NameValuePair&gt;();<br>                Set&lt;Entry&lt;String, String&gt;&gt; entrySet = params.entrySet();<br>                <span class="hljs-keyword">for</span> (Entry&lt;String, String&gt; entry : entrySet) &#123;<br>                    formParams.add(<span class="hljs-keyword">new</span> BasicNameValuePair(entry.getKey(), entry.getValue()));<br>                &#125;<br>                UrlEncodedFormEntity entity = <span class="hljs-keyword">new</span> UrlEncodedFormEntity(formParams, Consts.UTF_8);<br>                post.setEntity(entity);<br>            &#125;<br><br>            <span class="hljs-keyword">if</span> (headers != <span class="hljs-keyword">null</span> &amp;&amp; !headers.isEmpty()) &#123;<br>                <span class="hljs-keyword">for</span> (Entry&lt;String, String&gt; entry : headers.entrySet()) &#123;<br>                    post.addHeader(entry.getKey(), entry.getValue());<br>                &#125;<br>            &#125;<br>            <span class="hljs-comment">// 设置参数</span><br>            Builder customReqConf = RequestConfig.custom();<br>            <span class="hljs-keyword">if</span> (connTimeout != <span class="hljs-keyword">null</span>) &#123;<br>                customReqConf.setConnectTimeout(connTimeout);<br>            &#125;<br>            <span class="hljs-keyword">if</span> (readTimeout != <span class="hljs-keyword">null</span>) &#123;<br>                customReqConf.setSocketTimeout(readTimeout);<br>            &#125;<br>            post.setConfig(customReqConf.build());<br>            HttpResponse res = <span class="hljs-keyword">null</span>;<br>            <span class="hljs-keyword">if</span> (url.startsWith(<span class="hljs-string">&quot;https&quot;</span>)) &#123;<br>                <span class="hljs-comment">// 执行 Https 请求.</span><br>                client = createSSLInsecureClient();<br>                res = client.execute(post);<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-comment">// 执行 Http 请求.</span><br>                client = HttpClientUtils.client;<br>                res = client.execute(post);<br>            &#125;<br>            <span class="hljs-keyword">return</span> IOUtils.toString(res.getEntity().getContent(), <span class="hljs-string">&quot;UTF-8&quot;</span>);<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            post.releaseConnection();<br>            <span class="hljs-keyword">if</span> (url.startsWith(<span class="hljs-string">&quot;https&quot;</span>) &amp;&amp; client != <span class="hljs-keyword">null</span><br>                    &amp;&amp; client <span class="hljs-keyword">instanceof</span> CloseableHttpClient) &#123;<br>                ((CloseableHttpClient) client).close();<br>            &#125;<br>        &#125;<br>    &#125;<br><br><br><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 发送一个 GET 请求</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> url</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> charset</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> connTimeout  建立链接超时时间,毫秒.</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> readTimeout  响应超时时间,毫秒.</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> ConnectTimeoutException   建立链接超时</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> SocketTimeoutException   响应超时</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> Exception</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">get</span><span class="hljs-params">(String url, String charset, Integer connTimeout,Integer readTimeout)</span></span><br><span class="hljs-function">            <span class="hljs-keyword">throws</span> ConnectTimeoutException,SocketTimeoutException, Exception </span>&#123;<br><br>        HttpClient client = <span class="hljs-keyword">null</span>;<br>        HttpGet get = <span class="hljs-keyword">new</span> HttpGet(url);<br>        String result = <span class="hljs-string">&quot;&quot;</span>;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 设置参数</span><br>            Builder customReqConf = RequestConfig.custom();<br>            <span class="hljs-keyword">if</span> (connTimeout != <span class="hljs-keyword">null</span>) &#123;<br>                customReqConf.setConnectTimeout(connTimeout);<br>            &#125;<br>            <span class="hljs-keyword">if</span> (readTimeout != <span class="hljs-keyword">null</span>) &#123;<br>                customReqConf.setSocketTimeout(readTimeout);<br>            &#125;<br>            get.setConfig(customReqConf.build());<br><br>            HttpResponse res = <span class="hljs-keyword">null</span>;<br><br>            <span class="hljs-keyword">if</span> (url.startsWith(<span class="hljs-string">&quot;https&quot;</span>)) &#123;<br>                <span class="hljs-comment">// 执行 Https 请求.</span><br>                client = createSSLInsecureClient();<br>                res = client.execute(get);<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-comment">// 执行 Http 请求.</span><br>                client = HttpClientUtils.client;<br>                res = client.execute(get);<br>            &#125;<br><br>            result = IOUtils.toString(res.getEntity().getContent(), charset);<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            get.releaseConnection();<br>            <span class="hljs-keyword">if</span> (url.startsWith(<span class="hljs-string">&quot;https&quot;</span>) &amp;&amp; client != <span class="hljs-keyword">null</span> &amp;&amp; client <span class="hljs-keyword">instanceof</span> CloseableHttpClient) &#123;<br>                ((CloseableHttpClient) client).close();<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 从 response 里获取 charset</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> ressponse</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@SuppressWarnings(&quot;unused&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">getCharsetFromResponse</span><span class="hljs-params">(HttpResponse ressponse)</span> </span>&#123;<br>        <span class="hljs-comment">// Content-Type:text/html; charset=GBK</span><br>        <span class="hljs-keyword">if</span> (ressponse.getEntity() != <span class="hljs-keyword">null</span>  &amp;&amp; ressponse.getEntity().getContentType() != <span class="hljs-keyword">null</span> &amp;&amp; ressponse.getEntity().getContentType().getValue() != <span class="hljs-keyword">null</span>) &#123;<br>            String contentType = ressponse.getEntity().getContentType().getValue();<br>            <span class="hljs-keyword">if</span> (contentType.contains(<span class="hljs-string">&quot;charset=&quot;</span>)) &#123;<br>                <span class="hljs-keyword">return</span> contentType.substring(contentType.indexOf(<span class="hljs-string">&quot;charset=&quot;</span>) + <span class="hljs-number">8</span>);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>    &#125;<br><br><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 创建 SSL连接</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> GeneralSecurityException</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> CloseableHttpClient <span class="hljs-title">createSSLInsecureClient</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> GeneralSecurityException </span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            SSLContext sslContext = <span class="hljs-keyword">new</span> SSLContextBuilder().loadTrustMaterial(<span class="hljs-keyword">null</span>, <span class="hljs-keyword">new</span> TrustStrategy() &#123;<br>                <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isTrusted</span><span class="hljs-params">(X509Certificate[] chain,String authType)</span> <span class="hljs-keyword">throws</span> CertificateException </span>&#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>                &#125;<br>            &#125;).build();<br><br>            SSLConnectionSocketFactory sslsf = <span class="hljs-keyword">new</span> SSLConnectionSocketFactory(sslContext, <span class="hljs-keyword">new</span> X509HostnameVerifier() &#123;<br><br>                <span class="hljs-meta">@Override</span><br>                <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">verify</span><span class="hljs-params">(String arg0, SSLSession arg1)</span> </span>&#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>                &#125;<br><br>                <span class="hljs-meta">@Override</span><br>                <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">verify</span><span class="hljs-params">(String host, SSLSocket ssl)</span></span><br><span class="hljs-function">                        <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>                &#125;<br><br>                <span class="hljs-meta">@Override</span><br>                <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">verify</span><span class="hljs-params">(String host, X509Certificate cert)</span></span><br><span class="hljs-function">                        <span class="hljs-keyword">throws</span> SSLException </span>&#123;<br>                &#125;<br><br>                <span class="hljs-meta">@Override</span><br>                <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">verify</span><span class="hljs-params">(String host, String[] cns,</span></span><br><span class="hljs-params"><span class="hljs-function">                                   String[] subjectAlts)</span> <span class="hljs-keyword">throws</span> SSLException </span>&#123;<br>                &#125;<br><br>            &#125;);<br><br>            <span class="hljs-keyword">return</span> HttpClients.custom().setSSLSocketFactory(sslsf).build();<br><br>        &#125; <span class="hljs-keyword">catch</span> (GeneralSecurityException e) &#123;<br>            <span class="hljs-keyword">throw</span> e;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            String str= post(<span class="hljs-string">&quot;https://localhost:443/ssl/test.shtml&quot;</span>,<span class="hljs-string">&quot;name=12&amp;page=34&quot;</span>,<span class="hljs-string">&quot;application/x-www-form-urlencoded&quot;</span>, <span class="hljs-string">&quot;UTF-8&quot;</span>, <span class="hljs-number">10000</span>, <span class="hljs-number">10000</span>);<br>            <span class="hljs-comment">//String str= get(&quot;https://localhost:443/ssl/test.shtml?name=12&amp;page=34&quot;,&quot;GBK&quot;);</span><br>            <span class="hljs-comment">/*Map&lt;String,String&gt; map = new HashMap&lt;String,String&gt;();</span><br><span class="hljs-comment">            map.put(&quot;name&quot;, &quot;111&quot;);</span><br><span class="hljs-comment">            map.put(&quot;page&quot;, &quot;222&quot;);</span><br><span class="hljs-comment">            String str= postForm(&quot;https://localhost:443/ssl/test.shtml&quot;,map,null, 10000, 10000);*/</span><br>            System.out.println(str);<br>        &#125; <span class="hljs-keyword">catch</span> (ConnectTimeoutException e) &#123;<br>            <span class="hljs-comment">// TODO Auto-generated catch block</span><br>            e.printStackTrace();<br>        &#125; <span class="hljs-keyword">catch</span> (SocketTimeoutException e) &#123;<br>            <span class="hljs-comment">// TODO Auto-generated catch block</span><br>            e.printStackTrace();<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            <span class="hljs-comment">// TODO Auto-generated catch block</span><br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="3、创建回调controller方法"><a href="#3、创建回调controller方法" class="headerlink" title="3、创建回调controller方法"></a>3、创建回调controller方法</h3><p>在WxApiController.java中添加如下方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">
-&#x2F;&#x2F; 2.获取扫描人信息，添加数据
-@GetMapping(&quot;callback&quot;)
-public String callback(String code,String state)&#123;
-    try &#123;
-        &#x2F;&#x2F; 1.获取code和state
-
-        &#x2F;&#x2F; 2.根据获取到的code和state，去请求微信固定的地址，获取access_token
-        String baseAccessTokenUrl &#x3D; &quot;https:&#x2F;&#x2F;api.weixin.qq.com&#x2F;sns&#x2F;oauth2&#x2F;access_token&quot; +
-                &quot;?appid&#x3D;%s&quot; +
-                &quot;&amp;secret&#x3D;%s&quot; +
-                &quot;&amp;code&#x3D;%s&quot; +
-                &quot;&amp;grant_type&#x3D;authorization_code&quot;;
-
-        String accessTokenUrl &#x3D; String.format(
-                baseAccessTokenUrl,
-                ConstantWxUtil.WX_OPEN_APP_ID,
-                ConstantWxUtil.WX_OPEN_APP_SECRET,
-                code);
-
-        &#x2F;&#x2F; 请求拼接好的url，得到返回的access_token和openid
-        &#x2F;&#x2F; 使用HTTPClient发送请求
-        String accessTokenInfo &#x3D; HttpClientUtils.get(accessTokenUrl);
-
-        &#x2F;&#x2F;System.out.println(&quot;accessTokenInfo:&quot;+accessTokenInfo);
-
-        &#x2F;&#x2F; 从获取到的accessTokenInfo中将accessToken和openid取出来
-        &#x2F;&#x2F; 将获取到的accessTokenInfo字符串转换为map，利用gson
-        Gson gson &#x3D; new Gson();
-        HashMap mapAccessToken &#x3D; gson.fromJson(accessTokenInfo, HashMap.class);
-
-        String accessToken &#x3D; (String) mapAccessToken.get(&quot;access_token&quot;);
-        String openid &#x3D; (String) mapAccessToken.get(&quot;openid&quot;);
-
-        &#x2F;&#x2F; 根据accessToken和openid去请求微信固定的地址，获取用户信息
-        &#x2F;&#x2F; 拼接地址
-        &#x2F;&#x2F;访问微信的资源服务器，获取用户信息
-        String baseUserInfoUrl &#x3D; &quot;https:&#x2F;&#x2F;api.weixin.qq.com&#x2F;sns&#x2F;userinfo&quot; +
-        &quot;?access_token&#x3D;%s&quot; +
-        &quot;&amp;openid&#x3D;%s&quot;;
-
-        String userInfoUrl &#x3D; String.format(baseUserInfoUrl, accessToken, openid);
-        
-        &#x2F;&#x2F; 根据userInfoUrl调用HTTPClient,发送请求
-        String userInfo &#x3D; HttpClientUtils.get(userInfoUrl);
-        &#x2F;&#x2F;System.out.println(&quot;userInfo&#x3D;&quot;+userInfo);
-
-        &#x2F;&#x2F; 将获取到的用户信息字符串转换给map
-        HashMap userInfoMap &#x3D; gson.fromJson(userInfo, HashMap.class);
-        String nickname &#x3D; (String) userInfoMap.get(&quot;nickname&quot;); &#x2F;&#x2F; 昵称
-        String headimgurl &#x3D; (String) userInfoMap.get(&quot;headimgurl&quot;);  &#x2F;&#x2F; 头像
-
-        &#x2F;&#x2F; 把扫描人的信息加到数据库中
-        &#x2F;&#x2F; 先判断数据库是否已经存在
-        UcenterMember member &#x3D; memberService.getOpenIdMember(openid);
-        if (member &#x3D;&#x3D; null)&#123;
-            &#x2F;&#x2F; 说明没有，直接添加
-            member &#x3D; new UcenterMember();
-            member.setId(openid);
-            member.setNickname(nickname);
-            member.setAvatar(headimgurl);
-
-            memberService.save(member);
-        &#125;
-        &#x2F;&#x2F; 登录成功之后，跳转到首页
-        return &quot;redirect:http:&#x2F;&#x2F;localhost:3000&quot;;
-    &#125; catch (Exception e) &#123;
-        e.printStackTrace();
-        throw new GuliException(20001,&quot;登录失败&quot;);
-    &#125;
-    
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-comment">// 2.获取扫描人信息，添加数据</span><br><span class="hljs-meta">@GetMapping(&quot;callback&quot;)</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">callback</span><span class="hljs-params">(String code,String state)</span></span>&#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">// 1.获取code和state</span><br><br>        <span class="hljs-comment">// 2.根据获取到的code和state，去请求微信固定的地址，获取access_token</span><br>        String baseAccessTokenUrl = <span class="hljs-string">&quot;https://api.weixin.qq.com/sns/oauth2/access_token&quot;</span> +<br>                <span class="hljs-string">&quot;?appid=%s&quot;</span> +<br>                <span class="hljs-string">&quot;&amp;secret=%s&quot;</span> +<br>                <span class="hljs-string">&quot;&amp;code=%s&quot;</span> +<br>                <span class="hljs-string">&quot;&amp;grant_type=authorization_code&quot;</span>;<br><br>        String accessTokenUrl = String.format(<br>                baseAccessTokenUrl,<br>                ConstantWxUtil.WX_OPEN_APP_ID,<br>                ConstantWxUtil.WX_OPEN_APP_SECRET,<br>                code);<br><br>        <span class="hljs-comment">// 请求拼接好的url，得到返回的access_token和openid</span><br>        <span class="hljs-comment">// 使用HTTPClient发送请求</span><br>        String accessTokenInfo = HttpClientUtils.get(accessTokenUrl);<br><br>        <span class="hljs-comment">//System.out.println(&quot;accessTokenInfo:&quot;+accessTokenInfo);</span><br><br>        <span class="hljs-comment">// 从获取到的accessTokenInfo中将accessToken和openid取出来</span><br>        <span class="hljs-comment">// 将获取到的accessTokenInfo字符串转换为map，利用gson</span><br>        Gson gson = <span class="hljs-keyword">new</span> Gson();<br>        HashMap mapAccessToken = gson.fromJson(accessTokenInfo, HashMap.class);<br><br>        String accessToken = (String) mapAccessToken.get(<span class="hljs-string">&quot;access_token&quot;</span>);<br>        String openid = (String) mapAccessToken.get(<span class="hljs-string">&quot;openid&quot;</span>);<br><br>        <span class="hljs-comment">// 根据accessToken和openid去请求微信固定的地址，获取用户信息</span><br>        <span class="hljs-comment">// 拼接地址</span><br>        <span class="hljs-comment">//访问微信的资源服务器，获取用户信息</span><br>        String baseUserInfoUrl = <span class="hljs-string">&quot;https://api.weixin.qq.com/sns/userinfo&quot;</span> +<br>        <span class="hljs-string">&quot;?access_token=%s&quot;</span> +<br>        <span class="hljs-string">&quot;&amp;openid=%s&quot;</span>;<br><br>        String userInfoUrl = String.format(baseUserInfoUrl, accessToken, openid);<br>        <br>        <span class="hljs-comment">// 根据userInfoUrl调用HTTPClient,发送请求</span><br>        String userInfo = HttpClientUtils.get(userInfoUrl);<br>        <span class="hljs-comment">//System.out.println(&quot;userInfo=&quot;+userInfo);</span><br><br>        <span class="hljs-comment">// 将获取到的用户信息字符串转换给map</span><br>        HashMap userInfoMap = gson.fromJson(userInfo, HashMap.class);<br>        String nickname = (String) userInfoMap.get(<span class="hljs-string">&quot;nickname&quot;</span>); <span class="hljs-comment">// 昵称</span><br>        String headimgurl = (String) userInfoMap.get(<span class="hljs-string">&quot;headimgurl&quot;</span>);  <span class="hljs-comment">// 头像</span><br><br>        <span class="hljs-comment">// 把扫描人的信息加到数据库中</span><br>        <span class="hljs-comment">// 先判断数据库是否已经存在</span><br>        UcenterMember member = memberService.getOpenIdMember(openid);<br>        <span class="hljs-keyword">if</span> (member == <span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-comment">// 说明没有，直接添加</span><br>            member = <span class="hljs-keyword">new</span> UcenterMember();<br>            member.setId(openid);<br>            member.setNickname(nickname);<br>            member.setAvatar(headimgurl);<br><br>            memberService.save(member);<br>        &#125;<br>        <span class="hljs-comment">// 登录成功之后，跳转到首页</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;redirect:http://localhost:3000&quot;</span>;<br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        e.printStackTrace();<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> GuliException(<span class="hljs-number">20001</span>,<span class="hljs-string">&quot;登录失败&quot;</span>);<br>    &#125;<br>    <br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="4、业务层"><a href="#4、业务层" class="headerlink" title="4、业务层"></a>4、业务层</h3><p>业务接口：MemberService.java</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 把扫描人的信息加到数据库中
-UcenterMember getOpenIdMember(String openid);</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 把扫描人的信息加到数据库中</span><br><span class="hljs-function">UcenterMember <span class="hljs-title">getOpenIdMember</span><span class="hljs-params">(String openid)</span></span>;<br></code></pre></td></tr></table></figure>
 
 <p>业务实现：MemberServiceImpl.java</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据openID查询用户
-@Override
-public UcenterMember getOpenIdMember(String openid) &#123;
-    QueryWrapper&lt;UcenterMember&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
-    wrapper.eq(&quot;openid&quot;,openid);
-    UcenterMember member &#x3D; baseMapper.selectOne(wrapper);
-    return member;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 根据openID查询用户</span><br><span class="hljs-meta">@Override</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> UcenterMember <span class="hljs-title">getOpenIdMember</span><span class="hljs-params">(String openid)</span> </span>&#123;<br>    QueryWrapper&lt;UcenterMember&gt; wrapper = <span class="hljs-keyword">new</span> QueryWrapper&lt;&gt;();<br>    wrapper.eq(<span class="hljs-string">&quot;openid&quot;</span>,openid);<br>    UcenterMember member = baseMapper.selectOne(wrapper);<br>    <span class="hljs-keyword">return</span> member;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h1 id="微信扫描登录-功能完善和整合jwt令牌"><a href="#微信扫描登录-功能完善和整合jwt令牌" class="headerlink" title="微信扫描登录-功能完善和整合jwt令牌"></a>微信扫描登录-功能完善和整合jwt令牌</h1><p>把第3步换了位置，由于cookie不能跨域，所以整合jwt将用户信息转换成token字符串，通过路径传递。</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 2.获取扫描人信息，添加数据
-@GetMapping(&quot;callback&quot;)
-public String callback(String code,String state)&#123;
-    try &#123;
-        &#x2F;&#x2F; 1.获取code和state
-
-        &#x2F;&#x2F; 2.根据获取到的code和state，去请求微信固定的地址，获取access_token
-        String baseAccessTokenUrl &#x3D; &quot;https:&#x2F;&#x2F;api.weixin.qq.com&#x2F;sns&#x2F;oauth2&#x2F;access_token&quot; +
-                &quot;?appid&#x3D;%s&quot; +
-                &quot;&amp;secret&#x3D;%s&quot; +
-                &quot;&amp;code&#x3D;%s&quot; +
-                &quot;&amp;grant_type&#x3D;authorization_code&quot;;
-
-        String accessTokenUrl &#x3D; String.format(
-                baseAccessTokenUrl,
-                ConstantWxUtil.WX_OPEN_APP_ID,
-                ConstantWxUtil.WX_OPEN_APP_SECRET,
-                code);
-
-        &#x2F;&#x2F; 请求拼接好的url，得到返回的access_token和openid
-        &#x2F;&#x2F; 使用HTTPClient发送请求
-        String accessTokenInfo &#x3D; HttpClientUtils.get(accessTokenUrl);
-
-        &#x2F;&#x2F;System.out.println(&quot;accessTokenInfo:&quot;+accessTokenInfo);
-
-        &#x2F;&#x2F; 从获取到的accessTokenInfo中将accessToken和openid取出来
-        &#x2F;&#x2F; 将获取到的accessTokenInfo字符串转换为map，利用gson
-        Gson gson &#x3D; new Gson();
-        HashMap mapAccessToken &#x3D; gson.fromJson(accessTokenInfo, HashMap.class);
-
-        String accessToken &#x3D; (String) mapAccessToken.get(&quot;access_token&quot;);
-        String openid &#x3D; (String) mapAccessToken.get(&quot;openid&quot;);
-
-
-
-        &#x2F;&#x2F; 把扫描人的信息加到数据库中
-        &#x2F;&#x2F; 先判断数据库是否已经存在
-        UcenterMember member &#x3D; memberService.getOpenIdMember(openid);
-        if (member &#x3D;&#x3D; null)&#123;
-            &#x2F;&#x2F; 说明没有，直接添加
-
-            &#x2F;&#x2F; 3.根据accessToken和openid去请求微信固定的地址，获取用户信息
-            &#x2F;&#x2F; 拼接地址
-            &#x2F;&#x2F;访问微信的资源服务器，获取用户信息
-            String baseUserInfoUrl &#x3D; &quot;https:&#x2F;&#x2F;api.weixin.qq.com&#x2F;sns&#x2F;userinfo&quot; +
-                    &quot;?access_token&#x3D;%s&quot; +
-                    &quot;&amp;openid&#x3D;%s&quot;;
-
-            String userInfoUrl &#x3D; String.format(baseUserInfoUrl, accessToken, openid);
-
-            &#x2F;&#x2F; 根据userInfoUrl调用HTTPClient,发送请求
-            String userInfo &#x3D; HttpClientUtils.get(userInfoUrl);
-            &#x2F;&#x2F;System.out.println(&quot;userInfo&#x3D;&quot;+userInfo);
-
-            &#x2F;&#x2F; 将获取到的用户信息字符串转换给map
-            HashMap userInfoMap &#x3D; gson.fromJson(userInfo, HashMap.class);
-            String nickname &#x3D; (String) userInfoMap.get(&quot;nickname&quot;); &#x2F;&#x2F; 昵称
-            String headimgurl &#x3D; (String) userInfoMap.get(&quot;headimgurl&quot;);  &#x2F;&#x2F; 头像
-
-            member &#x3D; new UcenterMember();
-            member.setOpenid(openid);
-            member.setNickname(nickname);
-            member.setAvatar(headimgurl);
-
-            memberService.save(member);
-        &#125;
-
-        &#x2F;&#x2F; 由于cookie不能跨域，所以需要用jwt生成token信息，通过路径传递
-        String jwtToken &#x3D; JwtUtils.getJwtToken(member.getId(), member.getNickname());
-        &#x2F;&#x2F; 登录成功之后，跳转到首页
-        return &quot;redirect:http:&#x2F;&#x2F;localhost:3000?token&#x3D;&quot;+jwtToken;
-
-    &#125; catch (Exception e) &#123;
-        e.printStackTrace();
-        throw new GuliException(20001,&quot;登录失败&quot;);
-    &#125;
-
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 2.获取扫描人信息，添加数据</span><br><span class="hljs-meta">@GetMapping(&quot;callback&quot;)</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">callback</span><span class="hljs-params">(String code,String state)</span></span>&#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">// 1.获取code和state</span><br><br>        <span class="hljs-comment">// 2.根据获取到的code和state，去请求微信固定的地址，获取access_token</span><br>        String baseAccessTokenUrl = <span class="hljs-string">&quot;https://api.weixin.qq.com/sns/oauth2/access_token&quot;</span> +<br>                <span class="hljs-string">&quot;?appid=%s&quot;</span> +<br>                <span class="hljs-string">&quot;&amp;secret=%s&quot;</span> +<br>                <span class="hljs-string">&quot;&amp;code=%s&quot;</span> +<br>                <span class="hljs-string">&quot;&amp;grant_type=authorization_code&quot;</span>;<br><br>        String accessTokenUrl = String.format(<br>                baseAccessTokenUrl,<br>                ConstantWxUtil.WX_OPEN_APP_ID,<br>                ConstantWxUtil.WX_OPEN_APP_SECRET,<br>                code);<br><br>        <span class="hljs-comment">// 请求拼接好的url，得到返回的access_token和openid</span><br>        <span class="hljs-comment">// 使用HTTPClient发送请求</span><br>        String accessTokenInfo = HttpClientUtils.get(accessTokenUrl);<br><br>        <span class="hljs-comment">//System.out.println(&quot;accessTokenInfo:&quot;+accessTokenInfo);</span><br><br>        <span class="hljs-comment">// 从获取到的accessTokenInfo中将accessToken和openid取出来</span><br>        <span class="hljs-comment">// 将获取到的accessTokenInfo字符串转换为map，利用gson</span><br>        Gson gson = <span class="hljs-keyword">new</span> Gson();<br>        HashMap mapAccessToken = gson.fromJson(accessTokenInfo, HashMap.class);<br><br>        String accessToken = (String) mapAccessToken.get(<span class="hljs-string">&quot;access_token&quot;</span>);<br>        String openid = (String) mapAccessToken.get(<span class="hljs-string">&quot;openid&quot;</span>);<br><br><br><br>        <span class="hljs-comment">// 把扫描人的信息加到数据库中</span><br>        <span class="hljs-comment">// 先判断数据库是否已经存在</span><br>        UcenterMember member = memberService.getOpenIdMember(openid);<br>        <span class="hljs-keyword">if</span> (member == <span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-comment">// 说明没有，直接添加</span><br><br>            <span class="hljs-comment">// 3.根据accessToken和openid去请求微信固定的地址，获取用户信息</span><br>            <span class="hljs-comment">// 拼接地址</span><br>            <span class="hljs-comment">//访问微信的资源服务器，获取用户信息</span><br>            String baseUserInfoUrl = <span class="hljs-string">&quot;https://api.weixin.qq.com/sns/userinfo&quot;</span> +<br>                    <span class="hljs-string">&quot;?access_token=%s&quot;</span> +<br>                    <span class="hljs-string">&quot;&amp;openid=%s&quot;</span>;<br><br>            String userInfoUrl = String.format(baseUserInfoUrl, accessToken, openid);<br><br>            <span class="hljs-comment">// 根据userInfoUrl调用HTTPClient,发送请求</span><br>            String userInfo = HttpClientUtils.get(userInfoUrl);<br>            <span class="hljs-comment">//System.out.println(&quot;userInfo=&quot;+userInfo);</span><br><br>            <span class="hljs-comment">// 将获取到的用户信息字符串转换给map</span><br>            HashMap userInfoMap = gson.fromJson(userInfo, HashMap.class);<br>            String nickname = (String) userInfoMap.get(<span class="hljs-string">&quot;nickname&quot;</span>); <span class="hljs-comment">// 昵称</span><br>            String headimgurl = (String) userInfoMap.get(<span class="hljs-string">&quot;headimgurl&quot;</span>);  <span class="hljs-comment">// 头像</span><br><br>            member = <span class="hljs-keyword">new</span> UcenterMember();<br>            member.setOpenid(openid);<br>            member.setNickname(nickname);<br>            member.setAvatar(headimgurl);<br><br>            memberService.save(member);<br>        &#125;<br><br>        <span class="hljs-comment">// 由于cookie不能跨域，所以需要用jwt生成token信息，通过路径传递</span><br>        String jwtToken = JwtUtils.getJwtToken(member.getId(), member.getNickname());<br>        <span class="hljs-comment">// 登录成功之后，跳转到首页</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;redirect:http://localhost:3000?token=&quot;</span>+jwtToken;<br><br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        e.printStackTrace();<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> GuliException(<span class="hljs-number">20001</span>,<span class="hljs-string">&quot;登录失败&quot;</span>);<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h1 id="微信扫描登录-首页面显示信息"><a href="#微信扫描登录-首页面显示信息" class="headerlink" title="微信扫描登录-首页面显示信息"></a>微信扫描登录-首页面显示信息</h1><p><img src="/myBlog/day13-%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95/image-20220107001556836.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220107001556836"></p>
-<h2 id="1、修改default-vue页面脚本"><a href="#1、修改default-vue页面脚本" class="headerlink" title="1、修改default.vue页面脚本"></a>1、修改default.vue页面脚本</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">export default &#123;
-     layout: &#39;sign&#39;,
-     data () &#123;
-       return &#123;
-         user:&#123;
-           mobile:&#39;&#39;,
-           password:&#39;&#39;
-         &#125;,
-         loginInfo:&#123;&#125;
-       &#125;
-     &#125;,
-     methods: &#123;
-
-       &#x2F;&#x2F; 登录
-       submitLogin()&#123;
-         &#x2F;&#x2F; 第一步调用接口获取登录token值
-         loginApi.submitLoginUser(this.user)
-          .then(response &#x3D;&gt;&#123;
-            &#x2F;&#x2F; 第二步，将获取到的token值放到cookie中
-            cookie.set(&#39;guli_token&#39;,response.data.data.token,&#123; domain: &#39;localhost&#39; &#125;)
-
-            &#x2F;&#x2F; 第四步，根据token的值，调用接口，获取用户数据，并存入cookie中
-            loginApi.getUserInfo()
-              .then(response &#x3D;&gt;&#123;
-                this.loginInfo &#x3D; response.data.data.userInfo
-                &#x2F;&#x2F; 将得到的用户信息存入cookie中
-                cookie.set(&quot;guli_ucenter&quot;,JSON.stringify(this.loginInfo),&#123; domain: &#39;localhost&#39; &#125;)
-                &#x2F;&#x2F; 跳转页面
-                window.location.href &#x3D; &quot;&#x2F;&quot;
-              &#125;)
-          &#125;)
-          
-       &#125;,
-       checkPhone (rule, value, callback) &#123;
-         &#x2F;&#x2F;debugger
-         if (!(&#x2F;^1[34578]\d&#123;9&#125;$&#x2F;.test(value))) &#123;
-           return callback(new Error(&#39;手机号码格式不正确&#39;))
-         &#125;
-         return callback()
-       &#125;
-     &#125;
-   &#125;</code></pre></div>
+<h2 id="1、修改default-vue页面脚本"><a href="#1、修改default-vue页面脚本" class="headerlink" title="1、修改default.vue页面脚本"></a>1、修改default.vue页面脚本</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs vue">export default &#123;<br>     layout: &#x27;sign&#x27;,<br>     data () &#123;<br>       return &#123;<br>         user:&#123;<br>           mobile:&#x27;&#x27;,<br>           password:&#x27;&#x27;<br>         &#125;,<br>         loginInfo:&#123;&#125;<br>       &#125;<br>     &#125;,<br>     methods: &#123;<br><br>       // 登录<br>       submitLogin()&#123;<br>         // 第一步调用接口获取登录token值<br>         loginApi.submitLoginUser(this.user)<br>          .then(response =&gt;&#123;<br>            // 第二步，将获取到的token值放到cookie中<br>            cookie.set(&#x27;guli_token&#x27;,response.data.data.token,&#123; domain: &#x27;localhost&#x27; &#125;)<br><br>            // 第四步，根据token的值，调用接口，获取用户数据，并存入cookie中<br>            loginApi.getUserInfo()<br>              .then(response =&gt;&#123;<br>                this.loginInfo = response.data.data.userInfo<br>                // 将得到的用户信息存入cookie中<br>                cookie.set(&quot;guli_ucenter&quot;,JSON.stringify(this.loginInfo),&#123; domain: &#x27;localhost&#x27; &#125;)<br>                // 跳转页面<br>                window.location.href = &quot;/&quot;<br>              &#125;)<br>          &#125;)<br>          <br>       &#125;,<br>       checkPhone (rule, value, callback) &#123;<br>         //debugger<br>         if (!(/^1[34578]\d&#123;9&#125;$/.test(value))) &#123;<br>           return callback(new Error(&#x27;手机号码格式不正确&#x27;))<br>         &#125;<br>         return callback()<br>       &#125;<br>     &#125;<br>   &#125;<br></code></pre></td></tr></table></figure>
 
 
               
@@ -1264,12 +638,6 @@ public String callback(String code,String state)&#123;
   });
 </script>
 
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/components/prism-core.min.js" ></script>
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js" ></script>
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script>
   (function() {

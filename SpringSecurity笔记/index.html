@@ -59,8 +59,6 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.css" />
-
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
@@ -345,19 +343,11 @@
 <p><code>unsuccessfulAuthentication</code>，验证用户名和密码，如果成功就调用成功的方法，失败就调用失败的。后面两个方法在父类<code>AbstractAuthenticationProcessingFilter</code>.</p>
 <p>创建类实现<code>UserDetailsService</code>接口，编写查询数据库的过程，返回User对象，这个User对象是安全框架提供的。</p>
 <h3 id="PasswordEncoder接口"><a href="#PasswordEncoder接口" class="headerlink" title="PasswordEncoder接口"></a>PasswordEncoder接口</h3><p>数据加密接口，用于返回User对象里面密码加密</p>
-<h1 id="web权限方案-用户认证"><a href="#web权限方案-用户认证" class="headerlink" title="web权限方案-用户认证"></a>web权限方案-用户认证</h1><h2 id="方法一：在配置文件添加用户信息"><a href="#方法一：在配置文件添加用户信息" class="headerlink" title="方法一：在配置文件添加用户信息"></a>方法一：在配置文件添加用户信息</h2><div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties">server.port&#x3D;8111
-spring.security.user.name&#x3D;atguigu
-spring.security.user.password&#x3D;atguigu</code></pre></div>
+<h1 id="web权限方案-用户认证"><a href="#web权限方案-用户认证" class="headerlink" title="web权限方案-用户认证"></a>web权限方案-用户认证</h1><h2 id="方法一：在配置文件添加用户信息"><a href="#方法一：在配置文件添加用户信息" class="headerlink" title="方法一：在配置文件添加用户信息"></a>方法一：在配置文件添加用户信息</h2><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">server.port</span>=<span class="hljs-string">8111</span><br><span class="hljs-meta">spring.security.user.name</span>=<span class="hljs-string">atguigu</span><br><span class="hljs-meta">spring.security.user.password</span>=<span class="hljs-string">atguigu</span><br></code></pre></td></tr></table></figure>
 
 
 
-<h2 id="方法二：编写配置类"><a href="#方法二：编写配置类" class="headerlink" title="方法二：编写配置类"></a>方法二：编写配置类</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Configuration
-public class SecurityConfig extends WebSecurityConfigurerAdapter &#123;
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception &#123;
-        auth.inMemoryAuthentication().withUser(&quot;lucy&quot;).password(&quot;123&quot;).roles(&quot;admin&quot;);
-    &#125;
-&#125;</code></pre></div>
+<h2 id="方法二：编写配置类"><a href="#方法二：编写配置类" class="headerlink" title="方法二：编写配置类"></a>方法二：编写配置类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SecurityConfig</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WebSecurityConfigurerAdapter</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">configure</span><span class="hljs-params">(AuthenticationManagerBuilder auth)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        auth.inMemoryAuthentication().withUser(<span class="hljs-string">&quot;lucy&quot;</span>).password(<span class="hljs-string">&quot;123&quot;</span>).roles(<span class="hljs-string">&quot;admin&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>启动的时候，发现报错</p>
 <p>java.lang.IllegalArgumentException: There is no PasswordEncoder mapped for the id “null”</p>
@@ -365,259 +355,70 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter &#123;
 <p><strong>解决：</strong></p>
 <p>注入一个Bean，<code>PasswordEncoder</code>，返回密码对象</p>
 <p>完整代码</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Configuration
-public class SecurityConfig extends WebSecurityConfigurerAdapter &#123;
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception &#123;
-        BCryptPasswordEncoder passwordEncoder &#x3D; new BCryptPasswordEncoder();
-        String password &#x3D; passwordEncoder.encode(&quot;123&quot;);
-        auth.inMemoryAuthentication().withUser(&quot;lucy&quot;).password(password).roles(&quot;admin&quot;);
-    &#125;
-    @Bean
-    PasswordEncoder passwordEncoder()&#123;
-        return new BCryptPasswordEncoder();
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SecurityConfig</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WebSecurityConfigurerAdapter</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">configure</span><span class="hljs-params">(AuthenticationManagerBuilder auth)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        BCryptPasswordEncoder passwordEncoder = <span class="hljs-keyword">new</span> BCryptPasswordEncoder();<br>        String password = passwordEncoder.encode(<span class="hljs-string">&quot;123&quot;</span>);<br>        auth.inMemoryAuthentication().withUser(<span class="hljs-string">&quot;lucy&quot;</span>).password(password).roles(<span class="hljs-string">&quot;admin&quot;</span>);<br>    &#125;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-function">PasswordEncoder <span class="hljs-title">passwordEncoder</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> BCryptPasswordEncoder();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="方法三：自定义配置类"><a href="#方法三：自定义配置类" class="headerlink" title="方法三：自定义配置类"></a>方法三：自定义配置类</h2><p>第一步：编写一个配置类，设置使用哪个UserDetailsService实现类</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Configuration
-public class SecurityConfigTest extends WebSecurityConfigurerAdapter &#123;
-    @Autowired
-    private UserDetailsService userDetailsService;
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception &#123;
-       auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    &#125;
-    @Bean
-    PasswordEncoder passwordEncoder()&#123;
-        return new BCryptPasswordEncoder();
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SecurityConfigTest</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WebSecurityConfigurerAdapter</span> </span>&#123;<br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> UserDetailsService userDetailsService;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">configure</span><span class="hljs-params">(AuthenticationManagerBuilder auth)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>       auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());<br>    &#125;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-function">PasswordEncoder <span class="hljs-title">passwordEncoder</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> BCryptPasswordEncoder();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>第二步：创建一个实现类，返回User对象，User对象有用户名密码和操作权限</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Service(&quot;userDetailsService&quot;)
-public class MyUserDetailsService implements UserDetailsService &#123;
-    @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException &#123;
-        List&lt;GrantedAuthority&gt; auths &#x3D; AuthorityUtils.commaSeparatedStringToAuthorityList(&quot;role&quot;);
-        return new User(&quot;mary&quot;,new BCryptPasswordEncoder().encode(&quot;123&quot;),auths);
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service(&quot;userDetailsService&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyUserDetailsService</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">UserDetailsService</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> UserDetails <span class="hljs-title">loadUserByUsername</span><span class="hljs-params">(String s)</span> <span class="hljs-keyword">throws</span> UsernameNotFoundException </span>&#123;<br>        List&lt;GrantedAuthority&gt; auths = AuthorityUtils.commaSeparatedStringToAuthorityList(<span class="hljs-string">&quot;role&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> User(<span class="hljs-string">&quot;mary&quot;</span>,<span class="hljs-keyword">new</span> BCryptPasswordEncoder().encode(<span class="hljs-string">&quot;123&quot;</span>),auths);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="实现数据库认证来完成用户登录"><a href="#实现数据库认证来完成用户登录" class="headerlink" title="实现数据库认证来完成用户登录"></a>实现数据库认证来完成用户登录</h2><p>创建数据库和对应的表</p>
-<div class="code-wrapper"><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">USE demo;
-
-CREATE TABLE users(
- id BIGINT PRIMARY KEY AUTO_INCREMENT,
-username VARCHAR(20) UNIQUE NOT NULL,
-PASSWORD VARCHAR(100)
-);
-
-INSERT INTO users VALUES(1,&#39;张
-san&#39;,&#39;$2a$10$2R&#x2F;M6iU3mCZt3ByG7kwYTeeW0w7&#x2F;UqdeXrb27zkBIizBvAven0&#x2F;na&#39;);
--- 密码 atguigu
-INSERT INTO users VALUES(2,&#39;李
-si&#39;,&#39;$2a$10$2R&#x2F;M6iU3mCZt3ByG7kwYTeeW0w7&#x2F;UqdeXrb27zkBIizBvAven0&#x2F;na&#39;);</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs mysql">USE demo;<br><br>CREATE TABLE users(<br> id BIGINT PRIMARY KEY AUTO_INCREMENT,<br>username VARCHAR(20) UNIQUE NOT NULL,<br>PASSWORD VARCHAR(100)<br>);<br><br>INSERT INTO users VALUES(1,&#x27;张<br>san&#x27;,&#x27;$2a$10$2R/M6iU3mCZt3ByG7kwYTeeW0w7/UqdeXrb27zkBIizBvAven0/na&#x27;);<br>-- 密码 atguigu<br>INSERT INTO users VALUES(2,&#x27;李<br>si&#x27;,&#x27;$2a$10$2R/M6iU3mCZt3ByG7kwYTeeW0w7/UqdeXrb27zkBIizBvAven0/na&#x27;);<br></code></pre></td></tr></table></figure>
 
 
 
 <p>导入依赖</p>
-<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">&lt;dependencies&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter&lt;&#x2F;artifactId&gt;
-    &lt;&#x2F;dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-web&lt;&#x2F;artifactId&gt;
-    &lt;&#x2F;dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-security&lt;&#x2F;artifactId&gt;
-    &lt;&#x2F;dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-test&lt;&#x2F;artifactId&gt;
-        &lt;scope&gt;test&lt;&#x2F;scope&gt;
-    &lt;&#x2F;dependency&gt;
-
-    &lt;!--mybatis-plus--&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;com.baomidou&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;mybatis-plus-boot-starter&lt;&#x2F;artifactId&gt;
-        &lt;version&gt;3.0.5&lt;&#x2F;version&gt;
-    &lt;&#x2F;dependency&gt;
-    &lt;!--mysql--&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;mysql&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;mysql-connector-java&lt;&#x2F;artifactId&gt;
-    &lt;&#x2F;dependency&gt;
-    &lt;!--lombok 用来简化实体类--&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.projectlombok&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;lombok&lt;&#x2F;artifactId&gt;
-    &lt;&#x2F;dependency&gt;
-
-&lt;&#x2F;dependencies&gt;</code></pre></div>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-security<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!--mybatis-plus--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.baomidou<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mybatis-plus-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.0.5<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--mysql--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>mysql<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mysql-connector-java<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--lombok 用来简化实体类--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.projectlombok<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>lombok<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 
 
 <p>在配置文件中添加数据库配置</p>
-<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"># 数据库配置
-spring.datasource.driver-class-name&#x3D;com.mysql.cj.jdbc.Driver
-spring.datasource.url&#x3D;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;demo?serverTimezone&#x3D;GMT%2B8
-spring.datasource.username&#x3D;root
-spring.datasource.password&#x3D;root</code></pre></div>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment"># 数据库配置</span><br><span class="hljs-meta">spring.datasource.driver-class-name</span>=<span class="hljs-string">com.mysql.cj.jdbc.Driver</span><br><span class="hljs-meta">spring.datasource.url</span>=<span class="hljs-string">jdbc:mysql://localhost:3306/demo?serverTimezone=GMT%2B8</span><br><span class="hljs-meta">spring.datasource.username</span>=<span class="hljs-string">root</span><br><span class="hljs-meta">spring.datasource.password</span>=<span class="hljs-string">root</span><br></code></pre></td></tr></table></figure>
 
 <p>编写实体类</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Data
-public class Users &#123;
-    private Integer id;
-    private String username;
-    private String password;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Data</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Users</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> Integer id;<br>    <span class="hljs-keyword">private</span> String username;<br>    <span class="hljs-keyword">private</span> String password;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>编写mapper</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Repository
-public interface UsersMapper extends BaseMapper&lt;Users&gt; &#123;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Repository</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">UsersMapper</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BaseMapper</span>&lt;<span class="hljs-title">Users</span>&gt; </span>&#123;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>编写service</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Service(&quot;userDetailsService&quot;)
-public class MyUserDetailsService implements UserDetailsService &#123;
-    @Autowired
-    private UsersMapper usersMapper;
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException &#123;
-        &#x2F;&#x2F; 根据用户名查询数据库
-        QueryWrapper&lt;Users&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
-        wrapper.eq(&quot;username&quot;,username);
-        Users users &#x3D; usersMapper.selectOne(wrapper);
-        if (users &#x3D;&#x3D; null)&#123;
-            &#x2F;&#x2F; 如果user为空，直接抛出异常
-            throw new UsernameNotFoundException(&quot;用户为空&quot;);
-        &#125;
-
-        List&lt;GrantedAuthority&gt; auths &#x3D; AuthorityUtils.commaSeparatedStringToAuthorityList(&quot;role&quot;);
-        return new User(users.getUsername(),new BCryptPasswordEncoder().encode(users.getPassword()),auths);
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service(&quot;userDetailsService&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyUserDetailsService</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">UserDetailsService</span> </span>&#123;<br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> UsersMapper usersMapper;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> UserDetails <span class="hljs-title">loadUserByUsername</span><span class="hljs-params">(String username)</span> <span class="hljs-keyword">throws</span> UsernameNotFoundException </span>&#123;<br>        <span class="hljs-comment">// 根据用户名查询数据库</span><br>        QueryWrapper&lt;Users&gt; wrapper = <span class="hljs-keyword">new</span> QueryWrapper&lt;&gt;();<br>        wrapper.eq(<span class="hljs-string">&quot;username&quot;</span>,username);<br>        Users users = usersMapper.selectOne(wrapper);<br>        <span class="hljs-keyword">if</span> (users == <span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-comment">// 如果user为空，直接抛出异常</span><br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> UsernameNotFoundException(<span class="hljs-string">&quot;用户为空&quot;</span>);<br>        &#125;<br><br>        List&lt;GrantedAuthority&gt; auths = AuthorityUtils.commaSeparatedStringToAuthorityList(<span class="hljs-string">&quot;role&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> User(users.getUsername(),<span class="hljs-keyword">new</span> BCryptPasswordEncoder().encode(users.getPassword()),auths);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>debug测试</p>
 <h2 id="自定义完成登录页面"><a href="#自定义完成登录页面" class="headerlink" title="自定义完成登录页面"></a>自定义完成登录页面</h2><p>在配置类中重写configure方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Configuration
-public class SecurityConfigTest extends WebSecurityConfigurerAdapter &#123;
-    @Autowired
-    private UserDetailsService userDetailsService;
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception &#123;
-       auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    &#125;
-    @Bean
-    PasswordEncoder passwordEncoder()&#123;
-        return new BCryptPasswordEncoder();
-    &#125;
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception &#123;
-        http.formLogin()    &#x2F;&#x2F; 自定义编写的登录页面
-                .loginPage(&quot;&#x2F;login.html&quot;)       &#x2F;&#x2F; 登录页面设置
-                .loginProcessingUrl(&quot;&#x2F;user&#x2F;login&quot;)  &#x2F;&#x2F; 登录页面访问路径
-                .defaultSuccessUrl(&quot;&#x2F;text&#x2F;index&quot;).permitAll()   &#x2F;&#x2F; 登录成功跳转到的页面
-                .and().authorizeRequests()
-                    .antMatchers(&quot;&#x2F;&quot;,&quot;&#x2F;test&#x2F;hello&quot;,&quot;&#x2F;user&#x2F;login&quot;).permitAll()      &#x2F;&#x2F; 哪些请求可以放行
-                .anyRequest().authenticated()
-                .and().csrf().disable();        &#x2F;&#x2F; 关闭csrf防护
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SecurityConfigTest</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WebSecurityConfigurerAdapter</span> </span>&#123;<br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> UserDetailsService userDetailsService;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">configure</span><span class="hljs-params">(AuthenticationManagerBuilder auth)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>       auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());<br>    &#125;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-function">PasswordEncoder <span class="hljs-title">passwordEncoder</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> BCryptPasswordEncoder();<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">configure</span><span class="hljs-params">(HttpSecurity http)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        http.formLogin()    <span class="hljs-comment">// 自定义编写的登录页面</span><br>                .loginPage(<span class="hljs-string">&quot;/login.html&quot;</span>)       <span class="hljs-comment">// 登录页面设置</span><br>                .loginProcessingUrl(<span class="hljs-string">&quot;/user/login&quot;</span>)  <span class="hljs-comment">// 登录页面访问路径</span><br>                .defaultSuccessUrl(<span class="hljs-string">&quot;/text/index&quot;</span>).permitAll()   <span class="hljs-comment">// 登录成功跳转到的页面</span><br>                .and().authorizeRequests()<br>                    .antMatchers(<span class="hljs-string">&quot;/&quot;</span>,<span class="hljs-string">&quot;/test/hello&quot;</span>,<span class="hljs-string">&quot;/user/login&quot;</span>).permitAll()      <span class="hljs-comment">// 哪些请求可以放行</span><br>                .anyRequest().authenticated()<br>                .and().csrf().disable();        <span class="hljs-comment">// 关闭csrf防护</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>编写登录页面</p>
-<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html lang&#x3D;&quot;en&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;
-    &lt;title&gt;Title&lt;&#x2F;title&gt;
-&lt;&#x2F;head&gt;
-&lt;body&gt;
-    &lt;form action&#x3D;&quot;&#x2F;user&#x2F;login&quot; method&#x3D;&quot;post&quot;&gt;
-        用户名：&lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;username&quot;&gt;
-        密码：&lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;password&quot;&gt;
-        &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;login&quot;&gt;
-    &lt;&#x2F;form&gt;
-&lt;&#x2F;body&gt;
-&lt;&#x2F;html&gt;</code></pre></div>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Title<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;/user/login&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span>&gt;</span><br>        用户名：<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;username&quot;</span>&gt;</span><br>        密码：<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;password&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;login&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>新增controller</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@RestController
-@RequestMapping(&quot;&#x2F;test&quot;)
-public class testController &#123;
-
-    @GetMapping(&quot;hello&quot;)
-    public String hello()&#123;
-        return &quot;hello security&quot;;
-    &#125;
-    @GetMapping(&quot;index&quot;)
-    public String index()&#123;
-        return &quot;hello index&quot;;
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;/test&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">testController</span> </span>&#123;<br><br>    <span class="hljs-meta">@GetMapping(&quot;hello&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">hello</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;hello security&quot;</span>;<br>    &#125;<br>    <span class="hljs-meta">@GetMapping(&quot;index&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">index</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;hello index&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>测试，先访问/test/hello,再访问/test/index</p>
 <h1 id="web权限方案-用户授权"><a href="#web权限方案-用户授权" class="headerlink" title="web权限方案-用户授权"></a>web权限方案-用户授权</h1><h2 id="基于权限访问控制"><a href="#基于权限访问控制" class="headerlink" title="基于权限访问控制"></a>基于权限访问控制</h2><h3 id="hasAuthority方法和hasAnyAuthority方法"><a href="#hasAuthority方法和hasAnyAuthority方法" class="headerlink" title="hasAuthority方法和hasAnyAuthority方法"></a>hasAuthority方法和hasAnyAuthority方法</h3><p>(type=Forbidden, status=403).没有权限</p>
 <p>在实现类添加权限List<GrantedAuthority> auths = AuthorityUtils.commaSeparatedStringToAuthorityList(“admins”);</GrantedAuthority></p>
 <p>在配置类添加下面的方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Override
-protected void configure(HttpSecurity http) throws Exception &#123;
-    http.formLogin()    &#x2F;&#x2F; 自定义编写的登录页面
-            .loginPage(&quot;&#x2F;login.html&quot;)       &#x2F;&#x2F; 登录页面设置
-            .loginProcessingUrl(&quot;&#x2F;user&#x2F;login&quot;)  &#x2F;&#x2F; 登录页面访问路径
-            .defaultSuccessUrl(&quot;&#x2F;text&#x2F;index&quot;).permitAll()   &#x2F;&#x2F; 登录成功跳转到的页面
-            .and().authorizeRequests()
-                .antMatchers(&quot;&#x2F;&quot;,&quot;&#x2F;test&#x2F;hello&quot;,&quot;&#x2F;user&#x2F;login&quot;).permitAll()      &#x2F;&#x2F; 哪些请求可以放行
-            &#x2F;&#x2F; 当前用户登录，只有只有admins权限才可以访问这个路径
-            &#x2F;&#x2F; hasAuthority方法，只能一个
-            &#x2F;&#x2F;.antMatchers(&quot;&#x2F;test&#x2F;index&quot;).hasAuthority(&quot;admins&quot;)
-
-            &#x2F;&#x2F; hasAnyAuthority方法，可以多个
-            .antMatchers(&quot;&#x2F;test&#x2F;index&quot;).hasAnyAuthority(&quot;admins,role&quot;)
-            .anyRequest().authenticated()
-            .and().csrf().disable();        &#x2F;&#x2F; 关闭csrf防护
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">configure</span><span class="hljs-params">(HttpSecurity http)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>    http.formLogin()    <span class="hljs-comment">// 自定义编写的登录页面</span><br>            .loginPage(<span class="hljs-string">&quot;/login.html&quot;</span>)       <span class="hljs-comment">// 登录页面设置</span><br>            .loginProcessingUrl(<span class="hljs-string">&quot;/user/login&quot;</span>)  <span class="hljs-comment">// 登录页面访问路径</span><br>            .defaultSuccessUrl(<span class="hljs-string">&quot;/text/index&quot;</span>).permitAll()   <span class="hljs-comment">// 登录成功跳转到的页面</span><br>            .and().authorizeRequests()<br>                .antMatchers(<span class="hljs-string">&quot;/&quot;</span>,<span class="hljs-string">&quot;/test/hello&quot;</span>,<span class="hljs-string">&quot;/user/login&quot;</span>).permitAll()      <span class="hljs-comment">// 哪些请求可以放行</span><br>            <span class="hljs-comment">// 当前用户登录，只有只有admins权限才可以访问这个路径</span><br>            <span class="hljs-comment">// hasAuthority方法，只能一个</span><br>            <span class="hljs-comment">//.antMatchers(&quot;/test/index&quot;).hasAuthority(&quot;admins&quot;)</span><br><br>            <span class="hljs-comment">// hasAnyAuthority方法，可以多个</span><br>            .antMatchers(<span class="hljs-string">&quot;/test/index&quot;</span>).hasAnyAuthority(<span class="hljs-string">&quot;admins,role&quot;</span>)<br>            .anyRequest().authenticated()<br>            .and().csrf().disable();        <span class="hljs-comment">// 关闭csrf防护</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="基于角色访问控制"><a href="#基于角色访问控制" class="headerlink" title="基于角色访问控制"></a>基于角色访问控制</h2><h2 id="hasRole和hasAnyRole"><a href="#hasRole和hasAnyRole" class="headerlink" title="hasRole和hasAnyRole"></a>hasRole和hasAnyRole</h2><p>在实现类中添加role的时候要注意格式，需要加上ROLE_前缀，可以通过查看源码发现</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">List&lt;GrantedAuthority&gt; auths &#x3D; AuthorityUtils.commaSeparatedStringToAuthorityList(&quot;admins,ROLE_sale&quot;);</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;GrantedAuthority&gt; auths = AuthorityUtils.commaSeparatedStringToAuthorityList(<span class="hljs-string">&quot;admins,ROLE_sale&quot;</span>);<br></code></pre></td></tr></table></figure>
 
 <p>配置类</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 3.hasRole
-.antMatchers(&quot;&#x2F;test&#x2F;index&quot;).hasRole(&quot;sale&quot;)</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 3.hasRole</span><br>.antMatchers(<span class="hljs-string">&quot;/test/index&quot;</span>).hasRole(<span class="hljs-string">&quot;sale&quot;</span>)<br></code></pre></td></tr></table></figure>
 
 <p>hasAnyRole和上面的类型，多个角色用逗号隔开就行。</p>
 <h2 id="自定义403页面"><a href="#自定义403页面" class="headerlink" title="自定义403页面"></a>自定义403页面</h2><p><img src="/myBlog/SpringSecurity%E7%AC%94%E8%AE%B0/image-20220126151935413.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220126151935413"></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Override
-protected void configure(HttpSecurity http) throws Exception &#123;
-    &#x2F;&#x2F; 配置没有权限跳转的页面
-    http.exceptionHandling().accessDeniedPage(&quot;&#x2F;unauth.html&quot;);</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">configure</span><span class="hljs-params">(HttpSecurity http)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>    <span class="hljs-comment">// 配置没有权限跳转的页面</span><br>    http.exceptionHandling().accessDeniedPage(<span class="hljs-string">&quot;/unauth.html&quot;</span>);<br></code></pre></td></tr></table></figure>
 
 <p>页面</p>
-<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html lang&#x3D;&quot;en&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;
-    &lt;title&gt;Title&lt;&#x2F;title&gt;
-&lt;&#x2F;head&gt;
-&lt;body&gt;
-    &lt;h1&gt;没有访问权限！&lt;&#x2F;h1&gt;
-&lt;&#x2F;body&gt;
-&lt;&#x2F;html&gt;</code></pre></div>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Title<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>没有访问权限！<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p><img src="/myBlog/SpringSecurity%E7%AC%94%E8%AE%B0/image-20220126152035554.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220126152035554"></p>
 <h2 id="注解使用"><a href="#注解使用" class="headerlink" title="注解使用"></a>注解使用</h2><p> 使用注解先要开启注解功能！ @EnableGlobalMethodSecurity(securedEnabled=true)</p>
@@ -626,51 +427,22 @@ protected void configure(HttpSecurity http) throws Exception &#123;
 <h3 id="PreAuthoriz"><a href="#PreAuthoriz" class="headerlink" title="@PreAuthoriz"></a>@PreAuthoriz</h3><p>在方法执行前进行验证权限</p>
 <p>开启注解，@EnableGlobalMethodSecurity(prePostEnabled = true)</p>
 <h3 id="PostAuthorize"><a href="#PostAuthorize" class="headerlink" title="@PostAuthorize"></a>@PostAuthorize</h3><p>方法执行之后再进行权限验证，适合用在有返回值的方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@GetMapping(&quot;update&quot;)
-&#x2F;&#x2F;@Secured(&#123;&quot;normal&quot;,&quot;ROLE_sale&quot;&#125;)   &#x2F;&#x2F; 需要拥有这些角色才可以访问
-&#x2F;&#x2F;@PreAuthorize(&quot;hasAnyAuthority(&#39;admins&#39;)&quot;) &#x2F;&#x2F; 需要拥有这个权限才可以访问,PreAuthorize注解适合进入方法前的权限验证
-&#x2F;&#x2F;@PostAuthorize(&quot;hasAnyAuthority(&#39;admins1&#39;)&quot;)    &#x2F;&#x2F; 执行方法后再进行权限认证，适合验证带返回值的
-public String update()&#123;
-    System.out.println(&quot;update...&quot;);
-    return &quot;hello update&quot;;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@GetMapping(&quot;update&quot;)</span><br><span class="hljs-comment">//@Secured(&#123;&quot;normal&quot;,&quot;ROLE_sale&quot;&#125;)   // 需要拥有这些角色才可以访问</span><br><span class="hljs-comment">//@PreAuthorize(&quot;hasAnyAuthority(&#x27;admins&#x27;)&quot;) // 需要拥有这个权限才可以访问,PreAuthorize注解适合进入方法前的权限验证</span><br><span class="hljs-comment">//@PostAuthorize(&quot;hasAnyAuthority(&#x27;admins1&#x27;)&quot;)    // 执行方法后再进行权限认证，适合验证带返回值的</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">update</span><span class="hljs-params">()</span></span>&#123;<br>    System.out.println(<span class="hljs-string">&quot;update...&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;hello update&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h3 id="PostFilter"><a href="#PostFilter" class="headerlink" title="@PostFilter"></a>@PostFilter</h3><p>权限验证之后对数据进行过滤 留下用户名是 admin1 的数据</p>
 <p>表达式中的 filterObject 引用的是方法返回值 List 中的某一个元素</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@RequestMapping(&quot;getAll&quot;)
-@PostAuthorize(&quot;hasAnyAuthority(&#39;admins1&#39;)&quot;)
-@PostFilter(&quot;filterObject.username &#x3D;&#x3D; &#39;admin1&#39;&quot;)        &#x2F;&#x2F; 对数据进行过滤，只留下admin1的
-public List&lt;Users&gt; getAllUser()&#123;
-    ArrayList&lt;Users&gt; list &#x3D; new ArrayList&lt;&gt;();
-    list.add(new Users(1,&quot;admin1&quot;,&quot;6666&quot;));
-    list.add(new Users(2,&quot;admin2&quot;,&quot;888&quot;));
-    System.out.println(list);
-    return list;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(&quot;getAll&quot;)</span><br><span class="hljs-meta">@PostAuthorize(&quot;hasAnyAuthority(&#x27;admins1&#x27;)&quot;)</span><br><span class="hljs-meta">@PostFilter(&quot;filterObject.username == &#x27;admin1&#x27;&quot;)</span>        <span class="hljs-comment">// 对数据进行过滤，只留下admin1的</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Users&gt; <span class="hljs-title">getAllUser</span><span class="hljs-params">()</span></span>&#123;<br>    ArrayList&lt;Users&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>    list.add(<span class="hljs-keyword">new</span> Users(<span class="hljs-number">1</span>,<span class="hljs-string">&quot;admin1&quot;</span>,<span class="hljs-string">&quot;6666&quot;</span>));<br>    list.add(<span class="hljs-keyword">new</span> Users(<span class="hljs-number">2</span>,<span class="hljs-string">&quot;admin2&quot;</span>,<span class="hljs-string">&quot;888&quot;</span>));<br>    System.out.println(list);<br>    <span class="hljs-keyword">return</span> list;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h3 id="PreFilter"><a href="#PreFilter" class="headerlink" title="@PreFilter"></a>@PreFilter</h3><p> @PreFilter: 进入控制器之前对数据进行过滤，和上面这个注解类似</p>
 <h1 id="web权限方案-用户注销"><a href="#web权限方案-用户注销" class="headerlink" title="web权限方案-用户注销"></a>web权限方案-用户注销</h1><p>编写登录成功的页面</p>
-<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html lang&#x3D;&quot;en&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;
-    &lt;title&gt;Title&lt;&#x2F;title&gt;
-&lt;&#x2F;head&gt;
-&lt;body&gt;
-    &lt;p&gt;登录成功&lt;&#x2F;p&gt;
-    &lt;a href&#x3D;&quot;&#x2F;logout&quot;&gt;退出&lt;&#x2F;a&gt;
-&lt;&#x2F;body&gt;
-&lt;&#x2F;html&gt;</code></pre></div>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Title<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>登录成功<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/logout&quot;</span>&gt;</span>退出<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>在配置类添加配置</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Override
-protected void configure(HttpSecurity http) throws Exception &#123;
-    &#x2F;&#x2F; 配置退出登录
-    http.logout().logoutUrl(&quot;&#x2F;logout&quot;).logoutSuccessUrl(&quot;&#x2F;test&#x2F;index&quot;).permitAll();</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">configure</span><span class="hljs-params">(HttpSecurity http)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>    <span class="hljs-comment">// 配置退出登录</span><br>    http.logout().logoutUrl(<span class="hljs-string">&quot;/logout&quot;</span>).logoutSuccessUrl(<span class="hljs-string">&quot;/test/index&quot;</span>).permitAll();<br></code></pre></td></tr></table></figure>
 
 <p>修改登录成功的页面到上面的页面</p>
 <p><strong>测试</strong></p>
@@ -681,28 +453,13 @@ protected void configure(HttpSecurity http) throws Exception &#123;
 <p><strong>11,12,13,14详细流程</strong></p>
 <p><img src="/myBlog/SpringSecurity%E7%AC%94%E8%AE%B0/image-20220126175934833.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220126175934833"></p>
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>在配置类中添加数据源</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Autowired
-private DataSource dataSource;
-
-@Bean
-PersistentTokenRepository persistentTokenRepository()&#123;
-    JdbcTokenRepositoryImpl jdbcTokenRepository &#x3D; new JdbcTokenRepositoryImpl();
-    &#x2F;&#x2F; 赋值数据源
-    jdbcTokenRepository.setDataSource(dataSource);
-    &#x2F;&#x2F; 自动创建表,第一次执行会创建，以后要执行就要删除掉！
-    &#x2F;&#x2F;jdbcTokenRepository.setCreateTableOnStartup(true);
-    return jdbcTokenRepository;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Autowired</span><br><span class="hljs-keyword">private</span> DataSource dataSource;<br><br><span class="hljs-meta">@Bean</span><br><span class="hljs-function">PersistentTokenRepository <span class="hljs-title">persistentTokenRepository</span><span class="hljs-params">()</span></span>&#123;<br>    JdbcTokenRepositoryImpl jdbcTokenRepository = <span class="hljs-keyword">new</span> JdbcTokenRepositoryImpl();<br>    <span class="hljs-comment">// 赋值数据源</span><br>    jdbcTokenRepository.setDataSource(dataSource);<br>    <span class="hljs-comment">// 自动创建表,第一次执行会创建，以后要执行就要删除掉！</span><br>    <span class="hljs-comment">//jdbcTokenRepository.setCreateTableOnStartup(true);</span><br>    <span class="hljs-keyword">return</span> jdbcTokenRepository;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>在configure中开启记住我功能</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 开启记住我
-.and().rememberMe().tokenRepository(persistentTokenRepository())
-.tokenValiditySeconds(60)
-.userDetailsService(userDetailsService)
-.and().csrf().disable();        &#x2F;&#x2F; 关闭csrf防护</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 开启记住我</span><br>.and().rememberMe().tokenRepository(persistentTokenRepository())<br>.tokenValiditySeconds(<span class="hljs-number">60</span>)<br>.userDetailsService(userDetailsService)<br>.and().csrf().disable();        <span class="hljs-comment">// 关闭csrf防护</span><br></code></pre></td></tr></table></figure>
 
 <p>在页面添加复选框</p>
-<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html">记住我&lt;input type&#x3D;&quot;checkbox&quot; name&#x3D;&quot;remember-me&quot;&gt;</code></pre></div>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">记住我<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;remember-me&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 
 
@@ -716,335 +473,38 @@ PersistentTokenRepository persistentTokenRepository()&#123;
 <h1 id="微服务权限方案-数据模型介绍"><a href="#微服务权限方案-数据模型介绍" class="headerlink" title="微服务权限方案-数据模型介绍"></a>微服务权限方案-数据模型介绍</h1><p><img src="/myBlog/SpringSecurity%E7%AC%94%E8%AE%B0/14-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9D%83%E9%99%90%E6%96%B9%E6%A1%88-%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B.png" srcset="/myBlog/img/loading.gif" lazyload alt="14-微服务权限方案-数据模型"></p>
 <h1 id="微服务权限方案-搭建项目工程"><a href="#微服务权限方案-搭建项目工程" class="headerlink" title="微服务权限方案-搭建项目工程"></a>微服务权限方案-搭建项目工程</h1><p>参照谷粒学院的</p>
 <h1 id="微服务权限方案-编写security工具类"><a href="#微服务权限方案-编写security工具类" class="headerlink" title="微服务权限方案-编写security工具类"></a>微服务权限方案-编写security工具类</h1><h2 id="密码处理"><a href="#密码处理" class="headerlink" title="密码处理"></a>密码处理</h2><p>DefaultPasswordEncoder</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">import com.atguigu.utils.MD5;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> com.atguigu.utils.MD5;<br><span class="hljs-keyword">import</span> org.springframework.security.crypto.password.PasswordEncoder;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Component;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 密码处理</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DefaultPasswordEncoder</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">PasswordEncoder</span> </span>&#123;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DefaultPasswordEncoder</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>(-<span class="hljs-number">1</span>);<br>    &#125;<br>    <span class="hljs-comment">// 有参构造</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DefaultPasswordEncoder</span><span class="hljs-params">(<span class="hljs-keyword">int</span> strength)</span> </span>&#123;<br>    &#125;<br><br>    <span class="hljs-comment">// MD5工具处理密码</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">encode</span><span class="hljs-params">(CharSequence rawPassword)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> MD5.encrypt(rawPassword.toString());<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 判断密码是否匹配</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> rawPassword 输入的密码</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> encodedPassword 已经处理过的密码</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 两个比较，如果相同，返回true，否则false</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">matches</span><span class="hljs-params">(CharSequence rawPassword, String encodedPassword)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> encodedPassword.equals(MD5.encrypt(rawPassword.toString()));<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-&#x2F;**
- * 密码处理
- *&#x2F;
-@Component
-public class DefaultPasswordEncoder implements PasswordEncoder &#123;
-
-    public DefaultPasswordEncoder() &#123;
-        this(-1);
-    &#125;
-    &#x2F;&#x2F; 有参构造
-    public DefaultPasswordEncoder(int strength) &#123;
-    &#125;
-
-    &#x2F;&#x2F; MD5工具处理密码
-    @Override
-    public String encode(CharSequence rawPassword) &#123;
-        return MD5.encrypt(rawPassword.toString());
-    &#125;
-
-    &#x2F;**
-     * 判断密码是否匹配
-     * @param rawPassword 输入的密码
-     * @param encodedPassword 已经处理过的密码
-     * @return 两个比较，如果相同，返回true，否则false
-     *&#x2F;
-    @Override
-    public boolean matches(CharSequence rawPassword, String encodedPassword) &#123;
-        return encodedPassword.equals(MD5.encrypt(rawPassword.toString()));
-    &#125;
-&#125;</code></pre></div>
-
-<h2 id="token事务"><a href="#token事务" class="headerlink" title="token事务"></a>token事务</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Component
-public class TokenManager &#123;
-    &#x2F;&#x2F; token 过期时间
-    private long tokenExpiration &#x3D; 1000*60*60*24;   &#x2F;&#x2F; 一天
-    &#x2F;&#x2F; 密钥
-    private String tokenSignKey &#x3D; &quot;123456&quot;;
-
-    &#x2F;&#x2F; 生成token
-    public String createToken(String username)&#123;
-        String token &#x3D; Jwts.builder().setSubject(username)     &#x2F;&#x2F; 设置用户名
-                .setExpiration(new Date(System.currentTimeMillis() + tokenExpiration))        &#x2F;&#x2F; 设置过期时间
-                .signWith(SignatureAlgorithm.HS512, tokenSignKey).compressWith(CompressionCodecs.GZIP).compact();&#x2F;&#x2F; 设置密码
-        &#x2F;&#x2F; 返回token
-        return token;
-    &#125;
-
-    &#x2F;&#x2F; 根据token获取用户信息
-    public String getUserInfoFromToken(String token)&#123;
-        String user &#x3D; Jwts.parser().setSigningKey(tokenSignKey).parseClaimsJws(token).getBody().getSubject();
-        return user;
-    &#125;
-
-    &#x2F;&#x2F; 删除token
-    public void removeToken(String token)&#123;
-        &#x2F;&#x2F; jwttoken无需删除，客户端扔掉即可。
-    &#125;
-&#125;</code></pre></div>
+<h2 id="token事务"><a href="#token事务" class="headerlink" title="token事务"></a>token事务</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TokenManager</span> </span>&#123;<br>    <span class="hljs-comment">// token 过期时间</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">long</span> tokenExpiration = <span class="hljs-number">1000</span>*<span class="hljs-number">60</span>*<span class="hljs-number">60</span>*<span class="hljs-number">24</span>;   <span class="hljs-comment">// 一天</span><br>    <span class="hljs-comment">// 密钥</span><br>    <span class="hljs-keyword">private</span> String tokenSignKey = <span class="hljs-string">&quot;123456&quot;</span>;<br><br>    <span class="hljs-comment">// 生成token</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">createToken</span><span class="hljs-params">(String username)</span></span>&#123;<br>        String token = Jwts.builder().setSubject(username)     <span class="hljs-comment">// 设置用户名</span><br>                .setExpiration(<span class="hljs-keyword">new</span> Date(System.currentTimeMillis() + tokenExpiration))        <span class="hljs-comment">// 设置过期时间</span><br>                .signWith(SignatureAlgorithm.HS512, tokenSignKey).compressWith(CompressionCodecs.GZIP).compact();<span class="hljs-comment">// 设置密码</span><br>        <span class="hljs-comment">// 返回token</span><br>        <span class="hljs-keyword">return</span> token;<br>    &#125;<br><br>    <span class="hljs-comment">// 根据token获取用户信息</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getUserInfoFromToken</span><span class="hljs-params">(String token)</span></span>&#123;<br>        String user = Jwts.parser().setSigningKey(tokenSignKey).parseClaimsJws(token).getBody().getSubject();<br>        <span class="hljs-keyword">return</span> user;<br>    &#125;<br><br>    <span class="hljs-comment">// 删除token</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">removeToken</span><span class="hljs-params">(String token)</span></span>&#123;<br>        <span class="hljs-comment">// jwttoken无需删除，客户端扔掉即可。</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
-<h2 id="退出登录处理器"><a href="#退出登录处理器" class="headerlink" title="退出登录处理器"></a>退出登录处理器</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
- * 退出登录处理器
- *&#x2F;
-@Component
-public class TokenLogoutHandler implements LogoutHandler &#123;
-
-    private TokenManager tokenManager;
-    private RedisTemplate redisTemplate;
-
-    &#x2F;&#x2F; 有参构成
-    public TokenLogoutHandler(TokenManager tokenManager,RedisTemplate redisTemplate)&#123;
-        this.tokenManager &#x3D; tokenManager;
-        this.redisTemplate &#x3D; redisTemplate;
-    &#125;
-
-    @Override
-    public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) &#123;
-        &#x2F;&#x2F; 删除token，根据token获取用户名，根据用户名从redis中删除相关信息
-        &#x2F;&#x2F; 获取token
-        String token &#x3D; request.getHeader(&quot;token&quot;);
-        if (token !&#x3D; null)&#123;
-            &#x2F;&#x2F; 删除token
-            tokenManager.removeToken(token);
-
-            &#x2F;&#x2F; 清空当前用户缓存中的权限数据
-            String username &#x3D; tokenManager.getUserInfoFromToken(token);
-            redisTemplate.delete(username);
-        &#125;
-        &#x2F;&#x2F; 退出
-        ResponseUtil.out(response, R.ok());
-    &#125;
-&#125;</code></pre></div>
+<h2 id="退出登录处理器"><a href="#退出登录处理器" class="headerlink" title="退出登录处理器"></a>退出登录处理器</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 退出登录处理器</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TokenLogoutHandler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">LogoutHandler</span> </span>&#123;<br><br>    <span class="hljs-keyword">private</span> TokenManager tokenManager;<br>    <span class="hljs-keyword">private</span> RedisTemplate redisTemplate;<br><br>    <span class="hljs-comment">// 有参构成</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">TokenLogoutHandler</span><span class="hljs-params">(TokenManager tokenManager,RedisTemplate redisTemplate)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.tokenManager = tokenManager;<br>        <span class="hljs-keyword">this</span>.redisTemplate = redisTemplate;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">logout</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Authentication authentication)</span> </span>&#123;<br>        <span class="hljs-comment">// 删除token，根据token获取用户名，根据用户名从redis中删除相关信息</span><br>        <span class="hljs-comment">// 获取token</span><br>        String token = request.getHeader(<span class="hljs-string">&quot;token&quot;</span>);<br>        <span class="hljs-keyword">if</span> (token != <span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-comment">// 删除token</span><br>            tokenManager.removeToken(token);<br><br>            <span class="hljs-comment">// 清空当前用户缓存中的权限数据</span><br>            String username = tokenManager.getUserInfoFromToken(token);<br>            redisTemplate.delete(username);<br>        &#125;<br>        <span class="hljs-comment">// 退出</span><br>        ResponseUtil.out(response, R.ok());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
-<h1 id="微服务权限方案-编写security认证过滤器"><a href="#微服务权限方案-编写security认证过滤器" class="headerlink" title="微服务权限方案-编写security认证过滤器"></a>微服务权限方案-编写security认证过滤器</h1><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
- * 认证的过滤器
- *&#x2F;
-public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter &#123;
-    private TokenManager tokenManager;
-    private RedisTemplate redisTemplate;
-    private AuthenticationManager authenticationManager;
-
-    &#x2F;&#x2F; 有参构造
-    public TokenLoginFilter(AuthenticationManager authenticationManager, TokenManager tokenManager, RedisTemplate redisTemplate) &#123;
-        this.authenticationManager &#x3D; authenticationManager;
-        this.tokenManager &#x3D; tokenManager;
-        this.redisTemplate &#x3D; redisTemplate;
-        this.setPostOnly(false);
-        this.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher(&quot;&#x2F;admin&#x2F;acl&#x2F;login&quot;,&quot;POST&quot;));
-    &#125;
-
-    &#x2F;&#x2F; 认证用户名和密码,获取表单提交用户名和密码
-    @Override
-    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException &#123;
-        &#x2F;&#x2F; 获取表单提交数据
-        try &#123;
-            User user &#x3D; new ObjectMapper().readValue(request.getInputStream(), User.class);
-            return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword(),
-                    new ArrayList&lt;&gt;()));
-        &#125; catch (IOException e) &#123;
-            e.printStackTrace();
-            throw new RuntimeException();
-        &#125;
-    &#125;
-
-    &#x2F;&#x2F; 认证成功执行
-    @Override
-    protected void successfulAuthentication(HttpServletRequest request,
-                                            HttpServletResponse response, FilterChain chain, Authentication authResult)
-            throws IOException, ServletException &#123;
-        &#x2F;&#x2F; 得到用户认证成功后的信息
-        SecurityUser user &#x3D; (SecurityUser) authResult.getPrincipal();
-        &#x2F;&#x2F; 生成token信息
-        String token &#x3D; tokenManager.createToken(user.getCurrentUserInfo().getUsername());
-        &#x2F;&#x2F; 存到redis，k为用户名，value为权限值
-        redisTemplate.opsForValue().set(user.getCurrentUserInfo().getUsername(),user.getPermissionValueList());
-
-        ResponseUtil.out(response, R.ok().data(&quot;token&quot;,token));
-    &#125;
-
-    &#x2F;&#x2F; 认证失败执行
-    @Override
-    protected void unsuccessfulAuthentication(HttpServletRequest request,
-                                              HttpServletResponse response, AuthenticationException failed)
-            throws IOException, ServletException &#123;
-        ResponseUtil.out(response,R.error());
-    &#125;
-&#125;</code></pre></div>
+<h1 id="微服务权限方案-编写security认证过滤器"><a href="#微服务权限方案-编写security认证过滤器" class="headerlink" title="微服务权限方案-编写security认证过滤器"></a>微服务权限方案-编写security认证过滤器</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 认证的过滤器</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TokenLoginFilter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">UsernamePasswordAuthenticationFilter</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> TokenManager tokenManager;<br>    <span class="hljs-keyword">private</span> RedisTemplate redisTemplate;<br>    <span class="hljs-keyword">private</span> AuthenticationManager authenticationManager;<br><br>    <span class="hljs-comment">// 有参构造</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">TokenLoginFilter</span><span class="hljs-params">(AuthenticationManager authenticationManager, TokenManager tokenManager, RedisTemplate redisTemplate)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.authenticationManager = authenticationManager;<br>        <span class="hljs-keyword">this</span>.tokenManager = tokenManager;<br>        <span class="hljs-keyword">this</span>.redisTemplate = redisTemplate;<br>        <span class="hljs-keyword">this</span>.setPostOnly(<span class="hljs-keyword">false</span>);<br>        <span class="hljs-keyword">this</span>.setRequiresAuthenticationRequestMatcher(<span class="hljs-keyword">new</span> AntPathRequestMatcher(<span class="hljs-string">&quot;/admin/acl/login&quot;</span>,<span class="hljs-string">&quot;POST&quot;</span>));<br>    &#125;<br><br>    <span class="hljs-comment">// 认证用户名和密码,获取表单提交用户名和密码</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Authentication <span class="hljs-title">attemptAuthentication</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;<br>        <span class="hljs-comment">// 获取表单提交数据</span><br>        <span class="hljs-keyword">try</span> &#123;<br>            User user = <span class="hljs-keyword">new</span> ObjectMapper().readValue(request.getInputStream(), User.class);<br>            <span class="hljs-keyword">return</span> authenticationManager.authenticate(<span class="hljs-keyword">new</span> UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword(),<br>                    <span class="hljs-keyword">new</span> ArrayList&lt;&gt;()));<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            e.printStackTrace();<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException();<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// 认证成功执行</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">successfulAuthentication</span><span class="hljs-params">(HttpServletRequest request,</span></span><br><span class="hljs-params"><span class="hljs-function">                                            HttpServletResponse response, FilterChain chain, Authentication authResult)</span></span><br><span class="hljs-function">            <span class="hljs-keyword">throws</span> IOException, ServletException </span>&#123;<br>        <span class="hljs-comment">// 得到用户认证成功后的信息</span><br>        SecurityUser user = (SecurityUser) authResult.getPrincipal();<br>        <span class="hljs-comment">// 生成token信息</span><br>        String token = tokenManager.createToken(user.getCurrentUserInfo().getUsername());<br>        <span class="hljs-comment">// 存到redis，k为用户名，value为权限值</span><br>        redisTemplate.opsForValue().set(user.getCurrentUserInfo().getUsername(),user.getPermissionValueList());<br><br>        ResponseUtil.out(response, R.ok().data(<span class="hljs-string">&quot;token&quot;</span>,token));<br>    &#125;<br><br>    <span class="hljs-comment">// 认证失败执行</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">unsuccessfulAuthentication</span><span class="hljs-params">(HttpServletRequest request,</span></span><br><span class="hljs-params"><span class="hljs-function">                                              HttpServletResponse response, AuthenticationException failed)</span></span><br><span class="hljs-function">            <span class="hljs-keyword">throws</span> IOException, ServletException </span>&#123;<br>        ResponseUtil.out(response,R.error());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
-<h1 id="微服务权限方案-security授权过滤器"><a href="#微服务权限方案-security授权过滤器" class="headerlink" title="微服务权限方案-security授权过滤器"></a>微服务权限方案-security授权过滤器</h1><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
- * 授权过滤器
- *&#x2F;
-public class TokenAuthenticationFilter extends BasicAuthenticationFilter &#123;
-
-    private TokenManager tokenManager;
-    private RedisTemplate redisTemplate;
-
-    public TokenAuthenticationFilter(AuthenticationManager authenticationManager) &#123;
-        super(authenticationManager);
-        this.tokenManager &#x3D; tokenManager;
-        this.redisTemplate &#x3D; redisTemplate;
-    &#125;
-
-    @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException &#123;
-        &#x2F;&#x2F; 获取当前认证成功的用户信息
-        UsernamePasswordAuthenticationToken authRequest &#x3D; getAuthentication(request);
-        &#x2F;&#x2F; 判断如果有权限值，就放到权限上下文中
-        if (authRequest !&#x3D; null)&#123;
-            SecurityContextHolder.getContext().setAuthentication(authRequest);
-        &#125;
-        
-        chain.doFilter(request,response);
-    &#125;
-
-    private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request)&#123;
-        &#x2F;&#x2F; 从header中获取token信息
-        String token &#x3D; request.getHeader(&quot;token&quot;);
-        if (token !&#x3D; null)&#123;
-            &#x2F;&#x2F; 根据token信息获取用户信息
-            String username &#x3D; tokenManager.getUserInfoFromToken(token);
-            &#x2F;&#x2F; 从redis中查询对应的权限列表
-            List&lt;String&gt; permissionValueList &#x3D; (List&lt;String&gt;) redisTemplate.opsForValue().get(username);
-            &#x2F;&#x2F; 将权限列表的类型转换为GrantedAuthority
-            Collection&lt;GrantedAuthority&gt; authorities &#x3D; new ArrayList&lt;&gt;();
-
-            for (String permission : permissionValueList) &#123;
-                SimpleGrantedAuthority auth &#x3D; new SimpleGrantedAuthority(permission);
-                authorities.add(auth);
-            &#125;
-
-            return new UsernamePasswordAuthenticationToken(username,token,authorities);
-        &#125;
-        return null;
-    &#125;
-&#125;</code></pre></div>
+<h1 id="微服务权限方案-security授权过滤器"><a href="#微服务权限方案-security授权过滤器" class="headerlink" title="微服务权限方案-security授权过滤器"></a>微服务权限方案-security授权过滤器</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 授权过滤器</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TokenAuthenticationFilter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BasicAuthenticationFilter</span> </span>&#123;<br><br>    <span class="hljs-keyword">private</span> TokenManager tokenManager;<br>    <span class="hljs-keyword">private</span> RedisTemplate redisTemplate;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">TokenAuthenticationFilter</span><span class="hljs-params">(AuthenticationManager authenticationManager)</span> </span>&#123;<br>        <span class="hljs-keyword">super</span>(authenticationManager);<br>        <span class="hljs-keyword">this</span>.tokenManager = tokenManager;<br>        <span class="hljs-keyword">this</span>.redisTemplate = redisTemplate;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doFilterInternal</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, FilterChain chain)</span> <span class="hljs-keyword">throws</span> IOException, ServletException </span>&#123;<br>        <span class="hljs-comment">// 获取当前认证成功的用户信息</span><br>        UsernamePasswordAuthenticationToken authRequest = getAuthentication(request);<br>        <span class="hljs-comment">// 判断如果有权限值，就放到权限上下文中</span><br>        <span class="hljs-keyword">if</span> (authRequest != <span class="hljs-keyword">null</span>)&#123;<br>            SecurityContextHolder.getContext().setAuthentication(authRequest);<br>        &#125;<br>        <br>        chain.doFilter(request,response);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> UsernamePasswordAuthenticationToken <span class="hljs-title">getAuthentication</span><span class="hljs-params">(HttpServletRequest request)</span></span>&#123;<br>        <span class="hljs-comment">// 从header中获取token信息</span><br>        String token = request.getHeader(<span class="hljs-string">&quot;token&quot;</span>);<br>        <span class="hljs-keyword">if</span> (token != <span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-comment">// 根据token信息获取用户信息</span><br>            String username = tokenManager.getUserInfoFromToken(token);<br>            <span class="hljs-comment">// 从redis中查询对应的权限列表</span><br>            List&lt;String&gt; permissionValueList = (List&lt;String&gt;) redisTemplate.opsForValue().get(username);<br>            <span class="hljs-comment">// 将权限列表的类型转换为GrantedAuthority</span><br>            Collection&lt;GrantedAuthority&gt; authorities = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br><br>            <span class="hljs-keyword">for</span> (String permission : permissionValueList) &#123;<br>                SimpleGrantedAuthority auth = <span class="hljs-keyword">new</span> SimpleGrantedAuthority(permission);<br>                authorities.add(auth);<br>            &#125;<br><br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> UsernamePasswordAuthenticationToken(username,token,authorities);<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
-<h1 id="微服务权限方案-核心配置类"><a href="#微服务权限方案-核心配置类" class="headerlink" title="微服务权限方案-核心配置类"></a>微服务权限方案-核心配置类</h1><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
- * 核心配置类
- *&#x2F;
-@Configuration
-public class TokenWebSecurityConfig extends WebSecurityConfigurerAdapter &#123;
-    private TokenManager tokenManager;
-    private RedisTemplate redisTemplate;
-    private UserDetailsService userDetailsService;
-    private DefaultPasswordEncoder defaultPasswordEncoder;
-
-    @Autowired
-    public TokenWebSecurityConfig(UserDetailsService userDetailsService, DefaultPasswordEncoder defaultPasswordEncoder,
-                                  TokenManager tokenManager, RedisTemplate redisTemplate) &#123;
-        this.userDetailsService &#x3D; userDetailsService;
-        this.defaultPasswordEncoder &#x3D; defaultPasswordEncoder;
-        this.tokenManager &#x3D; tokenManager;
-        this.redisTemplate &#x3D; redisTemplate;
-    &#125;
-
-    &#x2F;**
-     * 配置设置
-     * @param http
-     * @throws Exception
-     *&#x2F;
-    @Override
-    protected void configure(HttpSecurity http) throws Exception &#123;
-        http.exceptionHandling()
-                .authenticationEntryPoint(new UnauthEntryPoint())       &#x2F;&#x2F; 没有权限访问
-                .and().csrf().disable()
-                .authorizeRequests()
-                .anyRequest().authenticated()
-                .and().logout().logoutUrl(&quot;&#x2F;admin&#x2F;acl&#x2F;index&#x2F;logout&quot;)    &#x2F;&#x2F; 设置退出路径
-                .addLogoutHandler(new TokenLogoutHandler(tokenManager,redisTemplate)).and()
-                .addFilter(new TokenLoginFilter(authenticationManager(), tokenManager, redisTemplate))
-                .addFilter(new TokenAuthenticationFilter(authenticationManager(), tokenManager, redisTemplate)).httpBasic();
-    &#125;
-
-    &#x2F;&#x2F; 调用userDetailsService和密码处理
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception &#123;
-        auth.userDetailsService(userDetailsService).passwordEncoder(defaultPasswordEncoder);
-    &#125;
-
-    &#x2F;&#x2F; 不进行认证的路径，可以直接访问
-    @Override
-    public void configure(WebSecurity web) throws Exception &#123;
-        web.ignoring().antMatchers(&quot;&#x2F;api&#x2F;**&quot;);
-    &#125;
-&#125;</code></pre></div>
+<h1 id="微服务权限方案-核心配置类"><a href="#微服务权限方案-核心配置类" class="headerlink" title="微服务权限方案-核心配置类"></a>微服务权限方案-核心配置类</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 核心配置类</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TokenWebSecurityConfig</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WebSecurityConfigurerAdapter</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> TokenManager tokenManager;<br>    <span class="hljs-keyword">private</span> RedisTemplate redisTemplate;<br>    <span class="hljs-keyword">private</span> UserDetailsService userDetailsService;<br>    <span class="hljs-keyword">private</span> DefaultPasswordEncoder defaultPasswordEncoder;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">TokenWebSecurityConfig</span><span class="hljs-params">(UserDetailsService userDetailsService, DefaultPasswordEncoder defaultPasswordEncoder,</span></span><br><span class="hljs-params"><span class="hljs-function">                                  TokenManager tokenManager, RedisTemplate redisTemplate)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.userDetailsService = userDetailsService;<br>        <span class="hljs-keyword">this</span>.defaultPasswordEncoder = defaultPasswordEncoder;<br>        <span class="hljs-keyword">this</span>.tokenManager = tokenManager;<br>        <span class="hljs-keyword">this</span>.redisTemplate = redisTemplate;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 配置设置</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> http</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> Exception</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">configure</span><span class="hljs-params">(HttpSecurity http)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        http.exceptionHandling()<br>                .authenticationEntryPoint(<span class="hljs-keyword">new</span> UnauthEntryPoint())       <span class="hljs-comment">// 没有权限访问</span><br>                .and().csrf().disable()<br>                .authorizeRequests()<br>                .anyRequest().authenticated()<br>                .and().logout().logoutUrl(<span class="hljs-string">&quot;/admin/acl/index/logout&quot;</span>)    <span class="hljs-comment">// 设置退出路径</span><br>                .addLogoutHandler(<span class="hljs-keyword">new</span> TokenLogoutHandler(tokenManager,redisTemplate)).and()<br>                .addFilter(<span class="hljs-keyword">new</span> TokenLoginFilter(authenticationManager(), tokenManager, redisTemplate))<br>                .addFilter(<span class="hljs-keyword">new</span> TokenAuthenticationFilter(authenticationManager(), tokenManager, redisTemplate)).httpBasic();<br>    &#125;<br><br>    <span class="hljs-comment">// 调用userDetailsService和密码处理</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">configure</span><span class="hljs-params">(AuthenticationManagerBuilder auth)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        auth.userDetailsService(userDetailsService).passwordEncoder(defaultPasswordEncoder);<br>    &#125;<br><br>    <span class="hljs-comment">// 不进行认证的路径，可以直接访问</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">configure</span><span class="hljs-params">(WebSecurity web)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        web.ignoring().antMatchers(<span class="hljs-string">&quot;/api/**&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
-<h1 id="微服务权限方案-UserDetailsService实现类"><a href="#微服务权限方案-UserDetailsService实现类" class="headerlink" title="微服务权限方案-UserDetailsService实现类"></a>微服务权限方案-UserDetailsService实现类</h1><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
- * security的UserDetailsService实现类
- *&#x2F;
-@Service(&quot;userDetailsService&quot;)
-public class UserDetailsServiceImpl implements UserDetailsService &#123;
-
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private PermissionService permissionService;
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException &#123;
-        &#x2F;&#x2F; 根据用户名查询数据
-        User user &#x3D; userService.selectByUsername(username);
-        &#x2F;&#x2F; 判断
-        if (user &#x3D;&#x3D; null)&#123;
-            throw new UsernameNotFoundException(&quot;用户不存在&quot;);
-        &#125;
-        com.atguigu.entity.User curUser &#x3D; new com.atguigu.entity.User();
-        BeanUtils.copyProperties(user,curUser);
-
-        &#x2F;&#x2F; 根据用户id查询权限列表
-        List&lt;String&gt; permissionValueList &#x3D; permissionService.selectPermissionValueByUserId(user.getId());
-        SecurityUser securityUser &#x3D; new SecurityUser();
-        securityUser.setPermissionValueList(permissionValueList);
-        return securityUser;
-    &#125;
-&#125;</code></pre></div>
+<h1 id="微服务权限方案-UserDetailsService实现类"><a href="#微服务权限方案-UserDetailsService实现类" class="headerlink" title="微服务权限方案-UserDetailsService实现类"></a>微服务权限方案-UserDetailsService实现类</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * security的UserDetailsService实现类</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Service(&quot;userDetailsService&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserDetailsServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">UserDetailsService</span> </span>&#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> UserService userService;<br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> PermissionService permissionService;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> UserDetails <span class="hljs-title">loadUserByUsername</span><span class="hljs-params">(String username)</span> <span class="hljs-keyword">throws</span> UsernameNotFoundException </span>&#123;<br>        <span class="hljs-comment">// 根据用户名查询数据</span><br>        User user = userService.selectByUsername(username);<br>        <span class="hljs-comment">// 判断</span><br>        <span class="hljs-keyword">if</span> (user == <span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> UsernameNotFoundException(<span class="hljs-string">&quot;用户不存在&quot;</span>);<br>        &#125;<br>        com.atguigu.entity.User curUser = <span class="hljs-keyword">new</span> com.atguigu.entity.User();<br>        BeanUtils.copyProperties(user,curUser);<br><br>        <span class="hljs-comment">// 根据用户id查询权限列表</span><br>        List&lt;String&gt; permissionValueList = permissionService.selectPermissionValueByUserId(user.getId());<br>        SecurityUser securityUser = <span class="hljs-keyword">new</span> SecurityUser();<br>        securityUser.setPermissionValueList(permissionValueList);<br>        <span class="hljs-keyword">return</span> securityUser;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
-<h1 id="微服务权限-整合网关和权限"><a href="#微服务权限-整合网关和权限" class="headerlink" title="微服务权限-整合网关和权限"></a>微服务权限-整合网关和权限</h1><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
- * 解决跨域
- *&#x2F;
-@Configuration
-public class CorsConfig &#123;
-    &#x2F;&#x2F; 方法，请求头，跨域都可以访问
-    @Bean
-    public CorsWebFilter corsWebFilter() &#123;
-        CorsConfiguration config &#x3D; new CorsConfiguration();
-        config.addAllowedMethod(&quot;*&quot;);
-        config.addAllowedOrigin(&quot;*&quot;);
-        config.addAllowedHeader(&quot;*&quot;);
-
-        UrlBasedCorsConfigurationSource source &#x3D; new UrlBasedCorsConfigurationSource(new PathPatternParser());
-        source.registerCorsConfiguration(&quot;&#x2F;**&quot;, config);
-
-        return new CorsWebFilter(source);
-    &#125;
-&#125;</code></pre></div>
+<h1 id="微服务权限-整合网关和权限"><a href="#微服务权限-整合网关和权限" class="headerlink" title="微服务权限-整合网关和权限"></a>微服务权限-整合网关和权限</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 解决跨域</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CorsConfig</span> </span>&#123;<br>    <span class="hljs-comment">// 方法，请求头，跨域都可以访问</span><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> CorsWebFilter <span class="hljs-title">corsWebFilter</span><span class="hljs-params">()</span> </span>&#123;<br>        CorsConfiguration config = <span class="hljs-keyword">new</span> CorsConfiguration();<br>        config.addAllowedMethod(<span class="hljs-string">&quot;*&quot;</span>);<br>        config.addAllowedOrigin(<span class="hljs-string">&quot;*&quot;</span>);<br>        config.addAllowedHeader(<span class="hljs-string">&quot;*&quot;</span>);<br><br>        UrlBasedCorsConfigurationSource source = <span class="hljs-keyword">new</span> UrlBasedCorsConfigurationSource(<span class="hljs-keyword">new</span> PathPatternParser());<br>        source.registerCorsConfiguration(<span class="hljs-string">&quot;/**&quot;</span>, config);<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> CorsWebFilter(source);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <p>配置文件</p>
-<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"># 服务端口
-server.port&#x3D;8222
-# 服务名
-spring.application.name&#x3D;service-gateway
-# nacos服务地址
-spring.cloud.nacos.discovery.server-addr&#x3D;127.0.0.1:8848
-#使用路由发现
-spring.cloud.gateway.discovery.locator.enabled&#x3D;true
-
-#设置路由id
-spring.cloud.gateway.routes[0].id&#x3D;service-acl
-#设置路由的uri   lb:&#x2F;&#x2F;nacos注册服务名称
-spring.cloud.gateway.routes[0].uri&#x3D;lb:&#x2F;&#x2F;service-acl
-#设置路由断言,代理servicerId为auth-service的&#x2F;auth&#x2F;路径
-spring.cloud.gateway.routes[0].predicates&#x3D; Path&#x3D;&#x2F;*&#x2F;acl&#x2F;**</code></pre></div>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment"># 服务端口</span><br><span class="hljs-meta">server.port</span>=<span class="hljs-string">8222</span><br><span class="hljs-comment"># 服务名</span><br><span class="hljs-meta">spring.application.name</span>=<span class="hljs-string">service-gateway</span><br><span class="hljs-comment"># nacos服务地址</span><br><span class="hljs-meta">spring.cloud.nacos.discovery.server-addr</span>=<span class="hljs-string">127.0.0.1:8848</span><br><span class="hljs-comment">#使用路由发现</span><br><span class="hljs-meta">spring.cloud.gateway.discovery.locator.enabled</span>=<span class="hljs-string">true</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">#设置路由id</span><br><span class="hljs-meta">spring.cloud.gateway.routes[0].id</span>=<span class="hljs-string">service-acl</span><br><span class="hljs-comment">#设置路由的uri   lb://nacos注册服务名称</span><br><span class="hljs-meta">spring.cloud.gateway.routes[0].uri</span>=<span class="hljs-string">lb://service-acl</span><br><span class="hljs-comment">#设置路由断言,代理servicerId为auth-service的/auth/路径</span><br><span class="hljs-meta">spring.cloud.gateway.routes[0].predicates</span>= <span class="hljs-string">Path=/*/acl/**</span><br></code></pre></td></tr></table></figure>
 
 
 
@@ -1354,12 +814,6 @@ spring.cloud.gateway.routes[0].predicates&#x3D; Path&#x3D;&#x2F;*&#x2F;acl&#x2F;
   });
 </script>
 
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/components/prism-core.min.js" ></script>
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js" ></script>
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script>
   (function() {

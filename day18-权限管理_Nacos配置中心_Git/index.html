@@ -75,8 +75,6 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.css" />
-
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
@@ -259,7 +257,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          19k 字
+          20k 字
         
       </span>
     
@@ -316,32 +314,12 @@
 <h1 id="权限管理-整合SpringSecurity"><a href="#权限管理-整合SpringSecurity" class="headerlink" title="权限管理-整合SpringSecurity"></a>权限管理-整合SpringSecurity</h1><p><strong>1、在common下创建spring_security模块</strong></p>
 <p><img src="/myBlog/day18-%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86_Nacos%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83_Git/image-20220105234509111.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220105234509111"></p>
 <p><strong>2、在spring_security引入相关依赖</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">&lt;dependencies&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;com.atguigu&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;common_utils&lt;&#x2F;artifactId&gt;
-        &lt;version&gt;0.0.1-SNAPSHOT&lt;&#x2F;version&gt;
-    &lt;&#x2F;dependency&gt;
-    &lt;!-- Spring Security依赖 --&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-security&lt;&#x2F;artifactId&gt;
-    &lt;&#x2F;dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.jsonwebtoken&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;jjwt&lt;&#x2F;artifactId&gt;
-    &lt;&#x2F;dependency&gt;
-&lt;&#x2F;dependencies&gt;</code></pre></div>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.atguigu<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>common_utils<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- Spring Security依赖 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-security<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.jsonwebtoken<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jjwt<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 
 
 <p>**3、在service_acl引入*<em>spring_security*<em>依赖</em></em></p>
-<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">&lt;dependency&gt;
-    &lt;groupId&gt;com.atguigu&lt;&#x2F;groupId&gt;
-    &lt;artifactId&gt;spring_security&lt;&#x2F;artifactId&gt;
-    &lt;version&gt;0.0.1-SNAPSHOT&lt;&#x2F;version&gt;
-&lt;&#x2F;dependency&gt;</code></pre></div>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.atguigu<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring_security<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p><strong>代码结构说明：</strong></p>
 <p><img src="/myBlog/day18-%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86_Nacos%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83_Git/image-20220105234622263.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220105234622263"></p>
@@ -349,569 +327,37 @@
 <p><img src="/myBlog/day18-%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86_Nacos%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83_Git/image-20220105234639165.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220105234639165"></p>
 <p>Spring Security的核心配置就是继承WebSecurityConfigurerAdapter并注解@EnableWebSecurity的配置。</p>
 <p>这个配置指明了用户名密码的处理方式、请求路径的开合、登录登出控制等和安全相关的配置</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.atguigu.serurity.config;
-
-import com.atguigu.serurity.filter.TokenAuthenticationFilter;
-import com.atguigu.serurity.filter.TokenLoginFilter;
-import com.atguigu.serurity.security.DefaultPasswordEncoder;
-import com.atguigu.serurity.security.TokenLogoutHandler;
-import com.atguigu.serurity.security.TokenManager;
-import com.atguigu.serurity.security.UnauthorizedEntryPoint;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
-
-&#x2F;**
- * &lt;p&gt;
- * Security配置类
- * &lt;&#x2F;p&gt;
- *
- * @author qy
- * @since 2019-11-18
- *&#x2F;
-@Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled &#x3D; true)
-public class TokenWebSecurityConfig extends WebSecurityConfigurerAdapter &#123;
-
-    private UserDetailsService userDetailsService;
-    private TokenManager tokenManager;
-    private DefaultPasswordEncoder defaultPasswordEncoder;
-    private RedisTemplate redisTemplate;
-
-    @Autowired
-    public TokenWebSecurityConfig(UserDetailsService userDetailsService, DefaultPasswordEncoder defaultPasswordEncoder,
-                                  TokenManager tokenManager, RedisTemplate redisTemplate) &#123;
-        this.userDetailsService &#x3D; userDetailsService;
-        this.defaultPasswordEncoder &#x3D; defaultPasswordEncoder;
-        this.tokenManager &#x3D; tokenManager;
-        this.redisTemplate &#x3D; redisTemplate;
-    &#125;
-
-    &#x2F;**
-     * 配置设置
-     * @param http
-     * @throws Exception
-     *&#x2F;
-    @Override
-    protected void configure(HttpSecurity http) throws Exception &#123;
-        http.exceptionHandling()
-                .authenticationEntryPoint(new UnauthorizedEntryPoint())
-                .and().csrf().disable()
-                .authorizeRequests()
-                .anyRequest().authenticated()
-                .and().logout().logoutUrl(&quot;&#x2F;admin&#x2F;acl&#x2F;index&#x2F;logout&quot;)
-                .addLogoutHandler(new TokenLogoutHandler(tokenManager,redisTemplate)).and()
-                .addFilter(new TokenLoginFilter(authenticationManager(), tokenManager, redisTemplate))
-                .addFilter(new TokenAuthenticationFilter(authenticationManager(), tokenManager, redisTemplate)).httpBasic();
-    &#125;
-
-    &#x2F;**
-     * 密码处理
-     * @param auth
-     * @throws Exception
-     *&#x2F;
-    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception &#123;
-        auth.userDetailsService(userDetailsService).passwordEncoder(defaultPasswordEncoder);
-    &#125;
-
-    &#x2F;**
-     * 配置哪些请求不拦截
-     * @param web
-     * @throws Exception
-     *&#x2F;
-    @Override
-    public void configure(WebSecurity web) throws Exception &#123;
-        web.ignoring().antMatchers(&quot;&#x2F;api&#x2F;**&quot;,
-                &quot;&#x2F;swagger-resources&#x2F;**&quot;, &quot;&#x2F;webjars&#x2F;**&quot;, &quot;&#x2F;v2&#x2F;**&quot;, &quot;&#x2F;swagger-ui.html&#x2F;**&quot;
-               );
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.atguigu.serurity.config;<br><br><span class="hljs-keyword">import</span> com.atguigu.serurity.filter.TokenAuthenticationFilter;<br><span class="hljs-keyword">import</span> com.atguigu.serurity.filter.TokenLoginFilter;<br><span class="hljs-keyword">import</span> com.atguigu.serurity.security.DefaultPasswordEncoder;<br><span class="hljs-keyword">import</span> com.atguigu.serurity.security.TokenLogoutHandler;<br><span class="hljs-keyword">import</span> com.atguigu.serurity.security.TokenManager;<br><span class="hljs-keyword">import</span> com.atguigu.serurity.security.UnauthorizedEntryPoint;<br><span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;<br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Configuration;<br><span class="hljs-keyword">import</span> org.springframework.data.redis.core.RedisTemplate;<br><span class="hljs-keyword">import</span> org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;<br><span class="hljs-keyword">import</span> org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;<br><span class="hljs-keyword">import</span> org.springframework.security.config.annotation.web.builders.HttpSecurity;<br><span class="hljs-keyword">import</span> org.springframework.security.config.annotation.web.builders.WebSecurity;<br><span class="hljs-keyword">import</span> org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;<br><span class="hljs-keyword">import</span> org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;<br><span class="hljs-keyword">import</span> org.springframework.security.core.userdetails.UserDetailsService;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * &lt;p&gt;</span><br><span class="hljs-comment"> * Security配置类</span><br><span class="hljs-comment"> * &lt;/p&gt;</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> qy</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@since</span> 2019-11-18</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@EnableWebSecurity</span><br><span class="hljs-meta">@EnableGlobalMethodSecurity(prePostEnabled = true)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TokenWebSecurityConfig</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WebSecurityConfigurerAdapter</span> </span>&#123;<br><br>    <span class="hljs-keyword">private</span> UserDetailsService userDetailsService;<br>    <span class="hljs-keyword">private</span> TokenManager tokenManager;<br>    <span class="hljs-keyword">private</span> DefaultPasswordEncoder defaultPasswordEncoder;<br>    <span class="hljs-keyword">private</span> RedisTemplate redisTemplate;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">TokenWebSecurityConfig</span><span class="hljs-params">(UserDetailsService userDetailsService, DefaultPasswordEncoder defaultPasswordEncoder,</span></span><br><span class="hljs-params"><span class="hljs-function">                                  TokenManager tokenManager, RedisTemplate redisTemplate)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.userDetailsService = userDetailsService;<br>        <span class="hljs-keyword">this</span>.defaultPasswordEncoder = defaultPasswordEncoder;<br>        <span class="hljs-keyword">this</span>.tokenManager = tokenManager;<br>        <span class="hljs-keyword">this</span>.redisTemplate = redisTemplate;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 配置设置</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> http</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> Exception</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">configure</span><span class="hljs-params">(HttpSecurity http)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        http.exceptionHandling()<br>                .authenticationEntryPoint(<span class="hljs-keyword">new</span> UnauthorizedEntryPoint())<br>                .and().csrf().disable()<br>                .authorizeRequests()<br>                .anyRequest().authenticated()<br>                .and().logout().logoutUrl(<span class="hljs-string">&quot;/admin/acl/index/logout&quot;</span>)<br>                .addLogoutHandler(<span class="hljs-keyword">new</span> TokenLogoutHandler(tokenManager,redisTemplate)).and()<br>                .addFilter(<span class="hljs-keyword">new</span> TokenLoginFilter(authenticationManager(), tokenManager, redisTemplate))<br>                .addFilter(<span class="hljs-keyword">new</span> TokenAuthenticationFilter(authenticationManager(), tokenManager, redisTemplate)).httpBasic();<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 密码处理</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> auth</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> Exception</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">configure</span><span class="hljs-params">(AuthenticationManagerBuilder auth)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        auth.userDetailsService(userDetailsService).passwordEncoder(defaultPasswordEncoder);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 配置哪些请求不拦截</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> web</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> Exception</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">configure</span><span class="hljs-params">(WebSecurity web)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        web.ignoring().antMatchers(<span class="hljs-string">&quot;/api/**&quot;</span>,<br>                <span class="hljs-string">&quot;/swagger-resources/**&quot;</span>, <span class="hljs-string">&quot;/webjars/**&quot;</span>, <span class="hljs-string">&quot;/v2/**&quot;</span>, <span class="hljs-string">&quot;/swagger-ui.html/**&quot;</span><br>               );<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><strong>5、创建认证授权相关的工具类</strong></p>
 <p><img src="/myBlog/day18-%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86_Nacos%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83_Git/image-20220105234720427.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220105234720427"></p>
 <p>（1）DefaultPasswordEncoder：密码处理的方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.atguigu.serurity.security;
-
-import com.atguigu.commonutils.MD5;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
-
-&#x2F;**
- * &lt;p&gt;
- * t密码的处理方法类型
- * &lt;&#x2F;p&gt;
- *
- * @author qy
- * @since 2019-11-08
- *&#x2F;
-@Component
-public class DefaultPasswordEncoder implements PasswordEncoder &#123;
-
-    public DefaultPasswordEncoder() &#123;
-        this(-1);
-    &#125;
-
-    &#x2F;**
-     * @param strength
-     *            the log rounds to use, between 4 and 31
-     *&#x2F;
-    public DefaultPasswordEncoder(int strength) &#123;
-
-    &#125;
-
-    public String encode(CharSequence rawPassword) &#123;
-        return MD5.encrypt(rawPassword.toString());
-    &#125;
-
-    public boolean matches(CharSequence rawPassword, String encodedPassword) &#123;
-        return encodedPassword.equals(MD5.encrypt(rawPassword.toString()));
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.atguigu.serurity.security;<br><br><span class="hljs-keyword">import</span> com.atguigu.commonutils.MD5;<br><span class="hljs-keyword">import</span> org.springframework.security.crypto.password.PasswordEncoder;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Component;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * &lt;p&gt;</span><br><span class="hljs-comment"> * t密码的处理方法类型</span><br><span class="hljs-comment"> * &lt;/p&gt;</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> qy</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@since</span> 2019-11-08</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DefaultPasswordEncoder</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">PasswordEncoder</span> </span>&#123;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DefaultPasswordEncoder</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>(-<span class="hljs-number">1</span>);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> strength</span><br><span class="hljs-comment">     *            the log rounds to use, between 4 and 31</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DefaultPasswordEncoder</span><span class="hljs-params">(<span class="hljs-keyword">int</span> strength)</span> </span>&#123;<br><br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">encode</span><span class="hljs-params">(CharSequence rawPassword)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> MD5.encrypt(rawPassword.toString());<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">matches</span><span class="hljs-params">(CharSequence rawPassword, String encodedPassword)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> encodedPassword.equals(MD5.encrypt(rawPassword.toString()));<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>（2）TokenManager：token操作的工具类</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.atguigu.serurity.security;
-
-import io.jsonwebtoken.CompressionCodecs;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.stereotype.Component;
-
-import java.util.Date;
-
-&#x2F;**
- * &lt;p&gt;
- * token管理
- * &lt;&#x2F;p&gt;
- *
- * @author qy
- * @since 2019-11-08
- *&#x2F;
-@Component
-public class TokenManager &#123;
-
-    private long tokenExpiration &#x3D; 24*60*60*1000;
-    private String tokenSignKey &#x3D; &quot;123456&quot;;
-
-    public String createToken(String username) &#123;
-        String token &#x3D; Jwts.builder().setSubject(username)
-                .setExpiration(new Date(System.currentTimeMillis() + tokenExpiration))
-                .signWith(SignatureAlgorithm.HS512, tokenSignKey).compressWith(CompressionCodecs.GZIP).compact();
-        return token;
-    &#125;
-
-    public String getUserFromToken(String token) &#123;
-        String user &#x3D; Jwts.parser().setSigningKey(tokenSignKey).parseClaimsJws(token).getBody().getSubject();
-        return user;
-    &#125;
-
-    public void removeToken(String token) &#123;
-        &#x2F;&#x2F;jwttoken无需删除，客户端扔掉即可。
-    &#125;
-
-&#125;
-</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.atguigu.serurity.security;<br><br><span class="hljs-keyword">import</span> io.jsonwebtoken.CompressionCodecs;<br><span class="hljs-keyword">import</span> io.jsonwebtoken.Jwts;<br><span class="hljs-keyword">import</span> io.jsonwebtoken.SignatureAlgorithm;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Component;<br><br><span class="hljs-keyword">import</span> java.util.Date;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * &lt;p&gt;</span><br><span class="hljs-comment"> * token管理</span><br><span class="hljs-comment"> * &lt;/p&gt;</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> qy</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@since</span> 2019-11-08</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TokenManager</span> </span>&#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">long</span> tokenExpiration = <span class="hljs-number">24</span>*<span class="hljs-number">60</span>*<span class="hljs-number">60</span>*<span class="hljs-number">1000</span>;<br>    <span class="hljs-keyword">private</span> String tokenSignKey = <span class="hljs-string">&quot;123456&quot;</span>;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">createToken</span><span class="hljs-params">(String username)</span> </span>&#123;<br>        String token = Jwts.builder().setSubject(username)<br>                .setExpiration(<span class="hljs-keyword">new</span> Date(System.currentTimeMillis() + tokenExpiration))<br>                .signWith(SignatureAlgorithm.HS512, tokenSignKey).compressWith(CompressionCodecs.GZIP).compact();<br>        <span class="hljs-keyword">return</span> token;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getUserFromToken</span><span class="hljs-params">(String token)</span> </span>&#123;<br>        String user = Jwts.parser().setSigningKey(tokenSignKey).parseClaimsJws(token).getBody().getSubject();<br>        <span class="hljs-keyword">return</span> user;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">removeToken</span><span class="hljs-params">(String token)</span> </span>&#123;<br>        <span class="hljs-comment">//jwttoken无需删除，客户端扔掉即可。</span><br>    &#125;<br><br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 <p>（3）TokenLogoutHandler：退出实现</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.atguigu.serurity.security;
-
-import com.atguigu.commonutils.R;
-import com.atguigu.commonutils.ResponseUtil;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.web.authentication.logout.LogoutHandler;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-&#x2F;**
- * &lt;p&gt;
- * 登出业务逻辑类
- * &lt;&#x2F;p&gt;
- *
- * @author qy
- * @since 2019-11-08
- *&#x2F;
-public class TokenLogoutHandler implements LogoutHandler &#123;
-
-    private TokenManager tokenManager;
-    private RedisTemplate redisTemplate;
-
-    public TokenLogoutHandler(TokenManager tokenManager, RedisTemplate redisTemplate) &#123;
-        this.tokenManager &#x3D; tokenManager;
-        this.redisTemplate &#x3D; redisTemplate;
-    &#125;
-
-    @Override
-    public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) &#123;
-        String token &#x3D; request.getHeader(&quot;token&quot;);
-        if (token !&#x3D; null) &#123;
-            tokenManager.removeToken(token);
-
-            &#x2F;&#x2F;清空当前用户缓存中的权限数据
-            String userName &#x3D; tokenManager.getUserFromToken(token);
-            redisTemplate.delete(userName);
-        &#125;
-        ResponseUtil.out(response, R.ok());
-    &#125;
-
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.atguigu.serurity.security;<br><br><span class="hljs-keyword">import</span> com.atguigu.commonutils.R;<br><span class="hljs-keyword">import</span> com.atguigu.commonutils.ResponseUtil;<br><span class="hljs-keyword">import</span> org.springframework.data.redis.core.RedisTemplate;<br><span class="hljs-keyword">import</span> org.springframework.security.core.Authentication;<br><span class="hljs-keyword">import</span> org.springframework.security.web.authentication.logout.LogoutHandler;<br><br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;<br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * &lt;p&gt;</span><br><span class="hljs-comment"> * 登出业务逻辑类</span><br><span class="hljs-comment"> * &lt;/p&gt;</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> qy</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@since</span> 2019-11-08</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TokenLogoutHandler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">LogoutHandler</span> </span>&#123;<br><br>    <span class="hljs-keyword">private</span> TokenManager tokenManager;<br>    <span class="hljs-keyword">private</span> RedisTemplate redisTemplate;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">TokenLogoutHandler</span><span class="hljs-params">(TokenManager tokenManager, RedisTemplate redisTemplate)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.tokenManager = tokenManager;<br>        <span class="hljs-keyword">this</span>.redisTemplate = redisTemplate;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">logout</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Authentication authentication)</span> </span>&#123;<br>        String token = request.getHeader(<span class="hljs-string">&quot;token&quot;</span>);<br>        <span class="hljs-keyword">if</span> (token != <span class="hljs-keyword">null</span>) &#123;<br>            tokenManager.removeToken(token);<br><br>            <span class="hljs-comment">//清空当前用户缓存中的权限数据</span><br>            String userName = tokenManager.getUserFromToken(token);<br>            redisTemplate.delete(userName);<br>        &#125;<br>        ResponseUtil.out(response, R.ok());<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>（4）UnauthorizedEntryPoint：未授权统一处理</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.atguigu.serurity.security;
-
-import com.atguigu.commonutils.R;
-import com.atguigu.commonutils.ResponseUtil;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.web.AuthenticationEntryPoint;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-
-&#x2F;**
- * &lt;p&gt;
- * 未授权的统一处理方式
- * &lt;&#x2F;p&gt;
- *
- * @author qy
- * @since 2019-11-08
- *&#x2F;
-public class UnauthorizedEntryPoint implements AuthenticationEntryPoint &#123;
-
-    @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response,
-                         AuthenticationException authException) throws IOException, ServletException &#123;
-
-        ResponseUtil.out(response, R.error());
-    &#125;
-&#125;
-</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.atguigu.serurity.security;<br><br><span class="hljs-keyword">import</span> com.atguigu.commonutils.R;<br><span class="hljs-keyword">import</span> com.atguigu.commonutils.ResponseUtil;<br><span class="hljs-keyword">import</span> org.springframework.security.core.AuthenticationException;<br><span class="hljs-keyword">import</span> org.springframework.security.web.AuthenticationEntryPoint;<br><br><span class="hljs-keyword">import</span> javax.servlet.ServletException;<br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;<br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;<br><span class="hljs-keyword">import</span> java.io.IOException;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * &lt;p&gt;</span><br><span class="hljs-comment"> * 未授权的统一处理方式</span><br><span class="hljs-comment"> * &lt;/p&gt;</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> qy</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@since</span> 2019-11-08</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UnauthorizedEntryPoint</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">AuthenticationEntryPoint</span> </span>&#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">commence</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response,</span></span><br><span class="hljs-params"><span class="hljs-function">                         AuthenticationException authException)</span> <span class="hljs-keyword">throws</span> IOException, ServletException </span>&#123;<br><br>        ResponseUtil.out(response, R.error());<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 <p><strong>6、创建认证授权实体类</strong></p>
 <p><img src="/myBlog/day18-%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86_Nacos%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83_Git/image-20220105234907668.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220105234907668"></p>
 <p><strong>（1）SecutityUser</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.atguigu.serurity.entity;
-
-import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.util.StringUtils;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-&#x2F;**
- * &lt;p&gt;
- * 安全认证用户详情信息
- * &lt;&#x2F;p&gt;
- *
- * @author qy
- * @since 2019-11-08
- *&#x2F;
-@Data
-@Slf4j
-public class SecurityUser implements UserDetails &#123;
-
-    &#x2F;&#x2F;当前登录用户
-    private transient User currentUserInfo;
-
-    &#x2F;&#x2F;当前权限
-    private List&lt;String&gt; permissionValueList;
-
-    public SecurityUser() &#123;
-    &#125;
-
-    public SecurityUser(User user) &#123;
-        if (user !&#x3D; null) &#123;
-            this.currentUserInfo &#x3D; user;
-        &#125;
-    &#125;
-
-    @Override
-    public Collection&lt;? extends GrantedAuthority&gt; getAuthorities() &#123;
-        Collection&lt;GrantedAuthority&gt; authorities &#x3D; new ArrayList&lt;&gt;();
-        for(String permissionValue : permissionValueList) &#123;
-            if(StringUtils.isEmpty(permissionValue)) continue;
-            SimpleGrantedAuthority authority &#x3D; new SimpleGrantedAuthority(permissionValue);
-            authorities.add(authority);
-        &#125;
-
-        return authorities;
-    &#125;
-
-    @Override
-    public String getPassword() &#123;
-        return currentUserInfo.getPassword();
-    &#125;
-
-    @Override
-    public String getUsername() &#123;
-        return currentUserInfo.getUsername();
-    &#125;
-
-    @Override
-    public boolean isAccountNonExpired() &#123;
-        return true;
-    &#125;
-
-    @Override
-    public boolean isAccountNonLocked() &#123;
-        return true;
-    &#125;
-
-    @Override
-    public boolean isCredentialsNonExpired() &#123;
-        return true;
-    &#125;
-
-    @Override
-    public boolean isEnabled() &#123;
-        return true;
-    &#125;
-&#125;
-</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.atguigu.serurity.entity;<br><br><span class="hljs-keyword">import</span> lombok.Data;<br><span class="hljs-keyword">import</span> lombok.extern.slf4j.Slf4j;<br><span class="hljs-keyword">import</span> org.springframework.security.core.GrantedAuthority;<br><span class="hljs-keyword">import</span> org.springframework.security.core.authority.SimpleGrantedAuthority;<br><span class="hljs-keyword">import</span> org.springframework.security.core.userdetails.UserDetails;<br><span class="hljs-keyword">import</span> org.springframework.util.StringUtils;<br><br><span class="hljs-keyword">import</span> java.util.ArrayList;<br><span class="hljs-keyword">import</span> java.util.Collection;<br><span class="hljs-keyword">import</span> java.util.List;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * &lt;p&gt;</span><br><span class="hljs-comment"> * 安全认证用户详情信息</span><br><span class="hljs-comment"> * &lt;/p&gt;</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> qy</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@since</span> 2019-11-08</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Data</span><br><span class="hljs-meta">@Slf4j</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SecurityUser</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">UserDetails</span> </span>&#123;<br><br>    <span class="hljs-comment">//当前登录用户</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">transient</span> User currentUserInfo;<br><br>    <span class="hljs-comment">//当前权限</span><br>    <span class="hljs-keyword">private</span> List&lt;String&gt; permissionValueList;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">SecurityUser</span><span class="hljs-params">()</span> </span>&#123;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">SecurityUser</span><span class="hljs-params">(User user)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (user != <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-keyword">this</span>.currentUserInfo = user;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> Collection&lt;? extends GrantedAuthority&gt; getAuthorities() &#123;<br>        Collection&lt;GrantedAuthority&gt; authorities = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>        <span class="hljs-keyword">for</span>(String permissionValue : permissionValueList) &#123;<br>            <span class="hljs-keyword">if</span>(StringUtils.isEmpty(permissionValue)) <span class="hljs-keyword">continue</span>;<br>            SimpleGrantedAuthority authority = <span class="hljs-keyword">new</span> SimpleGrantedAuthority(permissionValue);<br>            authorities.add(authority);<br>        &#125;<br><br>        <span class="hljs-keyword">return</span> authorities;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getPassword</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> currentUserInfo.getPassword();<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getUsername</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> currentUserInfo.getUsername();<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isAccountNonExpired</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isAccountNonLocked</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isCredentialsNonExpired</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isEnabled</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 <p><strong>（2）User</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.atguigu.serurity.entity;
-
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-
-import java.io.Serializable;
-
-&#x2F;**
- * &lt;p&gt;
- * 用户实体类
- * &lt;&#x2F;p&gt;
- *
- * @author qy
- * @since 2019-11-08
- *&#x2F;
-@Data
-@ApiModel(description &#x3D; &quot;用户实体类&quot;)
-public class User implements Serializable &#123;
-
-	private static final long serialVersionUID &#x3D; 1L;
-
-	@ApiModelProperty(value &#x3D; &quot;微信openid&quot;)
-	private String username;
-
-	@ApiModelProperty(value &#x3D; &quot;密码&quot;)
-	private String password;
-
-	@ApiModelProperty(value &#x3D; &quot;昵称&quot;)
-	private String nickName;
-
-	@ApiModelProperty(value &#x3D; &quot;用户头像&quot;)
-	private String salt;
-
-	@ApiModelProperty(value &#x3D; &quot;用户签名&quot;)
-	private String token;
-
-&#125;
-
-
-
-</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.atguigu.serurity.entity;<br><br><span class="hljs-keyword">import</span> io.swagger.annotations.ApiModel;<br><span class="hljs-keyword">import</span> io.swagger.annotations.ApiModelProperty;<br><span class="hljs-keyword">import</span> lombok.Data;<br><br><span class="hljs-keyword">import</span> java.io.Serializable;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * &lt;p&gt;</span><br><span class="hljs-comment"> * 用户实体类</span><br><span class="hljs-comment"> * &lt;/p&gt;</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> qy</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@since</span> 2019-11-08</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Data</span><br><span class="hljs-meta">@ApiModel(description = &quot;用户实体类&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span> </span>&#123;<br><br>	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;<br><br>	<span class="hljs-meta">@ApiModelProperty(value = &quot;微信openid&quot;)</span><br>	<span class="hljs-keyword">private</span> String username;<br><br>	<span class="hljs-meta">@ApiModelProperty(value = &quot;密码&quot;)</span><br>	<span class="hljs-keyword">private</span> String password;<br><br>	<span class="hljs-meta">@ApiModelProperty(value = &quot;昵称&quot;)</span><br>	<span class="hljs-keyword">private</span> String nickName;<br><br>	<span class="hljs-meta">@ApiModelProperty(value = &quot;用户头像&quot;)</span><br>	<span class="hljs-keyword">private</span> String salt;<br><br>	<span class="hljs-meta">@ApiModelProperty(value = &quot;用户签名&quot;)</span><br>	<span class="hljs-keyword">private</span> String token;<br><br>&#125;<br><br><br><br><br></code></pre></td></tr></table></figure>
 
 <p><strong>7、创建认证和授权的filter</strong></p>
 <p><img src="/myBlog/day18-%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86_Nacos%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83_Git/image-20220105235005444.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220105235005444"></p>
 <p><strong>（1）TokenLoginFilter：认证的filter</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.atguigu.serurity.filter;
-
-import com.atguigu.commonutils.R;
-import com.atguigu.commonutils.ResponseUtil;
-import com.atguigu.serurity.entity.SecurityUser;
-import com.atguigu.serurity.entity.User;
-import com.atguigu.serurity.security.TokenManager;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.ArrayList;
-
-&#x2F;**
- * &lt;p&gt;
- * 登录过滤器，继承UsernamePasswordAuthenticationFilter，对用户名密码进行登录校验
- * &lt;&#x2F;p&gt;
- *
- * @author qy
- * @since 2019-11-08
- *&#x2F;
-public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter &#123;
-
-    private AuthenticationManager authenticationManager;
-    private TokenManager tokenManager;
-    private RedisTemplate redisTemplate;
-
-    public TokenLoginFilter(AuthenticationManager authenticationManager, TokenManager tokenManager, RedisTemplate redisTemplate) &#123;
-        this.authenticationManager &#x3D; authenticationManager;
-        this.tokenManager &#x3D; tokenManager;
-        this.redisTemplate &#x3D; redisTemplate;
-        this.setPostOnly(false);
-        this.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher(&quot;&#x2F;admin&#x2F;acl&#x2F;login&quot;,&quot;POST&quot;));
-    &#125;
-
-    @Override
-    public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res)
-            throws AuthenticationException &#123;
-        try &#123;
-            User user &#x3D; new ObjectMapper().readValue(req.getInputStream(), User.class);
-
-            return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword(), new ArrayList&lt;&gt;()));
-        &#125; catch (IOException e) &#123;
-            throw new RuntimeException(e);
-        &#125;
-
-    &#125;
-
-    &#x2F;**
-     * 登录成功
-     * @param req
-     * @param res
-     * @param chain
-     * @param auth
-     * @throws IOException
-     * @throws ServletException
-     *&#x2F;
-    @Override
-    protected void successfulAuthentication(HttpServletRequest req, HttpServletResponse res, FilterChain chain,
-                                            Authentication auth) throws IOException, ServletException &#123;
-        SecurityUser user &#x3D; (SecurityUser) auth.getPrincipal();
-        String token &#x3D; tokenManager.createToken(user.getCurrentUserInfo().getUsername());
-        redisTemplate.opsForValue().set(user.getCurrentUserInfo().getUsername(), user.getPermissionValueList());
-
-        ResponseUtil.out(res, R.ok().data(&quot;token&quot;, token));
-    &#125;
-
-    &#x2F;**
-     * 登录失败
-     * @param request
-     * @param response
-     * @param e
-     * @throws IOException
-     * @throws ServletException
-     *&#x2F;
-    @Override
-    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
-                                              AuthenticationException e) throws IOException, ServletException &#123;
-        ResponseUtil.out(response, R.error());
-    &#125;
-&#125;
-</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.atguigu.serurity.filter;<br><br><span class="hljs-keyword">import</span> com.atguigu.commonutils.R;<br><span class="hljs-keyword">import</span> com.atguigu.commonutils.ResponseUtil;<br><span class="hljs-keyword">import</span> com.atguigu.serurity.entity.SecurityUser;<br><span class="hljs-keyword">import</span> com.atguigu.serurity.entity.User;<br><span class="hljs-keyword">import</span> com.atguigu.serurity.security.TokenManager;<br><span class="hljs-keyword">import</span> com.fasterxml.jackson.databind.ObjectMapper;<br><span class="hljs-keyword">import</span> org.springframework.data.redis.core.RedisTemplate;<br><span class="hljs-keyword">import</span> org.springframework.security.authentication.AuthenticationManager;<br><span class="hljs-keyword">import</span> org.springframework.security.authentication.UsernamePasswordAuthenticationToken;<br><span class="hljs-keyword">import</span> org.springframework.security.core.Authentication;<br><span class="hljs-keyword">import</span> org.springframework.security.core.AuthenticationException;<br><span class="hljs-keyword">import</span> org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;<br><span class="hljs-keyword">import</span> org.springframework.security.web.util.matcher.AntPathRequestMatcher;<br><br><span class="hljs-keyword">import</span> javax.servlet.FilterChain;<br><span class="hljs-keyword">import</span> javax.servlet.ServletException;<br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;<br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;<br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> java.util.ArrayList;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * &lt;p&gt;</span><br><span class="hljs-comment"> * 登录过滤器，继承UsernamePasswordAuthenticationFilter，对用户名密码进行登录校验</span><br><span class="hljs-comment"> * &lt;/p&gt;</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> qy</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@since</span> 2019-11-08</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TokenLoginFilter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">UsernamePasswordAuthenticationFilter</span> </span>&#123;<br><br>    <span class="hljs-keyword">private</span> AuthenticationManager authenticationManager;<br>    <span class="hljs-keyword">private</span> TokenManager tokenManager;<br>    <span class="hljs-keyword">private</span> RedisTemplate redisTemplate;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">TokenLoginFilter</span><span class="hljs-params">(AuthenticationManager authenticationManager, TokenManager tokenManager, RedisTemplate redisTemplate)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.authenticationManager = authenticationManager;<br>        <span class="hljs-keyword">this</span>.tokenManager = tokenManager;<br>        <span class="hljs-keyword">this</span>.redisTemplate = redisTemplate;<br>        <span class="hljs-keyword">this</span>.setPostOnly(<span class="hljs-keyword">false</span>);<br>        <span class="hljs-keyword">this</span>.setRequiresAuthenticationRequestMatcher(<span class="hljs-keyword">new</span> AntPathRequestMatcher(<span class="hljs-string">&quot;/admin/acl/login&quot;</span>,<span class="hljs-string">&quot;POST&quot;</span>));<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Authentication <span class="hljs-title">attemptAuthentication</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse res)</span></span><br><span class="hljs-function">            <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            User user = <span class="hljs-keyword">new</span> ObjectMapper().readValue(req.getInputStream(), User.class);<br><br>            <span class="hljs-keyword">return</span> authenticationManager.authenticate(<span class="hljs-keyword">new</span> UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword(), <span class="hljs-keyword">new</span> ArrayList&lt;&gt;()));<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(e);<br>        &#125;<br><br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 登录成功</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> req</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> res</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> chain</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> auth</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> IOException</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> ServletException</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">successfulAuthentication</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse res, FilterChain chain,</span></span><br><span class="hljs-params"><span class="hljs-function">                                            Authentication auth)</span> <span class="hljs-keyword">throws</span> IOException, ServletException </span>&#123;<br>        SecurityUser user = (SecurityUser) auth.getPrincipal();<br>        String token = tokenManager.createToken(user.getCurrentUserInfo().getUsername());<br>        redisTemplate.opsForValue().set(user.getCurrentUserInfo().getUsername(), user.getPermissionValueList());<br><br>        ResponseUtil.out(res, R.ok().data(<span class="hljs-string">&quot;token&quot;</span>, token));<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 登录失败</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> request</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> response</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> e</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> IOException</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> ServletException</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">unsuccessfulAuthentication</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response,</span></span><br><span class="hljs-params"><span class="hljs-function">                                              AuthenticationException e)</span> <span class="hljs-keyword">throws</span> IOException, ServletException </span>&#123;<br>        ResponseUtil.out(response, R.error());<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 <p>（2）TokenAuthenticationFilter：<br>授权filter</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.atguigu.serurity.filter;
-
-import com.atguigu.commonutils.R;
-import com.atguigu.commonutils.ResponseUtil;
-import com.atguigu.serurity.security.TokenManager;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
-import org.springframework.util.StringUtils;
-
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-&#x2F;**
- * &lt;p&gt;
- * 访问过滤器
- * &lt;&#x2F;p&gt;
- *
- * @author qy
- * @since 2019-11-08
- *&#x2F;
-public class TokenAuthenticationFilter extends BasicAuthenticationFilter &#123;
-    private TokenManager tokenManager;
-    private RedisTemplate redisTemplate;
-
-    public TokenAuthenticationFilter(AuthenticationManager authManager, TokenManager tokenManager,RedisTemplate redisTemplate) &#123;
-        super(authManager);
-        this.tokenManager &#x3D; tokenManager;
-        this.redisTemplate &#x3D; redisTemplate;
-    &#125;
-
-    @Override
-    protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
-            throws IOException, ServletException &#123;
-        logger.info(&quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot;+req.getRequestURI());
-        if(req.getRequestURI().indexOf(&quot;admin&quot;) &#x3D;&#x3D; -1) &#123;
-            chain.doFilter(req, res);
-            return;
-        &#125;
-
-        UsernamePasswordAuthenticationToken authentication &#x3D; null;
-        try &#123;
-            authentication &#x3D; getAuthentication(req);
-        &#125; catch (Exception e) &#123;
-            ResponseUtil.out(res, R.error());
-        &#125;
-
-        if (authentication !&#x3D; null) &#123;
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-        &#125; else &#123;
-            ResponseUtil.out(res, R.error());
-        &#125;
-        chain.doFilter(req, res);
-    &#125;
-
-    private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) &#123;
-        &#x2F;&#x2F; token置于header里
-        String token &#x3D; request.getHeader(&quot;token&quot;);
-        if (token !&#x3D; null &amp;&amp; !&quot;&quot;.equals(token.trim())) &#123;
-            String userName &#x3D; tokenManager.getUserFromToken(token);
-
-            List&lt;String&gt; permissionValueList &#x3D; (List&lt;String&gt;) redisTemplate.opsForValue().get(userName);
-            Collection&lt;GrantedAuthority&gt; authorities &#x3D; new ArrayList&lt;&gt;();
-            for(String permissionValue : permissionValueList) &#123;
-                if(StringUtils.isEmpty(permissionValue)) continue;
-                SimpleGrantedAuthority authority &#x3D; new SimpleGrantedAuthority(permissionValue);
-                authorities.add(authority);
-            &#125;
-
-            if (!StringUtils.isEmpty(userName)) &#123;
-                return new UsernamePasswordAuthenticationToken(userName, token, authorities);
-            &#125;
-            return null;
-        &#125;
-        return null;
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.atguigu.serurity.filter;<br><br><span class="hljs-keyword">import</span> com.atguigu.commonutils.R;<br><span class="hljs-keyword">import</span> com.atguigu.commonutils.ResponseUtil;<br><span class="hljs-keyword">import</span> com.atguigu.serurity.security.TokenManager;<br><span class="hljs-keyword">import</span> org.springframework.data.redis.core.RedisTemplate;<br><span class="hljs-keyword">import</span> org.springframework.security.authentication.AuthenticationManager;<br><span class="hljs-keyword">import</span> org.springframework.security.authentication.UsernamePasswordAuthenticationToken;<br><span class="hljs-keyword">import</span> org.springframework.security.core.GrantedAuthority;<br><span class="hljs-keyword">import</span> org.springframework.security.core.authority.SimpleGrantedAuthority;<br><span class="hljs-keyword">import</span> org.springframework.security.core.context.SecurityContextHolder;<br><span class="hljs-keyword">import</span> org.springframework.security.web.authentication.www.BasicAuthenticationFilter;<br><span class="hljs-keyword">import</span> org.springframework.util.StringUtils;<br><br><span class="hljs-keyword">import</span> javax.servlet.FilterChain;<br><span class="hljs-keyword">import</span> javax.servlet.ServletException;<br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;<br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;<br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> java.util.ArrayList;<br><span class="hljs-keyword">import</span> java.util.Collection;<br><span class="hljs-keyword">import</span> java.util.List;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * &lt;p&gt;</span><br><span class="hljs-comment"> * 访问过滤器</span><br><span class="hljs-comment"> * &lt;/p&gt;</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> qy</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@since</span> 2019-11-08</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TokenAuthenticationFilter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BasicAuthenticationFilter</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> TokenManager tokenManager;<br>    <span class="hljs-keyword">private</span> RedisTemplate redisTemplate;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">TokenAuthenticationFilter</span><span class="hljs-params">(AuthenticationManager authManager, TokenManager tokenManager,RedisTemplate redisTemplate)</span> </span>&#123;<br>        <span class="hljs-keyword">super</span>(authManager);<br>        <span class="hljs-keyword">this</span>.tokenManager = tokenManager;<br>        <span class="hljs-keyword">this</span>.redisTemplate = redisTemplate;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doFilterInternal</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse res, FilterChain chain)</span></span><br><span class="hljs-function">            <span class="hljs-keyword">throws</span> IOException, ServletException </span>&#123;<br>        logger.info(<span class="hljs-string">&quot;=================&quot;</span>+req.getRequestURI());<br>        <span class="hljs-keyword">if</span>(req.getRequestURI().indexOf(<span class="hljs-string">&quot;admin&quot;</span>) == -<span class="hljs-number">1</span>) &#123;<br>            chain.doFilter(req, res);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br><br>        UsernamePasswordAuthenticationToken authentication = <span class="hljs-keyword">null</span>;<br>        <span class="hljs-keyword">try</span> &#123;<br>            authentication = getAuthentication(req);<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            ResponseUtil.out(res, R.error());<br>        &#125;<br><br>        <span class="hljs-keyword">if</span> (authentication != <span class="hljs-keyword">null</span>) &#123;<br>            SecurityContextHolder.getContext().setAuthentication(authentication);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            ResponseUtil.out(res, R.error());<br>        &#125;<br>        chain.doFilter(req, res);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> UsernamePasswordAuthenticationToken <span class="hljs-title">getAuthentication</span><span class="hljs-params">(HttpServletRequest request)</span> </span>&#123;<br>        <span class="hljs-comment">// token置于header里</span><br>        String token = request.getHeader(<span class="hljs-string">&quot;token&quot;</span>);<br>        <span class="hljs-keyword">if</span> (token != <span class="hljs-keyword">null</span> &amp;&amp; !<span class="hljs-string">&quot;&quot;</span>.equals(token.trim())) &#123;<br>            String userName = tokenManager.getUserFromToken(token);<br><br>            List&lt;String&gt; permissionValueList = (List&lt;String&gt;) redisTemplate.opsForValue().get(userName);<br>            Collection&lt;GrantedAuthority&gt; authorities = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>            <span class="hljs-keyword">for</span>(String permissionValue : permissionValueList) &#123;<br>                <span class="hljs-keyword">if</span>(StringUtils.isEmpty(permissionValue)) <span class="hljs-keyword">continue</span>;<br>                SimpleGrantedAuthority authority = <span class="hljs-keyword">new</span> SimpleGrantedAuthority(permissionValue);<br>                authorities.add(authority);<br>            &#125;<br><br>            <span class="hljs-keyword">if</span> (!StringUtils.isEmpty(userName)) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> UsernamePasswordAuthenticationToken(userName, token, authorities);<br>            &#125;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
@@ -925,19 +371,10 @@ public class TokenAuthenticationFilter extends BasicAuthenticationFilter &#123;
 <p><strong>- spring.profiles.active=dev</strong> 即为当前环境对应的 profile。 注意：当 spring.profiles.active 为空时，对应的连接符 - 也将不存在，dataId 的拼接格式变成 ${prefix}.${file-extension}</p>
 <p><strong>- file-exetension</strong> 为配置内容的数据格式，可以通过配置项 spring.cloud.nacos.config.file-extension 来配置。目前只支持 properties 和 yaml 类型</p>
 <h2 id="2、以service-statistics模块为例"><a href="#2、以service-statistics模块为例" class="headerlink" title="2、以service-statistics模块为例"></a>2、以service-statistics模块为例</h2><p><strong>（1）在service中引入依赖</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">&lt;dependencies&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.cloud&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-config&lt;&#x2F;artifactId&gt;
-    &lt;&#x2F;dependency&gt;
-&lt;&#x2F;dependencies&gt;</code></pre></div>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-config<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p><strong>（2）创建bootstrap.properties配置文件</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties">#配置中心地址
-spring.cloud.nacos.config.server-addr&#x3D;127.0.0.1:8848
-spring.profiles.active&#x3D;dev
-# 该配置影响统一配置中心中的dataId
-spring.application.name&#x3D;service-statistics</code></pre></div>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment">#配置中心地址</span><br><span class="hljs-meta">spring.cloud.nacos.config.server-addr</span>=<span class="hljs-string">127.0.0.1:8848</span><br><span class="hljs-meta">spring.profiles.active</span>=<span class="hljs-string">dev</span><br><span class="hljs-comment"># 该配置影响统一配置中心中的dataId</span><br><span class="hljs-meta">spring.application.name</span>=<span class="hljs-string">service-statistics</span><br></code></pre></td></tr></table></figure>
 
 <p><strong>（3）把项目之前的application.properties内容注释，启动项目查看效果</strong></p>
 <h2 id="3、补充：springboot配置文件加载顺序"><a href="#3、补充：springboot配置文件加载顺序" class="headerlink" title="3、补充：springboot配置文件加载顺序"></a><strong>3、补充：springboot配置文件加载顺序</strong></h2><p>其实yml和properties文件是一样的原理，且一个项目上要么yml或者properties，二选一的存在。推荐使用yml，更简洁。</p>
@@ -965,15 +402,7 @@ spring.application.name&#x3D;service-statistics</code></pre></div>
 <h1 id="Nacos配置中心-多配置文件加载"><a href="#Nacos配置中心-多配置文件加载" class="headerlink" title="Nacos配置中心-多配置文件加载"></a>Nacos配置中心-多配置文件加载</h1><p>在一些情况下需要加载多个配置文件。假如现在dev名称空间下有三个配置文件：service-statistics.properties、redis.properties、jdbc.properties</p>
 <p><img src="/myBlog/day18-%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86_Nacos%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83_Git/image-20220106124021259.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220106124021259"></p>
 <p><strong>添加配置，加载多个配置文件</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties">spring.cloud.nacos.config.server-addr&#x3D;127.0.0.1:8848
-spring.profiles.active&#x3D;dev
-# 该配置影响统一配置中心中的dataId，之前已经配置过
-spring.application.name&#x3D;service-statistics
-spring.cloud.nacos.config.namespace&#x3D;13b5c197-de5b-47e7-9903-ec0538c9db01
-spring.cloud.nacos.config.ext-config[0].data-id&#x3D;redis.properties
-# 开启动态刷新配置，否则配置文件修改，工程无法感知
-spring.cloud.nacos.config.ext-config[0].refresh&#x3D;true
-spring.cloud.nacos.config.ext-config[1].data-id&#x3D;jdbc.properties</code></pre></div>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">spring.cloud.nacos.config.server-addr</span>=<span class="hljs-string">127.0.0.1:8848</span><br><span class="hljs-meta">spring.profiles.active</span>=<span class="hljs-string">dev</span><br><span class="hljs-comment"># 该配置影响统一配置中心中的dataId，之前已经配置过</span><br><span class="hljs-meta">spring.application.name</span>=<span class="hljs-string">service-statistics</span><br><span class="hljs-meta">spring.cloud.nacos.config.namespace</span>=<span class="hljs-string">13b5c197-de5b-47e7-9903-ec0538c9db01</span><br><span class="hljs-meta">spring.cloud.nacos.config.ext-config[0].data-id</span>=<span class="hljs-string">redis.properties</span><br><span class="hljs-comment"># 开启动态刷新配置，否则配置文件修改，工程无法感知</span><br><span class="hljs-meta">spring.cloud.nacos.config.ext-config[0].refresh</span>=<span class="hljs-string">true</span><br><span class="hljs-meta">spring.cloud.nacos.config.ext-config[1].data-id</span>=<span class="hljs-string">jdbc.properties</span><br></code></pre></td></tr></table></figure>
 
 
 
@@ -1330,12 +759,6 @@ spring.cloud.nacos.config.ext-config[1].data-id&#x3D;jdbc.properties</code></pre
   });
 </script>
 
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/components/prism-core.min.js" ></script>
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js" ></script>
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script>
   (function() {

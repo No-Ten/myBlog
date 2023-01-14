@@ -16,12 +16,12 @@
   <meta name="author" content="Ten">
   <meta name="keywords" content="">
   
-    <meta name="description" content="day15-课程评论分析_支付功能课程评论实现过程分析(TODO)![02 课程评论实现过程分析](day15-课程评论分析_支付功能&#x2F;02 课程评论实现过程分析.png) 一、数据库设计1、数据库edu_comment 2、数据表guli_edu.sql  二、创建课程评论接口1、在service-edu模块，生成课程评论代码（1）使用mp代码生成器生成 2、在service-ucenter模块">
+    <meta name="description" content="day15-课程评论分析_支付功能课程评论实现过程分析(TODO)![02 课程评论实现过程分析](day15-课程评论分析_支付功能&#x2F;02 课程评论实现过程分析.png) 一、数据库设计1、数据库edu_comment 2、数据表1guli_edu.sql  二、创建课程评论接口1、在service-edu模块，生成课程评论代码（1）使用mp代码生成器生成 2、在service-ucenter模">
 <meta property="og:type" content="article">
 <meta property="og:title" content="day15-课程评论分析_支付功能">
 <meta property="og:url" content="https://no-ten.github.io/day15-%E8%AF%BE%E7%A8%8B%E8%AF%84%E8%AE%BA%E5%88%86%E6%9E%90_%E6%94%AF%E4%BB%98%E5%8A%9F%E8%83%BD/index.html">
 <meta property="og:site_name" content="TBlog">
-<meta property="og:description" content="day15-课程评论分析_支付功能课程评论实现过程分析(TODO)![02 课程评论实现过程分析](day15-课程评论分析_支付功能&#x2F;02 课程评论实现过程分析.png) 一、数据库设计1、数据库edu_comment 2、数据表guli_edu.sql  二、创建课程评论接口1、在service-edu模块，生成课程评论代码（1）使用mp代码生成器生成 2、在service-ucenter模块">
+<meta property="og:description" content="day15-课程评论分析_支付功能课程评论实现过程分析(TODO)![02 课程评论实现过程分析](day15-课程评论分析_支付功能&#x2F;02 课程评论实现过程分析.png) 一、数据库设计1、数据库edu_comment 2、数据表1guli_edu.sql  二、创建课程评论接口1、在service-edu模块，生成课程评论代码（1）使用mp代码生成器生成 2、在service-ucenter模">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://no-ten.github.io/myBlog/day15-%E8%AF%BE%E7%A8%8B%E8%AF%84%E8%AE%BA%E5%88%86%E6%9E%90_%E6%94%AF%E4%BB%98%E5%8A%9F%E8%83%BD/image-20220103163408936.png">
 <meta property="og:image" content="https://no-ten.github.io/myBlog/day15-%E8%AF%BE%E7%A8%8B%E8%AF%84%E8%AE%BA%E5%88%86%E6%9E%90_%E6%94%AF%E4%BB%98%E5%8A%9F%E8%83%BD/image-20220103163638975.png">
@@ -46,8 +46,6 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
@@ -231,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          27k 字
+          25k 字
         
       </span>
     
@@ -285,255 +283,25 @@
               
               <h1 id="day15-课程评论分析-支付功能"><a href="#day15-课程评论分析-支付功能" class="headerlink" title="day15-课程评论分析_支付功能"></a>day15-课程评论分析_支付功能</h1><h1 id="课程评论实现过程分析-TODO"><a href="#课程评论实现过程分析-TODO" class="headerlink" title="课程评论实现过程分析(TODO)"></a>课程评论实现过程分析(TODO)</h1><p>![02 课程评论实现过程分析](day15-课程评论分析_支付功能/02 课程评论实现过程分析.png)</p>
 <h2 id="一、数据库设计"><a href="#一、数据库设计" class="headerlink" title="一、数据库设计"></a>一、数据库设计</h2><h3 id="1、数据库"><a href="#1、数据库" class="headerlink" title="1、数据库"></a>1、数据库</h3><p>edu_comment</p>
-<h3 id="2、数据表"><a href="#2、数据表" class="headerlink" title="2、数据表"></a><strong>2、数据表</strong></h3><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">guli_edu.sql</code></pre></div>
+<h3 id="2、数据表"><a href="#2、数据表" class="headerlink" title="2、数据表"></a><strong>2、数据表</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">guli_edu.sql<br></code></pre></td></tr></table></figure>
 
 <h2 id="二、创建课程评论接口"><a href="#二、创建课程评论接口" class="headerlink" title="二、创建课程评论接口"></a><strong>二、创建课程评论接口</strong></h2><h3 id="1、在service-edu模块，生成课程评论代码"><a href="#1、在service-edu模块，生成课程评论代码" class="headerlink" title="1、在service-edu模块，生成课程评论代码"></a>1、在service-edu模块，生成课程评论代码</h3><p>（1）使用mp代码生成器生成</p>
 <h3 id="2、在service-ucenter模块，创建接口"><a href="#2、在service-ucenter模块，创建接口" class="headerlink" title="2、在service-ucenter模块，创建接口"></a>2、在service-ucenter模块，创建接口</h3><p>（1）实现用户id获取用户信息，返回用户信息对象</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F;根据token字符串获取用户信息
-@PostMapping(&quot;getInfoUc&#x2F;&#123;id&#125;&quot;)
-public com.atguigu.commonutils.vo.UcenterMember getInfo(@PathVariable String id) &#123;
-        &#x2F;&#x2F;根据用户id获取用户信息
-        UcenterMember ucenterMember &#x3D; memberService.getById(id);
-        com.atguigu.commonutils.vo.UcenterMember memeber &#x3D; new com.atguigu.commonutils.vo.UcenterMember();
-        BeanUtils.copyProperties(ucenterMember,memeber);
-        return memeber;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//根据token字符串获取用户信息</span><br><span class="hljs-meta">@PostMapping(&quot;getInfoUc/&#123;id&#125;&quot;)</span><br><span class="hljs-keyword">public</span> com.atguigu.commonutils.vo.<span class="hljs-function">UcenterMember <span class="hljs-title">getInfo</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> String id)</span> </span>&#123;<br>        <span class="hljs-comment">//根据用户id获取用户信息</span><br>        UcenterMember ucenterMember = memberService.getById(id);<br>        com.atguigu.commonutils.vo.UcenterMember memeber = <span class="hljs-keyword">new</span> com.atguigu.commonutils.vo.UcenterMember();<br>        BeanUtils.copyProperties(ucenterMember,memeber);<br>        <span class="hljs-keyword">return</span> memeber;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h3 id="3、创建课程评论controller"><a href="#3、创建课程评论controller" class="headerlink" title="3、创建课程评论controller"></a><strong>3、创建课程评论controller</strong></h3><p>（1）在service-edu模块创建client，实现微服务调用</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Component
-@FeignClient(name&#x3D;&quot;service-ucenter&quot;,fallback &#x3D; UcenterClientImpl.class)
-public interface UcenterClient &#123;
-    &#x2F;&#x2F;根据用户id获取用户信息
-    @GetMapping(&quot;&#x2F;ucenterservice&#x2F;member&#x2F;getUcenterPay&#x2F;&#123;memberId&#125;&quot;)
-    public UcenterMemberPay getUcenterPay(@PathVariable(&quot;memberId&quot;) String memberId);
-&#125;
-@Component
-public class UcenterClientImpl implements UcenterClient &#123;
-    @Override
-    public UcenterMemberPay getUcenterPay(String memberId) &#123;
-        return null;
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span><br><span class="hljs-meta">@FeignClient(name=&quot;service-ucenter&quot;,fallback = UcenterClientImpl.class)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">UcenterClient</span> </span>&#123;<br>    <span class="hljs-comment">//根据用户id获取用户信息</span><br>    <span class="hljs-meta">@GetMapping(&quot;/ucenterservice/member/getUcenterPay/&#123;memberId&#125;&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> UcenterMemberPay <span class="hljs-title">getUcenterPay</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable(&quot;memberId&quot;)</span> String memberId)</span></span>;<br>&#125;<br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UcenterClientImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">UcenterClient</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> UcenterMemberPay <span class="hljs-title">getUcenterPay</span><span class="hljs-params">(String memberId)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>（2）创建评论列表和添加评论接口</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@RestController
-@RequestMapping(&quot;&#x2F;eduservice&#x2F;comment&quot;)
-@CrossOrigin
-public class CommentFrontController &#123;
-    @Autowired
-    private CommentService commentService;
-    @Autowired
-    private UcenterClient ucenterClient;
-    &#x2F;&#x2F;根据课程id查询评论列表
-    @ApiOperation(value &#x3D; &quot;评论分页列表&quot;)
-    @GetMapping(&quot;&#123;page&#125;&#x2F;&#123;limit&#125;&quot;)
-    public R index(
-            @ApiParam(name &#x3D; &quot;page&quot;, value &#x3D; &quot;当前页码&quot;, required &#x3D; true)
-            @PathVariable Long page,
-            @ApiParam(name &#x3D; &quot;limit&quot;, value &#x3D; &quot;每页记录数&quot;, required &#x3D; true)
-            @PathVariable Long limit,
-            @ApiParam(name &#x3D; &quot;courseQuery&quot;, value &#x3D; &quot;查询对象&quot;, required &#x3D; false)
-                    String courseId) &#123;
-        Page&lt;Comment&gt; pageParam &#x3D; new Page&lt;&gt;(page, limit);
-        QueryWrapper&lt;Comment&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
-        wrapper.eq(&quot;course_id&quot;,courseId);
-        commentService.page(pageParam,wrapper);
-        List&lt;Comment&gt; commentList &#x3D; pageParam.getRecords();
-        Map&lt;String, Object&gt; map &#x3D; new HashMap&lt;&gt;();
-        map.put(&quot;items&quot;, commentList);
-        map.put(&quot;current&quot;, pageParam.getCurrent());
-        map.put(&quot;pages&quot;, pageParam.getPages());
-        map.put(&quot;size&quot;, pageParam.getSize());
-        map.put(&quot;total&quot;, pageParam.getTotal());
-        map.put(&quot;hasNext&quot;, pageParam.hasNext());
-        map.put(&quot;hasPrevious&quot;, pageParam.hasPrevious());
-        return R.ok().data(map);
-    &#125;
-    @ApiOperation(value &#x3D; &quot;添加评论&quot;)
-    @PostMapping(&quot;auth&#x2F;save&quot;)
-    public R save(@RequestBody Comment comment, HttpServletRequest request) &#123;
-        String memberId &#x3D; JwtUtils.getMemberIdByJwtToken(request);
-        if(StringUtils.isEmpty(memberId)) &#123;
-            return R.error().code(28004).message(&quot;请登录&quot;);
-        &#125;
-        comment.setMemberId(memberId);
-        UcenterMemberPay ucenterInfo &#x3D; ucenterClient.getUcenterPay(memberId);
-        comment.setNickname(ucenterInfo.getNickname());
-        comment.setAvatar(ucenterInfo.getAvatar());
-        commentService.save(comment);
-        return R.ok();
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;/eduservice/comment&quot;)</span><br><span class="hljs-meta">@CrossOrigin</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CommentFrontController</span> </span>&#123;<br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> CommentService commentService;<br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> UcenterClient ucenterClient;<br>    <span class="hljs-comment">//根据课程id查询评论列表</span><br>    <span class="hljs-meta">@ApiOperation(value = &quot;评论分页列表&quot;)</span><br>    <span class="hljs-meta">@GetMapping(&quot;&#123;page&#125;/&#123;limit&#125;&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">index</span><span class="hljs-params">(</span></span><br><span class="hljs-params"><span class="hljs-function">            <span class="hljs-meta">@ApiParam(name = &quot;page&quot;, value = &quot;当前页码&quot;, required = true)</span></span></span><br><span class="hljs-params"><span class="hljs-function">            <span class="hljs-meta">@PathVariable</span> Long page,</span></span><br><span class="hljs-params"><span class="hljs-function">            <span class="hljs-meta">@ApiParam(name = &quot;limit&quot;, value = &quot;每页记录数&quot;, required = true)</span></span></span><br><span class="hljs-params"><span class="hljs-function">            <span class="hljs-meta">@PathVariable</span> Long limit,</span></span><br><span class="hljs-params"><span class="hljs-function">            <span class="hljs-meta">@ApiParam(name = &quot;courseQuery&quot;, value = &quot;查询对象&quot;, required = false)</span></span></span><br><span class="hljs-params"><span class="hljs-function">                    String courseId)</span> </span>&#123;<br>        Page&lt;Comment&gt; pageParam = <span class="hljs-keyword">new</span> Page&lt;&gt;(page, limit);<br>        QueryWrapper&lt;Comment&gt; wrapper = <span class="hljs-keyword">new</span> QueryWrapper&lt;&gt;();<br>        wrapper.eq(<span class="hljs-string">&quot;course_id&quot;</span>,courseId);<br>        commentService.page(pageParam,wrapper);<br>        List&lt;Comment&gt; commentList = pageParam.getRecords();<br>        Map&lt;String, Object&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();<br>        map.put(<span class="hljs-string">&quot;items&quot;</span>, commentList);<br>        map.put(<span class="hljs-string">&quot;current&quot;</span>, pageParam.getCurrent());<br>        map.put(<span class="hljs-string">&quot;pages&quot;</span>, pageParam.getPages());<br>        map.put(<span class="hljs-string">&quot;size&quot;</span>, pageParam.getSize());<br>        map.put(<span class="hljs-string">&quot;total&quot;</span>, pageParam.getTotal());<br>        map.put(<span class="hljs-string">&quot;hasNext&quot;</span>, pageParam.hasNext());<br>        map.put(<span class="hljs-string">&quot;hasPrevious&quot;</span>, pageParam.hasPrevious());<br>        <span class="hljs-keyword">return</span> R.ok().data(map);<br>    &#125;<br>    <span class="hljs-meta">@ApiOperation(value = &quot;添加评论&quot;)</span><br>    <span class="hljs-meta">@PostMapping(&quot;auth/save&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">save</span><span class="hljs-params">(<span class="hljs-meta">@RequestBody</span> Comment comment, HttpServletRequest request)</span> </span>&#123;<br>        String memberId = JwtUtils.getMemberIdByJwtToken(request);<br>        <span class="hljs-keyword">if</span>(StringUtils.isEmpty(memberId)) &#123;<br>            <span class="hljs-keyword">return</span> R.error().code(<span class="hljs-number">28004</span>).message(<span class="hljs-string">&quot;请登录&quot;</span>);<br>        &#125;<br>        comment.setMemberId(memberId);<br>        UcenterMemberPay ucenterInfo = ucenterClient.getUcenterPay(memberId);<br>        comment.setNickname(ucenterInfo.getNickname());<br>        comment.setAvatar(ucenterInfo.getAvatar());<br>        commentService.save(comment);<br>        <span class="hljs-keyword">return</span> R.ok();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h2 id="三、课程评论前端整合"><a href="#三、课程评论前端整合" class="headerlink" title="三、课程评论前端整合"></a>三、课程评论前端整合</h2><h3 id="1、在api创建commonedu-js"><a href="#1、在api创建commonedu-js" class="headerlink" title="1、在api创建commonedu.js"></a>1、在api创建commonedu.js</h3><div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">import request from &#39;@&#x2F;utils&#x2F;request&#39;
-export default &#123;
-  getPageList(page, limit, courseId) &#123;
-    return request(&#123;
-      url: &#96;&#x2F;eduservice&#x2F;comment&#x2F;$&#123;page&#125;&#x2F;$&#123;limit&#125;&#96;,
-      method: &#39;get&#39;,
-      params: &#123;courseId&#125;
-    &#125;)
-  &#125;,
-  addComment(comment) &#123;
-    return request(&#123;
-      url: &#96;&#x2F;eduservice&#x2F;comment&#x2F;auth&#x2F;save&#96;,
-      method: &#39;post&#39;,
-      data: comment
-    &#125;)
-  &#125;
-&#125;</code></pre></div>
+<h2 id="三、课程评论前端整合"><a href="#三、课程评论前端整合" class="headerlink" title="三、课程评论前端整合"></a>三、课程评论前端整合</h2><h3 id="1、在api创建commonedu-js"><a href="#1、在api创建commonedu-js" class="headerlink" title="1、在api创建commonedu.js"></a>1、在api创建commonedu.js</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> request <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/utils/request&#x27;</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  <span class="hljs-function"><span class="hljs-title">getPageList</span>(<span class="hljs-params">page, limit, courseId</span>)</span> &#123;<br>    <span class="hljs-keyword">return</span> request(&#123;<br>      <span class="hljs-attr">url</span>: <span class="hljs-string">`/eduservice/comment/<span class="hljs-subst">$&#123;page&#125;</span>/<span class="hljs-subst">$&#123;limit&#125;</span>`</span>,<br>      <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;get&#x27;</span>,<br>      <span class="hljs-attr">params</span>: &#123;courseId&#125;<br>    &#125;)<br>  &#125;,<br>  <span class="hljs-function"><span class="hljs-title">addComment</span>(<span class="hljs-params">comment</span>)</span> &#123;<br>    <span class="hljs-keyword">return</span> request(&#123;<br>      <span class="hljs-attr">url</span>: <span class="hljs-string">`/eduservice/comment/auth/save`</span>,<br>      <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;post&#x27;</span>,<br>      <span class="hljs-attr">data</span>: comment<br>    &#125;)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h3 id="2、在课程详情页面，调用方法-id-vue"><a href="#2、在课程详情页面，调用方法-id-vue" class="headerlink" title="2、在课程详情页面，调用方法 _id.vue"></a>2、在课程详情页面，调用方法 _id.vue</h3><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">import comment from &#39;@&#x2F;api&#x2F;commonedu&#39;
-2
- 3
-&lt;script&gt;
-4
-import course from &#39;@&#x2F;api&#x2F;course&#39;
-5
-import comment from &#39;@&#x2F;api&#x2F;commonedu&#39;
-6
-export default &#123;
-      &#x2F;&#x2F;和页面异步开始的
-   asyncData(&#123; params, error &#125;) &#123;
-     return &#123;courseId: params.id&#125;
-   &#125;,
-   data() &#123;
-     return &#123;
-       data:&#123;&#125;,
-       page:1,
-       limit:4,
-       total:10,
-       comment:&#123;
-         content:&#39;&#39;,
-         courseId:&#39;&#39;
-       &#125;,
-       courseInfo:&#123;&#125;,
-       chapterVideoList:[],
-       isbuyCourse:false
-     &#125;
-   &#125;,
-   created() &#123;
-     this.initCourseInfo()
-     this.initComment()
-   &#125;,
-   methods:&#123;
-     &#x2F;&#x2F;获取课程详情
-     initCourseInfo() &#123;
-       course.getCourseInfo(this.courseId)
-             .then(response &#x3D;&gt; &#123;
-               this.courseInfo&#x3D;response.data.data.courseFrontInfo
-               this.chapterVideoList&#x3D;response.data.data.chapterVideoList
-               this.isbuyCourse&#x3D;response.data.data.isbuyCourse
-             &#125;)
-     &#125;,
-     initComment()&#123;
-        comment.getPageList(this.page, this.limit, this.courseId).then(response &#x3D;&gt; &#123;
-            this.data &#x3D; response.data.data
-        &#125;)
-     &#125;,
-     addComment()&#123;
-         this.comment.courseId &#x3D; this.courseId
-         this.comment.teacherId &#x3D; this.courseInfo.teacherId
-         comment.addComment(this.comment).then(response &#x3D;&gt; &#123;
-             if(response.data.success)&#123;
-                 this.comment.content &#x3D; &#39;&#39;
-                 this.initComment()
-             &#125;
-         &#125;)
-     &#125;,
-     gotoPage(page)&#123;
-           comment.getPageList(page, this.limit,this.courseId).then(response &#x3D;&gt; &#123;
-               this.data &#x3D; response.data.data
-           &#125;)
-       &#125;
-   &#125;
- &#125;;
- &lt;&#x2F;script&gt;</code></pre></div>
+<h3 id="2、在课程详情页面，调用方法-id-vue"><a href="#2、在课程详情页面，调用方法-id-vue" class="headerlink" title="2、在课程详情页面，调用方法 _id.vue"></a>2、在课程详情页面，调用方法 _id.vue</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><code class="hljs vue">import comment from &#x27;@/api/commonedu&#x27;<br>2<br> 3<br>&lt;script&gt;<br>4<br>import course from &#x27;@/api/course&#x27;<br>5<br>import comment from &#x27;@/api/commonedu&#x27;<br>6<br>export default &#123;<br>      //和页面异步开始的<br>   asyncData(&#123; params, error &#125;) &#123;<br>     return &#123;courseId: params.id&#125;<br>   &#125;,<br>   data() &#123;<br>     return &#123;<br>       data:&#123;&#125;,<br>       page:1,<br>       limit:4,<br>       total:10,<br>       comment:&#123;<br>         content:&#x27;&#x27;,<br>         courseId:&#x27;&#x27;<br>       &#125;,<br>       courseInfo:&#123;&#125;,<br>       chapterVideoList:[],<br>       isbuyCourse:false<br>     &#125;<br>   &#125;,<br>   created() &#123;<br>     this.initCourseInfo()<br>     this.initComment()<br>   &#125;,<br>   methods:&#123;<br>     //获取课程详情<br>     initCourseInfo() &#123;<br>       course.getCourseInfo(this.courseId)<br>             .then(response =&gt; &#123;<br>               this.courseInfo=response.data.data.courseFrontInfo<br>               this.chapterVideoList=response.data.data.chapterVideoList<br>               this.isbuyCourse=response.data.data.isbuyCourse<br>             &#125;)<br>     &#125;,<br>     initComment()&#123;<br>        comment.getPageList(this.page, this.limit, this.courseId).then(response =&gt; &#123;<br>            this.data = response.data.data<br>        &#125;)<br>     &#125;,<br>     addComment()&#123;<br>         this.comment.courseId = this.courseId<br>         this.comment.teacherId = this.courseInfo.teacherId<br>         comment.addComment(this.comment).then(response =&gt; &#123;<br>             if(response.data.success)&#123;<br>                 this.comment.content = &#x27;&#x27;<br>                 this.initComment()<br>             &#125;<br>         &#125;)<br>     &#125;,<br>     gotoPage(page)&#123;<br>           comment.getPageList(page, this.limit,this.courseId).then(response =&gt; &#123;<br>               this.data = response.data.data<br>           &#125;)<br>       &#125;<br>   &#125;<br> &#125;;<br> &lt;/script&gt;<br></code></pre></td></tr></table></figure>
 
-<h3 id="3、在课程详情页面-id-vue显示评论"><a href="#3、在课程详情页面-id-vue显示评论" class="headerlink" title="3、在课程详情页面 _id.vue显示评论"></a>3、在课程详情页面 _id.vue显示评论</h3><div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&lt;div class&#x3D;&quot;mt50 commentHtml&quot;&gt;&lt;div&gt;
-       &lt;h6 class&#x3D;&quot;c-c-content c-infor-title&quot; id&#x3D;&quot;i-art-comment&quot;&gt;
-         &lt;span class&#x3D;&quot;commentTitle&quot;&gt;课程评论&lt;&#x2F;span&gt;
-       &lt;&#x2F;h6&gt;
-       &lt;section class&#x3D;&quot;lh-bj-list pr mt20 replyhtml&quot;&gt;
-         &lt;ul&gt;
-           &lt;li class&#x3D;&quot;unBr&quot;&gt;
-             &lt;aside class&#x3D;&quot;noter-pic&quot;&gt;
-               &lt;img width&#x3D;&quot;50&quot; height&#x3D;&quot;50&quot; class&#x3D;&quot;picImg&quot; src&#x3D;&quot;~&#x2F;assets&#x2F;img&#x2F;avatar-boy.gif&quot;&gt;
-               &lt;&#x2F;aside&gt;
-             &lt;div class&#x3D;&quot;of&quot;&gt;
-               &lt;section class&#x3D;&quot;n-reply-wrap&quot;&gt;
-                 &lt;fieldset&gt;
-                   &lt;textarea name&#x3D;&quot;&quot; v-model&#x3D;&quot;comment.content&quot; placeholder&#x3D;&quot;输入您要评论的文字&quot; id&#x3D;&quot;commentContent&quot;&gt;&lt;&#x2F;textarea&gt;
-                 &lt;&#x2F;fieldset&gt;
-                 &lt;p class&#x3D;&quot;of mt5 tar pl10 pr10&quot;&gt;
-                   &lt;span class&#x3D;&quot;fl &quot;&gt;&lt;tt class&#x3D;&quot;c-red commentContentmeg&quot; style&#x3D;&quot;display: none;&quot;&gt;&lt;&#x2F;tt&gt;&lt;&#x2F;span&gt;
-                   &lt;input type&#x3D;&quot;button&quot; @click&#x3D;&quot;addComment()&quot; value&#x3D;&quot;回复&quot; class&#x3D;&quot;lh-reply-btn&quot;&gt;
-                 &lt;&#x2F;p&gt;
-               &lt;&#x2F;section&gt;
-             &lt;&#x2F;div&gt;
-           &lt;&#x2F;li&gt;
-         &lt;&#x2F;ul&gt;
-       &lt;&#x2F;section&gt;
-       &lt;section class&#x3D;&quot;&quot;&gt;
-           &lt;section class&#x3D;&quot;question-list lh-bj-list pr&quot;&gt;
-             &lt;ul class&#x3D;&quot;pr10&quot;&gt;
-               &lt;li v-for&#x3D;&quot;(comment,index) in data.items&quot; v-bind:key&#x3D;&quot;index&quot;&gt;
-                   &lt;aside class&#x3D;&quot;noter-pic&quot;&gt;
-                     &lt;img width&#x3D;&quot;50&quot; height&#x3D;&quot;50&quot; class&#x3D;&quot;picImg&quot; :src&#x3D;&quot;comment.avatar&quot;&gt;
-                     &lt;&#x2F;aside&gt;
-                   &lt;div class&#x3D;&quot;of&quot;&gt;
-                     &lt;span class&#x3D;&quot;fl&quot;&gt; 
-                     &lt;font class&#x3D;&quot;fsize12 c-blue&quot;&gt; 
-                       &#123;&#123;comment.nickname&#125;&#125;&lt;&#x2F;font&gt;
-                     &lt;font class&#x3D;&quot;fsize12 c-999 ml5&quot;&gt;评论：&lt;&#x2F;font&gt;&lt;&#x2F;span&gt;
-                   &lt;&#x2F;div&gt;
-                   &lt;div class&#x3D;&quot;noter-txt mt5&quot;&gt;
-                     &lt;p&gt;&#123;&#123;comment.content&#125;&#125;&lt;&#x2F;p&gt;
-                   &lt;&#x2F;div&gt;
-                   &lt;div class&#x3D;&quot;of mt5&quot;&gt;
-                     &lt;span class&#x3D;&quot;fr&quot;&gt;&lt;font class&#x3D;&quot;fsize12 c-999 ml5&quot;&gt;&#123;&#123;comment.gmtCreate&#125;&#125;&lt;&#x2F;font&gt;&lt;&#x2F;span&gt;
-                   &lt;&#x2F;div&gt;
-                 &lt;&#x2F;li&gt;
-               &lt;&#x2F;ul&gt;
-           &lt;&#x2F;section&gt;
-         &lt;&#x2F;section&gt;
-         &lt;!-- 公共分页 开始 --&gt;
-         &lt;div class&#x3D;&quot;paging&quot;&gt;
-             &lt;!-- undisable这个class是否存在，取决于数据属性hasPrevious --&gt;
-             &lt;a
-             :class&#x3D;&quot;&#123;undisable: !data.hasPrevious&#125;&quot;
-             href&#x3D;&quot;#&quot;
-             title&#x3D;&quot;首页&quot;
-             @click.prevent&#x3D;&quot;gotoPage(1)&quot;&gt;首&lt;&#x2F;a&gt;
-             &lt;a
-             :class&#x3D;&quot;&#123;undisable: !data.hasPrevious&#125;&quot;
-             href&#x3D;&quot;#&quot;
-             title&#x3D;&quot;前一页&quot;
-             @click.prevent&#x3D;&quot;gotoPage(data.current-1)&quot;&gt;&lt;&lt;&#x2F;a&gt;
-             &lt;a
-             v-for&#x3D;&quot;page in data.pages&quot;
-             :key&#x3D;&quot;page&quot;
-             :class&#x3D;&quot;&#123;current: data.current &#x3D;&#x3D; page, undisable: data.current &#x3D;&#x3D; page&#125;&quot;
-             :title&#x3D;&quot;&#39;第&#39;+page+&#39;页&#39;&quot;
-             href&#x3D;&quot;#&quot;
-             @click.prevent&#x3D;&quot;gotoPage(page)&quot;&gt;&#123;&#123; page &#125;&#125;&lt;&#x2F;a&gt;
-             &lt;a
-             :class&#x3D;&quot;&#123;undisable: !data.hasNext&#125;&quot;
-             href&#x3D;&quot;#&quot;
-             title&#x3D;&quot;后一页&quot;
-             @click.prevent&#x3D;&quot;gotoPage(data.current+1)&quot;&gt;&gt;&lt;&#x2F;a&gt;
-             &lt;a
-             :class&#x3D;&quot;&#123;undisable: !data.hasNext&#125;&quot;
-             href&#x3D;&quot;#&quot;
-             title&#x3D;&quot;末页&quot;
-             @click.prevent&#x3D;&quot;gotoPage(data.pages)&quot;&gt;末&lt;&#x2F;a&gt;
-             &lt;div class&#x3D;&quot;clear&quot;&#x2F;&gt;
-         &lt;&#x2F;div&gt;
-         &lt;!-- 公共分页 结束 --&gt;
-       &lt;&#x2F;div&gt;
-     &lt;&#x2F;div&gt;</code></pre></div>
+<h3 id="3、在课程详情页面-id-vue显示评论"><a href="#3、在课程详情页面-id-vue显示评论" class="headerlink" title="3、在课程详情页面 _id.vue显示评论"></a>3、在课程详情页面 _id.vue显示评论</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;mt50 commentHtml&quot;</span>&gt;&lt;div&gt;<br>       &lt;h6 class=&quot;c-c-content c-infor-title&quot; id=&quot;i-art-comment&quot;&gt;<br>         &lt;span class=&quot;commentTitle&quot;&gt;课程评论&lt;/span&gt;<br>       &lt;/h6&gt;<br>       &lt;section class=&quot;lh-bj-list pr mt20 replyhtml&quot;&gt;<br>         &lt;ul&gt;<br>           &lt;li class=&quot;unBr&quot;&gt;<br>             &lt;aside class=&quot;noter-pic&quot;&gt;<br>               &lt;img width=&quot;50&quot; height=&quot;50&quot; class=&quot;picImg&quot; src=&quot;~/assets/img/avatar-boy.gif&quot;&gt;<br>               &lt;/aside&gt;<br>             &lt;div class=&quot;of&quot;&gt;<br>               &lt;section class=&quot;n-reply-wrap&quot;&gt;<br>                 &lt;fieldset&gt;<br>                   &lt;textarea name=&quot;&quot; v-model=&quot;comment.content&quot; placeholder=&quot;输入您要评论的文字&quot; id=&quot;commentContent&quot;&gt;&lt;/textarea&gt;<br>                 &lt;/fieldset&gt;<br>                 &lt;p class=&quot;of mt5 tar pl10 pr10&quot;&gt;<br>                   &lt;span class=&quot;fl &quot;&gt;&lt;tt class=&quot;c-red commentContentmeg&quot; style=&quot;display: none;&quot;&gt;&lt;/tt&gt;&lt;/span&gt;<br>                   &lt;input type=&quot;button&quot; @click=&quot;addComment()&quot; value=&quot;回复&quot; class=&quot;lh-reply-btn&quot;&gt;<br>                 &lt;/p&gt;<br>               &lt;/section&gt;<br>             &lt;/div&gt;<br>           &lt;/li&gt;<br>         &lt;/ul&gt;<br>       &lt;/section&gt;<br>       &lt;section class=&quot;&quot;&gt;<br>           &lt;section class=&quot;question-list lh-bj-list pr&quot;&gt;<br>             &lt;ul class=&quot;pr10&quot;&gt;<br>               &lt;li v-for=&quot;(comment,index) in data.items&quot; v-bind:key=&quot;index&quot;&gt;<br>                   &lt;aside class=&quot;noter-pic&quot;&gt;<br>                     &lt;img width=&quot;50&quot; height=&quot;50&quot; class=&quot;picImg&quot; :src=&quot;comment.avatar&quot;&gt;<br>                     &lt;/aside&gt;<br>                   &lt;div class=&quot;of&quot;&gt;<br>                     &lt;span class=&quot;fl&quot;&gt; <br>                     &lt;font class=&quot;fsize12 c-blue&quot;&gt; <br>                       &#123;&#123;comment.nickname&#125;&#125;&lt;/font&gt;<br>                     &lt;font class=&quot;fsize12 c-999 ml5&quot;&gt;评论：&lt;/font&gt;&lt;/span&gt;<br>                   &lt;/div&gt;<br>                   &lt;div class=&quot;noter-txt mt5&quot;&gt;<br>                     &lt;p&gt;&#123;&#123;comment.content&#125;&#125;&lt;/p&gt;<br>                   &lt;/div&gt;<br>                   &lt;div class=&quot;of mt5&quot;&gt;<br>                     &lt;span class=&quot;fr&quot;&gt;&lt;font class=&quot;fsize12 c-999 ml5&quot;&gt;&#123;&#123;comment.gmtCreate&#125;&#125;&lt;/font&gt;&lt;/span&gt;<br>                   &lt;/div&gt;<br>                 &lt;/li&gt;<br>               &lt;/ul&gt;<br>           &lt;/section&gt;<br>         &lt;/section&gt;<br>         &lt;!-- 公共分页 开始 --&gt;<br>         &lt;div class=&quot;paging&quot;&gt;<br>             &lt;!-- undisable这个class是否存在，取决于数据属性hasPrevious --&gt;<br>             &lt;a<br>             :class=&quot;&#123;undisable: !data.hasPrevious&#125;&quot;<br>             href=&quot;#&quot;<br>             title=&quot;首页&quot;<br>             @click.prevent=&quot;gotoPage(1)&quot;&gt;首&lt;/a&gt;<br>             &lt;a<br>             :class=&quot;&#123;undisable: !data.hasPrevious&#125;&quot;<br>             href=&quot;#&quot;<br>             title=&quot;前一页&quot;<br>             @click.prevent=&quot;gotoPage(data.current-1)&quot;&gt;&amp;lt;&lt;/a&gt;<br>             &lt;a<br>             v-for=&quot;page in data.pages&quot;<br>             :key=&quot;page&quot;<br>             :class=&quot;&#123;current: data.current == page, undisable: data.current == page&#125;&quot;<br>             :title=&quot;&#x27;第&#x27;+page+&#x27;页&#x27;&quot;<br>             href=&quot;#&quot;<br>             @click.prevent=&quot;gotoPage(page)&quot;&gt;&#123;&#123; page &#125;&#125;&lt;/a&gt;<br>             &lt;a<br>             :class=&quot;&#123;undisable: !data.hasNext&#125;&quot;<br>             href=&quot;#&quot;<br>             title=&quot;后一页&quot;<br>             @click.prevent=&quot;gotoPage(data.current+1)&quot;&gt;&amp;gt;&lt;/a&gt;<br>             &lt;a<br>             :class=&quot;&#123;undisable: !data.hasNext&#125;&quot;<br>             href=&quot;#&quot;<br>             title=&quot;末页&quot;<br>             @click.prevent=&quot;gotoPage(data.pages)&quot;&gt;末&lt;/a&gt;<br>             &lt;div class=&quot;clear&quot;/&gt;<br>         &lt;/div&gt;<br>         &lt;!-- 公共分页 结束 --&gt;<br>       &lt;/div&gt;<br>     &lt;/div&gt;<br></code></pre></td></tr></table></figure>
 
 
 
@@ -541,557 +309,92 @@ export default &#123;
 <h2 id="所需接口"><a href="#所需接口" class="headerlink" title="所需接口"></a>所需接口</h2><p>![04 课程支付接口](day15-课程评论分析_支付功能/04 课程支付接口.png)</p>
 <h2 id="创建支付模块和准备"><a href="#创建支付模块和准备" class="headerlink" title="创建支付模块和准备"></a>创建支付模块和准备</h2><p>1、在service模块下创建子模块service_order</p>
 <p>2、在service_order模块中引入依赖</p>
-<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">&lt;dependencies&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;com.github.wxpay&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;wxpay-sdk&lt;&#x2F;artifactId&gt;
-        &lt;version&gt;0.0.3&lt;&#x2F;version&gt;
-    &lt;&#x2F;dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;com.alibaba&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;fastjson&lt;&#x2F;artifactId&gt;
-    &lt;&#x2F;dependency&gt;
-&lt;&#x2F;dependencies&gt;</code></pre></div>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.github.wxpay<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>wxpay-sdk<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>0.0.3<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>fastjson<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>3、创建支付相关的表</p>
 <p>4、使用代码生成器生成相关代码</p>
 <p>5、编写application.properties配置文件</p>
-<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"># 服务端口
-server.port&#x3D;8007
-
-# 服务名
-spring.application.name&#x3D;service-order
-
-# mysql数据库连接
-spring.datasource.driver-class-name&#x3D;com.mysql.cj.jdbc.Driver
-spring.datasource.url&#x3D;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;guli?serverTimezone&#x3D;GMT%2B8
-spring.datasource.username&#x3D;root
-spring.datasource.password&#x3D;root
-
-#返回json的全局时间格式
-spring.jackson.date-format&#x3D;yyyy-MM-dd HH:mm:ss
-spring.jackson.time-zone&#x3D;GMT+8
-
-#配置mapper xml文件的路径
-mybatis-plus.mapper-locations&#x3D;classpath:com&#x2F;atguigu&#x2F;eduorder&#x2F;mapper&#x2F;xml&#x2F;*.xml
-
-#mybatis日志
-mybatis-plus.configuration.log-impl&#x3D;org.apache.ibatis.logging.stdout.StdOutImpl
-
-# nacos服务地址
-spring.cloud.nacos.discovery.server-addr&#x3D;127.0.0.1:8848
-
-#开启熔断机制
-#feign.hystrix.enabled&#x3D;true
-# 设置hystrix超时时间，默认1000ms
-#hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds&#x3D;3000</code></pre></div>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment"># 服务端口</span><br><span class="hljs-meta">server.port</span>=<span class="hljs-string">8007</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"># 服务名</span><br><span class="hljs-meta">spring.application.name</span>=<span class="hljs-string">service-order</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"># mysql数据库连接</span><br><span class="hljs-meta">spring.datasource.driver-class-name</span>=<span class="hljs-string">com.mysql.cj.jdbc.Driver</span><br><span class="hljs-meta">spring.datasource.url</span>=<span class="hljs-string">jdbc:mysql://localhost:3306/guli?serverTimezone=GMT%2B8</span><br><span class="hljs-meta">spring.datasource.username</span>=<span class="hljs-string">root</span><br><span class="hljs-meta">spring.datasource.password</span>=<span class="hljs-string">root</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">#返回json的全局时间格式</span><br><span class="hljs-meta">spring.jackson.date-format</span>=<span class="hljs-string">yyyy-MM-dd HH:mm:ss</span><br><span class="hljs-meta">spring.jackson.time-zone</span>=<span class="hljs-string">GMT+8</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">#配置mapper xml文件的路径</span><br><span class="hljs-meta">mybatis-plus.mapper-locations</span>=<span class="hljs-string">classpath:com/atguigu/eduorder/mapper/xml/*.xml</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">#mybatis日志</span><br><span class="hljs-meta">mybatis-plus.configuration.log-impl</span>=<span class="hljs-string">org.apache.ibatis.logging.stdout.StdOutImpl</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"># nacos服务地址</span><br><span class="hljs-meta">spring.cloud.nacos.discovery.server-addr</span>=<span class="hljs-string">127.0.0.1:8848</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">#开启熔断机制</span><br><span class="hljs-comment">#feign.hystrix.enabled=true</span><br><span class="hljs-comment"># 设置hystrix超时时间，默认1000ms</span><br><span class="hljs-comment">#hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds=3000</span><br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="开发创建订单接口"><a href="#开发创建订单接口" class="headerlink" title="开发创建订单接口"></a>开发创建订单接口</h2><p>1、编写订单controller</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@RestController
-@RequestMapping(&quot;&#x2F;eduorder&#x2F;order&quot;)
-@CrossOrigin
-public class OrderController &#123;
-
-    @Autowired
-    private OrderService orderService;
-
-    &#x2F;&#x2F; 根据课程id，生成订单的方法，返回订单号
-    @PostMapping(&quot;createOrder&#x2F;&#123;id&#125;&quot;)
-    public R saveOrder(@PathVariable String id, HttpServletRequest request)&#123;
-
-        String orderId &#x3D; orderService.createOrder(id,JwtUtils.getMemberIdByJwtToken(request));
-        return R.ok().data(&quot;orderId&quot;,orderId);
-    &#125;
-
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;/eduorder/order&quot;)</span><br><span class="hljs-meta">@CrossOrigin</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OrderController</span> </span>&#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> OrderService orderService;<br><br>    <span class="hljs-comment">// 根据课程id，生成订单的方法，返回订单号</span><br>    <span class="hljs-meta">@PostMapping(&quot;createOrder/&#123;id&#125;&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">saveOrder</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> String id, HttpServletRequest request)</span></span>&#123;<br><br>        String orderId = orderService.createOrder(id,JwtUtils.getMemberIdByJwtToken(request));<br>        <span class="hljs-keyword">return</span> R.ok().data(<span class="hljs-string">&quot;orderId&quot;</span>,orderId);<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>2、在service_edu创建接口</p>
 <p>（1）实现根据课程id获取课程信息，返回课程信息对象(所需要的返回对象，直接复制原来的实体类到公共模块即可)</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据课程id，查询课程信息
-@PostMapping(&quot;getCourseInfoOrder&#x2F;&#123;id&#125;&quot;)
-public CourseWebVoOrder getCourseInfoOrder(@PathVariable String id)&#123;
-    CourseWebVo courseInfo &#x3D; courseService.getBaseCourseInfo(id);
-    CourseWebVoOrder courseWebVoOrder &#x3D; new CourseWebVoOrder();
-    BeanUtils.copyProperties(courseInfo,courseWebVoOrder);
-    return courseWebVoOrder;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 根据课程id，查询课程信息</span><br><span class="hljs-meta">@PostMapping(&quot;getCourseInfoOrder/&#123;id&#125;&quot;)</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> CourseWebVoOrder <span class="hljs-title">getCourseInfoOrder</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> String id)</span></span>&#123;<br>    CourseWebVo courseInfo = courseService.getBaseCourseInfo(id);<br>    CourseWebVoOrder courseWebVoOrder = <span class="hljs-keyword">new</span> CourseWebVoOrder();<br>    BeanUtils.copyProperties(courseInfo,courseWebVoOrder);<br>    <span class="hljs-keyword">return</span> courseWebVoOrder;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>3、在service_ucenter创建接口</p>
 <p>（1）实现用户id获取用户信息，返回用户信息对象</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据用户id查询用户信息，前台
-@PostMapping(&quot;getUserInfoOrder&#x2F;&#123;id&#125;&quot;)
-public UcenterMemberOrder getUserInfoOrder(@PathVariable String id)&#123;
-    UcenterMember member &#x3D; memberService.getById(id);
-    UcenterMemberOrder ucenterMemberOrder &#x3D; new UcenterMemberOrder();
-    BeanUtils.copyProperties(member,ucenterMemberOrder);
-    return ucenterMemberOrder;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 根据用户id查询用户信息，前台</span><br><span class="hljs-meta">@PostMapping(&quot;getUserInfoOrder/&#123;id&#125;&quot;)</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> UcenterMemberOrder <span class="hljs-title">getUserInfoOrder</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> String id)</span></span>&#123;<br>    UcenterMember member = memberService.getById(id);<br>    UcenterMemberOrder ucenterMemberOrder = <span class="hljs-keyword">new</span> UcenterMemberOrder();<br>    BeanUtils.copyProperties(member,ucenterMemberOrder);<br>    <span class="hljs-keyword">return</span> ucenterMemberOrder;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>4、编写订单service</p>
 <p>（1）在service_order模块创建接口，实现远程调用</p>
 <p><strong>EduClient</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Component
-@FeignClient(name &#x3D; &quot;service-edu&quot;)
-public interface EduClient &#123;
-    &#x2F;&#x2F; 根据课程id，查询课程信息
-    @PostMapping(&quot;&#x2F;eduservice&#x2F;coursefront&#x2F;getCourseInfoOrder&#x2F;&#123;id&#125;&quot;)
-    public CourseWebVoOrder getCourseInfoOrder(@PathVariable(&quot;id&quot;) String id);
-
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span><br><span class="hljs-meta">@FeignClient(name = &quot;service-edu&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">EduClient</span> </span>&#123;<br>    <span class="hljs-comment">// 根据课程id，查询课程信息</span><br>    <span class="hljs-meta">@PostMapping(&quot;/eduservice/coursefront/getCourseInfoOrder/&#123;id&#125;&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> CourseWebVoOrder <span class="hljs-title">getCourseInfoOrder</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable(&quot;id&quot;)</span> String id)</span></span>;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><strong>UcenterClient</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Component
-@FeignClient(name &#x3D; &quot;service-ucenter&quot;)
-public interface UcenterClient &#123;
-    &#x2F;&#x2F; 根据用户id查询用户信息，前台
-    @PostMapping(&quot;&#x2F;educenter&#x2F;member&#x2F;getUserInfoOrder&#x2F;&#123;id&#125;&quot;)
-    public UcenterMemberOrder getUserInfoOrder(@PathVariable(&quot;id&quot;) String id);
-
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span><br><span class="hljs-meta">@FeignClient(name = &quot;service-ucenter&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">UcenterClient</span> </span>&#123;<br>    <span class="hljs-comment">// 根据用户id查询用户信息，前台</span><br>    <span class="hljs-meta">@PostMapping(&quot;/educenter/member/getUserInfoOrder/&#123;id&#125;&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> UcenterMemberOrder <span class="hljs-title">getUserInfoOrder</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable(&quot;id&quot;)</span> String id)</span></span>;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>(2）在service_order模块编写创建订单service</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Service
-public class OrderServiceImpl extends ServiceImpl&lt;OrderMapper, Order&gt; implements OrderService &#123;
-
-    @Autowired
-    private EduClient eduClient;
-
-    @Autowired
-    private UcenterClient ucenterClient;
-
-    &#x2F;&#x2F; 根据课程id，生成订单的方法，返回订单号
-    @Override
-    public String createOrder(String courseId, String memberId) &#123;
-        &#x2F;&#x2F; 1.根据课程id查询课程信息
-        CourseWebVoOrder courseInfoOrder &#x3D; eduClient.getCourseInfoOrder(courseId);
-
-        &#x2F;&#x2F; 2.根据用户id，查询用户信息
-        UcenterMemberOrder userInfoOrder &#x3D; ucenterClient.getUserInfoOrder(memberId);
-
-        &#x2F;&#x2F; 加到数据库
-        Order order &#x3D; new Order();
-        order.setOrderNo(OrderNoUtil.getOrderNo());                 &#x2F;&#x2F; 订单号
-        order.setCourseId(courseId);
-        order.setCourseTitle(courseInfoOrder.getTitle());
-        order.setCourseCover(courseInfoOrder.getCover());
-        order.setTeacherName(courseInfoOrder.getTeacherName());
-        order.setTotalFee(courseInfoOrder.getPrice());
-        order.setMemberId(memberId);
-        order.setMobile(userInfoOrder.getMobile());
-        order.setNickname(userInfoOrder.getNickname());
-
-        order.setStatus(0);     &#x2F;&#x2F; 订单状态（0：未支付 1：已支付）
-        order.setPayType(1);    &#x2F;&#x2F; 支付类型（1：微信 2：支付宝）
-
-        baseMapper.insert(order);
-
-        &#x2F;&#x2F; 返回订单号
-        return order.getOrderNo();
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OrderServiceImpl</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ServiceImpl</span>&lt;<span class="hljs-title">OrderMapper</span>, <span class="hljs-title">Order</span>&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title">OrderService</span> </span>&#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> EduClient eduClient;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> UcenterClient ucenterClient;<br><br>    <span class="hljs-comment">// 根据课程id，生成订单的方法，返回订单号</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">createOrder</span><span class="hljs-params">(String courseId, String memberId)</span> </span>&#123;<br>        <span class="hljs-comment">// 1.根据课程id查询课程信息</span><br>        CourseWebVoOrder courseInfoOrder = eduClient.getCourseInfoOrder(courseId);<br><br>        <span class="hljs-comment">// 2.根据用户id，查询用户信息</span><br>        UcenterMemberOrder userInfoOrder = ucenterClient.getUserInfoOrder(memberId);<br><br>        <span class="hljs-comment">// 加到数据库</span><br>        Order order = <span class="hljs-keyword">new</span> Order();<br>        order.setOrderNo(OrderNoUtil.getOrderNo());                 <span class="hljs-comment">// 订单号</span><br>        order.setCourseId(courseId);<br>        order.setCourseTitle(courseInfoOrder.getTitle());<br>        order.setCourseCover(courseInfoOrder.getCover());<br>        order.setTeacherName(courseInfoOrder.getTeacherName());<br>        order.setTotalFee(courseInfoOrder.getPrice());<br>        order.setMemberId(memberId);<br>        order.setMobile(userInfoOrder.getMobile());<br>        order.setNickname(userInfoOrder.getNickname());<br><br>        order.setStatus(<span class="hljs-number">0</span>);     <span class="hljs-comment">// 订单状态（0：未支付 1：已支付）</span><br>        order.setPayType(<span class="hljs-number">1</span>);    <span class="hljs-comment">// 支付类型（1：微信 2：支付宝）</span><br><br>        baseMapper.insert(order);<br><br>        <span class="hljs-comment">// 返回订单号</span><br>        <span class="hljs-keyword">return</span> order.getOrderNo();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><strong>OrderNoUtil</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
- * 订单号工具类
- *
- * @author qy
- * @since 1.0
- *&#x2F;
-public class OrderNoUtil &#123;
-
-    &#x2F;**
-     * 获取订单号
-     * @return
-     *&#x2F;
-    public static String getOrderNo() &#123;
-        SimpleDateFormat sdf &#x3D; new SimpleDateFormat(&quot;yyyyMMddHHmmss&quot;);
-        String newDate &#x3D; sdf.format(new Date());
-        String result &#x3D; &quot;&quot;;
-        Random random &#x3D; new Random();
-        for (int i &#x3D; 0; i &lt; 3; i++) &#123;
-            result +&#x3D; random.nextInt(10);
-        &#125;
-        return newDate + result;
-    &#125;
-
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 订单号工具类</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> qy</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@since</span> 1.0</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OrderNoUtil</span> </span>&#123;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 获取订单号</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">getOrderNo</span><span class="hljs-params">()</span> </span>&#123;<br>        SimpleDateFormat sdf = <span class="hljs-keyword">new</span> SimpleDateFormat(<span class="hljs-string">&quot;yyyyMMddHHmmss&quot;</span>);<br>        String newDate = sdf.format(<span class="hljs-keyword">new</span> Date());<br>        String result = <span class="hljs-string">&quot;&quot;</span>;<br>        Random random = <span class="hljs-keyword">new</span> Random();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++) &#123;<br>            result += random.nextInt(<span class="hljs-number">10</span>);<br>        &#125;<br>        <span class="hljs-keyword">return</span> newDate + result;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="开发获取订单接口"><a href="#开发获取订单接口" class="headerlink" title="开发获取订单接口"></a>开发获取订单接口</h2><p>1、在订单controller创建根据id获取订单信息接口</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据订单号查询订单信息
-@GetMapping(&quot;getOrder&#x2F;&#123;orderId&#125;&quot;)
-public R getOrder(@PathVariable String orderId)&#123;
-    QueryWrapper&lt;Order&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
-    wrapper.eq(&quot;order_no&quot;,orderId);
-    Order order &#x3D; orderService.getOne(wrapper);
-    return R.ok().data(&quot;item&quot;,order);
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 根据订单号查询订单信息</span><br><span class="hljs-meta">@GetMapping(&quot;getOrder/&#123;orderId&#125;&quot;)</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">getOrder</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> String orderId)</span></span>&#123;<br>    QueryWrapper&lt;Order&gt; wrapper = <span class="hljs-keyword">new</span> QueryWrapper&lt;&gt;();<br>    wrapper.eq(<span class="hljs-string">&quot;order_no&quot;</span>,orderId);<br>    Order order = orderService.getOne(wrapper);<br>    <span class="hljs-keyword">return</span> R.ok().data(<span class="hljs-string">&quot;item&quot;</span>,order);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="生成订单前端整合"><a href="#生成订单前端整合" class="headerlink" title="生成订单前端整合"></a>生成订单前端整合</h2><h3 id="页面样式修改"><a href="#页面样式修改" class="headerlink" title="页面样式修改"></a>页面样式修改</h3><p><strong>1、复制样式文件到assets</strong></p>
 <p><img src="/myBlog/day15-%E8%AF%BE%E7%A8%8B%E8%AF%84%E8%AE%BA%E5%88%86%E6%9E%90_%E6%94%AF%E4%BB%98%E5%8A%9F%E8%83%BD/image-20220103163408936.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220103163408936"></p>
 <p><strong>2、修改default.vue页面</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">import &#39;~&#x2F;assets&#x2F;css&#x2F;reset.css&#39;
-import &#39;~&#x2F;assets&#x2F;css&#x2F;theme.css&#39;
-import &#39;~&#x2F;assets&#x2F;css&#x2F;global.css&#39;
-import &#39;~&#x2F;assets&#x2F;css&#x2F;web.css&#39;
-import &#39;~&#x2F;assets&#x2F;css&#x2F;base.css&#39;
-import &#39;~&#x2F;assets&#x2F;css&#x2F;activity_tab.css&#39;
-import &#39;~&#x2F;assets&#x2F;css&#x2F;bottom_rec.css&#39;
-import &#39;~&#x2F;assets&#x2F;css&#x2F;nice_select.css&#39;
-import &#39;~&#x2F;assets&#x2F;css&#x2F;order.css&#39;
-import &#39;~&#x2F;assets&#x2F;css&#x2F;swiper-3.3.1.min.css&#39;
-import &quot;~&#x2F;assets&#x2F;css&#x2F;pages-weixinpay.css&quot;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs vue">import &#x27;~/assets/css/reset.css&#x27;<br>import &#x27;~/assets/css/theme.css&#x27;<br>import &#x27;~/assets/css/global.css&#x27;<br>import &#x27;~/assets/css/web.css&#x27;<br>import &#x27;~/assets/css/base.css&#x27;<br>import &#x27;~/assets/css/activity_tab.css&#x27;<br>import &#x27;~/assets/css/bottom_rec.css&#x27;<br>import &#x27;~/assets/css/nice_select.css&#x27;<br>import &#x27;~/assets/css/order.css&#x27;<br>import &#x27;~/assets/css/swiper-3.3.1.min.css&#x27;<br>import &quot;~/assets/css/pages-weixinpay.css&quot;<br></code></pre></td></tr></table></figure>
 
 <h3 id="课程支付前端"><a href="#课程支付前端" class="headerlink" title="课程支付前端"></a><strong>课程支付前端</strong></h3><p>1、在api文件夹下创建order.js文件</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">import request from &#39;@&#x2F;utils&#x2F;request&#39;
-export default &#123;
-  &#x2F;&#x2F; 创建订单
-  createOrder(courseId) &#123;
-    return request(&#123;
-      url: &#96;&#x2F;eduorder&#x2F;order&#x2F;createOrder&#x2F;$&#123;courseId&#125;&#96;,
-      method: &#39;post&#39;
-    &#125;)
-  &#125;,
-  &#x2F;&#x2F; 根据订单号查询订单信息
-  getOrderInfo(id) &#123;
-    return request(&#123;
-      url: &#96;&#x2F;eduorder&#x2F;order&#x2F;getOrder&#x2F;$&#123;id&#125;&#96;,
-      method: &#39;get&#39;
-    &#125;)
-  &#125;
-&#125;</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> request <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/utils/request&#x27;</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  <span class="hljs-comment">// 创建订单</span><br>  <span class="hljs-function"><span class="hljs-title">createOrder</span>(<span class="hljs-params">courseId</span>)</span> &#123;<br>    <span class="hljs-keyword">return</span> request(&#123;<br>      <span class="hljs-attr">url</span>: <span class="hljs-string">`/eduorder/order/createOrder/<span class="hljs-subst">$&#123;courseId&#125;</span>`</span>,<br>      <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;post&#x27;</span><br>    &#125;)<br>  &#125;,<br>  <span class="hljs-comment">// 根据订单号查询订单信息</span><br>  <span class="hljs-function"><span class="hljs-title">getOrderInfo</span>(<span class="hljs-params">id</span>)</span> &#123;<br>    <span class="hljs-keyword">return</span> request(&#123;<br>      <span class="hljs-attr">url</span>: <span class="hljs-string">`/eduorder/order/getOrder/<span class="hljs-subst">$&#123;id&#125;</span>`</span>,<br>      <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;get&#x27;</span><br>    &#125;)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>2、在课程详情页面中添加创建订单方法</p>
 <p>在“立即购买”位置添加事件</p>
 <p><img src="/myBlog/day15-%E8%AF%BE%E7%A8%8B%E8%AF%84%E8%AE%BA%E5%88%86%E6%9E%90_%E6%94%AF%E4%BB%98%E5%8A%9F%E8%83%BD/image-20220103163638975.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220103163638975"></p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">methods:&#123;
-   &#x2F;&#x2F; 创建订单
-   createOrder()&#123;
-     order.createOrder(this.courseId)
-       .then(response &#x3D;&gt;&#123;
-         &#x2F;&#x2F; 获取返回的订单号
-         &#x2F;&#x2F; 将订单号放在路径上跳转订单显示页面
-         this.$router.push(&#123;path:&#39;&#x2F;order&#x2F;&#39;+response.data.data.orderId &#125;)
-       &#125;)
-   &#125;
-&#125;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs vue">methods:&#123;<br>   // 创建订单<br>   createOrder()&#123;<br>     order.createOrder(this.courseId)<br>       .then(response =&gt;&#123;<br>         // 获取返回的订单号<br>         // 将订单号放在路径上跳转订单显示页面<br>         this.$router.push(&#123;path:&#x27;/order/&#x27;+response.data.data.orderId &#125;)<br>       &#125;)<br>   &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="创建订单页面，显示订单信息"><a href="#创建订单页面，显示订单信息" class="headerlink" title="创建订单页面，显示订单信息"></a><strong>创建订单页面，显示订单信息</strong></h3><p>在pages下面创建order文件夹，创建_oid.vue页面</p>
 <p>在_oid.vue页面调用方法，获取订单信息</p>
 <p>（1）页面部分</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
-   &lt;div class&#x3D;&quot;Page Confirm&quot;&gt;
-     &lt;div class&#x3D;&quot;Title&quot;&gt;
-       &lt;h1 class&#x3D;&quot;fl f18&quot;&gt;订单确认&lt;&#x2F;h1&gt;
-       &lt;img src&#x3D;&quot;~&#x2F;assets&#x2F;img&#x2F;cart_setp2.png&quot; class&#x3D;&quot;fr&quot;&gt;
-       &lt;div class&#x3D;&quot;clear&quot;&gt;&lt;&#x2F;div&gt;
-     &lt;&#x2F;div&gt;
-     &lt;form name&#x3D;&quot;flowForm&quot; id&#x3D;&quot;flowForm&quot; method&#x3D;&quot;post&quot; action&#x3D;&quot;&quot;&gt;
-       &lt;table class&#x3D;&quot;GoodList&quot;&gt;
-         &lt;tbody&gt;
-         &lt;tr&gt;
-           &lt;th class&#x3D;&quot;name&quot;&gt;商品&lt;&#x2F;th&gt;
-           &lt;th class&#x3D;&quot;price&quot;&gt;原价&lt;&#x2F;th&gt;
-           &lt;th class&#x3D;&quot;priceNew&quot;&gt;价格&lt;&#x2F;th&gt;
-         &lt;&#x2F;tr&gt;
-         &lt;&#x2F;tbody&gt;
-         &lt;tbody&gt;
-         &lt;!-- &lt;tr&gt;
-           &lt;td colspan&#x3D;&quot;3&quot; class&#x3D;&quot;Title red f18 fb&quot;&gt;&lt;p&gt;限时折扣&lt;&#x2F;p&gt;&lt;&#x2F;td&gt;
-         &lt;&#x2F;tr&gt; --&gt;
-         &lt;tr&gt;
-           &lt;td colspan&#x3D;&quot;3&quot; class&#x3D;&quot;teacher&quot;&gt;讲师：&#123;&#123;order.teacherName&#125;&#125;&lt;&#x2F;td&gt;
-         &lt;&#x2F;tr&gt;
-         &lt;tr class&#x3D;&quot;good&quot;&gt;
-           &lt;td class&#x3D;&quot;name First&quot;&gt;
-             &lt;a target&#x3D;&quot;_blank&quot; :href&#x3D;&quot;&#39;https:&#x2F;&#x2F;localhost:3000&#x2F;course&#x2F;&#39;+order.courseId&quot;&gt;
-               &lt;img :src&#x3D;&quot;order.courseCover&quot;&gt;&lt;&#x2F;a&gt;
-             &lt;div class&#x3D;&quot;goodInfo&quot;&gt;
-               &lt;input type&#x3D;&quot;hidden&quot; class&#x3D;&quot;ids ids_14502&quot; value&#x3D;&quot;14502&quot;&gt;
-               &lt;a target&#x3D;&quot;_blank&quot; :href&#x3D;&quot;&#39;https:&#x2F;&#x2F;localhost:3000&#x2F;course&#x2F;&#39;+ order.courseId&quot;&gt;&#123;&#123;order.courseTitle&#125;&#125;&lt;&#x2F;a&gt;
-             &lt;&#x2F;div&gt;
-           &lt;&#x2F;td&gt;
-           &lt;td class&#x3D;&quot;price&quot;&gt;
-             &lt;p&gt;￥&lt;strong&gt;&#123;&#123;order.totalFee&#125;&#125;&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
-             &lt;!-- &lt;span class&#x3D;&quot;discName red&quot;&gt;限时8折&lt;&#x2F;span&gt; --&gt;
-           &lt;&#x2F;td&gt;
-           &lt;td class&#x3D;&quot;red priceNew Last&quot;&gt;￥&lt;strong&gt;&#123;&#123;order.totalFee&#125;&#125;&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;
-         &lt;&#x2F;tr&gt;
-         &lt;tr&gt;
-           &lt;td class&#x3D;&quot;Billing tr&quot; colspan&#x3D;&quot;3&quot;&gt;
-             &lt;div class&#x3D;&quot;tr&quot;&gt;
-               &lt;p&gt;共 &lt;strong class&#x3D;&quot;red&quot;&gt;1&lt;&#x2F;strong&gt; 件商品，合计&lt;span
-                 class&#x3D;&quot;red f20&quot;&gt;￥&lt;strong&gt;&#123;&#123;order.totalFee&#125;&#125;&lt;&#x2F;strong&gt;&lt;&#x2F;span&gt;&lt;&#x2F;p&gt;
-             &lt;&#x2F;div&gt;
-           &lt;&#x2F;td&gt;
-         &lt;&#x2F;tr&gt;
-         &lt;&#x2F;tbody&gt;
-       &lt;&#x2F;table&gt;
-       &lt;div class&#x3D;&quot;Finish&quot;&gt;
-         &lt;div class&#x3D;&quot;fr&quot; id&#x3D;&quot;AgreeDiv&quot;&gt;
-           &lt;label for&#x3D;&quot;Agree&quot;&gt;&lt;p class&#x3D;&quot;on&quot;&gt;&lt;input type&#x3D;&quot;checkbox&quot; checked&#x3D;&quot;checked&quot;&gt;我已阅读并同意&lt;a href&#x3D;&quot;javascript:&quot; target&#x3D;&quot;_blank&quot;&gt;《谷粒学院购买协议》&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;&lt;&#x2F;label&gt;
-         &lt;&#x2F;div&gt;
-         &lt;div class&#x3D;&quot;clear&quot;&gt;&lt;&#x2F;div&gt;
-         &lt;div class&#x3D;&quot;Main fl&quot;&gt;
-           &lt;div class&#x3D;&quot;fl&quot;&gt;
-             &lt;a :href&#x3D;&quot;&#39;&#x2F;course&#x2F;&#39;+order.courseId&quot;&gt;返回课程详情页&lt;&#x2F;a&gt;
-           &lt;&#x2F;div&gt;
-           &lt;div class&#x3D;&quot;fr&quot;&gt;
-             &lt;p&gt;共 &lt;strong class&#x3D;&quot;red&quot;&gt;1&lt;&#x2F;strong&gt; 件商品，合计&lt;span class&#x3D;&quot;red f20&quot;&gt;￥&lt;strong
-               id&#x3D;&quot;AllPrice&quot;&gt;&#123;&#123;order.totalFee&#125;&#125;&lt;&#x2F;strong&gt;&lt;&#x2F;span&gt;&lt;&#x2F;p&gt;
-           &lt;&#x2F;div&gt;
-         &lt;&#x2F;div&gt;
-         &lt;input name&#x3D;&quot;score&quot; value&#x3D;&quot;0&quot; type&#x3D;&quot;hidden&quot; id&#x3D;&quot;usedScore&quot;&gt;
-         &lt;button class&#x3D;&quot;fr redb&quot; type&#x3D;&quot;button&quot; id&#x3D;&quot;submitPay&quot; @click&#x3D;&quot;toPay()&quot;&gt;去支付&lt;&#x2F;button&gt;
-         &lt;div class&#x3D;&quot;clear&quot;&gt;&lt;&#x2F;div&gt;
-       &lt;&#x2F;div&gt;
-     &lt;&#x2F;form&gt;
-   &lt;&#x2F;div&gt;
- &lt;&#x2F;template&gt;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>   &lt;div class=&quot;Page Confirm&quot;&gt;<br>     &lt;div class=&quot;Title&quot;&gt;<br>       &lt;h1 class=&quot;fl f18&quot;&gt;订单确认&lt;/h1&gt;<br>       &lt;img src=&quot;~/assets/img/cart_setp2.png&quot; class=&quot;fr&quot;&gt;<br>       &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;<br>     &lt;/div&gt;<br>     &lt;form name=&quot;flowForm&quot; id=&quot;flowForm&quot; method=&quot;post&quot; action=&quot;&quot;&gt;<br>       &lt;table class=&quot;GoodList&quot;&gt;<br>         &lt;tbody&gt;<br>         &lt;tr&gt;<br>           &lt;th class=&quot;name&quot;&gt;商品&lt;/th&gt;<br>           &lt;th class=&quot;price&quot;&gt;原价&lt;/th&gt;<br>           &lt;th class=&quot;priceNew&quot;&gt;价格&lt;/th&gt;<br>         &lt;/tr&gt;<br>         &lt;/tbody&gt;<br>         &lt;tbody&gt;<br>         &lt;!-- &lt;tr&gt;<br>           &lt;td colspan=&quot;3&quot; class=&quot;Title red f18 fb&quot;&gt;&lt;p&gt;限时折扣&lt;/p&gt;&lt;/td&gt;<br>         &lt;/tr&gt; --&gt;<br>         &lt;tr&gt;<br>           &lt;td colspan=&quot;3&quot; class=&quot;teacher&quot;&gt;讲师：&#123;&#123;order.teacherName&#125;&#125;&lt;/td&gt;<br>         &lt;/tr&gt;<br>         &lt;tr class=&quot;good&quot;&gt;<br>           &lt;td class=&quot;name First&quot;&gt;<br>             &lt;a target=&quot;_blank&quot; :href=&quot;&#x27;https://localhost:3000/course/&#x27;+order.courseId&quot;&gt;<br>               &lt;img :src=&quot;order.courseCover&quot;&gt;&lt;/a&gt;<br>             &lt;div class=&quot;goodInfo&quot;&gt;<br>               &lt;input type=&quot;hidden&quot; class=&quot;ids ids_14502&quot; value=&quot;14502&quot;&gt;<br>               &lt;a target=&quot;_blank&quot; :href=&quot;&#x27;https://localhost:3000/course/&#x27;+ order.courseId&quot;&gt;&#123;&#123;order.courseTitle&#125;&#125;&lt;/a&gt;<br>             &lt;/div&gt;<br>           &lt;/td&gt;<br>           &lt;td class=&quot;price&quot;&gt;<br>             &lt;p&gt;￥&lt;strong&gt;&#123;&#123;order.totalFee&#125;&#125;&lt;/strong&gt;&lt;/p&gt;<br>             &lt;!-- &lt;span class=&quot;discName red&quot;&gt;限时8折&lt;/span&gt; --&gt;<br>           &lt;/td&gt;<br>           &lt;td class=&quot;red priceNew Last&quot;&gt;￥&lt;strong&gt;&#123;&#123;order.totalFee&#125;&#125;&lt;/strong&gt;&lt;/td&gt;<br>         &lt;/tr&gt;<br>         &lt;tr&gt;<br>           &lt;td class=&quot;Billing tr&quot; colspan=&quot;3&quot;&gt;<br>             &lt;div class=&quot;tr&quot;&gt;<br>               &lt;p&gt;共 &lt;strong class=&quot;red&quot;&gt;1&lt;/strong&gt; 件商品，合计&lt;span<br>                 class=&quot;red f20&quot;&gt;￥&lt;strong&gt;&#123;&#123;order.totalFee&#125;&#125;&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;<br>             &lt;/div&gt;<br>           &lt;/td&gt;<br>         &lt;/tr&gt;<br>         &lt;/tbody&gt;<br>       &lt;/table&gt;<br>       &lt;div class=&quot;Finish&quot;&gt;<br>         &lt;div class=&quot;fr&quot; id=&quot;AgreeDiv&quot;&gt;<br>           &lt;label for=&quot;Agree&quot;&gt;&lt;p class=&quot;on&quot;&gt;&lt;input type=&quot;checkbox&quot; checked=&quot;checked&quot;&gt;我已阅读并同意&lt;a href=&quot;javascript:&quot; target=&quot;_blank&quot;&gt;《谷粒学院购买协议》&lt;/a&gt;&lt;/p&gt;&lt;/label&gt;<br>         &lt;/div&gt;<br>         &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;<br>         &lt;div class=&quot;Main fl&quot;&gt;<br>           &lt;div class=&quot;fl&quot;&gt;<br>             &lt;a :href=&quot;&#x27;/course/&#x27;+order.courseId&quot;&gt;返回课程详情页&lt;/a&gt;<br>           &lt;/div&gt;<br>           &lt;div class=&quot;fr&quot;&gt;<br>             &lt;p&gt;共 &lt;strong class=&quot;red&quot;&gt;1&lt;/strong&gt; 件商品，合计&lt;span class=&quot;red f20&quot;&gt;￥&lt;strong<br>               id=&quot;AllPrice&quot;&gt;&#123;&#123;order.totalFee&#125;&#125;&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;<br>           &lt;/div&gt;<br>         &lt;/div&gt;<br>         &lt;input name=&quot;score&quot; value=&quot;0&quot; type=&quot;hidden&quot; id=&quot;usedScore&quot;&gt;<br>         &lt;button class=&quot;fr redb&quot; type=&quot;button&quot; id=&quot;submitPay&quot; @click=&quot;toPay()&quot;&gt;去支付&lt;/button&gt;<br>         &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;<br>       &lt;/div&gt;<br>     &lt;/form&gt;<br>   &lt;/div&gt;<br> &lt;/template&gt;<br></code></pre></td></tr></table></figure>
 
 <p>（2）调用部分</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;script&gt;
-    import orderApi from &quot;@&#x2F;api&#x2F;order&quot;
-export default &#123;
-    &#x2F;&#x2F; 订单详情
-    asyncData(&#123;params,error&#125;)&#123;
-        return orderApi.getOrderInfo(params.oid)
-           .then(response &#x3D;&gt;&#123;
-               return&#123;
-                   order:response.data.data.item
-               &#125;
-           &#125;)
-    &#125;
-&#125;
-&lt;&#x2F;script&gt;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;script&gt;<br>    import orderApi from &quot;@/api/order&quot;<br>export default &#123;<br>    // 订单详情<br>    asyncData(&#123;params,error&#125;)&#123;<br>        return orderApi.getOrderInfo(params.oid)<br>           .then(response =&gt;&#123;<br>               return&#123;<br>                   order:response.data.data.item<br>               &#125;<br>           &#125;)<br>    &#125;<br>&#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="生成微信支付二维码接口"><a href="#生成微信支付二维码接口" class="headerlink" title="生成微信支付二维码接口"></a>生成微信支付二维码接口</h2><p>需要用的信息</p>
 <img src="/myBlog/day15-%E8%AF%BE%E7%A8%8B%E8%AF%84%E8%AE%BA%E5%88%86%E6%9E%90_%E6%94%AF%E4%BB%98%E5%8A%9F%E8%83%BD/image-20220103173830092.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220103173830092">
 
-<h3 id="1、编写controller"><a href="#1、编写controller" class="headerlink" title="1、编写controller"></a>1、编写controller</h3><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@RestController
-@RequestMapping(&quot;&#x2F;eduorder&#x2F;paylog&quot;)
-@CrossOrigin
-public class PayLogController &#123;
+<h3 id="1、编写controller"><a href="#1、编写controller" class="headerlink" title="1、编写controller"></a>1、编写controller</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;/eduorder/paylog&quot;)</span><br><span class="hljs-meta">@CrossOrigin</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PayLogController</span> </span>&#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> PayLogService payLogService;<br><br>    <span class="hljs-comment">// 生成微信支付二维码</span><br>    <span class="hljs-meta">@GetMapping(&quot;createNative/&#123;orderNo&#125;&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">createNative</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> String orderNo)</span></span>&#123;<br>        <span class="hljs-comment">// 需要返回二维码和订单信息</span><br>        Map map = payLogService.createNative(orderNo);<br>        <span class="hljs-keyword">return</span> R.ok().data(map);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-    @Autowired
-    private PayLogService payLogService;
-
-    &#x2F;&#x2F; 生成微信支付二维码
-    @GetMapping(&quot;createNative&#x2F;&#123;orderNo&#125;&quot;)
-    public R createNative(@PathVariable String orderNo)&#123;
-        &#x2F;&#x2F; 需要返回二维码和订单信息
-        Map map &#x3D; payLogService.createNative(orderNo);
-        return R.ok().data(map);
-    &#125;
-&#125;</code></pre></div>
-
-<h3 id="2、编写service"><a href="#2、编写service" class="headerlink" title="2、编写service"></a><strong>2、编写service</strong></h3><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">1@Service
-public class PayLogServiceImpl extends ServiceImpl&lt;PayLogMapper, PayLog&gt; implements PayLogService &#123;
-
-    @Autowired
-    private OrderService orderService;
-
-    &#x2F;&#x2F; 生成微信支付二维码
-    @Override
-    public Map createNative(String orderNo) &#123;
-
-        try &#123;
-            &#x2F;&#x2F; 1.根据订单号，查询订单信息
-            QueryWrapper&lt;Order&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
-            wrapper.eq(&quot;order_no&quot;,orderNo);
-            Order order &#x3D; orderService.getOne(wrapper);
-
-            &#x2F;&#x2F; 2.用map封装生成二维码需要的参数
-            Map m &#x3D; new HashMap();
-            m.put(&quot;appid&quot;, &quot;wx74862e0dfcf69954&quot;);
-            m.put(&quot;mch_id&quot;, &quot;1558950191&quot;);
-            m.put(&quot;nonce_str&quot;, WXPayUtil.generateNonceStr());   &#x2F;&#x2F; 生成随机的字符串，让每一个二维码都不一样
-            m.put(&quot;body&quot;, order.getCourseTitle());  &#x2F;&#x2F; 课程标题
-            m.put(&quot;out_trade_no&quot;, orderNo);         &#x2F;&#x2F; 订单号
-            &#x2F;&#x2F; 将BigDecimal类型先转换为long，再转换为字符串
-            m.put(&quot;total_fee&quot;, order.getTotalFee().multiply(new BigDecimal(&quot;100&quot;)).longValue()+&quot;&quot;);
-            m.put(&quot;spbill_create_ip&quot;, &quot;127.0.0.1&quot;);
-            m.put(&quot;notify_url&quot;, &quot;http:&#x2F;&#x2F;guli.shop&#x2F;api&#x2F;order&#x2F;weixinPay&#x2F;weixinNotify\n&quot;);
-            m.put(&quot;trade_type&quot;, &quot;NATIVE&quot;);
-
-            &#x2F;&#x2F; 3.用client发送请求
-            HttpClient client &#x3D; new HttpClient(&quot;https:&#x2F;&#x2F;api.mch.weixin.qq.com&#x2F;pay&#x2F;unifiedorder&quot;);
-
-            &#x2F;&#x2F; client 设置参数
-            client.setXmlParam(WXPayUtil.generateSignedXml(m, &quot;T6m9iK73b0kn9g5v426MKfHQH7X8rKwb&quot;));
-            client.setHttps(true);
-            client.post();
-
-            &#x2F;&#x2F; 返回数据，xml格式
-            String xml &#x3D; client.getContent();
-            &#x2F;&#x2F; 利用微信提供的工具类将xml格式转换为map格式
-            Map&lt;String, String&gt; resultMap &#x3D; WXPayUtil.xmlToMap(xml);
-
-            &#x2F;&#x2F; 4.封装最后的数据
-            Map map &#x3D; new HashMap&lt;&gt;();
-            map.put(&quot;out_trade_no&quot;, orderNo);
-            map.put(&quot;course_id&quot;, order.getCourseId());
-            map.put(&quot;total_fee&quot;, order.getTotalFee());
-            map.put(&quot;result_code&quot;, resultMap.get(&quot;result_code&quot;));
-            map.put(&quot;code_url&quot;, resultMap.get(&quot;code_url&quot;));
-
-            &#x2F;&#x2F;微信支付二维码2小时过期，可采取2小时未支付取消订单
-            &#x2F;&#x2F;redisTemplate.opsForValue().set(orderNo, map, 120, TimeUnit.MINUTES);
-            &#x2F;&#x2F; 将封装好的map返回
-            return map;
-        &#125; catch (Exception e) &#123;
-            e.printStackTrace();
-            throw new GuliException(20001,&quot;生成二维码失败&quot;);
-        &#125;
-
-    &#125;
-&#125;</code></pre></div>
+<h3 id="2、编写service"><a href="#2、编写service" class="headerlink" title="2、编写service"></a><strong>2、编写service</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-number">1</span><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PayLogServiceImpl</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ServiceImpl</span>&lt;<span class="hljs-title">PayLogMapper</span>, <span class="hljs-title">PayLog</span>&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title">PayLogService</span> </span>&#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> OrderService orderService;<br><br>    <span class="hljs-comment">// 生成微信支付二维码</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Map <span class="hljs-title">createNative</span><span class="hljs-params">(String orderNo)</span> </span>&#123;<br><br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 1.根据订单号，查询订单信息</span><br>            QueryWrapper&lt;Order&gt; wrapper = <span class="hljs-keyword">new</span> QueryWrapper&lt;&gt;();<br>            wrapper.eq(<span class="hljs-string">&quot;order_no&quot;</span>,orderNo);<br>            Order order = orderService.getOne(wrapper);<br><br>            <span class="hljs-comment">// 2.用map封装生成二维码需要的参数</span><br>            Map m = <span class="hljs-keyword">new</span> HashMap();<br>            m.put(<span class="hljs-string">&quot;appid&quot;</span>, <span class="hljs-string">&quot;wx74862e0dfcf69954&quot;</span>);<br>            m.put(<span class="hljs-string">&quot;mch_id&quot;</span>, <span class="hljs-string">&quot;1558950191&quot;</span>);<br>            m.put(<span class="hljs-string">&quot;nonce_str&quot;</span>, WXPayUtil.generateNonceStr());   <span class="hljs-comment">// 生成随机的字符串，让每一个二维码都不一样</span><br>            m.put(<span class="hljs-string">&quot;body&quot;</span>, order.getCourseTitle());  <span class="hljs-comment">// 课程标题</span><br>            m.put(<span class="hljs-string">&quot;out_trade_no&quot;</span>, orderNo);         <span class="hljs-comment">// 订单号</span><br>            <span class="hljs-comment">// 将BigDecimal类型先转换为long，再转换为字符串</span><br>            m.put(<span class="hljs-string">&quot;total_fee&quot;</span>, order.getTotalFee().multiply(<span class="hljs-keyword">new</span> BigDecimal(<span class="hljs-string">&quot;100&quot;</span>)).longValue()+<span class="hljs-string">&quot;&quot;</span>);<br>            m.put(<span class="hljs-string">&quot;spbill_create_ip&quot;</span>, <span class="hljs-string">&quot;127.0.0.1&quot;</span>);<br>            m.put(<span class="hljs-string">&quot;notify_url&quot;</span>, <span class="hljs-string">&quot;http://guli.shop/api/order/weixinPay/weixinNotify\n&quot;</span>);<br>            m.put(<span class="hljs-string">&quot;trade_type&quot;</span>, <span class="hljs-string">&quot;NATIVE&quot;</span>);<br><br>            <span class="hljs-comment">// 3.用client发送请求</span><br>            HttpClient client = <span class="hljs-keyword">new</span> HttpClient(<span class="hljs-string">&quot;https://api.mch.weixin.qq.com/pay/unifiedorder&quot;</span>);<br><br>            <span class="hljs-comment">// client 设置参数</span><br>            client.setXmlParam(WXPayUtil.generateSignedXml(m, <span class="hljs-string">&quot;T6m9iK73b0kn9g5v426MKfHQH7X8rKwb&quot;</span>));<br>            client.setHttps(<span class="hljs-keyword">true</span>);<br>            client.post();<br><br>            <span class="hljs-comment">// 返回数据，xml格式</span><br>            String xml = client.getContent();<br>            <span class="hljs-comment">// 利用微信提供的工具类将xml格式转换为map格式</span><br>            Map&lt;String, String&gt; resultMap = WXPayUtil.xmlToMap(xml);<br><br>            <span class="hljs-comment">// 4.封装最后的数据</span><br>            Map map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();<br>            map.put(<span class="hljs-string">&quot;out_trade_no&quot;</span>, orderNo);<br>            map.put(<span class="hljs-string">&quot;course_id&quot;</span>, order.getCourseId());<br>            map.put(<span class="hljs-string">&quot;total_fee&quot;</span>, order.getTotalFee());<br>            map.put(<span class="hljs-string">&quot;result_code&quot;</span>, resultMap.get(<span class="hljs-string">&quot;result_code&quot;</span>));<br>            map.put(<span class="hljs-string">&quot;code_url&quot;</span>, resultMap.get(<span class="hljs-string">&quot;code_url&quot;</span>));<br><br>            <span class="hljs-comment">//微信支付二维码2小时过期，可采取2小时未支付取消订单</span><br>            <span class="hljs-comment">//redisTemplate.opsForValue().set(orderNo, map, 120, TimeUnit.MINUTES);</span><br>            <span class="hljs-comment">// 将封装好的map返回</span><br>            <span class="hljs-keyword">return</span> map;<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> GuliException(<span class="hljs-number">20001</span>,<span class="hljs-string">&quot;生成二维码失败&quot;</span>);<br>        &#125;<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
-<h2 id="查询订单支付状态接口"><a href="#查询订单支付状态接口" class="headerlink" title="查询订单支付状态接口"></a>查询订单支付状态接口</h2><h3 id="1、编写controller-1"><a href="#1、编写controller-1" class="headerlink" title="1、编写controller"></a><strong>1、编写controller</strong></h3><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据订单号查询支付状态
-@GetMapping(&quot;queryPayStatus&#x2F;&#123;orderNo&#125;&quot;)
-public R queryPayStatus(@PathVariable String orderNo)&#123;
-    &#x2F;&#x2F; 根据订单号查询支付状态
-    Map&lt;String,String&gt; map &#x3D; payLogService.queryPayStatus(orderNo);
+<h2 id="查询订单支付状态接口"><a href="#查询订单支付状态接口" class="headerlink" title="查询订单支付状态接口"></a>查询订单支付状态接口</h2><h3 id="1、编写controller-1"><a href="#1、编写controller-1" class="headerlink" title="1、编写controller"></a><strong>1、编写controller</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 根据订单号查询支付状态</span><br><span class="hljs-meta">@GetMapping(&quot;queryPayStatus/&#123;orderNo&#125;&quot;)</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">queryPayStatus</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> String orderNo)</span></span>&#123;<br>    <span class="hljs-comment">// 根据订单号查询支付状态</span><br>    Map&lt;String,String&gt; map = payLogService.queryPayStatus(orderNo);<br><br>    <span class="hljs-comment">// 判断返回的map是否为空</span><br>    <span class="hljs-keyword">if</span> (map == <span class="hljs-keyword">null</span>)&#123;<br>        <span class="hljs-keyword">return</span> R.error().message(<span class="hljs-string">&quot;支付失败&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">//支付成功</span><br>    <span class="hljs-keyword">if</span> (map.get(<span class="hljs-string">&quot;trade_state&quot;</span>).equals(<span class="hljs-string">&quot;SUCCESS&quot;</span>))&#123;<br>        <span class="hljs-comment">// 向表里面添加记录，更支付状态</span><br>        payLogService.updataOrderStatus(map);<br>        <span class="hljs-keyword">return</span> R.ok().message(<span class="hljs-string">&quot;支付成功&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> R.ok().message(<span class="hljs-string">&quot;支付中&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
-    &#x2F;&#x2F; 判断返回的map是否为空
-    if (map &#x3D;&#x3D; null)&#123;
-        return R.error().message(&quot;支付失败&quot;);
-    &#125;
-
-    &#x2F;&#x2F;支付成功
-    if (map.get(&quot;trade_state&quot;).equals(&quot;SUCCESS&quot;))&#123;
-        &#x2F;&#x2F; 向表里面添加记录，更支付状态
-        payLogService.updataOrderStatus(map);
-        return R.ok().message(&quot;支付成功&quot;);
-    &#125;
-
-    return R.ok().message(&quot;支付中&quot;);
-&#125;</code></pre></div>
-
-<h3 id="2、编写service，更新订单状态"><a href="#2、编写service，更新订单状态" class="headerlink" title="2、编写service，更新订单状态"></a>2、编写service，更新订单状态</h3><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 向表里面添加记录，更支付状态
-@Override
-public void updataOrderStatus(Map&lt;String,String&gt; map) &#123;
-    &#x2F;&#x2F; 获取订单号id
-    String orderNo &#x3D; map.get(&quot;out_trade_no&quot;);
-
-    &#x2F;&#x2F; 根据订单号，查询订单信息
-    QueryWrapper&lt;Order&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
-    wrapper.eq(&quot;order_no&quot;,orderNo);
-    Order order &#x3D; orderService.getOne(wrapper);
-
-    &#x2F;&#x2F; 判断是否已支付
-    if (order.getStatus().intValue() &#x3D;&#x3D; 1)&#123;
-        return;
-    &#125;
-    &#x2F;&#x2F; 如果没有支付,则设置支付状态
-    order.setStatus(1);
-    orderService.updateById(order);
-
-    &#x2F;&#x2F;记录支付日志
-    PayLog payLog&#x3D;new PayLog();
-    payLog.setOrderNo(order.getOrderNo());          &#x2F;&#x2F; 支付订单号
-    payLog.setPayTime(new Date());                  &#x2F;&#x2F; 支付时间
-    payLog.setPayType(1);                           &#x2F;&#x2F; 支付类型 1微信
-    payLog.setTotalFee(order.getTotalFee());        &#x2F;&#x2F; 总金额(分)
-    payLog.setTradeState(map.get(&quot;trade_state&quot;));   &#x2F;&#x2F; 支付状态
-    payLog.setTransactionId(map.get(&quot;transaction_id&quot;)); &#x2F;&#x2F; 流水号
-    payLog.setAttr(JSONObject.toJSONString(map));   &#x2F;&#x2F; 将其他信息加入以json的格式加入到数据库
-    baseMapper.insert(payLog);&#x2F;&#x2F;插入到支付日志表
-
-&#125;</code></pre></div>
+<h3 id="2、编写service，更新订单状态"><a href="#2、编写service，更新订单状态" class="headerlink" title="2、编写service，更新订单状态"></a>2、编写service，更新订单状态</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 向表里面添加记录，更支付状态</span><br><span class="hljs-meta">@Override</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">updataOrderStatus</span><span class="hljs-params">(Map&lt;String,String&gt; map)</span> </span>&#123;<br>    <span class="hljs-comment">// 获取订单号id</span><br>    String orderNo = map.get(<span class="hljs-string">&quot;out_trade_no&quot;</span>);<br><br>    <span class="hljs-comment">// 根据订单号，查询订单信息</span><br>    QueryWrapper&lt;Order&gt; wrapper = <span class="hljs-keyword">new</span> QueryWrapper&lt;&gt;();<br>    wrapper.eq(<span class="hljs-string">&quot;order_no&quot;</span>,orderNo);<br>    Order order = orderService.getOne(wrapper);<br><br>    <span class="hljs-comment">// 判断是否已支付</span><br>    <span class="hljs-keyword">if</span> (order.getStatus().intValue() == <span class="hljs-number">1</span>)&#123;<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <span class="hljs-comment">// 如果没有支付,则设置支付状态</span><br>    order.setStatus(<span class="hljs-number">1</span>);<br>    orderService.updateById(order);<br><br>    <span class="hljs-comment">//记录支付日志</span><br>    PayLog payLog=<span class="hljs-keyword">new</span> PayLog();<br>    payLog.setOrderNo(order.getOrderNo());          <span class="hljs-comment">// 支付订单号</span><br>    payLog.setPayTime(<span class="hljs-keyword">new</span> Date());                  <span class="hljs-comment">// 支付时间</span><br>    payLog.setPayType(<span class="hljs-number">1</span>);                           <span class="hljs-comment">// 支付类型 1微信</span><br>    payLog.setTotalFee(order.getTotalFee());        <span class="hljs-comment">// 总金额(分)</span><br>    payLog.setTradeState(map.get(<span class="hljs-string">&quot;trade_state&quot;</span>));   <span class="hljs-comment">// 支付状态</span><br>    payLog.setTransactionId(map.get(<span class="hljs-string">&quot;transaction_id&quot;</span>)); <span class="hljs-comment">// 流水号</span><br>    payLog.setAttr(JSONObject.toJSONString(map));   <span class="hljs-comment">// 将其他信息加入以json的格式加入到数据库</span><br>    baseMapper.insert(payLog);<span class="hljs-comment">//插入到支付日志表</span><br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="生成微信支付二维码"><a href="#生成微信支付二维码" class="headerlink" title="生成微信支付二维码"></a>生成微信支付二维码</h2><p>（1）页面部分</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
-   &lt;div class&#x3D;&quot;cart py-container&quot;&gt;
-     &lt;!--主内容--&gt;
-     &lt;div class&#x3D;&quot;checkout py-container  pay&quot;&gt;
-       &lt;div class&#x3D;&quot;checkout-tit&quot;&gt;
-         &lt;h4 class&#x3D;&quot;fl tit-txt&quot;&gt;&lt;span class&#x3D;&quot;success-icon&quot;&gt;&lt;&#x2F;span&gt;&lt;span class&#x3D;&quot;success-info&quot;&gt;订单提交成功，请您及时付款！订单号：&#123;&#123;payObj.out_trade_no&#125;&#125;&lt;&#x2F;span&gt;
-         &lt;&#x2F;h4&gt;
-         &lt;span class&#x3D;&quot;fr&quot;&gt;&lt;em class&#x3D;&quot;sui-lead&quot;&gt;应付金额：&lt;&#x2F;em&gt;&lt;em class&#x3D;&quot;orange money&quot;&gt;￥&#123;&#123;payObj.total_fee&#125;&#125;&lt;&#x2F;em&gt;&lt;&#x2F;span&gt;
-         &lt;div class&#x3D;&quot;clearfix&quot;&gt;&lt;&#x2F;div&gt;
-       &lt;&#x2F;div&gt;
-       &lt;div class&#x3D;&quot;checkout-steps&quot;&gt;
-         &lt;div class&#x3D;&quot;fl weixin&quot;&gt;微信支付&lt;&#x2F;div&gt;
-         &lt;div class&#x3D;&quot;fl sao&quot;&gt;
-           &lt;p class&#x3D;&quot;red&quot;&gt;请使用微信扫一扫。&lt;&#x2F;p&gt;
-           &lt;div class&#x3D;&quot;fl code&quot;&gt;
-             &lt;!-- &lt;img id&#x3D;&quot;qrious&quot; src&#x3D;&quot;~&#x2F;assets&#x2F;img&#x2F;erweima.png&quot; alt&#x3D;&quot;&quot;&gt; --&gt;
-             &lt;!-- &lt;qriously value&#x3D;&quot;weixin:&#x2F;&#x2F;wxpay&#x2F;bizpayurl?pr&#x3D;R7tnDpZ&quot; :size&#x3D;&quot;338&quot;&#x2F;&gt; --&gt;
-             &lt;qriously :value&#x3D;&quot;payObj.code_url&quot; :size&#x3D;&quot;338&quot;&#x2F;&gt;
-             &lt;div class&#x3D;&quot;saosao&quot;&gt;
-               &lt;p&gt;请使用微信扫一扫&lt;&#x2F;p&gt;
-               &lt;p&gt;扫描二维码支付&lt;&#x2F;p&gt;
-             &lt;&#x2F;div&gt;
-           &lt;&#x2F;div&gt;
-         &lt;&#x2F;div&gt;
-         &lt;div class&#x3D;&quot;clearfix&quot;&gt;&lt;&#x2F;div&gt;
-         &lt;!-- &lt;p&gt;&lt;a href&#x3D;&quot;pay.html&quot; target&#x3D;&quot;_blank&quot;&gt;&gt; 其他支付方式&lt;&#x2F;a&gt;&lt;&#x2F;p&gt; --&gt;
-       &lt;&#x2F;div&gt;
-     &lt;&#x2F;div&gt;
-   &lt;&#x2F;div&gt;
- &lt;&#x2F;template&gt;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>   &lt;div class=&quot;cart py-container&quot;&gt;<br>     &lt;!--主内容--&gt;<br>     &lt;div class=&quot;checkout py-container  pay&quot;&gt;<br>       &lt;div class=&quot;checkout-tit&quot;&gt;<br>         &lt;h4 class=&quot;fl tit-txt&quot;&gt;&lt;span class=&quot;success-icon&quot;&gt;&lt;/span&gt;&lt;span class=&quot;success-info&quot;&gt;订单提交成功，请您及时付款！订单号：&#123;&#123;payObj.out_trade_no&#125;&#125;&lt;/span&gt;<br>         &lt;/h4&gt;<br>         &lt;span class=&quot;fr&quot;&gt;&lt;em class=&quot;sui-lead&quot;&gt;应付金额：&lt;/em&gt;&lt;em class=&quot;orange money&quot;&gt;￥&#123;&#123;payObj.total_fee&#125;&#125;&lt;/em&gt;&lt;/span&gt;<br>         &lt;div class=&quot;clearfix&quot;&gt;&lt;/div&gt;<br>       &lt;/div&gt;<br>       &lt;div class=&quot;checkout-steps&quot;&gt;<br>         &lt;div class=&quot;fl weixin&quot;&gt;微信支付&lt;/div&gt;<br>         &lt;div class=&quot;fl sao&quot;&gt;<br>           &lt;p class=&quot;red&quot;&gt;请使用微信扫一扫。&lt;/p&gt;<br>           &lt;div class=&quot;fl code&quot;&gt;<br>             &lt;!-- &lt;img id=&quot;qrious&quot; src=&quot;~/assets/img/erweima.png&quot; alt=&quot;&quot;&gt; --&gt;<br>             &lt;!-- &lt;qriously value=&quot;weixin://wxpay/bizpayurl?pr=R7tnDpZ&quot; :size=&quot;338&quot;/&gt; --&gt;<br>             &lt;qriously :value=&quot;payObj.code_url&quot; :size=&quot;338&quot;/&gt;<br>             &lt;div class=&quot;saosao&quot;&gt;<br>               &lt;p&gt;请使用微信扫一扫&lt;/p&gt;<br>               &lt;p&gt;扫描二维码支付&lt;/p&gt;<br>             &lt;/div&gt;<br>           &lt;/div&gt;<br>         &lt;/div&gt;<br>         &lt;div class=&quot;clearfix&quot;&gt;&lt;/div&gt;<br>         &lt;!-- &lt;p&gt;&lt;a href=&quot;pay.html&quot; target=&quot;_blank&quot;&gt;&gt; 其他支付方式&lt;/a&gt;&lt;/p&gt; --&gt;<br>       &lt;/div&gt;<br>     &lt;/div&gt;<br>   &lt;/div&gt;<br> &lt;/template&gt;<br></code></pre></td></tr></table></figure>
 
 
 
 <p>（2）调用部分</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;script&gt;
-    import orderApi from &quot;@&#x2F;api&#x2F;order&quot;
-export default &#123;
-    &#x2F;&#x2F; 生成支付二维码
-    asyncData(&#123;params,error&#125;)&#123;
-        return orderApi.createNative(params.pid)
-           .then(response &#x3D;&gt;&#123;
-               return&#123;
-                   payObj: response.data.data
-               &#125;
-           &#125;)
-    &#125;,
-    data()&#123;
-        return&#123;
-            time1:&#39;&#39;
-        &#125;
-    &#125;,
-    &#x2F;&#x2F; 页面渲染之后执行
-    mounted()&#123;
-     &#x2F;&#x2F;在页面渲染之后执行
-     &#x2F;&#x2F;每隔三秒，去查询一次支付状态
-     this.timer1 &#x3D; setInterval(() &#x3D;&gt; &#123;
-       this.queryPayStatus(this.payObj.out_trade_no)
-     &#125;, 3000);
-
-    &#125;,
-    methods:&#123;
-        &#x2F;&#x2F; 查询订单状态
-        queryPayStatus(out_trade_no)&#123;
-            orderApi.getPayStatus(out_trade_no)
-               .then(response &#x3D;&gt;&#123;
-                       if (response.data.success) &#123;
-                           &#x2F;&#x2F;如果支付成功，清除定时器
-                           clearInterval(this.timer1)
-                           this.$message(&#123;
-                               type: &#39;success&#39;,
-                               message: &#39;支付成功!&#39;
-                            &#125;)
-                           &#x2F;&#x2F;跳转到课程详情页面观看视频
-                           this.$router.push(&#123;path: &#39;&#x2F;course&#x2F;&#39; + this.payObj.course_id&#125;)
-                   &#125;
-               &#125;)
-        &#125;
-    &#125;
-&#125;
-&lt;&#x2F;script&gt;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;script&gt;<br>    import orderApi from &quot;@/api/order&quot;<br>export default &#123;<br>    // 生成支付二维码<br>    asyncData(&#123;params,error&#125;)&#123;<br>        return orderApi.createNative(params.pid)<br>           .then(response =&gt;&#123;<br>               return&#123;<br>                   payObj: response.data.data<br>               &#125;<br>           &#125;)<br>    &#125;,<br>    data()&#123;<br>        return&#123;<br>            time1:&#x27;&#x27;<br>        &#125;<br>    &#125;,<br>    // 页面渲染之后执行<br>    mounted()&#123;<br>     //在页面渲染之后执行<br>     //每隔三秒，去查询一次支付状态<br>     this.timer1 = setInterval(() =&gt; &#123;<br>       this.queryPayStatus(this.payObj.out_trade_no)<br>     &#125;, 3000);<br><br>    &#125;,<br>    methods:&#123;<br>        // 查询订单状态<br>        queryPayStatus(out_trade_no)&#123;<br>            orderApi.getPayStatus(out_trade_no)<br>               .then(response =&gt;&#123;<br>                       if (response.data.success) &#123;<br>                           //如果支付成功，清除定时器<br>                           clearInterval(this.timer1)<br>                           this.$message(&#123;<br>                               type: &#x27;success&#x27;,<br>                               message: &#x27;支付成功!&#x27;<br>                            &#125;)<br>                           //跳转到课程详情页面观看视频<br>                           this.$router.push(&#123;path: &#x27;/course/&#x27; + this.payObj.course_id&#125;)<br>                   &#125;<br>               &#125;)<br>        &#125;<br>    &#125;<br>&#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
 
 
               
@@ -1398,12 +701,6 @@ export default &#123;
   });
 </script>
 
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/components/prism-core.min.js" ></script>
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js" ></script>
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script>
   (function() {

@@ -16,12 +16,12 @@
   <meta name="author" content="Ten">
   <meta name="keywords" content="">
   
-    <meta name="description" content="day16-数据分析_统计分析课程详情页显示效果完善修改课程详情接口1、在service_order模块添加接口根据用户id和课程id查询订单信息 &#x2F;&#x2F; 根据课程id和用户id查询订单支付状态 @GetMapping(&quot;isBuyCourse&#x2F;&amp;#123;courseId&amp;#125;&#x2F;&amp;#123;memberId&amp;#125;&quot;) publ">
+    <meta name="description" content="day16-数据分析_统计分析课程详情页显示效果完善修改课程详情接口1、在service_order模块添加接口根据用户id和课程id查询订单信息 1234567891011121314151617&#x2F;&#x2F; 根据课程id和用户id查询订单支付状态@GetMapping(&quot;isBuyCourse&#x2F;&amp;#123;courseId&amp;#125;&#x2F;&amp;#123;memberId&amp;#125;&quot;)p">
 <meta property="og:type" content="article">
 <meta property="og:title" content="day16-数据分析_统计分析">
 <meta property="og:url" content="https://no-ten.github.io/day16-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90_%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="TBlog">
-<meta property="og:description" content="day16-数据分析_统计分析课程详情页显示效果完善修改课程详情接口1、在service_order模块添加接口根据用户id和课程id查询订单信息 &#x2F;&#x2F; 根据课程id和用户id查询订单支付状态 @GetMapping(&quot;isBuyCourse&#x2F;&amp;#123;courseId&amp;#125;&#x2F;&amp;#123;memberId&amp;#125;&quot;) publ">
+<meta property="og:description" content="day16-数据分析_统计分析课程详情页显示效果完善修改课程详情接口1、在service_order模块添加接口根据用户id和课程id查询订单信息 1234567891011121314151617&#x2F;&#x2F; 根据课程id和用户id查询订单支付状态@GetMapping(&quot;isBuyCourse&#x2F;&amp;#123;courseId&amp;#125;&#x2F;&amp;#123;memberId&amp;#125;&quot;)p">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-01-04T01:33:05.528Z">
 <meta property="article:modified_time" content="2022-01-06T16:50:19.938Z">
@@ -42,8 +42,6 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
@@ -227,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          19k 字
+          18k 字
         
       </span>
     
@@ -280,397 +278,76 @@
             <div class="markdown-body">
               
               <h1 id="day16-数据分析-统计分析"><a href="#day16-数据分析-统计分析" class="headerlink" title="day16-数据分析_统计分析"></a>day16-数据分析_统计分析</h1><h1 id="课程详情页显示效果完善"><a href="#课程详情页显示效果完善" class="headerlink" title="课程详情页显示效果完善"></a>课程详情页显示效果完善</h1><h2 id="修改课程详情接口"><a href="#修改课程详情接口" class="headerlink" title="修改课程详情接口"></a>修改课程详情接口</h2><h3 id="1、在service-order模块添加接口"><a href="#1、在service-order模块添加接口" class="headerlink" title="1、在service_order模块添加接口"></a>1、在service_order模块添加接口</h3><p>根据用户id和课程id查询订单信息</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据课程id和用户id查询订单支付状态
-@GetMapping(&quot;isBuyCourse&#x2F;&#123;courseId&#125;&#x2F;&#123;memberId&#125;&quot;)
-public boolean isBuyCourse(@PathVariable String courseId,@PathVariable String memberId)&#123;
-    QueryWrapper&lt;Order&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
-    wrapper.eq(&quot;course_id&quot;,courseId);
-    wrapper.eq(&quot;member_id&quot;,memberId);
-    wrapper.eq(&quot;status&quot;,1);     &#x2F;&#x2F; 1.已支付
-
-    int count &#x3D; orderService.count(wrapper);
-    if (count &gt; 0)&#123;
-        &#x2F;&#x2F; 说明已经支付
-        return true;
-    &#125; else &#123;
-        &#x2F;&#x2F; 否则未支付，返回false
-        return false;
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 根据课程id和用户id查询订单支付状态</span><br><span class="hljs-meta">@GetMapping(&quot;isBuyCourse/&#123;courseId&#125;/&#123;memberId&#125;&quot;)</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isBuyCourse</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> String courseId,<span class="hljs-meta">@PathVariable</span> String memberId)</span></span>&#123;<br>    QueryWrapper&lt;Order&gt; wrapper = <span class="hljs-keyword">new</span> QueryWrapper&lt;&gt;();<br>    wrapper.eq(<span class="hljs-string">&quot;course_id&quot;</span>,courseId);<br>    wrapper.eq(<span class="hljs-string">&quot;member_id&quot;</span>,memberId);<br>    wrapper.eq(<span class="hljs-string">&quot;status&quot;</span>,<span class="hljs-number">1</span>);     <span class="hljs-comment">// 1.已支付</span><br><br>    <span class="hljs-keyword">int</span> count = orderService.count(wrapper);<br>    <span class="hljs-keyword">if</span> (count &gt; <span class="hljs-number">0</span>)&#123;<br>        <span class="hljs-comment">// 说明已经支付</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-comment">// 否则未支付，返回false</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="2、在service-edu模块课程详情接口远程调用"><a href="#2、在service-edu模块课程详情接口远程调用" class="headerlink" title="2、在service_edu模块课程详情接口远程调用"></a><strong>2、在service_edu模块课程详情接口远程调用</strong></h3><p>（1）创建OrderClient接口</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Component
-@FeignClient(name &#x3D; &quot;service-order&quot;)
-public interface OrderClient &#123;
-
-    &#x2F;&#x2F; 根据课程id和用户id查询订单支付状态
-    @GetMapping(&quot;&#x2F;eduorder&#x2F;order&#x2F;isBuyCourse&#x2F;&#123;courseId&#125;&#x2F;&#123;memberId&#125;&quot;)
-    public boolean isBuyCourse(@PathVariable(&quot;courseId&quot;) String courseId, @PathVariable(&quot;memberId&quot;) String memberId);
-
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span><br><span class="hljs-meta">@FeignClient(name = &quot;service-order&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">OrderClient</span> </span>&#123;<br><br>    <span class="hljs-comment">// 根据课程id和用户id查询订单支付状态</span><br>    <span class="hljs-meta">@GetMapping(&quot;/eduorder/order/isBuyCourse/&#123;courseId&#125;/&#123;memberId&#125;&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isBuyCourse</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable(&quot;courseId&quot;)</span> String courseId, <span class="hljs-meta">@PathVariable(&quot;memberId&quot;)</span> String memberId)</span></span>;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>（2）在课程详情接口调用com.atguigu.eduservice.controller.front</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 2.课程详情的方法
-@GetMapping(&quot;getFrontCourseInfo&#x2F;&#123;courseId&#125;&quot;)
-public R getFrontCourseInfo(@PathVariable String courseId, HttpServletRequest request)&#123;
-
-    &#x2F;&#x2F; 根据课程id，编写SQL语句查询课程信息
-    CourseWebVo courseWebVo &#x3D; courseService.getBaseCourseInfo(courseId);
-    &#x2F;&#x2F; 根据课程id，查询章节和小节
-    List&lt;ChapterVo&gt; chapterVideoList &#x3D; chapterService.getAllChapterVideo(courseId);
-
-    &#x2F;&#x2F; 根据课程id和用户id查询当前课程是否已经支付过了
-    String memberId &#x3D; JwtUtils.getMemberIdByJwtToken(request);
-    &#x2F;&#x2F; 判断是否已经登录
-    if (!StringUtils.isEmpty(memberId))&#123;
-        boolean buyCourse &#x3D; orderClient.isBuyCourse(courseId, memberId);
-        return R.ok().data(&quot;courseWebVo&quot;,courseWebVo).data(&quot;chapterVideoList&quot;,chapterVideoList).data(&quot;isBuy&quot;,buyCourse);
-    &#125;
-    return R.ok().code(28004).message(&quot;请先登录&quot;);
-
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 2.课程详情的方法</span><br><span class="hljs-meta">@GetMapping(&quot;getFrontCourseInfo/&#123;courseId&#125;&quot;)</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">getFrontCourseInfo</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> String courseId, HttpServletRequest request)</span></span>&#123;<br><br>    <span class="hljs-comment">// 根据课程id，编写SQL语句查询课程信息</span><br>    CourseWebVo courseWebVo = courseService.getBaseCourseInfo(courseId);<br>    <span class="hljs-comment">// 根据课程id，查询章节和小节</span><br>    List&lt;ChapterVo&gt; chapterVideoList = chapterService.getAllChapterVideo(courseId);<br><br>    <span class="hljs-comment">// 根据课程id和用户id查询当前课程是否已经支付过了</span><br>    String memberId = JwtUtils.getMemberIdByJwtToken(request);<br>    <span class="hljs-comment">// 判断是否已经登录</span><br>    <span class="hljs-keyword">if</span> (!StringUtils.isEmpty(memberId))&#123;<br>        <span class="hljs-keyword">boolean</span> buyCourse = orderClient.isBuyCourse(courseId, memberId);<br>        <span class="hljs-keyword">return</span> R.ok().data(<span class="hljs-string">&quot;courseWebVo&quot;</span>,courseWebVo).data(<span class="hljs-string">&quot;chapterVideoList&quot;</span>,chapterVideoList).data(<span class="hljs-string">&quot;isBuy&quot;</span>,buyCourse);<br>    &#125;<br>    <span class="hljs-keyword">return</span> R.ok().code(<span class="hljs-number">28004</span>).message(<span class="hljs-string">&quot;请先登录&quot;</span>);<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="修改课程详情页面"><a href="#修改课程详情页面" class="headerlink" title="修改课程详情页面"></a>修改课程详情页面</h2><p>1、页面内容修改</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;section class&#x3D;&quot;c-attr-mt&quot; v-if&#x3D;&quot;isBuy || Number(courseWebVo.price) &#x3D;&#x3D;&#x3D; 0&quot;&gt;
-  &lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;立即观看&quot; class&#x3D;&quot;comm-btn c-btn-3&quot; &gt;立即观看&lt;&#x2F;a&gt;
-&lt;&#x2F;section&gt;
-&lt;section class&#x3D;&quot;c-attr-mt&quot; v-else&gt;
-  &lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;立即购买&quot; class&#x3D;&quot;comm-btn c-btn-3&quot; @click&#x3D;&quot;createOrder()&quot;&gt;立即购买&lt;&#x2F;a&gt;
-&lt;&#x2F;section&gt;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;section class=&quot;c-attr-mt&quot; v-if=&quot;isBuy || Number(courseWebVo.price) === 0&quot;&gt;<br>  &lt;a href=&quot;#&quot; title=&quot;立即观看&quot; class=&quot;comm-btn c-btn-3&quot; &gt;立即观看&lt;/a&gt;<br>&lt;/section&gt;<br>&lt;section class=&quot;c-attr-mt&quot; v-else&gt;<br>  &lt;a href=&quot;#&quot; title=&quot;立即购买&quot; class=&quot;comm-btn c-btn-3&quot; @click=&quot;createOrder()&quot;&gt;立即购买&lt;/a&gt;<br>&lt;/section&gt;<br></code></pre></td></tr></table></figure>
 
 <p>2、调用方法修改</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue"> &lt;script&gt;
-import course from &quot;@&#x2F;api&#x2F;course&quot;
-import order from &quot;@&#x2F;api&#x2F;order&quot;
- export default &#123;
-
-   asyncData(&#123; params, error  &#125;)&#123;
-     return &#123;courseId : params.id&#125;
-   &#125;,
-   data()&#123;
-     return&#123;
-          courseWebVo: &#123;&#125;,
-          chapterVideoList: [],
-          isBuy: false,
-     &#125;
-   &#125;,
-   created()&#123;
-    this.initCourseInfo()
-   &#125;,
-   methods:&#123;
-     initCourseInfo()&#123;
-      course.getCourseInfo(this.courseId)
-        .then(response &#x3D;&gt;&#123;
-            this.courseWebVo &#x3D; response.data.data.courseWebVo,
-            this.chapterVideoList &#x3D; response.data.data.chapterVideoList,
-            this.isBuy&#x3D;response.data.data.isBuy
-        &#125;)
-     &#125;,
-      &#x2F;&#x2F; 创建订单
-      createOrder()&#123;
-        order.createOrder(this.courseId)
-          .then(response &#x3D;&gt;&#123;
-            &#x2F;&#x2F; 获取返回的订单号
-            &#x2F;&#x2F; 将订单号放在路径上跳转订单显示页面
-            this.$router.push(&#123;path:&#39;&#x2F;order&#x2F;&#39;+response.data.data.orderId &#125;)
-          &#125;)
-      &#125;
-   &#125;
-   
- &#125;;
- &lt;&#x2F;script&gt;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs vue"> &lt;script&gt;<br>import course from &quot;@/api/course&quot;<br>import order from &quot;@/api/order&quot;<br> export default &#123;<br><br>   asyncData(&#123; params, error  &#125;)&#123;<br>     return &#123;courseId : params.id&#125;<br>   &#125;,<br>   data()&#123;<br>     return&#123;<br>          courseWebVo: &#123;&#125;,<br>          chapterVideoList: [],<br>          isBuy: false,<br>     &#125;<br>   &#125;,<br>   created()&#123;<br>    this.initCourseInfo()<br>   &#125;,<br>   methods:&#123;<br>     initCourseInfo()&#123;<br>      course.getCourseInfo(this.courseId)<br>        .then(response =&gt;&#123;<br>            this.courseWebVo = response.data.data.courseWebVo,<br>            this.chapterVideoList = response.data.data.chapterVideoList,<br>            this.isBuy=response.data.data.isBuy<br>        &#125;)<br>     &#125;,<br>      // 创建订单<br>      createOrder()&#123;<br>        order.createOrder(this.courseId)<br>          .then(response =&gt;&#123;<br>            // 获取返回的订单号<br>            // 将订单号放在路径上跳转订单显示页面<br>            this.$router.push(&#123;path:&#x27;/order/&#x27;+response.data.data.orderId &#125;)<br>          &#125;)<br>      &#125;<br>   &#125;<br>   <br> &#125;;<br> &lt;/script&gt;<br></code></pre></td></tr></table></figure>
 
 
 
 <h1 id="数据分析-生成统计数据接口"><a href="#数据分析-生成统计数据接口" class="headerlink" title="数据分析-生成统计数据接口"></a>数据分析-生成统计数据接口</h1><h2 id="一、数据库设计"><a href="#一、数据库设计" class="headerlink" title="一、数据库设计"></a>一、数据库设计</h2><p>1、数据库</p>
 <p>guli_statistics</p>
 <p>2、数据表</p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">guli_statistics.sql</code></pre></div>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">guli_statistics.<span class="hljs-keyword">sql</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="二、创建微服务"><a href="#二、创建微服务" class="headerlink" title="二、创建微服务"></a><strong>二、创建微服务</strong></h2><h3 id="1、在service模块下创建子模块service-statistics"><a href="#1、在service模块下创建子模块service-statistics" class="headerlink" title="1、在service模块下创建子模块service_statistics"></a>1、在service模块下创建子模块service_statistics</h3><h3 id="2、application-properties"><a href="#2、application-properties" class="headerlink" title="2、application.properties"></a><strong>2</strong>、application.properties</h3><p>resources目录下创建文件</p>
-<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"># 服务端口
-server.port&#x3D;8008
-# 服务名
-spring.application.name&#x3D;service-statistics
-# mysql数据库连接
-spring.datasource.driver-class-name&#x3D;com.mysql.cj.jdbc.Driver
-spring.datasource.url&#x3D;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;guli?serverTimezone&#x3D;GMT%2B8
-spring.datasource.username&#x3D;root
-spring.datasource.password&#x3D;root
-#返回json的全局时间格式
-spring.jackson.date-format&#x3D;yyyy-MM-dd HH:mm:ss
-spring.jackson.time-zone&#x3D;GMT+8
-#配置mapper xml文件的路径
-mybatis-plus.mapper-locations&#x3D;classpath:com&#x2F;atguigu&#x2F;staservice&#x2F;mapper&#x2F;xml&#x2F;*.xml
-#mybatis日志
-mybatis-plus.configuration.log-impl&#x3D;org.apache.ibatis.logging.stdout.StdOutImpl
-# nacos服务地址
-spring.cloud.nacos.discovery.server-addr&#x3D;127.0.0.1:8848</code></pre></div>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment"># 服务端口</span><br><span class="hljs-meta">server.port</span>=<span class="hljs-string">8008</span><br><span class="hljs-comment"># 服务名</span><br><span class="hljs-meta">spring.application.name</span>=<span class="hljs-string">service-statistics</span><br><span class="hljs-comment"># mysql数据库连接</span><br><span class="hljs-meta">spring.datasource.driver-class-name</span>=<span class="hljs-string">com.mysql.cj.jdbc.Driver</span><br><span class="hljs-meta">spring.datasource.url</span>=<span class="hljs-string">jdbc:mysql://localhost:3306/guli?serverTimezone=GMT%2B8</span><br><span class="hljs-meta">spring.datasource.username</span>=<span class="hljs-string">root</span><br><span class="hljs-meta">spring.datasource.password</span>=<span class="hljs-string">root</span><br><span class="hljs-comment">#返回json的全局时间格式</span><br><span class="hljs-meta">spring.jackson.date-format</span>=<span class="hljs-string">yyyy-MM-dd HH:mm:ss</span><br><span class="hljs-meta">spring.jackson.time-zone</span>=<span class="hljs-string">GMT+8</span><br><span class="hljs-comment">#配置mapper xml文件的路径</span><br><span class="hljs-meta">mybatis-plus.mapper-locations</span>=<span class="hljs-string">classpath:com/atguigu/staservice/mapper/xml/*.xml</span><br><span class="hljs-comment">#mybatis日志</span><br><span class="hljs-meta">mybatis-plus.configuration.log-impl</span>=<span class="hljs-string">org.apache.ibatis.logging.stdout.StdOutImpl</span><br><span class="hljs-comment"># nacos服务地址</span><br><span class="hljs-meta">spring.cloud.nacos.discovery.server-addr</span>=<span class="hljs-string">127.0.0.1:8848</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="3、MP代码生成器生成代码"><a href="#3、MP代码生成器生成代码" class="headerlink" title="3、MP代码生成器生成代码"></a>3、MP代码生成器生成代码</h3><h3 id="4、创建SpringBoot启动类"><a href="#4、创建SpringBoot启动类" class="headerlink" title="4、创建SpringBoot启动类"></a>4、创建SpringBoot启动类</h3><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@SpringBootApplication
-@ComponentScan(&#123;&quot;com.atguigu&quot;&#125;)
-@MapperScan(&quot;com.atguigu.staservice.mapper&quot;)
-@EnableDiscoveryClient  &#x2F;&#x2F; 开启nacos
-@EnableFeignClients &#x2F;&#x2F; 开启远程调用
-public class StaApplication &#123;
-
-    public static void main(String[] args) &#123;
-        SpringApplication.run(StaApplication.class,args);
-    &#125;
-
-&#125;</code></pre></div>
+<h3 id="3、MP代码生成器生成代码"><a href="#3、MP代码生成器生成代码" class="headerlink" title="3、MP代码生成器生成代码"></a>3、MP代码生成器生成代码</h3><h3 id="4、创建SpringBoot启动类"><a href="#4、创建SpringBoot启动类" class="headerlink" title="4、创建SpringBoot启动类"></a>4、创建SpringBoot启动类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@SpringBootApplication</span><br><span class="hljs-meta">@ComponentScan(&#123;&quot;com.atguigu&quot;&#125;)</span><br><span class="hljs-meta">@MapperScan(&quot;com.atguigu.staservice.mapper&quot;)</span><br><span class="hljs-meta">@EnableDiscoveryClient</span>  <span class="hljs-comment">// 开启nacos</span><br><span class="hljs-meta">@EnableFeignClients</span> <span class="hljs-comment">// 开启远程调用</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StaApplication</span> </span>&#123;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        SpringApplication.run(StaApplication.class,args);<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="三、实现服务调用"><a href="#三、实现服务调用" class="headerlink" title="三、实现服务调用"></a>三、实现服务调用</h2><h3 id="1、在service-ucenter模块创建接口，统计某一天的注册人数"><a href="#1、在service-ucenter模块创建接口，统计某一天的注册人数" class="headerlink" title="1、在service_ucenter模块创建接口，统计某一天的注册人数"></a>1、在service_ucenter模块创建接口，统计某一天的注册人数</h3><p><strong>controller</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据日期查询某一天的注册人数
-@PostMapping(&quot;countRegister&#x2F;&#123;day&#125;&quot;)
-public R countRegister(@PathVariable String day)&#123;
-    Integer count &#x3D; memberService.countRegister(day);
-    return R.ok().data(&quot;countRegister&quot;,count);
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 根据日期查询某一天的注册人数</span><br><span class="hljs-meta">@PostMapping(&quot;countRegister/&#123;day&#125;&quot;)</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">countRegister</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> String day)</span></span>&#123;<br>    Integer count = memberService.countRegister(day);<br>    <span class="hljs-keyword">return</span> R.ok().data(<span class="hljs-string">&quot;countRegister&quot;</span>,count);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><strong>service</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据日期查询某一天的注册人数
-Integer countRegister(String day);</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 根据日期查询某一天的注册人数</span><br><span class="hljs-function">Integer <span class="hljs-title">countRegister</span><span class="hljs-params">(String day)</span></span>;<br></code></pre></td></tr></table></figure>
 
 <p><strong>serviceImpl</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据日期查询某一天的注册人数
-@Override
-public Integer countRegister(String day) &#123;
-    return baseMapper.countRegister(day);
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 根据日期查询某一天的注册人数</span><br><span class="hljs-meta">@Override</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> Integer <span class="hljs-title">countRegister</span><span class="hljs-params">(String day)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> baseMapper.countRegister(day);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><strong>mapper</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">public interface UcenterMemberMapper extends BaseMapper&lt;UcenterMember&gt; &#123;
-    &#x2F;&#x2F; 查询某一天的注册人数，如果是多个参数，需要用@Param(&quot;day&quot;)
-    Integer countRegister(@Param(&quot;day&quot;) String day);
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">UcenterMemberMapper</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BaseMapper</span>&lt;<span class="hljs-title">UcenterMember</span>&gt; </span>&#123;<br>    <span class="hljs-comment">// 查询某一天的注册人数，如果是多个参数，需要用@Param(&quot;day&quot;)</span><br>    <span class="hljs-function">Integer <span class="hljs-title">countRegister</span><span class="hljs-params">(<span class="hljs-meta">@Param(&quot;day&quot;)</span> String day)</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><strong>xml</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">&lt;select id&#x3D;&quot;countRegister&quot; resultType&#x3D;&quot;java.lang.Integer&quot;&gt;
-    SELECT
-      COUNT(*)
-    FROM
-      ucenter_member uc
-    WHERE DATE(uc.&#96;gmt_create&#96;) &#x3D; #&#123;day&#125;
-&lt;&#x2F;select&gt;</code></pre></div>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;countRegister&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;java.lang.Integer&quot;</span>&gt;</span><br>    SELECT<br>      COUNT(*)<br>    FROM<br>      ucenter_member uc<br>    WHERE DATE(uc.`gmt_create`) = #&#123;day&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="2、在service-statistics模块创建远程调用接口"><a href="#2、在service-statistics模块创建远程调用接口" class="headerlink" title="2、在service_statistics模块创建远程调用接口"></a>2、在service_statistics模块创建远程调用接口</h3><p>创建client包和UcenterClient接口</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Component
-@FeignClient(name &#x3D; &quot;service-ucenter&quot;)
-public interface UcenterClient &#123;
-    &#x2F;&#x2F; 根据日期查询某一天的注册人数
-    @PostMapping(&quot;&#x2F;educenter&#x2F;member&#x2F;countRegister&#x2F;&#123;day&#125;&quot;)
-    public R countRegister(@PathVariable(&quot;day&quot;) String day);
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span><br><span class="hljs-meta">@FeignClient(name = &quot;service-ucenter&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">UcenterClient</span> </span>&#123;<br>    <span class="hljs-comment">// 根据日期查询某一天的注册人数</span><br>    <span class="hljs-meta">@PostMapping(&quot;/educenter/member/countRegister/&#123;day&#125;&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">countRegister</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable(&quot;day&quot;)</span> String day)</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="3、在service-statistics模块调用微服务"><a href="#3、在service-statistics模块调用微服务" class="headerlink" title="3、在service_statistics模块调用微服务"></a>3、在service_statistics模块调用微服务</h3><p><strong>controller</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@RestController
-@RequestMapping(&quot;&#x2F;staservice&#x2F;sta&quot;)
-@CrossOrigin
-public class StatisticsDailyController &#123;
-
-    @Autowired
-    private StatisticsDailyService dailyService;
-
-    &#x2F;&#x2F; 查询某一天的注册人数，并加入到数据库
-    @PostMapping(&quot;registerCount&#x2F;&#123;day&#125;&quot;)
-    public R registerCount(@PathVariable String day)&#123;
-        dailyService.registerCountDay(day);
-        return R.ok();
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;/staservice/sta&quot;)</span><br><span class="hljs-meta">@CrossOrigin</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StatisticsDailyController</span> </span>&#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> StatisticsDailyService dailyService;<br><br>    <span class="hljs-comment">// 查询某一天的注册人数，并加入到数据库</span><br>    <span class="hljs-meta">@PostMapping(&quot;registerCount/&#123;day&#125;&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">registerCount</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> String day)</span></span>&#123;<br>        dailyService.registerCountDay(day);<br>        <span class="hljs-keyword">return</span> R.ok();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><strong>service</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Service
-public class StatisticsDailyServiceImpl extends ServiceImpl&lt;StatisticsDailyMapper, StatisticsDaily&gt; implements StatisticsDailyService &#123;
-
-    @Autowired
-    private UcenterClient ucenterClient;
-
-    &#x2F;&#x2F; 查询某一天的注册人数，并加入到数据库
-    @Override
-    public void registerCountDay(String day) &#123;
-        &#x2F;&#x2F; 添加记录之前先删除相同日期的
-        QueryWrapper&lt;StatisticsDaily&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
-        wrapper.eq(&quot;date_calculated&quot;,day);
-        baseMapper.delete(wrapper);
-
-        &#x2F;&#x2F; 调用远程方法，查询数据库
-        R registerR &#x3D; ucenterClient.countRegister(day);
-
-        &#x2F;&#x2F; data中取出人数
-        Integer countRegister &#x3D; (Integer) registerR.getData().get(&quot;countRegister&quot;);
-
-        &#x2F;&#x2F; 将数据加入到数据库
-        StatisticsDaily daily &#x3D; new StatisticsDaily();
-        daily.setRegisterNum(countRegister);
-        daily.setDateCalculated(day);
-        daily.setLoginNum(RandomUtils.nextInt(100, 200));
-        daily.setVideoViewNum(RandomUtils.nextInt(100, 200));
-        daily.setCourseNum(RandomUtils.nextInt(100, 200));
-
-        baseMapper.insert(daily);
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StatisticsDailyServiceImpl</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ServiceImpl</span>&lt;<span class="hljs-title">StatisticsDailyMapper</span>, <span class="hljs-title">StatisticsDaily</span>&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title">StatisticsDailyService</span> </span>&#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> UcenterClient ucenterClient;<br><br>    <span class="hljs-comment">// 查询某一天的注册人数，并加入到数据库</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">registerCountDay</span><span class="hljs-params">(String day)</span> </span>&#123;<br>        <span class="hljs-comment">// 添加记录之前先删除相同日期的</span><br>        QueryWrapper&lt;StatisticsDaily&gt; wrapper = <span class="hljs-keyword">new</span> QueryWrapper&lt;&gt;();<br>        wrapper.eq(<span class="hljs-string">&quot;date_calculated&quot;</span>,day);<br>        baseMapper.delete(wrapper);<br><br>        <span class="hljs-comment">// 调用远程方法，查询数据库</span><br>        R registerR = ucenterClient.countRegister(day);<br><br>        <span class="hljs-comment">// data中取出人数</span><br>        Integer countRegister = (Integer) registerR.getData().get(<span class="hljs-string">&quot;countRegister&quot;</span>);<br><br>        <span class="hljs-comment">// 将数据加入到数据库</span><br>        StatisticsDaily daily = <span class="hljs-keyword">new</span> StatisticsDaily();<br>        daily.setRegisterNum(countRegister);<br>        daily.setDateCalculated(day);<br>        daily.setLoginNum(RandomUtils.nextInt(<span class="hljs-number">100</span>, <span class="hljs-number">200</span>));<br>        daily.setVideoViewNum(RandomUtils.nextInt(<span class="hljs-number">100</span>, <span class="hljs-number">200</span>));<br>        daily.setCourseNum(RandomUtils.nextInt(<span class="hljs-number">100</span>, <span class="hljs-number">200</span>));<br><br>        baseMapper.insert(daily);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
-<h1 id="统计分析-生成统计数据前端整合"><a href="#统计分析-生成统计数据前端整合" class="headerlink" title="统计分析-生成统计数据前端整合"></a>统计分析-生成统计数据前端整合</h1><h2 id="添加路由"><a href="#添加路由" class="headerlink" title="添加路由"></a>添加路由</h2><div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#123;
-    path: &#39;&#x2F;sta&#39;,
-    component: Layout,
-    redirect: &#39;&#x2F;sta&#x2F;create&#39;,
-    name: &#39;统计分析&#39;,
-    meta: &#123; title: &#39;统计分析&#39;, icon: &#39;example&#39; &#125;,
-    children: [
-      &#123;
-        path: &#39;create&#39;,
-        name: &#39;生成数据&#39;,
-        component: () &#x3D;&gt; import(&#39;@&#x2F;views&#x2F;sta&#x2F;create&#39;),
-        meta: &#123; title: &#39;生成数据&#39;, icon: &#39;table&#39; &#125;
-      &#125;,
-      &#123;
-        path: &#39;show&#39;,
-        name: &#39;显示数据&#39;,
-        component: () &#x3D;&gt; import(&#39;@&#x2F;views&#x2F;sta&#x2F;show&#39;),
-        meta: &#123; title: &#39;显示数据&#39;, icon: &#39;tree&#39; &#125;
-      &#125;
-    ]
-  &#125;,
-</code></pre></div>
+<h1 id="统计分析-生成统计数据前端整合"><a href="#统计分析-生成统计数据前端整合" class="headerlink" title="统计分析-生成统计数据前端整合"></a>统计分析-生成统计数据前端整合</h1><h2 id="添加路由"><a href="#添加路由" class="headerlink" title="添加路由"></a>添加路由</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs js">&#123;<br>    <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/sta&#x27;</span>,<br>    <span class="hljs-attr">component</span>: Layout,<br>    <span class="hljs-attr">redirect</span>: <span class="hljs-string">&#x27;/sta/create&#x27;</span>,<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;统计分析&#x27;</span>,<br>    <span class="hljs-attr">meta</span>: &#123; <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;统计分析&#x27;</span>, <span class="hljs-attr">icon</span>: <span class="hljs-string">&#x27;example&#x27;</span> &#125;,<br>    <span class="hljs-attr">children</span>: [<br>      &#123;<br>        <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;create&#x27;</span>,<br>        <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;生成数据&#x27;</span>,<br>        <span class="hljs-attr">component</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;@/views/sta/create&#x27;</span>),<br>        <span class="hljs-attr">meta</span>: &#123; <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;生成数据&#x27;</span>, <span class="hljs-attr">icon</span>: <span class="hljs-string">&#x27;table&#x27;</span> &#125;<br>      &#125;,<br>      &#123;<br>        <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;show&#x27;</span>,<br>        <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;显示数据&#x27;</span>,<br>        <span class="hljs-attr">component</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;@/views/sta/show&#x27;</span>),<br>        <span class="hljs-attr">meta</span>: &#123; <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;显示数据&#x27;</span>, <span class="hljs-attr">icon</span>: <span class="hljs-string">&#x27;tree&#x27;</span> &#125;<br>      &#125;<br>    ]<br>  &#125;,<br><br></code></pre></td></tr></table></figure>
 
 <h2 id="创建api"><a href="#创建api" class="headerlink" title="创建api"></a>创建api</h2><p>src/api/sta.js</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">import request from &#39;@&#x2F;utils&#x2F;request&#39;
-export default&#123;
-    &#x2F;&#x2F; 生成数据
-    createStaDate(day)&#123;
-        return request(&#123;
-            url: &#96;&#x2F;staservice&#x2F;sta&#x2F;registerCount&#x2F;$&#123;day&#125;&#96;,
-            method: &#39;post&#39;
-          &#125;)
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> request <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/utils/request&#x27;</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span>&#123;<br>    <span class="hljs-comment">// 生成数据</span><br>    <span class="hljs-function"><span class="hljs-title">createStaDate</span>(<span class="hljs-params">day</span>)</span>&#123;<br>        <span class="hljs-keyword">return</span> request(&#123;<br>            <span class="hljs-attr">url</span>: <span class="hljs-string">`/staservice/sta/registerCount/<span class="hljs-subst">$&#123;day&#125;</span>`</span>,<br>            <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;post&#x27;</span><br>          &#125;)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="创建组件"><a href="#创建组件" class="headerlink" title="创建组件"></a><strong>创建组件</strong></h2><p>src/views/sta/create.vue</p>
 <p>模板部分</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
-  &lt;div class&#x3D;&quot;app-container&quot;&gt;
-    &lt;!--表单--&gt;
-    &lt;el-form :inline&#x3D;&quot;true&quot; class&#x3D;&quot;demo-form-inline&quot;&gt;
-      &lt;el-form-item label&#x3D;&quot;日期&quot;&gt;
-        &lt;el-date-picker
-          v-model&#x3D;&quot;day&quot;
-          type&#x3D;&quot;date&quot;
-          placeholder&#x3D;&quot;选择要统计的日期&quot;
-          value-format&#x3D;&quot;yyyy-MM-dd&quot; &#x2F;&gt;
-      &lt;&#x2F;el-form-item&gt;
-      &lt;el-button
-        :disabled&#x3D;&quot;btnDisabled&quot;
-        type&#x3D;&quot;primary&quot;
-        @click&#x3D;&quot;create()&quot;&gt;生成&lt;&#x2F;el-button&gt;
-    &lt;&#x2F;el-form&gt;
-  &lt;&#x2F;div&gt;
-&lt;&#x2F;template&gt;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;div class=&quot;app-container&quot;&gt;<br>    &lt;!--表单--&gt;<br>    &lt;el-form :inline=&quot;true&quot; class=&quot;demo-form-inline&quot;&gt;<br>      &lt;el-form-item label=&quot;日期&quot;&gt;<br>        &lt;el-date-picker<br>          v-model=&quot;day&quot;<br>          type=&quot;date&quot;<br>          placeholder=&quot;选择要统计的日期&quot;<br>          value-format=&quot;yyyy-MM-dd&quot; /&gt;<br>      &lt;/el-form-item&gt;<br>      &lt;el-button<br>        :disabled=&quot;btnDisabled&quot;<br>        type=&quot;primary&quot;<br>        @click=&quot;create()&quot;&gt;生成&lt;/el-button&gt;<br>    &lt;/el-form&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br></code></pre></td></tr></table></figure>
 
 <p>script</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;script&gt;
-import sta from &quot;@&#x2F;api&#x2F;sta&quot;
-export default &#123;
-    data()&#123;
-        return&#123;
-            day:&#39;&#39;,
-            btnDisabled: false
-        &#125;
-    &#125;,
-    created()&#123;
-
-    &#125;,
-    methods:&#123;
-        create()&#123;
-            sta.createStaDate(this.day)
-                .then(response &#x3D;&gt;&#123;
-                    &#x2F;&#x2F; 提示信息
-                    this.$message(&#123;
-                            type: &#39;success&#39;,
-                            message: &#39;生成数据成功!&#39;
-                        &#125;);
-                    &#x2F;&#x2F; 跳转到生成页面
-                    this.$router.push(&#123;path:&#39;&#x2F;sta&#x2F;show&#39;&#125;)
-                &#125;)
-        &#125;
-    &#125;
-&#125;
-&lt;&#x2F;script&gt;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;script&gt;<br>import sta from &quot;@/api/sta&quot;<br>export default &#123;<br>    data()&#123;<br>        return&#123;<br>            day:&#x27;&#x27;,<br>            btnDisabled: false<br>        &#125;<br>    &#125;,<br>    created()&#123;<br><br>    &#125;,<br>    methods:&#123;<br>        create()&#123;<br>            sta.createStaDate(this.day)<br>                .then(response =&gt;&#123;<br>                    // 提示信息<br>                    this.$message(&#123;<br>                            type: &#x27;success&#x27;,<br>                            message: &#x27;生成数据成功!&#x27;<br>                        &#125;);<br>                    // 跳转到生成页面<br>                    this.$router.push(&#123;path:&#x27;/sta/show&#x27;&#125;)<br>                &#125;)<br>        &#125;<br>    &#125;<br>&#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
 
 <h1 id="添加定时任务"><a href="#添加定时任务" class="headerlink" title="添加定时任务"></a>添加定时任务</h1><h2 id="1、创建定时任务类，使用cron表达式"><a href="#1、创建定时任务类，使用cron表达式" class="headerlink" title="1、创建定时任务类，使用cron表达式"></a>1、创建定时任务类，使用cron表达式</h2><p><strong>复制日期工具类</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.atguigu.staservice.utils;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.atguigu.staservice.utils;<br><br><span class="hljs-keyword">import</span> java.text.SimpleDateFormat;<br><span class="hljs-keyword">import</span> java.util.Calendar;<br><span class="hljs-keyword">import</span> java.util.Date;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 日期操作工具类</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> qy</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@since</span> 1.0</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DateUtil</span> </span>&#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String dateFormat = <span class="hljs-string">&quot;yyyy-MM-dd&quot;</span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 格式化日期</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> date</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">formatDate</span><span class="hljs-params">(Date date)</span> </span>&#123;<br>        SimpleDateFormat sdf = <span class="hljs-keyword">new</span> SimpleDateFormat(dateFormat);<br>        <span class="hljs-keyword">return</span> sdf.format(date);<br><br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 在日期date上增加amount天 。</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> date   处理的日期，非null</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> amount 要加的天数，可能为负数</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Date <span class="hljs-title">addDays</span><span class="hljs-params">(Date date, <span class="hljs-keyword">int</span> amount)</span> </span>&#123;<br>        Calendar now =Calendar.getInstance();<br>        now.setTime(date);<br>        now.set(Calendar.DATE,now.get(Calendar.DATE)+amount);<br>        <span class="hljs-keyword">return</span> now.getTime();<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        System.out.println(DateUtil.formatDate(<span class="hljs-keyword">new</span> Date()));<br>        System.out.println(DateUtil.formatDate(DateUtil.addDays(<span class="hljs-keyword">new</span> Date(), -<span class="hljs-number">1</span>)));<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+<h2 id="2、在启动类上添加注解"><a href="#2、在启动类上添加注解" class="headerlink" title="2、在启动类上添加注解"></a>2、在启动类上添加注解</h2><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs aspectj"><span class="hljs-meta">@EnableScheduling</span>   <span class="hljs-comment">// 开启定时任务</span><br></code></pre></td></tr></table></figure>
 
-&#x2F;**
- * 日期操作工具类
- *
- * @author qy
- * @since 1.0
- *&#x2F;
-public class DateUtil &#123;
-
-    private static final String dateFormat &#x3D; &quot;yyyy-MM-dd&quot;;
-
-    &#x2F;**
-     * 格式化日期
-     *
-     * @param date
-     * @return
-     *&#x2F;
-    public static String formatDate(Date date) &#123;
-        SimpleDateFormat sdf &#x3D; new SimpleDateFormat(dateFormat);
-        return sdf.format(date);
-
-    &#125;
-
-    &#x2F;**
-     * 在日期date上增加amount天 。
-     *
-     * @param date   处理的日期，非null
-     * @param amount 要加的天数，可能为负数
-     *&#x2F;
-    public static Date addDays(Date date, int amount) &#123;
-        Calendar now &#x3D;Calendar.getInstance();
-        now.setTime(date);
-        now.set(Calendar.DATE,now.get(Calendar.DATE)+amount);
-        return now.getTime();
-    &#125;
-
-    public static void main(String[] args) &#123;
-        System.out.println(DateUtil.formatDate(new Date()));
-        System.out.println(DateUtil.formatDate(DateUtil.addDays(new Date(), -1)));
-    &#125;
-&#125;</code></pre></div>
-
-<h2 id="2、在启动类上添加注解"><a href="#2、在启动类上添加注解" class="headerlink" title="2、在启动类上添加注解"></a>2、在启动类上添加注解</h2><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">@EnableScheduling   &#x2F;&#x2F; 开启定时任务</code></pre></div>
-
-<h2 id="3-编写方法"><a href="#3-编写方法" class="headerlink" title="3.编写方法"></a>3.编写方法</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Component
-public class ScheduledTask &#123;
-
-    @Autowired
-    private StatisticsDailyService dailyService;
-
-    &#x2F;&#x2F; 只能是6位，默认年为当前的年
-    &#x2F;&#x2F; 秒 分 时 日 月 周 年
-    @Scheduled(cron &#x3D; &quot;0 0 1 * * ?&quot;)
-    public void task2()&#123;
-        dailyService.registerCountDay(DateUtil.formatDate(DateUtil.addDays(new Date(), -1)));
-    &#125;
-
-&#x2F;*    &#x2F;&#x2F; 每隔5秒执行一次
-    @Scheduled(cron &#x3D; &quot;0&#x2F;5 * * * * ?&quot;)
-    public void task1() &#123;
-        System.out.println(&quot;*********++++++++++++*****执行了&quot;);
-    &#125;*&#x2F;
-
-&#125;</code></pre></div>
+<h2 id="3-编写方法"><a href="#3-编写方法" class="headerlink" title="3.编写方法"></a>3.编写方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ScheduledTask</span> </span>&#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> StatisticsDailyService dailyService;<br><br>    <span class="hljs-comment">// 只能是6位，默认年为当前的年</span><br>    <span class="hljs-comment">// 秒 分 时 日 月 周 年</span><br>    <span class="hljs-meta">@Scheduled(cron = &quot;0 0 1 * * ?&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">task2</span><span class="hljs-params">()</span></span>&#123;<br>        dailyService.registerCountDay(DateUtil.formatDate(DateUtil.addDays(<span class="hljs-keyword">new</span> Date(), -<span class="hljs-number">1</span>)));<br>    &#125;<br><br><span class="hljs-comment">/*    // 每隔5秒执行一次</span><br><span class="hljs-comment">    @Scheduled(cron = &quot;0/5 * * * * ?&quot;)</span><br><span class="hljs-comment">    public void task1() &#123;</span><br><span class="hljs-comment">        System.out.println(&quot;*********++++++++++++*****执行了&quot;);</span><br><span class="hljs-comment">    &#125;*/</span><br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>在线生成工具</p>
 <p><a target="_blank" rel="noopener" href="https://www.pppet.net/">https://www.pppet.net/</a></p>
@@ -678,326 +355,52 @@ public class ScheduledTask &#123;
 <h2 id="2、基本使用"><a href="#2、基本使用" class="headerlink" title="2、基本使用"></a>2、基本使用</h2><p>入门参考：官网-&gt;文档-&gt;教程-&gt;5分钟上手ECharts</p>
 <p>（1）创建html页面：柱图.html</p>
 <p>（2）引入ECharts</p>
-<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;!-- 引入 ECharts 文件 --&gt;
-&lt;script src&#x3D;&quot;echarts.min.js&quot;&gt;&lt;&#x2F;script&gt;</code></pre></div>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- 引入 ECharts 文件 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;echarts.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>（3）定义图表区域</p>
-<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;!-- 为ECharts准备一个具备大小（宽高）的Dom --&gt;
-&lt;div id&#x3D;&quot;main&quot; style&#x3D;&quot;width: 600px;height:400px;&quot;&gt;&lt;&#x2F;div&gt; </code></pre></div>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- 为ECharts准备一个具备大小（宽高）的Dom --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;main&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width: 600px;height:400px;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span> <br></code></pre></td></tr></table></figure>
 
 <p>（4）渲染图表</p>
-<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;
-        &#x2F;&#x2F; 基于准备好的dom，初始化echarts实例
-        var myChart &#x3D; echarts.init(document.getElementById(&#39;main&#39;));
-        &#x2F;&#x2F; 指定图表的配置项和数据
-        var option &#x3D; &#123;
-            title: &#123;
-                text: &#39;ECharts 入门示例&#39;
-            &#125;,
-            tooltip: &#123;&#125;,
-            legend: &#123;
-                data:[&#39;销量&#39;]
-            &#125;,
-            xAxis: &#123;
-                data: [&quot;衬衫&quot;,&quot;羊毛衫&quot;,&quot;雪纺衫&quot;,&quot;裤子&quot;,&quot;高跟鞋&quot;,&quot;袜子&quot;]
-            &#125;,
-            yAxis: &#123;&#125;,
-            series: [&#123;
-                name: &#39;销量&#39;,
-                type: &#39;bar&#39;,
-                data: [5, 20, 36, 10, 10, 20]
-            &#125;]
-        &#125;;
-        &#x2F;&#x2F; 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
-    &lt;&#x2F;script&gt;</code></pre></div>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span><br><span class="javascript">        <span class="hljs-comment">// 基于准备好的dom，初始化echarts实例</span></span><br><span class="javascript">        <span class="hljs-keyword">var</span> myChart = echarts.init(<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;main&#x27;</span>));</span><br><span class="javascript">        <span class="hljs-comment">// 指定图表的配置项和数据</span></span><br><span class="javascript">        <span class="hljs-keyword">var</span> option = &#123;</span><br><span class="javascript">            <span class="hljs-attr">title</span>: &#123;</span><br><span class="javascript">                <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;ECharts 入门示例&#x27;</span></span><br><span class="javascript">            &#125;,</span><br><span class="javascript">            <span class="hljs-attr">tooltip</span>: &#123;&#125;,</span><br><span class="javascript">            <span class="hljs-attr">legend</span>: &#123;</span><br><span class="javascript">                <span class="hljs-attr">data</span>:[<span class="hljs-string">&#x27;销量&#x27;</span>]</span><br><span class="javascript">            &#125;,</span><br><span class="javascript">            <span class="hljs-attr">xAxis</span>: &#123;</span><br><span class="javascript">                <span class="hljs-attr">data</span>: [<span class="hljs-string">&quot;衬衫&quot;</span>,<span class="hljs-string">&quot;羊毛衫&quot;</span>,<span class="hljs-string">&quot;雪纺衫&quot;</span>,<span class="hljs-string">&quot;裤子&quot;</span>,<span class="hljs-string">&quot;高跟鞋&quot;</span>,<span class="hljs-string">&quot;袜子&quot;</span>]</span><br><span class="javascript">            &#125;,</span><br><span class="javascript">            <span class="hljs-attr">yAxis</span>: &#123;&#125;,</span><br><span class="javascript">            <span class="hljs-attr">series</span>: [&#123;</span><br><span class="javascript">                <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;销量&#x27;</span>,</span><br><span class="javascript">                <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;bar&#x27;</span>,</span><br><span class="javascript">                <span class="hljs-attr">data</span>: [<span class="hljs-number">5</span>, <span class="hljs-number">20</span>, <span class="hljs-number">36</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">20</span>]</span><br><span class="javascript">            &#125;]</span><br><span class="javascript">        &#125;;</span><br><span class="javascript">        <span class="hljs-comment">// 使用刚指定的配置项和数据显示图表。</span></span><br><span class="javascript">        myChart.setOption(option);</span><br><span class="javascript">    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<h2 id="3、折线图"><a href="#3、折线图" class="headerlink" title="3、折线图"></a>3、折线图</h2><div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html lang&#x3D;&quot;en&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;
-    &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;IE&#x3D;edge&quot;&gt;
-    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot;&gt;
-    &lt;title&gt;Document&lt;&#x2F;title&gt;
-&lt;&#x2F;head&gt;
-&lt;!-- 引入 ECharts 文件 --&gt;
-&lt;script src&#x3D;&quot;echarts.min.js&quot;&gt;&lt;&#x2F;script&gt;
-&lt;body&gt;
-    &lt;div id&#x3D;&quot;main&quot; style&#x3D;&quot;width: 600px;height:400px;&quot;&gt;&lt;&#x2F;div&gt; 
-    &lt;script&gt;
-        var myChart &#x3D; echarts.init(document.getElementById(&#39;main&#39;));
-        var option &#x3D; &#123;
-            &#x2F;&#x2F;x轴是类目轴（离散数据）,必须通过data设置类目数据
-            xAxis: &#123;
-                type: &#39;category&#39;,
-                data: [&#39;Mon&#39;, &#39;Tue&#39;, &#39;Wed&#39;, &#39;Thu&#39;, &#39;Fri&#39;, &#39;Sat&#39;, &#39;Sun&#39;]
-            &#125;,
-            &#x2F;&#x2F;y轴是数据轴（连续数据）
-            yAxis: &#123;
-                type: &#39;value&#39;
-            &#125;,
-            &#x2F;&#x2F;系列列表。每个系列通过 type 决定自己的图表类型
-            series: [&#123;
-                &#x2F;&#x2F;系列中的数据内容数组
-                data: [820, 932, 901, 934, 1290, 1330, 1320],
-                &#x2F;&#x2F;折线图
-                type: &#39;line&#39;
-            &#125;]
-        &#125;;
-        myChart.setOption(option);
-    &lt;&#x2F;script&gt;
-&lt;&#x2F;body&gt;
-&lt;&#x2F;html&gt;</code></pre></div>
+<h2 id="3、折线图"><a href="#3、折线图" class="headerlink" title="3、折线图"></a>3、折线图</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;X-UA-Compatible&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;IE=edge&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-comment">&lt;!-- 引入 ECharts 文件 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;echarts.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;main&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width: 600px;height:400px;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span> <br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span><br><span class="javascript">        <span class="hljs-keyword">var</span> myChart = echarts.init(<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;main&#x27;</span>));</span><br><span class="javascript">        <span class="hljs-keyword">var</span> option = &#123;</span><br><span class="javascript">            <span class="hljs-comment">//x轴是类目轴（离散数据）,必须通过data设置类目数据</span></span><br><span class="javascript">            <span class="hljs-attr">xAxis</span>: &#123;</span><br><span class="javascript">                <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;category&#x27;</span>,</span><br><span class="javascript">                <span class="hljs-attr">data</span>: [<span class="hljs-string">&#x27;Mon&#x27;</span>, <span class="hljs-string">&#x27;Tue&#x27;</span>, <span class="hljs-string">&#x27;Wed&#x27;</span>, <span class="hljs-string">&#x27;Thu&#x27;</span>, <span class="hljs-string">&#x27;Fri&#x27;</span>, <span class="hljs-string">&#x27;Sat&#x27;</span>, <span class="hljs-string">&#x27;Sun&#x27;</span>]</span><br><span class="javascript">            &#125;,</span><br><span class="javascript">            <span class="hljs-comment">//y轴是数据轴（连续数据）</span></span><br><span class="javascript">            <span class="hljs-attr">yAxis</span>: &#123;</span><br><span class="javascript">                <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;value&#x27;</span></span><br><span class="javascript">            &#125;,</span><br><span class="javascript">            <span class="hljs-comment">//系列列表。每个系列通过 type 决定自己的图表类型</span></span><br><span class="javascript">            <span class="hljs-attr">series</span>: [&#123;</span><br><span class="javascript">                <span class="hljs-comment">//系列中的数据内容数组</span></span><br><span class="javascript">                <span class="hljs-attr">data</span>: [<span class="hljs-number">820</span>, <span class="hljs-number">932</span>, <span class="hljs-number">901</span>, <span class="hljs-number">934</span>, <span class="hljs-number">1290</span>, <span class="hljs-number">1330</span>, <span class="hljs-number">1320</span>],</span><br><span class="javascript">                <span class="hljs-comment">//折线图</span></span><br><span class="javascript">                <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;line&#x27;</span></span><br><span class="javascript">            &#125;]</span><br><span class="javascript">        &#125;;</span><br><span class="javascript">        myChart.setOption(option);</span><br><span class="javascript">    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 
 
 
 
-<h1 id="统计分析-图表显示-页面整合"><a href="#统计分析-图表显示-页面整合" class="headerlink" title="统计分析-图表显示-页面整合"></a>统计分析-图表显示-页面整合</h1><h2 id="1、安装ECharts"><a href="#1、安装ECharts" class="headerlink" title="1、安装ECharts"></a>1、安装ECharts</h2><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm install --save echarts@4.1.0
-# 如果不行就用cnpm </code></pre></div>
+<h1 id="统计分析-图表显示-页面整合"><a href="#统计分析-图表显示-页面整合" class="headerlink" title="统计分析-图表显示-页面整合"></a>统计分析-图表显示-页面整合</h1><h2 id="1、安装ECharts"><a href="#1、安装ECharts" class="headerlink" title="1、安装ECharts"></a>1、安装ECharts</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install --save echarts@4.1.0<br><span class="hljs-comment"># 如果不行就用cnpm </span><br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="3、创建组件"><a href="#3、创建组件" class="headerlink" title="3、创建组件"></a>3、创建组件</h2><p>src/views/sta/show.vue</p>
 <p><strong>模板</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
-   &lt;div class&#x3D;&quot;app-container&quot;&gt;
-     &lt;!--表单--&gt;
-     &lt;el-form :inline&#x3D;&quot;true&quot; class&#x3D;&quot;demo-form-inline&quot;&gt;
-       &lt;el-form-item&gt;
-         &lt;el-select v-model&#x3D;&quot;searchObj.type&quot; clearable placeholder&#x3D;&quot;请选择&quot;&gt;
-           &lt;el-option label&#x3D;&quot;学员登录数统计&quot; value&#x3D;&quot;login_num&quot;&#x2F;&gt;
-           &lt;el-option label&#x3D;&quot;学员注册数统计&quot; value&#x3D;&quot;register_num&quot;&#x2F;&gt;
-           &lt;el-option label&#x3D;&quot;课程播放数统计&quot; value&#x3D;&quot;video_view_num&quot;&#x2F;&gt;
-           &lt;el-option label&#x3D;&quot;每日课程数统计&quot; value&#x3D;&quot;course_num&quot;&#x2F;&gt;
-         &lt;&#x2F;el-select&gt;
-       &lt;&#x2F;el-form-item&gt;
-       &lt;el-form-item&gt;
-         &lt;el-date-picker
-           v-model&#x3D;&quot;searchObj.begin&quot;
-           type&#x3D;&quot;date&quot;
-           placeholder&#x3D;&quot;选择开始日期&quot;
-           value-format&#x3D;&quot;yyyy-MM-dd&quot; &#x2F;&gt;
-       &lt;&#x2F;el-form-item&gt;
-       &lt;el-form-item&gt;
-         &lt;el-date-picker
-           v-model&#x3D;&quot;searchObj.end&quot;
-           type&#x3D;&quot;date&quot;
-           placeholder&#x3D;&quot;选择截止日期&quot;
-           value-format&#x3D;&quot;yyyy-MM-dd&quot; &#x2F;&gt;
-       &lt;&#x2F;el-form-item&gt;
-       &lt;el-button
-         :disabled&#x3D;&quot;btnDisabled&quot;
-         type&#x3D;&quot;primary&quot;
-         icon&#x3D;&quot;el-icon-search&quot;
-         @click&#x3D;&quot;showChart()&quot;&gt;查询&lt;&#x2F;el-button&gt;
-     &lt;&#x2F;el-form&gt;
-     &lt;div class&#x3D;&quot;chart-container&quot;&gt;
-       &lt;div id&#x3D;&quot;chart&quot; class&#x3D;&quot;chart&quot; style&#x3D;&quot;height:500px;width:100%&quot; &#x2F;&gt;
-     &lt;&#x2F;div&gt;
-   &lt;&#x2F;div&gt;
- &lt;&#x2F;template&gt;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>   &lt;div class=&quot;app-container&quot;&gt;<br>     &lt;!--表单--&gt;<br>     &lt;el-form :inline=&quot;true&quot; class=&quot;demo-form-inline&quot;&gt;<br>       &lt;el-form-item&gt;<br>         &lt;el-select v-model=&quot;searchObj.type&quot; clearable placeholder=&quot;请选择&quot;&gt;<br>           &lt;el-option label=&quot;学员登录数统计&quot; value=&quot;login_num&quot;/&gt;<br>           &lt;el-option label=&quot;学员注册数统计&quot; value=&quot;register_num&quot;/&gt;<br>           &lt;el-option label=&quot;课程播放数统计&quot; value=&quot;video_view_num&quot;/&gt;<br>           &lt;el-option label=&quot;每日课程数统计&quot; value=&quot;course_num&quot;/&gt;<br>         &lt;/el-select&gt;<br>       &lt;/el-form-item&gt;<br>       &lt;el-form-item&gt;<br>         &lt;el-date-picker<br>           v-model=&quot;searchObj.begin&quot;<br>           type=&quot;date&quot;<br>           placeholder=&quot;选择开始日期&quot;<br>           value-format=&quot;yyyy-MM-dd&quot; /&gt;<br>       &lt;/el-form-item&gt;<br>       &lt;el-form-item&gt;<br>         &lt;el-date-picker<br>           v-model=&quot;searchObj.end&quot;<br>           type=&quot;date&quot;<br>           placeholder=&quot;选择截止日期&quot;<br>           value-format=&quot;yyyy-MM-dd&quot; /&gt;<br>       &lt;/el-form-item&gt;<br>       &lt;el-button<br>         :disabled=&quot;btnDisabled&quot;<br>         type=&quot;primary&quot;<br>         icon=&quot;el-icon-search&quot;<br>         @click=&quot;showChart()&quot;&gt;查询&lt;/el-button&gt;<br>     &lt;/el-form&gt;<br>     &lt;div class=&quot;chart-container&quot;&gt;<br>       &lt;div id=&quot;chart&quot; class=&quot;chart&quot; style=&quot;height:500px;width:100%&quot; /&gt;<br>     &lt;/div&gt;<br>   &lt;/div&gt;<br> &lt;/template&gt;<br></code></pre></td></tr></table></figure>
 
 <p><strong>js：暂时显示临时数据</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;script&gt;
-import echarts from &#39;echarts&#39;
- export default &#123;
-     data()&#123;
-         return&#123;
-             searchObj: &#123;
-                type: &#39;&#39;,
-                begin: &#39;&#39;,
-                end: &#39;&#39;
-            &#125;,
-            btnDisabled: false,
-            chart: null,
-            title: &#39;&#39;,
-            xData: [],
-            yData: []
-         &#125;
-     &#125;,
-     created()&#123;
-
-     &#125;,
-     methods:&#123;
-        showChart()&#123;
-            &#x2F;&#x2F; 基于准备好的dom，初始化echarts实例
-            this.chart &#x3D; echarts.init(document.getElementById(&#39;chart&#39;))
-            &#x2F;&#x2F; console.log(this.chart)
-            &#x2F;&#x2F; 指定图表的配置项和数据
-            var option &#x3D; &#123;
-                &#x2F;&#x2F; x轴是类目轴（离散数据）,必须通过data设置类目数据
-                xAxis: &#123;
-                type: &#39;category&#39;,
-                data: [&#39;Mon&#39;, &#39;Tue&#39;, &#39;Wed&#39;, &#39;Thu&#39;, &#39;Fri&#39;, &#39;Sat&#39;, &#39;Sun&#39;]
-                &#125;,
-                &#x2F;&#x2F; y轴是数据轴（连续数据）
-                yAxis: &#123;
-                type: &#39;value&#39;
-                &#125;,
-                &#x2F;&#x2F; 系列列表。每个系列通过 type 决定自己的图表类型
-                series: [&#123;
-                &#x2F;&#x2F; 系列中的数据内容数组
-                data: [820, 932, 901, 934, 1290, 1330, 1320],
-                &#x2F;&#x2F; 折线图
-                type: &#39;line&#39;
-        
-                &#125;]
-            &#125;
-            this.chart.setOption(option)
-        &#125;,
-
-
-     &#125;
- &#125;
- &lt;&#x2F;script&gt;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;script&gt;<br>import echarts from &#x27;echarts&#x27;<br> export default &#123;<br>     data()&#123;<br>         return&#123;<br>             searchObj: &#123;<br>                type: &#x27;&#x27;,<br>                begin: &#x27;&#x27;,<br>                end: &#x27;&#x27;<br>            &#125;,<br>            btnDisabled: false,<br>            chart: null,<br>            title: &#x27;&#x27;,<br>            xData: [],<br>            yData: []<br>         &#125;<br>     &#125;,<br>     created()&#123;<br><br>     &#125;,<br>     methods:&#123;<br>        showChart()&#123;<br>            // 基于准备好的dom，初始化echarts实例<br>            this.chart = echarts.init(document.getElementById(&#x27;chart&#x27;))<br>            // console.log(this.chart)<br>            // 指定图表的配置项和数据<br>            var option = &#123;<br>                // x轴是类目轴（离散数据）,必须通过data设置类目数据<br>                xAxis: &#123;<br>                type: &#x27;category&#x27;,<br>                data: [&#x27;Mon&#x27;, &#x27;Tue&#x27;, &#x27;Wed&#x27;, &#x27;Thu&#x27;, &#x27;Fri&#x27;, &#x27;Sat&#x27;, &#x27;Sun&#x27;]<br>                &#125;,<br>                // y轴是数据轴（连续数据）<br>                yAxis: &#123;<br>                type: &#x27;value&#x27;<br>                &#125;,<br>                // 系列列表。每个系列通过 type 决定自己的图表类型<br>                series: [&#123;<br>                // 系列中的数据内容数组<br>                data: [820, 932, 901, 934, 1290, 1330, 1320],<br>                // 折线图<br>                type: &#x27;line&#x27;<br>        <br>                &#125;]<br>            &#125;<br>            this.chart.setOption(option)<br>        &#125;,<br><br><br>     &#125;<br> &#125;<br> &lt;/script&gt;<br></code></pre></td></tr></table></figure>
 
 
 
-<h1 id="统计分析-图标显示接口"><a href="#统计分析-图标显示接口" class="headerlink" title="统计分析-图标显示接口"></a>统计分析-图标显示接口</h1><h2 id="controller"><a href="#controller" class="headerlink" title="controller"></a>controller</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 图表显示，返回两部分数据，日期json数组 数量json数组
-@PostMapping(&quot;showData&#x2F;&#123;type&#125;&#x2F;&#123;begin&#125;&#x2F;&#123;end&#125;&quot;)
-public R showData(@PathVariable String type,@PathVariable String begin,@PathVariable String end)&#123;
-    Map&lt;String,Object&gt; map &#x3D; dailyService.getShowData(type,begin,end);
-    return R.ok().data(map);
-&#125;</code></pre></div>
+<h1 id="统计分析-图标显示接口"><a href="#统计分析-图标显示接口" class="headerlink" title="统计分析-图标显示接口"></a>统计分析-图标显示接口</h1><h2 id="controller"><a href="#controller" class="headerlink" title="controller"></a>controller</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 图表显示，返回两部分数据，日期json数组 数量json数组</span><br><span class="hljs-meta">@PostMapping(&quot;showData/&#123;type&#125;/&#123;begin&#125;/&#123;end&#125;&quot;)</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">showData</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> String type,<span class="hljs-meta">@PathVariable</span> String begin,<span class="hljs-meta">@PathVariable</span> String end)</span></span>&#123;<br>    Map&lt;String,Object&gt; map = dailyService.getShowData(type,begin,end);<br>    <span class="hljs-keyword">return</span> R.ok().data(map);<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h2 id="service"><a href="#service" class="headerlink" title="service"></a>service</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 图表显示，返回两部分数据，日期json数组 数量json数组
-Map&lt;String, Object&gt; getShowData(String type, String begin, String end);</code></pre></div>
+<h2 id="service"><a href="#service" class="headerlink" title="service"></a>service</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 图表显示，返回两部分数据，日期json数组 数量json数组</span><br><span class="hljs-function">Map&lt;String, Object&gt; <span class="hljs-title">getShowData</span><span class="hljs-params">(String type, String begin, String end)</span></span>;<br></code></pre></td></tr></table></figure>
 
-<h2 id="serviceImpl"><a href="#serviceImpl" class="headerlink" title="serviceImpl"></a>serviceImpl</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 图表显示，返回两部分数据，日期json数组 数量json数组
-@Override
-public Map&lt;String, Object&gt; getShowData(String type, String begin, String end) &#123;
-    &#x2F;&#x2F; 先根据条件查询数据
-    QueryWrapper&lt;StatisticsDaily&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
-    wrapper.between(&quot;date_calculated&quot;,begin,end);
-    &#x2F;&#x2F; 由于只需要某个字段的数据，为了更加精确，所以有select
-    wrapper.select(&quot;date_calculated&quot;,type);
-    &#x2F;&#x2F; 查询
-    List&lt;StatisticsDaily&gt; staList &#x3D; baseMapper.selectList(wrapper);
-
-    &#x2F;&#x2F; 按照条件构造日期json数组和数量json数组
-    List&lt;String&gt; date_calculatedList &#x3D; new ArrayList&lt;&gt;();
-    List&lt;Integer&gt; numDataList &#x3D; new ArrayList&lt;&gt;();
-
-    for (int i &#x3D; 0; i &lt; staList.size(); i++) &#123;
-        StatisticsDaily daily &#x3D; staList.get(i);
-        &#x2F;&#x2F; 将时间添加到时间集合
-        date_calculatedList.add(daily.getDateCalculated());
-
-        &#x2F;&#x2F; 用switch判断选择的是哪个类型的数据
-        switch (type)&#123;
-            case &quot;login_num&quot;:
-                numDataList.add(daily.getLoginNum());
-                break;
-            case &quot;register_num&quot;:
-                numDataList.add(daily.getRegisterNum());
-                break;
-            case &quot;video_view_num&quot;:
-                numDataList.add(daily.getVideoViewNum());
-                break;
-            case &quot;course_num&quot;:
-                numDataList.add(daily.getCourseNum());
-                break;
-            default:
-                break;
-        &#125;
-    &#125;
-    &#x2F;&#x2F; 封装数据返回
-    Map&lt;String, Object&gt; map  &#x3D; new HashMap&lt;&gt;();
-    map.put(&quot;date_calculatedList&quot;,date_calculatedList);
-    map.put(&quot;numDataList&quot;,numDataList);
-
-    return map;
-&#125;</code></pre></div>
+<h2 id="serviceImpl"><a href="#serviceImpl" class="headerlink" title="serviceImpl"></a>serviceImpl</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 图表显示，返回两部分数据，日期json数组 数量json数组</span><br><span class="hljs-meta">@Override</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> Map&lt;String, Object&gt; <span class="hljs-title">getShowData</span><span class="hljs-params">(String type, String begin, String end)</span> </span>&#123;<br>    <span class="hljs-comment">// 先根据条件查询数据</span><br>    QueryWrapper&lt;StatisticsDaily&gt; wrapper = <span class="hljs-keyword">new</span> QueryWrapper&lt;&gt;();<br>    wrapper.between(<span class="hljs-string">&quot;date_calculated&quot;</span>,begin,end);<br>    <span class="hljs-comment">// 由于只需要某个字段的数据，为了更加精确，所以有select</span><br>    wrapper.select(<span class="hljs-string">&quot;date_calculated&quot;</span>,type);<br>    <span class="hljs-comment">// 查询</span><br>    List&lt;StatisticsDaily&gt; staList = baseMapper.selectList(wrapper);<br><br>    <span class="hljs-comment">// 按照条件构造日期json数组和数量json数组</span><br>    List&lt;String&gt; date_calculatedList = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>    List&lt;Integer&gt; numDataList = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; staList.size(); i++) &#123;<br>        StatisticsDaily daily = staList.get(i);<br>        <span class="hljs-comment">// 将时间添加到时间集合</span><br>        date_calculatedList.add(daily.getDateCalculated());<br><br>        <span class="hljs-comment">// 用switch判断选择的是哪个类型的数据</span><br>        <span class="hljs-keyword">switch</span> (type)&#123;<br>            <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;login_num&quot;</span>:<br>                numDataList.add(daily.getLoginNum());<br>                <span class="hljs-keyword">break</span>;<br>            <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;register_num&quot;</span>:<br>                numDataList.add(daily.getRegisterNum());<br>                <span class="hljs-keyword">break</span>;<br>            <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;video_view_num&quot;</span>:<br>                numDataList.add(daily.getVideoViewNum());<br>                <span class="hljs-keyword">break</span>;<br>            <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;course_num&quot;</span>:<br>                numDataList.add(daily.getCourseNum());<br>                <span class="hljs-keyword">break</span>;<br>            <span class="hljs-keyword">default</span>:<br>                <span class="hljs-keyword">break</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">// 封装数据返回</span><br>    Map&lt;String, Object&gt; map  = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();<br>    map.put(<span class="hljs-string">&quot;date_calculatedList&quot;</span>,date_calculatedList);<br>    map.put(<span class="hljs-string">&quot;numDataList&quot;</span>,numDataList);<br><br>    <span class="hljs-keyword">return</span> map;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h1 id="统计分析-图表显示前端"><a href="#统计分析-图表显示前端" class="headerlink" title="统计分析-图表显示前端"></a>统计分析-图表显示前端</h1><p>api/sta.js</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 图表显示
-getDataShow(searchObj)&#123;
-    return request(&#123;
-        url: &#96;&#x2F;staservice&#x2F;sta&#x2F;showData&#x2F;$&#123;searchObj.type&#125;&#x2F;$&#123;searchObj.begin&#125;&#x2F;$&#123;searchObj.end&#125;&#96;,
-        method: &#39;get&#39;
-      &#125;)
-&#125;</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 图表显示</span><br><span class="hljs-function"><span class="hljs-title">getDataShow</span>(<span class="hljs-params">searchObj</span>)</span>&#123;<br>    <span class="hljs-keyword">return</span> request(&#123;<br>        <span class="hljs-attr">url</span>: <span class="hljs-string">`/staservice/sta/showData/<span class="hljs-subst">$&#123;searchObj.type&#125;</span>/<span class="hljs-subst">$&#123;searchObj.begin&#125;</span>/<span class="hljs-subst">$&#123;searchObj.end&#125;</span>`</span>,<br>        <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;get&#x27;</span><br>      &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>methods</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">methods:&#123;
-       showChart()&#123;
-           staApi.getDataShow(this.searchObj)
-               .then(response &#x3D;&gt;&#123;
-                   this.xData &#x3D; response.data.date_calculatedList
-                   this.yData &#x3D; response.data.numDataList
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs vue">methods:&#123;<br>       showChart()&#123;<br>           staApi.getDataShow(this.searchObj)<br>               .then(response =&gt;&#123;<br>                   this.xData = response.data.date_calculatedList<br>                   this.yData = response.data.numDataList<br><br>                   // 调用方法<br>                   this.setChart()<br>               &#125;)<br>        &#125;,<br>       setChart()&#123;<br>           // 基于准备好的dom，初始化echarts实例<br>           this.chart = echarts.init(document.getElementById(&#x27;chart&#x27;))<br>           // console.log(this.chart)<br>           // 指定图表的配置项和数据<br>           var option = &#123;<br>               // x轴是类目轴（离散数据）,必须通过data设置类目数据<br>               xAxis: &#123;<br>               type: &#x27;category&#x27;,<br>               data: this.xData<br>               &#125;,<br>               // y轴是数据轴（连续数据）<br>               yAxis: &#123;<br>               type: &#x27;value&#x27;<br>               &#125;,<br>               // 系列列表。每个系列通过 type 决定自己的图表类型<br>               series: [&#123;<br>               // 系列中的数据内容数组<br>               data: this.yData,<br>               // 折线图<br>               type: &#x27;line&#x27;<br>       <br>               &#125;]<br>           &#125;<br>           this.chart.setOption(option)<br>       &#125;,<br><br></code></pre></td></tr></table></figure>
 
-                   &#x2F;&#x2F; 调用方法
-                   this.setChart()
-               &#125;)
-        &#125;,
-       setChart()&#123;
-           &#x2F;&#x2F; 基于准备好的dom，初始化echarts实例
-           this.chart &#x3D; echarts.init(document.getElementById(&#39;chart&#39;))
-           &#x2F;&#x2F; console.log(this.chart)
-           &#x2F;&#x2F; 指定图表的配置项和数据
-           var option &#x3D; &#123;
-               &#x2F;&#x2F; x轴是类目轴（离散数据）,必须通过data设置类目数据
-               xAxis: &#123;
-               type: &#39;category&#39;,
-               data: this.xData
-               &#125;,
-               &#x2F;&#x2F; y轴是数据轴（连续数据）
-               yAxis: &#123;
-               type: &#39;value&#39;
-               &#125;,
-               &#x2F;&#x2F; 系列列表。每个系列通过 type 决定自己的图表类型
-               series: [&#123;
-               &#x2F;&#x2F; 系列中的数据内容数组
-               data: this.yData,
-               &#x2F;&#x2F; 折线图
-               type: &#39;line&#39;
-       
-               &#125;]
-           &#125;
-           this.chart.setOption(option)
-       &#125;,
-</code></pre></div>
+<h1 id="样式调整"><a href="#样式调整" class="headerlink" title="样式调整"></a>样式调整</h1><h2 id="1、显示标题"><a href="#1、显示标题" class="headerlink" title="1、显示标题"></a>1、显示标题</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs vue">// 显示标题<br>title: &#123;<br>	text: &quot;数据统计&quot;<br>&#125;,<br></code></pre></td></tr></table></figure>
 
-<h1 id="样式调整"><a href="#样式调整" class="headerlink" title="样式调整"></a>样式调整</h1><h2 id="1、显示标题"><a href="#1、显示标题" class="headerlink" title="1、显示标题"></a>1、显示标题</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&#x2F;&#x2F; 显示标题
-title: &#123;
-	text: &quot;数据统计&quot;
-&#125;,</code></pre></div>
+<h2 id="2、x坐标轴触发提示"><a href="#2、x坐标轴触发提示" class="headerlink" title="2、x坐标轴触发提示"></a>2、x坐标轴触发提示</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs vue">// x坐标轴触发提示<br>tooltip: &#123;<br>	trigger: &#x27;axis&#x27;<br>&#125;,<br></code></pre></td></tr></table></figure>
 
-<h2 id="2、x坐标轴触发提示"><a href="#2、x坐标轴触发提示" class="headerlink" title="2、x坐标轴触发提示"></a>2、x坐标轴触发提示</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&#x2F;&#x2F; x坐标轴触发提示
-tooltip: &#123;
-	trigger: &#39;axis&#39;
-&#125;,</code></pre></div>
-
-<h2 id="3、区域缩放"><a href="#3、区域缩放" class="headerlink" title="3、区域缩放"></a>3、区域缩放</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&#x2F;&#x2F; 区域缩放
-dataZoom: [&#123;
-    show: true,
-    height: 30,
-    xAxisIndex: [
-   	 0
-    ],
-    bottom: 30,
-    start: 10,
-    end: 80,
-    handleIcon: &#39;path:&#x2F;&#x2F;M306.1,413c0,2.2-1.8,4-4,4h-59.8c-2.2,0-4-1.8-4-4V200.8c0-2.2,1.8-4,4-4h59.8c2.2,0,4,1.8,4,4V413z&#39;,
-    handleSize: &#39;110%&#39;,
-    handleStyle: &#123;
-   	 color: &#39;#d3dee5&#39;
-    &#125;,
-    textStyle: &#123;
-    	color: &#39;#fff&#39;
-    &#125;,
-    borderColor: &#39;#90979c&#39;
-    &#125;,
-    &#123;
-        type: &#39;inside&#39;,
-        show: true,
-        height: 15,
-        start: 1,
-        end: 35
-&#125;]</code></pre></div>
+<h2 id="3、区域缩放"><a href="#3、区域缩放" class="headerlink" title="3、区域缩放"></a>3、区域缩放</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs vue">// 区域缩放<br>dataZoom: [&#123;<br>    show: true,<br>    height: 30,<br>    xAxisIndex: [<br>   	 0<br>    ],<br>    bottom: 30,<br>    start: 10,<br>    end: 80,<br>    handleIcon: &#x27;path://M306.1,413c0,2.2-1.8,4-4,4h-59.8c-2.2,0-4-1.8-4-4V200.8c0-2.2,1.8-4,4-4h59.8c2.2,0,4,1.8,4,4V413z&#x27;,<br>    handleSize: &#x27;110%&#x27;,<br>    handleStyle: &#123;<br>   	 color: &#x27;#d3dee5&#x27;<br>    &#125;,<br>    textStyle: &#123;<br>    	color: &#x27;#fff&#x27;<br>    &#125;,<br>    borderColor: &#x27;#90979c&#x27;<br>    &#125;,<br>    &#123;<br>        type: &#x27;inside&#x27;,<br>        show: true,<br>        height: 15,<br>        start: 1,<br>        end: 35<br>&#125;]<br></code></pre></td></tr></table></figure>
 
 
 
@@ -1306,12 +709,6 @@ dataZoom: [&#123;
   });
 </script>
 
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/components/prism-core.min.js" ></script>
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js" ></script>
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script>
   (function() {

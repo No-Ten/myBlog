@@ -16,12 +16,12 @@
   <meta name="author" content="Ten">
   <meta name="keywords" content="">
   
-    <meta name="description" content="day07-课程发布-添加课程信息课程管理-添加课程信息接口课程相关表的关系  课程发布流程  执行代码生成器，将这四个表”edu_course”,”edu_course_description”,”edu_chapter”,”edu_video”的相关代码生成 编写CourseInfoVo用于接收传进来的信息 @ApiModel(value &#x3D; &quot;课程基本信息&quot;,">
+    <meta name="description" content="day07-课程发布-添加课程信息课程管理-添加课程信息接口课程相关表的关系  课程发布流程  执行代码生成器，将这四个表”edu_course”,”edu_course_description”,”edu_chapter”,”edu_video”的相关代码生成 编写CourseInfoVo用于接收传进来的信息 1234567891011121314151617181920212223242526">
 <meta property="og:type" content="article">
 <meta property="og:title" content="day07-课程发布-添加课程信息">
 <meta property="og:url" content="https://no-ten.github.io/day07-%E8%AF%BE%E7%A8%8B%E5%8F%91%E5%B8%83-%E6%B7%BB%E5%8A%A0%E8%AF%BE%E7%A8%8B%E4%BF%A1%E6%81%AF/index.html">
 <meta property="og:site_name" content="TBlog">
-<meta property="og:description" content="day07-课程发布-添加课程信息课程管理-添加课程信息接口课程相关表的关系  课程发布流程  执行代码生成器，将这四个表”edu_course”,”edu_course_description”,”edu_chapter”,”edu_video”的相关代码生成 编写CourseInfoVo用于接收传进来的信息 @ApiModel(value &#x3D; &quot;课程基本信息&quot;,">
+<meta property="og:description" content="day07-课程发布-添加课程信息课程管理-添加课程信息接口课程相关表的关系  课程发布流程  执行代码生成器，将这四个表”edu_course”,”edu_course_description”,”edu_chapter”,”edu_video”的相关代码生成 编写CourseInfoVo用于接收传进来的信息 1234567891011121314151617181920212223242526">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://no-ten.github.io/myBlog/day07-%E8%AF%BE%E7%A8%8B%E5%8F%91%E5%B8%83-%E6%B7%BB%E5%8A%A0%E8%AF%BE%E7%A8%8B%E4%BF%A1%E6%81%AF/05-%E8%AF%BE%E7%A8%8B%E7%9B%B8%E5%85%B3%E8%A1%A8%E5%85%B3%E7%B3%BB.png">
 <meta property="og:image" content="https://no-ten.github.io/myBlog/day07-%E8%AF%BE%E7%A8%8B%E5%8F%91%E5%B8%83-%E6%B7%BB%E5%8A%A0%E8%AF%BE%E7%A8%8B%E4%BF%A1%E6%81%AF/04-%E8%AF%BE%E7%A8%8B%E5%8F%91%E5%B8%83%E6%B5%81%E7%A8%8B%E7%9A%84%E8%AF%B4%E6%98%8E.png">
@@ -46,8 +46,6 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
@@ -289,405 +287,68 @@
 <p><img src="/myBlog/day07-%E8%AF%BE%E7%A8%8B%E5%8F%91%E5%B8%83-%E6%B7%BB%E5%8A%A0%E8%AF%BE%E7%A8%8B%E4%BF%A1%E6%81%AF/04-%E8%AF%BE%E7%A8%8B%E5%8F%91%E5%B8%83%E6%B5%81%E7%A8%8B%E7%9A%84%E8%AF%B4%E6%98%8E.png" srcset="/myBlog/img/loading.gif" lazyload alt="04-课程发布流程的说明"></p>
 <p>执行代码生成器，将这四个表”edu_course”,”edu_course_description”,”edu_chapter”,”edu_video”的相关代码生成</p>
 <h2 id="编写CourseInfoVo"><a href="#编写CourseInfoVo" class="headerlink" title="编写CourseInfoVo"></a>编写CourseInfoVo</h2><p>用于接收传进来的信息</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@ApiModel(value &#x3D; &quot;课程基本信息&quot;, description &#x3D; &quot;编辑课程基本信息的表单对象&quot;)
-@Data
-public class CourseInfoVo &#123;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@ApiModel(value = &quot;课程基本信息&quot;, description = &quot;编辑课程基本信息的表单对象&quot;)</span><br><span class="hljs-meta">@Data</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CourseInfoVo</span> </span>&#123;<br><br>    <span class="hljs-meta">@ApiModelProperty(value = &quot;课程ID&quot;)</span><br>    <span class="hljs-keyword">private</span> String id;<br><br>    <span class="hljs-meta">@ApiModelProperty(value = &quot;课程讲师ID&quot;)</span><br>    <span class="hljs-keyword">private</span> String teacherId;<br><br>    <span class="hljs-meta">@ApiModelProperty(value = &quot;课程专业ID&quot;)</span><br>    <span class="hljs-keyword">private</span> String subjectId;<br><br>    <span class="hljs-meta">@ApiModelProperty(value = &quot;课程专业父级ID&quot;)</span><br>    <span class="hljs-keyword">private</span> String subjectParentId;<br><br>    <span class="hljs-meta">@ApiModelProperty(value = &quot;课程标题&quot;)</span><br>    <span class="hljs-keyword">private</span> String title;<br><br>    <span class="hljs-meta">@ApiModelProperty(value = &quot;课程销售价格，设置为0则可免费观看&quot;)</span><br>    <span class="hljs-comment">// 0.01</span><br>    <span class="hljs-keyword">private</span> BigDecimal price;<br><br>    <span class="hljs-meta">@ApiModelProperty(value = &quot;总课时&quot;)</span><br>    <span class="hljs-keyword">private</span> Integer lessonNum;<br><br>    <span class="hljs-meta">@ApiModelProperty(value = &quot;课程封面图片路径&quot;)</span><br>    <span class="hljs-keyword">private</span> String cover;<br><br>    <span class="hljs-meta">@ApiModelProperty(value = &quot;课程简介&quot;)</span><br>    <span class="hljs-keyword">private</span> String description;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
-    @ApiModelProperty(value &#x3D; &quot;课程ID&quot;)
-    private String id;
+<h2 id="编写EduCourseController"><a href="#编写EduCourseController" class="headerlink" title="编写EduCourseController"></a>编写EduCourseController</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Api(description=&quot;课程管理&quot;)</span><br><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;/eduservice/course&quot;)</span><br><span class="hljs-meta">@CrossOrigin</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EduCourseController</span> </span>&#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> EduCourseService eduCourseService;<br><br>    <span class="hljs-comment">// 添加课程信息</span><br>    <span class="hljs-meta">@ApiOperation(value = &quot;新增课程&quot;)</span><br>    <span class="hljs-meta">@PostMapping(&quot;addCourseInfo&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">addCourseInfo</span><span class="hljs-params">(</span></span><br><span class="hljs-params"><span class="hljs-function">            <span class="hljs-meta">@ApiParam(name = &quot;CourseInfoForm&quot;, value = &quot;课程基本信息&quot;, required = true)</span></span></span><br><span class="hljs-params"><span class="hljs-function">            <span class="hljs-meta">@RequestBody</span> CourseInfoVo courseInfoVo)</span></span>&#123;<br>        eduCourseService.saveCourseInfo(courseInfoVo);<br>        <span class="hljs-keyword">return</span> R.ok();<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
-    @ApiModelProperty(value &#x3D; &quot;课程讲师ID&quot;)
-    private String teacherId;
+<h2 id="EduCourseService接口"><a href="#EduCourseService接口" class="headerlink" title="EduCourseService接口"></a>EduCourseService接口</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">EduCourseService</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">IService</span>&lt;<span class="hljs-title">EduCourse</span>&gt; </span>&#123;<br>    <span class="hljs-comment">// 添加课程信息</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">saveCourseInfo</span><span class="hljs-params">(CourseInfoVo courseInfoVo)</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-    @ApiModelProperty(value &#x3D; &quot;课程专业ID&quot;)
-    private String subjectId;
+<h2 id="EduCourseServiceImpl实现类"><a href="#EduCourseServiceImpl实现类" class="headerlink" title="EduCourseServiceImpl实现类"></a>EduCourseServiceImpl实现类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EduCourseServiceImpl</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ServiceImpl</span>&lt;<span class="hljs-title">EduCourseMapper</span>, <span class="hljs-title">EduCourse</span>&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title">EduCourseService</span> </span>&#123;<br><br>    <span class="hljs-comment">// 为了添加课程描述信息到数据库</span><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> EduCourseDescriptionService eduCourseDescriptionService;<br><br>    <span class="hljs-comment">// 添加课程信息</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">saveCourseInfo</span><span class="hljs-params">(CourseInfoVo courseInfoVo)</span> </span>&#123;<br>        <span class="hljs-comment">// 添加课程基本信息</span><br>        <span class="hljs-comment">// 由于添加到数据库需要的是EduCourse，所以先创建一个EduCourse对象</span><br>        EduCourse eduCourse = <span class="hljs-keyword">new</span> EduCourse();<br>        <span class="hljs-comment">// 将传进来的vo对象赋值给新建的EduCourse对象</span><br>        BeanUtils.copyProperties(courseInfoVo,eduCourse);<br>        <span class="hljs-comment">// 保存到数据库</span><br>        <span class="hljs-keyword">int</span> insert = baseMapper.insert(eduCourse);<br><br>        <span class="hljs-keyword">if</span> (insert == <span class="hljs-number">0</span>)&#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> GuliException(<span class="hljs-number">20001</span>,<span class="hljs-string">&quot;课程信息保存失败&quot;</span>);<br>        &#125;<br><br>        <span class="hljs-comment">// 获取课程信息的id</span><br>        String cid = eduCourse.getId();<br><br>        <span class="hljs-comment">// 添加课程描述信息</span><br>        EduCourseDescription eduCourseDescription = <span class="hljs-keyword">new</span> EduCourseDescription();<br>        eduCourseDescription.setDescription(courseInfoVo.getDescription());<br>        eduCourseDescription.setId(cid);<br><br>        eduCourseDescriptionService.save(eduCourseDescription);<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-    @ApiModelProperty(value &#x3D; &quot;课程专业父级ID&quot;)
-    private String subjectParentId;
-
-    @ApiModelProperty(value &#x3D; &quot;课程标题&quot;)
-    private String title;
-
-    @ApiModelProperty(value &#x3D; &quot;课程销售价格，设置为0则可免费观看&quot;)
-    &#x2F;&#x2F; 0.01
-    private BigDecimal price;
-
-    @ApiModelProperty(value &#x3D; &quot;总课时&quot;)
-    private Integer lessonNum;
-
-    @ApiModelProperty(value &#x3D; &quot;课程封面图片路径&quot;)
-    private String cover;
-
-    @ApiModelProperty(value &#x3D; &quot;课程简介&quot;)
-    private String description;
-
-&#125;</code></pre></div>
-
-<h2 id="编写EduCourseController"><a href="#编写EduCourseController" class="headerlink" title="编写EduCourseController"></a>编写EduCourseController</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Api(description&#x3D;&quot;课程管理&quot;)
-@RestController
-@RequestMapping(&quot;&#x2F;eduservice&#x2F;course&quot;)
-@CrossOrigin
-public class EduCourseController &#123;
-
-    @Autowired
-    private EduCourseService eduCourseService;
-
-    &#x2F;&#x2F; 添加课程信息
-    @ApiOperation(value &#x3D; &quot;新增课程&quot;)
-    @PostMapping(&quot;addCourseInfo&quot;)
-    public R addCourseInfo(
-            @ApiParam(name &#x3D; &quot;CourseInfoForm&quot;, value &#x3D; &quot;课程基本信息&quot;, required &#x3D; true)
-            @RequestBody CourseInfoVo courseInfoVo)&#123;
-        eduCourseService.saveCourseInfo(courseInfoVo);
-        return R.ok();
-    &#125;
-
-&#125;</code></pre></div>
-
-<h2 id="EduCourseService接口"><a href="#EduCourseService接口" class="headerlink" title="EduCourseService接口"></a>EduCourseService接口</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">public interface EduCourseService extends IService&lt;EduCourse&gt; &#123;
-    &#x2F;&#x2F; 添加课程信息
-    void saveCourseInfo(CourseInfoVo courseInfoVo);
-&#125;</code></pre></div>
-
-<h2 id="EduCourseServiceImpl实现类"><a href="#EduCourseServiceImpl实现类" class="headerlink" title="EduCourseServiceImpl实现类"></a>EduCourseServiceImpl实现类</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Service
-public class EduCourseServiceImpl extends ServiceImpl&lt;EduCourseMapper, EduCourse&gt; implements EduCourseService &#123;
-
-    &#x2F;&#x2F; 为了添加课程描述信息到数据库
-    @Autowired
-    private EduCourseDescriptionService eduCourseDescriptionService;
-
-    &#x2F;&#x2F; 添加课程信息
-    @Override
-    public void saveCourseInfo(CourseInfoVo courseInfoVo) &#123;
-        &#x2F;&#x2F; 添加课程基本信息
-        &#x2F;&#x2F; 由于添加到数据库需要的是EduCourse，所以先创建一个EduCourse对象
-        EduCourse eduCourse &#x3D; new EduCourse();
-        &#x2F;&#x2F; 将传进来的vo对象赋值给新建的EduCourse对象
-        BeanUtils.copyProperties(courseInfoVo,eduCourse);
-        &#x2F;&#x2F; 保存到数据库
-        int insert &#x3D; baseMapper.insert(eduCourse);
-
-        if (insert &#x3D;&#x3D; 0)&#123;
-            throw new GuliException(20001,&quot;课程信息保存失败&quot;);
-        &#125;
-
-        &#x2F;&#x2F; 获取课程信息的id
-        String cid &#x3D; eduCourse.getId();
-
-        &#x2F;&#x2F; 添加课程描述信息
-        EduCourseDescription eduCourseDescription &#x3D; new EduCourseDescription();
-        eduCourseDescription.setDescription(courseInfoVo.getDescription());
-        eduCourseDescription.setId(cid);
-
-        eduCourseDescriptionService.save(eduCourseDescription);
-
-    &#125;
-&#125;</code></pre></div>
-
-<h2 id="修改EduCourseDescription的主键生成策略"><a href="#修改EduCourseDescription的主键生成策略" class="headerlink" title="修改EduCourseDescription的主键生成策略"></a>修改EduCourseDescription的主键生成策略</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@ApiModelProperty(value &#x3D; &quot;创建时间&quot;)
-@TableField(fill &#x3D; FieldFill.INSERT)
-private Date gmtCreate;
-
-@ApiModelProperty(value &#x3D; &quot;更新时间&quot;)
-@TableField(fill &#x3D; FieldFill.INSERT_UPDATE)
-private Date gmtModified;</code></pre></div>
+<h2 id="修改EduCourseDescription的主键生成策略"><a href="#修改EduCourseDescription的主键生成策略" class="headerlink" title="修改EduCourseDescription的主键生成策略"></a>修改EduCourseDescription的主键生成策略</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@ApiModelProperty(value = &quot;创建时间&quot;)</span><br><span class="hljs-meta">@TableField(fill = FieldFill.INSERT)</span><br><span class="hljs-keyword">private</span> Date gmtCreate;<br><br><span class="hljs-meta">@ApiModelProperty(value = &quot;更新时间&quot;)</span><br><span class="hljs-meta">@TableField(fill = FieldFill.INSERT_UPDATE)</span><br><span class="hljs-keyword">private</span> Date gmtModified;<br></code></pre></td></tr></table></figure>
 
 
 
-<h1 id="课程管理-添加课程信息前端"><a href="#课程管理-添加课程信息前端" class="headerlink" title="课程管理-添加课程信息前端"></a>课程管理-添加课程信息前端</h1><h2 id="添加路由"><a href="#添加路由" class="headerlink" title="添加路由"></a>添加路由</h2><div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#123;
-    path: &#39;&#x2F;course&#39;,
-    component: Layout,
-    redirect: &#39;&#x2F;course&#x2F;list&#39;,
-    name: &#39;Course&#39;,
-    meta: &#123; title: &#39;课程管理&#39;, icon: &#39;form&#39; &#125;,
-    children: [
-      &#123;
-        path: &#39;list&#39;,
-        name: &#39;EduCourseList&#39;,
-        component: () &#x3D;&gt; import(&#39;@&#x2F;views&#x2F;edu&#x2F;course&#x2F;list&#39;),
-        meta: &#123; title: &#39;课程列表&#39; &#125;
-      &#125;,
-      &#123;
-        path: &#39;info&#39;,
-        name: &#39;EduCourseInfo&#39;,
-        component: () &#x3D;&gt; import(&#39;@&#x2F;views&#x2F;edu&#x2F;course&#x2F;info&#39;),
-        meta: &#123; title: &#39;发布课程&#39; &#125;
-      &#125;,
-      &#123;
-        path: &#39;info&#x2F;:id&#39;,
-        name: &#39;EduCourseInfoEdit&#39;,
-        component: () &#x3D;&gt; import(&#39;@&#x2F;views&#x2F;edu&#x2F;course&#x2F;info&#39;),
-        meta: &#123; title: &#39;编辑课程基本信息&#39;, noCache: true &#125;,
-        hidden: true
-      &#125;,
-      &#123;
-        path: &#39;chapter&#x2F;:id&#39;,
-        name: &#39;EduCourseChapterEdit&#39;,
-        component: () &#x3D;&gt; import(&#39;@&#x2F;views&#x2F;edu&#x2F;course&#x2F;chapter&#39;),
-        meta: &#123; title: &#39;编辑课程大纲&#39;, noCache: true &#125;,
-        hidden: true
-      &#125;,
-      &#123;
-        path: &#39;publish&#x2F;:id&#39;,
-        name: &#39;EduCoursePublishEdit&#39;,
-        component: () &#x3D;&gt; import(&#39;@&#x2F;views&#x2F;edu&#x2F;course&#x2F;publish&#39;),
-        meta: &#123; title: &#39;发布课程&#39;, noCache: true &#125;,
-        hidden: true
-      &#125;
-    ]
-  &#125;,</code></pre></div>
+<h1 id="课程管理-添加课程信息前端"><a href="#课程管理-添加课程信息前端" class="headerlink" title="课程管理-添加课程信息前端"></a>课程管理-添加课程信息前端</h1><h2 id="添加路由"><a href="#添加路由" class="headerlink" title="添加路由"></a>添加路由</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs js">&#123;<br>    <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/course&#x27;</span>,<br>    <span class="hljs-attr">component</span>: Layout,<br>    <span class="hljs-attr">redirect</span>: <span class="hljs-string">&#x27;/course/list&#x27;</span>,<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Course&#x27;</span>,<br>    <span class="hljs-attr">meta</span>: &#123; <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;课程管理&#x27;</span>, <span class="hljs-attr">icon</span>: <span class="hljs-string">&#x27;form&#x27;</span> &#125;,<br>    <span class="hljs-attr">children</span>: [<br>      &#123;<br>        <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;list&#x27;</span>,<br>        <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;EduCourseList&#x27;</span>,<br>        <span class="hljs-attr">component</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;@/views/edu/course/list&#x27;</span>),<br>        <span class="hljs-attr">meta</span>: &#123; <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;课程列表&#x27;</span> &#125;<br>      &#125;,<br>      &#123;<br>        <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;info&#x27;</span>,<br>        <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;EduCourseInfo&#x27;</span>,<br>        <span class="hljs-attr">component</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;@/views/edu/course/info&#x27;</span>),<br>        <span class="hljs-attr">meta</span>: &#123; <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;发布课程&#x27;</span> &#125;<br>      &#125;,<br>      &#123;<br>        <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;info/:id&#x27;</span>,<br>        <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;EduCourseInfoEdit&#x27;</span>,<br>        <span class="hljs-attr">component</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;@/views/edu/course/info&#x27;</span>),<br>        <span class="hljs-attr">meta</span>: &#123; <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;编辑课程基本信息&#x27;</span>, <span class="hljs-attr">noCache</span>: <span class="hljs-literal">true</span> &#125;,<br>        <span class="hljs-attr">hidden</span>: <span class="hljs-literal">true</span><br>      &#125;,<br>      &#123;<br>        <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;chapter/:id&#x27;</span>,<br>        <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;EduCourseChapterEdit&#x27;</span>,<br>        <span class="hljs-attr">component</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;@/views/edu/course/chapter&#x27;</span>),<br>        <span class="hljs-attr">meta</span>: &#123; <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;编辑课程大纲&#x27;</span>, <span class="hljs-attr">noCache</span>: <span class="hljs-literal">true</span> &#125;,<br>        <span class="hljs-attr">hidden</span>: <span class="hljs-literal">true</span><br>      &#125;,<br>      &#123;<br>        <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;publish/:id&#x27;</span>,<br>        <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;EduCoursePublishEdit&#x27;</span>,<br>        <span class="hljs-attr">component</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;@/views/edu/course/publish&#x27;</span>),<br>        <span class="hljs-attr">meta</span>: &#123; <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;发布课程&#x27;</span>, <span class="hljs-attr">noCache</span>: <span class="hljs-literal">true</span> &#125;,<br>        <span class="hljs-attr">hidden</span>: <span class="hljs-literal">true</span><br>      &#125;<br>    ]<br>  &#125;,<br></code></pre></td></tr></table></figure>
 
 <h2 id="添加vue组件"><a href="#添加vue组件" class="headerlink" title="添加vue组件"></a>添加vue组件</h2><p>chapter.vue,info,vue,list.vue,publish.vue</p>
 <h2 id="课程信息页面"><a href="#课程信息页面" class="headerlink" title="课程信息页面"></a>课程信息页面</h2><p>info.vue</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
-   &lt;div class&#x3D;&quot;app-container&quot;&gt;
-     &lt;h2 style&#x3D;&quot;text-align: center;&quot;&gt;发布新课程&lt;&#x2F;h2&gt;
-     &lt;el-steps :active&#x3D;&quot;1&quot; process-status&#x3D;&quot;wait&quot; align-center style&#x3D;&quot;margin-bottom: 40px;&quot;&gt;
-       &lt;el-step title&#x3D;&quot;填写课程基本信息&quot;&#x2F;&gt;
-       &lt;el-step title&#x3D;&quot;创建课程大纲&quot;&#x2F;&gt;
-       &lt;el-step title&#x3D;&quot;课程发布&quot;&#x2F;&gt;
-     &lt;&#x2F;el-steps&gt;
-     &lt;el-form label-width&#x3D;&quot;120px&quot;&gt;
-       &lt;el-form-item&gt;
-         &lt;el-button :disabled&#x3D;&quot;saveBtnDisabled&quot; type&#x3D;&quot;primary&quot; @click&#x3D;&quot;next&quot;&gt;保存并下一步&lt;&#x2F;el-button&gt;
-       &lt;&#x2F;el-form-item&gt;
-     &lt;&#x2F;el-form&gt;
-   &lt;&#x2F;div&gt;
- &lt;&#x2F;template&gt;
-&lt;script&gt;
-export default &#123;
-    data()&#123;
-        return&#123;
-            saveBtnDisabled:false    &#x2F;&#x2F; 保存按钮是否禁用
-        &#125;
-    &#125;,
-    created()&#123;
-
-    &#125;,
-    methods:&#123;
-        next()&#123;
-            this.$router.push(&#123; path: &#39;&#x2F;course&#x2F;chapter&#x2F;1&#39; &#125;)
-        &#125;
-    &#125;
-&#125;
-&lt;&#x2F;script&gt;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>   &lt;div class=&quot;app-container&quot;&gt;<br>     &lt;h2 style=&quot;text-align: center;&quot;&gt;发布新课程&lt;/h2&gt;<br>     &lt;el-steps :active=&quot;1&quot; process-status=&quot;wait&quot; align-center style=&quot;margin-bottom: 40px;&quot;&gt;<br>       &lt;el-step title=&quot;填写课程基本信息&quot;/&gt;<br>       &lt;el-step title=&quot;创建课程大纲&quot;/&gt;<br>       &lt;el-step title=&quot;课程发布&quot;/&gt;<br>     &lt;/el-steps&gt;<br>     &lt;el-form label-width=&quot;120px&quot;&gt;<br>       &lt;el-form-item&gt;<br>         &lt;el-button :disabled=&quot;saveBtnDisabled&quot; type=&quot;primary&quot; @click=&quot;next&quot;&gt;保存并下一步&lt;/el-button&gt;<br>       &lt;/el-form-item&gt;<br>     &lt;/el-form&gt;<br>   &lt;/div&gt;<br> &lt;/template&gt;<br>&lt;script&gt;<br>export default &#123;<br>    data()&#123;<br>        return&#123;<br>            saveBtnDisabled:false    // 保存按钮是否禁用<br>        &#125;<br>    &#125;,<br>    created()&#123;<br><br>    &#125;,<br>    methods:&#123;<br>        next()&#123;<br>            this.$router.push(&#123; path: &#x27;/course/chapter/1&#x27; &#125;)<br>        &#125;<br>    &#125;<br>&#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
 
 <h2 id="课程大纲页面"><a href="#课程大纲页面" class="headerlink" title="课程大纲页面"></a>课程大纲页面</h2><p>chapter.vue</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
-   &lt;div class&#x3D;&quot;app-container&quot;&gt;
-     &lt;h2 style&#x3D;&quot;text-align: center;&quot;&gt;发布新课程&lt;&#x2F;h2&gt;
-     &lt;el-steps :active&#x3D;&quot;2&quot; process-status&#x3D;&quot;wait&quot; align-center style&#x3D;&quot;margin-bottom: 40px;&quot;&gt;
-       &lt;el-step title&#x3D;&quot;填写课程基本信息&quot;&#x2F;&gt;
-       &lt;el-step title&#x3D;&quot;创建课程大纲&quot;&#x2F;&gt;
-       &lt;el-step title&#x3D;&quot;最终发布&quot;&#x2F;&gt;
-     &lt;&#x2F;el-steps&gt;
-     &lt;el-form label-width&#x3D;&quot;120px&quot;&gt;
-       &lt;el-form-item&gt;
-         &lt;el-button @click&#x3D;&quot;previous&quot;&gt;上一步&lt;&#x2F;el-button&gt;
-         &lt;el-button :disabled&#x3D;&quot;saveBtnDisabled&quot; type&#x3D;&quot;primary&quot; @click&#x3D;&quot;next&quot;&gt;下一步&lt;&#x2F;el-button&gt;
-       &lt;&#x2F;el-form-item&gt;
-     &lt;&#x2F;el-form&gt;
-   &lt;&#x2F;div&gt;
- &lt;&#x2F;template&gt;
- &lt;script&gt;
- export default &#123;
-   data() &#123;
-     return &#123;
-       saveBtnDisabled: false &#x2F;&#x2F; 保存按钮是否禁用
-     &#125;
-   &#125;,
-   created() &#123;
-     console.log(&#39;chapter created&#39;)
-   &#125;,
-   methods: &#123;
-     previous() &#123;
-       this.$router.push(&#123; path: &#39;&#x2F;course&#x2F;info&#x2F;1&#39; &#125;)
-     &#125;,
-     next() &#123;
-       console.log(&#39;next&#39;)
-       this.$router.push(&#123; path: &#39;&#x2F;course&#x2F;publish&#x2F;1&#39; &#125;)
-     &#125;
-   &#125;
- &#125;
- &lt;&#x2F;script&gt;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>   &lt;div class=&quot;app-container&quot;&gt;<br>     &lt;h2 style=&quot;text-align: center;&quot;&gt;发布新课程&lt;/h2&gt;<br>     &lt;el-steps :active=&quot;2&quot; process-status=&quot;wait&quot; align-center style=&quot;margin-bottom: 40px;&quot;&gt;<br>       &lt;el-step title=&quot;填写课程基本信息&quot;/&gt;<br>       &lt;el-step title=&quot;创建课程大纲&quot;/&gt;<br>       &lt;el-step title=&quot;最终发布&quot;/&gt;<br>     &lt;/el-steps&gt;<br>     &lt;el-form label-width=&quot;120px&quot;&gt;<br>       &lt;el-form-item&gt;<br>         &lt;el-button @click=&quot;previous&quot;&gt;上一步&lt;/el-button&gt;<br>         &lt;el-button :disabled=&quot;saveBtnDisabled&quot; type=&quot;primary&quot; @click=&quot;next&quot;&gt;下一步&lt;/el-button&gt;<br>       &lt;/el-form-item&gt;<br>     &lt;/el-form&gt;<br>   &lt;/div&gt;<br> &lt;/template&gt;<br> &lt;script&gt;<br> export default &#123;<br>   data() &#123;<br>     return &#123;<br>       saveBtnDisabled: false // 保存按钮是否禁用<br>     &#125;<br>   &#125;,<br>   created() &#123;<br>     console.log(&#x27;chapter created&#x27;)<br>   &#125;,<br>   methods: &#123;<br>     previous() &#123;<br>       this.$router.push(&#123; path: &#x27;/course/info/1&#x27; &#125;)<br>     &#125;,<br>     next() &#123;<br>       console.log(&#x27;next&#x27;)<br>       this.$router.push(&#123; path: &#x27;/course/publish/1&#x27; &#125;)<br>     &#125;<br>   &#125;<br> &#125;<br> &lt;/script&gt;<br></code></pre></td></tr></table></figure>
 
 <h2 id="课程发布页面"><a href="#课程发布页面" class="headerlink" title="课程发布页面"></a>课程发布页面</h2><p>publish.vue</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
-   &lt;div class&#x3D;&quot;app-container&quot;&gt;
-     &lt;h2 style&#x3D;&quot;text-align: center;&quot;&gt;发布新课程&lt;&#x2F;h2&gt;
-     &lt;el-steps :active&#x3D;&quot;3&quot; process-status&#x3D;&quot;wait&quot; align-center style&#x3D;&quot;margin-bottom: 40px;&quot;&gt;
-       &lt;el-step title&#x3D;&quot;填写课程基本信息&quot;&#x2F;&gt;
-       &lt;el-step title&#x3D;&quot;创建课程大纲&quot;&#x2F;&gt;
-       &lt;el-step title&#x3D;&quot;最终发布&quot;&#x2F;&gt;
-     &lt;&#x2F;el-steps&gt;
-     &lt;el-form label-width&#x3D;&quot;120px&quot;&gt;
-       &lt;el-form-item&gt;
-         &lt;el-button @click&#x3D;&quot;previous&quot;&gt;返回修改&lt;&#x2F;el-button&gt;
-         &lt;el-button :disabled&#x3D;&quot;saveBtnDisabled&quot; type&#x3D;&quot;primary&quot; @click&#x3D;&quot;publish&quot;&gt;发布课程&lt;&#x2F;el-button&gt;
-       &lt;&#x2F;el-form-item&gt;
-     &lt;&#x2F;el-form&gt;
-   &lt;&#x2F;div&gt;
- &lt;&#x2F;template&gt;
- &lt;script&gt;
- export default &#123;
-   data() &#123;
-     return &#123;
-       saveBtnDisabled: false &#x2F;&#x2F; 保存按钮是否禁用
-     &#125;
-   &#125;,
-   created() &#123;
-   &#125;,
-   methods: &#123;
-     previous() &#123;
-       this.$router.push(&#123; path: &#39;&#x2F;course&#x2F;chapter&#x2F;1&#39; &#125;)
-     &#125;,
-     publish() &#123;
-       this.$router.push(&#123; path: &#39;&#x2F;course&#x2F;list&#39; &#125;)
-     &#125;
-   &#125;
- &#125;
- &lt;&#x2F;script&gt;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>   &lt;div class=&quot;app-container&quot;&gt;<br>     &lt;h2 style=&quot;text-align: center;&quot;&gt;发布新课程&lt;/h2&gt;<br>     &lt;el-steps :active=&quot;3&quot; process-status=&quot;wait&quot; align-center style=&quot;margin-bottom: 40px;&quot;&gt;<br>       &lt;el-step title=&quot;填写课程基本信息&quot;/&gt;<br>       &lt;el-step title=&quot;创建课程大纲&quot;/&gt;<br>       &lt;el-step title=&quot;最终发布&quot;/&gt;<br>     &lt;/el-steps&gt;<br>     &lt;el-form label-width=&quot;120px&quot;&gt;<br>       &lt;el-form-item&gt;<br>         &lt;el-button @click=&quot;previous&quot;&gt;返回修改&lt;/el-button&gt;<br>         &lt;el-button :disabled=&quot;saveBtnDisabled&quot; type=&quot;primary&quot; @click=&quot;publish&quot;&gt;发布课程&lt;/el-button&gt;<br>       &lt;/el-form-item&gt;<br>     &lt;/el-form&gt;<br>   &lt;/div&gt;<br> &lt;/template&gt;<br> &lt;script&gt;<br> export default &#123;<br>   data() &#123;<br>     return &#123;<br>       saveBtnDisabled: false // 保存按钮是否禁用<br>     &#125;<br>   &#125;,<br>   created() &#123;<br>   &#125;,<br>   methods: &#123;<br>     previous() &#123;<br>       this.$router.push(&#123; path: &#x27;/course/chapter/1&#x27; &#125;)<br>     &#125;,<br>     publish() &#123;<br>       this.$router.push(&#123; path: &#x27;/course/list&#x27; &#125;)<br>     &#125;<br>   &#125;<br> &#125;<br> &lt;/script&gt;<br></code></pre></td></tr></table></figure>
 
 
 
-<h2 id="讲师下拉列表显示"><a href="#讲师下拉列表显示" class="headerlink" title="讲师下拉列表显示"></a>讲师下拉列表显示</h2><h3 id="组件模板"><a href="#组件模板" class="headerlink" title="组件模板"></a>组件模板</h3><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!-- 课程讲师 TODO --&gt;
-        &lt;el-form-item label&#x3D;&quot;课程讲师&quot;&gt;
-        &lt;el-select
-            v-model&#x3D;&quot;courseInfo.teacherId&quot;
-            placeholder&#x3D;&quot;请选择&quot;&gt;
-            &lt;el-option
-            v-for&#x3D;&quot;teacher in teacherList&quot;
-            :key&#x3D;&quot;teacher.id&quot;
-            :label&#x3D;&quot;teacher.name&quot;
-            :value&#x3D;&quot;teacher.id&quot;&#x2F;&gt;
-        &lt;&#x2F;el-select&gt;
-        &lt;&#x2F;el-form-item&gt;</code></pre></div>
+<h2 id="讲师下拉列表显示"><a href="#讲师下拉列表显示" class="headerlink" title="讲师下拉列表显示"></a>讲师下拉列表显示</h2><h3 id="组件模板"><a href="#组件模板" class="headerlink" title="组件模板"></a>组件模板</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;!-- 课程讲师 TODO --&gt;<br>        &lt;el-form-item label=&quot;课程讲师&quot;&gt;<br>        &lt;el-select<br>            v-model=&quot;courseInfo.teacherId&quot;<br>            placeholder=&quot;请选择&quot;&gt;<br>            &lt;el-option<br>            v-for=&quot;teacher in teacherList&quot;<br>            :key=&quot;teacher.id&quot;<br>            :label=&quot;teacher.name&quot;<br>            :value=&quot;teacher.id&quot;/&gt;<br>        &lt;/el-select&gt;<br>        &lt;/el-form-item&gt;<br></code></pre></td></tr></table></figure>
 
 <h3 id="定义api"><a href="#定义api" class="headerlink" title="定义api"></a>定义api</h3><p>vue-admin-template-master\src\api\edu\course.js</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 查询所有讲师，下拉列表
-getListTeacher()&#123;
-    return request(&#123;
-        url: &#96;&#x2F;eduservice&#x2F;teacher&#x2F;findAll&#96;,
-        method: &#39;get&#39;
-      &#125;)
-&#125;</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 查询所有讲师，下拉列表</span><br><span class="hljs-function"><span class="hljs-title">getListTeacher</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">return</span> request(&#123;<br>        <span class="hljs-attr">url</span>: <span class="hljs-string">`/eduservice/teacher/findAll`</span>,<br>        <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;get&#x27;</span><br>      &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="组件脚本"><a href="#组件脚本" class="headerlink" title="组件脚本"></a>组件脚本</h3><p>定义data</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">teacherList: [] &#x2F;&#x2F; 讲师列表</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vue">teacherList: [] // 讲师列表<br></code></pre></td></tr></table></figure>
 
 <p>表单初始化时获取讲师列表</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">created()&#123;
-    this.findTeacherList()
-&#125;,
-methods:&#123;
-    &#x2F;&#x2F; 下拉列表查询所有讲师
-    findTeacherList()&#123;
-        course.getListTeacher()
-        .then(response &#x3D;&gt;&#123;
-            this.teacherList  &#x3D; response.data.items
-        &#125;)
-    &#125;,</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs vue">created()&#123;<br>    this.findTeacherList()<br>&#125;,<br>methods:&#123;<br>    // 下拉列表查询所有讲师<br>    findTeacherList()&#123;<br>        course.getListTeacher()<br>        .then(response =&gt;&#123;<br>            this.teacherList  = response.data.items<br>        &#125;)<br>    &#125;,<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="显示课程分类-多级联动"><a href="#显示课程分类-多级联动" class="headerlink" title="显示课程分类(多级联动)"></a>显示课程分类(多级联动)</h2><p><img src="/myBlog/day07-%E8%AF%BE%E7%A8%8B%E5%8F%91%E5%B8%83-%E6%B7%BB%E5%8A%A0%E8%AF%BE%E7%A8%8B%E4%BF%A1%E6%81%AF/image-20211225171651508.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20211225171651508"></p>
 <h3 id="获取一级分类"><a href="#获取一级分类" class="headerlink" title="获取一级分类"></a>获取一级分类</h3><h4 id="组件数据定义"><a href="#组件数据定义" class="headerlink" title="组件数据定义"></a>组件数据定义</h4><p>定义在data中</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">subjectOneList:[],  &#x2F;&#x2F; 一级分类
-subjectTwoList:[]   &#x2F;&#x2F; 二级分类</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs vue">subjectOneList:[],  // 一级分类<br>subjectTwoList:[]   // 二级分类<br></code></pre></td></tr></table></figure>
 
-<h4 id="组件模板-1"><a href="#组件模板-1" class="headerlink" title="组件模板"></a>组件模板</h4><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!-- 所属分类：级联下拉列表 --&gt;
-         &lt;!-- 一级分类 --&gt;
-         &lt;el-form-item label&#x3D;&quot;课程类别&quot;&gt;
-         &lt;el-select
-             v-model&#x3D;&quot;courseInfo.subjectParentId&quot;
-             placeholder&#x3D;&quot;一级分类&quot;
-             @change&#x3D;&quot;subjectLevelOneChanged&quot;&gt;
-             &lt;el-option
-             v-for&#x3D;&quot;subject in subjectOneList&quot;
-             :key&#x3D;&quot;subject.id&quot;
-             :label&#x3D;&quot;subject.title&quot;
-             :value&#x3D;&quot;subject.id&quot;&#x2F;&gt;
-         &lt;&#x2F;el-select&gt;</code></pre></div>
+<h4 id="组件模板-1"><a href="#组件模板-1" class="headerlink" title="组件模板"></a>组件模板</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;!-- 所属分类：级联下拉列表 --&gt;<br>         &lt;!-- 一级分类 --&gt;<br>         &lt;el-form-item label=&quot;课程类别&quot;&gt;<br>         &lt;el-select<br>             v-model=&quot;courseInfo.subjectParentId&quot;<br>             placeholder=&quot;一级分类&quot;<br>             @change=&quot;subjectLevelOneChanged&quot;&gt;<br>             &lt;el-option<br>             v-for=&quot;subject in subjectOneList&quot;<br>             :key=&quot;subject.id&quot;<br>             :label=&quot;subject.title&quot;<br>             :value=&quot;subject.id&quot;/&gt;<br>         &lt;/el-select&gt;<br></code></pre></td></tr></table></figure>
 
 <h4 id="组件脚本-1"><a href="#组件脚本-1" class="headerlink" title="组件脚本"></a>组件脚本</h4><p>表单初始化时获取一级分类嵌套列表，引入subject api</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">import subject from &#39;@&#x2F;api&#x2F;edu&#x2F;subject&#39;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vue">import subject from &#x27;@/api/edu/subject&#x27;<br></code></pre></td></tr></table></figure>
 
 <p>定义方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">created()&#123;
-    ...
-    &#x2F;&#x2F; 初始化一级分类
-    this.getOneSubjectList()
-&#125;,
-methods:&#123;
-    &#x2F;&#x2F; 查询一级分类
-    getOneSubjectList()&#123;
-        subject.getSubjectList()
-        .then(response &#x3D;&gt;&#123;
-            this.subjectOneList &#x3D; response.data.list
-        &#125;)
-    &#125;,
-</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs vue">created()&#123;<br>    ...<br>    // 初始化一级分类<br>    this.getOneSubjectList()<br>&#125;,<br>methods:&#123;<br>    // 查询一级分类<br>    getOneSubjectList()&#123;<br>        subject.getSubjectList()<br>        .then(response =&gt;&#123;<br>            this.subjectOneList = response.data.list<br>        &#125;)<br>    &#125;,<br><br></code></pre></td></tr></table></figure>
 
-<h3 id="级联显示二级分类"><a href="#级联显示二级分类" class="headerlink" title="级联显示二级分类"></a>级联显示二级分类</h3><h4 id="组件模板-2"><a href="#组件模板-2" class="headerlink" title="组件模板"></a>组件模板</h4><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!-- 二级分类 --&gt;
-         &lt;el-select v-model&#x3D;&quot;courseInfo.subjectId&quot; placeholder&#x3D;&quot;二级分类&quot;&gt;
-             &lt;el-option
-             v-for&#x3D;&quot;subject in subjectTwoList&quot;
-             :key&#x3D;&quot;subject.id&quot;
-             :label&#x3D;&quot;subject.title&quot;
-             :value&#x3D;&quot;subject.id&quot;&#x2F;&gt;
-         &lt;&#x2F;el-select&gt;</code></pre></div>
+<h3 id="级联显示二级分类"><a href="#级联显示二级分类" class="headerlink" title="级联显示二级分类"></a>级联显示二级分类</h3><h4 id="组件模板-2"><a href="#组件模板-2" class="headerlink" title="组件模板"></a>组件模板</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;!-- 二级分类 --&gt;<br>         &lt;el-select v-model=&quot;courseInfo.subjectId&quot; placeholder=&quot;二级分类&quot;&gt;<br>             &lt;el-option<br>             v-for=&quot;subject in subjectTwoList&quot;<br>             :key=&quot;subject.id&quot;<br>             :label=&quot;subject.title&quot;<br>             :value=&quot;subject.id&quot;/&gt;<br>         &lt;/el-select&gt;<br></code></pre></td></tr></table></figure>
 
 <h4 id="注册change事件"><a href="#注册change事件" class="headerlink" title="注册change事件"></a>注册change事件</h4><p>在一级分类的<el-select>组件中注册change事件</el-select></p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;el-select @change&#x3D;&quot;subjectLevelOneChanged&quot; ......</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;el-select @change=&quot;subjectLevelOneChanged&quot; ......<br></code></pre></td></tr></table></figure>
 
-<h4 id="定义change事件方法"><a href="#定义change事件方法" class="headerlink" title="定义change事件方法"></a>定义change事件方法</h4><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&#x2F;&#x2F; 显示二级分类，当选择一级分类时，显示二级分类
-      subjectLevelOneChanged(value)&#123;
-          &#x2F;&#x2F; 遍历一级分类的集合
-          for(var i &#x3D; 0; this.subjectOneList.length; i++)&#123;
-              &#x2F;&#x2F; 每一个一级分类
-              var oneSubject &#x3D; this.subjectOneList[i]
-
-              &#x2F;&#x2F; 判断一级分类的id是否和传进来的id一样
-              if(value &#x3D;&#x3D;&#x3D; oneSubject.id)&#123;
-                  &#x2F;&#x2F; 从一级分类中获取二级分类
-                  this.subjectTwoList &#x3D; oneSubject.children
-                  this.courseInfo.subjectId &#x3D; &#39;&#39;
-              &#125;
-          &#125;
-      &#125;,</code></pre></div>
+<h4 id="定义change事件方法"><a href="#定义change事件方法" class="headerlink" title="定义change事件方法"></a>定义change事件方法</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs vue">// 显示二级分类，当选择一级分类时，显示二级分类<br>      subjectLevelOneChanged(value)&#123;<br>          // 遍历一级分类的集合<br>          for(var i = 0; this.subjectOneList.length; i++)&#123;<br>              // 每一个一级分类<br>              var oneSubject = this.subjectOneList[i]<br><br>              // 判断一级分类的id是否和传进来的id一样<br>              if(value === oneSubject.id)&#123;<br>                  // 从一级分类中获取二级分类<br>                  this.subjectTwoList = oneSubject.children<br>                  this.courseInfo.subjectId = &#x27;&#x27;<br>              &#125;<br>          &#125;<br>      &#125;,<br></code></pre></td></tr></table></figure>
 
 <h2 id="封面上传"><a href="#封面上传" class="headerlink" title="封面上传"></a>封面上传</h2><h3 id="组件模板-3"><a href="#组件模板-3" class="headerlink" title="组件模板"></a>组件模板</h3><p>在info.vue中添加上传组件模板</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!-- 课程封面--&gt;
-      &lt;el-form-item label&#x3D;&quot;课程封面&quot;&gt;
-      &lt;el-upload
-          :show-file-list&#x3D;&quot;false&quot;
-          :on-success&#x3D;&quot;handleAvatarSuccess&quot;
-          :before-upload&#x3D;&quot;beforeAvatarUpload&quot;
-          :action&#x3D;&quot;BASE_API+&#39;&#x2F;eduoss&#x2F;fileoss&#39;&quot;
-          class&#x3D;&quot;avatar-uploader&quot;&gt;
-          &lt;img :src&#x3D;&quot;courseInfo.cover&quot;&gt;
-      &lt;&#x2F;el-upload&gt;
-      &lt;&#x2F;el-form-item&gt;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;!-- 课程封面--&gt;<br>      &lt;el-form-item label=&quot;课程封面&quot;&gt;<br>      &lt;el-upload<br>          :show-file-list=&quot;false&quot;<br>          :on-success=&quot;handleAvatarSuccess&quot;<br>          :before-upload=&quot;beforeAvatarUpload&quot;<br>          :action=&quot;BASE_API+&#x27;/eduoss/fileoss&#x27;&quot;<br>          class=&quot;avatar-uploader&quot;&gt;<br>          &lt;img :src=&quot;courseInfo.cover&quot;&gt;<br>      &lt;/el-upload&gt;<br>      &lt;/el-form-item&gt;<br></code></pre></td></tr></table></figure>
 
-<h3 id="结果回调"><a href="#结果回调" class="headerlink" title="结果回调"></a>结果回调</h3><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">methods:&#123;
-        &#x2F;&#x2F; 上传成功
-        handleAvatarSuccess(res, file) &#123;
-            console.log(res)&#x2F;&#x2F; 上传响应
-            console.log(URL.createObjectURL(file.raw))&#x2F;&#x2F; base64编码
-            this.courseInfo.cover &#x3D; res.data.url
-        &#125;,
-        &#x2F;&#x2F; 上传之前
-        beforeAvatarUpload(file) &#123;
-            const isJPG &#x3D; file.type &#x3D;&#x3D;&#x3D; &#39;image&#x2F;jpeg&#39;
-            const isLt2M &#x3D; file.size &#x2F; 1024 &#x2F; 1024 &lt; 2
-            if (!isJPG) &#123;
-                this.$message.error(&#39;上传头像图片只能是 JPG 格式!&#39;)
-            &#125;
-            if (!isLt2M) &#123;
-                this.$message.error(&#39;上传头像图片大小不能超过 2MB!&#39;)
-            &#125;
-            return isJPG &amp;&amp; isLt2M
-        &#125;,</code></pre></div>
+<h3 id="结果回调"><a href="#结果回调" class="headerlink" title="结果回调"></a>结果回调</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs vue">methods:&#123;<br>        // 上传成功<br>        handleAvatarSuccess(res, file) &#123;<br>            console.log(res)// 上传响应<br>            console.log(URL.createObjectURL(file.raw))// base64编码<br>            this.courseInfo.cover = res.data.url<br>        &#125;,<br>        // 上传之前<br>        beforeAvatarUpload(file) &#123;<br>            const isJPG = file.type === &#x27;image/jpeg&#x27;<br>            const isLt2M = file.size / 1024 / 1024 &lt; 2<br>            if (!isJPG) &#123;<br>                this.$message.error(&#x27;上传头像图片只能是 JPG 格式!&#x27;)<br>            &#125;<br>            if (!isLt2M) &#123;<br>                this.$message.error(&#x27;上传头像图片大小不能超过 2MB!&#x27;)<br>            &#125;<br>            return isJPG &amp;&amp; isLt2M<br>        &#125;,<br></code></pre></td></tr></table></figure>
 
 
 
@@ -695,38 +356,20 @@ methods:&#123;
 <h3 id="复制脚本库"><a href="#复制脚本库" class="headerlink" title="复制脚本库"></a>复制脚本库</h3><p>将脚本库复制到项目的static目录下（在vue-element-admin-master的static路径下）</p>
 <h3 id="配置html变量"><a href="#配置html变量" class="headerlink" title="配置html变量"></a>配置html变量</h3><p>在 guli-admin/build/webpack.dev.conf.js 中添加配置</p>
 <p>使在html页面中可是使用这里定义的BASE_URL变量</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">new HtmlWebpackPlugin(&#123;
-    ......
-    templateParameters: &#123;
-        BASE_URL: config.dev.assetsPublicPath + config.dev.assetsSubDirectory
-    &#125;
-&#125;)</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">new</span> HtmlWebpackPlugin(&#123;<br>    ......<br>    <span class="hljs-attr">templateParameters</span>: &#123;<br>        <span class="hljs-attr">BASE_URL</span>: config.dev.assetsPublicPath + config.dev.assetsSubDirectory<br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
 
 <h3 id="引入js脚本"><a href="#引入js脚本" class="headerlink" title="引入js脚本"></a>引入js脚本</h3><p>在guli-admin/index.html 中引入js脚本</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&lt;script src&#x3D;&lt;%&#x3D; BASE_URL %&gt;&#x2F;tinymce4.7.5&#x2F;tinymce.min.js&gt;&lt;&#x2F;script&gt;
-&lt;script src&#x3D;&lt;%&#x3D; BASE_URL %&gt;&#x2F;tinymce4.7.5&#x2F;langs&#x2F;zh_CN.js&gt;&lt;&#x2F;script&gt;</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;script src=&lt;%= BASE_URL %&gt;<span class="hljs-regexp">/tinymce4.7.5/</span>tinymce.min.js&gt;&lt;/script&gt;<br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=&lt;%= <span class="hljs-string">BASE_URL</span> %&gt;</span>/tinymce4.7.5/langs/zh_CN.js&gt;</span>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
 
 <h2 id="组件引入"><a href="#组件引入" class="headerlink" title="组件引入"></a>组件引入</h2><p>为了让Tinymce能用于Vue.js项目，vue-element-admin-master对Tinymce进行了封装，下面我们将它引入到我们的课程信息页面</p>
 <h3 id="复制组件"><a href="#复制组件" class="headerlink" title="复制组件"></a>复制组件</h3><p>src/components/Tinymce</p>
 <h3 id="引入组件"><a href="#引入组件" class="headerlink" title="引入组件"></a>引入组件</h3><p>课程信息组件中引入 Tinymce</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">import Tinymce from &#39;@&#x2F;components&#x2F;Tinymce&#39;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs vue">import Tinymce from &#x27;@/components/Tinymce&#x27;<br><br>export default &#123;<br>    // 初始化文本编辑器<br>    components: &#123; Tinymce &#125;,<br>    data()&#123;<br></code></pre></td></tr></table></figure>
 
-export default &#123;
-    &#x2F;&#x2F; 初始化文本编辑器
-    components: &#123; Tinymce &#125;,
-    data()&#123;</code></pre></div>
-
-<h3 id="组件模板-4"><a href="#组件模板-4" class="headerlink" title="组件模板"></a>组件模板</h3><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!-- 课程简介--&gt;
-&lt;el-form-item label&#x3D;&quot;课程简介&quot;&gt;
-    &lt;tinymce :height&#x3D;&quot;300&quot; v-model&#x3D;&quot;courseInfo.description&quot;&#x2F;&gt;
-&lt;&#x2F;el-form-item&gt;</code></pre></div>
+<h3 id="组件模板-4"><a href="#组件模板-4" class="headerlink" title="组件模板"></a>组件模板</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;!-- 课程简介--&gt;<br>&lt;el-form-item label=&quot;课程简介&quot;&gt;<br>    &lt;tinymce :height=&quot;300&quot; v-model=&quot;courseInfo.description&quot;/&gt;<br>&lt;/el-form-item&gt;<br></code></pre></td></tr></table></figure>
 
 <h3 id="组件样式"><a href="#组件样式" class="headerlink" title="组件样式"></a>组件样式</h3><p>在info.vue文件的最后添加如下代码，调整上传图片按钮的高度</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;style scoped&gt;
-.tinymce-container &#123;
-  line-height: 29px;
-&#125;
-&lt;&#x2F;style&gt;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;style scoped&gt;<br>.tinymce-container &#123;<br>  line-height: 29px;<br>&#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
 
 <p>Tinymce中的图片上传功能直接存储的是图片的base64编码，因此无需图片服务器</p>
 
@@ -1034,12 +677,6 @@ export default &#123;
   });
 </script>
 
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/components/prism-core.min.js" ></script>
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js" ></script>
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script>
   (function() {

@@ -16,12 +16,12 @@
   <meta name="author" content="Ten">
   <meta name="keywords" content="">
   
-    <meta name="description" content="day05-讲师管理模块前端开发后台系统登录功能改造在config中的dev.env.js把地址改成下面的 &#39;use strict&#39; const merge &#x3D; require(&#39;webpack-merge&#39;) const prodEnv &#x3D; require(&#39;.&#x2F;prod.env&#39;)  module.exports &amp;">
+    <meta name="description" content="day05-讲师管理模块前端开发后台系统登录功能改造在config中的dev.env.js把地址改成下面的 12345678910&amp;#x27;use strict&amp;#x27;const merge &#x3D; require(&amp;#x27;webpack-merge&amp;#x27;)const prodEnv &#x3D; require(&amp;#x27;.&#x2F;prod.env&amp;#x27;)module.exports &#x3D; m">
 <meta property="og:type" content="article">
 <meta property="og:title" content="day05-讲师管理模块前端开发">
 <meta property="og:url" content="https://no-ten.github.io/day05-%E8%AE%B2%E5%B8%88%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9D%97%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/index.html">
 <meta property="og:site_name" content="TBlog">
-<meta property="og:description" content="day05-讲师管理模块前端开发后台系统登录功能改造在config中的dev.env.js把地址改成下面的 &#39;use strict&#39; const merge &#x3D; require(&#39;webpack-merge&#39;) const prodEnv &#x3D; require(&#39;.&#x2F;prod.env&#39;)  module.exports &amp;">
+<meta property="og:description" content="day05-讲师管理模块前端开发后台系统登录功能改造在config中的dev.env.js把地址改成下面的 12345678910&amp;#x27;use strict&amp;#x27;const merge &#x3D; require(&amp;#x27;webpack-merge&amp;#x27;)const prodEnv &#x3D; require(&amp;#x27;.&#x2F;prod.env&amp;#x27;)module.exports &#x3D; m">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://no-ten.github.io/myBlog/day05-%E8%AE%B2%E5%B8%88%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9D%97%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/image-20211223104513320.png">
 <meta property="og:image" content="https://no-ten.github.io/myBlog/day05-%E8%AE%B2%E5%B8%88%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9D%97%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/03-%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E4%BB%8B%E7%BB%8D.png">
@@ -45,8 +45,6 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
@@ -230,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          23k 字
+          21k 字
         
       </span>
     
@@ -283,36 +281,12 @@
             <div class="markdown-body">
               
               <h1 id="day05-讲师管理模块前端开发"><a href="#day05-讲师管理模块前端开发" class="headerlink" title="day05-讲师管理模块前端开发"></a>day05-讲师管理模块前端开发</h1><h1 id="后台系统登录功能改造"><a href="#后台系统登录功能改造" class="headerlink" title="后台系统登录功能改造"></a>后台系统登录功能改造</h1><p>在config中的dev.env.js把地址改成下面的</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#39;use strict&#39;
-const merge &#x3D; require(&#39;webpack-merge&#39;)
-const prodEnv &#x3D; require(&#39;.&#x2F;prod.env&#39;)
-
-module.exports &#x3D; merge(prodEnv, &#123;
-  NODE_ENV: &#39;&quot;development&quot;&#39;,
-  &#x2F;&#x2F;BASE_API: &#39;&quot;https:&#x2F;&#x2F;easy-mock.com&#x2F;mock&#x2F;5950a2419adc231f356a6636&#x2F;vue-admin&quot;&#39;,
-  BASE_API: &#39;&quot;http:&#x2F;&#x2F;localhost:8001&quot;&#39;,
-&#125;)
-</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-meta">&#x27;use strict&#x27;</span><br><span class="hljs-keyword">const</span> merge = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;webpack-merge&#x27;</span>)<br><span class="hljs-keyword">const</span> prodEnv = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./prod.env&#x27;</span>)<br><br><span class="hljs-built_in">module</span>.exports = merge(prodEnv, &#123;<br>  <span class="hljs-attr">NODE_ENV</span>: <span class="hljs-string">&#x27;&quot;development&quot;&#x27;</span>,<br>  <span class="hljs-comment">//BASE_API: &#x27;&quot;https://easy-mock.com/mock/5950a2419adc231f356a6636/vue-admin&quot;&#x27;,</span><br>  <span class="hljs-attr">BASE_API</span>: <span class="hljs-string">&#x27;&quot;http://localhost:8001&quot;&#x27;</span>,<br>&#125;)<br><br></code></pre></td></tr></table></figure>
 
 
 
 <p>在com.atguigu.eduservice.controller包下面，先模拟一个登录controller</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@RestController
-@RequestMapping(&quot;&#x2F;eduservice&#x2F;user&quot;)
-@CrossOrigin    &#x2F;&#x2F; 解决跨域
-public class EduLoginController &#123;
-
-    &#x2F;&#x2F; login
-    @PostMapping(&quot;login&quot;)
-    public R login()&#123;
-        return R.ok().data(&quot;token&quot;,&quot;token&quot;);
-    &#125;
-    &#x2F;&#x2F; info
-    @GetMapping(&quot;info&quot;)
-    public R info()&#123;
-        return R.ok().data(&quot;roles&quot;,&quot;roles&quot;).data(&quot;name&quot;,&quot;name&quot;).data(&quot;avatar&quot;,&quot;http:&#x2F;&#x2F;img.hb.aicdn.com&#x2F;7378f66599670a3614ce38edf79bf1551dacd8d0f5c70-53yvFv_fw580&quot;);
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;/eduservice/user&quot;)</span><br><span class="hljs-meta">@CrossOrigin</span>    <span class="hljs-comment">// 解决跨域</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EduLoginController</span> </span>&#123;<br><br>    <span class="hljs-comment">// login</span><br>    <span class="hljs-meta">@PostMapping(&quot;login&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">login</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> R.ok().data(<span class="hljs-string">&quot;token&quot;</span>,<span class="hljs-string">&quot;token&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">// info</span><br>    <span class="hljs-meta">@GetMapping(&quot;info&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">info</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> R.ok().data(<span class="hljs-string">&quot;roles&quot;</span>,<span class="hljs-string">&quot;roles&quot;</span>).data(<span class="hljs-string">&quot;name&quot;</span>,<span class="hljs-string">&quot;name&quot;</span>).data(<span class="hljs-string">&quot;avatar&quot;</span>,<span class="hljs-string">&quot;http://img.hb.aicdn.com/7378f66599670a3614ce38edf79bf1551dacd8d0f5c70-53yvFv_fw580&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
@@ -322,829 +296,114 @@ public class EduLoginController &#123;
 <h1 id="前端框架开发过程介绍"><a href="#前端框架开发过程介绍" class="headerlink" title="前端框架开发过程介绍"></a>前端框架开发过程介绍</h1><p><img src="/myBlog/day05-%E8%AE%B2%E5%B8%88%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9D%97%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/03-%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E4%BB%8B%E7%BB%8D.png" srcset="/myBlog/img/loading.gif" lazyload alt="03-前端框架开发过程介绍"></p>
 <h1 id="讲师管理前端"><a href="#讲师管理前端" class="headerlink" title="讲师管理前端"></a>讲师管理前端</h1><h2 id="讲师列表"><a href="#讲师列表" class="headerlink" title="讲师列表"></a>讲师列表</h2><p>添加路由</p>
 <p>在src的router的index.js文件中，添加讲师管理路由</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#123;
-  path: &#39;&#x2F;teacher&#39;,
-  component: Layout,
-  redirect: &#39;&#x2F;teacher&#x2F;table&#39;,
-  name: &#39;讲师管理&#39;,
-  meta: &#123; title: &#39;讲师管理&#39;, icon: &#39;example&#39; &#125;,
-  children: [
-    &#123;
-      path: &#39;table&#39;,
-      name: &#39;讲师列表&#39;,
-      component: () &#x3D;&gt; import(&#39;@&#x2F;views&#x2F;edu&#x2F;teacher&#x2F;list&#39;),
-      meta: &#123; title: &#39;讲师列表&#39;, icon: &#39;table&#39; &#125;
-    &#125;,
-    &#123;
-      path: &#39;save&#39;,
-      name: &#39;添加讲师&#39;,
-      component: () &#x3D;&gt; import(&#39;@&#x2F;views&#x2F;edu&#x2F;teacher&#x2F;save&#39;),
-      meta: &#123; title: &#39;添加讲师&#39;, icon: &#39;tree&#39; &#125;
-    &#125;
-  ]
-&#125;,</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs js">&#123;<br>  <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/teacher&#x27;</span>,<br>  <span class="hljs-attr">component</span>: Layout,<br>  <span class="hljs-attr">redirect</span>: <span class="hljs-string">&#x27;/teacher/table&#x27;</span>,<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;讲师管理&#x27;</span>,<br>  <span class="hljs-attr">meta</span>: &#123; <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;讲师管理&#x27;</span>, <span class="hljs-attr">icon</span>: <span class="hljs-string">&#x27;example&#x27;</span> &#125;,<br>  <span class="hljs-attr">children</span>: [<br>    &#123;<br>      <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;table&#x27;</span>,<br>      <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;讲师列表&#x27;</span>,<br>      <span class="hljs-attr">component</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;@/views/edu/teacher/list&#x27;</span>),<br>      <span class="hljs-attr">meta</span>: &#123; <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;讲师列表&#x27;</span>, <span class="hljs-attr">icon</span>: <span class="hljs-string">&#x27;table&#x27;</span> &#125;<br>    &#125;,<br>    &#123;<br>      <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;save&#x27;</span>,<br>      <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;添加讲师&#x27;</span>,<br>      <span class="hljs-attr">component</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;@/views/edu/teacher/save&#x27;</span>),<br>      <span class="hljs-attr">meta</span>: &#123; <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;添加讲师&#x27;</span>, <span class="hljs-attr">icon</span>: <span class="hljs-string">&#x27;tree&#x27;</span> &#125;<br>    &#125;<br>  ]<br>&#125;,<br></code></pre></td></tr></table></figure>
 
 
 
 <p>在views/edu/teacher下创建list.vue和save.vue文件</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
-    &lt;div class&#x3D;&quot;app-container&quot;&gt;
-        讲师列表
-    &lt;&#x2F;div&gt;
-&lt;&#x2F;template&gt;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>    &lt;div class=&quot;app-container&quot;&gt;<br>        讲师列表<br>    &lt;/div&gt;<br>&lt;/template&gt;<br></code></pre></td></tr></table></figure>
 
 
 
 <p>在api/edu下面创建teacher.js文件，写方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">import request from &#39;@&#x2F;utils&#x2F;request&#39;
-
-export default&#123;
-    &#x2F;&#x2F; 1.讲师列表（条件查询分页）
-    &#x2F;&#x2F; current:当前分页，limit每页记录数，teacherQuery条件对象
-    getTeacherListPage(current,limit,teacherQuery)&#123;
-        return request(&#123;
-            &#x2F;&#x2F; 可以拼接
-            &#x2F;&#x2F;url: &#39;&#x2F;eduservice&#x2F;teacher&#x2F;pageTeacherCondition&#39;+&quot;&#x2F;&quot;+&#39;current&#39;,
-            url: &#96;&#x2F;eduservice&#x2F;teacher&#x2F;pageTeacherCondition&#x2F;$&#123;current&#125;&#x2F;$&#123;limit&#125;&#96;,
-            method: &#39;post&#39;,
-            &#x2F;&#x2F; teacherQuery条件对象，后端使用RequestBody获取数据
-            &#x2F;&#x2F; data表示把对象转成json进行传递到接口里面
-            data:teacherQuery
-          &#125;)
-    &#125;
-&#125;
-</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> request <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/utils/request&#x27;</span><br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span>&#123;<br>    <span class="hljs-comment">// 1.讲师列表（条件查询分页）</span><br>    <span class="hljs-comment">// current:当前分页，limit每页记录数，teacherQuery条件对象</span><br>    <span class="hljs-function"><span class="hljs-title">getTeacherListPage</span>(<span class="hljs-params">current,limit,teacherQuery</span>)</span>&#123;<br>        <span class="hljs-keyword">return</span> request(&#123;<br>            <span class="hljs-comment">// 可以拼接</span><br>            <span class="hljs-comment">//url: &#x27;/eduservice/teacher/pageTeacherCondition&#x27;+&quot;/&quot;+&#x27;current&#x27;,</span><br>            <span class="hljs-attr">url</span>: <span class="hljs-string">`/eduservice/teacher/pageTeacherCondition/<span class="hljs-subst">$&#123;current&#125;</span>/<span class="hljs-subst">$&#123;limit&#125;</span>`</span>,<br>            <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;post&#x27;</span>,<br>            <span class="hljs-comment">// teacherQuery条件对象，后端使用RequestBody获取数据</span><br>            <span class="hljs-comment">// data表示把对象转成json进行传递到接口里面</span><br>            <span class="hljs-attr">data</span>:teacherQuery<br>          &#125;)<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 
 
 <p>回到刚刚创建的list.vue页面将teacher.js文件引入当前页面，开始编码</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
-    &lt;div class&#x3D;&quot;app-container&quot;&gt;
-        讲师列表
-    &lt;&#x2F;div&gt;
-&lt;&#x2F;template&gt;
-
-&lt;script&gt;
-&#x2F;&#x2F; 引入teacher.js文
-import teacher from &#39;@&#x2F;api&#x2F;edu&#x2F;teacher&#39;
-
-export default &#123;
-    data()&#123;     &#x2F;&#x2F; 定义变量和初始值
-        return&#123;
-            list:null,  &#x2F;&#x2F; 查询之后接口返回集合
-            page : 1,   &#x2F;&#x2F; 当前页
-            limit : 10, &#x2F;&#x2F; 每页的记录数
-            total : 0,  &#x2F;&#x2F; 总记录数
-            teacherQuery:&#123;&#125;    &#x2F;&#x2F; 条封装对象
-
-        &#125;
-    &#125;,
-    created()&#123;      &#x2F;&#x2F; 页面渲染之前执行，调用创建的方法
-        this.getList
-    &#125;,
-    methods:&#123;
-        &#x2F;&#x2F; 讲师列表
-        getList()&#123;
-            teacher.getTeacherListPage(this.current,this.limit,this.teacherQuery)
-            .then(response &#x3D;&gt;&#123;&#x2F;&#x2F; 执行成功
-                &#x2F;&#x2F; response接口接口返回的数据
-                console.log(response);
-            &#125;)     
-            .catch(error &#x3D;&gt;&#123; &#x2F;&#x2F; 执行失败
-                console.log(error);
-            &#125;)   
-        &#125;
-    &#125;
-&#125;
-&lt;&#x2F;script&gt;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>    &lt;div class=&quot;app-container&quot;&gt;<br>        讲师列表<br>    &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script&gt;<br>// 引入teacher.js文<br>import teacher from &#x27;@/api/edu/teacher&#x27;<br><br>export default &#123;<br>    data()&#123;     // 定义变量和初始值<br>        return&#123;<br>            list:null,  // 查询之后接口返回集合<br>            page : 1,   // 当前页<br>            limit : 10, // 每页的记录数<br>            total : 0,  // 总记录数<br>            teacherQuery:&#123;&#125;    // 条封装对象<br><br>        &#125;<br>    &#125;,<br>    created()&#123;      // 页面渲染之前执行，调用创建的方法<br>        this.getList<br>    &#125;,<br>    methods:&#123;<br>        // 讲师列表<br>        getList()&#123;<br>            teacher.getTeacherListPage(this.current,this.limit,this.teacherQuery)<br>            .then(response =&gt;&#123;// 执行成功<br>                // response接口接口返回的数据<br>                console.log(response);<br>            &#125;)     <br>            .catch(error =&gt;&#123; // 执行失败<br>                console.log(error);<br>            &#125;)   <br>        &#125;<br>    &#125;<br>&#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
 
 
 
 <p>测试看显示是否正确。正确之后，进行数据显示，完整代码如下</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
-    &lt;div class&#x3D;&quot;app-container&quot;&gt;
-        &lt;!-- 表格 --&gt;
-        &lt;el-table
-        v-loading&#x3D;&quot;listLoading&quot;
-        :data&#x3D;&quot;list&quot;
-        element-loading-text&#x3D;&quot;数据加载中&quot;
-        border
-        fit
-        highlight-current-row&gt;
-        &lt;el-table-column
-            label&#x3D;&quot;序号&quot;
-            width&#x3D;&quot;70&quot;
-            align&#x3D;&quot;center&quot;&gt;
-            &lt;template slot-scope&#x3D;&quot;scope&quot;&gt;
-            &#123;&#123; (page - 1) * limit + scope.$index + 1 &#125;&#125;
-            &lt;&#x2F;template&gt;
-        &lt;&#x2F;el-table-column&gt;
-        &lt;el-table-column prop&#x3D;&quot;name&quot; label&#x3D;&quot;名称&quot; width&#x3D;&quot;80&quot; &#x2F;&gt;
-        &lt;el-table-column label&#x3D;&quot;头衔&quot; width&#x3D;&quot;80&quot;&gt;
-            &lt;template slot-scope&#x3D;&quot;scope&quot;&gt;
-            &#123;&#123; scope.row.level&#x3D;&#x3D;&#x3D;1?&#39;高级讲师&#39;:&#39;首席讲师&#39; &#125;&#125;
-            &lt;&#x2F;template&gt;
-        &lt;&#x2F;el-table-column&gt;
-        &lt;el-table-column prop&#x3D;&quot;intro&quot; label&#x3D;&quot;资历&quot; &#x2F;&gt;
-        &lt;el-table-column prop&#x3D;&quot;gmtCreate&quot; label&#x3D;&quot;添加时间&quot; width&#x3D;&quot;160&quot;&#x2F;&gt;
-        &lt;el-table-column prop&#x3D;&quot;sort&quot; label&#x3D;&quot;排序&quot; width&#x3D;&quot;60&quot; &#x2F;&gt;
-        &lt;el-table-column label&#x3D;&quot;操作&quot; width&#x3D;&quot;200&quot; align&#x3D;&quot;center&quot;&gt;
-            &lt;template slot-scope&#x3D;&quot;scope&quot;&gt;
-            &lt;router-link :to&#x3D;&quot;&#39;&#x2F;edu&#x2F;teacher&#x2F;edit&#x2F;&#39;+scope.row.id&quot;&gt;
-                &lt;el-button type&#x3D;&quot;primary&quot; size&#x3D;&quot;mini&quot; icon&#x3D;&quot;el-icon-edit&quot;&gt;修改&lt;&#x2F;el-button&gt;
-            &lt;&#x2F;router-link&gt;
-            &lt;el-button type&#x3D;&quot;danger&quot; size&#x3D;&quot;mini&quot; icon&#x3D;&quot;el-icon-delete&quot; @click&#x3D;&quot;removeDataById(scope.row.id)&quot;&gt;删除&lt;&#x2F;el-button&gt;
-            &lt;&#x2F;template&gt;
-        &lt;&#x2F;el-table-column&gt;
-        &lt;&#x2F;el-table&gt;
-    &lt;&#x2F;div&gt;
-&lt;&#x2F;template&gt;
-
-&lt;script&gt;
-&#x2F;&#x2F; 引入teacher.js文
-import teacher from &#39;@&#x2F;api&#x2F;edu&#x2F;teacher&#39;
-
-export default &#123;
-    data()&#123;     &#x2F;&#x2F; 定义变量和初始值
-        return&#123;
-            list:null,  &#x2F;&#x2F; 查询之后接口返回集合
-            page:1,   &#x2F;&#x2F; 当前页
-            limit:10, &#x2F;&#x2F; 每页的记录数
-            total:0,  &#x2F;&#x2F; 总记录数
-            teacherQuery:&#123;&#125;    &#x2F;&#x2F; 条封装对象
-
-        &#125;
-    &#125;,
-    created()&#123;      &#x2F;&#x2F; 页面渲染之前执行，调用创建的方法
-        this.getList()
-    &#125;,
-    methods:&#123;
-        &#x2F;&#x2F; 讲师列表
-        getList()&#123;
-            teacher.getTeacherListPage(this.page,this.limit,this.teacherQuery)
-                .then(response &#x3D;&gt;&#123;&#x2F;&#x2F; 执行成功
-                    &#x2F;&#x2F; response接口接口返回的数据
-                    &#x2F;&#x2F;console.log(response)
-                    this.list &#x3D; response.data.rows
-                    this.total &#x3D; response.data.total
-                    console.log(this.list)
-                    console.log(this.total)
-                &#125;)     
-                .catch(error &#x3D;&gt;&#123; &#x2F;&#x2F; 执行失败
-                    console.log(error)
-                &#125;)   
-        &#125;
-    &#125;
-&#125;
-&lt;&#x2F;script&gt;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>    &lt;div class=&quot;app-container&quot;&gt;<br>        &lt;!-- 表格 --&gt;<br>        &lt;el-table<br>        v-loading=&quot;listLoading&quot;<br>        :data=&quot;list&quot;<br>        element-loading-text=&quot;数据加载中&quot;<br>        border<br>        fit<br>        highlight-current-row&gt;<br>        &lt;el-table-column<br>            label=&quot;序号&quot;<br>            width=&quot;70&quot;<br>            align=&quot;center&quot;&gt;<br>            &lt;template slot-scope=&quot;scope&quot;&gt;<br>            &#123;&#123; (page - 1) * limit + scope.$index + 1 &#125;&#125;<br>            &lt;/template&gt;<br>        &lt;/el-table-column&gt;<br>        &lt;el-table-column prop=&quot;name&quot; label=&quot;名称&quot; width=&quot;80&quot; /&gt;<br>        &lt;el-table-column label=&quot;头衔&quot; width=&quot;80&quot;&gt;<br>            &lt;template slot-scope=&quot;scope&quot;&gt;<br>            &#123;&#123; scope.row.level===1?&#x27;高级讲师&#x27;:&#x27;首席讲师&#x27; &#125;&#125;<br>            &lt;/template&gt;<br>        &lt;/el-table-column&gt;<br>        &lt;el-table-column prop=&quot;intro&quot; label=&quot;资历&quot; /&gt;<br>        &lt;el-table-column prop=&quot;gmtCreate&quot; label=&quot;添加时间&quot; width=&quot;160&quot;/&gt;<br>        &lt;el-table-column prop=&quot;sort&quot; label=&quot;排序&quot; width=&quot;60&quot; /&gt;<br>        &lt;el-table-column label=&quot;操作&quot; width=&quot;200&quot; align=&quot;center&quot;&gt;<br>            &lt;template slot-scope=&quot;scope&quot;&gt;<br>            &lt;router-link :to=&quot;&#x27;/edu/teacher/edit/&#x27;+scope.row.id&quot;&gt;<br>                &lt;el-button type=&quot;primary&quot; size=&quot;mini&quot; icon=&quot;el-icon-edit&quot;&gt;修改&lt;/el-button&gt;<br>            &lt;/router-link&gt;<br>            &lt;el-button type=&quot;danger&quot; size=&quot;mini&quot; icon=&quot;el-icon-delete&quot; @click=&quot;removeDataById(scope.row.id)&quot;&gt;删除&lt;/el-button&gt;<br>            &lt;/template&gt;<br>        &lt;/el-table-column&gt;<br>        &lt;/el-table&gt;<br>    &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script&gt;<br>// 引入teacher.js文<br>import teacher from &#x27;@/api/edu/teacher&#x27;<br><br>export default &#123;<br>    data()&#123;     // 定义变量和初始值<br>        return&#123;<br>            list:null,  // 查询之后接口返回集合<br>            page:1,   // 当前页<br>            limit:10, // 每页的记录数<br>            total:0,  // 总记录数<br>            teacherQuery:&#123;&#125;    // 条封装对象<br><br>        &#125;<br>    &#125;,<br>    created()&#123;      // 页面渲染之前执行，调用创建的方法<br>        this.getList()<br>    &#125;,<br>    methods:&#123;<br>        // 讲师列表<br>        getList()&#123;<br>            teacher.getTeacherListPage(this.page,this.limit,this.teacherQuery)<br>                .then(response =&gt;&#123;// 执行成功<br>                    // response接口接口返回的数据<br>                    //console.log(response)<br>                    this.list = response.data.rows<br>                    this.total = response.data.total<br>                    console.log(this.list)<br>                    console.log(this.total)<br>                &#125;)     <br>                .catch(error =&gt;&#123; // 执行失败<br>                    console.log(error)<br>                &#125;)   <br>        &#125;<br>    &#125;<br>&#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
 
 
 
 <p>再次测试。</p>
 <h2 id="讲师分页"><a href="#讲师分页" class="headerlink" title="讲师分页"></a>讲师分页</h2><p>在src/views/edu/teacher/list.vue中的table标签外加分页组件</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&lt;!-- 分页 --&gt;
-   &lt;el-pagination
-     :current-page&#x3D;&quot;page&quot;
-     :page-size&#x3D;&quot;limit&quot;
-     :total&#x3D;&quot;total&quot;
-     style&#x3D;&quot;padding: 30px 0; text-align: center;&quot;
-     layout&#x3D;&quot;total, prev, pager, next, jumper&quot;
-     @current-change&#x3D;&quot;getList&quot;
-   &#x2F;&gt;</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;!-- 分页 --&gt;<br>   <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">el-pagination</span></span></span><br><span class="hljs-tag"><span class="xml">     <span class="hljs-attr">:current-page</span>=<span class="hljs-string">&quot;page&quot;</span></span></span><br><span class="hljs-tag"><span class="xml">     <span class="hljs-attr">:page-size</span>=<span class="hljs-string">&quot;limit&quot;</span></span></span><br><span class="hljs-tag"><span class="xml">     <span class="hljs-attr">:total</span>=<span class="hljs-string">&quot;total&quot;</span></span></span><br><span class="hljs-tag"><span class="xml">     <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;padding: 30px 0; text-align: center;&quot;</span></span></span><br><span class="hljs-tag"><span class="xml">     <span class="hljs-attr">layout</span>=<span class="hljs-string">&quot;total, prev, pager, next, jumper&quot;</span></span></span><br><span class="hljs-tag"><span class="xml">     @<span class="hljs-attr">current-change</span>=<span class="hljs-string">&quot;getList&quot;</span></span></span><br><span class="hljs-tag"><span class="xml">   /&gt;</span></span><br></code></pre></td></tr></table></figure>
 
 
 
 <p>在getList方法中作下面的修改</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 讲师列表
-       getList(page &#x3D; 1)&#123;
-           this.page &#x3D; page
-           teacher.getTeacherListPage(this.page,this.limit,this.teacherQuery)</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 讲师列表</span><br>       <span class="hljs-function"><span class="hljs-title">getList</span>(<span class="hljs-params">page = <span class="hljs-number">1</span></span>)</span>&#123;<br>           <span class="hljs-built_in">this</span>.page = page<br>           teacher.getTeacherListPage(<span class="hljs-built_in">this</span>.page,<span class="hljs-built_in">this</span>.limit,<span class="hljs-built_in">this</span>.teacherQuery)<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="讲师条件查询"><a href="#讲师条件查询" class="headerlink" title="讲师条件查询"></a>讲师条件查询</h2><p>在table标签上面添加表单</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&lt;!--查询表单--&gt;
-     &lt;el-form :inline&#x3D;&quot;true&quot; class&#x3D;&quot;demo-form-inline&quot;&gt;
-       &lt;el-form-item&gt;
-         &lt;el-input v-model&#x3D;&quot;teacherQuery.name&quot; placeholder&#x3D;&quot;讲师名&quot;&#x2F;&gt;
-       &lt;&#x2F;el-form-item&gt;
-	   
-       &lt;el-form-item&gt;
-         &lt;el-select v-model&#x3D;&quot;teacherQuery.level&quot; clearable placeholder&#x3D;&quot;讲师头衔&quot;&gt;
-           &lt;el-option :value&#x3D;&quot;1&quot; label&#x3D;&quot;高级讲师&quot;&#x2F;&gt;
-           &lt;el-option :value&#x3D;&quot;2&quot; label&#x3D;&quot;首席讲师&quot;&#x2F;&gt;
-         &lt;&#x2F;el-select&gt;
-       &lt;&#x2F;el-form-item&gt;
-	   
-       &lt;el-form-item label&#x3D;&quot;添加时间&quot;&gt;
-         &lt;el-date-picker
-           v-model&#x3D;&quot;teacherQuery.begin&quot;
-           type&#x3D;&quot;datetime&quot;
-           placeholder&#x3D;&quot;选择开始时间&quot;
-           value-format&#x3D;&quot;yyyy-MM-dd HH:mm:ss&quot;
-           default-time&#x3D;&quot;00:00:00&quot;
-         &#x2F;&gt;
-       &lt;&#x2F;el-form-item&gt;
-	   
-       &lt;el-form-item&gt;
-         &lt;el-date-picker
-           v-model&#x3D;&quot;teacherQuery.end&quot;
-           type&#x3D;&quot;datetime&quot;
-           placeholder&#x3D;&quot;选择截止时间&quot;
-           value-format&#x3D;&quot;yyyy-MM-dd HH:mm:ss&quot;
-           default-time&#x3D;&quot;00:00:00&quot;
-         &#x2F;&gt;
-       &lt;&#x2F;el-form-item&gt;
-	   
-       &lt;el-button type&#x3D;&quot;primary&quot; icon&#x3D;&quot;el-icon-search&quot; @click&#x3D;&quot;getList()&quot;&gt;查询&lt;&#x2F;el-button&gt;
-       &lt;el-button type&#x3D;&quot;default&quot; @click&#x3D;&quot;resetData()&quot;&gt;清空&lt;&#x2F;el-button&gt;
-	   
-    &lt;&#x2F;el-form&gt;</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;!--查询表单--&gt;<br>     <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">el-form</span> <span class="hljs-attr">:inline</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;demo-form-inline&quot;</span>&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;<span class="hljs-name">el-form-item</span>&gt;</span></span><br><span class="xml">         <span class="hljs-tag">&lt;<span class="hljs-name">el-input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;teacherQuery.name&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;讲师名&quot;</span>/&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;/<span class="hljs-name">el-form-item</span>&gt;</span></span><br><span class="xml">	   </span><br><span class="xml">       <span class="hljs-tag">&lt;<span class="hljs-name">el-form-item</span>&gt;</span></span><br><span class="xml">         <span class="hljs-tag">&lt;<span class="hljs-name">el-select</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;teacherQuery.level&quot;</span> <span class="hljs-attr">clearable</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;讲师头衔&quot;</span>&gt;</span></span><br><span class="xml">           <span class="hljs-tag">&lt;<span class="hljs-name">el-option</span> <span class="hljs-attr">:value</span>=<span class="hljs-string">&quot;1&quot;</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;高级讲师&quot;</span>/&gt;</span></span><br><span class="xml">           <span class="hljs-tag">&lt;<span class="hljs-name">el-option</span> <span class="hljs-attr">:value</span>=<span class="hljs-string">&quot;2&quot;</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;首席讲师&quot;</span>/&gt;</span></span><br><span class="xml">         <span class="hljs-tag">&lt;/<span class="hljs-name">el-select</span>&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;/<span class="hljs-name">el-form-item</span>&gt;</span></span><br><span class="xml">	   </span><br><span class="xml">       <span class="hljs-tag">&lt;<span class="hljs-name">el-form-item</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;添加时间&quot;</span>&gt;</span></span><br><span class="xml">         <span class="hljs-tag">&lt;<span class="hljs-name">el-date-picker</span></span></span><br><span class="hljs-tag"><span class="xml">           <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;teacherQuery.begin&quot;</span></span></span><br><span class="hljs-tag"><span class="xml">           <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;datetime&quot;</span></span></span><br><span class="hljs-tag"><span class="xml">           <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;选择开始时间&quot;</span></span></span><br><span class="hljs-tag"><span class="xml">           <span class="hljs-attr">value-format</span>=<span class="hljs-string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span></span></span><br><span class="hljs-tag"><span class="xml">           <span class="hljs-attr">default-time</span>=<span class="hljs-string">&quot;00:00:00&quot;</span></span></span><br><span class="hljs-tag"><span class="xml">         /&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;/<span class="hljs-name">el-form-item</span>&gt;</span></span><br><span class="xml">	   </span><br><span class="xml">       <span class="hljs-tag">&lt;<span class="hljs-name">el-form-item</span>&gt;</span></span><br><span class="xml">         <span class="hljs-tag">&lt;<span class="hljs-name">el-date-picker</span></span></span><br><span class="hljs-tag"><span class="xml">           <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;teacherQuery.end&quot;</span></span></span><br><span class="hljs-tag"><span class="xml">           <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;datetime&quot;</span></span></span><br><span class="hljs-tag"><span class="xml">           <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;选择截止时间&quot;</span></span></span><br><span class="hljs-tag"><span class="xml">           <span class="hljs-attr">value-format</span>=<span class="hljs-string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span></span></span><br><span class="hljs-tag"><span class="xml">           <span class="hljs-attr">default-time</span>=<span class="hljs-string">&quot;00:00:00&quot;</span></span></span><br><span class="hljs-tag"><span class="xml">         /&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;/<span class="hljs-name">el-form-item</span>&gt;</span></span><br><span class="xml">	   </span><br><span class="xml">       <span class="hljs-tag">&lt;<span class="hljs-name">el-button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;primary&quot;</span> <span class="hljs-attr">icon</span>=<span class="hljs-string">&quot;el-icon-search&quot;</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;getList()&quot;</span>&gt;</span>查询<span class="hljs-tag">&lt;/<span class="hljs-name">el-button</span>&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;<span class="hljs-name">el-button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;default&quot;</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;resetData()&quot;</span>&gt;</span>清空<span class="hljs-tag">&lt;/<span class="hljs-name">el-button</span>&gt;</span></span><br><span class="xml">	   </span><br><span class="xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">el-form</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
 
 
 
 <p>在mothods中添加清空方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">methods:&#123;
-       resetData()&#123;    &#x2F;&#x2F;清空
-           &#x2F;&#x2F; 清空所有数据
-           this.teacherQuery &#x3D; &#123;&#125;
-           &#x2F;&#x2F; 查询所有用户
-           this.getList()
-       &#125;
-   &#125;</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js">methods:&#123;<br>       <span class="hljs-function"><span class="hljs-title">resetData</span>(<span class="hljs-params"></span>)</span>&#123;    <span class="hljs-comment">//清空</span><br>           <span class="hljs-comment">// 清空所有数据</span><br>           <span class="hljs-built_in">this</span>.teacherQuery = &#123;&#125;<br>           <span class="hljs-comment">// 查询所有用户</span><br>           <span class="hljs-built_in">this</span>.getList()<br>       &#125;<br>   &#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="讲师删除"><a href="#讲师删除" class="headerlink" title="讲师删除"></a>讲师删除</h2><p>在api/edu下面的teacher.js文件，添加删除讲师方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 删除讲师
-deleteTeacherId(id) &#123;
-    return request(&#123;
-        url: &#96;&#x2F;eduservice&#x2F;teacher&#x2F;$&#123;id&#125;&#96;,
-        method: &#39;delete&#39;
-    &#125;)
-&#125;</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 删除讲师</span><br><span class="hljs-function"><span class="hljs-title">deleteTeacherId</span>(<span class="hljs-params">id</span>)</span> &#123;<br>    <span class="hljs-keyword">return</span> request(&#123;<br>        <span class="hljs-attr">url</span>: <span class="hljs-string">`/eduservice/teacher/<span class="hljs-subst">$&#123;id&#125;</span>`</span>,<br>        <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;delete&#x27;</span><br>    &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>在src/views/edu/teacher/list.vue中的methods标签里面加删除方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 删除讲师
-removeDataById(id)&#123;
-
-    this.$confirm(&#39;此操作将永久删除讲师记录, 是否继续?&#39;, &#39;提示&#39;, &#123;
-        confirmButtonText: &#39;确定&#39;,
-        cancelButtonText: &#39;取消&#39;,
-        type: &#39;warning&#39;
-    &#125;).then(() &#x3D;&gt; &#123;     &#x2F;&#x2F; 确认删除，执行then
-        &#x2F;&#x2F; 调用删除方法
-        teacher.deleteTeacherId(id)
-            .then(response &#x3D;&gt;&#123;     &#x2F;&#x2F; 删除成功
-            &#x2F;&#x2F; 提示信息
-            this.$message(&#123;
-                type: &#39;success&#39;,
-                message: &#39;删除成功!&#39;
-            &#125;);
-            &#x2F;&#x2F; 回到列表页面
-            this.getList()
-        &#125;)
-
-    &#125;)
-&#125;</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 删除讲师</span><br><span class="hljs-function"><span class="hljs-title">removeDataById</span>(<span class="hljs-params">id</span>)</span>&#123;<br><br>    <span class="hljs-built_in">this</span>.$confirm(<span class="hljs-string">&#x27;此操作将永久删除讲师记录, 是否继续?&#x27;</span>, <span class="hljs-string">&#x27;提示&#x27;</span>, &#123;<br>        <span class="hljs-attr">confirmButtonText</span>: <span class="hljs-string">&#x27;确定&#x27;</span>,<br>        <span class="hljs-attr">cancelButtonText</span>: <span class="hljs-string">&#x27;取消&#x27;</span>,<br>        <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;warning&#x27;</span><br>    &#125;).then(<span class="hljs-function">() =&gt;</span> &#123;     <span class="hljs-comment">// 确认删除，执行then</span><br>        <span class="hljs-comment">// 调用删除方法</span><br>        teacher.deleteTeacherId(id)<br>            .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span>&#123;     <span class="hljs-comment">// 删除成功</span><br>            <span class="hljs-comment">// 提示信息</span><br>            <span class="hljs-built_in">this</span>.$message(&#123;<br>                <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;success&#x27;</span>,<br>                <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;删除成功!&#x27;</span><br>            &#125;);<br>            <span class="hljs-comment">// 回到列表页面</span><br>            <span class="hljs-built_in">this</span>.getList()<br>        &#125;)<br><br>    &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="讲师添加"><a href="#讲师添加" class="headerlink" title="讲师添加"></a>讲师添加</h2><p>初始化src/views/edu/teacher/save.vue页面</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&lt;template&gt;
-    &lt;div class&#x3D;&quot;app-container&quot;&gt;
-        讲师添加
-        &lt;el-form label-width&#x3D;&quot;120px&quot;&gt;
-       &lt;el-form-item label&#x3D;&quot;讲师名称&quot;&gt;
-         &lt;el-input v-model&#x3D;&quot;teacher.name&quot;&#x2F;&gt;
-       &lt;&#x2F;el-form-item&gt;
-       &lt;el-form-item label&#x3D;&quot;讲师排序&quot;&gt;
-         &lt;el-input-number v-model&#x3D;&quot;teacher.sort&quot; controls-position&#x3D;&quot;right&quot; min&#x3D;&quot;0&quot;&#x2F;&gt;
-       &lt;&#x2F;el-form-item&gt;
-       &lt;el-form-item label&#x3D;&quot;讲师头衔&quot;&gt;
-         &lt;el-select v-model&#x3D;&quot;teacher.level&quot; clearable placeholder&#x3D;&quot;请选择&quot;&gt;
-           &lt;!--
-             数据类型一定要和取出的json中的一致，否则没法回填
-             因此，这里value使用动态绑定的值，保证其数据类型是number
-           --&gt;
-           &lt;el-option :value&#x3D;&quot;1&quot; label&#x3D;&quot;高级讲师&quot;&#x2F;&gt;
-           &lt;el-option :value&#x3D;&quot;2&quot; label&#x3D;&quot;首席讲师&quot;&#x2F;&gt;
-         &lt;&#x2F;el-select&gt;
-       &lt;&#x2F;el-form-item&gt;
-       &lt;el-form-item label&#x3D;&quot;讲师资历&quot;&gt;
-         &lt;el-input v-model&#x3D;&quot;teacher.career&quot;&#x2F;&gt;
-       &lt;&#x2F;el-form-item&gt;
-       &lt;el-form-item label&#x3D;&quot;讲师简介&quot;&gt;
-         &lt;el-input v-model&#x3D;&quot;teacher.intro&quot; :rows&#x3D;&quot;10&quot; type&#x3D;&quot;textarea&quot;&#x2F;&gt;
-       &lt;&#x2F;el-form-item&gt;
-       &lt;!-- 讲师头像：TODO --&gt;
-       &lt;el-form-item&gt;
-         &lt;el-button :disabled&#x3D;&quot;saveBtnDisabled&quot; type&#x3D;&quot;primary&quot; @click&#x3D;&quot;saveOrUpdate&quot;&gt;保存&lt;&#x2F;el-button&gt;
-       &lt;&#x2F;el-form-item&gt;
-     &lt;&#x2F;el-form&gt;
-    &lt;&#x2F;div&gt;
-&lt;&#x2F;template&gt;
-
-&lt;script&gt;
-
-export default &#123;
-    data()&#123;
-        return&#123;
-
-        &#125;
-    &#125;,
-    create()&#123;
-
-    &#125;,
-    methods:&#123;
-
-    &#125;
-&#125;
-&lt;&#x2F;script&gt;</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;template&gt;<br>    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;app-container&quot;</span>&gt;</span></span><br><span class="xml">        讲师添加</span><br><span class="xml">        <span class="hljs-tag">&lt;<span class="hljs-name">el-form</span> <span class="hljs-attr">label-width</span>=<span class="hljs-string">&quot;120px&quot;</span>&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;<span class="hljs-name">el-form-item</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;讲师名称&quot;</span>&gt;</span></span><br><span class="xml">         <span class="hljs-tag">&lt;<span class="hljs-name">el-input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;teacher.name&quot;</span>/&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;/<span class="hljs-name">el-form-item</span>&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;<span class="hljs-name">el-form-item</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;讲师排序&quot;</span>&gt;</span></span><br><span class="xml">         <span class="hljs-tag">&lt;<span class="hljs-name">el-input-number</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;teacher.sort&quot;</span> <span class="hljs-attr">controls-position</span>=<span class="hljs-string">&quot;right&quot;</span> <span class="hljs-attr">min</span>=<span class="hljs-string">&quot;0&quot;</span>/&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;/<span class="hljs-name">el-form-item</span>&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;<span class="hljs-name">el-form-item</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;讲师头衔&quot;</span>&gt;</span></span><br><span class="xml">         <span class="hljs-tag">&lt;<span class="hljs-name">el-select</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;teacher.level&quot;</span> <span class="hljs-attr">clearable</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;请选择&quot;</span>&gt;</span></span><br><span class="xml">           <span class="hljs-comment">&lt;!--</span></span><br><span class="hljs-comment"><span class="xml">             数据类型一定要和取出的json中的一致，否则没法回填</span></span><br><span class="hljs-comment"><span class="xml">             因此，这里value使用动态绑定的值，保证其数据类型是number</span></span><br><span class="hljs-comment"><span class="xml">           --&gt;</span></span><br><span class="xml">           <span class="hljs-tag">&lt;<span class="hljs-name">el-option</span> <span class="hljs-attr">:value</span>=<span class="hljs-string">&quot;1&quot;</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;高级讲师&quot;</span>/&gt;</span></span><br><span class="xml">           <span class="hljs-tag">&lt;<span class="hljs-name">el-option</span> <span class="hljs-attr">:value</span>=<span class="hljs-string">&quot;2&quot;</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;首席讲师&quot;</span>/&gt;</span></span><br><span class="xml">         <span class="hljs-tag">&lt;/<span class="hljs-name">el-select</span>&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;/<span class="hljs-name">el-form-item</span>&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;<span class="hljs-name">el-form-item</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;讲师资历&quot;</span>&gt;</span></span><br><span class="xml">         <span class="hljs-tag">&lt;<span class="hljs-name">el-input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;teacher.career&quot;</span>/&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;/<span class="hljs-name">el-form-item</span>&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;<span class="hljs-name">el-form-item</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;讲师简介&quot;</span>&gt;</span></span><br><span class="xml">         <span class="hljs-tag">&lt;<span class="hljs-name">el-input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;teacher.intro&quot;</span> <span class="hljs-attr">:rows</span>=<span class="hljs-string">&quot;10&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;textarea&quot;</span>/&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;/<span class="hljs-name">el-form-item</span>&gt;</span></span><br><span class="xml">       <span class="hljs-comment">&lt;!-- 讲师头像：TODO --&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;<span class="hljs-name">el-form-item</span>&gt;</span></span><br><span class="xml">         <span class="hljs-tag">&lt;<span class="hljs-name">el-button</span> <span class="hljs-attr">:disabled</span>=<span class="hljs-string">&quot;saveBtnDisabled&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;primary&quot;</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;saveOrUpdate&quot;</span>&gt;</span>保存<span class="hljs-tag">&lt;/<span class="hljs-name">el-button</span>&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;/<span class="hljs-name">el-form-item</span>&gt;</span></span><br><span class="xml">     <span class="hljs-tag">&lt;/<span class="hljs-name">el-form</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>&lt;/template&gt;<br><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="javascript"><span class="xml"></span></span><br><span class="javascript"><span class="xml"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span>&#123;</span></span><br><span class="javascript"><span class="xml">        <span class="hljs-keyword">return</span>&#123;</span></span><br><span class="javascript"><span class="xml"></span></span><br><span class="javascript"><span class="xml">        &#125;</span></span><br><span class="javascript"><span class="xml">    &#125;,</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-function"><span class="hljs-title">create</span>(<span class="hljs-params"></span>)</span>&#123;</span></span><br><span class="javascript"><span class="xml"></span></span><br><span class="javascript"><span class="xml">    &#125;,</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-attr">methods</span>:&#123;</span></span><br><span class="javascript"><span class="xml"></span></span><br><span class="javascript"><span class="xml">    &#125;</span></span><br><span class="javascript"><span class="xml">&#125;</span></span><br><span class="javascript"><span class="xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
 
 <p>在api/edu下面的teacher.js文件，编写添加讲师方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F; 添加讲师
-addTeacher(teacher)&#123;
-    return request(&#123;
-        url: &#96;&#x2F;eduservice&#x2F;teacher&#x2F;addTeacher&#96;,
-        method: &#39;post&#39;,
-        data:teacher
-    &#125;)
-&#125;</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js">/ 添加讲师<br><span class="hljs-function"><span class="hljs-title">addTeacher</span>(<span class="hljs-params">teacher</span>)</span>&#123;<br>    <span class="hljs-keyword">return</span> request(&#123;<br>        <span class="hljs-attr">url</span>: <span class="hljs-string">`/eduservice/teacher/addTeacher`</span>,<br>        <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;post&#x27;</span>,<br>        <span class="hljs-attr">data</span>:teacher<br>    &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>完成save.vue中方法的编写和调用，完整代码如下</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&lt;template&gt;
-    &lt;div class&#x3D;&quot;app-container&quot;&gt;
-        讲师添加
-        &lt;el-form label-width&#x3D;&quot;120px&quot;&gt;
-       &lt;el-form-item label&#x3D;&quot;讲师名称&quot;&gt;
-         &lt;el-input v-model&#x3D;&quot;teacher.name&quot;&#x2F;&gt;
-       &lt;&#x2F;el-form-item&gt;
-       &lt;el-form-item label&#x3D;&quot;讲师排序&quot;&gt;
-         &lt;el-input-number v-model&#x3D;&quot;teacher.sort&quot; controls-position&#x3D;&quot;right&quot; min&#x3D;&quot;0&quot;&#x2F;&gt;
-       &lt;&#x2F;el-form-item&gt;
-       &lt;el-form-item label&#x3D;&quot;讲师头衔&quot;&gt;
-         &lt;el-select v-model&#x3D;&quot;teacher.level&quot; clearable placeholder&#x3D;&quot;请选择&quot;&gt;
-           &lt;!--
-             数据类型一定要和取出的json中的一致，否则没法回填
-             因此，这里value使用动态绑定的值，保证其数据类型是number
-           --&gt;
-           &lt;el-option :value&#x3D;&quot;1&quot; label&#x3D;&quot;高级讲师&quot;&#x2F;&gt;
-           &lt;el-option :value&#x3D;&quot;2&quot; label&#x3D;&quot;首席讲师&quot;&#x2F;&gt;
-         &lt;&#x2F;el-select&gt;
-       &lt;&#x2F;el-form-item&gt;
-       &lt;el-form-item label&#x3D;&quot;讲师资历&quot;&gt;
-         &lt;el-input v-model&#x3D;&quot;teacher.career&quot;&#x2F;&gt;
-       &lt;&#x2F;el-form-item&gt;
-       &lt;el-form-item label&#x3D;&quot;讲师简介&quot;&gt;
-         &lt;el-input v-model&#x3D;&quot;teacher.intro&quot; :rows&#x3D;&quot;10&quot; type&#x3D;&quot;textarea&quot;&#x2F;&gt;
-       &lt;&#x2F;el-form-item&gt;
-       &lt;!-- 讲师头像：TODO --&gt;
-       &lt;el-form-item&gt;
-         &lt;el-button :disabled&#x3D;&quot;saveBtnDisabled&quot; type&#x3D;&quot;primary&quot; @click&#x3D;&quot;saveOrUpdate&quot;&gt;保存&lt;&#x2F;el-button&gt;
-       &lt;&#x2F;el-form-item&gt;
-     &lt;&#x2F;el-form&gt;
-    &lt;&#x2F;div&gt;
-&lt;&#x2F;template&gt;
-
-&lt;script&gt;
-import teacherAPI from &#39;@&#x2F;api&#x2F;edu&#x2F;teacher&#39;
-export default &#123;
-    data()&#123;
-        return&#123;
-            teacher:&#123;
-                name: &#39;&#39;,
-                sort: 0,
-                level: 1,
-                career: &#39;&#39;,
-                intro: &#39;&#39;,
-                avatar: &#39;&#39;
-            &#125;
-        &#125;
-    &#125;,
-    create()&#123;
-
-    &#125;,
-    methods:&#123;
-        &#x2F;&#x2F; 
-        saveOrUpdate()&#123;
-            &#x2F;&#x2F; 添加
-            this.saveTeacher()
-        &#125;,
-        &#x2F;&#x2F; 添加讲师
-        saveTeacher()&#123;
-            teacherAPI.addTeacher(this.teacher)
-            .then(response &#x3D;&gt;&#123;      &#x2F;&#x2F;添加成功
-            &#x2F;&#x2F; 提示信息
-            this.$message(&#123;
-                type: &#39;success&#39;,
-                message: &#39;删除成功!&#39;
-            &#125;);
-            &#x2F;&#x2F; 返回list页面
-            this.$router.push(&#123;path:&#39;&#x2F;teacher&#x2F;table&#39;&#125;)
-            &#125;)
-        &#125;
-
-    &#125;
-&#125;
-&lt;&#x2F;script&gt;</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;template&gt;<br>    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;app-container&quot;</span>&gt;</span></span><br><span class="xml">        讲师添加</span><br><span class="xml">        <span class="hljs-tag">&lt;<span class="hljs-name">el-form</span> <span class="hljs-attr">label-width</span>=<span class="hljs-string">&quot;120px&quot;</span>&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;<span class="hljs-name">el-form-item</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;讲师名称&quot;</span>&gt;</span></span><br><span class="xml">         <span class="hljs-tag">&lt;<span class="hljs-name">el-input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;teacher.name&quot;</span>/&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;/<span class="hljs-name">el-form-item</span>&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;<span class="hljs-name">el-form-item</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;讲师排序&quot;</span>&gt;</span></span><br><span class="xml">         <span class="hljs-tag">&lt;<span class="hljs-name">el-input-number</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;teacher.sort&quot;</span> <span class="hljs-attr">controls-position</span>=<span class="hljs-string">&quot;right&quot;</span> <span class="hljs-attr">min</span>=<span class="hljs-string">&quot;0&quot;</span>/&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;/<span class="hljs-name">el-form-item</span>&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;<span class="hljs-name">el-form-item</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;讲师头衔&quot;</span>&gt;</span></span><br><span class="xml">         <span class="hljs-tag">&lt;<span class="hljs-name">el-select</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;teacher.level&quot;</span> <span class="hljs-attr">clearable</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;请选择&quot;</span>&gt;</span></span><br><span class="xml">           <span class="hljs-comment">&lt;!--</span></span><br><span class="hljs-comment"><span class="xml">             数据类型一定要和取出的json中的一致，否则没法回填</span></span><br><span class="hljs-comment"><span class="xml">             因此，这里value使用动态绑定的值，保证其数据类型是number</span></span><br><span class="hljs-comment"><span class="xml">           --&gt;</span></span><br><span class="xml">           <span class="hljs-tag">&lt;<span class="hljs-name">el-option</span> <span class="hljs-attr">:value</span>=<span class="hljs-string">&quot;1&quot;</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;高级讲师&quot;</span>/&gt;</span></span><br><span class="xml">           <span class="hljs-tag">&lt;<span class="hljs-name">el-option</span> <span class="hljs-attr">:value</span>=<span class="hljs-string">&quot;2&quot;</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;首席讲师&quot;</span>/&gt;</span></span><br><span class="xml">         <span class="hljs-tag">&lt;/<span class="hljs-name">el-select</span>&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;/<span class="hljs-name">el-form-item</span>&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;<span class="hljs-name">el-form-item</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;讲师资历&quot;</span>&gt;</span></span><br><span class="xml">         <span class="hljs-tag">&lt;<span class="hljs-name">el-input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;teacher.career&quot;</span>/&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;/<span class="hljs-name">el-form-item</span>&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;<span class="hljs-name">el-form-item</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;讲师简介&quot;</span>&gt;</span></span><br><span class="xml">         <span class="hljs-tag">&lt;<span class="hljs-name">el-input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;teacher.intro&quot;</span> <span class="hljs-attr">:rows</span>=<span class="hljs-string">&quot;10&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;textarea&quot;</span>/&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;/<span class="hljs-name">el-form-item</span>&gt;</span></span><br><span class="xml">       <span class="hljs-comment">&lt;!-- 讲师头像：TODO --&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;<span class="hljs-name">el-form-item</span>&gt;</span></span><br><span class="xml">         <span class="hljs-tag">&lt;<span class="hljs-name">el-button</span> <span class="hljs-attr">:disabled</span>=<span class="hljs-string">&quot;saveBtnDisabled&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;primary&quot;</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;saveOrUpdate&quot;</span>&gt;</span>保存<span class="hljs-tag">&lt;/<span class="hljs-name">el-button</span>&gt;</span></span><br><span class="xml">       <span class="hljs-tag">&lt;/<span class="hljs-name">el-form-item</span>&gt;</span></span><br><span class="xml">     <span class="hljs-tag">&lt;/<span class="hljs-name">el-form</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>&lt;/template&gt;<br><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="javascript"><span class="xml"><span class="hljs-keyword">import</span> teacherAPI <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/api/edu/teacher&#x27;</span></span></span><br><span class="javascript"><span class="xml"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span>&#123;</span></span><br><span class="javascript"><span class="xml">        <span class="hljs-keyword">return</span>&#123;</span></span><br><span class="javascript"><span class="xml">            <span class="hljs-attr">teacher</span>:&#123;</span></span><br><span class="javascript"><span class="xml">                <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;&#x27;</span>,</span></span><br><span class="javascript"><span class="xml">                <span class="hljs-attr">sort</span>: <span class="hljs-number">0</span>,</span></span><br><span class="javascript"><span class="xml">                <span class="hljs-attr">level</span>: <span class="hljs-number">1</span>,</span></span><br><span class="javascript"><span class="xml">                <span class="hljs-attr">career</span>: <span class="hljs-string">&#x27;&#x27;</span>,</span></span><br><span class="javascript"><span class="xml">                <span class="hljs-attr">intro</span>: <span class="hljs-string">&#x27;&#x27;</span>,</span></span><br><span class="javascript"><span class="xml">                <span class="hljs-attr">avatar</span>: <span class="hljs-string">&#x27;&#x27;</span></span></span><br><span class="javascript"><span class="xml">            &#125;</span></span><br><span class="javascript"><span class="xml">        &#125;</span></span><br><span class="javascript"><span class="xml">    &#125;,</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-function"><span class="hljs-title">create</span>(<span class="hljs-params"></span>)</span>&#123;</span></span><br><span class="javascript"><span class="xml"></span></span><br><span class="javascript"><span class="xml">    &#125;,</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-attr">methods</span>:&#123;</span></span><br><span class="javascript"><span class="xml">        <span class="hljs-comment">// </span></span></span><br><span class="javascript"><span class="xml">        <span class="hljs-function"><span class="hljs-title">saveOrUpdate</span>(<span class="hljs-params"></span>)</span>&#123;</span></span><br><span class="javascript"><span class="xml">            <span class="hljs-comment">// 添加</span></span></span><br><span class="javascript"><span class="xml">            <span class="hljs-built_in">this</span>.saveTeacher()</span></span><br><span class="javascript"><span class="xml">        &#125;,</span></span><br><span class="javascript"><span class="xml">        <span class="hljs-comment">// 添加讲师</span></span></span><br><span class="javascript"><span class="xml">        <span class="hljs-function"><span class="hljs-title">saveTeacher</span>(<span class="hljs-params"></span>)</span>&#123;</span></span><br><span class="javascript"><span class="xml">            teacherAPI.addTeacher(<span class="hljs-built_in">this</span>.teacher)</span></span><br><span class="javascript"><span class="xml">            .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span>&#123;      <span class="hljs-comment">//添加成功</span></span></span><br><span class="javascript"><span class="xml">            <span class="hljs-comment">// 提示信息</span></span></span><br><span class="javascript"><span class="xml">            <span class="hljs-built_in">this</span>.$message(&#123;</span></span><br><span class="javascript"><span class="xml">                <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;success&#x27;</span>,</span></span><br><span class="javascript"><span class="xml">                <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;删除成功!&#x27;</span></span></span><br><span class="javascript"><span class="xml">            &#125;);</span></span><br><span class="javascript"><span class="xml">            <span class="hljs-comment">// 返回list页面</span></span></span><br><span class="javascript"><span class="xml">            <span class="hljs-built_in">this</span>.$router.push(&#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/teacher/table&#x27;</span>&#125;)</span></span><br><span class="javascript"><span class="xml">            &#125;)</span></span><br><span class="javascript"><span class="xml">        &#125;</span></span><br><span class="javascript"><span class="xml"></span></span><br><span class="javascript"><span class="xml">    &#125;</span></span><br><span class="javascript"><span class="xml">&#125;</span></span><br><span class="javascript"><span class="xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="讲师修改"><a href="#讲师修改" class="headerlink" title="讲师修改"></a>讲师修改</h2><h3 id="添加路由"><a href="#添加路由" class="headerlink" title="添加路由"></a>添加路由</h3><p>在src/router/index.js添加一个隐藏路由</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#123;
-  path: &#39;edit&#x2F;:id&#39;,
-  name: &#39;EduTeacherEdit&#39;,
-  component: () &#x3D;&gt; import(&#39;@&#x2F;views&#x2F;edu&#x2F;teacher&#x2F;save&#39;),
-  meta: &#123; title: &#39;编辑讲师&#39;, noCache:true &#125;,
-  hidden:true
-&#125;</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js">&#123;<br>  <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;edit/:id&#x27;</span>,<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;EduTeacherEdit&#x27;</span>,<br>  <span class="hljs-attr">component</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;@/views/edu/teacher/save&#x27;</span>),<br>  <span class="hljs-attr">meta</span>: &#123; <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;编辑讲师&#x27;</span>, <span class="hljs-attr">noCache</span>:<span class="hljs-literal">true</span> &#125;,<br>  <span class="hljs-attr">hidden</span>:<span class="hljs-literal">true</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>在src/views/edu/teacher/list.vue中的修改按钮处做修改</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;router-link :to&#x3D;&quot;&#39;&#x2F;teacher&#x2F;edit&#x2F;&#39;+scope.row.id&quot;&gt;
-    &lt;el-button type&#x3D;&quot;primary&quot; size&#x3D;&quot;mini&quot; icon&#x3D;&quot;el-icon-edit&quot;&gt;修改&lt;&#x2F;el-button&gt;
-&lt;&#x2F;router-link&gt;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;router-link :to=&quot;&#x27;/teacher/edit/&#x27;+scope.row.id&quot;&gt;<br>    &lt;el-button type=&quot;primary&quot; size=&quot;mini&quot; icon=&quot;el-icon-edit&quot;&gt;修改&lt;/el-button&gt;<br>&lt;/router-link&gt;<br></code></pre></td></tr></table></figure>
 
 <p>测试效果，实现点击修改按钮，路由跳转到添加的页面</p>
 <h3 id="数据回显"><a href="#数据回显" class="headerlink" title="数据回显"></a>数据回显</h3><p>在api/edu下面的teacher.js文件，编写根据讲师id查询信息方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 根据id查询讲师    
-getTeacherInfo(id)&#123;
-    return request(&#123;
-        url: &#96;&#x2F;eduservice&#x2F;teacher&#x2F;getTeacher&#x2F;$&#123;id&#125;&#96;,
-        method: &#39;get&#39;
-    &#125;)
-&#125;</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 根据id查询讲师    </span><br><span class="hljs-function"><span class="hljs-title">getTeacherInfo</span>(<span class="hljs-params">id</span>)</span>&#123;<br>    <span class="hljs-keyword">return</span> request(&#123;<br>        <span class="hljs-attr">url</span>: <span class="hljs-string">`/eduservice/teacher/getTeacher/<span class="hljs-subst">$&#123;id&#125;</span>`</span>,<br>        <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;get&#x27;</span><br>    &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>在save.vue中添加根据讲师id查询信息</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">methods:&#123;
-       &#x2F;&#x2F; 根据讲师id查询信息
-       getInfo(id)&#123;
-           teacherAPI.getTeacherInfo(id)
-           .then(response &#x3D;&gt;&#123;
-               this.teacher &#x3D; response.data.teacher
-           &#125;) 
-       &#125;,
-       saveOrUpdate()&#123;
-           &#x2F;&#x2F; 添加
-           this.saveTeacher()
-       &#125;,
-       &#x2F;&#x2F; 添加讲师
-       saveTeacher()&#123;
-           teacherAPI.addTeacher(this.teacher)
-           .then(response &#x3D;&gt;&#123;      &#x2F;&#x2F;添加成功
-           &#x2F;&#x2F; 提示信息
-           this.$message(&#123;
-               type: &#39;success&#39;,
-               message: &#39;删除成功!&#39;
-           &#125;);
-           &#x2F;&#x2F; 返回list页面
-           this.$router.push(&#123;path:&#39;&#x2F;teacher&#x2F;table&#39;&#125;)
-           &#125;)
-       &#125;
-
-   &#125;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs vue">methods:&#123;<br>       // 根据讲师id查询信息<br>       getInfo(id)&#123;<br>           teacherAPI.getTeacherInfo(id)<br>           .then(response =&gt;&#123;<br>               this.teacher = response.data.teacher<br>           &#125;) <br>       &#125;,<br>       saveOrUpdate()&#123;<br>           // 添加<br>           this.saveTeacher()<br>       &#125;,<br>       // 添加讲师<br>       saveTeacher()&#123;<br>           teacherAPI.addTeacher(this.teacher)<br>           .then(response =&gt;&#123;      //添加成功<br>           // 提示信息<br>           this.$message(&#123;<br>               type: &#x27;success&#x27;,<br>               message: &#x27;删除成功!&#x27;<br>           &#125;);<br>           // 返回list页面<br>           this.$router.push(&#123;path:&#x27;/teacher/table&#x27;&#125;)<br>           &#125;)<br>       &#125;<br><br>   &#125;<br></code></pre></td></tr></table></figure>
 
 <p>由于添加讲师的方法和修改讲师的方法的路径有差别，添加讲师的没有带id，修改讲师的有带id，所以根据路由的参数的id判断是否需要数据回显</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">created()&#123;   &#x2F;&#x2F; 页面渲染之前执行
-    &#x2F;&#x2F; 判断路径是否有id值
-    if (this.$route.params &amp;&amp; this.$route.params.id) &#123;
-    &#x2F;&#x2F; 从路径获取id值
-    const id &#x3D; this.$route.params.id
-    &#x2F;&#x2F; 调用根据id查询的方法
-    this.getInfo(id)
-    &#125;
-&#125;,</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs vue">created()&#123;   // 页面渲染之前执行<br>    // 判断路径是否有id值<br>    if (this.$route.params &amp;&amp; this.$route.params.id) &#123;<br>    // 从路径获取id值<br>    const id = this.$route.params.id<br>    // 调用根据id查询的方法<br>    this.getInfo(id)<br>    &#125;<br>&#125;,<br></code></pre></td></tr></table></figure>
 
 
 
 <h3 id="完成修改"><a href="#完成修改" class="headerlink" title="完成修改"></a>完成修改</h3><p>在api/edu下面的teacher.js文件，编写修改讲师方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 修改讲师
-updateTeacherInfo(teacher)&#123;
-    return request(&#123;
-        url: &#96;&#x2F;eduservice&#x2F;teacher&#x2F;updateTeacher&#96;,
-        method: &#39;post&#39;,
-        data:teacher
-    &#125;)
-&#125;</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 修改讲师</span><br><span class="hljs-function"><span class="hljs-title">updateTeacherInfo</span>(<span class="hljs-params">teacher</span>)</span>&#123;<br>    <span class="hljs-keyword">return</span> request(&#123;<br>        <span class="hljs-attr">url</span>: <span class="hljs-string">`/eduservice/teacher/updateTeacher`</span>,<br>        <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;post&#x27;</span>,<br>        <span class="hljs-attr">data</span>:teacher<br>    &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>在save.vue的methods中添加方法</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&#x2F;&#x2F; 修改讲师
-       updateTeacher()&#123;
-           teacherAPI.updateTeacherInfo(this.teacher)
-           .then(response &#x3D;&gt;&#123;
-               &#x2F;&#x2F; 提示信息
-               this.$message(&#123;
-                   type: &#39;success&#39;,
-                   message: &#39;修改成功!&#39;
-               &#125;);
-               &#x2F;&#x2F; 返回list页面
-               this.$router.push(&#123;path:&#39;&#x2F;teacher&#x2F;table&#39;&#125;)
-   
-           &#125;)
-       &#125;,</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs vue">// 修改讲师<br>       updateTeacher()&#123;<br>           teacherAPI.updateTeacherInfo(this.teacher)<br>           .then(response =&gt;&#123;<br>               // 提示信息<br>               this.$message(&#123;<br>                   type: &#x27;success&#x27;,<br>                   message: &#x27;修改成功!&#x27;<br>               &#125;);<br>               // 返回list页面<br>               this.$router.push(&#123;path:&#x27;/teacher/table&#x27;&#125;)<br>   <br>           &#125;)<br>       &#125;,<br></code></pre></td></tr></table></figure>
 
 <p>由于添加和修改都在同一个页面，先判断是哪个方法,在save.vue的methods</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">saveOrUpdate()&#123;
-    &#x2F;&#x2F; 判断修改还是添加
-    &#x2F;&#x2F; 根据teacher是否有id
-    if(!this.teacher.id)&#123;
-        &#x2F;&#x2F; 添加
-    this.saveTeacher()
-    &#125; else&#123;
-        &#x2F;&#x2F; 修改
-        this.updateTeacher()
-    &#125;
-    
-&#125;,</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs vue">saveOrUpdate()&#123;<br>    // 判断修改还是添加<br>    // 根据teacher是否有id<br>    if(!this.teacher.id)&#123;<br>        // 添加<br>    this.saveTeacher()<br>    &#125; else&#123;<br>        // 修改<br>        this.updateTeacher()<br>    &#125;<br>    <br>&#125;,<br></code></pre></td></tr></table></figure>
 
 <p>save.vue完整代码</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
-    &lt;div class&#x3D;&quot;app-container&quot;&gt;
-        讲师添加
-        &lt;el-form label-width&#x3D;&quot;120px&quot;&gt;
-       &lt;el-form-item label&#x3D;&quot;讲师名称&quot;&gt;
-         &lt;el-input v-model&#x3D;&quot;teacher.name&quot;&#x2F;&gt;
-       &lt;&#x2F;el-form-item&gt;
-       &lt;el-form-item label&#x3D;&quot;讲师排序&quot;&gt;
-         &lt;el-input-number v-model&#x3D;&quot;teacher.sort&quot; controls-position&#x3D;&quot;right&quot; min&#x3D;&quot;0&quot;&#x2F;&gt;
-       &lt;&#x2F;el-form-item&gt;
-       &lt;el-form-item label&#x3D;&quot;讲师头衔&quot;&gt;
-         &lt;el-select v-model&#x3D;&quot;teacher.level&quot; clearable placeholder&#x3D;&quot;请选择&quot;&gt;
-           &lt;!--
-             数据类型一定要和取出的json中的一致，否则没法回填
-             因此，这里value使用动态绑定的值，保证其数据类型是number
-           --&gt;
-           &lt;el-option :value&#x3D;&quot;1&quot; label&#x3D;&quot;高级讲师&quot;&#x2F;&gt;
-           &lt;el-option :value&#x3D;&quot;2&quot; label&#x3D;&quot;首席讲师&quot;&#x2F;&gt;
-         &lt;&#x2F;el-select&gt;
-       &lt;&#x2F;el-form-item&gt;
-       &lt;el-form-item label&#x3D;&quot;讲师资历&quot;&gt;
-         &lt;el-input v-model&#x3D;&quot;teacher.career&quot;&#x2F;&gt;
-       &lt;&#x2F;el-form-item&gt;
-       &lt;el-form-item label&#x3D;&quot;讲师简介&quot;&gt;
-         &lt;el-input v-model&#x3D;&quot;teacher.intro&quot; :rows&#x3D;&quot;10&quot; type&#x3D;&quot;textarea&quot;&#x2F;&gt;
-       &lt;&#x2F;el-form-item&gt;
-       &lt;!-- 讲师头像：TODO --&gt;
-       &lt;el-form-item&gt;
-         &lt;el-button :disabled&#x3D;&quot;saveBtnDisabled&quot; type&#x3D;&quot;primary&quot; @click&#x3D;&quot;saveOrUpdate&quot;&gt;保存&lt;&#x2F;el-button&gt;
-       &lt;&#x2F;el-form-item&gt;
-     &lt;&#x2F;el-form&gt;
-    &lt;&#x2F;div&gt;
-&lt;&#x2F;template&gt;
-
-&lt;script&gt;
-import teacherAPI from &#39;@&#x2F;api&#x2F;edu&#x2F;teacher&#39;
-export default &#123;
-    data()&#123;
-        return&#123;
-            teacher:&#123;
-                name: &#39;&#39;,
-                sort: 0,
-                level: 1,
-                career: &#39;&#39;,
-                intro: &#39;&#39;,
-                avatar: &#39;&#39;
-            &#125;,
-            saveBtnDisabled:false    &#x2F;&#x2F; 保存按钮是否禁止
-        &#125;
-    &#125;,
-    created()&#123;   &#x2F;&#x2F; 页面渲染之前执行
-        &#x2F;&#x2F; 判断路径是否有id值
-        if (this.$route.params &amp;&amp; this.$route.params.id) &#123;
-        &#x2F;&#x2F; 从路径获取id值
-        const id &#x3D; this.$route.params.id
-        &#x2F;&#x2F; 调用根据id查询的方法
-        this.getInfo(id)
-        &#125;
-    &#125;,
-    methods:&#123;
-        &#x2F;&#x2F; 根据讲师id查询信息
-        getInfo(id)&#123;
-            teacherAPI.getTeacherInfo(id)
-            .then(response &#x3D;&gt;&#123;
-                this.teacher &#x3D; response.data.teacher
-            &#125;) 
-        &#125;,
-
-        saveOrUpdate()&#123;
-            &#x2F;&#x2F; 判断修改还是添加
-            &#x2F;&#x2F; 根据teacher是否有id
-            if(!this.teacher.id)&#123;
-                &#x2F;&#x2F; 添加
-            this.saveTeacher()
-            &#125; else&#123;
-                &#x2F;&#x2F; 修改
-                this.updateTeacher()
-            &#125;
-            
-        &#125;,
-
-        &#x2F;&#x2F; 修改讲师
-        updateTeacher()&#123;
-            teacherAPI.updateTeacherInfo(this.teacher)
-            .then(response &#x3D;&gt;&#123;
-                &#x2F;&#x2F; 提示信息
-                this.$message(&#123;
-                    type: &#39;success&#39;,
-                    message: &#39;修改成功!&#39;
-                &#125;);
-                &#x2F;&#x2F; 返回list页面
-                this.$router.push(&#123;path:&#39;&#x2F;teacher&#x2F;table&#39;&#125;)
-    
-            &#125;)
-        &#125;,
-
-        &#x2F;&#x2F; 添加讲师
-        saveTeacher()&#123;
-            teacherAPI.addTeacher(this.teacher)
-            .then(response &#x3D;&gt;&#123;      &#x2F;&#x2F;添加成功
-            &#x2F;&#x2F; 提示信息
-            this.$message(&#123;
-                type: &#39;success&#39;,
-                message: &#39;删除成功!&#39;
-            &#125;);
-            &#x2F;&#x2F; 返回list页面
-            this.$router.push(&#123;path:&#39;&#x2F;teacher&#x2F;table&#39;&#125;)
-            &#125;)
-        &#125;
-
-    &#125;
-&#125;
-&lt;&#x2F;script&gt;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>    &lt;div class=&quot;app-container&quot;&gt;<br>        讲师添加<br>        &lt;el-form label-width=&quot;120px&quot;&gt;<br>       &lt;el-form-item label=&quot;讲师名称&quot;&gt;<br>         &lt;el-input v-model=&quot;teacher.name&quot;/&gt;<br>       &lt;/el-form-item&gt;<br>       &lt;el-form-item label=&quot;讲师排序&quot;&gt;<br>         &lt;el-input-number v-model=&quot;teacher.sort&quot; controls-position=&quot;right&quot; min=&quot;0&quot;/&gt;<br>       &lt;/el-form-item&gt;<br>       &lt;el-form-item label=&quot;讲师头衔&quot;&gt;<br>         &lt;el-select v-model=&quot;teacher.level&quot; clearable placeholder=&quot;请选择&quot;&gt;<br>           &lt;!--<br>             数据类型一定要和取出的json中的一致，否则没法回填<br>             因此，这里value使用动态绑定的值，保证其数据类型是number<br>           --&gt;<br>           &lt;el-option :value=&quot;1&quot; label=&quot;高级讲师&quot;/&gt;<br>           &lt;el-option :value=&quot;2&quot; label=&quot;首席讲师&quot;/&gt;<br>         &lt;/el-select&gt;<br>       &lt;/el-form-item&gt;<br>       &lt;el-form-item label=&quot;讲师资历&quot;&gt;<br>         &lt;el-input v-model=&quot;teacher.career&quot;/&gt;<br>       &lt;/el-form-item&gt;<br>       &lt;el-form-item label=&quot;讲师简介&quot;&gt;<br>         &lt;el-input v-model=&quot;teacher.intro&quot; :rows=&quot;10&quot; type=&quot;textarea&quot;/&gt;<br>       &lt;/el-form-item&gt;<br>       &lt;!-- 讲师头像：TODO --&gt;<br>       &lt;el-form-item&gt;<br>         &lt;el-button :disabled=&quot;saveBtnDisabled&quot; type=&quot;primary&quot; @click=&quot;saveOrUpdate&quot;&gt;保存&lt;/el-button&gt;<br>       &lt;/el-form-item&gt;<br>     &lt;/el-form&gt;<br>    &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script&gt;<br>import teacherAPI from &#x27;@/api/edu/teacher&#x27;<br>export default &#123;<br>    data()&#123;<br>        return&#123;<br>            teacher:&#123;<br>                name: &#x27;&#x27;,<br>                sort: 0,<br>                level: 1,<br>                career: &#x27;&#x27;,<br>                intro: &#x27;&#x27;,<br>                avatar: &#x27;&#x27;<br>            &#125;,<br>            saveBtnDisabled:false    // 保存按钮是否禁止<br>        &#125;<br>    &#125;,<br>    created()&#123;   // 页面渲染之前执行<br>        // 判断路径是否有id值<br>        if (this.$route.params &amp;&amp; this.$route.params.id) &#123;<br>        // 从路径获取id值<br>        const id = this.$route.params.id<br>        // 调用根据id查询的方法<br>        this.getInfo(id)<br>        &#125;<br>    &#125;,<br>    methods:&#123;<br>        // 根据讲师id查询信息<br>        getInfo(id)&#123;<br>            teacherAPI.getTeacherInfo(id)<br>            .then(response =&gt;&#123;<br>                this.teacher = response.data.teacher<br>            &#125;) <br>        &#125;,<br><br>        saveOrUpdate()&#123;<br>            // 判断修改还是添加<br>            // 根据teacher是否有id<br>            if(!this.teacher.id)&#123;<br>                // 添加<br>            this.saveTeacher()<br>            &#125; else&#123;<br>                // 修改<br>                this.updateTeacher()<br>            &#125;<br>            <br>        &#125;,<br><br>        // 修改讲师<br>        updateTeacher()&#123;<br>            teacherAPI.updateTeacherInfo(this.teacher)<br>            .then(response =&gt;&#123;<br>                // 提示信息<br>                this.$message(&#123;<br>                    type: &#x27;success&#x27;,<br>                    message: &#x27;修改成功!&#x27;<br>                &#125;);<br>                // 返回list页面<br>                this.$router.push(&#123;path:&#x27;/teacher/table&#x27;&#125;)<br>    <br>            &#125;)<br>        &#125;,<br><br>        // 添加讲师<br>        saveTeacher()&#123;<br>            teacherAPI.addTeacher(this.teacher)<br>            .then(response =&gt;&#123;      //添加成功<br>            // 提示信息<br>            this.$message(&#123;<br>                type: &#x27;success&#x27;,<br>                message: &#x27;删除成功!&#x27;<br>            &#125;);<br>            // 返回list页面<br>            this.$router.push(&#123;path:&#x27;/teacher/table&#x27;&#125;)<br>            &#125;)<br>        &#125;<br><br>    &#125;<br>&#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
 
 <p>测试添加和修改方法都成功</p>
 <h1 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h1><p>第一次点击修改，进行数据回显</p>
 <p>第二次再去点击 添加讲师，进入表单页面，数据没有清空，正确效果是清空</p>
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>在添加讲师前将表单清空</p>
 <p>在原有的created中添加一个else</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">created()&#123;   &#x2F;&#x2F; 页面渲染之前执行
-    &#x2F;&#x2F; 判断路径是否有id值
-    if (this.$route.params &amp;&amp; this.$route.params.id) &#123;
-    &#x2F;&#x2F; 从路径获取id值
-    const id &#x3D; this.$route.params.id
-    &#x2F;&#x2F; 调用根据id查询的方法
-    this.getInfo(id)
-    &#125; else &#123;    &#x2F;&#x2F; 路径没有id，做添加
-        &#x2F;&#x2F; 表单清空
-        this.teacher &#x3D; &#123;&#125;
-    &#125;
-&#125;,</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs vue">created()&#123;   // 页面渲染之前执行<br>    // 判断路径是否有id值<br>    if (this.$route.params &amp;&amp; this.$route.params.id) &#123;<br>    // 从路径获取id值<br>    const id = this.$route.params.id<br>    // 调用根据id查询的方法<br>    this.getInfo(id)<br>    &#125; else &#123;    // 路径没有id，做添加<br>        // 表单清空<br>        this.teacher = &#123;&#125;<br>    &#125;<br>&#125;,<br></code></pre></td></tr></table></figure>
 
 <p>发现结果还是不行。这个情况不是代码问题，因为created在页面渲染之前就执行，并且只执行一次，所以当点击修改的时候已经执行了，再次点击添加的时候就不会执行（同一个页面），为了让这个created方法可以再次执行，可以加一个监听watch。</p>
 <p>将created的内容抽取出来，放在methods中init方法，在created调用init，并加监听</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">created()&#123;   &#x2F;&#x2F; 页面渲染之前执行
-        this.init()
-    &#125;,
-    watch:&#123;
-        $route(to,from)&#123;    &#x2F;&#x2F; 路由变化方式
-        &#x2F;&#x2F; 路由发生变化时，方法就会被执行
-            this.init()
-        &#125;
-    &#125;,
-    methods:&#123;
-        init()&#123;
-               &#x2F;&#x2F; 判断路径是否有id值
-            if (this.$route.params &amp;&amp; this.$route.params.id) &#123;
-            &#x2F;&#x2F; 从路径获取id值
-            const id &#x3D; this.$route.params.id
-            &#x2F;&#x2F; 调用根据id查询的方法
-            this.getInfo(id)
-            &#125; else &#123;    &#x2F;&#x2F; 路径没有id，做添加
-                &#x2F;&#x2F; 表单清空
-                this.teacher &#x3D; &#123;&#125;
-            &#125;
-        
-        &#125;,</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs vue">created()&#123;   // 页面渲染之前执行<br>        this.init()<br>    &#125;,<br>    watch:&#123;<br>        $route(to,from)&#123;    // 路由变化方式<br>        // 路由发生变化时，方法就会被执行<br>            this.init()<br>        &#125;<br>    &#125;,<br>    methods:&#123;<br>        init()&#123;<br>               // 判断路径是否有id值<br>            if (this.$route.params &amp;&amp; this.$route.params.id) &#123;<br>            // 从路径获取id值<br>            const id = this.$route.params.id<br>            // 调用根据id查询的方法<br>            this.getInfo(id)<br>            &#125; else &#123;    // 路径没有id，做添加<br>                // 表单清空<br>                this.teacher = &#123;&#125;<br>            &#125;<br>        <br>        &#125;,<br></code></pre></td></tr></table></figure>
 
 <p>测试效果，完美解决。</p>
 <p>save.vue完整代码</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
-    &lt;div class&#x3D;&quot;app-container&quot;&gt;
-        讲师添加
-        &lt;el-form label-width&#x3D;&quot;120px&quot;&gt;
-       &lt;el-form-item label&#x3D;&quot;讲师名称&quot;&gt;
-         &lt;el-input v-model&#x3D;&quot;teacher.name&quot;&#x2F;&gt;
-       &lt;&#x2F;el-form-item&gt;
-       &lt;el-form-item label&#x3D;&quot;讲师排序&quot;&gt;
-         &lt;el-input-number v-model&#x3D;&quot;teacher.sort&quot; controls-position&#x3D;&quot;right&quot; min&#x3D;&quot;0&quot;&#x2F;&gt;
-       &lt;&#x2F;el-form-item&gt;
-       &lt;el-form-item label&#x3D;&quot;讲师头衔&quot;&gt;
-         &lt;el-select v-model&#x3D;&quot;teacher.level&quot; clearable placeholder&#x3D;&quot;请选择&quot;&gt;
-           &lt;!--
-             数据类型一定要和取出的json中的一致，否则没法回填
-             因此，这里value使用动态绑定的值，保证其数据类型是number
-           --&gt;
-           &lt;el-option :value&#x3D;&quot;1&quot; label&#x3D;&quot;高级讲师&quot;&#x2F;&gt;
-           &lt;el-option :value&#x3D;&quot;2&quot; label&#x3D;&quot;首席讲师&quot;&#x2F;&gt;
-         &lt;&#x2F;el-select&gt;
-       &lt;&#x2F;el-form-item&gt;
-       &lt;el-form-item label&#x3D;&quot;讲师资历&quot;&gt;
-         &lt;el-input v-model&#x3D;&quot;teacher.career&quot;&#x2F;&gt;
-       &lt;&#x2F;el-form-item&gt;
-       &lt;el-form-item label&#x3D;&quot;讲师简介&quot;&gt;
-         &lt;el-input v-model&#x3D;&quot;teacher.intro&quot; :rows&#x3D;&quot;10&quot; type&#x3D;&quot;textarea&quot;&#x2F;&gt;
-       &lt;&#x2F;el-form-item&gt;
-       &lt;!-- 讲师头像：TODO --&gt;
-       &lt;el-form-item&gt;
-         &lt;el-button :disabled&#x3D;&quot;saveBtnDisabled&quot; type&#x3D;&quot;primary&quot; @click&#x3D;&quot;saveOrUpdate&quot;&gt;保存&lt;&#x2F;el-button&gt;
-       &lt;&#x2F;el-form-item&gt;
-     &lt;&#x2F;el-form&gt;
-    &lt;&#x2F;div&gt;
-&lt;&#x2F;template&gt;
-
-&lt;script&gt;
-import teacherAPI from &#39;@&#x2F;api&#x2F;edu&#x2F;teacher&#39;
-export default &#123;
-    data()&#123;
-        return&#123;
-            teacher:&#123;
-                name: &#39;&#39;,
-                sort: 0,
-                level: 1,
-                career: &#39;&#39;,
-                intro: &#39;&#39;,
-                avatar: &#39;&#39;
-            &#125;,
-            saveBtnDisabled:false    &#x2F;&#x2F; 保存按钮是否禁止
-        &#125;
-    &#125;,
-    created()&#123;   &#x2F;&#x2F; 页面渲染之前执行
-        this.init()
-    &#125;,
-    watch:&#123;
-        $route(to,from)&#123;    &#x2F;&#x2F; 路由变化方式
-        &#x2F;&#x2F; 路由发生变化时，方法就会被执行
-            this.init()
-        &#125;
-    &#125;,
-    methods:&#123;
-        init()&#123;
-               &#x2F;&#x2F; 判断路径是否有id值
-            if (this.$route.params &amp;&amp; this.$route.params.id) &#123;
-            &#x2F;&#x2F; 从路径获取id值
-            const id &#x3D; this.$route.params.id
-            &#x2F;&#x2F; 调用根据id查询的方法
-            this.getInfo(id)
-            &#125; else &#123;    &#x2F;&#x2F; 路径没有id，做添加
-                &#x2F;&#x2F; 表单清空
-                this.teacher &#x3D; &#123;&#125;
-            &#125;
-        
-        &#125;,
-
-        &#x2F;&#x2F; 根据讲师id查询信息
-        getInfo(id)&#123;
-            teacherAPI.getTeacherInfo(id)
-            .then(response &#x3D;&gt;&#123;
-                this.teacher &#x3D; response.data.teacher
-            &#125;) 
-        &#125;,
-
-        saveOrUpdate()&#123;
-            &#x2F;&#x2F; 判断修改还是添加
-            &#x2F;&#x2F; 根据teacher是否有id
-            if(!this.teacher.id)&#123;
-                &#x2F;&#x2F; 添加
-            this.saveTeacher()
-            &#125; else&#123;
-                &#x2F;&#x2F; 修改
-                this.updateTeacher()
-            &#125;
-            
-        &#125;,
-
-        &#x2F;&#x2F; 修改讲师
-        updateTeacher()&#123;
-            teacherAPI.updateTeacherInfo(this.teacher)
-            .then(response &#x3D;&gt;&#123;
-                &#x2F;&#x2F; 提示信息
-                this.$message(&#123;
-                    type: &#39;success&#39;,
-                    message: &#39;修改成功!&#39;
-                &#125;);
-                &#x2F;&#x2F; 返回list页面
-                this.$router.push(&#123;path:&#39;&#x2F;teacher&#x2F;table&#39;&#125;)
-    
-            &#125;)
-        &#125;,
-
-        &#x2F;&#x2F; 添加讲师
-        saveTeacher()&#123;
-            teacherAPI.addTeacher(this.teacher)
-            .then(response &#x3D;&gt;&#123;      &#x2F;&#x2F;添加成功
-            &#x2F;&#x2F; 提示信息
-            this.$message(&#123;
-                type: &#39;success&#39;,
-                message: &#39;删除成功!&#39;
-            &#125;);
-            &#x2F;&#x2F; 返回list页面
-            this.$router.push(&#123;path:&#39;&#x2F;teacher&#x2F;table&#39;&#125;)
-            &#125;)
-        &#125;
-
-    &#125;
-&#125;
-&lt;&#x2F;script&gt;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>    &lt;div class=&quot;app-container&quot;&gt;<br>        讲师添加<br>        &lt;el-form label-width=&quot;120px&quot;&gt;<br>       &lt;el-form-item label=&quot;讲师名称&quot;&gt;<br>         &lt;el-input v-model=&quot;teacher.name&quot;/&gt;<br>       &lt;/el-form-item&gt;<br>       &lt;el-form-item label=&quot;讲师排序&quot;&gt;<br>         &lt;el-input-number v-model=&quot;teacher.sort&quot; controls-position=&quot;right&quot; min=&quot;0&quot;/&gt;<br>       &lt;/el-form-item&gt;<br>       &lt;el-form-item label=&quot;讲师头衔&quot;&gt;<br>         &lt;el-select v-model=&quot;teacher.level&quot; clearable placeholder=&quot;请选择&quot;&gt;<br>           &lt;!--<br>             数据类型一定要和取出的json中的一致，否则没法回填<br>             因此，这里value使用动态绑定的值，保证其数据类型是number<br>           --&gt;<br>           &lt;el-option :value=&quot;1&quot; label=&quot;高级讲师&quot;/&gt;<br>           &lt;el-option :value=&quot;2&quot; label=&quot;首席讲师&quot;/&gt;<br>         &lt;/el-select&gt;<br>       &lt;/el-form-item&gt;<br>       &lt;el-form-item label=&quot;讲师资历&quot;&gt;<br>         &lt;el-input v-model=&quot;teacher.career&quot;/&gt;<br>       &lt;/el-form-item&gt;<br>       &lt;el-form-item label=&quot;讲师简介&quot;&gt;<br>         &lt;el-input v-model=&quot;teacher.intro&quot; :rows=&quot;10&quot; type=&quot;textarea&quot;/&gt;<br>       &lt;/el-form-item&gt;<br>       &lt;!-- 讲师头像：TODO --&gt;<br>       &lt;el-form-item&gt;<br>         &lt;el-button :disabled=&quot;saveBtnDisabled&quot; type=&quot;primary&quot; @click=&quot;saveOrUpdate&quot;&gt;保存&lt;/el-button&gt;<br>       &lt;/el-form-item&gt;<br>     &lt;/el-form&gt;<br>    &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script&gt;<br>import teacherAPI from &#x27;@/api/edu/teacher&#x27;<br>export default &#123;<br>    data()&#123;<br>        return&#123;<br>            teacher:&#123;<br>                name: &#x27;&#x27;,<br>                sort: 0,<br>                level: 1,<br>                career: &#x27;&#x27;,<br>                intro: &#x27;&#x27;,<br>                avatar: &#x27;&#x27;<br>            &#125;,<br>            saveBtnDisabled:false    // 保存按钮是否禁止<br>        &#125;<br>    &#125;,<br>    created()&#123;   // 页面渲染之前执行<br>        this.init()<br>    &#125;,<br>    watch:&#123;<br>        $route(to,from)&#123;    // 路由变化方式<br>        // 路由发生变化时，方法就会被执行<br>            this.init()<br>        &#125;<br>    &#125;,<br>    methods:&#123;<br>        init()&#123;<br>               // 判断路径是否有id值<br>            if (this.$route.params &amp;&amp; this.$route.params.id) &#123;<br>            // 从路径获取id值<br>            const id = this.$route.params.id<br>            // 调用根据id查询的方法<br>            this.getInfo(id)<br>            &#125; else &#123;    // 路径没有id，做添加<br>                // 表单清空<br>                this.teacher = &#123;&#125;<br>            &#125;<br>        <br>        &#125;,<br><br>        // 根据讲师id查询信息<br>        getInfo(id)&#123;<br>            teacherAPI.getTeacherInfo(id)<br>            .then(response =&gt;&#123;<br>                this.teacher = response.data.teacher<br>            &#125;) <br>        &#125;,<br><br>        saveOrUpdate()&#123;<br>            // 判断修改还是添加<br>            // 根据teacher是否有id<br>            if(!this.teacher.id)&#123;<br>                // 添加<br>            this.saveTeacher()<br>            &#125; else&#123;<br>                // 修改<br>                this.updateTeacher()<br>            &#125;<br>            <br>        &#125;,<br><br>        // 修改讲师<br>        updateTeacher()&#123;<br>            teacherAPI.updateTeacherInfo(this.teacher)<br>            .then(response =&gt;&#123;<br>                // 提示信息<br>                this.$message(&#123;<br>                    type: &#x27;success&#x27;,<br>                    message: &#x27;修改成功!&#x27;<br>                &#125;);<br>                // 返回list页面<br>                this.$router.push(&#123;path:&#x27;/teacher/table&#x27;&#125;)<br>    <br>            &#125;)<br>        &#125;,<br><br>        // 添加讲师<br>        saveTeacher()&#123;<br>            teacherAPI.addTeacher(this.teacher)<br>            .then(response =&gt;&#123;      //添加成功<br>            // 提示信息<br>            this.$message(&#123;<br>                type: &#x27;success&#x27;,<br>                message: &#x27;删除成功!&#x27;<br>            &#125;);<br>            // 返回list页面<br>            this.$router.push(&#123;path:&#x27;/teacher/table&#x27;&#125;)<br>            &#125;)<br>        &#125;<br><br>    &#125;<br>&#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
 
 
               
@@ -1451,12 +710,6 @@ export default &#123;
   });
 </script>
 
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/components/prism-core.min.js" ></script>
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js" ></script>
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script>
   (function() {

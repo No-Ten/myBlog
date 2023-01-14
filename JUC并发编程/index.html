@@ -57,8 +57,6 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.css" />
-
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
@@ -241,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          30k 字
+          29k 字
         
       </span>
     
@@ -318,20 +316,7 @@
 <h3 id="用户线程"><a href="#用户线程" class="headerlink" title="用户线程"></a>用户线程</h3><p>自定义线程都是用户线程，主线程结束了，用户线程还在，jvm存活。</p>
 <h3 id="守护线程"><a href="#守护线程" class="headerlink" title="守护线程"></a>守护线程</h3><p>系统特定的线程，比如垃圾回收，没有用户线程了，都是守护线程，jvm结束。</p>
 <p><strong>测试用户进程和守护进程的代码</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">public class DaemonAndUserProcess &#123;
-    public static void main(String[] args) &#123;
-        Thread aa &#x3D; new Thread(() -&gt; &#123;
-            System.out.println(Thread.currentThread().getName() + &quot;::&quot; + Thread.currentThread().isDaemon());
-            while (true) &#123;
-
-            &#125;
-        &#125;, &quot;aa&quot;);
-        &#x2F;&#x2F; 设置线程为守护线程
-        aa.setDaemon(true);
-        aa.start();     &#x2F;&#x2F; 开启线程
-        System.out.println(Thread.currentThread().getName() + &quot; over&quot;);
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DaemonAndUserProcess</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        Thread aa = <span class="hljs-keyword">new</span> Thread(() -&gt; &#123;<br>            System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot;::&quot;</span> + Thread.currentThread().isDaemon());<br>            <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) &#123;<br><br>            &#125;<br>        &#125;, <span class="hljs-string">&quot;aa&quot;</span>);<br>        <span class="hljs-comment">// 设置线程为守护线程</span><br>        aa.setDaemon(<span class="hljs-keyword">true</span>);<br>        aa.start();     <span class="hljs-comment">// 开启线程</span><br>        System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot; over&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
@@ -347,57 +332,7 @@
 <li>创建多线程，调用资源类的方法</li>
 </ol>
 <h3 id="售票例子"><a href="#售票例子" class="headerlink" title="售票例子"></a>售票例子</h3><p>三个售票员，卖30张票</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.ten.juc.sync;
-
-&#x2F;&#x2F; 第一步：创建资源类，编写属性和操作方法
-class Ticket&#123;
-    &#x2F;&#x2F; 定义票的数量
-    private int number &#x3D; 30;
-    &#x2F;&#x2F; 定义操作方法：卖票，得加锁synchronized
-    public synchronized void sale()&#123;
-        &#x2F;&#x2F; 判断是否有剩余的票
-        if (number &gt; 0)&#123;
-            System.out.println(Thread.currentThread().getName() + &quot; : 卖出了：&quot; + (number--) + &quot; 剩余：&quot; + number);
-        &#125;
-    &#125;
-&#125;
-public class SaleTicket &#123;
-    &#x2F;&#x2F; 第二部：编写多线程，调用操作资源
-    public static void main(String[] args) &#123;
-        Ticket ticket &#x3D; new Ticket();
-        &#x2F;&#x2F; 创建三个线程，利用匿名内部类
-        new Thread(new Runnable() &#123;
-            @Override
-            public void run() &#123;
-                &#x2F;&#x2F; 编写操作
-                for (int i &#x3D; 0; i &lt; 40; i++) &#123;
-                    ticket.sale();
-                &#125;
-            &#125;
-        &#125;,&quot;AA&quot;).start();
-
-        new Thread(new Runnable() &#123;
-            @Override
-            public void run() &#123;
-                &#x2F;&#x2F; 编写操作
-                for (int i &#x3D; 0; i &lt; 40; i++) &#123;
-                    ticket.sale();
-                &#125;
-            &#125;
-        &#125;,&quot;BB&quot;).start();
-
-        new Thread(new Runnable() &#123;
-            @Override
-            public void run() &#123;
-                &#x2F;&#x2F; 编写操作
-                for (int i &#x3D; 0; i &lt; 40; i++) &#123;
-                    ticket.sale();
-                &#125;
-            &#125;
-        &#125;,&quot;CC&quot;).start();
-
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ten.juc.sync;<br><br><span class="hljs-comment">// 第一步：创建资源类，编写属性和操作方法</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Ticket</span></span>&#123;<br>    <span class="hljs-comment">// 定义票的数量</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> number = <span class="hljs-number">30</span>;<br>    <span class="hljs-comment">// 定义操作方法：卖票，得加锁synchronized</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sale</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-comment">// 判断是否有剩余的票</span><br>        <span class="hljs-keyword">if</span> (number &gt; <span class="hljs-number">0</span>)&#123;<br>            System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot; : 卖出了：&quot;</span> + (number--) + <span class="hljs-string">&quot; 剩余：&quot;</span> + number);<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SaleTicket</span> </span>&#123;<br>    <span class="hljs-comment">// 第二部：编写多线程，调用操作资源</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        Ticket ticket = <span class="hljs-keyword">new</span> Ticket();<br>        <span class="hljs-comment">// 创建三个线程，利用匿名内部类</span><br>        <span class="hljs-keyword">new</span> Thread(<span class="hljs-keyword">new</span> Runnable() &#123;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>                <span class="hljs-comment">// 编写操作</span><br>                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">40</span>; i++) &#123;<br>                    ticket.sale();<br>                &#125;<br>            &#125;<br>        &#125;,<span class="hljs-string">&quot;AA&quot;</span>).start();<br><br>        <span class="hljs-keyword">new</span> Thread(<span class="hljs-keyword">new</span> Runnable() &#123;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>                <span class="hljs-comment">// 编写操作</span><br>                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">40</span>; i++) &#123;<br>                    ticket.sale();<br>                &#125;<br>            &#125;<br>        &#125;,<span class="hljs-string">&quot;BB&quot;</span>).start();<br><br>        <span class="hljs-keyword">new</span> Thread(<span class="hljs-keyword">new</span> Runnable() &#123;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>                <span class="hljs-comment">// 编写操作</span><br>                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">40</span>; i++) &#123;<br>                    ticket.sale();<br>                &#125;<br>            &#125;<br>        &#125;,<span class="hljs-string">&quot;CC&quot;</span>).start();<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="LOCK"><a href="#LOCK" class="headerlink" title="LOCK"></a>LOCK</h2><h3 id="什么是LOCK"><a href="#什么是LOCK" class="headerlink" title="什么是LOCK"></a>什么是LOCK</h3><p>LOCK锁实现提供了比使用同步方法和语句可以获得的更广泛的锁操作。LOCK是一个类，可以通过这个类实现同步访问。</p>
 <p><strong>LOCK和synchronized的不同</strong></p>
@@ -409,51 +344,7 @@ public class SaleTicket &#123;
 <li>lock可以提高多个线程读操作的效率。</li>
 </ol>
 <h3 id="ReentrantLock可重入锁"><a href="#ReentrantLock可重入锁" class="headerlink" title="ReentrantLock可重入锁"></a>ReentrantLock可重入锁</h3><p><strong>代码实现</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.ten.juc.lock;
-
-import java.util.concurrent.locks.ReentrantLock;
-
-&#x2F;&#x2F; 第一步：创建资源类，别写属性和操作方法
-class LTicket&#123;
-    private int number &#x3D; 30;
-    &#x2F;&#x2F; 卖票：不用synchronized，用ReentrantLock
-    ReentrantLock lock &#x3D; new ReentrantLock();
-    public void sale()&#123;
-        &#x2F;&#x2F; 为了让释放锁无论怎么都执行，所以代码有try finally包裹起来
-        try &#123;
-            &#x2F;&#x2F; 上锁
-            lock.lock();
-           if(number &gt; 0)&#123;
-               System.out.println(Thread.currentThread().getName() + &quot; : 卖出了：&quot; + (number--) + &quot; 剩余：&quot; + number);
-           &#125;
-        &#125; finally &#123;
-            &#x2F;&#x2F; 释放锁
-            lock.unlock();
-        &#125;
-    &#125;
-&#125;
-public class LSaleTicket &#123;
-    public static void main(String[] args) &#123;
-        &#x2F;&#x2F; 第二步：创建多线程，调用操作方法
-        LTicket lTicket &#x3D; new LTicket();
-        &#x2F;&#x2F; 使用Lambda
-        new Thread(() -&gt; &#123;
-            for (int i &#x3D; 0; i &lt; 40; i++) &#123;
-                lTicket.sale();
-            &#125;
-        &#125;,&quot;AA&quot;).start();
-        new Thread(() -&gt; &#123;
-            for (int i &#x3D; 0; i &lt; 40; i++) &#123;
-                lTicket.sale();
-            &#125;
-        &#125;,&quot;BB&quot;).start();
-        new Thread(() -&gt; &#123;
-            for (int i &#x3D; 0; i &lt; 40; i++) &#123;
-                lTicket.sale();
-            &#125;
-        &#125;,&quot;CC&quot;).start();
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ten.juc.lock;<br><br><span class="hljs-keyword">import</span> java.util.concurrent.locks.ReentrantLock;<br><br><span class="hljs-comment">// 第一步：创建资源类，别写属性和操作方法</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LTicket</span></span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> number = <span class="hljs-number">30</span>;<br>    <span class="hljs-comment">// 卖票：不用synchronized，用ReentrantLock</span><br>    ReentrantLock lock = <span class="hljs-keyword">new</span> ReentrantLock();<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sale</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-comment">// 为了让释放锁无论怎么都执行，所以代码有try finally包裹起来</span><br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 上锁</span><br>            lock.lock();<br>           <span class="hljs-keyword">if</span>(number &gt; <span class="hljs-number">0</span>)&#123;<br>               System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot; : 卖出了：&quot;</span> + (number--) + <span class="hljs-string">&quot; 剩余：&quot;</span> + number);<br>           &#125;<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            <span class="hljs-comment">// 释放锁</span><br>            lock.unlock();<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LSaleTicket</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-comment">// 第二步：创建多线程，调用操作方法</span><br>        LTicket lTicket = <span class="hljs-keyword">new</span> LTicket();<br>        <span class="hljs-comment">// 使用Lambda</span><br>        <span class="hljs-keyword">new</span> Thread(() -&gt; &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">40</span>; i++) &#123;<br>                lTicket.sale();<br>            &#125;<br>        &#125;,<span class="hljs-string">&quot;AA&quot;</span>).start();<br>        <span class="hljs-keyword">new</span> Thread(() -&gt; &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">40</span>; i++) &#123;<br>                lTicket.sale();<br>            &#125;<br>        &#125;,<span class="hljs-string">&quot;BB&quot;</span>).start();<br>        <span class="hljs-keyword">new</span> Thread(() -&gt; &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">40</span>; i++) &#123;<br>                lTicket.sale();<br>            &#125;<br>        &#125;,<span class="hljs-string">&quot;CC&quot;</span>).start();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
@@ -468,389 +359,43 @@ public class LSaleTicket &#123;
 <p>第四步 <strong>防止虚假唤醒问题</strong></p>
 <h2 id="利用synchronized"><a href="#利用synchronized" class="headerlink" title="利用synchronized"></a>利用synchronized</h2><p>实现如下。</p>
 <p><strong>测试代码</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.ten.juc.sync;
-
-&#x2F;&#x2F; 第一步：创建资源类，编写属性和操作方法
-class Share &#123;
-    private int number &#x3D; 0;
-    &#x2F;&#x2F; 定义两个方法，一个加一，一个减一
-    public synchronized void incr() throws InterruptedException &#123;
-        &#x2F;&#x2F; 判断
-        if(number !&#x3D; 0)&#123;
-            this.wait();    &#x2F;&#x2F; 如果不等于0，则等待，wait特点在哪里等待就在哪里开始执行
-        &#125;
-        &#x2F;&#x2F; 干活
-        &#x2F;&#x2F; 如果等于0了，加一
-        number++;
-        System.out.println(Thread.currentThread().getName() + &quot;当前number为 &quot; + number);
-        &#x2F;&#x2F; 通知
-        this.notifyAll();
-    &#125;
-    &#x2F;&#x2F; 减一
-    public synchronized void decr() throws InterruptedException &#123;
-        &#x2F;&#x2F; 判断
-        if (number !&#x3D; 1)&#123;
-            this.wait();
-        &#125;
-        &#x2F;&#x2F; 干活
-        number--;
-        System.out.println(Thread.currentThread().getName() + &quot;当前number为 &quot; + number);
-        &#x2F;&#x2F; 通知
-        this.notifyAll();
-    &#125;
-&#125;
-public class TheadDemo1 &#123;
-    public static void main(String[] args) &#123;
-        &#x2F;&#x2F; 第二步：创建多线程，调用操作资源
-        Share share &#x3D; new Share();
-        new Thread(() -&gt; &#123;
-            for (int i &#x3D; 1; i &lt;&#x3D; 10; i++)&#123;
-                try &#123;
-                    share.incr();
-                &#125; catch (InterruptedException e) &#123;
-                    e.printStackTrace();
-                &#125;
-            &#125;
-        &#125;,&quot;AA&quot;).start();
-
-        new Thread(() -&gt; &#123;
-            for (int i &#x3D; 1; i &lt;&#x3D; 10; i++)&#123;
-                try &#123;
-                    share.decr();
-                &#125; catch (InterruptedException e) &#123;
-                    e.printStackTrace();
-                &#125;
-            &#125;
-        &#125;,&quot;BB&quot;).start();
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ten.juc.sync;<br><br><span class="hljs-comment">// 第一步：创建资源类，编写属性和操作方法</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Share</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> number = <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">// 定义两个方法，一个加一，一个减一</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title">incr</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InterruptedException </span>&#123;<br>        <span class="hljs-comment">// 判断</span><br>        <span class="hljs-keyword">if</span>(number != <span class="hljs-number">0</span>)&#123;<br>            <span class="hljs-keyword">this</span>.wait();    <span class="hljs-comment">// 如果不等于0，则等待，wait特点在哪里等待就在哪里开始执行</span><br>        &#125;<br>        <span class="hljs-comment">// 干活</span><br>        <span class="hljs-comment">// 如果等于0了，加一</span><br>        number++;<br>        System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot;当前number为 &quot;</span> + number);<br>        <span class="hljs-comment">// 通知</span><br>        <span class="hljs-keyword">this</span>.notifyAll();<br>    &#125;<br>    <span class="hljs-comment">// 减一</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title">decr</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InterruptedException </span>&#123;<br>        <span class="hljs-comment">// 判断</span><br>        <span class="hljs-keyword">if</span> (number != <span class="hljs-number">1</span>)&#123;<br>            <span class="hljs-keyword">this</span>.wait();<br>        &#125;<br>        <span class="hljs-comment">// 干活</span><br>        number--;<br>        System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot;当前number为 &quot;</span> + number);<br>        <span class="hljs-comment">// 通知</span><br>        <span class="hljs-keyword">this</span>.notifyAll();<br>    &#125;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TheadDemo1</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-comment">// 第二步：创建多线程，调用操作资源</span><br>        Share share = <span class="hljs-keyword">new</span> Share();<br>        <span class="hljs-keyword">new</span> Thread(() -&gt; &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">10</span>; i++)&#123;<br>                <span class="hljs-keyword">try</span> &#123;<br>                    share.incr();<br>                &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                    e.printStackTrace();<br>                &#125;<br>            &#125;<br>        &#125;,<span class="hljs-string">&quot;AA&quot;</span>).start();<br><br>        <span class="hljs-keyword">new</span> Thread(() -&gt; &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">10</span>; i++)&#123;<br>                <span class="hljs-keyword">try</span> &#123;<br>                    share.decr();<br>                &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                    e.printStackTrace();<br>                &#125;<br>            &#125;<br>        &#125;,<span class="hljs-string">&quot;BB&quot;</span>).start();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><strong>如果把上述的代码的多线程，再加两个CC和DD，则会出现不是1,0的结果。原因就是wait的特点是在哪里开始等待的就在哪里开始，wait需要用到循环中，即把if改成while循环，这个过程就是虚假唤醒。</strong></p>
-<h2 id="用LOCK实现代码"><a href="#用LOCK实现代码" class="headerlink" title="用LOCK实现代码"></a><strong>用LOCK实现代码</strong></h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.ten.juc.lock;
-
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-
-class Share &#123;
-    private int number &#x3D; 0;
-    &#x2F;&#x2F; 利用LOCK实现
-    private Lock lock &#x3D; new ReentrantLock();
-    private Condition condition &#x3D; lock.newCondition();
-    &#x2F;&#x2F; +1
-    public void incr() throws InterruptedException &#123;
-        &#x2F;&#x2F; 上锁
-        lock.lock();
-        try &#123;
-            &#x2F;&#x2F; 判断 干活 通知
-            while (number !&#x3D; 0)&#123;
-                condition.await();
-            &#125;
-            number++;
-            System.out.println(Thread.currentThread().getName() + &quot;当前number为 &quot; + number);
-            condition.signalAll();
-        &#125; finally &#123;
-            &#x2F;&#x2F; 解锁
-            lock.unlock();
-        &#125;
-    &#125;
-    &#x2F;&#x2F; -1
-    public void decr() throws InterruptedException &#123;
-        &#x2F;&#x2F; 上锁
-        lock.lock();
-        try &#123;
-            &#x2F;&#x2F; 判断 干活 通知
-            while (number !&#x3D; 1)&#123;
-                condition.await();
-            &#125;
-            number--;
-            System.out.println(Thread.currentThread().getName() + &quot;当前number为 &quot; + number);
-            condition.signalAll();
-        &#125; finally &#123;
-            lock.unlock();
-        &#125;
-    &#125;
-&#125;
-
-public class ThreadDemo2 &#123;
-    public static void main(String[] args) &#123;
-        Share share &#x3D; new Share();
-        new Thread(()-&gt;&#123;
-            for (int i &#x3D; 1; i &lt;&#x3D; 10; i++) &#123;
-                try &#123;
-                    share.incr();
-                &#125; catch (InterruptedException e) &#123;
-                    e.printStackTrace();
-                &#125;
-            &#125;
-        &#125;,&quot;AA&quot;).start();
-        new Thread(()-&gt;&#123;
-            for (int i &#x3D; 1; i &lt;&#x3D; 10; i++) &#123;
-                try &#123;
-                    share.decr();
-                &#125; catch (InterruptedException e) &#123;
-                    e.printStackTrace();
-                &#125;
-            &#125;
-        &#125;,&quot;BB&quot;).start();
-        new Thread(()-&gt;&#123;
-            for (int i &#x3D; 1; i &lt;&#x3D; 10; i++) &#123;
-                try &#123;
-                    share.incr();
-                &#125; catch (InterruptedException e) &#123;
-                    e.printStackTrace();
-                &#125;
-            &#125;
-        &#125;,&quot;CC&quot;).start();
-        new Thread(()-&gt;&#123;
-            for (int i &#x3D; 1; i &lt;&#x3D; 10; i++) &#123;
-                try &#123;
-                    share.decr();
-                &#125; catch (InterruptedException e) &#123;
-                    e.printStackTrace();
-                &#125;
-            &#125;
-        &#125;,&quot;DD&quot;).start();
-    &#125;
-&#125;</code></pre></div>
+<h2 id="用LOCK实现代码"><a href="#用LOCK实现代码" class="headerlink" title="用LOCK实现代码"></a><strong>用LOCK实现代码</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ten.juc.lock;<br><br><span class="hljs-keyword">import</span> java.util.concurrent.locks.Condition;<br><span class="hljs-keyword">import</span> java.util.concurrent.locks.Lock;<br><span class="hljs-keyword">import</span> java.util.concurrent.locks.ReentrantLock;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Share</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> number = <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">// 利用LOCK实现</span><br>    <span class="hljs-keyword">private</span> Lock lock = <span class="hljs-keyword">new</span> ReentrantLock();<br>    <span class="hljs-keyword">private</span> Condition condition = lock.newCondition();<br>    <span class="hljs-comment">// +1</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">incr</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InterruptedException </span>&#123;<br>        <span class="hljs-comment">// 上锁</span><br>        lock.lock();<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 判断 干活 通知</span><br>            <span class="hljs-keyword">while</span> (number != <span class="hljs-number">0</span>)&#123;<br>                condition.await();<br>            &#125;<br>            number++;<br>            System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot;当前number为 &quot;</span> + number);<br>            condition.signalAll();<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            <span class="hljs-comment">// 解锁</span><br>            lock.unlock();<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">// -1</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">decr</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InterruptedException </span>&#123;<br>        <span class="hljs-comment">// 上锁</span><br>        lock.lock();<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 判断 干活 通知</span><br>            <span class="hljs-keyword">while</span> (number != <span class="hljs-number">1</span>)&#123;<br>                condition.await();<br>            &#125;<br>            number--;<br>            System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot;当前number为 &quot;</span> + number);<br>            condition.signalAll();<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            lock.unlock();<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThreadDemo2</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        Share share = <span class="hljs-keyword">new</span> Share();<br>        <span class="hljs-keyword">new</span> Thread(()-&gt;&#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">10</span>; i++) &#123;<br>                <span class="hljs-keyword">try</span> &#123;<br>                    share.incr();<br>                &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                    e.printStackTrace();<br>                &#125;<br>            &#125;<br>        &#125;,<span class="hljs-string">&quot;AA&quot;</span>).start();<br>        <span class="hljs-keyword">new</span> Thread(()-&gt;&#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">10</span>; i++) &#123;<br>                <span class="hljs-keyword">try</span> &#123;<br>                    share.decr();<br>                &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                    e.printStackTrace();<br>                &#125;<br>            &#125;<br>        &#125;,<span class="hljs-string">&quot;BB&quot;</span>).start();<br>        <span class="hljs-keyword">new</span> Thread(()-&gt;&#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">10</span>; i++) &#123;<br>                <span class="hljs-keyword">try</span> &#123;<br>                    share.incr();<br>                &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                    e.printStackTrace();<br>                &#125;<br>            &#125;<br>        &#125;,<span class="hljs-string">&quot;CC&quot;</span>).start();<br>        <span class="hljs-keyword">new</span> Thread(()-&gt;&#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">10</span>; i++) &#123;<br>                <span class="hljs-keyword">try</span> &#123;<br>                    share.decr();<br>                &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                    e.printStackTrace();<br>                &#125;<br>            &#125;<br>        &#125;,<span class="hljs-string">&quot;DD&quot;</span>).start();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h1 id="线程间定制化通信"><a href="#线程间定制化通信" class="headerlink" title="线程间定制化通信"></a>线程间定制化通信</h1><p> <img src="/myBlog/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20220304115504390.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220304115504390"></p>
 <p>实现代码如下</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.ten.juc.lock;
-
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-
-&#x2F;&#x2F; 第一步：创建资源类
-class ShareResource &#123;
-    &#x2F;&#x2F; 标志位
-    private int flag &#x3D; 1;   &#x2F;&#x2F; 1:AA,2:BB,3:CC
-
-    &#x2F;&#x2F; 创建LOCK
-    private Lock lock &#x3D; new ReentrantLock();
-
-    &#x2F;&#x2F; 创建三个condition
-    private Condition c1 &#x3D;lock.newCondition();
-    private Condition c2 &#x3D;lock.newCondition();
-    private Condition c3 &#x3D;lock.newCondition();
-
-    &#x2F;&#x2F; 输出5次，loop为轮数
-    public void print5(int loop) throws InterruptedException &#123;
-        &#x2F;&#x2F; 上锁
-        lock.lock();
-        try &#123;
-            &#x2F;&#x2F; 判断 干活 通知
-            while (flag !&#x3D; 1)&#123;
-                c1.await();
-            &#125;
-            for (int i &#x3D; 1; i &lt;&#x3D; 5; i++) &#123;
-                System.out.println(Thread.currentThread().getName() + &quot;::&quot; +i+ &quot;: 轮数：&quot; +loop);
-            &#125;
-            &#x2F;&#x2F; 通知之前先修改标志位
-            flag &#x3D; 2;
-            &#x2F;&#x2F; 通知BB
-            c2.signal();
-        &#125; finally &#123;
-            &#x2F;&#x2F; 解锁
-            lock.unlock();
-        &#125;
-    &#125;
-    &#x2F;&#x2F; 输出10次，loop为轮数
-    public void print10(int loop) throws InterruptedException &#123;
-        lock.lock();
-        try &#123;
-            &#x2F;&#x2F; 判断 干活 通知
-            while (flag !&#x3D; 2)&#123;
-                c2.await();
-            &#125;
-            for (int i &#x3D; 1; i &lt;&#x3D; 10; i++) &#123;
-                System.out.println(Thread.currentThread().getName() + &quot;::&quot; +i + &quot;: 轮数：&quot; +loop);
-            &#125;
-            &#x2F;&#x2F; 通知之前先修改标志位
-            flag &#x3D; 3;
-            &#x2F;&#x2F; 通知CC
-            c3.signal();
-        &#125; finally &#123;
-            lock.unlock();
-        &#125;
-    &#125;
-    &#x2F;&#x2F; 输出15次，loop为轮数
-    public void print15(int loop) throws InterruptedException &#123;
-        lock.lock();
-        try &#123;
-            &#x2F;&#x2F; 判断 干活 通知
-            while (flag !&#x3D; 3)&#123;
-                c3.await();
-            &#125;
-            for (int i &#x3D; 1; i &lt;&#x3D; 15; i++) &#123;
-                System.out.println(Thread.currentThread().getName() + &quot;::&quot; +i + &quot;: 轮数：&quot; +loop);
-            &#125;
-            &#x2F;&#x2F; 通知之前先修改标志位
-            flag &#x3D; 1;
-            &#x2F;&#x2F; 通知AA
-            c1.signal();
-        &#125; finally &#123;
-            lock.unlock();
-        &#125;
-    &#125;
-
-&#125;
-public class ThreadDemo3 &#123;
-    public static void main(String[] args) &#123;
-        ShareResource shareResource &#x3D; new ShareResource();
-        new Thread(()-&gt;&#123;
-            for (int i &#x3D; 1; i &lt;&#x3D; 10; i++)&#123;
-                try &#123;
-                    shareResource.print5(i);
-                &#125; catch (InterruptedException e) &#123;
-                    e.printStackTrace();
-                &#125;
-            &#125;
-        &#125;,&quot;AA&quot;).start();
-        new Thread(()-&gt;&#123;
-            for (int i &#x3D; 1; i &lt;&#x3D; 10; i++)&#123;
-                try &#123;
-                    shareResource.print10(i);
-                &#125; catch (InterruptedException e) &#123;
-                    e.printStackTrace();
-                &#125;
-            &#125;
-        &#125;,&quot;BB&quot;).start();
-        new Thread(()-&gt;&#123;
-            for (int i &#x3D; 1; i &lt;&#x3D; 10; i++)&#123;
-                try &#123;
-                    shareResource.print15(i);
-                &#125; catch (InterruptedException e) &#123;
-                    e.printStackTrace();
-                &#125;
-            &#125;
-        &#125;,&quot;CC&quot;).start();
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ten.juc.lock;<br><br><span class="hljs-keyword">import</span> java.util.concurrent.locks.Condition;<br><span class="hljs-keyword">import</span> java.util.concurrent.locks.Lock;<br><span class="hljs-keyword">import</span> java.util.concurrent.locks.ReentrantLock;<br><br><span class="hljs-comment">// 第一步：创建资源类</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ShareResource</span> </span>&#123;<br>    <span class="hljs-comment">// 标志位</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> flag = <span class="hljs-number">1</span>;   <span class="hljs-comment">// 1:AA,2:BB,3:CC</span><br><br>    <span class="hljs-comment">// 创建LOCK</span><br>    <span class="hljs-keyword">private</span> Lock lock = <span class="hljs-keyword">new</span> ReentrantLock();<br><br>    <span class="hljs-comment">// 创建三个condition</span><br>    <span class="hljs-keyword">private</span> Condition c1 =lock.newCondition();<br>    <span class="hljs-keyword">private</span> Condition c2 =lock.newCondition();<br>    <span class="hljs-keyword">private</span> Condition c3 =lock.newCondition();<br><br>    <span class="hljs-comment">// 输出5次，loop为轮数</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">print5</span><span class="hljs-params">(<span class="hljs-keyword">int</span> loop)</span> <span class="hljs-keyword">throws</span> InterruptedException </span>&#123;<br>        <span class="hljs-comment">// 上锁</span><br>        lock.lock();<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 判断 干活 通知</span><br>            <span class="hljs-keyword">while</span> (flag != <span class="hljs-number">1</span>)&#123;<br>                c1.await();<br>            &#125;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5</span>; i++) &#123;<br>                System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot;::&quot;</span> +i+ <span class="hljs-string">&quot;: 轮数：&quot;</span> +loop);<br>            &#125;<br>            <span class="hljs-comment">// 通知之前先修改标志位</span><br>            flag = <span class="hljs-number">2</span>;<br>            <span class="hljs-comment">// 通知BB</span><br>            c2.signal();<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            <span class="hljs-comment">// 解锁</span><br>            lock.unlock();<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">// 输出10次，loop为轮数</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">print10</span><span class="hljs-params">(<span class="hljs-keyword">int</span> loop)</span> <span class="hljs-keyword">throws</span> InterruptedException </span>&#123;<br>        lock.lock();<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 判断 干活 通知</span><br>            <span class="hljs-keyword">while</span> (flag != <span class="hljs-number">2</span>)&#123;<br>                c2.await();<br>            &#125;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">10</span>; i++) &#123;<br>                System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot;::&quot;</span> +i + <span class="hljs-string">&quot;: 轮数：&quot;</span> +loop);<br>            &#125;<br>            <span class="hljs-comment">// 通知之前先修改标志位</span><br>            flag = <span class="hljs-number">3</span>;<br>            <span class="hljs-comment">// 通知CC</span><br>            c3.signal();<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            lock.unlock();<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">// 输出15次，loop为轮数</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">print15</span><span class="hljs-params">(<span class="hljs-keyword">int</span> loop)</span> <span class="hljs-keyword">throws</span> InterruptedException </span>&#123;<br>        lock.lock();<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 判断 干活 通知</span><br>            <span class="hljs-keyword">while</span> (flag != <span class="hljs-number">3</span>)&#123;<br>                c3.await();<br>            &#125;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">15</span>; i++) &#123;<br>                System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot;::&quot;</span> +i + <span class="hljs-string">&quot;: 轮数：&quot;</span> +loop);<br>            &#125;<br>            <span class="hljs-comment">// 通知之前先修改标志位</span><br>            flag = <span class="hljs-number">1</span>;<br>            <span class="hljs-comment">// 通知AA</span><br>            c1.signal();<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            lock.unlock();<br>        &#125;<br>    &#125;<br><br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThreadDemo3</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        ShareResource shareResource = <span class="hljs-keyword">new</span> ShareResource();<br>        <span class="hljs-keyword">new</span> Thread(()-&gt;&#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">10</span>; i++)&#123;<br>                <span class="hljs-keyword">try</span> &#123;<br>                    shareResource.print5(i);<br>                &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                    e.printStackTrace();<br>                &#125;<br>            &#125;<br>        &#125;,<span class="hljs-string">&quot;AA&quot;</span>).start();<br>        <span class="hljs-keyword">new</span> Thread(()-&gt;&#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">10</span>; i++)&#123;<br>                <span class="hljs-keyword">try</span> &#123;<br>                    shareResource.print10(i);<br>                &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                    e.printStackTrace();<br>                &#125;<br>            &#125;<br>        &#125;,<span class="hljs-string">&quot;BB&quot;</span>).start();<br>        <span class="hljs-keyword">new</span> Thread(()-&gt;&#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">10</span>; i++)&#123;<br>                <span class="hljs-keyword">try</span> &#123;<br>                    shareResource.print15(i);<br>                &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                    e.printStackTrace();<br>                &#125;<br>            &#125;<br>        &#125;,<span class="hljs-string">&quot;CC&quot;</span>).start();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h1 id="集合的线程安全"><a href="#集合的线程安全" class="headerlink" title="集合的线程安全"></a>集合的线程安全</h1><h2 id="ArrayList异常演示"><a href="#ArrayList异常演示" class="headerlink" title="ArrayList异常演示"></a>ArrayList异常演示</h2><p>下面以list集合演示线程不安全的情况，会出现ConcurrentModificationException并发修改异常。</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.ten.juc.lock;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
-&#x2F;**
- * list线程不安全的演示
- *&#x2F;
-public class ThreadDemo4 &#123;
-    public static void main(String[] args) &#123;
-        &#x2F;&#x2F; 创建list集合
-        List&lt;String&gt; list &#x3D; new ArrayList&lt;&gt;();
-        for (int i &#x3D; 0; i &lt; 30; i++)&#123;
-            new Thread(() -&gt;&#123;
-                &#x2F;&#x2F; 生成随机数并添加到集合
-                list.add(UUID.randomUUID().toString().substring(0,8));
-                System.out.println(list);
-            &#125;,String.valueOf(i)).start();
-        &#125;
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ten.juc.lock;<br><br><span class="hljs-keyword">import</span> java.util.ArrayList;<br><span class="hljs-keyword">import</span> java.util.List;<br><span class="hljs-keyword">import</span> java.util.UUID;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * list线程不安全的演示</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThreadDemo4</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-comment">// 创建list集合</span><br>        List&lt;String&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">30</span>; i++)&#123;<br>            <span class="hljs-keyword">new</span> Thread(() -&gt;&#123;<br>                <span class="hljs-comment">// 生成随机数并添加到集合</span><br>                list.add(UUID.randomUUID().toString().substring(<span class="hljs-number">0</span>,<span class="hljs-number">8</span>));<br>                System.out.println(list);<br>            &#125;,String.valueOf(i)).start();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>为什么会出现这个异常，通过观察list.add的源码可以发现，list.add方没有synchronized修饰，即没有加锁。</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
- * Appends the specified element to the end of this list.
- *
- * @param e element to be appended to this list
- * @return &lt;tt&gt;true&lt;&#x2F;tt&gt; (as specified by &#123;@link Collection#add&#125;)
- *&#x2F;
-public boolean add(E e) &#123;
-    ensureCapacityInternal(size + 1);  &#x2F;&#x2F; Increments modCount!!
-    elementData[size++] &#x3D; e;
-    return true;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Appends the specified element to the end of this list.</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> e element to be appended to this list</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span> &lt;tt&gt;true&lt;/tt&gt; (as specified by &#123;<span class="hljs-doctag">@link</span> Collection#add&#125;)</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">add</span><span class="hljs-params">(E e)</span> </span>&#123;<br>    ensureCapacityInternal(size + <span class="hljs-number">1</span>);  <span class="hljs-comment">// Increments modCount!!</span><br>    elementData[size++] = e;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h3 id="解决方案-Vector"><a href="#解决方案-Vector" class="headerlink" title="解决方案-Vector"></a>解决方案-Vector</h3><p>将上述的 List<String> list = new ArrayList&lt;&gt;();换成List<String> list = new Vector&lt;&gt;(); 再次进行测试，就不会报错了。通过观察Vector的源代码可以发现，add方法是有synchronized关键字修饰的，所以可以多线程修改。</String></String></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">public synchronized void addElement(E obj) &#123;
-    modCount++;
-    ensureCapacityHelper(elementCount + 1);
-    elementData[elementCount++] &#x3D; obj;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addElement</span><span class="hljs-params">(E obj)</span> </span>&#123;<br>    modCount++;<br>    ensureCapacityHelper(elementCount + <span class="hljs-number">1</span>);<br>    elementData[elementCount++] = obj;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="解决方案-Collections"><a href="#解决方案-Collections" class="headerlink" title="解决方案-Collections"></a>解决方案-Collections</h3><p>将list集合换成List<String> list = Collections.synchronizedList(new ArrayList&lt;&gt;()); 再次进行测试也可以实现，但是以上两种都是比较古老的实现方式，实际上不经常用。</String></p>
 <h3 id="解决方案-CopyOnWriteArrayList"><a href="#解决方案-CopyOnWriteArrayList" class="headerlink" title="解决方案-CopyOnWriteArrayList"></a>解决方案-CopyOnWriteArrayList</h3><p>比较常用的多线程数组就是CopyOnWriteArrayList，他的实现的原理就是并发读，写的时候复制旧的数组内容，写完的时候再合并在一起。他的源码如下。</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
- * Appends the specified element to the end of this list.
- *
- * @param e element to be appended to this list
- * @return &#123;@code true&#125; (as specified by &#123;@link Collection#add&#125;)
- *&#x2F;
-public boolean add(E e) &#123;
-    final ReentrantLock lock &#x3D; this.lock;
-    lock.lock();	&#x2F;&#x2F; 上锁
-    try &#123;
-        Object[] elements &#x3D; getArray();		&#x2F;&#x2F; 获取数组
-        int len &#x3D; elements.length;			&#x2F;&#x2F; 数组长度
-        Object[] newElements &#x3D; Arrays.copyOf(elements, len + 1);	&#x2F;&#x2F; 创建新的数组
-        newElements[len] &#x3D; e;				&#x2F;&#x2F; 写入新元素
-        setArray(newElements);				&#x2F;&#x2F; 合并
-        return true;
-    &#125; finally &#123;
-        lock.unlock();						&#x2F;&#x2F; 解锁
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Appends the specified element to the end of this list.</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> e element to be appended to this list</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span> &#123;<span class="hljs-doctag">@code</span> true&#125; (as specified by &#123;<span class="hljs-doctag">@link</span> Collection#add&#125;)</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">add</span><span class="hljs-params">(E e)</span> </span>&#123;<br>    <span class="hljs-keyword">final</span> ReentrantLock lock = <span class="hljs-keyword">this</span>.lock;<br>    lock.lock();	<span class="hljs-comment">// 上锁</span><br>    <span class="hljs-keyword">try</span> &#123;<br>        Object[] elements = getArray();		<span class="hljs-comment">// 获取数组</span><br>        <span class="hljs-keyword">int</span> len = elements.length;			<span class="hljs-comment">// 数组长度</span><br>        Object[] newElements = Arrays.copyOf(elements, len + <span class="hljs-number">1</span>);	<span class="hljs-comment">// 创建新的数组</span><br>        newElements[len] = e;				<span class="hljs-comment">// 写入新元素</span><br>        setArray(newElements);				<span class="hljs-comment">// 合并</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    &#125; <span class="hljs-keyword">finally</span> &#123;<br>        lock.unlock();						<span class="hljs-comment">// 解锁</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><strong>上述三种方案的所有代码</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.ten.juc.lock;
-
-import java.util.*;
-import java.util.concurrent.CopyOnWriteArrayList;
-
-&#x2F;**
- * list线程不安全的演示
- *&#x2F;
-public class ThreadDemo4 &#123;
-    public static void main(String[] args) &#123;
-        &#x2F;&#x2F; 创建list集合
-        &#x2F;&#x2F;List&lt;String&gt; list &#x3D; new ArrayList&lt;&gt;();
-        &#x2F;&#x2F;List&lt;String&gt; list &#x3D; new Vector&lt;&gt;();   &#x2F;&#x2F; 利用Vector解决
-        &#x2F;&#x2F;List&lt;String&gt; list &#x3D; Collections.synchronizedList(new ArrayList&lt;&gt;());  &#x2F;&#x2F; 用Collections解决
-        List&lt;String&gt; list &#x3D; new CopyOnWriteArrayList&lt;&gt;();   &#x2F;&#x2F; 用CopyOnWriteArrayList解决
-        for (int i &#x3D; 0; i &lt; 30; i++)&#123;
-            new Thread(() -&gt;&#123;
-                &#x2F;&#x2F; 生成随机数并添加到集合
-                list.add(UUID.randomUUID().toString().substring(0,8));
-                System.out.println(list);
-            &#125;,String.valueOf(i)).start();
-        &#125;
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ten.juc.lock;<br><br><span class="hljs-keyword">import</span> java.util.*;<br><span class="hljs-keyword">import</span> java.util.concurrent.CopyOnWriteArrayList;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * list线程不安全的演示</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThreadDemo4</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-comment">// 创建list集合</span><br>        <span class="hljs-comment">//List&lt;String&gt; list = new ArrayList&lt;&gt;();</span><br>        <span class="hljs-comment">//List&lt;String&gt; list = new Vector&lt;&gt;();   // 利用Vector解决</span><br>        <span class="hljs-comment">//List&lt;String&gt; list = Collections.synchronizedList(new ArrayList&lt;&gt;());  // 用Collections解决</span><br>        List&lt;String&gt; list = <span class="hljs-keyword">new</span> CopyOnWriteArrayList&lt;&gt;();   <span class="hljs-comment">// 用CopyOnWriteArrayList解决</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">30</span>; i++)&#123;<br>            <span class="hljs-keyword">new</span> Thread(() -&gt;&#123;<br>                <span class="hljs-comment">// 生成随机数并添加到集合</span><br>                list.add(UUID.randomUUID().toString().substring(<span class="hljs-number">0</span>,<span class="hljs-number">8</span>));<br>                System.out.println(list);<br>            &#125;,String.valueOf(i)).start();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="HashSet异常演示"><a href="#HashSet异常演示" class="headerlink" title="HashSet异常演示"></a>HashSet异常演示</h2><p>以下代码也产生了并发修改异常</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 演示HashSet线程不安全问题
-Set&lt;String&gt; set &#x3D; new HashSet&lt;&gt;();
-for (int i &#x3D; 0; i &lt; 30; i++) &#123;
-    new Thread(() -&gt; &#123;
-        &#x2F;&#x2F; 生成随机数并添加到集合
-        set.add(UUID.randomUUID().toString().substring(0, 8));
-        System.out.println(set);
-    &#125;, String.valueOf(i)).start();
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 演示HashSet线程不安全问题</span><br>Set&lt;String&gt; set = <span class="hljs-keyword">new</span> HashSet&lt;&gt;();<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">30</span>; i++) &#123;<br>    <span class="hljs-keyword">new</span> Thread(() -&gt; &#123;<br>        <span class="hljs-comment">// 生成随机数并添加到集合</span><br>        set.add(UUID.randomUUID().toString().substring(<span class="hljs-number">0</span>, <span class="hljs-number">8</span>));<br>        System.out.println(set);<br>    &#125;, String.valueOf(i)).start();<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="解决方案-CopyOnWriteArraySet"><a href="#解决方案-CopyOnWriteArraySet" class="headerlink" title="解决方案-CopyOnWriteArraySet"></a>解决方案-CopyOnWriteArraySet</h3><p>把set集合换成这个Set<String> set = new CopyOnWriteArraySet&lt;&gt;();就可以解决了</String></p>
 <h2 id="HashMap异常演示"><a href="#HashMap异常演示" class="headerlink" title="HashMap异常演示"></a>HashMap异常演示</h2><p>以下代码也产生了并发修改异常</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 演示HashMap线程不安全问题
-Map&lt;String,String&gt; map &#x3D; new HashMap&lt;&gt;();
-for (int i &#x3D; 0; i &lt; 30; i++) &#123;
-    String key &#x3D; String.valueOf(i);
-    new Thread(() -&gt; &#123;
-        &#x2F;&#x2F; 生成随机数并添加到集合
-        map.put(key,UUID.randomUUID().toString().substring(0, 8));
-        System.out.println(map);
-    &#125;, String.valueOf(i)).start();
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 演示HashMap线程不安全问题</span><br>Map&lt;String,String&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">30</span>; i++) &#123;<br>    String key = String.valueOf(i);<br>    <span class="hljs-keyword">new</span> Thread(() -&gt; &#123;<br>        <span class="hljs-comment">// 生成随机数并添加到集合</span><br>        map.put(key,UUID.randomUUID().toString().substring(<span class="hljs-number">0</span>, <span class="hljs-number">8</span>));<br>        System.out.println(map);<br>    &#125;, String.valueOf(i)).start();<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="解决方案-ConcurrentHashMap"><a href="#解决方案-ConcurrentHashMap" class="headerlink" title="解决方案-ConcurrentHashMap"></a>解决方案-ConcurrentHashMap</h3><p>将Map&lt;String,String&gt; map = new HashMap&lt;&gt;();换成Map&lt;String,String&gt; map = new ConcurrentHashMap&lt;&gt;(); 利用ConcurrentHashMap解决。</p>
 <h1 id="多线程锁"><a href="#多线程锁" class="headerlink" title="多线程锁"></a>多线程锁</h1><h2 id="synchronized"><a href="#synchronized" class="headerlink" title="synchronized"></a>synchronized</h2><p><strong>synchronized</strong></p>
@@ -864,75 +409,15 @@ for (int i &#x3D; 0; i &lt; 30; i++) &#123;
 <h2 id="公平锁和非公平锁"><a href="#公平锁和非公平锁" class="headerlink" title="公平锁和非公平锁"></a>公平锁和非公平锁</h2><h3 id="非公平锁"><a href="#非公平锁" class="headerlink" title="非公平锁"></a>非公平锁</h3><p>非公平锁可能会出现线程饿死的情况，它的效率高。</p>
 <h3 id="公平锁"><a href="#公平锁" class="headerlink" title="公平锁"></a>公平锁</h3><p>公平锁阳光普照，不会出现线程饿死的情况，但是它每次都要询问是否有人占用资源，所以它的效率较低。</p>
 <h3 id="如何实现"><a href="#如何实现" class="headerlink" title="如何实现"></a>如何实现</h3><p>通过查看ReentrantLock的源代码可以发现，在创建ReentrantLock的时候传入一个Boolean类型的参数即可，true为公平锁，false为非公平锁。</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
- * Creates an instance of &#123;@code ReentrantLock&#125;.
- * This is equivalent to using &#123;@code ReentrantLock(false)&#125;.
- *&#x2F;
-public ReentrantLock() &#123;
-    sync &#x3D; new NonfairSync();
-&#125;
-
-&#x2F;**
- * Creates an instance of &#123;@code ReentrantLock&#125; with the
- * given fairness policy.
- *
- * @param fair &#123;@code true&#125; if this lock should use a fair ordering policy
- *&#x2F;
-public ReentrantLock(boolean fair) &#123;
-    sync &#x3D; fair ? new FairSync() : new NonfairSync();
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Creates an instance of &#123;<span class="hljs-doctag">@code</span> ReentrantLock&#125;.</span><br><span class="hljs-comment"> * This is equivalent to using &#123;<span class="hljs-doctag">@code</span> ReentrantLock(false)&#125;.</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ReentrantLock</span><span class="hljs-params">()</span> </span>&#123;<br>    sync = <span class="hljs-keyword">new</span> NonfairSync();<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Creates an instance of &#123;<span class="hljs-doctag">@code</span> ReentrantLock&#125; with the</span><br><span class="hljs-comment"> * given fairness policy.</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> fair &#123;<span class="hljs-doctag">@code</span> true&#125; if this lock should use a fair ordering policy</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ReentrantLock</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> fair)</span> </span>&#123;<br>    sync = fair ? <span class="hljs-keyword">new</span> FairSync() : <span class="hljs-keyword">new</span> NonfairSync();<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="可重入锁"><a href="#可重入锁" class="headerlink" title="可重入锁"></a>可重入锁</h2><p>可重入锁也叫做<strong>递归锁</strong>，synchronized和lock都是可重入锁，<strong>synchronized</strong>是<strong>隐式</strong>的，<strong>lock</strong>是<strong>显式</strong>的。</p>
 <h3 id="synchronized-1"><a href="#synchronized-1" class="headerlink" title="synchronized"></a>synchronized</h3><p>synchronized的实现代码如下，外层开锁，里面的随便进入。</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.ten.juc.lock;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ten.juc.lock;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SyncLockDemo</span> </span>&#123;<br>	<span class="hljs-comment">//public synchronized void add()&#123;</span><br>    <span class="hljs-comment">//    add();</span><br>   <span class="hljs-comment">// &#125;</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>      <span class="hljs-comment">//  new SyncLockDemo().add();</span><br>        Object o = <span class="hljs-keyword">new</span> Object();<br>        <span class="hljs-keyword">new</span> Thread(() -&gt; &#123;<br>            <span class="hljs-keyword">synchronized</span> (o) &#123;<br>                System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot;外层&quot;</span>);<br>                <span class="hljs-keyword">synchronized</span> (o) &#123;<br>                    System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot;中层&quot;</span>);<br>                    <span class="hljs-keyword">synchronized</span> (o) &#123;<br>                        System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot;内层&quot;</span>);<br>                    &#125;<br>                &#125;<br>            &#125;<br>        &#125;, <span class="hljs-string">&quot;t1&quot;</span>).start();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-public class SyncLockDemo &#123;
-	&#x2F;&#x2F;public synchronized void add()&#123;
-    &#x2F;&#x2F;    add();
-   &#x2F;&#x2F; &#125;
-    public static void main(String[] args) &#123;
-      &#x2F;&#x2F;  new SyncLockDemo().add();
-        Object o &#x3D; new Object();
-        new Thread(() -&gt; &#123;
-            synchronized (o) &#123;
-                System.out.println(Thread.currentThread().getName() + &quot;外层&quot;);
-                synchronized (o) &#123;
-                    System.out.println(Thread.currentThread().getName() + &quot;中层&quot;);
-                    synchronized (o) &#123;
-                        System.out.println(Thread.currentThread().getName() + &quot;内层&quot;);
-                    &#125;
-                &#125;
-            &#125;
-        &#125;, &quot;t1&quot;).start();
-    &#125;
-&#125;</code></pre></div>
-
-<h3 id="LOCK实现"><a href="#LOCK实现" class="headerlink" title="LOCK实现"></a>LOCK实现</h3><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">public class SyncLockDemo &#123;
-
-    public static void main(String[] args) &#123;
-        Lock lock &#x3D; new ReentrantLock();
-        new Thread(()-&gt;&#123;
-            try &#123;
-                &#x2F;&#x2F; 上锁
-                lock.lock();
-                System.out.println(Thread.currentThread().getName()+&quot;外层&quot;);
-                try &#123;
-                    &#x2F;&#x2F; 上锁
-                    lock.lock();
-                    System.out.println(Thread.currentThread().getName()+&quot;内层&quot;);
-                &#125; finally &#123;
-                    &#x2F;&#x2F; 解锁
-                    lock.unlock();
-                &#125;
-            &#125; finally &#123;
-                &#x2F;&#x2F; 解锁
-                lock.unlock();
-            &#125;
-        &#125;,&quot;AA&quot;).start();
-    &#125;
-&#125;</code></pre></div>
+<h3 id="LOCK实现"><a href="#LOCK实现" class="headerlink" title="LOCK实现"></a>LOCK实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SyncLockDemo</span> </span>&#123;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        Lock lock = <span class="hljs-keyword">new</span> ReentrantLock();<br>        <span class="hljs-keyword">new</span> Thread(()-&gt;&#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>                <span class="hljs-comment">// 上锁</span><br>                lock.lock();<br>                System.out.println(Thread.currentThread().getName()+<span class="hljs-string">&quot;外层&quot;</span>);<br>                <span class="hljs-keyword">try</span> &#123;<br>                    <span class="hljs-comment">// 上锁</span><br>                    lock.lock();<br>                    System.out.println(Thread.currentThread().getName()+<span class="hljs-string">&quot;内层&quot;</span>);<br>                &#125; <span class="hljs-keyword">finally</span> &#123;<br>                    <span class="hljs-comment">// 解锁</span><br>                    lock.unlock();<br>                &#125;<br>            &#125; <span class="hljs-keyword">finally</span> &#123;<br>                <span class="hljs-comment">// 解锁</span><br>                lock.unlock();<br>            &#125;<br>        &#125;,<span class="hljs-string">&quot;AA&quot;</span>).start();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>所有的锁操作都要上锁和解锁，如果上述代码中的内层只上锁，没有解锁，只有他一个线程也可以运行，但是如果再加一个线程就不可以了，原因就是内层的锁没有释放，另一个线程继续等待锁。</p>
 <h2 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h2><h3 id="什么是死锁"><a href="#什么是死锁" class="headerlink" title="什么是死锁"></a>什么是死锁</h3><p>两个或者两个以上的进程在执行过程中，因为争夺资源而造成的一种相互等待的现象，如果没有外力干涉，他们无法在继续执行下去。</p>
@@ -947,64 +432,7 @@ public class SyncLockDemo &#123;
 <li><strong>jps -l</strong>：查出线程号，类似Linux的 ps -ef</li>
 <li><strong>jstack+线程号</strong>：jvm自带堆栈跟踪工具</li>
 </ol>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">E:\IdeaProject_code\juc&gt;jps -l
-11776 sun.tools.jps.Jps
-8704 com.ten.juc.sync.DeadLock
-11420
-14572 org.jetbrains.jps.cmdline.Launcher
-
-E:\IdeaProject_code\juc&gt;jstack 8704
-2022-03-04 15:26:01
-Full thread dump Java HotSpot(TM) 64-Bit Server VM (25.221-b11 mixed mode):
-
-&quot;DestroyJavaVM&quot; #14 prio&#x3D;5 os_prio&#x3D;0 tid&#x3D;0x00000000032a2800 nid&#x3D;0x3a88 waiting on condition [0x0000000000000000]
-   java.lang.Thread.State: RUNNABLE
-
-&quot;A&quot; #13 prio&#x3D;5 os_prio&#x3D;0 tid&#x3D;0x000000001aa58000 nid&#x3D;0x368c waiting for monitor entry [0x000000001b43f000]
-   java.lang.Thread.State: BLOCKED (on object monitor)
-        at com.ten.juc.sync.DeadLock.lambda$main$1(DeadLock.java:35)
-        - waiting to lock &lt;0x00000000d9560470&gt; (a java.lang.Object)
-        - locked &lt;0x00000000d9560480&gt; (a java.lang.Object)
-        at com.ten.juc.sync.DeadLock$$Lambda$2&#x2F;1078694789.run(Unknown Source)
-        at java.lang.Thread.run(Thread.java:748)
-
-&quot;A&quot; #12 prio&#x3D;5 os_prio&#x3D;0 tid&#x3D;0x000000001aa51800 nid&#x3D;0x36b8 waiting for monitor entry [0x000000001b33f000]
-   java.lang.Thread.State: BLOCKED (on object monitor)
-        at com.ten.juc.sync.DeadLock.lambda$main$0(DeadLock.java:22)
-        - waiting to lock &lt;0x00000000d9560480&gt; (a java.lang.Object)
-        - locked &lt;0x00000000d9560470&gt; (a java.lang.Object)
-        at com.ten.juc.sync.DeadLock$$Lambda$1&#x2F;1324119927.run(Unknown Source)
-        at java.lang.Thread.run(Thread.java:748)
-
-...........
-
-
-Found one Java-level deadlock:
-&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
-&quot;A&quot;:
-  waiting to lock monitor 0x000000000339bd48 (object 0x00000000d9560470, a java.lang.Object),
-  which is held by &quot;A&quot;
-&quot;A&quot;:
-  waiting to lock monitor 0x000000000339e3c8 (object 0x00000000d9560480, a java.lang.Object),
-  which is held by &quot;A&quot;
-
-Java stack information for the threads listed above:
-&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
-&quot;A&quot;:
-        at com.ten.juc.sync.DeadLock.lambda$main$1(DeadLock.java:35)
-        - waiting to lock &lt;0x00000000d9560470&gt; (a java.lang.Object)
-        - locked &lt;0x00000000d9560480&gt; (a java.lang.Object)
-        at com.ten.juc.sync.DeadLock$$Lambda$2&#x2F;1078694789.run(Unknown Source)
-        at java.lang.Thread.run(Thread.java:748)
-&quot;A&quot;:
-        at com.ten.juc.sync.DeadLock.lambda$main$0(DeadLock.java:22)
-        - waiting to lock &lt;0x00000000d9560480&gt; (a java.lang.Object)
-        - locked &lt;0x00000000d9560470&gt; (a java.lang.Object)
-        at com.ten.juc.sync.DeadLock$$Lambda$1&#x2F;1324119927.run(Unknown Source)
-        at java.lang.Thread.run(Thread.java:748)
-
-Found 1 deadlock.
-</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs bash">E:\IdeaProject_code\juc&gt;jps -l<br>11776 sun.tools.jps.Jps<br>8704 com.ten.juc.sync.DeadLock<br>11420<br>14572 org.jetbrains.jps.cmdline.Launcher<br><br>E:\IdeaProject_code\juc&gt;jstack 8704<br>2022-03-04 15:26:01<br>Full thread dump Java HotSpot(TM) 64-Bit Server VM (25.221-b11 mixed mode):<br><br><span class="hljs-string">&quot;DestroyJavaVM&quot;</span> <span class="hljs-comment">#14 prio=5 os_prio=0 tid=0x00000000032a2800 nid=0x3a88 waiting on condition [0x0000000000000000]</span><br>   java.lang.Thread.State: RUNNABLE<br><br><span class="hljs-string">&quot;A&quot;</span> <span class="hljs-comment">#13 prio=5 os_prio=0 tid=0x000000001aa58000 nid=0x368c waiting for monitor entry [0x000000001b43f000]</span><br>   java.lang.Thread.State: BLOCKED (on object monitor)<br>        at com.ten.juc.sync.DeadLock.lambda$main<span class="hljs-variable">$1</span>(DeadLock.java:35)<br>        - waiting to lock &lt;0x00000000d9560470&gt; (a java.lang.Object)<br>        - locked &lt;0x00000000d9560480&gt; (a java.lang.Object)<br>        at com.ten.juc.sync.DeadLock$$Lambda<span class="hljs-variable">$2</span>/1078694789.run(Unknown Source)<br>        at java.lang.Thread.run(Thread.java:748)<br><br><span class="hljs-string">&quot;A&quot;</span> <span class="hljs-comment">#12 prio=5 os_prio=0 tid=0x000000001aa51800 nid=0x36b8 waiting for monitor entry [0x000000001b33f000]</span><br>   java.lang.Thread.State: BLOCKED (on object monitor)<br>        at com.ten.juc.sync.DeadLock.lambda$main<span class="hljs-variable">$0</span>(DeadLock.java:22)<br>        - waiting to lock &lt;0x00000000d9560480&gt; (a java.lang.Object)<br>        - locked &lt;0x00000000d9560470&gt; (a java.lang.Object)<br>        at com.ten.juc.sync.DeadLock$$Lambda<span class="hljs-variable">$1</span>/1324119927.run(Unknown Source)<br>        at java.lang.Thread.run(Thread.java:748)<br><br>...........<br><br><br>Found one Java-level deadlock:<br>=============================<br><span class="hljs-string">&quot;A&quot;</span>:<br>  waiting to lock monitor 0x000000000339bd48 (object 0x00000000d9560470, a java.lang.Object),<br>  <span class="hljs-built_in">which</span> is held by <span class="hljs-string">&quot;A&quot;</span><br><span class="hljs-string">&quot;A&quot;</span>:<br>  waiting to lock monitor 0x000000000339e3c8 (object 0x00000000d9560480, a java.lang.Object),<br>  <span class="hljs-built_in">which</span> is held by <span class="hljs-string">&quot;A&quot;</span><br><br>Java stack information <span class="hljs-keyword">for</span> the threads listed above:<br>===================================================<br><span class="hljs-string">&quot;A&quot;</span>:<br>        at com.ten.juc.sync.DeadLock.lambda$main<span class="hljs-variable">$1</span>(DeadLock.java:35)<br>        - waiting to lock &lt;0x00000000d9560470&gt; (a java.lang.Object)<br>        - locked &lt;0x00000000d9560480&gt; (a java.lang.Object)<br>        at com.ten.juc.sync.DeadLock$$Lambda<span class="hljs-variable">$2</span>/1078694789.run(Unknown Source)<br>        at java.lang.Thread.run(Thread.java:748)<br><span class="hljs-string">&quot;A&quot;</span>:<br>        at com.ten.juc.sync.DeadLock.lambda$main<span class="hljs-variable">$0</span>(DeadLock.java:22)<br>        - waiting to lock &lt;0x00000000d9560480&gt; (a java.lang.Object)<br>        - locked &lt;0x00000000d9560470&gt; (a java.lang.Object)<br>        at com.ten.juc.sync.DeadLock$$Lambda<span class="hljs-variable">$1</span>/1324119927.run(Unknown Source)<br>        at java.lang.Thread.run(Thread.java:748)<br><br>Found 1 deadlock.<br><br></code></pre></td></tr></table></figure>
 
 
 
@@ -1021,254 +449,35 @@ Found 1 deadlock.
 </ol>
 <p>Callable不能直接使用，需要寻找一个类来作为中间商，这个中间商就是FutureTask实现类（未来任务）</p>
 <p><img src="/myBlog/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20220304170030914.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220304170030914"></p>
-<h2 id="创建线程代码"><a href="#创建线程代码" class="headerlink" title="创建线程代码"></a>创建线程代码</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.ten.juc.callable;
-
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.FutureTask;
-
-&#x2F;&#x2F; 用Runnable实现
-class MyThread1 implements Runnable&#123;
-
-    @Override
-    public void run() &#123;
-        System.out.println(&quot;MyThread1&quot;);
-    &#125;
-&#125;
-&#x2F;&#x2F; 用Callable实现
-class MyThread2 implements Callable&lt;Integer&gt; &#123;
-
-    @Override
-    public Integer call() throws Exception &#123;
-        return 200;
-    &#125;
-&#125;
-public class CallableDemo &#123;
-    public static void main(String[] args) throws ExecutionException, InterruptedException &#123;
-        &#x2F;&#x2F; 使用Runnable方式
-        new Thread(new MyThread1(),&quot;AA&quot;).start();
-
-        &#x2F;&#x2F; 使用FutureTask 未来任务，返回值只计算一次，后面有用到就直接返回
-        FutureTask&lt;Integer&gt; futureTask1 &#x3D; new FutureTask&lt;&gt;(new MyThread2());
-        &#x2F;&#x2F; 使用lombda表达式
-        FutureTask&lt;Integer&gt; futureTask2 &#x3D; new FutureTask&lt;&gt;(()-&gt;&#123;
-            return 1024;
-        &#125;);
-
-        new Thread(futureTask2,&quot;BB&quot;).start();
-        while (!futureTask2.isDone())&#123;
-            System.out.println(&quot;wait...&quot;);
-        &#125;
-        System.out.println(futureTask2.get());
-        System.out.println(futureTask2.get());  &#x2F;&#x2F; 第二次直接返回结果，不用进行计算
-        System.out.println(Thread.currentThread().getName() + &quot; come over&quot;);
-
-    &#125;
-&#125;</code></pre></div>
+<h2 id="创建线程代码"><a href="#创建线程代码" class="headerlink" title="创建线程代码"></a>创建线程代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ten.juc.callable;<br><br><span class="hljs-keyword">import</span> java.util.concurrent.Callable;<br><span class="hljs-keyword">import</span> java.util.concurrent.ExecutionException;<br><span class="hljs-keyword">import</span> java.util.concurrent.FutureTask;<br><br><span class="hljs-comment">// 用Runnable实现</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyThread1</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span></span>&#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;MyThread1&quot;</span>);<br>    &#125;<br>&#125;<br><span class="hljs-comment">// 用Callable实现</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyThread2</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Callable</span>&lt;<span class="hljs-title">Integer</span>&gt; </span>&#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Integer <span class="hljs-title">call</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">200</span>;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CallableDemo</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> ExecutionException, InterruptedException </span>&#123;<br>        <span class="hljs-comment">// 使用Runnable方式</span><br>        <span class="hljs-keyword">new</span> Thread(<span class="hljs-keyword">new</span> MyThread1(),<span class="hljs-string">&quot;AA&quot;</span>).start();<br><br>        <span class="hljs-comment">// 使用FutureTask 未来任务，返回值只计算一次，后面有用到就直接返回</span><br>        FutureTask&lt;Integer&gt; futureTask1 = <span class="hljs-keyword">new</span> FutureTask&lt;&gt;(<span class="hljs-keyword">new</span> MyThread2());<br>        <span class="hljs-comment">// 使用lombda表达式</span><br>        FutureTask&lt;Integer&gt; futureTask2 = <span class="hljs-keyword">new</span> FutureTask&lt;&gt;(()-&gt;&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">1024</span>;<br>        &#125;);<br><br>        <span class="hljs-keyword">new</span> Thread(futureTask2,<span class="hljs-string">&quot;BB&quot;</span>).start();<br>        <span class="hljs-keyword">while</span> (!futureTask2.isDone())&#123;<br>            System.out.println(<span class="hljs-string">&quot;wait...&quot;</span>);<br>        &#125;<br>        System.out.println(futureTask2.get());<br>        System.out.println(futureTask2.get());  <span class="hljs-comment">// 第二次直接返回结果，不用进行计算</span><br>        System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot; come over&quot;</span>);<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h1 id="辅助类"><a href="#辅助类" class="headerlink" title="辅助类"></a>辅助类</h1><h2 id="减少计数CountDownLatch"><a href="#减少计数CountDownLatch" class="headerlink" title="减少计数CountDownLatch"></a>减少计数CountDownLatch</h2><p>CountDownLatch类可以设置一个计算器，通过countDown方法来减一，使用await方法等待计数器不大于0，然后继续执行await方法之后的语句。具体实现代码如下。</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.ten.juc.juc;
-
-import java.util.concurrent.CountDownLatch;
-
-&#x2F;&#x2F; 演示CountDownLatch
-public class CountDownLatchDemo &#123;
-    &#x2F;&#x2F; 6个同学陆续离开教室之后，班长锁门
-    public static void main(String[] args) throws InterruptedException &#123;
-        &#x2F;&#x2F; 创建CountDownLatch对象，设置初始值
-        CountDownLatch countDownLatch &#x3D; new CountDownLatch(6);
-        for (int i &#x3D; 1; i &lt;&#x3D; 6; i++) &#123;
-            new Thread(() -&gt;&#123;
-                System.out.println(Thread.currentThread().getName() + &quot; 号 离开了教室&quot;);
-                &#x2F;&#x2F; 操作一次就减一
-                countDownLatch.countDown();
-            &#125;,String.valueOf(i)).start();
-        &#125;
-        &#x2F;&#x2F; 如果不为0，就继续等待，如果为0了，就执行下面的输出
-        countDownLatch.await();
-        System.out.println(Thread.currentThread().getName() + &quot;  over&quot;);
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ten.juc.juc;<br><br><span class="hljs-keyword">import</span> java.util.concurrent.CountDownLatch;<br><br><span class="hljs-comment">// 演示CountDownLatch</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CountDownLatchDemo</span> </span>&#123;<br>    <span class="hljs-comment">// 6个同学陆续离开教室之后，班长锁门</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> InterruptedException </span>&#123;<br>        <span class="hljs-comment">// 创建CountDownLatch对象，设置初始值</span><br>        CountDownLatch countDownLatch = <span class="hljs-keyword">new</span> CountDownLatch(<span class="hljs-number">6</span>);<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">6</span>; i++) &#123;<br>            <span class="hljs-keyword">new</span> Thread(() -&gt;&#123;<br>                System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot; 号 离开了教室&quot;</span>);<br>                <span class="hljs-comment">// 操作一次就减一</span><br>                countDownLatch.countDown();<br>            &#125;,String.valueOf(i)).start();<br>        &#125;<br>        <span class="hljs-comment">// 如果不为0，就继续等待，如果为0了，就执行下面的输出</span><br>        countDownLatch.await();<br>        System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot;  over&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="循环栅栏CyclicBarrier"><a href="#循环栅栏CyclicBarrier" class="headerlink" title="循环栅栏CyclicBarrier"></a>循环栅栏CyclicBarrier</h2><p>CyclicBarrier的意思是循环阻塞的意思，在使用中CyclicBarrier的构造方法第一个参数是目标障碍数，每次执行CyclicBarrier一次障碍数会加一，如果达到了目标障碍数，才会执行cyclicBarrier.await()之后的语句。可以将CyclicBarrier理解为+1的操作。</p>
 <p>实现代码如下</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.ten.juc.juc;
-
-import java.util.concurrent.CyclicBarrier;
-
-&#x2F;&#x2F; 演示 CyclicBarrier 循环栅栏
-public class CyclicBarrierDemo &#123;
-    &#x2F;&#x2F; 定义常量
-    private static final int NUMBER &#x3D; 7;
-
-    public static void main(String[] args) &#123;
-        &#x2F;&#x2F; 创建CyclicBarrier对象
-        CyclicBarrier cyclicBarrier &#x3D; new CyclicBarrier(NUMBER,()-&gt;&#123;
-            System.out.println(&quot;******7颗龙珠已集齐！！&quot;);
-        &#125;);
-        &#x2F;&#x2F; 收集七颗龙珠过程
-        for (int i &#x3D; 1; i &lt;&#x3D; 7; i++) &#123;
-            new Thread(()-&gt;&#123;
-                try &#123;
-                    System.out.println(Thread.currentThread().getName() + &quot;星龙珠已经收集了&quot;);
-                    &#x2F;&#x2F; 等待
-                    cyclicBarrier.await();
-                &#125; catch (Exception e) &#123;
-                    e.printStackTrace();
-                &#125;
-            &#125;,String.valueOf(i)).start();
-        &#125;
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ten.juc.juc;<br><br><span class="hljs-keyword">import</span> java.util.concurrent.CyclicBarrier;<br><br><span class="hljs-comment">// 演示 CyclicBarrier 循环栅栏</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CyclicBarrierDemo</span> </span>&#123;<br>    <span class="hljs-comment">// 定义常量</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> NUMBER = <span class="hljs-number">7</span>;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-comment">// 创建CyclicBarrier对象</span><br>        CyclicBarrier cyclicBarrier = <span class="hljs-keyword">new</span> CyclicBarrier(NUMBER,()-&gt;&#123;<br>            System.out.println(<span class="hljs-string">&quot;******7颗龙珠已集齐！！&quot;</span>);<br>        &#125;);<br>        <span class="hljs-comment">// 收集七颗龙珠过程</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">7</span>; i++) &#123;<br>            <span class="hljs-keyword">new</span> Thread(()-&gt;&#123;<br>                <span class="hljs-keyword">try</span> &#123;<br>                    System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot;星龙珠已经收集了&quot;</span>);<br>                    <span class="hljs-comment">// 等待</span><br>                    cyclicBarrier.await();<br>                &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>                    e.printStackTrace();<br>                &#125;<br>            &#125;,String.valueOf(i)).start();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="信号灯Semaphore"><a href="#信号灯Semaphore" class="headerlink" title="信号灯Semaphore"></a>信号灯Semaphore</h2><p>当我们创建一个可扩展大小的线程池，并且需要在线程池内同时让有限数目的线程并发运行时，就需要用到Semaphore（信号灯机制），Semaphore 通常用于限制可以访问某些资源（物理或逻辑的）的线程数目，它是一个计数信号量，从概念上讲，信号量维护了一个许可集合，如有必要，在许可可用前会阻塞每一个acquire()，然后再获取该许可，每个release() 添加一个许可，从而可能释放一个正在阻塞的获取者。</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.ten.juc.juc;
-
-import java.util.Random;
-import java.util.concurrent.Semaphore;
-import java.util.concurrent.TimeUnit;
-
-&#x2F;&#x2F; 6辆汽车，停3个车位
-public class SemaphoreDemo &#123;
-    public static void main(String[] args) &#123;
-        &#x2F;&#x2F; 创建Semaphore，设置许可数量
-        Semaphore semaphore &#x3D; new Semaphore(3);
-        for (int i &#x3D; 1; i &lt;&#x3D; 6; i++) &#123;
-            new Thread(()-&gt;&#123;
-
-                try &#123;
-                    &#x2F;&#x2F; 占位
-                    semaphore.acquire();
-                    System.out.println(Thread.currentThread().getName() + &quot; 抢占了车位&quot;);
-
-                    &#x2F;&#x2F; 等待
-                    TimeUnit.SECONDS.sleep(new Random().nextInt(5));
-
-                    System.out.println(Thread.currentThread().getName() + &quot;----------离开了车位&quot;);
-                &#125; catch (InterruptedException e) &#123;
-                    e.printStackTrace();
-                &#125; finally &#123;
-                    &#x2F;&#x2F; 释放
-                    semaphore.release();
-                &#125;
-            &#125;,String.valueOf(i)).start();
-        &#125;
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ten.juc.juc;<br><br><span class="hljs-keyword">import</span> java.util.Random;<br><span class="hljs-keyword">import</span> java.util.concurrent.Semaphore;<br><span class="hljs-keyword">import</span> java.util.concurrent.TimeUnit;<br><br><span class="hljs-comment">// 6辆汽车，停3个车位</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SemaphoreDemo</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-comment">// 创建Semaphore，设置许可数量</span><br>        Semaphore semaphore = <span class="hljs-keyword">new</span> Semaphore(<span class="hljs-number">3</span>);<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">6</span>; i++) &#123;<br>            <span class="hljs-keyword">new</span> Thread(()-&gt;&#123;<br><br>                <span class="hljs-keyword">try</span> &#123;<br>                    <span class="hljs-comment">// 占位</span><br>                    semaphore.acquire();<br>                    System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot; 抢占了车位&quot;</span>);<br><br>                    <span class="hljs-comment">// 等待</span><br>                    TimeUnit.SECONDS.sleep(<span class="hljs-keyword">new</span> Random().nextInt(<span class="hljs-number">5</span>));<br><br>                    System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot;----------离开了车位&quot;</span>);<br>                &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                    e.printStackTrace();<br>                &#125; <span class="hljs-keyword">finally</span> &#123;<br>                    <span class="hljs-comment">// 释放</span><br>                    semaphore.release();<br>                &#125;<br>            &#125;,String.valueOf(i)).start();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h1 id="读写锁"><a href="#读写锁" class="headerlink" title="读写锁"></a>读写锁</h1><h2 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h2><p>读写锁：一个资源可以被多个读线程访问，或者可以被一个写线程访问，但是不能同时存在读写线程，读写互斥，读读共享。</p>
 <p><img src="/myBlog/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20220304202147809.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220304202147809"></p>
-<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.ten.juc.readwrite;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
-
-&#x2F;&#x2F; 创建资源类
-class MyCatch&#123;
-    &#x2F;&#x2F; 定义一个map，由于存储数据   因为涉及到取和读的次数比较多，所以用volatile
-    private volatile Map&lt;String,Object&gt; map &#x3D; new HashMap&lt;&gt;();
-    &#x2F;&#x2F; 定义读写锁
-    private ReadWriteLock readWriteLock &#x3D; new ReentrantReadWriteLock();
-    &#x2F;&#x2F; 存数据
-    public void put(String key, Object value) &#123;
-        &#x2F;&#x2F; 添加写锁
-        readWriteLock.writeLock().lock();
-        &#x2F;&#x2F; 暂停一会
-        try &#123;
-            System.out.println(Thread.currentThread().getName() + &quot; 正在写数据&quot; + key);
-            TimeUnit.MILLISECONDS.sleep(300);
-            &#x2F;&#x2F; 写入
-            map.put(key, value);
-            System.out.println(Thread.currentThread().getName() + &quot; 已写完&quot; + key);
-        &#125; catch (InterruptedException e) &#123;
-            e.printStackTrace();
-        &#125; finally &#123;
-            &#x2F;&#x2F; 释放写锁
-            readWriteLock.writeLock().unlock();
-        &#125;
-
-    &#125;
-    &#x2F;&#x2F; 取数据
-    public Object get(String key)  &#123;
-        Object result &#x3D; null;
-        &#x2F;&#x2F; 添加读锁
-        readWriteLock.readLock().lock();
-        &#x2F;&#x2F; 暂停一会
-        try &#123;
-            System.out.println(Thread.currentThread().getName() + &quot; 正在读取数据&quot; + key);
-            TimeUnit.MILLISECONDS.sleep(300);
-            &#x2F;&#x2F; 取数据
-            result &#x3D; map.get(key);
-            System.out.println(Thread.currentThread().getName() + &quot; 已读完&quot; + key);
-        &#125; catch (InterruptedException e) &#123;
-            e.printStackTrace();
-        &#125; finally &#123;
-            &#x2F;&#x2F; 释放读锁
-            readWriteLock.readLock().unlock();
-        &#125;
-        return result;
-    &#125;
-&#125;
-public class ReadWriteLockDemo &#123;
-    public static void main(String[] args) &#123;
-        MyCatch myCatch &#x3D; new MyCatch();
-        &#x2F;&#x2F; 先存5个
-        for (int i &#x3D; 1; i &lt;&#x3D; 5; i++)&#123;
-            final int num &#x3D; i;
-            new Thread(() -&gt;&#123;
-                myCatch.put(num+&quot;&quot;,num);
-            &#125;,String.valueOf(i)).start();
-        &#125;
-        &#x2F;&#x2F; 读取5个
-        for (int i &#x3D; 1; i &lt;&#x3D; 5; i++)&#123;
-            final int num &#x3D; i;
-            new Thread(() -&gt;&#123;
-                myCatch.get(num+&quot;&quot;);
-            &#125;,String.valueOf(i)).start();
-        &#125;
-    &#125;
-&#125;</code></pre></div>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ten.juc.readwrite;<br><br><span class="hljs-keyword">import</span> java.util.HashMap;<br><span class="hljs-keyword">import</span> java.util.Map;<br><span class="hljs-keyword">import</span> java.util.concurrent.TimeUnit;<br><span class="hljs-keyword">import</span> java.util.concurrent.locks.ReadWriteLock;<br><span class="hljs-keyword">import</span> java.util.concurrent.locks.ReentrantReadWriteLock;<br><br><span class="hljs-comment">// 创建资源类</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyCatch</span></span>&#123;<br>    <span class="hljs-comment">// 定义一个map，由于存储数据   因为涉及到取和读的次数比较多，所以用volatile</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> Map&lt;String,Object&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();<br>    <span class="hljs-comment">// 定义读写锁</span><br>    <span class="hljs-keyword">private</span> ReadWriteLock readWriteLock = <span class="hljs-keyword">new</span> ReentrantReadWriteLock();<br>    <span class="hljs-comment">// 存数据</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">put</span><span class="hljs-params">(String key, Object value)</span> </span>&#123;<br>        <span class="hljs-comment">// 添加写锁</span><br>        readWriteLock.writeLock().lock();<br>        <span class="hljs-comment">// 暂停一会</span><br>        <span class="hljs-keyword">try</span> &#123;<br>            System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot; 正在写数据&quot;</span> + key);<br>            TimeUnit.MILLISECONDS.sleep(<span class="hljs-number">300</span>);<br>            <span class="hljs-comment">// 写入</span><br>            map.put(key, value);<br>            System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot; 已写完&quot;</span> + key);<br>        &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>            e.printStackTrace();<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            <span class="hljs-comment">// 释放写锁</span><br>            readWriteLock.writeLock().unlock();<br>        &#125;<br><br>    &#125;<br>    <span class="hljs-comment">// 取数据</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">get</span><span class="hljs-params">(String key)</span>  </span>&#123;<br>        Object result = <span class="hljs-keyword">null</span>;<br>        <span class="hljs-comment">// 添加读锁</span><br>        readWriteLock.readLock().lock();<br>        <span class="hljs-comment">// 暂停一会</span><br>        <span class="hljs-keyword">try</span> &#123;<br>            System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot; 正在读取数据&quot;</span> + key);<br>            TimeUnit.MILLISECONDS.sleep(<span class="hljs-number">300</span>);<br>            <span class="hljs-comment">// 取数据</span><br>            result = map.get(key);<br>            System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot; 已读完&quot;</span> + key);<br>        &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>            e.printStackTrace();<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            <span class="hljs-comment">// 释放读锁</span><br>            readWriteLock.readLock().unlock();<br>        &#125;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ReadWriteLockDemo</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        MyCatch myCatch = <span class="hljs-keyword">new</span> MyCatch();<br>        <span class="hljs-comment">// 先存5个</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5</span>; i++)&#123;<br>            <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> num = i;<br>            <span class="hljs-keyword">new</span> Thread(() -&gt;&#123;<br>                myCatch.put(num+<span class="hljs-string">&quot;&quot;</span>,num);<br>            &#125;,String.valueOf(i)).start();<br>        &#125;<br>        <span class="hljs-comment">// 读取5个</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5</span>; i++)&#123;<br>            <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> num = i;<br>            <span class="hljs-keyword">new</span> Thread(() -&gt;&#123;<br>                myCatch.get(num+<span class="hljs-string">&quot;&quot;</span>);<br>            &#125;,String.valueOf(i)).start();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="读写锁的演变"><a href="#读写锁的演变" class="headerlink" title="读写锁的演变"></a>读写锁的演变</h2><p><img src="/myBlog/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20220305132103446.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220305132103446"></p>
 <h2 id="读写锁的降级"><a href="#读写锁的降级" class="headerlink" title="读写锁的降级"></a>读写锁的降级</h2><p><img src="/myBlog/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20220305132643455.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220305132643455"></p>
-<h2 id="读写锁降级代码演示"><a href="#读写锁降级代码演示" class="headerlink" title="读写锁降级代码演示"></a><strong>读写锁降级代码演示</strong></h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.ten.juc.readwrite;
-
-import java.util.concurrent.locks.ReentrantReadWriteLock;
-
-&#x2F;&#x2F; 读写锁的降级
-public class Demotion &#123;
-    public static void main(String[] args) &#123;
-        ReentrantReadWriteLock readWriteLock &#x3D; new ReentrantReadWriteLock();
-        ReentrantReadWriteLock.WriteLock writeLock &#x3D; readWriteLock.writeLock(); &#x2F;&#x2F; 写锁
-        ReentrantReadWriteLock.ReadLock readLock &#x3D; readWriteLock.readLock();    &#x2F;&#x2F; 读锁
-
-        &#x2F;&#x2F; 写锁
-        writeLock.lock();
-        System.out.println(&quot;write----------&quot;);
-
-        &#x2F;&#x2F; 读锁
-        readLock.lock();
-        System.out.println(&quot;read&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot;);
-
-        &#x2F;&#x2F; 释放写锁
-        writeLock.unlock();
-        &#x2F;&#x2F; 释放读锁
-        readLock.unlock();
-    &#125;
-&#125;</code></pre></div>
+<h2 id="读写锁降级代码演示"><a href="#读写锁降级代码演示" class="headerlink" title="读写锁降级代码演示"></a><strong>读写锁降级代码演示</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ten.juc.readwrite;<br><br><span class="hljs-keyword">import</span> java.util.concurrent.locks.ReentrantReadWriteLock;<br><br><span class="hljs-comment">// 读写锁的降级</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Demotion</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        ReentrantReadWriteLock readWriteLock = <span class="hljs-keyword">new</span> ReentrantReadWriteLock();<br>        ReentrantReadWriteLock.WriteLock writeLock = readWriteLock.writeLock(); <span class="hljs-comment">// 写锁</span><br>        ReentrantReadWriteLock.ReadLock readLock = readWriteLock.readLock();    <span class="hljs-comment">// 读锁</span><br><br>        <span class="hljs-comment">// 写锁</span><br>        writeLock.lock();<br>        System.out.println(<span class="hljs-string">&quot;write----------&quot;</span>);<br><br>        <span class="hljs-comment">// 读锁</span><br>        readLock.lock();<br>        System.out.println(<span class="hljs-string">&quot;read======&quot;</span>);<br><br>        <span class="hljs-comment">// 释放写锁</span><br>        writeLock.unlock();<br>        <span class="hljs-comment">// 释放读锁</span><br>        readLock.unlock();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
@@ -1302,38 +511,7 @@ public class Demotion &#123;
 <li>线程可以重复被使用，在显示关闭之前，都将一直存在。</li>
 <li>超出一定量的线程被提交时候需要在队列中等待。</li>
 </ul>
-<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.ten.juc.pool;
-
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-&#x2F;&#x2F; 常见的创建线程池
-public class ThreadPoolDemo &#123;
-    public static void main(String[] args) &#123;
-        &#x2F;&#x2F; 一池多线程
-        &#x2F;&#x2F;ExecutorService threadPool1 &#x3D; Executors.newFixedThreadPool(5);
-
-        &#x2F;&#x2F; 一池一线程
-        &#x2F;&#x2F;ExecutorService threadPool2 &#x3D; Executors.newSingleThreadExecutor();
-
-        &#x2F;&#x2F; 可扩容线程池
-        ExecutorService threadPool3 &#x3D; Executors.newCachedThreadPool();
-        try &#123;
-            for (int i &#x3D; 1; i &lt;&#x3D; 20; i++) &#123;
-                &#x2F;&#x2F; 执行
-                threadPool3.execute(()-&gt;&#123;
-                    System.out.println(Thread.currentThread().getName() + &quot; 办理业务&quot;);
-                &#125;);
-            &#125;
-        &#125; catch (Exception e)&#123;
-            e.printStackTrace();
-        &#125; finally &#123;
-            &#x2F;&#x2F; 释放资源
-            threadPool3.shutdown();
-        &#125;
-    &#125;
-&#125;</code></pre></div>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ten.juc.pool;<br><br><span class="hljs-keyword">import</span> java.util.concurrent.Executor;<br><span class="hljs-keyword">import</span> java.util.concurrent.ExecutorService;<br><span class="hljs-keyword">import</span> java.util.concurrent.Executors;<br><br><span class="hljs-comment">// 常见的创建线程池</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThreadPoolDemo</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-comment">// 一池多线程</span><br>        <span class="hljs-comment">//ExecutorService threadPool1 = Executors.newFixedThreadPool(5);</span><br><br>        <span class="hljs-comment">// 一池一线程</span><br>        <span class="hljs-comment">//ExecutorService threadPool2 = Executors.newSingleThreadExecutor();</span><br><br>        <span class="hljs-comment">// 可扩容线程池</span><br>        ExecutorService threadPool3 = Executors.newCachedThreadPool();<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">20</span>; i++) &#123;<br>                <span class="hljs-comment">// 执行</span><br>                threadPool3.execute(()-&gt;&#123;<br>                    System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot; 办理业务&quot;</span>);<br>                &#125;);<br>            &#125;<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e)&#123;<br>            e.printStackTrace();<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            <span class="hljs-comment">// 释放资源</span><br>            threadPool3.shutdown();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
@@ -1345,37 +523,7 @@ public class ThreadPoolDemo &#123;
 <h2 id="自定义线程池"><a href="#自定义线程池" class="headerlink" title="自定义线程池"></a>自定义线程池</h2><p>实际上都会用自定义线程池。</p>
 <p><img src="/myBlog/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20220305193328989.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220305193328989"></p>
 <p><strong>代码演示</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.ten.juc.pool;
-
-import java.util.concurrent.*;
-
-&#x2F;&#x2F; 自定义线程池
-public class ThreadPoolDemo2 &#123;
-    public static void main(String[] args) &#123;
-        ExecutorService threadPool &#x3D; new ThreadPoolExecutor(
-                2,
-                5,
-                2L,
-                TimeUnit.SECONDS,
-                new ArrayBlockingQueue&lt;&gt;(3),
-                Executors.defaultThreadFactory(),
-                new ThreadPoolExecutor.AbortPolicy()
-        );
-        try &#123;
-            for (int i &#x3D; 1; i &lt;&#x3D; 20; i++) &#123;
-                &#x2F;&#x2F; 执行
-                threadPool.execute(()-&gt;&#123;
-                    System.out.println(Thread.currentThread().getName() + &quot; 办理业务&quot;);
-                &#125;);
-            &#125;
-        &#125; catch (Exception e)&#123;
-            e.printStackTrace();
-        &#125; finally &#123;
-            &#x2F;&#x2F; 释放资源
-            threadPool.shutdown();
-        &#125;
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ten.juc.pool;<br><br><span class="hljs-keyword">import</span> java.util.concurrent.*;<br><br><span class="hljs-comment">// 自定义线程池</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThreadPoolDemo2</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        ExecutorService threadPool = <span class="hljs-keyword">new</span> ThreadPoolExecutor(<br>                <span class="hljs-number">2</span>,<br>                <span class="hljs-number">5</span>,<br>                <span class="hljs-number">2L</span>,<br>                TimeUnit.SECONDS,<br>                <span class="hljs-keyword">new</span> ArrayBlockingQueue&lt;&gt;(<span class="hljs-number">3</span>),<br>                Executors.defaultThreadFactory(),<br>                <span class="hljs-keyword">new</span> ThreadPoolExecutor.AbortPolicy()<br>        );<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">20</span>; i++) &#123;<br>                <span class="hljs-comment">// 执行</span><br>                threadPool.execute(()-&gt;&#123;<br>                    System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot; 办理业务&quot;</span>);<br>                &#125;);<br>            &#125;<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e)&#123;<br>            e.printStackTrace();<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            <span class="hljs-comment">// 释放资源</span><br>            threadPool.shutdown();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
@@ -1383,97 +531,14 @@ public class ThreadPoolDemo2 &#123;
 <p>Fork：把一个复杂任务进行分拆，大事化小。</p>
 <p>Join：把拆分任务的结果进行合并</p>
 <p><strong>代码演示</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.ten.juc.forkjoin;
-
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.ForkJoinTask;
-import java.util.concurrent.RecursiveTask;
-
-&#x2F;&#x2F; 演示分支合并
-class MyTask extends RecursiveTask&lt;Integer&gt;&#123;
-    private static final  int VALUE &#x3D; 10;    &#x2F;&#x2F; 定义一个常量，用于判断两个数相加是否大于10
-    private int begin;  &#x2F;&#x2F; 开始的
-    private int end;    &#x2F;&#x2F; 结束的
-    private int result; &#x2F;&#x2F; 返回的结果
-
-    &#x2F;&#x2F; 构造方法
-    public MyTask(int begin,int end)&#123;
-        this.begin &#x3D; begin;
-        this.end &#x3D; end;
-    &#125;
-    @Override
-    protected Integer compute() &#123;
-        &#x2F;&#x2F; 如果他们相减小于10，则直接相加
-        if((end - begin) &lt;&#x3D; VALUE)&#123;
-            for (int i &#x3D; begin; i &lt;&#x3D; end; i++)&#123;
-                result &#x3D; result + i;
-            &#125;
-        &#125; else &#123;
-            &#x2F;&#x2F; 否则拆分
-            &#x2F;&#x2F; 计算中间的值
-            int middle &#x3D; (begin + end) &#x2F; 2;
-            &#x2F;&#x2F; 向左拆分
-            MyTask task1 &#x3D; new MyTask(begin, middle);
-            &#x2F;&#x2F; 向右拆分
-            MyTask task2 &#x3D; new MyTask(middle + 1, end);
-            &#x2F;&#x2F; 拆分
-            task1.fork();
-            task2.fork();
-
-            &#x2F;&#x2F; 合并
-            result &#x3D; task1.join() + task2.join();
-        &#125;
-        return result;
-    &#125;
-&#125;
-public class ForkJoinDemo &#123;
-    public static void main(String[] args) throws ExecutionException, InterruptedException &#123;
-        &#x2F;&#x2F; 创建任务对象
-        MyTask myTask &#x3D; new MyTask(0, 100);
-        &#x2F;&#x2F; 创建ForkJoinPool对象
-        ForkJoinPool forkJoinPool &#x3D; new ForkJoinPool();
-        ForkJoinTask&lt;Integer&gt; forkJoinTask &#x3D; forkJoinPool.submit(myTask);
-        &#x2F;&#x2F; 获取最终合并到的结果
-        Integer result &#x3D; forkJoinTask.get();
-        System.out.println(result);
-        &#x2F;&#x2F; 关闭池对象
-        forkJoinPool.shutdown();
-
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ten.juc.forkjoin;<br><br><span class="hljs-keyword">import</span> java.util.concurrent.ExecutionException;<br><span class="hljs-keyword">import</span> java.util.concurrent.ForkJoinPool;<br><span class="hljs-keyword">import</span> java.util.concurrent.ForkJoinTask;<br><span class="hljs-keyword">import</span> java.util.concurrent.RecursiveTask;<br><br><span class="hljs-comment">// 演示分支合并</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyTask</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">RecursiveTask</span>&lt;<span class="hljs-title">Integer</span>&gt;</span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span>  <span class="hljs-keyword">int</span> VALUE = <span class="hljs-number">10</span>;    <span class="hljs-comment">// 定义一个常量，用于判断两个数相加是否大于10</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> begin;  <span class="hljs-comment">// 开始的</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> end;    <span class="hljs-comment">// 结束的</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> result; <span class="hljs-comment">// 返回的结果</span><br><br>    <span class="hljs-comment">// 构造方法</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyTask</span><span class="hljs-params">(<span class="hljs-keyword">int</span> begin,<span class="hljs-keyword">int</span> end)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.begin = begin;<br>        <span class="hljs-keyword">this</span>.end = end;<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> Integer <span class="hljs-title">compute</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-comment">// 如果他们相减小于10，则直接相加</span><br>        <span class="hljs-keyword">if</span>((end - begin) &lt;= VALUE)&#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = begin; i &lt;= end; i++)&#123;<br>                result = result + i;<br>            &#125;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-comment">// 否则拆分</span><br>            <span class="hljs-comment">// 计算中间的值</span><br>            <span class="hljs-keyword">int</span> middle = (begin + end) / <span class="hljs-number">2</span>;<br>            <span class="hljs-comment">// 向左拆分</span><br>            MyTask task1 = <span class="hljs-keyword">new</span> MyTask(begin, middle);<br>            <span class="hljs-comment">// 向右拆分</span><br>            MyTask task2 = <span class="hljs-keyword">new</span> MyTask(middle + <span class="hljs-number">1</span>, end);<br>            <span class="hljs-comment">// 拆分</span><br>            task1.fork();<br>            task2.fork();<br><br>            <span class="hljs-comment">// 合并</span><br>            result = task1.join() + task2.join();<br>        &#125;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ForkJoinDemo</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> ExecutionException, InterruptedException </span>&#123;<br>        <span class="hljs-comment">// 创建任务对象</span><br>        MyTask myTask = <span class="hljs-keyword">new</span> MyTask(<span class="hljs-number">0</span>, <span class="hljs-number">100</span>);<br>        <span class="hljs-comment">// 创建ForkJoinPool对象</span><br>        ForkJoinPool forkJoinPool = <span class="hljs-keyword">new</span> ForkJoinPool();<br>        ForkJoinTask&lt;Integer&gt; forkJoinTask = forkJoinPool.submit(myTask);<br>        <span class="hljs-comment">// 获取最终合并到的结果</span><br>        Integer result = forkJoinTask.get();<br>        System.out.println(result);<br>        <span class="hljs-comment">// 关闭池对象</span><br>        forkJoinPool.shutdown();<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h1 id="CompletableFuture-异步回调"><a href="#CompletableFuture-异步回调" class="headerlink" title="CompletableFuture 异步回调"></a>CompletableFuture 异步回调</h1><p>runAsync： 没有返回值</p>
 <p>supplyAsync：有返回值</p>
 <p>代码演示</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.ten.juc.completable;
-
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-&#x2F;&#x2F; 异步调用
-public class CompletableFutureDemo &#123;
-    public static void main(String[] args) throws ExecutionException, InterruptedException &#123;
-        &#x2F;&#x2F; 异步调用 没有返回值
-        CompletableFuture&lt;Void&gt; completableFuture1 &#x3D; CompletableFuture.runAsync(()-&gt;&#123;
-            System.out.println(Thread.currentThread().getName() + &quot; --- completableFuture1&quot;);
-        &#125;);
-        completableFuture1.get();
-
-        &#x2F;&#x2F; 异步调用 有返回值
-        CompletableFuture&lt;Integer&gt; completableFuture2 &#x3D; CompletableFuture.supplyAsync(() -&gt;&#123;
-            System.out.println(Thread.currentThread().getName() + &quot; --- completableFuture2&quot;);
-            &#x2F;&#x2F; 模拟异常
-            int i &#x3D; 1 &#x2F; 0;
-            return 1024;
-        &#125;);
-        completableFuture2.whenComplete((t,u) -&gt; &#123;
-            System.out.println(&quot;--------t&#x3D;&quot; +t);    &#x2F;&#x2F; 返回值
-            System.out.println(&quot;--------u&#x3D;&quot; +u);    &#x2F;&#x2F; 异常
-        &#125;).get();
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ten.juc.completable;<br><br><span class="hljs-keyword">import</span> java.util.concurrent.CompletableFuture;<br><span class="hljs-keyword">import</span> java.util.concurrent.ExecutionException;<br><span class="hljs-comment">// 异步调用</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CompletableFutureDemo</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> ExecutionException, InterruptedException </span>&#123;<br>        <span class="hljs-comment">// 异步调用 没有返回值</span><br>        CompletableFuture&lt;Void&gt; completableFuture1 = CompletableFuture.runAsync(()-&gt;&#123;<br>            System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot; --- completableFuture1&quot;</span>);<br>        &#125;);<br>        completableFuture1.get();<br><br>        <span class="hljs-comment">// 异步调用 有返回值</span><br>        CompletableFuture&lt;Integer&gt; completableFuture2 = CompletableFuture.supplyAsync(() -&gt;&#123;<br>            System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot; --- completableFuture2&quot;</span>);<br>            <span class="hljs-comment">// 模拟异常</span><br>            <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span> / <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">1024</span>;<br>        &#125;);<br>        completableFuture2.whenComplete((t,u) -&gt; &#123;<br>            System.out.println(<span class="hljs-string">&quot;--------t=&quot;</span> +t);    <span class="hljs-comment">// 返回值</span><br>            System.out.println(<span class="hljs-string">&quot;--------u=&quot;</span> +u);    <span class="hljs-comment">// 异常</span><br>        &#125;).get();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
               
             </div>
             <hr/>
@@ -1778,12 +843,6 @@ public class CompletableFutureDemo &#123;
   });
 </script>
 
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/components/prism-core.min.js" ></script>
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js" ></script>
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script>
   (function() {

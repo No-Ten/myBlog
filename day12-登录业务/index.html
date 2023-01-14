@@ -16,12 +16,12 @@
   <meta name="author" content="Ten">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Day12-登录业务登录业务介绍（单点登录） Jwt介绍 整合JWT令牌1、在common_utils模块中添加jwt工具依赖在pom中添加 &lt;dependencies&gt;     &lt;!-- JWT --&gt;     &lt;dependency&gt;         &lt;groupId&gt;io.jsonwebtoken&lt;&#x2F;groupId&gt;">
+    <meta name="description" content="Day12-登录业务登录业务介绍（单点登录） Jwt介绍 整合JWT令牌1、在common_utils模块中添加jwt工具依赖在pom中添加 1234567&lt;dependencies&gt;    &lt;!-- JWT --&gt;    &lt;dependency&gt;        &lt;groupId&gt;io.jsonwebtoken&lt;&#x2F;groupId&gt;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="day12-登录业务">
 <meta property="og:url" content="https://no-ten.github.io/day12-%E7%99%BB%E5%BD%95%E4%B8%9A%E5%8A%A1/index.html">
 <meta property="og:site_name" content="TBlog">
-<meta property="og:description" content="Day12-登录业务登录业务介绍（单点登录） Jwt介绍 整合JWT令牌1、在common_utils模块中添加jwt工具依赖在pom中添加 &lt;dependencies&gt;     &lt;!-- JWT --&gt;     &lt;dependency&gt;         &lt;groupId&gt;io.jsonwebtoken&lt;&#x2F;groupId&gt;">
+<meta property="og:description" content="Day12-登录业务登录业务介绍（单点登录） Jwt介绍 整合JWT令牌1、在common_utils模块中添加jwt工具依赖在pom中添加 1234567&lt;dependencies&gt;    &lt;!-- JWT --&gt;    &lt;dependency&gt;        &lt;groupId&gt;io.jsonwebtoken&lt;&#x2F;groupId&gt;">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://no-ten.github.io/myBlog/day12-%E7%99%BB%E5%BD%95%E4%B8%9A%E5%8A%A1/image-20220107000233656.png">
 <meta property="og:image" content="https://no-ten.github.io/myBlog/day12-%E7%99%BB%E5%BD%95%E4%B8%9A%E5%8A%A1/image-20220107000249450.png">
@@ -48,8 +48,6 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
@@ -233,7 +231,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          30k 字
+          28k 字
         
       </span>
     
@@ -288,547 +286,78 @@
               <h1 id="Day12-登录业务"><a href="#Day12-登录业务" class="headerlink" title="Day12-登录业务"></a>Day12-登录业务</h1><h1 id="登录业务介绍（单点登录）"><a href="#登录业务介绍（单点登录）" class="headerlink" title="登录业务介绍（单点登录）"></a>登录业务介绍（单点登录）</h1><p><img src="/myBlog/day12-%E7%99%BB%E5%BD%95%E4%B8%9A%E5%8A%A1/image-20220107000233656.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220107000233656"></p>
 <h1 id="Jwt介绍"><a href="#Jwt介绍" class="headerlink" title="Jwt介绍"></a>Jwt介绍</h1><p><img src="/myBlog/day12-%E7%99%BB%E5%BD%95%E4%B8%9A%E5%8A%A1/image-20220107000249450.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220107000249450"></p>
 <h1 id="整合JWT令牌"><a href="#整合JWT令牌" class="headerlink" title="整合JWT令牌"></a>整合JWT令牌</h1><h2 id="1、在common-utils模块中添加jwt工具依赖"><a href="#1、在common-utils模块中添加jwt工具依赖" class="headerlink" title="1、在common_utils模块中添加jwt工具依赖"></a>1、在common_utils模块中添加jwt工具依赖</h2><p>在pom中添加</p>
-<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">&lt;dependencies&gt;
-    &lt;!-- JWT --&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.jsonwebtoken&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;jjwt&lt;&#x2F;artifactId&gt;
-    &lt;&#x2F;dependency&gt;
-&lt;&#x2F;dependencies&gt;</code></pre></div>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- JWT --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.jsonwebtoken<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jjwt<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<h2 id="创建JWT工具类"><a href="#创建JWT工具类" class="headerlink" title="创建JWT工具类"></a>创建JWT工具类</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">public class JwtUtils &#123;
-
-    &#x2F;&#x2F; 常量
-    public static final long EXPIRE &#x3D; 1000 * 60 * 60 * 24;     &#x2F;&#x2F; token过期时间
-    public static final String APP_SECRET &#x3D; &quot;ukc8BDbRigUDaY6pZFfWus2jZWLPHO&quot;;   &#x2F;&#x2F; 秘钥
-
-    &#x2F;&#x2F; 生成token字符串的方法
-    public static String getJwtToken(String id, String nickname)&#123;
-
-        String JwtToken &#x3D; Jwts.builder()
-                &#x2F;&#x2F; 头信息
-                .setHeaderParam(&quot;typ&quot;, &quot;JWT&quot;)
-                .setHeaderParam(&quot;alg&quot;, &quot;HS256&quot;)
-
-                .setSubject(&quot;guli-user&quot;)
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + EXPIRE))
-
-                .claim(&quot;id&quot;, id)    &#x2F;&#x2F; 设置token主体部分，存储用户信息
-                .claim(&quot;nickname&quot;, nickname)
-                .signWith(SignatureAlgorithm.HS256, APP_SECRET)
-                .compact();
-        return JwtToken;
-    &#125;
-
-    &#x2F;**
-     * 判断token是否存在与有效
-     * @param jwtToken
-     * @return
-     *&#x2F;
-    public static boolean checkToken(String jwtToken) &#123;
-        if(StringUtils.isEmpty(jwtToken)) return false;
-        try &#123;
-            Jwts.parser().setSigningKey(APP_SECRET).parseClaimsJws(jwtToken);
-        &#125; catch (Exception e) &#123;
-            e.printStackTrace();
-            return false;
-        &#125;
-        return true;
-    &#125;
-
-    &#x2F;**
-     * 判断token是否存在与有效
-     * @param request
-     * @return
-     *&#x2F;
-    public static boolean checkToken(HttpServletRequest request) &#123;
-        try &#123;
-            String jwtToken &#x3D; request.getHeader(&quot;token&quot;);
-            if(StringUtils.isEmpty(jwtToken)) return false;
-            Jwts.parser().setSigningKey(APP_SECRET).parseClaimsJws(jwtToken);
-        &#125; catch (Exception e) &#123;
-            e.printStackTrace();
-            return false;
-        &#125;
-        return true;
-    &#125;
-
-    &#x2F;**
-     * 根据token获取会员id
-     * @param request
-     * @return
-     *&#x2F;
-    public static String getMemberIdByJwtToken(HttpServletRequest request) &#123;
-        String jwtToken &#x3D; request.getHeader(&quot;token&quot;);
-        if(StringUtils.isEmpty(jwtToken)) return &quot;&quot;;
-        Jws&lt;Claims&gt; claimsJws &#x3D; Jwts.parser().setSigningKey(APP_SECRET).parseClaimsJws(jwtToken);
-        Claims claims &#x3D; claimsJws.getBody();
-        return (String)claims.get(&quot;id&quot;);
-    &#125;
-
-&#125;</code></pre></div>
+<h2 id="创建JWT工具类"><a href="#创建JWT工具类" class="headerlink" title="创建JWT工具类"></a>创建JWT工具类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JwtUtils</span> </span>&#123;<br><br>    <span class="hljs-comment">// 常量</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> EXPIRE = <span class="hljs-number">1000</span> * <span class="hljs-number">60</span> * <span class="hljs-number">60</span> * <span class="hljs-number">24</span>;     <span class="hljs-comment">// token过期时间</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String APP_SECRET = <span class="hljs-string">&quot;ukc8BDbRigUDaY6pZFfWus2jZWLPHO&quot;</span>;   <span class="hljs-comment">// 秘钥</span><br><br>    <span class="hljs-comment">// 生成token字符串的方法</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">getJwtToken</span><span class="hljs-params">(String id, String nickname)</span></span>&#123;<br><br>        String JwtToken = Jwts.builder()<br>                <span class="hljs-comment">// 头信息</span><br>                .setHeaderParam(<span class="hljs-string">&quot;typ&quot;</span>, <span class="hljs-string">&quot;JWT&quot;</span>)<br>                .setHeaderParam(<span class="hljs-string">&quot;alg&quot;</span>, <span class="hljs-string">&quot;HS256&quot;</span>)<br><br>                .setSubject(<span class="hljs-string">&quot;guli-user&quot;</span>)<br>                .setIssuedAt(<span class="hljs-keyword">new</span> Date())<br>                .setExpiration(<span class="hljs-keyword">new</span> Date(System.currentTimeMillis() + EXPIRE))<br><br>                .claim(<span class="hljs-string">&quot;id&quot;</span>, id)    <span class="hljs-comment">// 设置token主体部分，存储用户信息</span><br>                .claim(<span class="hljs-string">&quot;nickname&quot;</span>, nickname)<br>                .signWith(SignatureAlgorithm.HS256, APP_SECRET)<br>                .compact();<br>        <span class="hljs-keyword">return</span> JwtToken;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 判断token是否存在与有效</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> jwtToken</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">checkToken</span><span class="hljs-params">(String jwtToken)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(StringUtils.isEmpty(jwtToken)) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>        <span class="hljs-keyword">try</span> &#123;<br>            Jwts.parser().setSigningKey(APP_SECRET).parseClaimsJws(jwtToken);<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 判断token是否存在与有效</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> request</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">checkToken</span><span class="hljs-params">(HttpServletRequest request)</span> </span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            String jwtToken = request.getHeader(<span class="hljs-string">&quot;token&quot;</span>);<br>            <span class="hljs-keyword">if</span>(StringUtils.isEmpty(jwtToken)) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>            Jwts.parser().setSigningKey(APP_SECRET).parseClaimsJws(jwtToken);<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 根据token获取会员id</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> request</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">getMemberIdByJwtToken</span><span class="hljs-params">(HttpServletRequest request)</span> </span>&#123;<br>        String jwtToken = request.getHeader(<span class="hljs-string">&quot;token&quot;</span>);<br>        <span class="hljs-keyword">if</span>(StringUtils.isEmpty(jwtToken)) <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>;<br>        Jws&lt;Claims&gt; claimsJws = Jwts.parser().setSigningKey(APP_SECRET).parseClaimsJws(jwtToken);<br>        Claims claims = claimsJws.getBody();<br>        <span class="hljs-keyword">return</span> (String)claims.get(<span class="hljs-string">&quot;id&quot;</span>);<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h1 id="整合阿里云短信"><a href="#整合阿里云短信" class="headerlink" title="整合阿里云短信"></a>整合阿里云短信</h1><h2 id="新建短信微服务"><a href="#新建短信微服务" class="headerlink" title="新建短信微服务"></a>新建短信微服务</h2><p>1、在service模块下创建子模块service-msm</p>
 <p>2、创建controller和service代码</p>
 <p>3、配置application.properties</p>
-<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"># 服务端口
-server.port&#x3D;8005
-
-# 服务名
-spring.application.name&#x3D;service-msm
-
-# mysql数据库连接
-spring.datasource.driver-class-name&#x3D;com.mysql.cj.jdbc.Driver
-spring.datasource.url&#x3D;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;guli?serverTimezone&#x3D;GMT%2B8
-spring.datasource.username&#x3D;root
-spring.datasource.password&#x3D;root
-
-# redis
-spring.redis.host&#x3D;192.168.242.3
-spring.redis.password&#x3D;123456
-spring.redis.port&#x3D;6379
-spring.redis.database&#x3D; 0
-spring.redis.timeout&#x3D;1800000
-spring.redis.lettuce.pool.max-active&#x3D;20
-spring.redis.lettuce.pool.max-wait&#x3D;-1
-
-#最大阻塞等待时间(负数表示没限制)
-spring.redis.lettuce.pool.max-idle&#x3D;5
-spring.redis.lettuce.pool.min-idle&#x3D;0
-
-#最小空闲
-#返回json的全局时间格式
-spring.jackson.date-format&#x3D;yyyy-MM-dd HH:mm:ss
-spring.jackson.time-zone&#x3D;GMT+8
-
-#配置mapper xml文件的路径
-mybatis-plus.mapper-locations&#x3D;classpath:com&#x2F;atguigu&#x2F;edumsm&#x2F;mapper&#x2F;xml&#x2F;*.xml
-
-#mybatis日志
-mybatis-plus.configuration.log-impl&#x3D;org.apache.ibatis.logging.stdout.StdOutImpl</code></pre></div>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment"># 服务端口</span><br><span class="hljs-meta">server.port</span>=<span class="hljs-string">8005</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"># 服务名</span><br><span class="hljs-meta">spring.application.name</span>=<span class="hljs-string">service-msm</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"># mysql数据库连接</span><br><span class="hljs-meta">spring.datasource.driver-class-name</span>=<span class="hljs-string">com.mysql.cj.jdbc.Driver</span><br><span class="hljs-meta">spring.datasource.url</span>=<span class="hljs-string">jdbc:mysql://localhost:3306/guli?serverTimezone=GMT%2B8</span><br><span class="hljs-meta">spring.datasource.username</span>=<span class="hljs-string">root</span><br><span class="hljs-meta">spring.datasource.password</span>=<span class="hljs-string">root</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"># redis</span><br><span class="hljs-meta">spring.redis.host</span>=<span class="hljs-string">192.168.242.3</span><br><span class="hljs-meta">spring.redis.password</span>=<span class="hljs-string">123456</span><br><span class="hljs-meta">spring.redis.port</span>=<span class="hljs-string">6379</span><br><span class="hljs-meta">spring.redis.database</span>= <span class="hljs-string">0</span><br><span class="hljs-meta">spring.redis.timeout</span>=<span class="hljs-string">1800000</span><br><span class="hljs-meta">spring.redis.lettuce.pool.max-active</span>=<span class="hljs-string">20</span><br><span class="hljs-meta">spring.redis.lettuce.pool.max-wait</span>=<span class="hljs-string">-1</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">#最大阻塞等待时间(负数表示没限制)</span><br><span class="hljs-meta">spring.redis.lettuce.pool.max-idle</span>=<span class="hljs-string">5</span><br><span class="hljs-meta">spring.redis.lettuce.pool.min-idle</span>=<span class="hljs-string">0</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">#最小空闲</span><br><span class="hljs-comment">#返回json的全局时间格式</span><br><span class="hljs-meta">spring.jackson.date-format</span>=<span class="hljs-string">yyyy-MM-dd HH:mm:ss</span><br><span class="hljs-meta">spring.jackson.time-zone</span>=<span class="hljs-string">GMT+8</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">#配置mapper xml文件的路径</span><br><span class="hljs-meta">mybatis-plus.mapper-locations</span>=<span class="hljs-string">classpath:com/atguigu/edumsm/mapper/xml/*.xml</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">#mybatis日志</span><br><span class="hljs-meta">mybatis-plus.configuration.log-impl</span>=<span class="hljs-string">org.apache.ibatis.logging.stdout.StdOutImpl</span><br></code></pre></td></tr></table></figure>
 
 <p>4、创建启动类</p>
 <p>创建MsmApplication.java</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@ComponentScan(&#123;&quot;com.atguigu&quot;&#125;)
-@SpringBootApplication(exclude &#x3D; DataSourceAutoConfiguration.class)     &#x2F;&#x2F; 去掉数据库自动装配
-public class MsmApplication &#123;
-
-    public static void main(String[] args) &#123;
-        SpringApplication.run(MsmApplication.class,args);
-    &#125;
-
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@ComponentScan(&#123;&quot;com.atguigu&quot;&#125;)</span><br><span class="hljs-meta">@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)</span>     <span class="hljs-comment">// 去掉数据库自动装配</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MsmApplication</span> </span>&#123;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        SpringApplication.run(MsmApplication.class,args);<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="编写发送短信接口"><a href="#编写发送短信接口" class="headerlink" title="编写发送短信接口"></a>编写发送短信接口</h2><p>1、在service-msm的pom中引入依赖</p>
-<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">&lt;dependencies&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;com.alibaba&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;fastjson&lt;&#x2F;artifactId&gt;
-    &lt;&#x2F;dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;com.aliyun&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;aliyun-java-sdk-core&lt;&#x2F;artifactId&gt;
-    &lt;&#x2F;dependency&gt;
-&lt;&#x2F;dependencies&gt;</code></pre></div>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>fastjson<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.aliyun<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>aliyun-java-sdk-core<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>2、编写controller，根据手机号发送短信</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@RestController
-@RequestMapping(&quot;&#x2F;edumsm&#x2F;msm&quot;)
-@CrossOrigin
-public class MsmController &#123;
-
-    @Autowired
-    private MsmService msmService;
-
-    @Autowired
-    private RedisTemplate&lt;String,String&gt; redisTemplate;
-
-    &#x2F;&#x2F; 发送验证码
-    @GetMapping(value &#x3D; &quot;send&#x2F;&#123;phone&#125;&quot;)
-    public R code(@PathVariable String phone) &#123;
-
-        &#x2F;&#x2F; 1.先从redis中查询，如果查询出来就发送
-        String code &#x3D; redisTemplate.opsForValue().get(phone);
-        if (!StringUtils.isEmpty(code))&#123;
-            return R.ok();
-        &#125;
-
-        &#x2F;&#x2F; 2.查询不出来，在发送阿里云短信
-        &#x2F;&#x2F; 随机生成验证码
-        code &#x3D; RandomUtil.getFourBitRandom();
-
-        Map&lt;String,Object&gt; param &#x3D; new HashMap&lt;&gt;();
-
-        param.put(&quot;code&quot;, code);
-        boolean isSend &#x3D; msmService.send(phone, param);
-        if(isSend) &#123;
-            redisTemplate.opsForValue().set(phone,code,5,TimeUnit.MINUTES);
-            return R.ok();
-        &#125; else &#123;
-            return R.error().message(&quot;发送短信失败&quot;);
-        &#125;
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;/edumsm/msm&quot;)</span><br><span class="hljs-meta">@CrossOrigin</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MsmController</span> </span>&#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> MsmService msmService;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> RedisTemplate&lt;String,String&gt; redisTemplate;<br><br>    <span class="hljs-comment">// 发送验证码</span><br>    <span class="hljs-meta">@GetMapping(value = &quot;send/&#123;phone&#125;&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">code</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> String phone)</span> </span>&#123;<br><br>        <span class="hljs-comment">// 1.先从redis中查询，如果查询出来就发送</span><br>        String code = redisTemplate.opsForValue().get(phone);<br>        <span class="hljs-keyword">if</span> (!StringUtils.isEmpty(code))&#123;<br>            <span class="hljs-keyword">return</span> R.ok();<br>        &#125;<br><br>        <span class="hljs-comment">// 2.查询不出来，在发送阿里云短信</span><br>        <span class="hljs-comment">// 随机生成验证码</span><br>        code = RandomUtil.getFourBitRandom();<br><br>        Map&lt;String,Object&gt; param = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();<br><br>        param.put(<span class="hljs-string">&quot;code&quot;</span>, code);<br>        <span class="hljs-keyword">boolean</span> isSend = msmService.send(phone, param);<br>        <span class="hljs-keyword">if</span>(isSend) &#123;<br>            redisTemplate.opsForValue().set(phone,code,<span class="hljs-number">5</span>,TimeUnit.MINUTES);<br>            <span class="hljs-keyword">return</span> R.ok();<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">return</span> R.error().message(<span class="hljs-string">&quot;发送短信失败&quot;</span>);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>3、编写service</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Service
-public class MsmServiceImpl implements MsmService &#123;
-
-    &#x2F;&#x2F; 发送验证码
-    @Override
-    public boolean send(String phone, Map&lt;String, Object&gt; param) &#123;
-        if(StringUtils.isEmpty(phone)) return false;
-        DefaultProfile profile &#x3D;
-                DefaultProfile.getProfile(&quot;default&quot;, &quot;LTAIq6nIPY09VROj&quot;, &quot;FQ7UcixT9wEqMv9F35nORPqKr8XkTF&quot;);
-        IAcsClient client &#x3D; new DefaultAcsClient(profile);
-        CommonRequest request &#x3D; new CommonRequest();
-        &#x2F;&#x2F;request.setProtocol(ProtocolType.HTTPS);
-        request.setMethod(MethodType.POST);
-
-        request.setDomain(&quot;dysmsapi.aliyuncs.com&quot;);
-        request.setVersion(&quot;2017-05-25&quot;);
-        request.setAction(&quot;SendSms&quot;);
-
-        request.putQueryParameter(&quot;PhoneNumbers&quot;, phone);
-        request.putQueryParameter(&quot;SignName&quot;, &quot;我的谷粒在线教育网站&quot;);
-        request.putQueryParameter(&quot;TemplateCode&quot;, &quot;SMS_180051135&quot;);
-        request.putQueryParameter(&quot;TemplateParam&quot;, JSONObject.toJSONString(param));
-
-        try &#123;
-            CommonResponse response &#x3D; client.getCommonResponse(request);
-            System.out.println(response.getData());
-            return response.getHttpResponse().isSuccess();
-        &#125; catch (Exception e) &#123;
-            e.printStackTrace();
-        &#125;
-        return false;
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MsmServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">MsmService</span> </span>&#123;<br><br>    <span class="hljs-comment">// 发送验证码</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">send</span><span class="hljs-params">(String phone, Map&lt;String, Object&gt; param)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(StringUtils.isEmpty(phone)) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>        DefaultProfile profile =<br>                DefaultProfile.getProfile(<span class="hljs-string">&quot;default&quot;</span>, <span class="hljs-string">&quot;LTAIq6nIPY09VROj&quot;</span>, <span class="hljs-string">&quot;FQ7UcixT9wEqMv9F35nORPqKr8XkTF&quot;</span>);<br>        IAcsClient client = <span class="hljs-keyword">new</span> DefaultAcsClient(profile);<br>        CommonRequest request = <span class="hljs-keyword">new</span> CommonRequest();<br>        <span class="hljs-comment">//request.setProtocol(ProtocolType.HTTPS);</span><br>        request.setMethod(MethodType.POST);<br><br>        request.setDomain(<span class="hljs-string">&quot;dysmsapi.aliyuncs.com&quot;</span>);<br>        request.setVersion(<span class="hljs-string">&quot;2017-05-25&quot;</span>);<br>        request.setAction(<span class="hljs-string">&quot;SendSms&quot;</span>);<br><br>        request.putQueryParameter(<span class="hljs-string">&quot;PhoneNumbers&quot;</span>, phone);<br>        request.putQueryParameter(<span class="hljs-string">&quot;SignName&quot;</span>, <span class="hljs-string">&quot;我的谷粒在线教育网站&quot;</span>);<br>        request.putQueryParameter(<span class="hljs-string">&quot;TemplateCode&quot;</span>, <span class="hljs-string">&quot;SMS_180051135&quot;</span>);<br>        request.putQueryParameter(<span class="hljs-string">&quot;TemplateParam&quot;</span>, JSONObject.toJSONString(param));<br><br>        <span class="hljs-keyword">try</span> &#123;<br>            CommonResponse response = client.getCommonResponse(request);<br>            System.out.println(response.getData());<br>            <span class="hljs-keyword">return</span> response.getHttpResponse().isSuccess();<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="云市场的短信验证码接收"><a href="#云市场的短信验证码接收" class="headerlink" title="云市场的短信验证码接收"></a>云市场的短信验证码接收</h2><p>这里我使用的是阿里云的云市场的，不用阿里云的短信服务</p>
 <p>Controller</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 用阿里云的云市场短信服务
-@GetMapping(&quot;sendByPhone&#x2F;&#123;phone&#125;&quot;)
-public R sendByPhone(@PathVariable String phone)&#123;
-
-    &#x2F;&#x2F; 1.先从redis中取验证码
-    String code &#x3D; redisTemplate.opsForValue().get(phone);
-    if (!StringUtils.isEmpty(code))&#123;
-        return R.ok();
-    &#125;
-
-    code &#x3D; RandomUtil.getFourBitRandom();
-
-    &#x2F;&#x2F; 2.如果redis没有，再发送短信
-    boolean isSend &#x3D; msmService.sendCodeByPhone(phone,code);
-
-    if (isSend)&#123;
-        redisTemplate.opsForValue().set(phone,code,5,TimeUnit.MINUTES);
-        return R.ok();
-    &#125; else &#123;
-        return R.error().message(&quot;发送验证码失败&quot;);
-    &#125;
-
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 用阿里云的云市场短信服务</span><br><span class="hljs-meta">@GetMapping(&quot;sendByPhone/&#123;phone&#125;&quot;)</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">sendByPhone</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> String phone)</span></span>&#123;<br><br>    <span class="hljs-comment">// 1.先从redis中取验证码</span><br>    String code = redisTemplate.opsForValue().get(phone);<br>    <span class="hljs-keyword">if</span> (!StringUtils.isEmpty(code))&#123;<br>        <span class="hljs-keyword">return</span> R.ok();<br>    &#125;<br><br>    code = RandomUtil.getFourBitRandom();<br><br>    <span class="hljs-comment">// 2.如果redis没有，再发送短信</span><br>    <span class="hljs-keyword">boolean</span> isSend = msmService.sendCodeByPhone(phone,code);<br><br>    <span class="hljs-keyword">if</span> (isSend)&#123;<br>        redisTemplate.opsForValue().set(phone,code,<span class="hljs-number">5</span>,TimeUnit.MINUTES);<br>        <span class="hljs-keyword">return</span> R.ok();<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> R.error().message(<span class="hljs-string">&quot;发送验证码失败&quot;</span>);<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>serviceImpl</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 用阿里云的云市场短信服务
-@Override
-public boolean sendCodeByPhone(String phone, String code) &#123;
-
-    if(StringUtils.isEmpty(phone)) return false;
-
-    String host &#x3D; &quot;https:&#x2F;&#x2F;gyytz.market.alicloudapi.com&quot;;
-    String path &#x3D; &quot;&#x2F;sms&#x2F;smsSend&quot;;
-    String method &#x3D; &quot;POST&quot;;
-    String appcode &#x3D; &quot;9……………2&quot;;
-
-    Map&lt;String, String&gt; headers &#x3D; new HashMap&lt;String, String&gt;();
-
-    &#x2F;&#x2F;最后在header中的格式(中间是英文空格)为Authorization:APPCODE 83359fd73fe94948385f570e3c139105
-    headers.put(&quot;Authorization&quot;, &quot;APPCODE &quot; + appcode);
-
-    Map&lt;String, String&gt; querys &#x3D; new HashMap&lt;String, String&gt;();
-
-    querys.put(&quot;mobile&quot;, phone);
-    querys.put(&quot;param&quot;, &quot;**code**:&quot;+code+&quot;,**minute**:5&quot;);
-    querys.put(&quot;smsSignId&quot;, &quot;2e65b1bb3d054466b82f0c9d125465e2&quot;);
-    querys.put(&quot;templateId&quot;, &quot;908e94ccf08b4476ba6c876d13f084ad&quot;);
-    Map&lt;String, String&gt; bodys &#x3D; new HashMap&lt;String, String&gt;();
-
-
-    try &#123;
-        &#x2F;**
-         * 重要提示如下:
-         * HttpUtils请从
-         * https:&#x2F;&#x2F;github.com&#x2F;aliyun&#x2F;api-gateway-demo-sign-java&#x2F;blob&#x2F;master&#x2F;src&#x2F;main&#x2F;java&#x2F;com&#x2F;aliyun&#x2F;api&#x2F;gateway&#x2F;demo&#x2F;util&#x2F;HttpUtils.java
-         * 下载
-         *
-         * 相应的依赖请参照
-         * https:&#x2F;&#x2F;github.com&#x2F;aliyun&#x2F;api-gateway-demo-sign-java&#x2F;blob&#x2F;master&#x2F;pom.xml
-         *&#x2F;
-        HttpResponse response &#x3D; HttpUtils.doPost(host, path, method, headers, querys, bodys);
-        System.out.println(response.toString());
-        &#x2F;&#x2F;获取response的body
-        &#x2F;&#x2F;System.out.println(EntityUtils.toString(response.getEntity()));
-        return true;
-    &#125; catch (Exception e) &#123;
-        e.printStackTrace();
-        return false;
-    &#125;
-
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 用阿里云的云市场短信服务</span><br><span class="hljs-meta">@Override</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">sendCodeByPhone</span><span class="hljs-params">(String phone, String code)</span> </span>&#123;<br><br>    <span class="hljs-keyword">if</span>(StringUtils.isEmpty(phone)) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br><br>    String host = <span class="hljs-string">&quot;https://gyytz.market.alicloudapi.com&quot;</span>;<br>    String path = <span class="hljs-string">&quot;/sms/smsSend&quot;</span>;<br>    String method = <span class="hljs-string">&quot;POST&quot;</span>;<br>    String appcode = <span class="hljs-string">&quot;9……………2&quot;</span>;<br><br>    Map&lt;String, String&gt; headers = <span class="hljs-keyword">new</span> HashMap&lt;String, String&gt;();<br><br>    <span class="hljs-comment">//最后在header中的格式(中间是英文空格)为Authorization:APPCODE 83359fd73fe94948385f570e3c139105</span><br>    headers.put(<span class="hljs-string">&quot;Authorization&quot;</span>, <span class="hljs-string">&quot;APPCODE &quot;</span> + appcode);<br><br>    Map&lt;String, String&gt; querys = <span class="hljs-keyword">new</span> HashMap&lt;String, String&gt;();<br><br>    querys.put(<span class="hljs-string">&quot;mobile&quot;</span>, phone);<br>    querys.put(<span class="hljs-string">&quot;param&quot;</span>, <span class="hljs-string">&quot;**code**:&quot;</span>+code+<span class="hljs-string">&quot;,**minute**:5&quot;</span>);<br>    querys.put(<span class="hljs-string">&quot;smsSignId&quot;</span>, <span class="hljs-string">&quot;2e65b1bb3d054466b82f0c9d125465e2&quot;</span>);<br>    querys.put(<span class="hljs-string">&quot;templateId&quot;</span>, <span class="hljs-string">&quot;908e94ccf08b4476ba6c876d13f084ad&quot;</span>);<br>    Map&lt;String, String&gt; bodys = <span class="hljs-keyword">new</span> HashMap&lt;String, String&gt;();<br><br><br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">/**</span><br><span class="hljs-comment">         * 重要提示如下:</span><br><span class="hljs-comment">         * HttpUtils请从</span><br><span class="hljs-comment">         * https://github.com/aliyun/api-gateway-demo-sign-java/blob/master/src/main/java/com/aliyun/api/gateway/demo/util/HttpUtils.java</span><br><span class="hljs-comment">         * 下载</span><br><span class="hljs-comment">         *</span><br><span class="hljs-comment">         * 相应的依赖请参照</span><br><span class="hljs-comment">         * https://github.com/aliyun/api-gateway-demo-sign-java/blob/master/pom.xml</span><br><span class="hljs-comment">         */</span><br>        HttpResponse response = HttpUtils.doPost(host, path, method, headers, querys, bodys);<br>        System.out.println(response.toString());<br>        <span class="hljs-comment">//获取response的body</span><br>        <span class="hljs-comment">//System.out.println(EntityUtils.toString(response.getEntity()));</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        e.printStackTrace();<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h1 id="登录功能接口"><a href="#登录功能接口" class="headerlink" title="登录功能接口"></a>登录功能接口</h1><h2 id="新建用户微服务"><a href="#新建用户微服务" class="headerlink" title="新建用户微服务"></a>新建用户微服务</h2><h3 id="1、在service模块下创建子模块service-ucenter"><a href="#1、在service模块下创建子模块service-ucenter" class="headerlink" title="1、在service模块下创建子模块service-ucenter"></a>1、在service模块下创建子模块service-ucenter</h3><h3 id="2、使用代码生成器生成代码"><a href="#2、使用代码生成器生成代码" class="headerlink" title="2、使用代码生成器生成代码"></a>2、使用代码生成器生成代码</h3><p>（1）创建ucenter_member表</p>
 <p><img src="/myBlog/day12-%E7%99%BB%E5%BD%95%E4%B8%9A%E5%8A%A1/image-20220107000552998.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220107000552998"></p>
 <p>生成代码</p>
-<h3 id="3、配置application-properties"><a href="#3、配置application-properties" class="headerlink" title="3、配置application.properties"></a>3、配置application.properties</h3><div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"># 服务端口
-server.port&#x3D;8006
-
-# 服务名
-spring.application.name&#x3D;service-ucenter
-
-# mysql数据库连接
-spring.datasource.driver-class-name&#x3D;com.mysql.cj.jdbc.Driver
-spring.datasource.url&#x3D;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;guli?serverTimezone&#x3D;GMT%2B8
-spring.datasource.username&#x3D;root
-spring.datasource.password&#x3D;root
-
-spring.redis.host&#x3D;192.168.242.3
-spring.redis.password&#x3D;123456
-spring.redis.port&#x3D;6379
-spring.redis.database&#x3D; 0
-spring.redis.timeout&#x3D;1800000
-spring.redis.lettuce.pool.max-active&#x3D;20
-spring.redis.lettuce.pool.max-wait&#x3D;-1
-
-#最大阻塞等待时间(负数表示没限制)
-spring.redis.lettuce.pool.max-idle&#x3D;5
-spring.redis.lettuce.pool.min-idle&#x3D;0
-
-#最小空闲
-#返回json的全局时间格式
-spring.jackson.date-format&#x3D;yyyy-MM-dd HH:mm:ss
-spring.jackson.time-zone&#x3D;GMT+8
-
-#配置mapper xml文件的路径
-mybatis-plus.mapper-locations&#x3D;classpath:com&#x2F;atguigu&#x2F;educenter&#x2F;mapper&#x2F;xml&#x2F;*.xml
-
-#mybatis日志
-mybatis-plus.configuration.log-impl&#x3D;org.apache.ibatis.logging.stdout.StdOutImpl</code></pre></div>
+<h3 id="3、配置application-properties"><a href="#3、配置application-properties" class="headerlink" title="3、配置application.properties"></a>3、配置application.properties</h3><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment"># 服务端口</span><br><span class="hljs-meta">server.port</span>=<span class="hljs-string">8006</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"># 服务名</span><br><span class="hljs-meta">spring.application.name</span>=<span class="hljs-string">service-ucenter</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"># mysql数据库连接</span><br><span class="hljs-meta">spring.datasource.driver-class-name</span>=<span class="hljs-string">com.mysql.cj.jdbc.Driver</span><br><span class="hljs-meta">spring.datasource.url</span>=<span class="hljs-string">jdbc:mysql://localhost:3306/guli?serverTimezone=GMT%2B8</span><br><span class="hljs-meta">spring.datasource.username</span>=<span class="hljs-string">root</span><br><span class="hljs-meta">spring.datasource.password</span>=<span class="hljs-string">root</span><br><br><span class="hljs-meta">spring.redis.host</span>=<span class="hljs-string">192.168.242.3</span><br><span class="hljs-meta">spring.redis.password</span>=<span class="hljs-string">123456</span><br><span class="hljs-meta">spring.redis.port</span>=<span class="hljs-string">6379</span><br><span class="hljs-meta">spring.redis.database</span>= <span class="hljs-string">0</span><br><span class="hljs-meta">spring.redis.timeout</span>=<span class="hljs-string">1800000</span><br><span class="hljs-meta">spring.redis.lettuce.pool.max-active</span>=<span class="hljs-string">20</span><br><span class="hljs-meta">spring.redis.lettuce.pool.max-wait</span>=<span class="hljs-string">-1</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">#最大阻塞等待时间(负数表示没限制)</span><br><span class="hljs-meta">spring.redis.lettuce.pool.max-idle</span>=<span class="hljs-string">5</span><br><span class="hljs-meta">spring.redis.lettuce.pool.min-idle</span>=<span class="hljs-string">0</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">#最小空闲</span><br><span class="hljs-comment">#返回json的全局时间格式</span><br><span class="hljs-meta">spring.jackson.date-format</span>=<span class="hljs-string">yyyy-MM-dd HH:mm:ss</span><br><span class="hljs-meta">spring.jackson.time-zone</span>=<span class="hljs-string">GMT+8</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">#配置mapper xml文件的路径</span><br><span class="hljs-meta">mybatis-plus.mapper-locations</span>=<span class="hljs-string">classpath:com/atguigu/educenter/mapper/xml/*.xml</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">#mybatis日志</span><br><span class="hljs-meta">mybatis-plus.configuration.log-impl</span>=<span class="hljs-string">org.apache.ibatis.logging.stdout.StdOutImpl</span><br></code></pre></td></tr></table></figure>
 
 
 
 <h3 id="创建启动类"><a href="#创建启动类" class="headerlink" title="创建启动类"></a>创建启动类</h3><p>创建ServiceUcApplication.java</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@SpringBootApplication
-@ComponentScan(&#123;&quot;com.atguigu&quot;&#125;)     &#x2F;&#x2F; 整合swagger
-@MapperScan(&quot;com.atguigu.educenter.mapper&quot;) &#x2F;&#x2F; 扫描mapper
-public class UcenterApplication &#123;
-
-    public static void main(String[] args) &#123;
-        SpringApplication.run(UcenterApplication.class,args);
-    &#125;
-
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@SpringBootApplication</span><br><span class="hljs-meta">@ComponentScan(&#123;&quot;com.atguigu&quot;&#125;)</span>     <span class="hljs-comment">// 整合swagger</span><br><span class="hljs-meta">@MapperScan(&quot;com.atguigu.educenter.mapper&quot;)</span> <span class="hljs-comment">// 扫描mapper</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UcenterApplication</span> </span>&#123;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        SpringApplication.run(UcenterApplication.class,args);<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
-<h2 id="创建登录接口"><a href="#创建登录接口" class="headerlink" title="创建登录接口"></a>创建登录接口</h2><h3 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h3><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@RestController
-@RequestMapping(&quot;&#x2F;educenter&#x2F;member&quot;)
-@CrossOrigin
-public class UcenterMemberController &#123;
+<h2 id="创建登录接口"><a href="#创建登录接口" class="headerlink" title="创建登录接口"></a>创建登录接口</h2><h3 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;/educenter/member&quot;)</span><br><span class="hljs-meta">@CrossOrigin</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UcenterMemberController</span> </span>&#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> UcenterMemberService memberService;<br><br>    <span class="hljs-comment">// 登录</span><br>    <span class="hljs-meta">@GetMapping(&quot;login&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">login</span><span class="hljs-params">(<span class="hljs-meta">@RequestBody</span> UcenterMember member)</span></span>&#123;<br>        String token = memberService.login(member);<br><span class="hljs-comment">// 返回token，用jwt生成</span><br><br>        <span class="hljs-keyword">return</span> R.ok().data(<span class="hljs-string">&quot;token&quot;</span>,token);<br>    &#125;<br><br>    <span class="hljs-comment">// 注册</span><br><br><br>&#125;<br></code></pre></td></tr></table></figure>
 
-    @Autowired
-    private UcenterMemberService memberService;
-
-    &#x2F;&#x2F; 登录
-    @GetMapping(&quot;login&quot;)
-    public R login(@RequestBody UcenterMember member)&#123;
-        String token &#x3D; memberService.login(member);
-&#x2F;&#x2F; 返回token，用jwt生成
-
-        return R.ok().data(&quot;token&quot;,token);
-    &#125;
-
-    &#x2F;&#x2F; 注册
-
-
-&#125;</code></pre></div>
-
-<h3 id="ServiceImpl"><a href="#ServiceImpl" class="headerlink" title="ServiceImpl"></a>ServiceImpl</h3><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Service
-public class UcenterMemberServiceImpl extends ServiceImpl&lt;UcenterMemberMapper, UcenterMember&gt; implements UcenterMemberService &#123;
-
-    &#x2F;&#x2F; 登录
-@Override
-public String login(UcenterMember member) &#123;
-    &#x2F;&#x2F; 获取传过来的手机号码和密码
-    String mobile &#x3D; member.getMobile();
-    String password &#x3D; member.getPassword();
-
-    &#x2F;&#x2F; 判断手机号码是否为空
-    if (StringUtils.isEmpty(mobile))&#123;
-        throw new GuliException(20001,&quot;登录失败&quot;);
-    &#125;
-    &#x2F;&#x2F; 判断密码是否为空
-    if (StringUtils.isEmpty(password))&#123;
-        throw new GuliException(20001,&quot;登录失败&quot;);
-    &#125;
-
-    &#x2F;&#x2F; 根据手机号码从数据库中查询对象
-    QueryWrapper&lt;UcenterMember&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
-    wrapper.eq(&quot;mobile&quot;,mobile);
-    UcenterMember mobileMember &#x3D; baseMapper.selectOne(wrapper);
-
-    &#x2F;&#x2F; 如果查出来的对象为空
-    if (mobileMember &#x3D;&#x3D; null)&#123;
-        throw new GuliException(20001,&quot;登录失败&quot;);
-    &#125;
-    &#x2F;&#x2F; 判断传进来的密码和数据库查出来的是否一致
-    &#x2F;&#x2F; 先将传进来的密码加密，再和数据库的比较
-    if (!MD5.encrypt(password).equals(mobileMember.getPassword()))&#123;
-        throw new GuliException(20001,&quot;登录失败&quot;);
-    &#125;
-
-    &#x2F;&#x2F; 判断是否被禁用
-    if (mobileMember.getIsDisabled())&#123;
-        throw new GuliException(20001,&quot;登录失败&quot;);
-    &#125;
-
-    &#x2F;&#x2F; 如果上面的校验都过了，说明可以登录,利用jwt工具生成token，并放回
-    String jwtToken &#x3D; JwtUtils.getJwtToken(mobileMember.getId(), mobileMember.getNickname());
-
-    return jwtToken;
-&#125;
-
-&#125;</code></pre></div>
+<h3 id="ServiceImpl"><a href="#ServiceImpl" class="headerlink" title="ServiceImpl"></a>ServiceImpl</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UcenterMemberServiceImpl</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ServiceImpl</span>&lt;<span class="hljs-title">UcenterMemberMapper</span>, <span class="hljs-title">UcenterMember</span>&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title">UcenterMemberService</span> </span>&#123;<br><br>    <span class="hljs-comment">// 登录</span><br><span class="hljs-meta">@Override</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">login</span><span class="hljs-params">(UcenterMember member)</span> </span>&#123;<br>    <span class="hljs-comment">// 获取传过来的手机号码和密码</span><br>    String mobile = member.getMobile();<br>    String password = member.getPassword();<br><br>    <span class="hljs-comment">// 判断手机号码是否为空</span><br>    <span class="hljs-keyword">if</span> (StringUtils.isEmpty(mobile))&#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> GuliException(<span class="hljs-number">20001</span>,<span class="hljs-string">&quot;登录失败&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">// 判断密码是否为空</span><br>    <span class="hljs-keyword">if</span> (StringUtils.isEmpty(password))&#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> GuliException(<span class="hljs-number">20001</span>,<span class="hljs-string">&quot;登录失败&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// 根据手机号码从数据库中查询对象</span><br>    QueryWrapper&lt;UcenterMember&gt; wrapper = <span class="hljs-keyword">new</span> QueryWrapper&lt;&gt;();<br>    wrapper.eq(<span class="hljs-string">&quot;mobile&quot;</span>,mobile);<br>    UcenterMember mobileMember = baseMapper.selectOne(wrapper);<br><br>    <span class="hljs-comment">// 如果查出来的对象为空</span><br>    <span class="hljs-keyword">if</span> (mobileMember == <span class="hljs-keyword">null</span>)&#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> GuliException(<span class="hljs-number">20001</span>,<span class="hljs-string">&quot;登录失败&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">// 判断传进来的密码和数据库查出来的是否一致</span><br>    <span class="hljs-comment">// 先将传进来的密码加密，再和数据库的比较</span><br>    <span class="hljs-keyword">if</span> (!MD5.encrypt(password).equals(mobileMember.getPassword()))&#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> GuliException(<span class="hljs-number">20001</span>,<span class="hljs-string">&quot;登录失败&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// 判断是否被禁用</span><br>    <span class="hljs-keyword">if</span> (mobileMember.getIsDisabled())&#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> GuliException(<span class="hljs-number">20001</span>,<span class="hljs-string">&quot;登录失败&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// 如果上面的校验都过了，说明可以登录,利用jwt工具生成token，并放回</span><br>    String jwtToken = JwtUtils.getJwtToken(mobileMember.getId(), mobileMember.getNickname());<br><br>    <span class="hljs-keyword">return</span> jwtToken;<br>&#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
-<h3 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h3><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
-
-public final class MD5 &#123;
-
-    public static String encrypt(String strSrc) &#123;
-        try &#123;
-            char hexChars[] &#x3D; &#123; &#39;0&#39;, &#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;, &#39;7&#39;, &#39;8&#39;,
-                    &#39;9&#39;, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39; &#125;;
-            byte[] bytes &#x3D; strSrc.getBytes();
-            MessageDigest md &#x3D; MessageDigest.getInstance(&quot;MD5&quot;);
-            md.update(bytes);
-            bytes &#x3D; md.digest();
-            int j &#x3D; bytes.length;
-            char[] chars &#x3D; new char[j * 2];
-            int k &#x3D; 0;
-            for (int i &#x3D; 0; i &lt; bytes.length; i++) &#123;
-                byte b &#x3D; bytes[i];
-                chars[k++] &#x3D; hexChars[b &gt;&gt;&gt; 4 &amp; 0xf];
-                chars[k++] &#x3D; hexChars[b &amp; 0xf];
-            &#125;
-            return new String(chars);
-        &#125; catch (NoSuchAlgorithmException e) &#123;
-            e.printStackTrace();
-            throw new RuntimeException(&quot;MD5加密出错！！+&quot; + e);
-        &#125;
-    &#125;
-
-
-&#125;</code></pre></div>
+<h3 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.security.MessageDigest;<br><span class="hljs-keyword">import</span> java.security.NoSuchAlgorithmException;<br><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MD5</span> </span>&#123;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">encrypt</span><span class="hljs-params">(String strSrc)</span> </span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-keyword">char</span> hexChars[] = &#123; <span class="hljs-string">&#x27;0&#x27;</span>, <span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-string">&#x27;2&#x27;</span>, <span class="hljs-string">&#x27;3&#x27;</span>, <span class="hljs-string">&#x27;4&#x27;</span>, <span class="hljs-string">&#x27;5&#x27;</span>, <span class="hljs-string">&#x27;6&#x27;</span>, <span class="hljs-string">&#x27;7&#x27;</span>, <span class="hljs-string">&#x27;8&#x27;</span>,<br>                    <span class="hljs-string">&#x27;9&#x27;</span>, <span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-string">&#x27;d&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>, <span class="hljs-string">&#x27;f&#x27;</span> &#125;;<br>            <span class="hljs-keyword">byte</span>[] bytes = strSrc.getBytes();<br>            MessageDigest md = MessageDigest.getInstance(<span class="hljs-string">&quot;MD5&quot;</span>);<br>            md.update(bytes);<br>            bytes = md.digest();<br>            <span class="hljs-keyword">int</span> j = bytes.length;<br>            <span class="hljs-keyword">char</span>[] chars = <span class="hljs-keyword">new</span> <span class="hljs-keyword">char</span>[j * <span class="hljs-number">2</span>];<br>            <span class="hljs-keyword">int</span> k = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; bytes.length; i++) &#123;<br>                <span class="hljs-keyword">byte</span> b = bytes[i];<br>                chars[k++] = hexChars[b &gt;&gt;&gt; <span class="hljs-number">4</span> &amp; <span class="hljs-number">0xf</span>];<br>                chars[k++] = hexChars[b &amp; <span class="hljs-number">0xf</span>];<br>            &#125;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> String(chars);<br>        &#125; <span class="hljs-keyword">catch</span> (NoSuchAlgorithmException e) &#123;<br>            e.printStackTrace();<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">&quot;MD5加密出错！！+&quot;</span> + e);<br>        &#125;<br>    &#125;<br><br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>出现异常</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public com.atguigu.commonutils.R com.atguigu.educenter.controller.UcenterMemberController.login(com.atguigu.educenter.entity.UcenterMember)</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public com.atguigu.commonutils.R com.atguigu.educenter.controller.UcenterMemberController.login(com.atguigu.educenter.entity.UcenterMember)<br></code></pre></td></tr></table></figure>
 
 <p>经过排查，发现是controller的注解写错，把@GetMapping改成@PostMapping即可</p>
-<h2 id="创建注册接口"><a href="#创建注册接口" class="headerlink" title="创建注册接口"></a>创建注册接口</h2><h3 id="RegisterVo"><a href="#RegisterVo" class="headerlink" title="RegisterVo"></a>RegisterVo</h3><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Data
-public class RegisterVo &#123;
+<h2 id="创建注册接口"><a href="#创建注册接口" class="headerlink" title="创建注册接口"></a>创建注册接口</h2><h3 id="RegisterVo"><a href="#RegisterVo" class="headerlink" title="RegisterVo"></a>RegisterVo</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Data</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RegisterVo</span> </span>&#123;<br><br>   <span class="hljs-meta">@ApiModelProperty(value = &quot;昵称&quot;)</span><br>   <span class="hljs-keyword">private</span> String nickname;<br><br>   <span class="hljs-meta">@ApiModelProperty(value = &quot;手机号&quot;)</span><br>   <span class="hljs-keyword">private</span> String mobile;<br><br>   <span class="hljs-meta">@ApiModelProperty(value = &quot;密码&quot;)</span><br>   <span class="hljs-keyword">private</span> String password;<br><br>   <span class="hljs-meta">@ApiModelProperty(value = &quot;验证码&quot;)</span><br>    <span class="hljs-keyword">private</span> String code;<br>   <br>&#125;<br></code></pre></td></tr></table></figure>
 
-   @ApiModelProperty(value &#x3D; &quot;昵称&quot;)
-   private String nickname;
+<h3 id="Controller-1"><a href="#Controller-1" class="headerlink" title="Controller"></a>Controller</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 注册</span><br><span class="hljs-meta">@PostMapping(&quot;register&quot;)</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">registerUser</span><span class="hljs-params">(<span class="hljs-meta">@RequestBody</span> RegisterVo registerVo)</span></span>&#123;<br>    memberService.register(registerVo);<br>    <span class="hljs-keyword">return</span> R.ok();<br>&#125;<br></code></pre></td></tr></table></figure>
 
-   @ApiModelProperty(value &#x3D; &quot;手机号&quot;)
-   private String mobile;
-
-   @ApiModelProperty(value &#x3D; &quot;密码&quot;)
-   private String password;
-
-   @ApiModelProperty(value &#x3D; &quot;验证码&quot;)
-    private String code;
-   
-&#125;</code></pre></div>
-
-<h3 id="Controller-1"><a href="#Controller-1" class="headerlink" title="Controller"></a>Controller</h3><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 注册
-@PostMapping(&quot;register&quot;)
-public R registerUser(@RequestBody RegisterVo registerVo)&#123;
-    memberService.register(registerVo);
-    return R.ok();
-&#125;</code></pre></div>
-
-<h3 id="serviceImpl"><a href="#serviceImpl" class="headerlink" title="serviceImpl"></a>serviceImpl</h3><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 注册
-@Override
-public void register(RegisterVo registerVo) &#123;
-    &#x2F;&#x2F; 获取注册信息
-    String nickname &#x3D; registerVo.getNickname();
-    String mobile &#x3D; registerVo.getMobile();
-    String password &#x3D; registerVo.getPassword();
-    String code &#x3D; registerVo.getCode();
-
-    &#x2F;&#x2F; 判断非空
-    if (StringUtils.isEmpty(nickname) || StringUtils.isEmpty(mobile)
-            || StringUtils.isEmpty(password) || StringUtils.isEmpty(code))&#123;
-        throw new GuliException(20001,&quot;注册失败，注册信息不能为空&quot;);
-    &#125;
-
-    &#x2F;&#x2F; 判断验证码，从redis中取出来
-    String mobileCode &#x3D; redisTemplate.opsForValue().get(mobile);
-    if (!code.equals(mobileCode))&#123;
-        throw new GuliException(20001,&quot;注册失败，验证码错误&quot;);
-    &#125;
-    &#x2F;&#x2F; 判断手机号码时候已经在数据库中
-    QueryWrapper&lt;UcenterMember&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
-    wrapper.eq(&quot;mobile&quot;,mobile);
-    Integer count &#x3D; baseMapper.selectCount(wrapper);
-
-    if (count &gt; 0)&#123;
-        &#x2F;&#x2F; 如果大于0，说明数据库中已经存在
-        throw new GuliException(20001,&quot;注册失败，手机号已经存在&quot;);
-    &#125;
-
-    &#x2F;&#x2F; 将注册对象添加到数据库中
-    UcenterMember ucenterMember &#x3D; new UcenterMember();
-    ucenterMember.setNickname(registerVo.getNickname());
-    ucenterMember.setMobile(registerVo.getMobile());
-    ucenterMember.setPassword(MD5.encrypt(registerVo.getPassword()));
-    ucenterMember.setIsDisabled(false);     &#x2F;&#x2F; 是否被禁用
-    ucenterMember.setAvatar(&quot;http:&#x2F;&#x2F;thirdwx.qlogo.cn&#x2F;mmopen&#x2F;vi_32&#x2F;Q0j4TwGTfTKxCqRzuYWQmpwiaqQEjNxbC7WicebicXQusU306jgmfoOzUcFg1qaDq5BStiblwBjw5dUOblQ2gUicQOQ&#x2F;132&quot;);
-
-    baseMapper.insert(ucenterMember);
-
-&#125;</code></pre></div>
+<h3 id="serviceImpl"><a href="#serviceImpl" class="headerlink" title="serviceImpl"></a>serviceImpl</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 注册</span><br><span class="hljs-meta">@Override</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">register</span><span class="hljs-params">(RegisterVo registerVo)</span> </span>&#123;<br>    <span class="hljs-comment">// 获取注册信息</span><br>    String nickname = registerVo.getNickname();<br>    String mobile = registerVo.getMobile();<br>    String password = registerVo.getPassword();<br>    String code = registerVo.getCode();<br><br>    <span class="hljs-comment">// 判断非空</span><br>    <span class="hljs-keyword">if</span> (StringUtils.isEmpty(nickname) || StringUtils.isEmpty(mobile)<br>            || StringUtils.isEmpty(password) || StringUtils.isEmpty(code))&#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> GuliException(<span class="hljs-number">20001</span>,<span class="hljs-string">&quot;注册失败，注册信息不能为空&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// 判断验证码，从redis中取出来</span><br>    String mobileCode = redisTemplate.opsForValue().get(mobile);<br>    <span class="hljs-keyword">if</span> (!code.equals(mobileCode))&#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> GuliException(<span class="hljs-number">20001</span>,<span class="hljs-string">&quot;注册失败，验证码错误&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">// 判断手机号码时候已经在数据库中</span><br>    QueryWrapper&lt;UcenterMember&gt; wrapper = <span class="hljs-keyword">new</span> QueryWrapper&lt;&gt;();<br>    wrapper.eq(<span class="hljs-string">&quot;mobile&quot;</span>,mobile);<br>    Integer count = baseMapper.selectCount(wrapper);<br><br>    <span class="hljs-keyword">if</span> (count &gt; <span class="hljs-number">0</span>)&#123;<br>        <span class="hljs-comment">// 如果大于0，说明数据库中已经存在</span><br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> GuliException(<span class="hljs-number">20001</span>,<span class="hljs-string">&quot;注册失败，手机号已经存在&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// 将注册对象添加到数据库中</span><br>    UcenterMember ucenterMember = <span class="hljs-keyword">new</span> UcenterMember();<br>    ucenterMember.setNickname(registerVo.getNickname());<br>    ucenterMember.setMobile(registerVo.getMobile());<br>    ucenterMember.setPassword(MD5.encrypt(registerVo.getPassword()));<br>    ucenterMember.setIsDisabled(<span class="hljs-keyword">false</span>);     <span class="hljs-comment">// 是否被禁用</span><br>    ucenterMember.setAvatar(<span class="hljs-string">&quot;http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKxCqRzuYWQmpwiaqQEjNxbC7WicebicXQusU306jgmfoOzUcFg1qaDq5BStiblwBjw5dUOblQ2gUicQOQ/132&quot;</span>);<br><br>    baseMapper.insert(ucenterMember);<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <p>测试，先往redis中存验证码，再用swagger测试。</p>
 <h2 id="根据token获取用户信息接口"><a href="#根据token获取用户信息接口" class="headerlink" title="根据token获取用户信息接口"></a>根据token获取用户信息接口</h2><p>Controller</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据token获取用户信息
-@GetMapping(&quot;getMemberInfo&quot;)
-public R getMemberInfo(HttpServletRequest request)&#123;
-    &#x2F;&#x2F; 根据token获取用户信息
-    String memberId &#x3D; JwtUtils.getMemberIdByJwtToken(request);
-
-    &#x2F;&#x2F; 根据id查询用户对象
-    UcenterMember member &#x3D; memberService.getById(memberId);
-    return R.ok().data(&quot;userInfo&quot;,member);
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 根据token获取用户信息</span><br><span class="hljs-meta">@GetMapping(&quot;getMemberInfo&quot;)</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">getMemberInfo</span><span class="hljs-params">(HttpServletRequest request)</span></span>&#123;<br>    <span class="hljs-comment">// 根据token获取用户信息</span><br>    String memberId = JwtUtils.getMemberIdByJwtToken(request);<br><br>    <span class="hljs-comment">// 根据id查询用户对象</span><br>    UcenterMember member = memberService.getById(memberId);<br>    <span class="hljs-keyword">return</span> R.ok().data(<span class="hljs-string">&quot;userInfo&quot;</span>,member);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
@@ -836,182 +365,21 @@ public R getMemberInfo(HttpServletRequest request)&#123;
 <p>npm install element-ui</p>
 <p>npm install vue-qriously</p>
 <h3 id="2、修改配置文件-nuxt-swiper-plugin-js，使用插件"><a href="#2、修改配置文件-nuxt-swiper-plugin-js，使用插件" class="headerlink" title="2、修改配置文件 nuxt-swiper-plugin.js，使用插件"></a>2、修改配置文件 nuxt-swiper-plugin.js，使用插件</h3><p>nuxt-swiper-plugin.js</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">import Vue from &#39;vue&#39;
-import VueAwesomeSwiper from &#39;vue-awesome-swiper&#x2F;dist&#x2F;ssr&#39;
-import VueQriously from &#39;vue-qriously&#39;
-import ElementUI from &#39;element-ui&#39; &#x2F;&#x2F;element-ui的全部组件
-import &#39;element-ui&#x2F;lib&#x2F;theme-chalk&#x2F;index.css&#39;&#x2F;&#x2F;element-ui的css
-Vue.use(ElementUI) &#x2F;&#x2F;使用elementUI
-Vue.use(VueQriously)
-Vue.use(VueAwesomeSwiper)</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><span class="hljs-keyword">import</span> VueAwesomeSwiper <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-awesome-swiper/dist/ssr&#x27;</span><br><span class="hljs-keyword">import</span> VueQriously <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-qriously&#x27;</span><br><span class="hljs-keyword">import</span> ElementUI <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;element-ui&#x27;</span> <span class="hljs-comment">//element-ui的全部组件</span><br><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;element-ui/lib/theme-chalk/index.css&#x27;</span><span class="hljs-comment">//element-ui的css</span><br>Vue.use(ElementUI) <span class="hljs-comment">//使用elementUI</span><br>Vue.use(VueQriously)<br>Vue.use(VueAwesomeSwiper)<br></code></pre></td></tr></table></figure>
 
 <h2 id="二、用户注册功能前端整合"><a href="#二、用户注册功能前端整合" class="headerlink" title="二、用户注册功能前端整合"></a>二、用户注册功能前端整合</h2><h3 id="1、在api文件夹中创建注册的js文件，定义接口"><a href="#1、在api文件夹中创建注册的js文件，定义接口" class="headerlink" title="1、在api文件夹中创建注册的js文件，定义接口"></a>1、在api文件夹中创建注册的js文件，定义接口</h3><p><strong>register.js</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">import request from &#39;@&#x2F;utils&#x2F;request&#39;
-export default &#123;
-    &#x2F;&#x2F; 根据手机号码发送验证码
-  getCode(mobile) &#123;
-    return request(&#123;
-      url: &#96;&#x2F;edumsm&#x2F;msm&#x2F;sendByPhone&#x2F;$&#123;mobile&#125;&#96;,
-      method: &#39;get&#39;
-    &#125;)
-  &#125;,
-  &#x2F;&#x2F; 注册
-  registerMember(formItem)&#123;
-    return request(&#123;
-      url: &#96;&#x2F;educenter&#x2F;member&#x2F;register&#96;,
-      method: &#39;post&#39;,
-      data:formItem
-    &#125;)
-  &#125;
-&#125;</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> request <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/utils/request&#x27;</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>    <span class="hljs-comment">// 根据手机号码发送验证码</span><br>  <span class="hljs-function"><span class="hljs-title">getCode</span>(<span class="hljs-params">mobile</span>)</span> &#123;<br>    <span class="hljs-keyword">return</span> request(&#123;<br>      <span class="hljs-attr">url</span>: <span class="hljs-string">`/edumsm/msm/sendByPhone/<span class="hljs-subst">$&#123;mobile&#125;</span>`</span>,<br>      <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;get&#x27;</span><br>    &#125;)<br>  &#125;,<br>  <span class="hljs-comment">// 注册</span><br>  <span class="hljs-function"><span class="hljs-title">registerMember</span>(<span class="hljs-params">formItem</span>)</span>&#123;<br>    <span class="hljs-keyword">return</span> request(&#123;<br>      <span class="hljs-attr">url</span>: <span class="hljs-string">`/educenter/member/register`</span>,<br>      <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;post&#x27;</span>,<br>      <span class="hljs-attr">data</span>:formItem<br>    &#125;)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="2、在pages文件夹中创建注册页面，调用方法"><a href="#2、在pages文件夹中创建注册页面，调用方法" class="headerlink" title="2、在pages文件夹中创建注册页面，调用方法"></a>2、在pages文件夹中创建注册页面，调用方法</h3><p><strong>（1）在layouts创建布局页面</strong></p>
 <p><strong>sign.vue</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
-  &lt;div class&#x3D;&quot;sign&quot;&gt;
-    &lt;!--标题--&gt;
-    &lt;div class&#x3D;&quot;logo&quot;&gt;
-      &lt;img src&#x3D;&quot;~&#x2F;assets&#x2F;img&#x2F;logo.png&quot; alt&#x3D;&quot;logo&quot;&gt;
-    &lt;&#x2F;div&gt;
-    &lt;!--表单--&gt;
-    &lt;nuxt&#x2F;&gt;
-  &lt;&#x2F;div&gt;
-&lt;&#x2F;template&gt;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;div class=&quot;sign&quot;&gt;<br>    &lt;!--标题--&gt;<br>    &lt;div class=&quot;logo&quot;&gt;<br>      &lt;img src=&quot;~/assets/img/logo.png&quot; alt=&quot;logo&quot;&gt;<br>    &lt;/div&gt;<br>    &lt;!--表单--&gt;<br>    &lt;nuxt/&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br></code></pre></td></tr></table></figure>
 
 <p><strong>（2）创建注册页面</strong></p>
 <p><strong>修改layouts文件夹里面default.vue页面，修改登录和注册超链接地址</strong></p>
 <p><img src="/myBlog/day12-%E7%99%BB%E5%BD%95%E4%B8%9A%E5%8A%A1/image-20220107000912160.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220107000912160"></p>
 <p><strong>在pages文件夹下，创建注册和登录页面</strong></p>
 <p><strong>register.vue</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
-   &lt;div class&#x3D;&quot;main&quot;&gt;
-     &lt;div class&#x3D;&quot;title&quot;&gt;
-       &lt;a href&#x3D;&quot;&#x2F;login&quot;&gt;登录&lt;&#x2F;a&gt;
-       &lt;span&gt;·&lt;&#x2F;span&gt;
-       &lt;a class&#x3D;&quot;active&quot; href&#x3D;&quot;&#x2F;register&quot;&gt;注册&lt;&#x2F;a&gt;
-     &lt;&#x2F;div&gt;
-     &lt;div class&#x3D;&quot;sign-up-container&quot;&gt;
-       &lt;el-form ref&#x3D;&quot;userForm&quot; :model&#x3D;&quot;params&quot;&gt;
-         &lt;el-form-item class&#x3D;&quot;input-prepend restyle&quot; prop&#x3D;&quot;nickname&quot; :rules&#x3D;&quot;[&#123; required: true, message: &#39;请输入你的昵称&#39;, trigger: &#39;blur&#39; &#125;]&quot;&gt;
-           &lt;div&gt;
-             &lt;el-input type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;你的昵称&quot; v-model&#x3D;&quot;params.nickname&quot;&#x2F;&gt;
-             &lt;i class&#x3D;&quot;iconfont icon-user&quot;&#x2F;&gt;
-           &lt;&#x2F;div&gt;
-         &lt;&#x2F;el-form-item&gt;
-         &lt;el-form-item class&#x3D;&quot;input-prepend restyle no-radius&quot; prop&#x3D;&quot;mobile&quot; :rules&#x3D;&quot;[&#123; required: true, message: &#39;请输入手机号码&#39;, trigger: &#39;blur&#39; &#125;,&#123;validator: checkPhone, trigger: &#39;blur&#39;&#125;]&quot;&gt;
-           &lt;div&gt;
-             &lt;el-input type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;手机号&quot; v-model&#x3D;&quot;params.mobile&quot;&#x2F;&gt;
-             &lt;i class&#x3D;&quot;iconfont icon-phone&quot;&#x2F;&gt;
-           &lt;&#x2F;div&gt;
-         &lt;&#x2F;el-form-item&gt;
-         &lt;el-form-item class&#x3D;&quot;input-prepend restyle no-radius&quot; prop&#x3D;&quot;code&quot; :rules&#x3D;&quot;[&#123; required: true, message: &#39;请输入验证码&#39;, trigger: &#39;blur&#39; &#125;]&quot;&gt;
-           &lt;div style&#x3D;&quot;width: 100%;display: block;float: left;position: relative&quot;&gt;
-             &lt;el-input type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;验证码&quot; v-model&#x3D;&quot;params.code&quot;&#x2F;&gt;
-             &lt;i class&#x3D;&quot;iconfont icon-phone&quot;&#x2F;&gt;
-           &lt;&#x2F;div&gt;
-           &lt;div class&#x3D;&quot;btn&quot; style&#x3D;&quot;position:absolute;right: 0;top: 6px;width: 40%;&quot;&gt;
-             &lt;a href&#x3D;&quot;javascript:&quot; type&#x3D;&quot;button&quot; @click&#x3D;&quot;getCodeFun()&quot; :value&#x3D;&quot;codeTest&quot; style&#x3D;&quot;border: none;background-color: none&quot;&gt;&#123;&#123;codeTest&#125;&#125;&lt;&#x2F;a&gt;
-           &lt;&#x2F;div&gt;
-         &lt;&#x2F;el-form-item&gt;
-         &lt;el-form-item class&#x3D;&quot;input-prepend&quot; prop&#x3D;&quot;password&quot; :rules&#x3D;&quot;[&#123; required: true, message: &#39;请输入密码&#39;, trigger: &#39;blur&#39; &#125;]&quot;&gt;
-           &lt;div&gt;
-             &lt;el-input type&#x3D;&quot;password&quot; placeholder&#x3D;&quot;设置密码&quot; v-model&#x3D;&quot;params.password&quot;&#x2F;&gt;
-             &lt;i class&#x3D;&quot;iconfont icon-password&quot;&#x2F;&gt;
-           &lt;&#x2F;div&gt;
-         &lt;&#x2F;el-form-item&gt;
-         &lt;div class&#x3D;&quot;btn&quot;&gt;
-           &lt;input type&#x3D;&quot;button&quot; class&#x3D;&quot;sign-up-button&quot; value&#x3D;&quot;注册&quot; @click&#x3D;&quot;submitRegister()&quot;&gt;
-         &lt;&#x2F;div&gt;
-         &lt;p class&#x3D;&quot;sign-up-msg&quot;&gt;
-           点击 “注册” 即表示您同意并愿意遵守简书
-           &lt;br&gt;
-           &lt;a target&#x3D;&quot;_blank&quot; href&#x3D;&quot;http:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;c44d171298ce&quot;&gt;用户协议&lt;&#x2F;a&gt;
-           和
-           &lt;a target&#x3D;&quot;_blank&quot; href&#x3D;&quot;http:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;2ov8x3&quot;&gt;隐私政策&lt;&#x2F;a&gt; 。
-         &lt;&#x2F;p&gt;
-       &lt;&#x2F;el-form&gt;
-       &lt;!-- 更多注册方式 --&gt;
-       &lt;div class&#x3D;&quot;more-sign&quot;&gt;
-         &lt;h6&gt;社交帐号直接注册&lt;&#x2F;h6&gt;
-         &lt;ul&gt;
-           &lt;li&gt;&lt;a id&#x3D;&quot;weixin&quot; class&#x3D;&quot;weixin&quot; target&#x3D;&quot;_blank&quot; href&#x3D;&quot;http:&#x2F;&#x2F;huaan.free.idcfengye.com&#x2F;api&#x2F;ucenter&#x2F;wx&#x2F;login&quot;&gt;&lt;i
-             class&#x3D;&quot;iconfont icon-weixin&quot;&#x2F;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-           &lt;li&gt;&lt;a id&#x3D;&quot;qq&quot; class&#x3D;&quot;qq&quot; target&#x3D;&quot;_blank&quot; href&#x3D;&quot;#&quot;&gt;&lt;i class&#x3D;&quot;iconfont icon-qq&quot;&#x2F;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-         &lt;&#x2F;ul&gt;
-       &lt;&#x2F;div&gt;
-     &lt;&#x2F;div&gt;
-   &lt;&#x2F;div&gt;
- &lt;&#x2F;template&gt;
- &lt;script&gt;
-   import &#39;~&#x2F;assets&#x2F;css&#x2F;sign.css&#39;
-   import &#39;~&#x2F;assets&#x2F;css&#x2F;iconfont.css&#39;
-   import registerApi from &#39;@&#x2F;api&#x2F;register&#39;
-   export default &#123;
-     layout: &#39;sign&#39;,
-     data() &#123;
-       return &#123;
-         params: &#123;
-           mobile: &#39;&#39;,
-           code: &#39;&#39;,
-           nickname: &#39;&#39;,
-           password: &#39;&#39;
-         &#125;,
-         sending: true,      &#x2F;&#x2F;是否发送验证码
-         second: 60,        &#x2F;&#x2F;倒计时间
-         codeTest: &#39;获取验证码&#39;
-       &#125;
-     &#125;,
-     methods: &#123;
-       &#x2F;&#x2F; 获取验证码
-       getCodeFun()&#123;
-         registerApi.getCode(this.params.mobile)
-          .then(response &#x3D;&gt;&#123;
-            this.sending &#x3D; false
-            &#x2F;&#x2F; 倒计时
-            this.timeDown()
-          &#125;)
-       &#125;,
-
-      &#x2F;&#x2F; 倒计时
-      timeDown() &#123;
-        let result &#x3D; setInterval(() &#x3D;&gt; &#123;
-          --this.second;
-          this.codeTest &#x3D; this.second
-          if (this.second &lt; 1) &#123;
-            clearInterval(result);
-            this.sending &#x3D; true;
-            &#x2F;&#x2F;this.disabled &#x3D; false;
-            this.second &#x3D; 60;
-            this.codeTest &#x3D; &quot;获取验证码&quot;
-          &#125;
-        &#125;, 1000);
-
-      &#125;,
-       &#x2F;&#x2F; 注册
-       submitRegister()&#123;
-         registerApi.registerMember(this.params)
-          .then(response &#x3D;&gt;&#123;
-            &#x2F;&#x2F;提示注册成功
-              this.$message(&#123;
-                type: &#39;success&#39;,
-                message: &quot;注册成功&quot;
-              &#125;)
-              
-            &#x2F;&#x2F; 跳转至登录页面
-            this.$router.push(&#123;path:&#39;&#x2F;login&#39;&#125;)
-          &#125;)
-       &#125;,
-       
-       checkPhone (rule, value, callback) &#123;
-         &#x2F;&#x2F;debugger
-         if (!(&#x2F;^1[34578]\d&#123;9&#125;$&#x2F;.test(value))) &#123;
-           return callback(new Error(&#39;手机号码格式不正确&#39;))
-         &#125;
-         return callback()
-       &#125;
-     &#125;
-   &#125;
-&lt;&#x2F;script&gt;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>   &lt;div class=&quot;main&quot;&gt;<br>     &lt;div class=&quot;title&quot;&gt;<br>       &lt;a href=&quot;/login&quot;&gt;登录&lt;/a&gt;<br>       &lt;span&gt;·&lt;/span&gt;<br>       &lt;a class=&quot;active&quot; href=&quot;/register&quot;&gt;注册&lt;/a&gt;<br>     &lt;/div&gt;<br>     &lt;div class=&quot;sign-up-container&quot;&gt;<br>       &lt;el-form ref=&quot;userForm&quot; :model=&quot;params&quot;&gt;<br>         &lt;el-form-item class=&quot;input-prepend restyle&quot; prop=&quot;nickname&quot; :rules=&quot;[&#123; required: true, message: &#x27;请输入你的昵称&#x27;, trigger: &#x27;blur&#x27; &#125;]&quot;&gt;<br>           &lt;div&gt;<br>             &lt;el-input type=&quot;text&quot; placeholder=&quot;你的昵称&quot; v-model=&quot;params.nickname&quot;/&gt;<br>             &lt;i class=&quot;iconfont icon-user&quot;/&gt;<br>           &lt;/div&gt;<br>         &lt;/el-form-item&gt;<br>         &lt;el-form-item class=&quot;input-prepend restyle no-radius&quot; prop=&quot;mobile&quot; :rules=&quot;[&#123; required: true, message: &#x27;请输入手机号码&#x27;, trigger: &#x27;blur&#x27; &#125;,&#123;validator: checkPhone, trigger: &#x27;blur&#x27;&#125;]&quot;&gt;<br>           &lt;div&gt;<br>             &lt;el-input type=&quot;text&quot; placeholder=&quot;手机号&quot; v-model=&quot;params.mobile&quot;/&gt;<br>             &lt;i class=&quot;iconfont icon-phone&quot;/&gt;<br>           &lt;/div&gt;<br>         &lt;/el-form-item&gt;<br>         &lt;el-form-item class=&quot;input-prepend restyle no-radius&quot; prop=&quot;code&quot; :rules=&quot;[&#123; required: true, message: &#x27;请输入验证码&#x27;, trigger: &#x27;blur&#x27; &#125;]&quot;&gt;<br>           &lt;div style=&quot;width: 100%;display: block;float: left;position: relative&quot;&gt;<br>             &lt;el-input type=&quot;text&quot; placeholder=&quot;验证码&quot; v-model=&quot;params.code&quot;/&gt;<br>             &lt;i class=&quot;iconfont icon-phone&quot;/&gt;<br>           &lt;/div&gt;<br>           &lt;div class=&quot;btn&quot; style=&quot;position:absolute;right: 0;top: 6px;width: 40%;&quot;&gt;<br>             &lt;a href=&quot;javascript:&quot; type=&quot;button&quot; @click=&quot;getCodeFun()&quot; :value=&quot;codeTest&quot; style=&quot;border: none;background-color: none&quot;&gt;&#123;&#123;codeTest&#125;&#125;&lt;/a&gt;<br>           &lt;/div&gt;<br>         &lt;/el-form-item&gt;<br>         &lt;el-form-item class=&quot;input-prepend&quot; prop=&quot;password&quot; :rules=&quot;[&#123; required: true, message: &#x27;请输入密码&#x27;, trigger: &#x27;blur&#x27; &#125;]&quot;&gt;<br>           &lt;div&gt;<br>             &lt;el-input type=&quot;password&quot; placeholder=&quot;设置密码&quot; v-model=&quot;params.password&quot;/&gt;<br>             &lt;i class=&quot;iconfont icon-password&quot;/&gt;<br>           &lt;/div&gt;<br>         &lt;/el-form-item&gt;<br>         &lt;div class=&quot;btn&quot;&gt;<br>           &lt;input type=&quot;button&quot; class=&quot;sign-up-button&quot; value=&quot;注册&quot; @click=&quot;submitRegister()&quot;&gt;<br>         &lt;/div&gt;<br>         &lt;p class=&quot;sign-up-msg&quot;&gt;<br>           点击 “注册” 即表示您同意并愿意遵守简书<br>           &lt;br&gt;<br>           &lt;a target=&quot;_blank&quot; href=&quot;http://www.jianshu.com/p/c44d171298ce&quot;&gt;用户协议&lt;/a&gt;<br>           和<br>           &lt;a target=&quot;_blank&quot; href=&quot;http://www.jianshu.com/p/2ov8x3&quot;&gt;隐私政策&lt;/a&gt; 。<br>         &lt;/p&gt;<br>       &lt;/el-form&gt;<br>       &lt;!-- 更多注册方式 --&gt;<br>       &lt;div class=&quot;more-sign&quot;&gt;<br>         &lt;h6&gt;社交帐号直接注册&lt;/h6&gt;<br>         &lt;ul&gt;<br>           &lt;li&gt;&lt;a id=&quot;weixin&quot; class=&quot;weixin&quot; target=&quot;_blank&quot; href=&quot;http://huaan.free.idcfengye.com/api/ucenter/wx/login&quot;&gt;&lt;i<br>             class=&quot;iconfont icon-weixin&quot;/&gt;&lt;/a&gt;&lt;/li&gt;<br>           &lt;li&gt;&lt;a id=&quot;qq&quot; class=&quot;qq&quot; target=&quot;_blank&quot; href=&quot;#&quot;&gt;&lt;i class=&quot;iconfont icon-qq&quot;/&gt;&lt;/a&gt;&lt;/li&gt;<br>         &lt;/ul&gt;<br>       &lt;/div&gt;<br>     &lt;/div&gt;<br>   &lt;/div&gt;<br> &lt;/template&gt;<br> &lt;script&gt;<br>   import &#x27;~/assets/css/sign.css&#x27;<br>   import &#x27;~/assets/css/iconfont.css&#x27;<br>   import registerApi from &#x27;@/api/register&#x27;<br>   export default &#123;<br>     layout: &#x27;sign&#x27;,<br>     data() &#123;<br>       return &#123;<br>         params: &#123;<br>           mobile: &#x27;&#x27;,<br>           code: &#x27;&#x27;,<br>           nickname: &#x27;&#x27;,<br>           password: &#x27;&#x27;<br>         &#125;,<br>         sending: true,      //是否发送验证码<br>         second: 60,        //倒计时间<br>         codeTest: &#x27;获取验证码&#x27;<br>       &#125;<br>     &#125;,<br>     methods: &#123;<br>       // 获取验证码<br>       getCodeFun()&#123;<br>         registerApi.getCode(this.params.mobile)<br>          .then(response =&gt;&#123;<br>            this.sending = false<br>            // 倒计时<br>            this.timeDown()<br>          &#125;)<br>       &#125;,<br><br>      // 倒计时<br>      timeDown() &#123;<br>        let result = setInterval(() =&gt; &#123;<br>          --this.second;<br>          this.codeTest = this.second<br>          if (this.second &lt; 1) &#123;<br>            clearInterval(result);<br>            this.sending = true;<br>            //this.disabled = false;<br>            this.second = 60;<br>            this.codeTest = &quot;获取验证码&quot;<br>          &#125;<br>        &#125;, 1000);<br><br>      &#125;,<br>       // 注册<br>       submitRegister()&#123;<br>         registerApi.registerMember(this.params)<br>          .then(response =&gt;&#123;<br>            //提示注册成功<br>              this.$message(&#123;<br>                type: &#x27;success&#x27;,<br>                message: &quot;注册成功&quot;<br>              &#125;)<br>              <br>            // 跳转至登录页面<br>            this.$router.push(&#123;path:&#x27;/login&#x27;&#125;)<br>          &#125;)<br>       &#125;,<br>       <br>       checkPhone (rule, value, callback) &#123;<br>         //debugger<br>         if (!(/^1[34578]\d&#123;9&#125;$/.test(value))) &#123;<br>           return callback(new Error(&#x27;手机号码格式不正确&#x27;))<br>         &#125;<br>         return callback()<br>       &#125;<br>     &#125;<br>   &#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
 
 
 
@@ -1023,275 +391,31 @@ export default &#123;
 <p>5、 根据返回的用户信息，在页面显示对应的数据</p>
 <p><img src="/myBlog/day12-%E7%99%BB%E5%BD%95%E4%B8%9A%E5%8A%A1/image-20220107000936830.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220107000936830"></p>
 <h3 id="1、在api文件夹中创建登录的js文件，定义接口"><a href="#1、在api文件夹中创建登录的js文件，定义接口" class="headerlink" title="1、在api文件夹中创建登录的js文件，定义接口"></a>1、在api文件夹中创建登录的js文件，定义接口</h3><p><strong>login.js</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">import request from &#39;@&#x2F;utils&#x2F;request&#39;
-export default &#123;
-    &#x2F;&#x2F; 登录
-  submitLoginUser(userInfo) &#123;
-    return request(&#123;
-      url: &#96;&#x2F;educenter&#x2F;member&#x2F;login&#96;,
-      method: &#39;post&#39;,
-      data:userInfo
-    &#125;)
-  &#125;,
-  &#x2F;&#x2F; 根据token获取用户信息
-  getUserInfo()&#123;
-    return request(&#123;
-      url: &#96;&#x2F;educenter&#x2F;member&#x2F;getMemberInfo&#96;,
-      method: &#39;get&#39;
-    &#125;)
-  &#125;
-&#125;</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> request <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/utils/request&#x27;</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>    <span class="hljs-comment">// 登录</span><br>  <span class="hljs-function"><span class="hljs-title">submitLoginUser</span>(<span class="hljs-params">userInfo</span>)</span> &#123;<br>    <span class="hljs-keyword">return</span> request(&#123;<br>      <span class="hljs-attr">url</span>: <span class="hljs-string">`/educenter/member/login`</span>,<br>      <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;post&#x27;</span>,<br>      <span class="hljs-attr">data</span>:userInfo<br>    &#125;)<br>  &#125;,<br>  <span class="hljs-comment">// 根据token获取用户信息</span><br>  <span class="hljs-function"><span class="hljs-title">getUserInfo</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">return</span> request(&#123;<br>      <span class="hljs-attr">url</span>: <span class="hljs-string">`/educenter/member/getMemberInfo`</span>,<br>      <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;get&#x27;</span><br>    &#125;)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="2、在pages文件夹中创建登录页面，调用方法"><a href="#2、在pages文件夹中创建登录页面，调用方法" class="headerlink" title="2、在pages文件夹中创建登录页面，调用方法"></a>2、在pages文件夹中创建登录页面，调用方法</h3><p>（1）安装js-cookie插件</p>
 <p>npm install js-cookie</p>
 <p>（2）login.vue</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
-   &lt;div class&#x3D;&quot;main&quot;&gt;
-     &lt;div class&#x3D;&quot;title&quot;&gt;
-       &lt;a class&#x3D;&quot;active&quot; href&#x3D;&quot;&#x2F;login&quot;&gt;登录&lt;&#x2F;a&gt;
-       &lt;span&gt;·&lt;&#x2F;span&gt;
-       &lt;a href&#x3D;&quot;&#x2F;register&quot;&gt;注册&lt;&#x2F;a&gt;
-     &lt;&#x2F;div&gt;
-     &lt;div class&#x3D;&quot;sign-up-container&quot;&gt;
-       &lt;el-form ref&#x3D;&quot;userForm&quot; :model&#x3D;&quot;user&quot;&gt;
-         &lt;el-form-item class&#x3D;&quot;input-prepend restyle&quot; prop&#x3D;&quot;mobile&quot; :rules&#x3D;&quot;[&#123; required: true, message: &#39;请输入手机号码&#39;, trigger: &#39;blur&#39; &#125;,&#123;validator: checkPhone, trigger: &#39;blur&#39;&#125;]&quot;&gt;
-           &lt;div &gt;
-             &lt;el-input type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;手机号&quot; v-model&#x3D;&quot;user.mobile&quot;&#x2F;&gt;
-             &lt;i class&#x3D;&quot;iconfont icon-phone&quot; &#x2F;&gt;
-           &lt;&#x2F;div&gt;
-         &lt;&#x2F;el-form-item&gt;
-         &lt;el-form-item class&#x3D;&quot;input-prepend&quot; prop&#x3D;&quot;password&quot; :rules&#x3D;&quot;[&#123; required: true, message: &#39;请输入密码&#39;, trigger: &#39;blur&#39; &#125;]&quot;&gt;
-           &lt;div&gt;
-             &lt;el-input type&#x3D;&quot;password&quot; placeholder&#x3D;&quot;密码&quot; v-model&#x3D;&quot;user.password&quot;&#x2F;&gt;
-             &lt;i class&#x3D;&quot;iconfont icon-password&quot;&#x2F;&gt;
-           &lt;&#x2F;div&gt;
-         &lt;&#x2F;el-form-item&gt;
-         &lt;div class&#x3D;&quot;btn&quot;&gt;
-           &lt;input type&#x3D;&quot;button&quot; class&#x3D;&quot;sign-in-button&quot; value&#x3D;&quot;登录&quot; @click&#x3D;&quot;submitLogin()&quot;&gt;
-         &lt;&#x2F;div&gt;
-       &lt;&#x2F;el-form&gt;
-       &lt;!-- 更多登录方式 --&gt;
-       &lt;div class&#x3D;&quot;more-sign&quot;&gt;
-         &lt;h6&gt;社交帐号登录&lt;&#x2F;h6&gt;
-         &lt;ul&gt;
-           &lt;li&gt;&lt;a id&#x3D;&quot;weixin&quot; class&#x3D;&quot;weixin&quot; target&#x3D;&quot;_blank&quot; href&#x3D;&quot;http:&#x2F;&#x2F;qy.free.idcfengye.com&#x2F;api&#x2F;ucenter&#x2F;weixinLogin&#x2F;login&quot;&gt;&lt;i class&#x3D;&quot;iconfont icon-weixin&quot;&#x2F;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-           &lt;li&gt;&lt;a id&#x3D;&quot;qq&quot; class&#x3D;&quot;qq&quot; target&#x3D;&quot;_blank&quot; href&#x3D;&quot;#&quot;&gt;&lt;i class&#x3D;&quot;iconfont icon-qq&quot;&#x2F;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-         &lt;&#x2F;ul&gt;
-       &lt;&#x2F;div&gt;
-     &lt;&#x2F;div&gt;
-   &lt;&#x2F;div&gt;
- &lt;&#x2F;template&gt;
- &lt;script&gt;
-   import &#39;~&#x2F;assets&#x2F;css&#x2F;sign.css&#39;
-   import &#39;~&#x2F;assets&#x2F;css&#x2F;iconfont.css&#39;
-
-   import cookie from &#39;js-cookie&#39;
-   import loginApi from &#39;@&#x2F;api&#x2F;login&#39;
-   export default &#123;
-     layout: &#39;sign&#39;,
-     data () &#123;
-       return &#123;
-         user:&#123;
-           mobile:&#39;&#39;,
-           password:&#39;&#39;
-         &#125;,
-         loginInfo:&#123;&#125;
-       &#125;
-     &#125;,
-     methods: &#123;
-       &#x2F;&#x2F; 登录
-       submitLogin()&#123;
-         &#x2F;&#x2F; 第一步调用接口获取登录token值
-         loginApi.submitLoginUser(this.user)
-          .then(response &#x3D;&gt;&#123;
-            &#x2F;&#x2F; 第二步，将获取到的token值放到cookie中
-            cookie.set(&#39;guli_token&#39;,response.data.data.token,&#123; domain: &#39;localhost&#39; &#125;)
-
-            &#x2F;&#x2F; 第四步，根据token的值，调用接口，获取用户数据，并存入cookie中
-            loginApi.getUserInfo()
-              .then(response &#x3D;&gt;&#123;
-                this.loginInfo &#x3D; response.data.data.userInfo
-                &#x2F;&#x2F; 将得到的用户信息存入cookie中
-                cookie.set(&quot;guli_ucenter&quot;,JSON.stringify(this.loginInfo),&#123; domain: &#39;localhost&#39; &#125;)
-                &#x2F;&#x2F; 跳转页面
-                window.location.href &#x3D; &quot;&#x2F;&quot;
-              &#125;)
-          &#125;)
-          
-       &#125;,
-       checkPhone (rule, value, callback) &#123;
-         &#x2F;&#x2F;debugger
-         if (!(&#x2F;^1[34578]\d&#123;9&#125;$&#x2F;.test(value))) &#123;
-           return callback(new Error(&#39;手机号码格式不正确&#39;))
-         &#125;
-         return callback()
-       &#125;
-     &#125;
-   &#125;
- &lt;&#x2F;script&gt;
-
-&lt;style&gt;
-
-   .el-form-item__error&#123;
-
-    z-index: 9999999;
-
-  &#125;
-
-&lt;&#x2F;style&gt;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>   &lt;div class=&quot;main&quot;&gt;<br>     &lt;div class=&quot;title&quot;&gt;<br>       &lt;a class=&quot;active&quot; href=&quot;/login&quot;&gt;登录&lt;/a&gt;<br>       &lt;span&gt;·&lt;/span&gt;<br>       &lt;a href=&quot;/register&quot;&gt;注册&lt;/a&gt;<br>     &lt;/div&gt;<br>     &lt;div class=&quot;sign-up-container&quot;&gt;<br>       &lt;el-form ref=&quot;userForm&quot; :model=&quot;user&quot;&gt;<br>         &lt;el-form-item class=&quot;input-prepend restyle&quot; prop=&quot;mobile&quot; :rules=&quot;[&#123; required: true, message: &#x27;请输入手机号码&#x27;, trigger: &#x27;blur&#x27; &#125;,&#123;validator: checkPhone, trigger: &#x27;blur&#x27;&#125;]&quot;&gt;<br>           &lt;div &gt;<br>             &lt;el-input type=&quot;text&quot; placeholder=&quot;手机号&quot; v-model=&quot;user.mobile&quot;/&gt;<br>             &lt;i class=&quot;iconfont icon-phone&quot; /&gt;<br>           &lt;/div&gt;<br>         &lt;/el-form-item&gt;<br>         &lt;el-form-item class=&quot;input-prepend&quot; prop=&quot;password&quot; :rules=&quot;[&#123; required: true, message: &#x27;请输入密码&#x27;, trigger: &#x27;blur&#x27; &#125;]&quot;&gt;<br>           &lt;div&gt;<br>             &lt;el-input type=&quot;password&quot; placeholder=&quot;密码&quot; v-model=&quot;user.password&quot;/&gt;<br>             &lt;i class=&quot;iconfont icon-password&quot;/&gt;<br>           &lt;/div&gt;<br>         &lt;/el-form-item&gt;<br>         &lt;div class=&quot;btn&quot;&gt;<br>           &lt;input type=&quot;button&quot; class=&quot;sign-in-button&quot; value=&quot;登录&quot; @click=&quot;submitLogin()&quot;&gt;<br>         &lt;/div&gt;<br>       &lt;/el-form&gt;<br>       &lt;!-- 更多登录方式 --&gt;<br>       &lt;div class=&quot;more-sign&quot;&gt;<br>         &lt;h6&gt;社交帐号登录&lt;/h6&gt;<br>         &lt;ul&gt;<br>           &lt;li&gt;&lt;a id=&quot;weixin&quot; class=&quot;weixin&quot; target=&quot;_blank&quot; href=&quot;http://qy.free.idcfengye.com/api/ucenter/weixinLogin/login&quot;&gt;&lt;i class=&quot;iconfont icon-weixin&quot;/&gt;&lt;/a&gt;&lt;/li&gt;<br>           &lt;li&gt;&lt;a id=&quot;qq&quot; class=&quot;qq&quot; target=&quot;_blank&quot; href=&quot;#&quot;&gt;&lt;i class=&quot;iconfont icon-qq&quot;/&gt;&lt;/a&gt;&lt;/li&gt;<br>         &lt;/ul&gt;<br>       &lt;/div&gt;<br>     &lt;/div&gt;<br>   &lt;/div&gt;<br> &lt;/template&gt;<br> &lt;script&gt;<br>   import &#x27;~/assets/css/sign.css&#x27;<br>   import &#x27;~/assets/css/iconfont.css&#x27;<br><br>   import cookie from &#x27;js-cookie&#x27;<br>   import loginApi from &#x27;@/api/login&#x27;<br>   export default &#123;<br>     layout: &#x27;sign&#x27;,<br>     data () &#123;<br>       return &#123;<br>         user:&#123;<br>           mobile:&#x27;&#x27;,<br>           password:&#x27;&#x27;<br>         &#125;,<br>         loginInfo:&#123;&#125;<br>       &#125;<br>     &#125;,<br>     methods: &#123;<br>       // 登录<br>       submitLogin()&#123;<br>         // 第一步调用接口获取登录token值<br>         loginApi.submitLoginUser(this.user)<br>          .then(response =&gt;&#123;<br>            // 第二步，将获取到的token值放到cookie中<br>            cookie.set(&#x27;guli_token&#x27;,response.data.data.token,&#123; domain: &#x27;localhost&#x27; &#125;)<br><br>            // 第四步，根据token的值，调用接口，获取用户数据，并存入cookie中<br>            loginApi.getUserInfo()<br>              .then(response =&gt;&#123;<br>                this.loginInfo = response.data.data.userInfo<br>                // 将得到的用户信息存入cookie中<br>                cookie.set(&quot;guli_ucenter&quot;,JSON.stringify(this.loginInfo),&#123; domain: &#x27;localhost&#x27; &#125;)<br>                // 跳转页面<br>                window.location.href = &quot;/&quot;<br>              &#125;)<br>          &#125;)<br>          <br>       &#125;,<br>       checkPhone (rule, value, callback) &#123;<br>         //debugger<br>         if (!(/^1[34578]\d&#123;9&#125;$/.test(value))) &#123;<br>           return callback(new Error(&#x27;手机号码格式不正确&#x27;))<br>         &#125;<br>         return callback()<br>       &#125;<br>     &#125;<br>   &#125;<br> &lt;/script&gt;<br><br>&lt;style&gt;<br><br>   .el-form-item__error&#123;<br><br>    z-index: 9999999;<br><br>  &#125;<br><br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
 
 
 
-<h3 id="3、在request-js添加拦截器，用于传递token信息"><a href="#3、在request-js添加拦截器，用于传递token信息" class="headerlink" title="3、在request.js添加拦截器，用于传递token信息"></a>3、在request.js添加拦截器，用于传递token信息</h3><div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">
-import axios from &#39;axios&#39;
-import cookie from &#39;js-cookie&#39;
-import &#123; MessageBox, Message &#125; from &#39;element-ui&#39;
-&#x2F;&#x2F; 创建axios实例
-const service &#x3D; axios.create(&#123;
-  baseURL: &#39;http:&#x2F;&#x2F;localhost:9001&#39;, &#x2F;&#x2F; api的base_url
-  timeout: 20000 &#x2F;&#x2F; 请求超时时间
-&#125;)
-
-&#x2F;&#x2F; 第三步，编写一个拦截器
-&#x2F;&#x2F; http request 拦截器
-service.interceptors.request.use(
-  config &#x3D;&gt; &#123;
-  &#x2F;&#x2F;debugger
-  if (cookie.get(&#39;guli_token&#39;)) &#123;
-    &#x2F;&#x2F; 将token的值存入到请求头中
-    config.headers[&#39;token&#39;] &#x3D; cookie.get(&#39;guli_token&#39;);
-  &#125;
-    return config
-  &#125;,
-  err &#x3D;&gt; &#123;
-  return Promise.reject(err);
-&#125;)
-
-&#x2F;&#x2F; http response 拦截器
-service.interceptors.response.use(
-  response &#x3D;&gt; &#123;
-    &#x2F;&#x2F;debugger
-    if (response.data.code &#x3D;&#x3D; 28004) &#123;
-        console.log(&quot;response.data.resultCode是28004&quot;)
-        &#x2F;&#x2F; 返回 错误代码-1 清除ticket信息并跳转到登录页面
-        &#x2F;&#x2F;debugger
-        window.location.href&#x3D;&quot;&#x2F;login&quot;
-        return
-    &#125;else&#123;
-      if (response.data.code !&#x3D;&#x3D; 20000) &#123;
-        &#x2F;&#x2F;25000：订单支付中，不做任何提示
-        if(response.data.code !&#x3D; 25000) &#123;
-          Message(&#123;
-            message: response.data.message || &#39;error&#39;,
-            type: &#39;error&#39;,
-            duration: 5 * 1000
-          &#125;)
-        &#125;
-      &#125; else &#123;
-        return response;
-      &#125;
-    &#125;
-  &#125;,
-  error &#x3D;&gt; &#123;
-    return Promise.reject(error.response)   &#x2F;&#x2F; 返回接口返回的错误信息
-&#125;);
-
-export default service</code></pre></div>
+<h3 id="3、在request-js添加拦截器，用于传递token信息"><a href="#3、在request-js添加拦截器，用于传递token信息" class="headerlink" title="3、在request.js添加拦截器，用于传递token信息"></a>3、在request.js添加拦截器，用于传递token信息</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs js"><br><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;axios&#x27;</span><br><span class="hljs-keyword">import</span> cookie <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;js-cookie&#x27;</span><br><span class="hljs-keyword">import</span> &#123; MessageBox, Message &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;element-ui&#x27;</span><br><span class="hljs-comment">// 创建axios实例</span><br><span class="hljs-keyword">const</span> service = axios.create(&#123;<br>  <span class="hljs-attr">baseURL</span>: <span class="hljs-string">&#x27;http://localhost:9001&#x27;</span>, <span class="hljs-comment">// api的base_url</span><br>  <span class="hljs-attr">timeout</span>: <span class="hljs-number">20000</span> <span class="hljs-comment">// 请求超时时间</span><br>&#125;)<br><br><span class="hljs-comment">// 第三步，编写一个拦截器</span><br><span class="hljs-comment">// http request 拦截器</span><br>service.interceptors.request.use(<br>  <span class="hljs-function"><span class="hljs-params">config</span> =&gt;</span> &#123;<br>  <span class="hljs-comment">//debugger</span><br>  <span class="hljs-keyword">if</span> (cookie.get(<span class="hljs-string">&#x27;guli_token&#x27;</span>)) &#123;<br>    <span class="hljs-comment">// 将token的值存入到请求头中</span><br>    config.headers[<span class="hljs-string">&#x27;token&#x27;</span>] = cookie.get(<span class="hljs-string">&#x27;guli_token&#x27;</span>);<br>  &#125;<br>    <span class="hljs-keyword">return</span> config<br>  &#125;,<br>  <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(err);<br>&#125;)<br><br><span class="hljs-comment">// http response 拦截器</span><br>service.interceptors.response.use(<br>  <span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> &#123;<br>    <span class="hljs-comment">//debugger</span><br>    <span class="hljs-keyword">if</span> (response.data.code == <span class="hljs-number">28004</span>) &#123;<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;response.data.resultCode是28004&quot;</span>)<br>        <span class="hljs-comment">// 返回 错误代码-1 清除ticket信息并跳转到登录页面</span><br>        <span class="hljs-comment">//debugger</span><br>        <span class="hljs-built_in">window</span>.location.href=<span class="hljs-string">&quot;/login&quot;</span><br>        <span class="hljs-keyword">return</span><br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>      <span class="hljs-keyword">if</span> (response.data.code !== <span class="hljs-number">20000</span>) &#123;<br>        <span class="hljs-comment">//25000：订单支付中，不做任何提示</span><br>        <span class="hljs-keyword">if</span>(response.data.code != <span class="hljs-number">25000</span>) &#123;<br>          Message(&#123;<br>            <span class="hljs-attr">message</span>: response.data.message || <span class="hljs-string">&#x27;error&#x27;</span>,<br>            <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;error&#x27;</span>,<br>            <span class="hljs-attr">duration</span>: <span class="hljs-number">5</span> * <span class="hljs-number">1000</span><br>          &#125;)<br>        &#125;<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> response;<br>      &#125;<br>    &#125;<br>  &#125;,<br>  <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(error.response)   <span class="hljs-comment">// 返回接口返回的错误信息</span><br>&#125;);<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> service<br></code></pre></td></tr></table></figure>
 
 
 
 <h3 id="4、修改layouts中的default-vue页面"><a href="#4、修改layouts中的default-vue页面" class="headerlink" title="4、修改layouts中的default.vue页面"></a>4、修改layouts中的default.vue页面</h3><p>（1）显示登录之后的用户信息</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;script&gt;
- import &quot;~&#x2F;assets&#x2F;css&#x2F;reset.css&quot;;
- import &quot;~&#x2F;assets&#x2F;css&#x2F;theme.css&quot;;
- import &quot;~&#x2F;assets&#x2F;css&#x2F;global.css&quot;;
- import &quot;~&#x2F;assets&#x2F;css&#x2F;web.css&quot;;
-   import cookie from &#39;js-cookie&#39;
-   import loginApi from &#39;@&#x2F;api&#x2F;login&#39;
- export default &#123;
-   data()&#123;
-     return&#123;
-      token: &#39;&#39;,
-      loginInfo: &#123;
-        id: &#39;&#39;,
-        age: &#39;&#39;,
-        avatar: &#39;&#39;,
-        mobile: &#39;&#39;,
-        nickname: &#39;&#39;,
-        sex: &#39;&#39;
-      &#125;
-     &#125;
-   &#125;,
-   created()&#123;
-    this.showUserInfo()
-   &#125;,
-   methods:&#123;
-     &#x2F;&#x2F; 显示用户信息，从cookie中取出用户信息
-     showUserInfo()&#123;
-       loginApi.getUserInfo()
-       .then(response &#x3D;&gt;&#123;
-         &#x2F;&#x2F; 第五步，从cookie中取出用户信息，取出来的是字符串
-          var userStr &#x3D; cookie.get(&quot;guli_ucenter&quot;)
-          &#x2F;&#x2F; 判断取出来的字符串是有为空
-          if(userStr)&#123;
-          &#x2F;&#x2F; 将取出来的字符串转为json，并赋值给loginInfo
-          this.loginInfo &#x3D; JSON.parse(userStr)
-          &#125;
-
-       &#125;)
-     &#125;
-   &#125;
- &#125;;
- &lt;&#x2F;script&gt;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;script&gt;<br> import &quot;~/assets/css/reset.css&quot;;<br> import &quot;~/assets/css/theme.css&quot;;<br> import &quot;~/assets/css/global.css&quot;;<br> import &quot;~/assets/css/web.css&quot;;<br>   import cookie from &#x27;js-cookie&#x27;<br>   import loginApi from &#x27;@/api/login&#x27;<br> export default &#123;<br>   data()&#123;<br>     return&#123;<br>      token: &#x27;&#x27;,<br>      loginInfo: &#123;<br>        id: &#x27;&#x27;,<br>        age: &#x27;&#x27;,<br>        avatar: &#x27;&#x27;,<br>        mobile: &#x27;&#x27;,<br>        nickname: &#x27;&#x27;,<br>        sex: &#x27;&#x27;<br>      &#125;<br>     &#125;<br>   &#125;,<br>   created()&#123;<br>    this.showUserInfo()<br>   &#125;,<br>   methods:&#123;<br>     // 显示用户信息，从cookie中取出用户信息<br>     showUserInfo()&#123;<br>       loginApi.getUserInfo()<br>       .then(response =&gt;&#123;<br>         // 第五步，从cookie中取出用户信息，取出来的是字符串<br>          var userStr = cookie.get(&quot;guli_ucenter&quot;)<br>          // 判断取出来的字符串是有为空<br>          if(userStr)&#123;<br>          // 将取出来的字符串转为json，并赋值给loginInfo<br>          this.loginInfo = JSON.parse(userStr)<br>          &#125;<br><br>       &#125;)<br>     &#125;<br>   &#125;<br> &#125;;<br> &lt;/script&gt;<br></code></pre></td></tr></table></figure>
 
 
 
 <p>（2）default.vue页面显示登录之后的用户信息</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!-- &#x2F; nav --&gt;
-          &lt;ul class&#x3D;&quot;h-r-login&quot;&gt;
-              &lt;li v-if&#x3D;&quot;!loginInfo.id&quot; id&#x3D;&quot;no-login&quot;&gt;
-                  &lt;a href&#x3D;&quot;&#x2F;login&quot; title&#x3D;&quot;登录&quot;&gt;
-                      &lt;em class&#x3D;&quot;icon18 login-icon&quot;&gt;&amp;nbsp;&lt;&#x2F;em&gt;
-                      &lt;span class&#x3D;&quot;vam ml5&quot;&gt;登录&lt;&#x2F;span&gt;
-                  &lt;&#x2F;a&gt;
-                  |
-                  &lt;a href&#x3D;&quot;&#x2F;register&quot; title&#x3D;&quot;注册&quot;&gt;
-                      &lt;span class&#x3D;&quot;vam ml5&quot;&gt;注册&lt;&#x2F;span&gt;
-                  &lt;&#x2F;a&gt;
-              &lt;&#x2F;li&gt;
-              &lt;li v-if&#x3D;&quot;loginInfo.id&quot; id&#x3D;&quot;is-login-one&quot; class&#x3D;&quot;mr10&quot;&gt;
-                  &lt;a id&#x3D;&quot;headerMsgCountId&quot; href&#x3D;&quot;#&quot; title&#x3D;&quot;消息&quot;&gt;
-                      &lt;em class&#x3D;&quot;icon18 news-icon&quot;&gt;&amp;nbsp;&lt;&#x2F;em&gt;
-                  &lt;&#x2F;a&gt;
-                  &lt;q class&#x3D;&quot;red-point&quot; style&#x3D;&quot;display: none&quot;&gt;&amp;nbsp;&lt;&#x2F;q&gt;
-              &lt;&#x2F;li&gt;
-              &lt;li v-if&#x3D;&quot;loginInfo.id&quot; id&#x3D;&quot;is-login-two&quot; class&#x3D;&quot;h-r-user&quot;&gt;
-                  &lt;a href&#x3D;&quot;&#x2F;ucenter&quot; title&gt;
-                      &lt;img
-                            :src&#x3D;&quot;loginInfo.avatar&quot;
-                            width&#x3D;&quot;30&quot;
-                            height&#x3D;&quot;30&quot;
-                            class&#x3D;&quot;vam picImg&quot;
-                            alt
-                            &gt;
-                      &lt;span id&#x3D;&quot;userName&quot; class&#x3D;&quot;vam disIb&quot;&gt;&#123;&#123; loginInfo.nickname &#125;&#125;&lt;&#x2F;span&gt;
-                  &lt;&#x2F;a&gt;
-                  &lt;a href&#x3D;&quot;javascript:void(0);&quot; title&#x3D;&quot;退出&quot; @click&#x3D;&quot;logout()&quot; class&#x3D;&quot;ml5&quot;&gt;退出&lt;&#x2F;a&gt;
-              &lt;&#x2F;li&gt;
-              &lt;!-- &#x2F;未登录显示第1 li；登录后显示第2，3 li --&gt;
-          &lt;&#x2F;ul&gt;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;!-- / nav --&gt;<br>          &lt;ul class=&quot;h-r-login&quot;&gt;<br>              &lt;li v-if=&quot;!loginInfo.id&quot; id=&quot;no-login&quot;&gt;<br>                  &lt;a href=&quot;/login&quot; title=&quot;登录&quot;&gt;<br>                      &lt;em class=&quot;icon18 login-icon&quot;&gt;&amp;nbsp;&lt;/em&gt;<br>                      &lt;span class=&quot;vam ml5&quot;&gt;登录&lt;/span&gt;<br>                  &lt;/a&gt;<br>                  |<br>                  &lt;a href=&quot;/register&quot; title=&quot;注册&quot;&gt;<br>                      &lt;span class=&quot;vam ml5&quot;&gt;注册&lt;/span&gt;<br>                  &lt;/a&gt;<br>              &lt;/li&gt;<br>              &lt;li v-if=&quot;loginInfo.id&quot; id=&quot;is-login-one&quot; class=&quot;mr10&quot;&gt;<br>                  &lt;a id=&quot;headerMsgCountId&quot; href=&quot;#&quot; title=&quot;消息&quot;&gt;<br>                      &lt;em class=&quot;icon18 news-icon&quot;&gt;&amp;nbsp;&lt;/em&gt;<br>                  &lt;/a&gt;<br>                  &lt;q class=&quot;red-point&quot; style=&quot;display: none&quot;&gt;&amp;nbsp;&lt;/q&gt;<br>              &lt;/li&gt;<br>              &lt;li v-if=&quot;loginInfo.id&quot; id=&quot;is-login-two&quot; class=&quot;h-r-user&quot;&gt;<br>                  &lt;a href=&quot;/ucenter&quot; title&gt;<br>                      &lt;img<br>                            :src=&quot;loginInfo.avatar&quot;<br>                            width=&quot;30&quot;<br>                            height=&quot;30&quot;<br>                            class=&quot;vam picImg&quot;<br>                            alt<br>                            &gt;<br>                      &lt;span id=&quot;userName&quot; class=&quot;vam disIb&quot;&gt;&#123;&#123; loginInfo.nickname &#125;&#125;&lt;/span&gt;<br>                  &lt;/a&gt;<br>                  &lt;a href=&quot;javascript:void(0);&quot; title=&quot;退出&quot; @click=&quot;logout()&quot; class=&quot;ml5&quot;&gt;退出&lt;/a&gt;<br>              &lt;/li&gt;<br>              &lt;!-- /未登录显示第1 li；登录后显示第2，3 li --&gt;<br>          &lt;/ul&gt;<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="退出登录"><a href="#退出登录" class="headerlink" title="退出登录"></a>退出登录</h2><p>methods</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&#x2F;&#x2F; 退出登录
-logout()&#123;
-  cookie.set(&#39;guli_token&#39;,&#39;&#39;,&#123; domain: &#39;localhost&#39; &#125;)
-  cookie.set(&quot;guli_ucenter&quot;,&#39;&#39;,&#123; domain: &#39;localhost&#39; &#125;)
-
-  &#x2F;&#x2F; 跳转页面
-  window.location.href &#x3D; &quot;&#x2F;&quot;
-&#125;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs vue">// 退出登录<br>logout()&#123;<br>  cookie.set(&#x27;guli_token&#x27;,&#x27;&#x27;,&#123; domain: &#x27;localhost&#x27; &#125;)<br>  cookie.set(&quot;guli_ucenter&quot;,&#x27;&#x27;,&#123; domain: &#x27;localhost&#x27; &#125;)<br><br>  // 跳转页面<br>  window.location.href = &quot;/&quot;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
               
@@ -1598,12 +722,6 @@ logout()&#123;
   });
 </script>
 
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/components/prism-core.min.js" ></script>
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js" ></script>
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script>
   (function() {

@@ -16,12 +16,12 @@
   <meta name="author" content="Ten">
   <meta name="keywords" content="">
   
-    <meta name="description" content="SpringBoot-2.4.9初始化工程该springboot工程一整合mysql，mybatisPlus，mybatis-plus-generator，lombok，swagger 仓库地址：https:&#x2F;&#x2F;github.com&#x2F;No-Ten&#x2F;springboot_init 通过git clone git clone git@github.com:No-Ten&#x2F;springboot_">
+    <meta name="description" content="SpringBoot-2.4.9初始化工程该springboot工程一整合mysql，mybatisPlus，mybatis-plus-generator，lombok，swagger 仓库地址：https:&#x2F;&#x2F;github.com&#x2F;No-Ten&#x2F;springboot_init 通过git clone 1git clone git@github.com:No-Ten&#x2F;springboot_init">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot-2.4.9初始化工程">
 <meta property="og:url" content="https://no-ten.github.io/SpringBoot-2.4.9%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E7%A8%8B/index.html">
 <meta property="og:site_name" content="TBlog">
-<meta property="og:description" content="SpringBoot-2.4.9初始化工程该springboot工程一整合mysql，mybatisPlus，mybatis-plus-generator，lombok，swagger 仓库地址：https:&#x2F;&#x2F;github.com&#x2F;No-Ten&#x2F;springboot_init 通过git clone git clone git@github.com:No-Ten&#x2F;springboot_">
+<meta property="og:description" content="SpringBoot-2.4.9初始化工程该springboot工程一整合mysql，mybatisPlus，mybatis-plus-generator，lombok，swagger 仓库地址：https:&#x2F;&#x2F;github.com&#x2F;No-Ten&#x2F;springboot_init 通过git clone 1git clone git@github.com:No-Ten&#x2F;springboot_init">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-01-14T08:25:50.000Z">
 <meta property="article:modified_time" content="2023-01-14T08:25:36.490Z">
@@ -42,8 +42,6 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
@@ -227,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.2k 字
+          3.9k 字
         
       </span>
     
@@ -282,141 +280,16 @@
               <h1 id="SpringBoot-2-4-9初始化工程"><a href="#SpringBoot-2-4-9初始化工程" class="headerlink" title="SpringBoot-2.4.9初始化工程"></a>SpringBoot-2.4.9初始化工程</h1><p>该springboot工程一整合mysql，mybatisPlus，mybatis-plus-generator，lombok，swagger</p>
 <p>仓库地址：<a target="_blank" rel="noopener" href="https://github.com/No-Ten/springboot_init">https://github.com/No-Ten/springboot_init</a></p>
 <p>通过git clone</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git clone git@github.com:No-Ten&#x2F;springboot_init.git</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> git@github.com:No-Ten/springboot_init.git<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="版本依赖"><a href="#版本依赖" class="headerlink" title="版本依赖"></a>版本依赖</h2><p>pom.xml</p>
-<div class="code-wrapper"><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">&lt;dependencies&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-web&lt;&#x2F;artifactId&gt;
-    &lt;&#x2F;dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-test&lt;&#x2F;artifactId&gt;
-        &lt;scope&gt;test&lt;&#x2F;scope&gt;
-    &lt;&#x2F;dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;mysql&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;mysql-connector-java&lt;&#x2F;artifactId&gt;
-        &lt;scope&gt;runtime&lt;&#x2F;scope&gt;
-    &lt;&#x2F;dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-jdbc&lt;&#x2F;artifactId&gt;
-    &lt;&#x2F;dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;com.baomidou&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;mybatis-plus-boot-starter&lt;&#x2F;artifactId&gt;
-        &lt;version&gt;3.5.1&lt;&#x2F;version&gt;
-    &lt;&#x2F;dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.projectlombok&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;lombok&lt;&#x2F;artifactId&gt;
-    &lt;&#x2F;dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.springfox&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;springfox-boot-starter&lt;&#x2F;artifactId&gt;
-        &lt;version&gt;3.0.0&lt;&#x2F;version&gt;
-    &lt;&#x2F;dependency&gt;
-
-    &lt;!-- 代码自动生成器 --&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;com.baomidou&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;mybatis-plus-generator&lt;&#x2F;artifactId&gt;
-        &lt;version&gt;3.5.1&lt;&#x2F;version&gt;
-    &lt;&#x2F;dependency&gt;
-    &lt;!-- freemarker 模块引擎 --&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-freemarker&lt;&#x2F;artifactId&gt;
-    &lt;&#x2F;dependency&gt;
-
-&lt;&#x2F;dependencies&gt;</code></pre></div>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>mysql<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mysql-connector-java<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>runtime<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-jdbc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.baomidou<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mybatis-plus-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.5.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.projectlombok<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>lombok<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.springfox<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>springfox-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!-- 代码自动生成器 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.baomidou<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mybatis-plus-generator<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.5.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- freemarker 模块引擎 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-freemarker<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 
 
-<h2 id="mybatis-plus代码生成器"><a href="#mybatis-plus代码生成器" class="headerlink" title="mybatis-plus代码生成器"></a>mybatis-plus代码生成器</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
- * Mybatis-Plus 自动生成代码类
- *&#x2F;
-public class Generator &#123;
-    public static void main(String[] args) &#123;
-        &#x2F;&#x2F; 获取当前文件夹
-        String currentFile &#x3D; System.getProperty(&quot;user.dir&quot;);
-        &#x2F;&#x2F; 包名
-        String packageName &#x3D; &quot;com.db&quot;;
-
-        &#x2F;&#x2F; 生成
-        FastAutoGenerator.create(&quot;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;dbdemo&quot;,&quot;root&quot;,&quot;123456&quot;)
-                .globalConfig(builder -&gt; &#123;
-                    builder.author(&quot;xxx&quot;)
-                            &#x2F;&#x2F; 开启swagger
-                            .enableSwagger()
-                            &#x2F;&#x2F; 覆盖已生成的文件
-                            .fileOverride()
-                            &#x2F;&#x2F; 禁止打开输出目录，默认值为：true
-                            .disableOpenDir()
-                            &#x2F;&#x2F; 默认值：DateType.TIME_PACK
-                            .dateType(DateType.TIME_PACK)
-                            .outputDir(currentFile + &quot;&#x2F;src&#x2F;test&#x2F;java&quot;);
-                &#125;)
-                .packageConfig(builder -&gt; &#123;
-                    &#x2F;&#x2F; 设置父包名
-                    builder.parent(packageName)
-                            &#x2F;&#x2F; 设置父包模块名
-                            .moduleName(&quot;gsdb&quot;)
-                            &#x2F;&#x2F; Entity
-                            .entity(&quot;entity&quot;)
-                            &#x2F;&#x2F; 设置dto包名
-                            .other(&quot;dto&quot;)
-                            .mapper(&quot;mapper&quot;)
-                            .service(&quot;service&quot;)
-                            .serviceImpl(&quot;service&#x2F;serviceImpl&quot;)
-                            .controller(&quot;controller&quot;)
-                            &#x2F;&#x2F; 设置mapperXml生成路径
-                            .pathInfo(Collections.singletonMap(OutputFile.mapperXml,currentFile + &quot;&#x2F;src&#x2F;test&#x2F;resources&#x2F;&quot; + packageName));
-&#x2F;&#x2F;                            .pathInfo(Collections.singletonMap(OutputFile.mapperXml,currentFile + &quot;&#x2F;src&#x2F;test&#x2F;java&#x2F;&quot; + packageName + &quot;&#x2F;gsdb&#x2F;mapper&#x2F;mapping&quot;));
-                &#125;)
-                .strategyConfig(builder -&gt; &#123;
-                    &#x2F;&#x2F; 设置需要生成的表名
-                    builder.addInclude(&quot;student&quot;)
-                            &#x2F;&#x2F; 设置过滤表前缀
-                            .addTablePrefix(&quot;t_&quot;,&quot;c_&quot;)
-                            &#x2F;&#x2F; Entity策略配置
-                            .entityBuilder()
-                            &#x2F;&#x2F; 开启Lombok
-                            .enableLombok()
-                            &#x2F;&#x2F; 开启生成实体时生成字段注释
-                            .enableTableFieldAnnotation()
-                            &#x2F;&#x2F; Mapper策略配置
-                            .mapperBuilder()
-                            &#x2F;&#x2F; 开启@Mapper注解
-                            .enableMapperAnnotation()
-                            &#x2F;&#x2F; 启用BaseColumnList
-                            &#x2F;&#x2F;.enableBaseColumnList()
-                            &#x2F;&#x2F; 启用BaseResultMap生成
-                            &#x2F;&#x2F;.enableBaseResultMap()
-                            .serviceBuilder()
-                            &#x2F;&#x2F; &quot;%sService&quot; 去掉Service接口的首字母I
-                            .formatServiceFileName(&quot;%sService&quot;)
-                            &#x2F;&#x2F; controller策略配置
-                            .controllerBuilder()
-                            &#x2F;&#x2F; 开启生成@RestController控制器
-                            .enableRestStyle()
-                            .enableHyphenStyle();
-                &#125;)
-                &#x2F;&#x2F; 使用Freemarker引擎模块，默认的是Velocity引擎模板
-                .templateEngine(new FreemarkerTemplateEngine())
-                .execute();
-    &#125;
-&#125;</code></pre></div>
+<h2 id="mybatis-plus代码生成器"><a href="#mybatis-plus代码生成器" class="headerlink" title="mybatis-plus代码生成器"></a>mybatis-plus代码生成器</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Mybatis-Plus 自动生成代码类</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Generator</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-comment">// 获取当前文件夹</span><br>        String currentFile = System.getProperty(<span class="hljs-string">&quot;user.dir&quot;</span>);<br>        <span class="hljs-comment">// 包名</span><br>        String packageName = <span class="hljs-string">&quot;com.db&quot;</span>;<br><br>        <span class="hljs-comment">// 生成</span><br>        FastAutoGenerator.create(<span class="hljs-string">&quot;jdbc:mysql://localhost:3306/dbdemo&quot;</span>,<span class="hljs-string">&quot;root&quot;</span>,<span class="hljs-string">&quot;123456&quot;</span>)<br>                .globalConfig(builder -&gt; &#123;<br>                    builder.author(<span class="hljs-string">&quot;xxx&quot;</span>)<br>                            <span class="hljs-comment">// 开启swagger</span><br>                            .enableSwagger()<br>                            <span class="hljs-comment">// 覆盖已生成的文件</span><br>                            .fileOverride()<br>                            <span class="hljs-comment">// 禁止打开输出目录，默认值为：true</span><br>                            .disableOpenDir()<br>                            <span class="hljs-comment">// 默认值：DateType.TIME_PACK</span><br>                            .dateType(DateType.TIME_PACK)<br>                            .outputDir(currentFile + <span class="hljs-string">&quot;/src/test/java&quot;</span>);<br>                &#125;)<br>                .packageConfig(builder -&gt; &#123;<br>                    <span class="hljs-comment">// 设置父包名</span><br>                    builder.parent(packageName)<br>                            <span class="hljs-comment">// 设置父包模块名</span><br>                            .moduleName(<span class="hljs-string">&quot;gsdb&quot;</span>)<br>                            <span class="hljs-comment">// Entity</span><br>                            .entity(<span class="hljs-string">&quot;entity&quot;</span>)<br>                            <span class="hljs-comment">// 设置dto包名</span><br>                            .other(<span class="hljs-string">&quot;dto&quot;</span>)<br>                            .mapper(<span class="hljs-string">&quot;mapper&quot;</span>)<br>                            .service(<span class="hljs-string">&quot;service&quot;</span>)<br>                            .serviceImpl(<span class="hljs-string">&quot;service/serviceImpl&quot;</span>)<br>                            .controller(<span class="hljs-string">&quot;controller&quot;</span>)<br>                            <span class="hljs-comment">// 设置mapperXml生成路径</span><br>                            .pathInfo(Collections.singletonMap(OutputFile.mapperXml,currentFile + <span class="hljs-string">&quot;/src/test/resources/&quot;</span> + packageName));<br><span class="hljs-comment">//                            .pathInfo(Collections.singletonMap(OutputFile.mapperXml,currentFile + &quot;/src/test/java/&quot; + packageName + &quot;/gsdb/mapper/mapping&quot;));</span><br>                &#125;)<br>                .strategyConfig(builder -&gt; &#123;<br>                    <span class="hljs-comment">// 设置需要生成的表名</span><br>                    builder.addInclude(<span class="hljs-string">&quot;student&quot;</span>)<br>                            <span class="hljs-comment">// 设置过滤表前缀</span><br>                            .addTablePrefix(<span class="hljs-string">&quot;t_&quot;</span>,<span class="hljs-string">&quot;c_&quot;</span>)<br>                            <span class="hljs-comment">// Entity策略配置</span><br>                            .entityBuilder()<br>                            <span class="hljs-comment">// 开启Lombok</span><br>                            .enableLombok()<br>                            <span class="hljs-comment">// 开启生成实体时生成字段注释</span><br>                            .enableTableFieldAnnotation()<br>                            <span class="hljs-comment">// Mapper策略配置</span><br>                            .mapperBuilder()<br>                            <span class="hljs-comment">// 开启@Mapper注解</span><br>                            .enableMapperAnnotation()<br>                            <span class="hljs-comment">// 启用BaseColumnList</span><br>                            <span class="hljs-comment">//.enableBaseColumnList()</span><br>                            <span class="hljs-comment">// 启用BaseResultMap生成</span><br>                            <span class="hljs-comment">//.enableBaseResultMap()</span><br>                            .serviceBuilder()<br>                            <span class="hljs-comment">// &quot;%sService&quot; 去掉Service接口的首字母I</span><br>                            .formatServiceFileName(<span class="hljs-string">&quot;%sService&quot;</span>)<br>                            <span class="hljs-comment">// controller策略配置</span><br>                            .controllerBuilder()<br>                            <span class="hljs-comment">// 开启生成@RestController控制器</span><br>                            .enableRestStyle()<br>                            .enableHyphenStyle();<br>                &#125;)<br>                <span class="hljs-comment">// 使用Freemarker引擎模块，默认的是Velocity引擎模板</span><br>                .templateEngine(<span class="hljs-keyword">new</span> FreemarkerTemplateEngine())<br>                .execute();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
               
@@ -717,12 +590,6 @@ public class Generator &#123;
   });
 </script>
 
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/components/prism-core.min.js" ></script>
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js" ></script>
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script>
   (function() {

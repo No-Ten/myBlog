@@ -16,12 +16,12 @@
   <meta name="author" content="Ten">
   <meta name="keywords" content="">
   
-    <meta name="description" content="postgresql笔记特点postgresql数据库的主要特点如下：  免费 速度快 平台可移植行 丰富的接口 面向对象特性 安全性 配合的开源软件很多  window安装Linux安装.run包，直接运行 ps aux | grep postgresql  .&#x2F;pg_ctl stop -D &#x2F;PostgreSQL&#x2F;9.3&#x2F;data		# 关闭服务 .&amp;#">
+    <meta name="description" content="postgresql笔记特点postgresql数据库的主要特点如下：  免费 速度快 平台可移植行 丰富的接口 面向对象特性 安全性 配合的开源软件很多  window安装Linux安装.run包，直接运行 1234ps aux | grep postgresql.&#x2F;pg_ctl stop -D &#x2F;PostgreSQL&#x2F;9.3&#x2F;data		# 关闭服务.&#x2F;pg_ctl start -D &#x2F;Pos">
 <meta property="og:type" content="article">
 <meta property="og:title" content="postgresql笔记">
 <meta property="og:url" content="https://no-ten.github.io/postgresql%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="TBlog">
-<meta property="og:description" content="postgresql笔记特点postgresql数据库的主要特点如下：  免费 速度快 平台可移植行 丰富的接口 面向对象特性 安全性 配合的开源软件很多  window安装Linux安装.run包，直接运行 ps aux | grep postgresql  .&#x2F;pg_ctl stop -D &#x2F;PostgreSQL&#x2F;9.3&#x2F;data		# 关闭服务 .&amp;#">
+<meta property="og:description" content="postgresql笔记特点postgresql数据库的主要特点如下：  免费 速度快 平台可移植行 丰富的接口 面向对象特性 安全性 配合的开源软件很多  window安装Linux安装.run包，直接运行 1234ps aux | grep postgresql.&#x2F;pg_ctl stop -D &#x2F;PostgreSQL&#x2F;9.3&#x2F;data		# 关闭服务.&#x2F;pg_ctl start -D &#x2F;Pos">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://no-ten.github.io/myBlog/postgresql%E7%AC%94%E8%AE%B0/image-20220522215639687.png">
 <meta property="og:image" content="https://no-ten.github.io/myBlog/postgresql%E7%AC%94%E8%AE%B0/image-20220522215916892.png">
@@ -74,8 +74,6 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
@@ -259,7 +257,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.7k 字
+          4.6k 字
         
       </span>
     
@@ -322,90 +320,38 @@
 <li>配合的开源软件很多</li>
 </ul>
 <h1 id="window安装"><a href="#window安装" class="headerlink" title="window安装"></a>window安装</h1><h1 id="Linux安装"><a href="#Linux安装" class="headerlink" title="Linux安装"></a>Linux安装</h1><p>.run包，直接运行</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ps aux | grep postgresql
-
-.&#x2F;pg_ctl stop -D &#x2F;PostgreSQL&#x2F;9.3&#x2F;data		# 关闭服务
-.&#x2F;pg_ctl start -D &#x2F;PostgreSQL&#x2F;9.3&#x2F;data -l &#x2F;PostgreSQL&#x2F;9.3&#x2F;data&#x2F;server.log	# 启动服务</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">ps aux | grep postgresql<br><br>./pg_ctl stop -D /PostgreSQL/9.3/data		<span class="hljs-comment"># 关闭服务</span><br>./pg_ctl start -D /PostgreSQL/9.3/data -l /PostgreSQL/9.3/data/server.log	<span class="hljs-comment"># 启动服务</span><br></code></pre></td></tr></table></figure>
 
 
 
 <h1 id="pgAdmin客户端工具使用"><a href="#pgAdmin客户端工具使用" class="headerlink" title="pgAdmin客户端工具使用"></a>pgAdmin客户端工具使用</h1><h1 id="使用pgAdmin工具操作数据库对象"><a href="#使用pgAdmin工具操作数据库对象" class="headerlink" title="使用pgAdmin工具操作数据库对象"></a>使用pgAdmin工具操作数据库对象</h1><p>略</p>
-<h1 id="利用sql语言操作数据库对象"><a href="#利用sql语言操作数据库对象" class="headerlink" title="利用sql语言操作数据库对象"></a>利用sql语言操作数据库对象</h1><div class="code-wrapper"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">create database db_pg;
-
-create database db_pg1;
-
-alter database db_pg rename to db_pg2;
-
-alter database db_pg2 connection limit 20;
-
-drop database db_pg1;
-
-drop database db_pg2;</code></pre></div>
+<h1 id="利用sql语言操作数据库对象"><a href="#利用sql语言操作数据库对象" class="headerlink" title="利用sql语言操作数据库对象"></a>利用sql语言操作数据库对象</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> database db_pg;<br><br><span class="hljs-keyword">create</span> database db_pg1;<br><br><span class="hljs-keyword">alter</span> database db_pg rename <span class="hljs-keyword">to</span> db_pg2;<br><br><span class="hljs-keyword">alter</span> database db_pg2 connection limit <span class="hljs-number">20</span>;<br><br><span class="hljs-keyword">drop</span> database db_pg1;<br><br><span class="hljs-keyword">drop</span> database db_pg2;<br></code></pre></td></tr></table></figure>
 
 <p>报错，先断开连接，再修改或者删除</p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">ERROR:  database &quot;db_pg&quot; is being accessed by other users
-DETAIL:  There are 2 other sessions using the database.
-SQL 状态: 55006</code></pre></div>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs subunit"><span class="hljs-keyword">ERROR:  </span>database &quot;db_pg&quot; is being accessed by other users<br>DETAIL:  There are 2 other sessions using the database.<br>SQL 状态: 55006<br></code></pre></td></tr></table></figure>
 
 
 
-<h1 id="利用sql语言操作数据表对象"><a href="#利用sql语言操作数据表对象" class="headerlink" title="利用sql语言操作数据表对象"></a>利用sql语言操作数据表对象</h1><div class="code-wrapper"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">create table student(
-	id int,
-	name varchar(10),
-	birthday date,
-	score numeric(5,2)
-);
-
-alter table student rename to student1;
-
-alter table student1 rename id to bh;
-
-alter table student1 alter column name type varchar(30);
-
-alter table student1 drop column birthday;
-
-alter table student1 add column address varchar(100);
-
-drop table student1;
-
-drop table if exists student1;</code></pre></div>
+<h1 id="利用sql语言操作数据表对象"><a href="#利用sql语言操作数据表对象" class="headerlink" title="利用sql语言操作数据表对象"></a>利用sql语言操作数据表对象</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> student(<br>	id <span class="hljs-type">int</span>,<br>	name <span class="hljs-type">varchar</span>(<span class="hljs-number">10</span>),<br>	birthday <span class="hljs-type">date</span>,<br>	score <span class="hljs-type">numeric</span>(<span class="hljs-number">5</span>,<span class="hljs-number">2</span>)<br>);<br><br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> student rename <span class="hljs-keyword">to</span> student1;<br><br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> student1 rename id <span class="hljs-keyword">to</span> bh;<br><br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> student1 <span class="hljs-keyword">alter</span> <span class="hljs-keyword">column</span> name type <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>);<br><br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> student1 <span class="hljs-keyword">drop</span> <span class="hljs-keyword">column</span> birthday;<br><br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> student1 <span class="hljs-keyword">add</span> <span class="hljs-keyword">column</span> address <span class="hljs-type">varchar</span>(<span class="hljs-number">100</span>);<br><br><span class="hljs-keyword">drop</span> <span class="hljs-keyword">table</span> student1;<br><br><span class="hljs-keyword">drop</span> <span class="hljs-keyword">table</span> if <span class="hljs-keyword">exists</span> student1;<br></code></pre></td></tr></table></figure>
 
 
 
 <h1 id="postgresql常用数据类型"><a href="#postgresql常用数据类型" class="headerlink" title="postgresql常用数据类型"></a>postgresql常用数据类型</h1><h2 id="数值类型"><a href="#数值类型" class="headerlink" title="数值类型"></a>数值类型</h2><p>整数类型：</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">SMALLINT 	&#x2F;&#x2F; 小范围整数，取值范围：-32768~32767
-INT(INTEGER) 	&#x2F;&#x2F; 普通大小整数-2147483648~2147483647</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">SMALLINT 	// 小范围整数，取值范围：-32768~32767<br>INT(INTEGER) 	// 普通大小整数-2147483648~2147483647<br></code></pre></td></tr></table></figure>
 
 <p>任意精度浮点数类型</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">REAL	&#x2F;&#x2F; 6位十进制数字精度
-NUMERIC(m,n) &#x2F;&#x2F; 任意精度类型 m表示字段长度，n表示精度，假如m为5的时候，1000.00会报错，而100.00不会，但是100.888没事，结果显示的是100.89</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">REAL	// 6位十进制数字精度<br>NUMERIC(m,n) // 任意精度类型 m表示字段长度，n表示精度，假如m为5的时候，1000.00会报错，而100.00不会，但是100.888没事，结果显示的是100.89<br></code></pre></td></tr></table></figure>
 
 
 
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><div class="code-wrapper"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">create table temp(
-	x smallint,
-	y int,
-	z real,
-	n numeric(5,2)
-);
-
-insert into temp values(1,2,4.11,100.00);
-
-insert into temp values(1,2,4.11,1000.00);
-
-insert into temp values(1,2,4.11,100.888);
-
-select * from temp;</code></pre></div>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> temp(<br>	x <span class="hljs-type">smallint</span>,<br>	y <span class="hljs-type">int</span>,<br>	z <span class="hljs-type">real</span>,<br>	n <span class="hljs-type">numeric</span>(<span class="hljs-number">5</span>,<span class="hljs-number">2</span>)<br>);<br><br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> temp <span class="hljs-keyword">values</span>(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">4.11</span>,<span class="hljs-number">100.00</span>);<br><br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> temp <span class="hljs-keyword">values</span>(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">4.11</span>,<span class="hljs-number">1000.00</span>);<br><br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> temp <span class="hljs-keyword">values</span>(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">4.11</span>,<span class="hljs-number">100.888</span>);<br><br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> temp;<br></code></pre></td></tr></table></figure>
 
 
 
 <p>ERROR:  numeric field overflow DETAIL:  A field with precision 5, scale 2 must round to an absolute value less than 10^3. SQL 状态: 22003</p>
 <h2 id="时间类型"><a href="#时间类型" class="headerlink" title="时间类型"></a>时间类型</h2><p><img src="/myBlog/postgresql%E7%AC%94%E8%AE%B0/image-20220522215639687.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220522215639687"></p>
 <h2 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h2><p><img src="/myBlog/postgresql%E7%AC%94%E8%AE%B0/image-20220522215916892.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220522215916892"></p>
-<div class="code-wrapper"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">select * from concat( &#39;(&#39;, ch, &#39;)&#39;),
-	concat( &#39;(&#39;, vch, &#39;)&#39;),
-	concat( &#39;(&#39;, t, &#39;)&#39;),
-from temp3;</code></pre></div>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> concat( <span class="hljs-string">&#x27;(&#x27;</span>, ch, <span class="hljs-string">&#x27;)&#x27;</span>),<br>	concat( <span class="hljs-string">&#x27;(&#x27;</span>, vch, <span class="hljs-string">&#x27;)&#x27;</span>),<br>	concat( <span class="hljs-string">&#x27;(&#x27;</span>, t, <span class="hljs-string">&#x27;)&#x27;</span>),<br><span class="hljs-keyword">from</span> temp3;<br></code></pre></td></tr></table></figure>
 
 <p><img src="/myBlog/postgresql%E7%AC%94%E8%AE%B0/image-20220522220245838.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220522220245838"></p>
 <h2 id="选择正确的数据类型"><a href="#选择正确的数据类型" class="headerlink" title="选择正确的数据类型"></a>选择正确的数据类型</h2><p>主要目的：优化存储区，提高数据库性能</p>
@@ -434,26 +380,16 @@ from temp3;</code></pre></div>
 <h1 id="postgresql常用函数"><a href="#postgresql常用函数" class="headerlink" title="postgresql常用函数"></a>postgresql常用函数</h1><h2 id="函数的作用"><a href="#函数的作用" class="headerlink" title="函数的作用"></a>函数的作用</h2><h2 id="常用数值函数"><a href="#常用数值函数" class="headerlink" title="常用数值函数"></a>常用数值函数</h2><p><img src="/myBlog/postgresql%E7%AC%94%E8%AE%B0/image-20220522223548170.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220522223548170"></p>
 <h2 id="常用的字符串函数"><a href="#常用的字符串函数" class="headerlink" title="常用的字符串函数"></a>常用的字符串函数</h2><p><img src="/myBlog/postgresql%E7%AC%94%E8%AE%B0/image-20220522223746421.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220522223746421"></p>
 <h2 id="常用的日期和时间函数"><a href="#常用的日期和时间函数" class="headerlink" title="常用的日期和时间函数"></a>常用的日期和时间函数</h2><p><img src="/myBlog/postgresql%E7%AC%94%E8%AE%B0/image-20220522223939888.png" srcset="/myBlog/img/loading.gif" lazyload></p>
-<div class="code-wrapper"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">select e_no,e_name,e_hireDate,extract(year from e_hireDate), extract(month from e_hireDate),extract(day from e_hireDate) from employee;</code></pre></div>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> e_no,e_name,e_hireDate,<span class="hljs-built_in">extract</span>(<span class="hljs-keyword">year</span> <span class="hljs-keyword">from</span> e_hireDate), <span class="hljs-built_in">extract</span>(<span class="hljs-keyword">month</span> <span class="hljs-keyword">from</span> e_hireDate),<span class="hljs-built_in">extract</span>(<span class="hljs-keyword">day</span> <span class="hljs-keyword">from</span> e_hireDate) <span class="hljs-keyword">from</span> employee;<br></code></pre></td></tr></table></figure>
 
 
 
 <h1 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h1><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>基本语法格式</p>
-<div class="code-wrapper"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">create function				&#x2F;&#x2F; 声明创建函数
-	add(integer,integer)	&#x2F;&#x2F; 定义函数名称，参数类型
-returns integer 			&#x2F;&#x2F; 定义函数返回值
-	AS &#39;select $1 + $2&#39;		&#x2F;&#x2F; 定义函数体
-language sql				&#x2F;&#x2F; 用以实现函数的语言的名字
-returns null on null input;	&#x2F;&#x2F; 定义参数为null时处理情况</code></pre></div>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">function</span>				<span class="hljs-operator">/</span><span class="hljs-operator">/</span> 声明创建函数<br>	<span class="hljs-keyword">add</span>(<span class="hljs-type">integer</span>,<span class="hljs-type">integer</span>)	<span class="hljs-operator">/</span><span class="hljs-operator">/</span> 定义函数名称，参数类型<br><span class="hljs-keyword">returns</span> <span class="hljs-type">integer</span> 			<span class="hljs-operator">/</span><span class="hljs-operator">/</span> 定义函数返回值<br>	<span class="hljs-keyword">AS</span> <span class="hljs-string">&#x27;select $1 + $2&#x27;</span>		<span class="hljs-operator">/</span><span class="hljs-operator">/</span> 定义函数体<br><span class="hljs-keyword">language</span> <span class="hljs-keyword">sql</span>				<span class="hljs-operator">/</span><span class="hljs-operator">/</span> 用以实现函数的语言的名字<br><span class="hljs-keyword">returns</span> <span class="hljs-keyword">null</span> <span class="hljs-keyword">on</span> <span class="hljs-keyword">null</span> input;	<span class="hljs-operator">/</span><span class="hljs-operator">/</span> 定义参数为<span class="hljs-keyword">null</span>时处理情况<br></code></pre></td></tr></table></figure>
 
 
 
-<div class="code-wrapper"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">create function add(integer,integer)
-returns integer as &#39;select $1 + $2;&#39;
-language sql
-returns null on null input;
-
-select add(1,2);</code></pre></div>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">function</span> <span class="hljs-keyword">add</span>(<span class="hljs-type">integer</span>,<span class="hljs-type">integer</span>)<br><span class="hljs-keyword">returns</span> <span class="hljs-type">integer</span> <span class="hljs-keyword">as</span> <span class="hljs-string">&#x27;select $1 + $2;&#x27;</span><br><span class="hljs-keyword">language</span> <span class="hljs-keyword">sql</span><br><span class="hljs-keyword">returns</span> <span class="hljs-keyword">null</span> <span class="hljs-keyword">on</span> <span class="hljs-keyword">null</span> input;<br><br><span class="hljs-keyword">select</span> <span class="hljs-keyword">add</span>(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>);<br></code></pre></td></tr></table></figure>
 
 
 
@@ -463,9 +399,7 @@ select add(1,2);</code></pre></div>
 <p><img src="/myBlog/postgresql%E7%AC%94%E8%AE%B0/image-20220522225853772.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220522225853772"></p>
 <h1 id="postgresql数据库索引"><a href="#postgresql数据库索引" class="headerlink" title="postgresql数据库索引"></a>postgresql数据库索引</h1><h2 id="索引的作用"><a href="#索引的作用" class="headerlink" title="索引的作用"></a>索引的作用</h2><p>提高检索的速度，相当于一本书的目录，可以根据目录快速找到想要找的内容。</p>
 <h2 id="索引的分类"><a href="#索引的分类" class="headerlink" title="索引的分类"></a>索引的分类</h2><p><img src="/myBlog/postgresql%E7%AC%94%E8%AE%B0/image-20220522230229558.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220522230229558"></p>
-<h2 id="索引的创建和删除"><a href="#索引的创建和删除" class="headerlink" title="索引的创建和删除"></a>索引的创建和删除</h2><div class="code-wrapper"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">create index emp_name_index on employee(e_name); 		&#x2F;&#x2F; 默认btree索引
-
-drop index emp_name_index;</code></pre></div>
+<h2 id="索引的创建和删除"><a href="#索引的创建和删除" class="headerlink" title="索引的创建和删除"></a>索引的创建和删除</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> index emp_name_index <span class="hljs-keyword">on</span> employee(e_name); 		<span class="hljs-operator">/</span><span class="hljs-operator">/</span> 默认btree索引<br><br><span class="hljs-keyword">drop</span> index emp_name_index;<br></code></pre></td></tr></table></figure>
 
 
 
@@ -481,15 +415,11 @@ drop index emp_name_index;</code></pre></div>
 </ul>
 <h1 id="postgresql数据库视图"><a href="#postgresql数据库视图" class="headerlink" title="postgresql数据库视图"></a>postgresql数据库视图</h1><h2 id="视图的含义"><a href="#视图的含义" class="headerlink" title="视图的含义"></a>视图的含义</h2><p>避免每次多表查询的时候都要编写复杂的SQL语句，可以直接创建视图，下次需要用到的时候直接用创建好的视图即可，不用关注底层的细节。</p>
 <h2 id="视图的创建"><a href="#视图的创建" class="headerlink" title="视图的创建"></a>视图的创建</h2><p><img src="/myBlog/postgresql%E7%AC%94%E8%AE%B0/image-20220522231404341.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220522231404341"></p>
-<div class="code-wrapper"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">select view v_emp_dev as select e_no, e_name,e_salary,e_hireDate from employee where dept_no &#x3D; 10 order by e_salary desc;		&#x2F;&#x2F; 创建视图
-
-select * from v_emp_dev;	&#x2F;&#x2F; 查看视图
-
-</code></pre></div>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-keyword">view</span> v_emp_dev <span class="hljs-keyword">as</span> <span class="hljs-keyword">select</span> e_no, e_name,e_salary,e_hireDate <span class="hljs-keyword">from</span> employee <span class="hljs-keyword">where</span> dept_no <span class="hljs-operator">=</span> <span class="hljs-number">10</span> <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> e_salary <span class="hljs-keyword">desc</span>;		<span class="hljs-operator">/</span><span class="hljs-operator">/</span> 创建视图<br><br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> v_emp_dev;	<span class="hljs-operator">/</span><span class="hljs-operator">/</span> 查看视图<br><br><br></code></pre></td></tr></table></figure>
 
 
 
-<h2 id="视图的删除"><a href="#视图的删除" class="headerlink" title="视图的删除"></a>视图的删除</h2><div class="code-wrapper"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">drop view v_emp_dev;		&#x2F;&#x2F; 删除视图</code></pre></div>
+<h2 id="视图的删除"><a href="#视图的删除" class="headerlink" title="视图的删除"></a>视图的删除</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">drop</span> <span class="hljs-keyword">view</span> v_emp_dev;		<span class="hljs-operator">/</span><span class="hljs-operator">/</span> 删除视图<br></code></pre></td></tr></table></figure>
 
 
 
@@ -500,78 +430,38 @@ select * from v_emp_dev;	&#x2F;&#x2F; 查看视图
 </ul>
 <p><img src="/myBlog/postgresql%E7%AC%94%E8%AE%B0/image-20220522232009234.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220522232009234"></p>
 <h1 id="简单数据插入操作"><a href="#简单数据插入操作" class="headerlink" title="简单数据插入操作"></a>简单数据插入操作</h1><p>向单表中插入数据</p>
-<div class="code-wrapper"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">create table temp(
-	x smallint,
-	y int,
-	z real,
-	n numeric(5,2)
-);
-
-insert into temp values(1,2,4.11,100.00);
-insert into temp (x,y,z) values (3,4,5.01);
-select * from temp;</code></pre></div>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> temp(<br>	x <span class="hljs-type">smallint</span>,<br>	y <span class="hljs-type">int</span>,<br>	z <span class="hljs-type">real</span>,<br>	n <span class="hljs-type">numeric</span>(<span class="hljs-number">5</span>,<span class="hljs-number">2</span>)<br>);<br><br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> temp <span class="hljs-keyword">values</span>(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">4.11</span>,<span class="hljs-number">100.00</span>);<br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> temp (x,y,z) <span class="hljs-keyword">values</span> (<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5.01</span>);<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> temp;<br></code></pre></td></tr></table></figure>
 
 
 
 <h1 id="数据批量插入操作"><a href="#数据批量插入操作" class="headerlink" title="数据批量插入操作"></a>数据批量插入操作</h1><p>利用insert批量插入数据</p>
-<div class="code-wrapper"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">insert into temp values
-(1,2,4.11,100.00),
-(2,2,4.11,100.00),
-(3,2,4.11,100.00); </code></pre></div>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> temp <span class="hljs-keyword">values</span><br>(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">4.11</span>,<span class="hljs-number">100.00</span>),<br>(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">4.11</span>,<span class="hljs-number">100.00</span>),<br>(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">4.11</span>,<span class="hljs-number">100.00</span>); <br></code></pre></td></tr></table></figure>
 
 <p>利用select批量插入数据</p>
-<div class="code-wrapper"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">insert into student_new select * from student;		&#x2F;&#x2F; 向student_new的表格插入从student表查询出来的所有的内容</code></pre></div>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> student_new <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> student;		<span class="hljs-operator">/</span><span class="hljs-operator">/</span> 向student_new的表格插入从student表查询出来的所有的内容<br></code></pre></td></tr></table></figure>
 
 <p>利用select批量插入指定的属性</p>
-<div class="code-wrapper"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">insert into student_new (id,name) select id,name from student;</code></pre></div>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> student_new (id,name) <span class="hljs-keyword">select</span> id,name <span class="hljs-keyword">from</span> student;<br></code></pre></td></tr></table></figure>
 
 <p><img src="/myBlog/postgresql%E7%AC%94%E8%AE%B0/image-20220522233340471.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220522233340471"></p>
-<h1 id="数据更新操作"><a href="#数据更新操作" class="headerlink" title="数据更新操作"></a>数据更新操作</h1><div class="code-wrapper"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"># 指定条件更新数据
-update student set name &#x3D; &#39;zhangsan&#39; where id &#x3D; 1;
-
-# 批量更新数据
-update student set score &#x3D; 0;	&#x2F;&#x2F; 将该表的score都改为0
-
-# 将指定结果更新到对应的字段
-update student set score &#x3D; 1.5 + 1 where id  &#x3D; &#39;1&#39;;</code></pre></div>
+<h1 id="数据更新操作"><a href="#数据更新操作" class="headerlink" title="数据更新操作"></a>数据更新操作</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"># 指定条件更新数据<br>update student <span class="hljs-keyword">set</span> name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;zhangsan&#x27;</span> <span class="hljs-keyword">where</span> id <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;<br><br># 批量更新数据<br>update student <span class="hljs-keyword">set</span> score <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;	<span class="hljs-operator">/</span><span class="hljs-operator">/</span> 将该表的score都改为<span class="hljs-number">0</span><br><br># 将指定结果更新到对应的字段<br>update student <span class="hljs-keyword">set</span> score <span class="hljs-operator">=</span> <span class="hljs-number">1.5</span> <span class="hljs-operator">+</span> <span class="hljs-number">1</span> <span class="hljs-keyword">where</span> id  <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;1&#x27;</span>;<br></code></pre></td></tr></table></figure>
 
 
 
-<h1 id="数据删除操作"><a href="#数据删除操作" class="headerlink" title="数据删除操作"></a>数据删除操作</h1> <div class="code-wrapper"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">delete from student where id &#x3D; 1;
-
-delete from student where between &#39;1999-01-01&#39; and &#39;1999-02-01&#39;;
-
-delete from student;
-
-truncate table student_new;		&#x2F;&#x2F; 清空这个表所有的数据 </code></pre></div>
+<h1 id="数据删除操作"><a href="#数据删除操作" class="headerlink" title="数据删除操作"></a>数据删除操作</h1> <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">delete</span> <span class="hljs-keyword">from</span> student <span class="hljs-keyword">where</span> id <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;<br><br><span class="hljs-keyword">delete</span> <span class="hljs-keyword">from</span> student <span class="hljs-keyword">where</span> <span class="hljs-keyword">between</span> <span class="hljs-string">&#x27;1999-01-01&#x27;</span> <span class="hljs-keyword">and</span> <span class="hljs-string">&#x27;1999-02-01&#x27;</span>;<br><br><span class="hljs-keyword">delete</span> <span class="hljs-keyword">from</span> student;<br><br><span class="hljs-keyword">truncate</span> <span class="hljs-keyword">table</span> student_new;		<span class="hljs-operator">/</span><span class="hljs-operator">/</span> 清空这个表所有的数据 <br></code></pre></td></tr></table></figure>
 
 
 
 <p><img src="/myBlog/postgresql%E7%AC%94%E8%AE%B0/image-20220522234426234.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220522234426234"></p>
-<h1 id="postgresql数据表主键和外键"><a href="#postgresql数据表主键和外键" class="headerlink" title="postgresql数据表主键和外键"></a>postgresql数据表主键和外键</h1><h2 id="如何定义主键约束"><a href="#如何定义主键约束" class="headerlink" title="如何定义主键约束"></a>如何定义主键约束</h2><div class="code-wrapper"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">create table temp(
-	id int primary key,		&#x2F;&#x2F; 列级约束
-    name varchar(10),
-    salary numeric(5,2)
-);</code></pre></div>
+<h1 id="postgresql数据表主键和外键"><a href="#postgresql数据表主键和外键" class="headerlink" title="postgresql数据表主键和外键"></a>postgresql数据表主键和外键</h1><h2 id="如何定义主键约束"><a href="#如何定义主键约束" class="headerlink" title="如何定义主键约束"></a>如何定义主键约束</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> temp(<br>	id <span class="hljs-type">int</span> <span class="hljs-keyword">primary</span> key,		<span class="hljs-operator">/</span><span class="hljs-operator">/</span> 列级约束<br>    name <span class="hljs-type">varchar</span>(<span class="hljs-number">10</span>),<br>    salary <span class="hljs-type">numeric</span>(<span class="hljs-number">5</span>,<span class="hljs-number">2</span>)<br>);<br></code></pre></td></tr></table></figure>
 
 
 
-<div class="code-wrapper"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">create table temp2(
-	id int,
-    name varchar(10),
-    salary numeric(5,2),
-    constraint pk_temp primary key(id)		&#x2F;&#x2F; 表级约束
-);</code></pre></div>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> temp2(<br>	id <span class="hljs-type">int</span>,<br>    name <span class="hljs-type">varchar</span>(<span class="hljs-number">10</span>),<br>    salary <span class="hljs-type">numeric</span>(<span class="hljs-number">5</span>,<span class="hljs-number">2</span>),<br>    <span class="hljs-keyword">constraint</span> pk_temp <span class="hljs-keyword">primary</span> key(id)		<span class="hljs-operator">/</span><span class="hljs-operator">/</span> 表级约束<br>);<br></code></pre></td></tr></table></figure>
 
 
 
-<h2 id="如何定义外键约束"><a href="#如何定义外键约束" class="headerlink" title="如何定义外键约束"></a>如何定义外键约束</h2><div class="code-wrapper"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">create table temp2(
-	id int,
-    name varchar(10),
-    salary numeric(5,2),
-    tempId int,
-    constraint pk_temp foreign key(tempId) references temp(id)
-);</code></pre></div>
+<h2 id="如何定义外键约束"><a href="#如何定义外键约束" class="headerlink" title="如何定义外键约束"></a>如何定义外键约束</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> temp2(<br>	id <span class="hljs-type">int</span>,<br>    name <span class="hljs-type">varchar</span>(<span class="hljs-number">10</span>),<br>    salary <span class="hljs-type">numeric</span>(<span class="hljs-number">5</span>,<span class="hljs-number">2</span>),<br>    tempId <span class="hljs-type">int</span>,<br>    <span class="hljs-keyword">constraint</span> pk_temp <span class="hljs-keyword">foreign</span> key(tempId) <span class="hljs-keyword">references</span> temp(id)<br>);<br></code></pre></td></tr></table></figure>
 
 
 
@@ -594,7 +484,7 @@ truncate table student_new;		&#x2F;&#x2F; 清空这个表所有的数据 </code>
 </ul>
 <h1 id="简单数据查询操作"><a href="#简单数据查询操作" class="headerlink" title="简单数据查询操作"></a>简单数据查询操作</h1><p><img src="/myBlog/postgresql%E7%AC%94%E8%AE%B0/image-20220523213256497.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220523213256497"></p>
 <h1 id="单表指定条件查询"><a href="#单表指定条件查询" class="headerlink" title="单表指定条件查询"></a>单表指定条件查询</h1><p>in</p>
-<div class="code-wrapper"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">select * from t where t_no in (20,30);</code></pre></div>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> t <span class="hljs-keyword">where</span> t_no <span class="hljs-keyword">in</span> (<span class="hljs-number">20</span>,<span class="hljs-number">30</span>);<br></code></pre></td></tr></table></figure>
 
 <p>between and </p>
 <p>like</p>
@@ -602,24 +492,22 @@ truncate table student_new;		&#x2F;&#x2F; 清空这个表所有的数据 </code>
 <p>and、or多条件查询</p>
 <p>查询结果集排序</p>
 <p>limit关键字查询</p>
-<div class="code-wrapper"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">select * from t limit 5 offset 5;	# 显示前5条，忽略5条，即忽略前5条，从第6条开始显示5条。</code></pre></div>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> t limit <span class="hljs-number">5</span> <span class="hljs-keyword">offset</span> <span class="hljs-number">5</span>;	# 显示前<span class="hljs-number">5</span>条，忽略<span class="hljs-number">5</span>条，即忽略前<span class="hljs-number">5</span>条，从第<span class="hljs-number">6</span>条开始显示<span class="hljs-number">5</span>条。<br></code></pre></td></tr></table></figure>
 
 
 
-<div class="code-wrapper"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">select * from t limit 5 offset ((页码 -1) * 5);</code></pre></div>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> t limit <span class="hljs-number">5</span> <span class="hljs-keyword">offset</span> ((页码 <span class="hljs-number">-1</span>) <span class="hljs-operator">*</span> <span class="hljs-number">5</span>);<br></code></pre></td></tr></table></figure>
 
 
 
 <h1 id="多表复杂查询操作"><a href="#多表复杂查询操作" class="headerlink" title="多表复杂查询操作"></a>多表复杂查询操作</h1><p><img src="/myBlog/postgresql%E7%AC%94%E8%AE%B0/image-20220523221203068.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220523221203068"></p>
 <h1 id="子查询操作"><a href="#子查询操作" class="headerlink" title="子查询操作"></a>子查询操作</h1><p><img src="/myBlog/postgresql%E7%AC%94%E8%AE%B0/image-20220523222107785.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220523222107785"></p>
-<div class="code-wrapper"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">select * from emp where exists (select d_no from dept where id_name &#x3D; &#39;开发部&#39;);	# 如果exists后面的查询为真，则将结果为真传到前面的查询中，返回所有的结果。</code></pre></div>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> <span class="hljs-keyword">exists</span> (<span class="hljs-keyword">select</span> d_no <span class="hljs-keyword">from</span> dept <span class="hljs-keyword">where</span> id_name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;开发部&#x27;</span>);	# 如果<span class="hljs-keyword">exists</span>后面的查询为真，则将结果为真传到前面的查询中，返回所有的结果。<br></code></pre></td></tr></table></figure>
 
 <p>|| 拼接</p>
 <p><img src="/myBlog/postgresql%E7%AC%94%E8%AE%B0/image-20220523222007019.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220523222007019"></p>
 <h1 id="查询结果集合并操作"><a href="#查询结果集合并操作" class="headerlink" title="查询结果集合并操作"></a>查询结果集合并操作</h1><p><img src="/myBlog/postgresql%E7%AC%94%E8%AE%B0/image-20220523222220155.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20220523222220155"></p>
-<div class="code-wrapper"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">select * from e where dept_no in (10,20)
-union all
-select * from e where e_salary &gt; 5000;</code></pre></div>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> e <span class="hljs-keyword">where</span> dept_no <span class="hljs-keyword">in</span> (<span class="hljs-number">10</span>,<span class="hljs-number">20</span>)<br><span class="hljs-keyword">union</span> <span class="hljs-keyword">all</span><br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> e <span class="hljs-keyword">where</span> e_salary <span class="hljs-operator">&gt;</span> <span class="hljs-number">5000</span>;<br></code></pre></td></tr></table></figure>
 
 <p>上面有重复的值，因为有数据是满足两个查询语句的。</p>
 <p>如何避免？使用union即可。上下两个列需要一致，如果不存在可以用null占位。</p>
@@ -929,12 +817,6 @@ select * from e where e_salary &gt; 5000;</code></pre></div>
   });
 </script>
 
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/components/prism-core.min.js" ></script>
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js" ></script>
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script>
   (function() {

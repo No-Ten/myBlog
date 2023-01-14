@@ -16,12 +16,12 @@
   <meta name="author" content="Ten">
   <meta name="keywords" content="">
   
-    <meta name="description" content="day09课程管理-课程信息确认前端定义apicourse.js &#x2F;&#x2F; 根据课程id查询最终发布的课程信息 getPublishCourseInfo(id)&amp;#123;     return request(&amp;#123;         url: &#96;&#x2F;eduservice&#x2F;course&#x2F;getPublishCourseInfo&#x2F;&amp;">
+    <meta name="description" content="day09课程管理-课程信息确认前端定义apicourse.js 1234567&#x2F;&#x2F; 根据课程id查询最终发布的课程信息getPublishCourseInfo(id)&amp;#123;    return request(&amp;#123;        url: &#96;&#x2F;eduservice&#x2F;course&#x2F;getPublishCourseInfo&#x2F;&#96;+id,        method: &amp;#x27;get&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="day-09-课程管理">
 <meta property="og:url" content="https://no-ten.github.io/day09-%E8%AF%BE%E7%A8%8B%E7%AE%A1%E7%90%86/index.html">
 <meta property="og:site_name" content="TBlog">
-<meta property="og:description" content="day09课程管理-课程信息确认前端定义apicourse.js &#x2F;&#x2F; 根据课程id查询最终发布的课程信息 getPublishCourseInfo(id)&amp;#123;     return request(&amp;#123;         url: &#96;&#x2F;eduservice&#x2F;course&#x2F;getPublishCourseInfo&#x2F;&amp;">
+<meta property="og:description" content="day09课程管理-课程信息确认前端定义apicourse.js 1234567&#x2F;&#x2F; 根据课程id查询最终发布的课程信息getPublishCourseInfo(id)&amp;#123;    return request(&amp;#123;        url: &#96;&#x2F;eduservice&#x2F;course&#x2F;getPublishCourseInfo&#x2F;&#96;+id,        method: &amp;#x27;get&amp;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-27T08:39:13.644Z">
 <meta property="article:modified_time" content="2022-01-06T16:42:21.232Z">
@@ -42,8 +42,6 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
@@ -227,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          17k 字
+          16k 字
         
       </span>
     
@@ -280,626 +278,134 @@
             <div class="markdown-body">
               
               <h1 id="day09"><a href="#day09" class="headerlink" title="day09"></a>day09</h1><h1 id="课程管理-课程信息确认前端"><a href="#课程管理-课程信息确认前端" class="headerlink" title="课程管理-课程信息确认前端"></a>课程管理-课程信息确认前端</h1><h2 id="定义api"><a href="#定义api" class="headerlink" title="定义api"></a>定义api</h2><p>course.js</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 根据课程id查询最终发布的课程信息
-getPublishCourseInfo(id)&#123;
-    return request(&#123;
-        url: &#96;&#x2F;eduservice&#x2F;course&#x2F;getPublishCourseInfo&#x2F;&#96;+id,
-        method: &#39;get&#39;
-      &#125;)
-&#125;</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 根据课程id查询最终发布的课程信息</span><br><span class="hljs-function"><span class="hljs-title">getPublishCourseInfo</span>(<span class="hljs-params">id</span>)</span>&#123;<br>    <span class="hljs-keyword">return</span> request(&#123;<br>        <span class="hljs-attr">url</span>: <span class="hljs-string">`/eduservice/course/getPublishCourseInfo/`</span>+id,<br>        <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;get&#x27;</span><br>      &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h2 id="定义数据模型"><a href="#定义数据模型" class="headerlink" title="定义数据模型"></a>定义数据模型</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">data() &#123;
-  return &#123;
-    saveBtnDisabled: false ,&#x2F;&#x2F; 保存按钮是否禁用
-    courseId:&#39;&#39;,
-    coursePublish:&#123;&#125;
-  &#125;
-&#125;,</code></pre></div>
+<h2 id="定义数据模型"><a href="#定义数据模型" class="headerlink" title="定义数据模型"></a>定义数据模型</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs vue">data() &#123;<br>  return &#123;<br>    saveBtnDisabled: false ,// 保存按钮是否禁用<br>    courseId:&#x27;&#x27;,<br>    coursePublish:&#123;&#125;<br>  &#125;<br>&#125;,<br></code></pre></td></tr></table></figure>
 
-<h2 id="完善步骤导航"><a href="#完善步骤导航" class="headerlink" title="完善步骤导航"></a>完善步骤导航</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">previous() &#123;
-      this.$router.push(&#123; path: &#39;&#x2F;course&#x2F;chapter&#x2F;&#39;+this.courseId &#125;)
-    &#125;,
-    publish() &#123;
-      this.$router.push(&#123; path: &#39;&#x2F;course&#x2F;list&#39; &#125;)
-    &#125;</code></pre></div>
+<h2 id="完善步骤导航"><a href="#完善步骤导航" class="headerlink" title="完善步骤导航"></a>完善步骤导航</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs vue">previous() &#123;<br>      this.$router.push(&#123; path: &#x27;/course/chapter/&#x27;+this.courseId &#125;)<br>    &#125;,<br>    publish() &#123;<br>      this.$router.push(&#123; path: &#x27;/course/list&#x27; &#125;)<br>    &#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="组件方法定义"><a href="#组件方法定义" class="headerlink" title="组件方法定义"></a>组件方法定义</h2><p>import</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">import course from &#39;@&#x2F;api&#x2F;edu&#x2F;course&#39;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vue">import course from &#x27;@/api/edu/course&#x27;<br></code></pre></td></tr></table></figure>
 
 <p>created</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">created() &#123;
-  &#x2F;&#x2F; 获取路由id
-  if(this.$route.params &amp;&amp; this.$route.params.id)&#123;
-     this.courseId &#x3D; this.$route.params.id
-    &#x2F;&#x2F; 根据课程id回显数据
-    this.getPublishCourseId()
-  &#125;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs vue">created() &#123;<br>  // 获取路由id<br>  if(this.$route.params &amp;&amp; this.$route.params.id)&#123;<br>     this.courseId = this.$route.params.id<br>    // 根据课程id回显数据<br>    this.getPublishCourseId()<br>  &#125;<br></code></pre></td></tr></table></figure>
 
 <p>methods</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">methods: &#123;
-    &#x2F;&#x2F; 根据课程id回显数据
-    getPublishCourseId()&#123;
-      course.getPublishCourseInfo(this.courseId)
-       .then(response &#x3D;&gt;&#123;
-         this.coursePublish &#x3D; response.data.courseInfo
-       &#125;)
-    &#125;,</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs vue">methods: &#123;<br>    // 根据课程id回显数据<br>    getPublishCourseId()&#123;<br>      course.getPublishCourseInfo(this.courseId)<br>       .then(response =&gt;&#123;<br>         this.coursePublish = response.data.courseInfo<br>       &#125;)<br>    &#125;,<br></code></pre></td></tr></table></figure>
 
-<h2 id="组件模板"><a href="#组件模板" class="headerlink" title="组件模板"></a>组件模板</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
-  &lt;div class&#x3D;&quot;app-container&quot;&gt;
-    &lt;h2 style&#x3D;&quot;text-align: center;&quot;&gt;发布新课程&lt;&#x2F;h2&gt;
-    &lt;el-steps :active&#x3D;&quot;3&quot; process-status&#x3D;&quot;wait&quot; align-center style&#x3D;&quot;margin-bottom: 40px;&quot;&gt;
-      &lt;el-step title&#x3D;&quot;填写课程基本信息&quot;&#x2F;&gt;
-      &lt;el-step title&#x3D;&quot;创建课程大纲&quot;&#x2F;&gt;
-      &lt;el-step title&#x3D;&quot;发布课程&quot;&#x2F;&gt;
-    &lt;&#x2F;el-steps&gt;
-    &lt;div class&#x3D;&quot;ccInfo&quot;&gt;
-      &lt;img :src&#x3D;&quot;coursePublish.cover&quot;&gt;
-      &lt;div class&#x3D;&quot;main&quot;&gt;
-        &lt;h2&gt;&#123;&#123; coursePublish.title &#125;&#125;&lt;&#x2F;h2&gt;
-        &lt;p class&#x3D;&quot;gray&quot;&gt;&lt;span&gt;共&#123;&#123; coursePublish.lessonNum &#125;&#125;课时&lt;&#x2F;span&gt;&lt;&#x2F;p&gt;
-        &lt;p&gt;&lt;span&gt;所属分类：&#123;&#123; coursePublish.subjectLevelOne &#125;&#125; — &#123;&#123; coursePublish.subjectLevelTwo &#125;&#125;&lt;&#x2F;span&gt;&lt;&#x2F;p&gt;
-        &lt;p&gt;课程讲师：&#123;&#123; coursePublish.teacherName &#125;&#125;&lt;&#x2F;p&gt;
-        &lt;h3 class&#x3D;&quot;red&quot;&gt;￥&#123;&#123; coursePublish.price &#125;&#125;&lt;&#x2F;h3&gt;
-      &lt;&#x2F;div&gt;
-    &lt;&#x2F;div&gt;
-    &lt;div&gt;
-      &lt;el-button @click&#x3D;&quot;previous&quot;&gt;返回修改&lt;&#x2F;el-button&gt;
-      &lt;el-button :disabled&#x3D;&quot;saveBtnDisabled&quot; type&#x3D;&quot;primary&quot; @click&#x3D;&quot;publish&quot;&gt;发布课程&lt;&#x2F;el-button&gt;
-    &lt;&#x2F;div&gt;
-  &lt;&#x2F;div&gt;
-&lt;&#x2F;template&gt;</code></pre></div>
+<h2 id="组件模板"><a href="#组件模板" class="headerlink" title="组件模板"></a>组件模板</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;div class=&quot;app-container&quot;&gt;<br>    &lt;h2 style=&quot;text-align: center;&quot;&gt;发布新课程&lt;/h2&gt;<br>    &lt;el-steps :active=&quot;3&quot; process-status=&quot;wait&quot; align-center style=&quot;margin-bottom: 40px;&quot;&gt;<br>      &lt;el-step title=&quot;填写课程基本信息&quot;/&gt;<br>      &lt;el-step title=&quot;创建课程大纲&quot;/&gt;<br>      &lt;el-step title=&quot;发布课程&quot;/&gt;<br>    &lt;/el-steps&gt;<br>    &lt;div class=&quot;ccInfo&quot;&gt;<br>      &lt;img :src=&quot;coursePublish.cover&quot;&gt;<br>      &lt;div class=&quot;main&quot;&gt;<br>        &lt;h2&gt;&#123;&#123; coursePublish.title &#125;&#125;&lt;/h2&gt;<br>        &lt;p class=&quot;gray&quot;&gt;&lt;span&gt;共&#123;&#123; coursePublish.lessonNum &#125;&#125;课时&lt;/span&gt;&lt;/p&gt;<br>        &lt;p&gt;&lt;span&gt;所属分类：&#123;&#123; coursePublish.subjectLevelOne &#125;&#125; — &#123;&#123; coursePublish.subjectLevelTwo &#125;&#125;&lt;/span&gt;&lt;/p&gt;<br>        &lt;p&gt;课程讲师：&#123;&#123; coursePublish.teacherName &#125;&#125;&lt;/p&gt;<br>        &lt;h3 class=&quot;red&quot;&gt;￥&#123;&#123; coursePublish.price &#125;&#125;&lt;/h3&gt;<br>      &lt;/div&gt;<br>    &lt;/div&gt;<br>    &lt;div&gt;<br>      &lt;el-button @click=&quot;previous&quot;&gt;返回修改&lt;/el-button&gt;<br>      &lt;el-button :disabled=&quot;saveBtnDisabled&quot; type=&quot;primary&quot; @click=&quot;publish&quot;&gt;发布课程&lt;/el-button&gt;<br>    &lt;/div&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br></code></pre></td></tr></table></figure>
 
-<h2 id="css样式"><a href="#css样式" class="headerlink" title="css样式"></a>css样式</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;style scoped&gt;
- .ccInfo &#123;
-      background: #f5f5f5;
-      padding: 20px;
-      overflow: hidden;
-      border: 1px dashed #DDD;
-      margin-bottom: 40px;
-      position: relative;
- &#125;
- .ccInfo img &#123;
-     background: #d6d6d6;
-     width: 500px;
-     height: 278px;
-     display: block;
-     float: left;
-     border: none;
- &#125;
- .ccInfo .main &#123;
-     margin-left: 520px;
- &#125;
- .ccInfo .main h2 &#123;
-     font-size: 28px;
-     margin-bottom: 30px;
-     line-height: 1;
-     font-weight: normal;
- &#125;
- .ccInfo .main p &#123;
-     margin-bottom: 10px;
-     word-wrap: break-word;
-     line-height: 24px;
-     max-height: 48px;
-     overflow: hidden;
- &#125;
- .ccInfo .main p &#123;
-     margin-bottom: 10px;
-     word-wrap: break-word;
-     line-height: 24px;
-     max-height: 48px;
-     overflow: hidden;
- &#125;
-.ccInfo .main h3 &#123;
-     left: 540px;
-     bottom: 20px;
-     line-height: 1;
-     font-size: 28px;
-     color: #d32f24;
-     font-weight: normal;
-     position: absolute;
- &#125;
- &lt;&#x2F;style&gt;</code></pre></div>
+<h2 id="css样式"><a href="#css样式" class="headerlink" title="css样式"></a>css样式</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;style scoped&gt;<br> .ccInfo &#123;<br>      background: #f5f5f5;<br>      padding: 20px;<br>      overflow: hidden;<br>      border: 1px dashed #DDD;<br>      margin-bottom: 40px;<br>      position: relative;<br> &#125;<br> .ccInfo img &#123;<br>     background: #d6d6d6;<br>     width: 500px;<br>     height: 278px;<br>     display: block;<br>     float: left;<br>     border: none;<br> &#125;<br> .ccInfo .main &#123;<br>     margin-left: 520px;<br> &#125;<br> .ccInfo .main h2 &#123;<br>     font-size: 28px;<br>     margin-bottom: 30px;<br>     line-height: 1;<br>     font-weight: normal;<br> &#125;<br> .ccInfo .main p &#123;<br>     margin-bottom: 10px;<br>     word-wrap: break-word;<br>     line-height: 24px;<br>     max-height: 48px;<br>     overflow: hidden;<br> &#125;<br> .ccInfo .main p &#123;<br>     margin-bottom: 10px;<br>     word-wrap: break-word;<br>     line-height: 24px;<br>     max-height: 48px;<br>     overflow: hidden;<br> &#125;<br>.ccInfo .main h3 &#123;<br>     left: 540px;<br>     bottom: 20px;<br>     line-height: 1;<br>     font-size: 28px;<br>     color: #d32f24;<br>     font-weight: normal;<br>     position: absolute;<br> &#125;<br> &lt;/style&gt;<br></code></pre></td></tr></table></figure>
 
-<h1 id="课程管理-课程最终发布"><a href="#课程管理-课程最终发布" class="headerlink" title="课程管理-课程最终发布"></a>课程管理-课程最终发布</h1><h2 id="后端"><a href="#后端" class="headerlink" title="后端"></a>后端</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据课程id实现最终课程发布，修改表中的status字段，课程状态 Draft未发布 Normal已发布
-@PostMapping(&quot;publishCourse&#x2F;&#123;id&#125;&quot;)
-public R publishCourse(@PathVariable String id)&#123;
-    EduCourse eduCourse &#x3D; new EduCourse();
-    eduCourse.setId(id);
-    eduCourse.setStatus(&quot;Normal&quot;);
-    eduCourseService.updateById(eduCourse);
-    return R.ok();
-&#125;</code></pre></div>
+<h1 id="课程管理-课程最终发布"><a href="#课程管理-课程最终发布" class="headerlink" title="课程管理-课程最终发布"></a>课程管理-课程最终发布</h1><h2 id="后端"><a href="#后端" class="headerlink" title="后端"></a>后端</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 根据课程id实现最终课程发布，修改表中的status字段，课程状态 Draft未发布 Normal已发布</span><br><span class="hljs-meta">@PostMapping(&quot;publishCourse/&#123;id&#125;&quot;)</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">publishCourse</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> String id)</span></span>&#123;<br>    EduCourse eduCourse = <span class="hljs-keyword">new</span> EduCourse();<br>    eduCourse.setId(id);<br>    eduCourse.setStatus(<span class="hljs-string">&quot;Normal&quot;</span>);<br>    eduCourseService.updateById(eduCourse);<br>    <span class="hljs-keyword">return</span> R.ok();<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><p>course.js</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 根据课程id实现最终课程发布
-publishCourseInfo(id)&#123;
-    return request(&#123;
-        url: &#96;&#x2F;eduservice&#x2F;course&#x2F;publishCourse&#x2F;&#96;+id,
-        method: &#39;post&#39;
-      &#125;)
-&#125;</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 根据课程id实现最终课程发布</span><br><span class="hljs-function"><span class="hljs-title">publishCourseInfo</span>(<span class="hljs-params">id</span>)</span>&#123;<br>    <span class="hljs-keyword">return</span> request(&#123;<br>        <span class="hljs-attr">url</span>: <span class="hljs-string">`/eduservice/course/publishCourse/`</span>+id,<br>        <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;post&#x27;</span><br>      &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>publish.vue中的methods</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">publish() &#123;
-        &#x2F;&#x2F; 提示信息
-         this.$confirm(&#39;此操作将发布课程信息, 是否继续?&#39;, &#39;提示&#39;, &#123;
-           confirmButtonText: &#39;确定&#39;,
-           cancelButtonText: &#39;取消&#39;,
-           type: &#39;warning&#39;
-           &#125;).then(() &#x3D;&gt; &#123;     &#x2F;&#x2F; 确认发布，执行then
-               &#x2F;&#x2F; 调用发布方法
-               course.publishCourseInfo(this.courseId)
-                   .then(response &#x3D;&gt;&#123;     &#x2F;&#x2F; 发布成功
-                       &#x2F;&#x2F; 提示信息
-                       this.$message(&#123;
-                           type: &#39;success&#39;,
-                           message: &#39;发布课程成功!&#39;
-                       &#125;);
-                      &#x2F;&#x2F; 回到列表页面
-                      this.$router.push(&#123; path: &#39;&#x2F;course&#x2F;list&#39; &#125;)
-                   &#125;)
-           
-           &#125;)</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs vue">publish() &#123;<br>        // 提示信息<br>         this.$confirm(&#x27;此操作将发布课程信息, 是否继续?&#x27;, &#x27;提示&#x27;, &#123;<br>           confirmButtonText: &#x27;确定&#x27;,<br>           cancelButtonText: &#x27;取消&#x27;,<br>           type: &#x27;warning&#x27;<br>           &#125;).then(() =&gt; &#123;     // 确认发布，执行then<br>               // 调用发布方法<br>               course.publishCourseInfo(this.courseId)<br>                   .then(response =&gt;&#123;     // 发布成功<br>                       // 提示信息<br>                       this.$message(&#123;<br>                           type: &#x27;success&#x27;,<br>                           message: &#x27;发布课程成功!&#x27;<br>                       &#125;);<br>                      // 回到列表页面<br>                      this.$router.push(&#123; path: &#x27;/course/list&#x27; &#125;)<br>                   &#125;)<br>           <br>           &#125;)<br></code></pre></td></tr></table></figure>
 
-<h1 id="课程管理-课程列表"><a href="#课程管理-课程列表" class="headerlink" title="课程管理-课程列表"></a>课程管理-课程列表</h1><h2 id="后端-1"><a href="#后端-1" class="headerlink" title="后端"></a>后端</h2><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 课程列表
-@GetMapping
-public R getCourseList()&#123;
-    List&lt;EduCourse&gt; list &#x3D; eduCourseService.list(null);
-    return R.ok().data(&quot;list&quot;,list);
-&#125;</code></pre></div>
+<h1 id="课程管理-课程列表"><a href="#课程管理-课程列表" class="headerlink" title="课程管理-课程列表"></a>课程管理-课程列表</h1><h2 id="后端-1"><a href="#后端-1" class="headerlink" title="后端"></a>后端</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 课程列表</span><br><span class="hljs-meta">@GetMapping</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">getCourseList</span><span class="hljs-params">()</span></span>&#123;<br>    List&lt;EduCourse&gt; list = eduCourseService.list(<span class="hljs-keyword">null</span>);<br>    <span class="hljs-keyword">return</span> R.ok().data(<span class="hljs-string">&quot;list&quot;</span>,list);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="前端-1"><a href="#前端-1" class="headerlink" title="前端"></a>前端</h2><p>api/course.js</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 课程列表
-getCourseList()&#123;
-    return request(&#123;
-        url: &#96;&#x2F;eduservice&#x2F;course&#96;,
-        method: &#39;get&#39;
-      &#125;)
-&#125; </code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 课程列表</span><br><span class="hljs-function"><span class="hljs-title">getCourseList</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">return</span> request(&#123;<br>        <span class="hljs-attr">url</span>: <span class="hljs-string">`/eduservice/course`</span>,<br>        <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;get&#x27;</span><br>      &#125;)<br>&#125; <br></code></pre></td></tr></table></figure>
 
 <p>list.vue</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
-    &lt;div class&#x3D;&quot;app-container&quot;&gt;
-        课程列表
-     &lt;!--查询表单--&gt;
-     &lt;el-form :inline&#x3D;&quot;true&quot; class&#x3D;&quot;demo-form-inline&quot;&gt;
-       &lt;el-form-item&gt;
-         &lt;el-input v-model&#x3D;&quot;courseQuery.title&quot; placeholder&#x3D;&quot;课程名&quot;&#x2F;&gt;
-       &lt;&#x2F;el-form-item&gt;
-	   
-       &lt;el-form-item&gt;
-         &lt;el-select v-model&#x3D;&quot;courseQuery.status&quot; clearable placeholder&#x3D;&quot;课程状态&quot;&gt;
-           &lt;el-option :value&#x3D;&quot;Normal&quot; label&#x3D;&quot;已发布&quot;&#x2F;&gt;
-           &lt;el-option :value&#x3D;&quot;Draft&quot; label&#x3D;&quot;未发布&quot;&#x2F;&gt;
-         &lt;&#x2F;el-select&gt;
-       &lt;&#x2F;el-form-item&gt;
-
-	   
-       &lt;el-button type&#x3D;&quot;primary&quot; icon&#x3D;&quot;el-icon-search&quot; @click&#x3D;&quot;getList()&quot;&gt;查询&lt;&#x2F;el-button&gt;
-       &lt;el-button type&#x3D;&quot;default&quot; @click&#x3D;&quot;resetData()&quot;&gt;清空&lt;&#x2F;el-button&gt;
-	   
-     &lt;&#x2F;el-form&gt;
-
-        &lt;!-- 表格 --&gt;
-        &lt;el-table
-        :data&#x3D;&quot;list&quot;
-        border
-        fit
-        highlight-current-row&gt;
-        &lt;el-table-column
-            label&#x3D;&quot;序号&quot;
-            width&#x3D;&quot;70&quot;
-            align&#x3D;&quot;center&quot;&gt;
-            &lt;template slot-scope&#x3D;&quot;scope&quot;&gt;
-            &#123;&#123; (page - 1) * limit + scope.$index + 1 &#125;&#125;
-            &lt;&#x2F;template&gt;
-        &lt;&#x2F;el-table-column&gt;
-        &lt;el-table-column prop&#x3D;&quot;title&quot; label&#x3D;&quot;课程名称&quot; width&#x3D;&quot;80&quot; &#x2F;&gt;
-        &lt;el-table-column label&#x3D;&quot;状态&quot; width&#x3D;&quot;80&quot;&gt;
-            &lt;template slot-scope&#x3D;&quot;scope&quot;&gt;
-            &#123;&#123; scope.row.status&#x3D;&#x3D;&#x3D;&#39;Normal&#39; ? &#39;已发布&#39;:&#39;未发布&#39; &#125;&#125;
-            &lt;&#x2F;template&gt;
-        &lt;&#x2F;el-table-column&gt;
-        &lt;el-table-column prop&#x3D;&quot;lessonNum&quot; label&#x3D;&quot;课时数&quot; &#x2F;&gt;
-        &lt;el-table-column prop&#x3D;&quot;gmtCreate&quot; label&#x3D;&quot;添加时间&quot; width&#x3D;&quot;160&quot;&#x2F;&gt;
-        &lt;el-table-column prop&#x3D;&quot;viewCount&quot; label&#x3D;&quot;浏览数量&quot; width&#x3D;&quot;60&quot; &#x2F;&gt;
-        &lt;el-table-column label&#x3D;&quot;操作&quot; width&#x3D;&quot;200&quot; align&#x3D;&quot;center&quot;&gt;
-            &lt;template slot-scope&#x3D;&quot;scope&quot;&gt;
-            &lt;router-link :to&#x3D;&quot;&#39;&#x2F;teacher&#x2F;edit&#x2F;&#39;+scope.row.id&quot;&gt;
-                &lt;el-button type&#x3D;&quot;primary&quot; size&#x3D;&quot;mini&quot; icon&#x3D;&quot;el-icon-edit&quot;&gt;编辑课程基本信息&lt;&#x2F;el-button&gt;
-            &lt;&#x2F;router-link&gt;
-             &lt;router-link :to&#x3D;&quot;&#39;&#x2F;teacher&#x2F;edit&#x2F;&#39;+scope.row.id&quot;&gt;
-                &lt;el-button type&#x3D;&quot;primary&quot; size&#x3D;&quot;mini&quot; icon&#x3D;&quot;el-icon-edit&quot;&gt;编辑课程大纲信息&lt;&#x2F;el-button&gt;
-            &lt;&#x2F;router-link&gt;
-            &lt;el-button type&#x3D;&quot;danger&quot; size&#x3D;&quot;mini&quot; icon&#x3D;&quot;el-icon-delete&quot; @click&#x3D;&quot;removeDataById(scope.row.id)&quot;&gt;删除课程信息&lt;&#x2F;el-button&gt;
-            &lt;&#x2F;template&gt;
-        &lt;&#x2F;el-table-column&gt;
-        &lt;&#x2F;el-table&gt;
-
-    &lt;!-- 分页 --&gt;
-    &lt;el-pagination
-      :current-page&#x3D;&quot;page&quot;
-      :page-size&#x3D;&quot;limit&quot;
-      :total&#x3D;&quot;total&quot;
-      style&#x3D;&quot;padding: 30px 0; text-align: center;&quot;
-      layout&#x3D;&quot;total, prev, pager, next, jumper&quot;
-      @current-change&#x3D;&quot;getList&quot;
-    &#x2F;&gt;
-    &lt;&#x2F;div&gt;
-&lt;&#x2F;template&gt;
-
-&lt;script&gt;
-
-import course from &#39;@&#x2F;api&#x2F;edu&#x2F;course&#39;
-
-export default &#123;
-    data()&#123;     &#x2F;&#x2F; 定义变量和初始值
-        return&#123;
-            list:null,  &#x2F;&#x2F; 查询之后接口返回集合
-            page:1,   &#x2F;&#x2F; 当前页
-            limit:10, &#x2F;&#x2F; 每页的记录数
-            total:0,  &#x2F;&#x2F; 总记录数
-            courseQuery:&#123;&#125;    &#x2F;&#x2F; 条封装对象
-
-        &#125;
-    &#125;,
-    created()&#123;      &#x2F;&#x2F; 页面渲染之前执行，调用创建的方法
-        this.getList()
-    &#125;,
-    methods:&#123;
-        &#x2F;&#x2F; 讲师列表
-        getList()&#123;
-            course.getCourseList()
-                .then(response &#x3D;&gt;&#123;&#x2F;&#x2F; 执行成功
-                    &#x2F;&#x2F; response接口接口返回的数据
-                    this.list &#x3D; response.data.list
-                &#125;)     
-                .catch(error &#x3D;&gt;&#123; &#x2F;&#x2F; 执行失败
-                    console.log(error)
-                &#125;)   
-        &#125;,
-        &#x2F;&#x2F; 清空
-        resetData()&#123;    &#x2F;&#x2F;清空
-            &#x2F;&#x2F; 清空所有数据
-            this.courseQuery &#x3D; &#123;&#125;
-            &#x2F;&#x2F; 查询所有用户
-            this.getList()
-        &#125;,
-        
-    &#125;
-&#125;
-&lt;&#x2F;script&gt;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>    &lt;div class=&quot;app-container&quot;&gt;<br>        课程列表<br>     &lt;!--查询表单--&gt;<br>     &lt;el-form :inline=&quot;true&quot; class=&quot;demo-form-inline&quot;&gt;<br>       &lt;el-form-item&gt;<br>         &lt;el-input v-model=&quot;courseQuery.title&quot; placeholder=&quot;课程名&quot;/&gt;<br>       &lt;/el-form-item&gt;<br>	   <br>       &lt;el-form-item&gt;<br>         &lt;el-select v-model=&quot;courseQuery.status&quot; clearable placeholder=&quot;课程状态&quot;&gt;<br>           &lt;el-option :value=&quot;Normal&quot; label=&quot;已发布&quot;/&gt;<br>           &lt;el-option :value=&quot;Draft&quot; label=&quot;未发布&quot;/&gt;<br>         &lt;/el-select&gt;<br>       &lt;/el-form-item&gt;<br><br>	   <br>       &lt;el-button type=&quot;primary&quot; icon=&quot;el-icon-search&quot; @click=&quot;getList()&quot;&gt;查询&lt;/el-button&gt;<br>       &lt;el-button type=&quot;default&quot; @click=&quot;resetData()&quot;&gt;清空&lt;/el-button&gt;<br>	   <br>     &lt;/el-form&gt;<br><br>        &lt;!-- 表格 --&gt;<br>        &lt;el-table<br>        :data=&quot;list&quot;<br>        border<br>        fit<br>        highlight-current-row&gt;<br>        &lt;el-table-column<br>            label=&quot;序号&quot;<br>            width=&quot;70&quot;<br>            align=&quot;center&quot;&gt;<br>            &lt;template slot-scope=&quot;scope&quot;&gt;<br>            &#123;&#123; (page - 1) * limit + scope.$index + 1 &#125;&#125;<br>            &lt;/template&gt;<br>        &lt;/el-table-column&gt;<br>        &lt;el-table-column prop=&quot;title&quot; label=&quot;课程名称&quot; width=&quot;80&quot; /&gt;<br>        &lt;el-table-column label=&quot;状态&quot; width=&quot;80&quot;&gt;<br>            &lt;template slot-scope=&quot;scope&quot;&gt;<br>            &#123;&#123; scope.row.status===&#x27;Normal&#x27; ? &#x27;已发布&#x27;:&#x27;未发布&#x27; &#125;&#125;<br>            &lt;/template&gt;<br>        &lt;/el-table-column&gt;<br>        &lt;el-table-column prop=&quot;lessonNum&quot; label=&quot;课时数&quot; /&gt;<br>        &lt;el-table-column prop=&quot;gmtCreate&quot; label=&quot;添加时间&quot; width=&quot;160&quot;/&gt;<br>        &lt;el-table-column prop=&quot;viewCount&quot; label=&quot;浏览数量&quot; width=&quot;60&quot; /&gt;<br>        &lt;el-table-column label=&quot;操作&quot; width=&quot;200&quot; align=&quot;center&quot;&gt;<br>            &lt;template slot-scope=&quot;scope&quot;&gt;<br>            &lt;router-link :to=&quot;&#x27;/teacher/edit/&#x27;+scope.row.id&quot;&gt;<br>                &lt;el-button type=&quot;primary&quot; size=&quot;mini&quot; icon=&quot;el-icon-edit&quot;&gt;编辑课程基本信息&lt;/el-button&gt;<br>            &lt;/router-link&gt;<br>             &lt;router-link :to=&quot;&#x27;/teacher/edit/&#x27;+scope.row.id&quot;&gt;<br>                &lt;el-button type=&quot;primary&quot; size=&quot;mini&quot; icon=&quot;el-icon-edit&quot;&gt;编辑课程大纲信息&lt;/el-button&gt;<br>            &lt;/router-link&gt;<br>            &lt;el-button type=&quot;danger&quot; size=&quot;mini&quot; icon=&quot;el-icon-delete&quot; @click=&quot;removeDataById(scope.row.id)&quot;&gt;删除课程信息&lt;/el-button&gt;<br>            &lt;/template&gt;<br>        &lt;/el-table-column&gt;<br>        &lt;/el-table&gt;<br><br>    &lt;!-- 分页 --&gt;<br>    &lt;el-pagination<br>      :current-page=&quot;page&quot;<br>      :page-size=&quot;limit&quot;<br>      :total=&quot;total&quot;<br>      style=&quot;padding: 30px 0; text-align: center;&quot;<br>      layout=&quot;total, prev, pager, next, jumper&quot;<br>      @current-change=&quot;getList&quot;<br>    /&gt;<br>    &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script&gt;<br><br>import course from &#x27;@/api/edu/course&#x27;<br><br>export default &#123;<br>    data()&#123;     // 定义变量和初始值<br>        return&#123;<br>            list:null,  // 查询之后接口返回集合<br>            page:1,   // 当前页<br>            limit:10, // 每页的记录数<br>            total:0,  // 总记录数<br>            courseQuery:&#123;&#125;    // 条封装对象<br><br>        &#125;<br>    &#125;,<br>    created()&#123;      // 页面渲染之前执行，调用创建的方法<br>        this.getList()<br>    &#125;,<br>    methods:&#123;<br>        // 讲师列表<br>        getList()&#123;<br>            course.getCourseList()<br>                .then(response =&gt;&#123;// 执行成功<br>                    // response接口接口返回的数据<br>                    this.list = response.data.list<br>                &#125;)     <br>                .catch(error =&gt;&#123; // 执行失败<br>                    console.log(error)<br>                &#125;)   <br>        &#125;,<br>        // 清空<br>        resetData()&#123;    //清空<br>            // 清空所有数据<br>            this.courseQuery = &#123;&#125;<br>            // 查询所有用户<br>            this.getList()<br>        &#125;,<br>        <br>    &#125;<br>&#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
 
 
 
 <h1 id="课程管理-删除课程后端"><a href="#课程管理-删除课程后端" class="headerlink" title="课程管理-删除课程后端"></a>课程管理-删除课程后端</h1><p>删除流程：</p>
 <p>小节=&gt;章节=&gt;课程描述=&gt;课程</p>
 <p>com.atguigu.eduservice.controller.EduCourseController</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据课程id删除课程
-@DeleteMapping(&quot;deleteCourse&#x2F;&#123;courseId&#125;&quot;)
-public R deleteCourse(@PathVariable String courseId)&#123;
-    eduCourseService.removeCourseById(courseId);
-    return R.ok();
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 根据课程id删除课程</span><br><span class="hljs-meta">@DeleteMapping(&quot;deleteCourse/&#123;courseId&#125;&quot;)</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">deleteCourse</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> String courseId)</span></span>&#123;<br>    eduCourseService.removeCourseById(courseId);<br>    <span class="hljs-keyword">return</span> R.ok();<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>EduCourseService</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据课程id删除课程
-void removeCourseById(String courseId);</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 根据课程id删除课程</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">removeCourseById</span><span class="hljs-params">(String courseId)</span></span>;<br></code></pre></td></tr></table></figure>
 
 <p>删除小节EduVideoService</p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">public interface EduVideoService extends IService&lt;EduVideo&gt; &#123;
-
-    &#x2F;&#x2F; 根据课程id删除小节
-    void removeVideoByCourseId(String courseId);
-&#125;</code></pre></div>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-symbol">EduVideoService</span> <span class="hljs-symbol">extends</span> <span class="hljs-symbol">IService</span>&lt;<span class="hljs-symbol">EduVideo</span>&gt; &#123;<br><br>    <span class="hljs-comment">// 根据课程id删除小节</span><br>    <span class="hljs-built_in">void</span> removeVideoByCourseId(String courseId);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>删除小节EduVideoServiceImpl</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Service
-public class EduVideoServiceImpl extends ServiceImpl&lt;EduVideoMapper, EduVideo&gt; implements EduVideoService &#123;
-    &#x2F;&#x2F; 根据课程id删除小节
-    @Override
-    public void removeVideoByCourseId(String courseId) &#123;
-        QueryWrapper&lt;EduVideo&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
-        wrapper.eq(&quot;course_id&quot;,courseId);
-        baseMapper.delete(wrapper);
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EduVideoServiceImpl</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ServiceImpl</span>&lt;<span class="hljs-title">EduVideoMapper</span>, <span class="hljs-title">EduVideo</span>&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title">EduVideoService</span> </span>&#123;<br>    <span class="hljs-comment">// 根据课程id删除小节</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">removeVideoByCourseId</span><span class="hljs-params">(String courseId)</span> </span>&#123;<br>        QueryWrapper&lt;EduVideo&gt; wrapper = <span class="hljs-keyword">new</span> QueryWrapper&lt;&gt;();<br>        wrapper.eq(<span class="hljs-string">&quot;course_id&quot;</span>,courseId);<br>        baseMapper.delete(wrapper);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>删除章节EduChapterService</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据课程id删除章节
-void removeChapterByCourseId(String courseId);</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 根据课程id删除章节</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">removeChapterByCourseId</span><span class="hljs-params">(String courseId)</span></span>;<br></code></pre></td></tr></table></figure>
 
 <p>删除章节EduChapterServiceImpl</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">    &#x2F;&#x2F; 根据课程id删除章节
-    @Override
-    public void removeChapterByCourseId(String courseId) &#123;
-        QueryWrapper&lt;EduChapter&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
-        wrapper.eq(&quot;course_id&quot;,courseId);
-        baseMapper.delete(wrapper);
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java">    <span class="hljs-comment">// 根据课程id删除章节</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">removeChapterByCourseId</span><span class="hljs-params">(String courseId)</span> </span>&#123;<br>        QueryWrapper&lt;EduChapter&gt; wrapper = <span class="hljs-keyword">new</span> QueryWrapper&lt;&gt;();<br>        wrapper.eq(<span class="hljs-string">&quot;course_id&quot;</span>,courseId);<br>        baseMapper.delete(wrapper);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>EduCourseServiceImpl</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 根据课程id删除课程
-@Override
-public void removeCourseById(String courseId) &#123;
-    &#x2F;&#x2F; 根据课程id删除小节
-    eduVideoService.removeVideoByCourseId(courseId);
-
-    &#x2F;&#x2F; 根据课程id删除章节
-    eduChapterService.removeChapterByCourseId(courseId);
-
-    &#x2F;&#x2F; 根据课程id删除描述,因为描述的id就是课程的id，可以直接删除
-    eduCourseDescriptionService.removeById(courseId);
-
-    &#x2F;&#x2F; 根据课程id删除课程
-    int result &#x3D; baseMapper.deleteById(courseId);
-    if (result &#x3D;&#x3D; 0)&#123;
-        throw new GuliException(20001,&quot;删除失败&quot;);
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 根据课程id删除课程</span><br><span class="hljs-meta">@Override</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">removeCourseById</span><span class="hljs-params">(String courseId)</span> </span>&#123;<br>    <span class="hljs-comment">// 根据课程id删除小节</span><br>    eduVideoService.removeVideoByCourseId(courseId);<br><br>    <span class="hljs-comment">// 根据课程id删除章节</span><br>    eduChapterService.removeChapterByCourseId(courseId);<br><br>    <span class="hljs-comment">// 根据课程id删除描述,因为描述的id就是课程的id，可以直接删除</span><br>    eduCourseDescriptionService.removeById(courseId);<br><br>    <span class="hljs-comment">// 根据课程id删除课程</span><br>    <span class="hljs-keyword">int</span> result = baseMapper.deleteById(courseId);<br>    <span class="hljs-keyword">if</span> (result == <span class="hljs-number">0</span>)&#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> GuliException(<span class="hljs-number">20001</span>,<span class="hljs-string">&quot;删除失败&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h1 id="课程管理-删除课程前端"><a href="#课程管理-删除课程前端" class="headerlink" title="课程管理-删除课程前端"></a>课程管理-删除课程前端</h1><p>course.js</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 根据课程id删除课程
-deleteCourseById(id)&#123;
-    return request(&#123;
-        url: &#96;&#x2F;eduservice&#x2F;course&#x2F;deleteCourse&#x2F;&#96;+id,
-        method: &#39;delete&#39;
-      &#125;)
-&#125;</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 根据课程id删除课程</span><br><span class="hljs-function"><span class="hljs-title">deleteCourseById</span>(<span class="hljs-params">id</span>)</span>&#123;<br>    <span class="hljs-keyword">return</span> request(&#123;<br>        <span class="hljs-attr">url</span>: <span class="hljs-string">`/eduservice/course/deleteCourse/`</span>+id,<br>        <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;delete&#x27;</span><br>      &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>list.vue</p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">methods:&#123;
-        &#x2F;&#x2F; 根据课程id删除课程
-        removeDataById(id)&#123;
-            this.$confirm(&#39;此操作将永久删除讲师记录, 是否继续?&#39;, &#39;提示&#39;, &#123;
-            confirmButtonText: &#39;确定&#39;,
-            cancelButtonText: &#39;取消&#39;,
-            type: &#39;warning&#39;
-            &#125;).then(() &#x3D;&gt; &#123;     &#x2F;&#x2F; 确认删除，执行then
-                &#x2F;&#x2F; 调用删除方法
-                course.deleteCourseById(id)
-                    .then(response &#x3D;&gt;&#123;     &#x2F;&#x2F; 删除成功
-                        &#x2F;&#x2F; 提示信息
-                        this.$message(&#123;
-                            type: &#39;success&#39;,
-                            message: &#39;删除课程成功!&#39;
-                        &#125;);
-                        &#x2F;&#x2F; 回到列表页面
-                        this.getList()
-                    &#125;)
-            
-            &#125;)
-        &#125;,</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs vue">methods:&#123;<br>        // 根据课程id删除课程<br>        removeDataById(id)&#123;<br>            this.$confirm(&#x27;此操作将永久删除讲师记录, 是否继续?&#x27;, &#x27;提示&#x27;, &#123;<br>            confirmButtonText: &#x27;确定&#x27;,<br>            cancelButtonText: &#x27;取消&#x27;,<br>            type: &#x27;warning&#x27;<br>            &#125;).then(() =&gt; &#123;     // 确认删除，执行then<br>                // 调用删除方法<br>                course.deleteCourseById(id)<br>                    .then(response =&gt;&#123;     // 删除成功<br>                        // 提示信息<br>                        this.$message(&#123;<br>                            type: &#x27;success&#x27;,<br>                            message: &#x27;删除课程成功!&#x27;<br>                        &#125;);<br>                        // 回到列表页面<br>                        this.getList()<br>                    &#125;)<br>            <br>            &#125;)<br>        &#125;,<br></code></pre></td></tr></table></figure>
 
 <p>TODO:</p>
 <p>课程条件查询，分页</p>
 <h1 id="课程管理-课程条件分页查询"><a href="#课程管理-课程条件分页查询" class="headerlink" title="课程管理-课程条件分页查询"></a>课程管理-课程条件分页查询</h1><h2 id="后端-2"><a href="#后端-2" class="headerlink" title="后端"></a>后端</h2><p>CourseQuery封装对象</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Data
-public class CourseQuery &#123;
-    &#x2F;&#x2F; 课程名称
-    private String title;
-    &#x2F;&#x2F; 发布状态
-    private String status;
-
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Data</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CourseQuery</span> </span>&#123;<br>    <span class="hljs-comment">// 课程名称</span><br>    <span class="hljs-keyword">private</span> String title;<br>    <span class="hljs-comment">// 发布状态</span><br>    <span class="hljs-keyword">private</span> String status;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>controller</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 分页带条件
-@PostMapping(&quot;getCoursePageCondition&#x2F;&#123;current&#125;&#x2F;&#123;limit&#125;&quot;)
-public R getCoursePageCondition(@PathVariable long current, @PathVariable long limit,
-                                @RequestBody CourseQuery courseQuery)&#123;
-    &#x2F;&#x2F; 构建分页对象
-    Page&lt;EduCourse&gt; coursePage &#x3D; new Page&lt;&gt;(current, limit);
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 分页带条件</span><br><span class="hljs-meta">@PostMapping(&quot;getCoursePageCondition/&#123;current&#125;/&#123;limit&#125;&quot;)</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">getCoursePageCondition</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> <span class="hljs-keyword">long</span> current, <span class="hljs-meta">@PathVariable</span> <span class="hljs-keyword">long</span> limit,</span></span><br><span class="hljs-params"><span class="hljs-function">                                <span class="hljs-meta">@RequestBody</span> CourseQuery courseQuery)</span></span>&#123;<br>    <span class="hljs-comment">// 构建分页对象</span><br>    Page&lt;EduCourse&gt; coursePage = <span class="hljs-keyword">new</span> Page&lt;&gt;(current, limit);<br><br>    <span class="hljs-comment">// 构建查询条件</span><br>    QueryWrapper&lt;EduCourse&gt; wrapper = <span class="hljs-keyword">new</span> QueryWrapper&lt;&gt;();<br><br>    <span class="hljs-comment">// 取到传进来的对象的数据</span><br>    String title = courseQuery.getTitle();<br>    String status = courseQuery.getStatus();<br><br>    <span class="hljs-comment">// 判断数据的有效性，并封装条件</span><br>    <span class="hljs-keyword">if</span> (!StringUtils.isEmpty(title))&#123;<br>        <span class="hljs-comment">// 模块查询课程名称</span><br>        wrapper.like(<span class="hljs-string">&quot;title&quot;</span>,title);<br>    &#125;<br>    <span class="hljs-keyword">if</span> (!StringUtils.isEmpty(status))&#123;<br>        wrapper.like(<span class="hljs-string">&quot;status&quot;</span>,status);<br>    &#125;<br><br>    <span class="hljs-comment">// 查询数据库</span><br>    eduCourseService.page(coursePage,wrapper);<br><br>    <span class="hljs-comment">// 得到所有数据</span><br>    List&lt;EduCourse&gt; records = coursePage.getRecords();<br>    <span class="hljs-keyword">long</span> total = coursePage.getTotal();<br><br>    <span class="hljs-keyword">return</span> R.ok().data(<span class="hljs-string">&quot;records&quot;</span>,records).data(<span class="hljs-string">&quot;total&quot;</span>,total);<br>&#125;<br></code></pre></td></tr></table></figure>
 
-    &#x2F;&#x2F; 构建查询条件
-    QueryWrapper&lt;EduCourse&gt; wrapper &#x3D; new QueryWrapper&lt;&gt;();
-
-    &#x2F;&#x2F; 取到传进来的对象的数据
-    String title &#x3D; courseQuery.getTitle();
-    String status &#x3D; courseQuery.getStatus();
-
-    &#x2F;&#x2F; 判断数据的有效性，并封装条件
-    if (!StringUtils.isEmpty(title))&#123;
-        &#x2F;&#x2F; 模块查询课程名称
-        wrapper.like(&quot;title&quot;,title);
-    &#125;
-    if (!StringUtils.isEmpty(status))&#123;
-        wrapper.like(&quot;status&quot;,status);
-    &#125;
-
-    &#x2F;&#x2F; 查询数据库
-    eduCourseService.page(coursePage,wrapper);
-
-    &#x2F;&#x2F; 得到所有数据
-    List&lt;EduCourse&gt; records &#x3D; coursePage.getRecords();
-    long total &#x3D; coursePage.getTotal();
-
-    return R.ok().data(&quot;records&quot;,records).data(&quot;total&quot;,total);
-&#125;</code></pre></div>
-
-<h2 id="前端-2"><a href="#前端-2" class="headerlink" title="前端"></a>前端</h2><div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&#x2F;&#x2F; 条件查询分页
-       getList(page &#x3D; 1)&#123;
-           this.page &#x3D; page
-           course.getCourseListPage(this.page,this.limit,this.courseQuery)
-           .then(response &#x3D;&gt;&#123;
-                this.list &#x3D; response.data.records
-               this.total &#x3D; response.data.total
-           
-           &#125;)
-       &#125;,</code></pre></div>
+<h2 id="前端-2"><a href="#前端-2" class="headerlink" title="前端"></a>前端</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs vue">// 条件查询分页<br>       getList(page = 1)&#123;<br>           this.page = page<br>           course.getCourseListPage(this.page,this.limit,this.courseQuery)<br>           .then(response =&gt;&#123;<br>                this.list = response.data.records<br>               this.total = response.data.total<br>           <br>           &#125;)<br>       &#125;,<br></code></pre></td></tr></table></figure>
 
 
 
 <h1 id="阿里云视频点播"><a href="#阿里云视频点播" class="headerlink" title="阿里云视频点播"></a>阿里云视频点播</h1><p>选择存储区域的时候一定要选择上海，会报not found的错误 ，this video not exist</p>
 <h2 id="课程管理-添加小节上传视频后端"><a href="#课程管理-添加小节上传视频后端" class="headerlink" title="课程管理-添加小节上传视频后端"></a>课程管理-添加小节上传视频后端</h2><p>在service模块下创建service_vod子模块</p>
 <p>application.properties</p>
-<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"># 服务端口
-server.port&#x3D;8003
-# 服务名
-spring.application.name&#x3D;service-vod
-# 环境设置：dev、test、prod
-spring.profiles.active&#x3D;dev
-#阿里云 vod
-#不同的服务器，地址不同
-aliyun.vod.file.keyid&#x3D;your accessKeyId
-aliyun.vod.file.keysecret&#x3D;your accessKeySecret</code></pre></div>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment"># 服务端口</span><br><span class="hljs-meta">server.port</span>=<span class="hljs-string">8003</span><br><span class="hljs-comment"># 服务名</span><br><span class="hljs-meta">spring.application.name</span>=<span class="hljs-string">service-vod</span><br><span class="hljs-comment"># 环境设置：dev、test、prod</span><br><span class="hljs-meta">spring.profiles.active</span>=<span class="hljs-string">dev</span><br><span class="hljs-comment">#阿里云 vod</span><br><span class="hljs-comment">#不同的服务器，地址不同</span><br><span class="hljs-meta">aliyun.vod.file.keyid</span>=<span class="hljs-string">your accessKeyId</span><br><span class="hljs-meta">aliyun.vod.file.keysecret</span>=<span class="hljs-string">your accessKeySecret</span><br></code></pre></td></tr></table></figure>
 
 <p>定义工具类ConstantVodUtils</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Component
-public class ConstantVodUtils implements InitializingBean &#123;
-
-    @Value(&quot;aliyun.vod.file.keyid&quot;)
-    private String keyId;
-
-    @Value(&quot;aliyun.vod.file.keysecret&quot;)
-    private String keySecret;
-
-    public static String ACCESS_KEY_ID;
-    public static String ACCESS_KEY_SECRET;
-
-    @Override
-    public void afterPropertiesSet() throws Exception &#123;
-        ACCESS_KEY_ID &#x3D; keyId;
-        ACCESS_KEY_SECRET &#x3D; keySecret;
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ConstantVodUtils</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">InitializingBean</span> </span>&#123;<br><br>    <span class="hljs-meta">@Value(&quot;aliyun.vod.file.keyid&quot;)</span><br>    <span class="hljs-keyword">private</span> String keyId;<br><br>    <span class="hljs-meta">@Value(&quot;aliyun.vod.file.keysecret&quot;)</span><br>    <span class="hljs-keyword">private</span> String keySecret;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String ACCESS_KEY_ID;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String ACCESS_KEY_SECRET;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">afterPropertiesSet</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        ACCESS_KEY_ID = keyId;<br>        ACCESS_KEY_SECRET = keySecret;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>controller</p>
 <p>com.atguigu.vod.controller.VodController</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@RestController
-@RequestMapping(&quot;eduvod&#x2F;video&quot;)
-@CrossOrigin
-public class VodController &#123;
-
-    @Autowired
-    private VodService vodService;
-
-    &#x2F;&#x2F; 上传视频到阿里云
-    @PostMapping(&quot;uploadAlyVideo&quot;)
-    public R uploadAlyVideo(MultipartFile file)&#123;
-        String videoId &#x3D; vodService.uploadAly(file);
-        return R.ok().data(&quot;videoId&quot;,videoId);
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;eduvod/video&quot;)</span><br><span class="hljs-meta">@CrossOrigin</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">VodController</span> </span>&#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> VodService vodService;<br><br>    <span class="hljs-comment">// 上传视频到阿里云</span><br>    <span class="hljs-meta">@PostMapping(&quot;uploadAlyVideo&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">uploadAlyVideo</span><span class="hljs-params">(MultipartFile file)</span></span>&#123;<br>        String videoId = vodService.uploadAly(file);<br>        <span class="hljs-keyword">return</span> R.ok().data(<span class="hljs-string">&quot;videoId&quot;</span>,videoId);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <p>Service</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">public interface VodService &#123;
-    &#x2F;&#x2F; 上传视频到阿里云
-    String uploadAly(MultipartFile file);
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">VodService</span> </span>&#123;<br>    <span class="hljs-comment">// 上传视频到阿里云</span><br>    <span class="hljs-function">String <span class="hljs-title">uploadAly</span><span class="hljs-params">(MultipartFile file)</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <p>ServiceImpl</p>
-<div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Service
-public class VodServiceImpl implements VodService &#123;
-
-    &#x2F;&#x2F; 上传视频到阿里云
-    @Override
-    public String uploadAly(MultipartFile file) &#123;
-
-        try &#123;
-            &#x2F;&#x2F; 文件输入流
-            InputStream inputStream &#x3D; file.getInputStream();
-            &#x2F;&#x2F; 文件的源名字
-            String fileName &#x3D; file.getOriginalFilename();
-
-            &#x2F;&#x2F; 上传文件的名称
-            &#x2F;&#x2F; 源文件，01.mp4,改成01
-            String title &#x3D; fileName.substring(0, fileName.lastIndexOf(&quot;.&quot;));
-
-            UploadStreamRequest request &#x3D; new UploadStreamRequest(ConstantVodUtils.ACCESS_KEY_ID, ConstantVodUtils.ACCESS_KEY_SECRET, title, fileName, inputStream);
-
-            UploadVideoImpl uploader &#x3D; new UploadVideoImpl();
-            UploadStreamResponse response &#x3D; uploader.uploadStream(request);
-            System.out.print(&quot;RequestId&#x3D;&quot; + response.getRequestId() + &quot;\n&quot;);  &#x2F;&#x2F;请求视频点播服务的请求ID
-
-            &#x2F;&#x2F; 视频返回的id
-            String videoId &#x3D; &quot;&quot;;
-            if (response.isSuccess()) &#123;
-                videoId &#x3D; response.getVideoId();
-            &#125; else &#123; &#x2F;&#x2F;如果设置回调URL无效，不影响视频上传，可以返回VideoId同时会返回错误码。其他情况上传失败时，VideoId为空，此时需要根据返回错误码分析具体错误原因
-                videoId &#x3D; response.getVideoId();
-            &#125;
-
-            return videoId;
-
-        &#125; catch (IOException e) &#123;
-            e.printStackTrace();
-            return null;
-        &#125;
-    &#125;
-&#125;</code></pre></div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">VodServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">VodService</span> </span>&#123;<br><br>    <span class="hljs-comment">// 上传视频到阿里云</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">uploadAly</span><span class="hljs-params">(MultipartFile file)</span> </span>&#123;<br><br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 文件输入流</span><br>            InputStream inputStream = file.getInputStream();<br>            <span class="hljs-comment">// 文件的源名字</span><br>            String fileName = file.getOriginalFilename();<br><br>            <span class="hljs-comment">// 上传文件的名称</span><br>            <span class="hljs-comment">// 源文件，01.mp4,改成01</span><br>            String title = fileName.substring(<span class="hljs-number">0</span>, fileName.lastIndexOf(<span class="hljs-string">&quot;.&quot;</span>));<br><br>            UploadStreamRequest request = <span class="hljs-keyword">new</span> UploadStreamRequest(ConstantVodUtils.ACCESS_KEY_ID, ConstantVodUtils.ACCESS_KEY_SECRET, title, fileName, inputStream);<br><br>            UploadVideoImpl uploader = <span class="hljs-keyword">new</span> UploadVideoImpl();<br>            UploadStreamResponse response = uploader.uploadStream(request);<br>            System.out.print(<span class="hljs-string">&quot;RequestId=&quot;</span> + response.getRequestId() + <span class="hljs-string">&quot;\n&quot;</span>);  <span class="hljs-comment">//请求视频点播服务的请求ID</span><br><br>            <span class="hljs-comment">// 视频返回的id</span><br>            String videoId = <span class="hljs-string">&quot;&quot;</span>;<br>            <span class="hljs-keyword">if</span> (response.isSuccess()) &#123;<br>                videoId = response.getVideoId();<br>            &#125; <span class="hljs-keyword">else</span> &#123; <span class="hljs-comment">//如果设置回调URL无效，不影响视频上传，可以返回VideoId同时会返回错误码。其他情况上传失败时，VideoId为空，此时需要根据返回错误码分析具体错误原因</span><br>                videoId = response.getVideoId();<br>            &#125;<br><br>            <span class="hljs-keyword">return</span> videoId;<br><br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            e.printStackTrace();<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>启动测试，报了一下错误，超过文件上传最大的容量，1M</p>
-<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Caused by: org.apache.tomcat.util.http.fileupload.FileUploadBase$FileSizeLimitExceededException: The field file exceeds its maximum permitted size of 1048576 bytes.</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">Caused by: org.apache.tomcat.util.http.fileupload.FileUploadBase<span class="hljs-variable">$FileSizeLimitExceededException</span>: The field file exceeds its maximum permitted size of 1048576 bytes.<br></code></pre></td></tr></table></figure>
 
 <p>解决方案</p>
 <p>在application.properties配置文件中添加下面配置</p>
-<div class="code-wrapper"><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"># 最大上传单个文件大小：默认1M
-spring.servlet.multipart.max-file-size&#x3D;1024MB
-# 最大置总上传的数据大小 ：默认10M
-spring.servlet.multipart.max-request-size&#x3D;1024MB</code></pre></div>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment"># 最大上传单个文件大小：默认1M</span><br><span class="hljs-meta">spring.servlet.multipart.max-file-size</span>=<span class="hljs-string">1024MB</span><br><span class="hljs-comment"># 最大置总上传的数据大小 ：默认10M</span><br><span class="hljs-meta">spring.servlet.multipart.max-request-size</span>=<span class="hljs-string">1024MB</span><br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="课程管理-添加小节上传视频前端"><a href="#课程管理-添加小节上传视频前端" class="headerlink" title="课程管理-添加小节上传视频前端"></a>课程管理-添加小节上传视频前端</h2><p>配置nginx反向代理</p>
 <p>将接口地址加入nginx配置</p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">location ~ &#x2F;eduvod&#x2F; &#123;
-    proxy_pass http:&#x2F;&#x2F;localhost:8003;
-&#125;</code></pre></div>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">location ~ <span class="hljs-regexp">/eduvod/</span> &#123;<br>    proxy_pass http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">8003</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>配置nginx上传文件大小，否则上传时会有 413 (Request Entity Too Large) 异常</p>
 <p>打开nginx主配置文件nginx.conf，找到http{}，添加</p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">client_max_body_size 1024m;</code></pre></div>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">client_max_body_size <span class="hljs-number">1024</span>m<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
 
 <p>重启nginx</p>
 <p><strong>数据定义</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">fileList: [],&#x2F;&#x2F;上传文件列表
-BASE_API: process.env.BASE_API &#x2F;&#x2F; 接口API地址</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs vue">fileList: [],//上传文件列表<br>BASE_API: process.env.BASE_API // 接口API地址<br></code></pre></td></tr></table></figure>
 
 <p><strong>整合上传组件</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;el-form-item label&#x3D;&quot;上传视频&quot;&gt;
-            &lt;el-upload
-                    :on-success&#x3D;&quot;handleVodUploadSuccess&quot;
-                    :on-remove&#x3D;&quot;handleVodRemove&quot;
-                    :before-remove&#x3D;&quot;beforeVodRemove&quot;
-                    :on-exceed&#x3D;&quot;handleUploadExceed&quot;
-                    :file-list&#x3D;&quot;fileList&quot;
-                    :action&#x3D;&quot;BASE_API+&#39;&#x2F;eduvod&#x2F;video&#x2F;uploadAlyVideo&#39;&quot;
-                    :limit&#x3D;&quot;1&quot;
-                    class&#x3D;&quot;upload-demo&quot;&gt;
-            &lt;el-button size&#x3D;&quot;small&quot; type&#x3D;&quot;primary&quot;&gt;上传视频&lt;&#x2F;el-button&gt;
-            &lt;el-tooltip placement&#x3D;&quot;right-end&quot;&gt;
-                &lt;div slot&#x3D;&quot;content&quot;&gt;最大支持1G，&lt;br&gt;
-                    支持3GP、ASF、AVI、DAT、DV、FLV、F4V、&lt;br&gt;
-                    GIF、M2T、M4V、MJ2、MJPEG、MKV、MOV、MP4、&lt;br&gt;
-                    MPE、MPG、MPEG、MTS、OGG、QT、RM、RMVB、&lt;br&gt;
-                    SWF、TS、VOB、WMV、WEBM 等视频格式上传&lt;&#x2F;div&gt;
-                &lt;i class&#x3D;&quot;el-icon-question&quot;&#x2F;&gt;
-            &lt;&#x2F;el-tooltip&gt;
-            &lt;&#x2F;el-upload&gt;
-        &lt;&#x2F;el-form-item&gt;
-</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;el-form-item label=&quot;上传视频&quot;&gt;<br>            &lt;el-upload<br>                    :on-success=&quot;handleVodUploadSuccess&quot;<br>                    :on-remove=&quot;handleVodRemove&quot;<br>                    :before-remove=&quot;beforeVodRemove&quot;<br>                    :on-exceed=&quot;handleUploadExceed&quot;<br>                    :file-list=&quot;fileList&quot;<br>                    :action=&quot;BASE_API+&#x27;/eduvod/video/uploadAlyVideo&#x27;&quot;<br>                    :limit=&quot;1&quot;<br>                    class=&quot;upload-demo&quot;&gt;<br>            &lt;el-button size=&quot;small&quot; type=&quot;primary&quot;&gt;上传视频&lt;/el-button&gt;<br>            &lt;el-tooltip placement=&quot;right-end&quot;&gt;<br>                &lt;div slot=&quot;content&quot;&gt;最大支持1G，&lt;br&gt;<br>                    支持3GP、ASF、AVI、DAT、DV、FLV、F4V、&lt;br&gt;<br>                    GIF、M2T、M4V、MJ2、MJPEG、MKV、MOV、MP4、&lt;br&gt;<br>                    MPE、MPG、MPEG、MTS、OGG、QT、RM、RMVB、&lt;br&gt;<br>                    SWF、TS、VOB、WMV、WEBM 等视频格式上传&lt;/div&gt;<br>                &lt;i class=&quot;el-icon-question&quot;/&gt;<br>            &lt;/el-tooltip&gt;<br>            &lt;/el-upload&gt;<br>        &lt;/el-form-item&gt;<br><br></code></pre></td></tr></table></figure>
 
 
 
 <p><strong>方法定义</strong></p>
-<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">methods: &#123;
-     &#x2F;&#x2F; 成功
-     handleVodUploadSuccess(response,file,fileList)&#123;
-       this.video.videoSourceId &#x3D; response.data.videoId
-       this.video.videoOriginalName &#x3D; file.name
-     &#125;,
-    &#x2F;&#x2F;视图上传多于一个视频
-    handleUploadExceed(files, fileList) &#123;
-      this.$message.warning(&#39;想要重新上传视频，请先删除已上传的
-    &#125;,
-</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs vue">methods: &#123;<br>     // 成功<br>     handleVodUploadSuccess(response,file,fileList)&#123;<br>       this.video.videoSourceId = response.data.videoId<br>       this.video.videoOriginalName = file.name<br>     &#125;,<br>    //视图上传多于一个视频<br>    handleUploadExceed(files, fileList) &#123;<br>      this.$message.warning(&#x27;想要重新上传视频，请先删除已上传的<br>    &#125;,<br><br></code></pre></td></tr></table></figure>
 
 
 
@@ -1214,12 +720,6 @@ BASE_API: process.env.BASE_API &#x2F;&#x2F; 接口API地址</code></pre></div>
   });
 </script>
 
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/components/prism-core.min.js" ></script>
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js" ></script>
-
-  <script  src="https://lib.baomitu.com/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script>
   (function() {
