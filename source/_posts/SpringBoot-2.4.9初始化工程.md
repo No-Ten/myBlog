@@ -15,12 +15,12 @@ tags:
 
 
 
-仓库地址：https://github.com/No-Ten/springboot_init
+仓库地址：https://github.com/No-Ten/springboot-demo
 
 通过git clone
 
 ```bash
-git clone git@github.com:No-Ten/springboot_init.git
+git clone git@github.com:No-Ten/springboot-demo.git
 ```
 
 
