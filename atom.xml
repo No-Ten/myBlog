@@ -6,7 +6,7 @@
   <link href="https://no-ten.github.io/atom.xml" rel="self"/>
   
   <link href="https://no-ten.github.io/"/>
-  <updated>2023-09-11T07:40:19.532Z</updated>
+  <updated>2023-09-28T02:37:00.506Z</updated>
   <id>https://no-ten.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>jenkins+gitee+maven+docker打包发布到k8s</title>
+    <link href="https://no-ten.github.io/jenkins+gitee+maven+docker%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83%E5%88%B0k8s/"/>
+    <id>https://no-ten.github.io/jenkins+gitee+maven+docker%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83%E5%88%B0k8s/</id>
+    <published>2023-09-28T02:35:31.866Z</published>
+    <updated>2023-09-28T02:37:00.506Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;jenkins-gitee-maven-docker打包发布到k8s&quot;&gt;&lt;a href=&quot;#jenkins-gitee-maven-docker打包发布到k8s&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="CI/CD流水线搭建" scheme="https://no-ten.github.io/categories/CI-CD%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%90%AD%E5%BB%BA/"/>
+    
+    
+    <category term="CI/CD流水线搭建" scheme="https://no-ten.github.io/tags/CI-CD%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%90%AD%E5%BB%BA/"/>
+    
+  </entry>
   
   <entry>
     <title>MySQL limit分页优化分析</title>
@@ -489,31 +514,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;day06-整合阿里云oss和Excel导入分类&quot;&gt;&lt;a href=&quot;#day06-整合阿里云oss和Excel导入分类&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="项目|谷粒学院|笔记" scheme="https://no-ten.github.io/categories/%E9%A1%B9%E7%9B%AE-%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2-%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="project" scheme="https://no-ten.github.io/tags/project/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>day05-讲师管理模块前端开发</title>
-    <link href="https://no-ten.github.io/day05-%E8%AE%B2%E5%B8%88%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9D%97%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    <id>https://no-ten.github.io/day05-%E8%AE%B2%E5%B8%88%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9D%97%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/</id>
-    <published>2021-12-22T16:14:18.147Z</published>
-    <updated>2022-01-06T16:40:25.075Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;day05-讲师管理模块前端开发&quot;&gt;&lt;a href=&quot;#day05-讲师管理模块前端开发&quot; class=&quot;headerlink&quot; title=&quot;day05-讲师管理模块前端开发&quot;&gt;&lt;/a&gt;day05-讲师管理模块前端开发&lt;/h1&gt;&lt;h1</summary>
         
       
     
