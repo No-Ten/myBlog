@@ -125,7 +125,6 @@ feed:
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: git
+- type: git
   repository: git@github.com:No-Ten/myBlog.git
   branch: gh-pages
-
