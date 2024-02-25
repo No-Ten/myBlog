@@ -1,0 +1,800 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/myBlog/img/fluid.png">
+  <link rel="icon" href="/myBlog/img/browserTitle.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Ten">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="将jar包打成exe可在任何window运行制作jar包略。 制作exe注意：这个制作不包含jre，只是将jar包制作成exe。 下载exe4j。可在网上搜索破解版，根据教程安装好。https:&#x2F;&#x2F;www.jb51.net&#x2F;softs&#x2F;541579.html 1.开始制作，选择Project type -&gt; “JAR in EXE” mode  2.填写软件名称和输出位置，next  3.根">
+<meta property="og:type" content="article">
+<meta property="og:title" content="将jar包打成exe可在任何window运行">
+<meta property="og:url" content="https://no-ten.github.io/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/index.html">
+<meta property="og:site_name" content="TBlog">
+<meta property="og:description" content="将jar包打成exe可在任何window运行制作jar包略。 制作exe注意：这个制作不包含jre，只是将jar包制作成exe。 下载exe4j。可在网上搜索破解版，根据教程安装好。https:&#x2F;&#x2F;www.jb51.net&#x2F;softs&#x2F;541579.html 1.开始制作，选择Project type -&gt; “JAR in EXE” mode  2.填写软件名称和输出位置，next  3.根">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225203939498.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225204118259.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225204436041.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225204504308.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225204608238.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225204714552.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225204759636.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225204901348.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225204954967.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225205035420.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225205138190.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225205622534.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225205709574.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225205757326.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225205826008.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210143087.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210209792.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210230062.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210251600.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210304200.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210319620.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210334976.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210414634.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210440267.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210455402.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210511177.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210523072.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210556713.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210644715.png">
+<meta property="og:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210805406.png">
+<meta property="article:published_time" content="2024-02-25T13:16:00.000Z">
+<meta property="article:modified_time" content="2024-02-25T13:16:35.027Z">
+<meta property="article:author" content="Ten">
+<meta property="article:tag" content="jar包制作exe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://no-ten.github.io/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225203939498.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>将jar包打成exe可在任何window运行 - TBlog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/myBlog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/myBlog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/myBlog/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"no-ten.github.io","root":"/myBlog/","version":"1.9.0","typing":{"enable":true,"typeSpeed":230,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/myBlog/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/myBlog/js/utils.js" ></script>
+  <script  src="/myBlog/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/myBlog/atom.xml" title="TBlog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/myBlog/">
+      <strong>TBlog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myBlog/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/myBlog/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="将jar包打成exe可在任何window运行"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Ten
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-02-25 21:16" pubdate>
+          2024年2月25日晚上9点16分 
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          833 字
+        
+      </span>
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">将jar包打成exe可在任何window运行</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="将jar包打成exe可在任何window运行"><a href="#将jar包打成exe可在任何window运行" class="headerlink" title="将jar包打成exe可在任何window运行"></a>将jar包打成exe可在任何window运行</h1><h2 id="制作jar包"><a href="#制作jar包" class="headerlink" title="制作jar包"></a>制作jar包</h2><p>略。</p>
+<h2 id="制作exe"><a href="#制作exe" class="headerlink" title="制作exe"></a>制作exe</h2><p>注意：这个制作不包含jre，只是将jar包制作成exe。</p>
+<p>下载exe4j。可在网上搜索破解版，根据教程安装好。<a target="_blank" rel="noopener" href="https://www.jb51.net/softs/541579.html">https://www.jb51.net/softs/541579.html</a></p>
+<p>1.开始制作，选择Project type -&gt; “JAR in EXE” mode</p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225203939498.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225203939498"></p>
+<p>2.填写软件名称和输出位置，next</p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225204118259.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225204118259"></p>
+<p>3.根据jar包情况，选择对应的executable type，填写软件名，并选择34或者64位</p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225204436041.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225204436041"></p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225204504308.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225204504308"></p>
+<p>4.选择java invocation 点击右边的绿色加好，选择archive，选择要制作的jar包，ok</p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225204608238.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225204608238"></p>
+<p>5.选择启动类</p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225204714552.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225204714552"></p>
+<p>6.选择jre版本如1.8，点击advanced Options，选择search sequence</p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225204759636.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225204759636"></p>
+<p>7.全选，清空</p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225204901348.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225204901348"></p>
+<p>8.点击绿色加号，添加jre路径。建议将jar和jre文件放在同一目录下。</p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225204954967.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225204954967"></p>
+<p>如：</p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225205035420.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225205035420"></p>
+<p>之后一直next，直到完成。</p>
+<p>之后会在指定目录生成一个exe文件，如</p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225205138190.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225205138190"></p>
+<p>双击运行，检查是否正常。如果不正常，建议重新以上步骤。</p>
+<p><strong>注意：此时只是将jar包制作成exe，里面并不包含运行环境jre。</strong></p>
+<p>下面需要开始下载另外一个软件 inno setup</p>
+<h2 id="inno-setup"><a href="#inno-setup" class="headerlink" title="inno setup"></a>inno setup</h2><p><a target="_blank" rel="noopener" href="https://jrsoftware.org/isdl.php">https://jrsoftware.org/isdl.php</a></p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225205622534.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225205622534"></p>
+<p>安装完成后，开始打包。</p>
+<p>1.File -&gt; new -&gt; next</p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225205709574.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225205709574"></p>
+<p>2.填写软件名称，版本等信息，next。</p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225205757326.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225205757326"></p>
+<p>3.保持默认，直接next。</p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225205826008.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225205826008"></p>
+<p>4.选择exe所在位置，和添加根目录，next。</p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210143087.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225210143087"></p>
+<p>此时我的目录结构是</p>
+<p>​    <img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210209792.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225210209792"></p>
+<p>5.默认，next</p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210230062.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225210230062"></p>
+<p>6.默认，next</p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210251600.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225210251600"></p>
+<p>7.next</p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210304200.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225210304200"></p>
+<p>8.默认，next</p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210319620.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225210319620"></p>
+<p>9.默认，next</p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210334976.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225210334976"></p>
+<p>10.添加输出路径，next</p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210414634.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225210414634"></p>
+<p>11.默认，next</p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210440267.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225210440267"></p>
+<p>12.finish</p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210455402.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225210455402"></p>
+<p>12 是</p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210511177.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225210511177"></p>
+<p>13.是</p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210523072.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225210523072"></p>
+<p>14.等待编译完成</p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210556713.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225210556713"></p>
+<p>即可得到一个exe文件</p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210644715.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225210644715"></p>
+<p>对他进行安装，完成之后验证运用是否正常。下图可知，安装包已经包含了exe以及jre，说明可以打包成功。后序只需要将上一步的mysetup.exe文件发给别人安装即可运行你的程序了。</p>
+<p><img src="/myBlog/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/image-20240225210805406.png" srcset="/myBlog/img/loading.gif" lazyload alt="image-20240225210805406"></p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/myBlog/categories/jar%E5%8C%85%E5%88%B6%E4%BD%9Cexe/" class="category-chain-item">jar包制作exe</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/myBlog/tags/jar%E5%8C%85%E5%88%B6%E4%BD%9Cexe/">#jar包制作exe</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>将jar包打成exe可在任何window运行</div>
+      <div>https://no-ten.github.io/将jar包打成exe可在任何window运行/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Ten</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年2月25日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/myBlog/jenkins+gitee+maven+docker%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83%E5%88%B0k8s/" title="jenkins+gitee+maven+docker打包发布到k8s">
+                        <span class="hidden-mobile">jenkins+gitee+maven+docker打包发布到k8s</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/myBlog/js/events.js" ></script>
+<script  src="/myBlog/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/myBlog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/myBlog/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/myBlog/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

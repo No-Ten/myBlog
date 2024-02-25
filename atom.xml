@@ -6,7 +6,7 @@
   <link href="https://no-ten.github.io/atom.xml" rel="self"/>
   
   <link href="https://no-ten.github.io/"/>
-  <updated>2023-09-28T02:37:00.506Z</updated>
+  <updated>2024-02-25T13:16:35.027Z</updated>
   <id>https://no-ten.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>将jar包打成exe可在任何window运行</title>
+    <link href="https://no-ten.github.io/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/"/>
+    <id>https://no-ten.github.io/%E5%B0%86jar%E5%8C%85%E6%89%93%E6%88%90exe%E5%8F%AF%E5%9C%A8%E4%BB%BB%E4%BD%95window%E8%BF%90%E8%A1%8C/</id>
+    <published>2024-02-25T13:16:00.000Z</published>
+    <updated>2024-02-25T13:16:35.027Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;将jar包打成exe可在任何window运行&quot;&gt;&lt;a href=&quot;#将jar包打成exe可在任何window运行&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="jar包制作exe" scheme="https://no-ten.github.io/categories/jar%E5%8C%85%E5%88%B6%E4%BD%9Cexe/"/>
+    
+    
+    <category term="jar包制作exe" scheme="https://no-ten.github.io/tags/jar%E5%8C%85%E5%88%B6%E4%BD%9Cexe/"/>
+    
+  </entry>
   
   <entry>
     <title>jenkins+gitee+maven+docker打包发布到k8s</title>
@@ -489,31 +514,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;day07-课程发布-添加课程信息&quot;&gt;&lt;a href=&quot;#day07-课程发布-添加课程信息&quot; class=&quot;headerlink&quot; title=&quot;day07-课程发布-添加课程信息&quot;&gt;&lt;/a&gt;day07-课程发布-添加课程信息&lt;/h1&gt;&lt;h1</summary>
-        
-      
-    
-    
-    
-    <category term="项目|谷粒学院|笔记" scheme="https://no-ten.github.io/categories/%E9%A1%B9%E7%9B%AE-%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2-%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="project" scheme="https://no-ten.github.io/tags/project/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>day06-整合阿里云oss和Excel导入分类</title>
-    <link href="https://no-ten.github.io/day06-%E6%95%B4%E5%90%88%E9%98%BF%E9%87%8C%E4%BA%91oss%E5%92%8CExcel%E5%AF%BC%E5%85%A5%E5%88%86%E7%B1%BB/"/>
-    <id>https://no-ten.github.io/day06-%E6%95%B4%E5%90%88%E9%98%BF%E9%87%8C%E4%BA%91oss%E5%92%8CExcel%E5%AF%BC%E5%85%A5%E5%88%86%E7%B1%BB/</id>
-    <published>2021-12-24T03:00:24.335Z</published>
-    <updated>2022-01-06T16:40:56.867Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;day06-整合阿里云oss和Excel导入分类&quot;&gt;&lt;a href=&quot;#day06-整合阿里云oss和Excel导入分类&quot; class=&quot;headerlink&quot;</summary>
         
       
     
